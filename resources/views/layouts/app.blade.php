@@ -35,18 +35,18 @@
         .navbar {
             transition: all 0.4s ease;
             padding: 0.8rem 0;
-            background: rgba(0, 51, 102, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(198, 164, 59, 0.2);
+            background: rgba(0, 51, 102, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(198, 164, 59, 0.25);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
         
         .navbar.scrolled {
-            background: rgba(0, 51, 102, 0.98);
-            padding: 0.5rem 0;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            background: rgba(0, 51, 102, 0.96);
+            padding: 0.4rem 0;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
         }
         
-        /* Container navbar */
         .navbar .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -57,120 +57,208 @@
             width: 100%;
         }
         
-        /* Logo Wrapper - STABIL TIDAK BERGERAK */
+        /* ========== LOGO SECTION - POJOK KIRI (KE SUDUT) ========== */
         .logo-wrapper {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             margin: 0;
             padding: 0;
         }
         
+        /* Logo gambar - ukuran besar, sudut lembut, efek melayang */
         .logo-img {
-            height: 40px;
+            height: 60px;
             width: auto;
-            border-radius: 6px;
+            border-radius: 16px;
             object-fit: cover;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 16px -6px rgba(0, 0, 0, 0.2);
+            background: rgba(255,255,255,0.05);
         }
         
+        .logo-img:hover {
+            transform: scale(1.02) translateY(-2px);
+            box-shadow: 0 14px 24px -8px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Pembatas vertikal antar logo */
         .logo-divider {
-            width: 1px;
-            height: 28px;
-            background: rgba(255, 255, 255, 0.3);
+            width: 1.5px;
+            height: 42px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.5), rgba(255,255,255,0.1));
+            border-radius: 2px;
         }
         
+        /* Teks GeoToba - di samping kanan logo */
         .navbar-brand {
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-size: 1.65rem;
+            font-weight: 800;
             color: white !important;
             margin: 0;
-            padding: 0;
+            padding: 0 0 0 6px;
+            letter-spacing: -0.3px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease;
         }
         
         .navbar-brand span {
             color: var(--gold);
+            font-weight: 800;
         }
         
-        /* Navbar Links */
+        /* Navbar Links - menu di kanan */
         .nav-link {
             color: white !important;
             font-weight: 500;
-            margin: 0 0.3rem;
-            transition: all 0.3s ease;
+            margin: 0 0.2rem;
+            transition: all 0.25s ease;
             font-size: 0.95rem;
             padding: 0.5rem 1rem;
-            border-radius: 8px;
+            border-radius: 40px;
         }
         
         .nav-link:hover {
             color: var(--gold) !important;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
         }
         
         .nav-link.active {
             color: var(--gold) !important;
-            background: rgba(198, 164, 59, 0.15);
-        }
-        
-        /* Menu navbar */
-        .navbar-nav {
-            margin: 0;
-            padding: 0;
+            background: rgba(198, 164, 59, 0.2);
         }
         
         /* Dropdown Menu */
         .dropdown-menu {
-            background: rgba(0, 51, 102, 0.98);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 0.5rem 0;
-            margin-top: 0.5rem;
+            background: rgba(0, 51, 102, 0.96);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            padding: 0.6rem 0;
+            margin-top: 0.7rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3);
         }
         
         .dropdown-item {
             color: white;
-            padding: 8px 20px;
+            padding: 10px 24px;
             font-size: 0.85rem;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
+            border-radius: 18px;
+            margin: 4px 10px;
         }
         
         .dropdown-item:hover {
-            background: rgba(198, 164, 59, 0.15);
+            background: rgba(198, 164, 59, 0.2);
             color: var(--gold);
             transform: translateX(5px);
         }
         
         .dropdown-header {
             color: var(--gold);
-            padding: 8px 20px;
+            padding: 8px 24px;
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
         
         .dropdown-divider {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin: 0.5rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
         }
         
-        /* Navbar Toggler (Tombol Hamburger) */
+        /* Navbar Toggler */
         .navbar-toggler {
             border: none;
             background: rgba(255, 255, 255, 0.15);
-            padding: 10px 14px;
-            border-radius: 10px;
+            padding: 8px 12px;
+            border-radius: 14px;
         }
         
         .navbar-toggler:focus {
-            box-shadow: none;
+            box-shadow: 0 0 0 3px rgba(198, 164, 59, 0.4);
             outline: none;
         }
         
         .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-            width: 24px;
-            height: 24px;
+        }
+        
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 991px) {
+            .logo-img {
+                height: 52px;
+            }
+            .logo-divider {
+                height: 36px;
+            }
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            .logo-wrapper {
+                gap: 10px;
+            }
+            
+            .navbar-collapse {
+                background: rgba(0, 51, 102, 0.96);
+                backdrop-filter: blur(20px);
+                padding: 1.2rem;
+                border-radius: 28px;
+                margin-top: 1rem;
+                border: 1px solid rgba(255,255,255,0.15);
+            }
+            
+            .nav-link {
+                text-align: center;
+                padding: 0.7rem !important;
+            }
+            .dropdown-item {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .logo-img {
+                height: 46px;
+                border-radius: 14px;
+            }
+            .logo-divider {
+                height: 32px;
+            }
+            .navbar-brand {
+                font-size: 1.35rem;
+            }
+            .logo-wrapper {
+                gap: 8px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo-img {
+                height: 40px;
+                border-radius: 12px;
+            }
+            .logo-divider {
+                height: 28px;
+            }
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+            .logo-wrapper {
+                gap: 6px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .logo-img {
+                height: 36px;
+            }
+            .logo-divider {
+                height: 24px;
+            }
+            .navbar-brand {
+                font-size: 1rem;
+            }
         }
         
         /* ==================== FOOTER ==================== */
@@ -197,6 +285,7 @@
             width: 35px;
             height: 2px;
             background: var(--gold);
+            border-radius: 4px;
         }
         
         .footer a {
@@ -209,7 +298,6 @@
         .footer a:hover {
             color: var(--gold);
             transform: translateX(5px);
-            display: inline-block;
         }
         
         .social-icons {
@@ -227,7 +315,6 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
-            font-size: 1rem;
         }
         
         .social-icons a:hover {
@@ -248,14 +335,13 @@
             color: rgba(255, 255, 255, 0.5);
         }
         
-        /* Back to Top */
         .back-to-top {
             position: fixed;
             bottom: 25px;
             right: 25px;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            border-radius: 22px;
             background: var(--gold);
             color: var(--blue-dark);
             display: flex;
@@ -266,7 +352,7 @@
             visibility: hidden;
             transition: all 0.3s ease;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         
         .back-to-top.show {
@@ -276,124 +362,38 @@
         
         .back-to-top:hover {
             background: white;
-            transform: translateY(-3px);
-        }
-        
-        /* ==================== RESPONSIVE - LOGO STABIL ==================== */
-        @media (max-width: 991px) {
-            .navbar .container {
-                padding: 0 15px;
-            }
-            
-            .logo-img {
-                height: 35px;
-            }
-            
-            .logo-divider {
-                height: 25px;
-            }
-            
-            .navbar-brand {
-                font-size: 1.2rem;
-            }
-            
-            .navbar-collapse {
-                background: rgba(0, 51, 102, 0.98);
-                padding: 1rem;
-                border-radius: 16px;
-                margin-top: 1rem;
-                max-height: 80vh;
-                overflow-y: auto;
-            }
-            
-            .nav-link {
-                text-align: center;
-                padding: 0.7rem !important;
-                font-size: 0.9rem;
-            }
-            
-            .dropdown-menu {
-                background: rgba(0, 51, 102, 0.9);
-                margin: 0.5rem 0;
-            }
-            
-            .dropdown-item {
-                text-align: center;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .navbar .container {
-                padding: 0 12px;
-            }
-            
-            .logo-img {
-                height: 30px;
-            }
-            
-            .logo-divider {
-                height: 22px;
-            }
-            
-            .navbar-brand {
-                font-size: 1rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .navbar .container {
-                padding: 0 10px;
-            }
-            
-            .logo-wrapper {
-                gap: 6px;
-            }
-            
-            .logo-img {
-                height: 28px;
-            }
-            
-            .logo-divider {
-                height: 20px;
-            }
-            
-            .navbar-brand {
-                font-size: 0.9rem;
-            }
-            
-            .nav-link {
-                font-size: 0.85rem;
-                padding: 0.6rem !important;
-            }
-            
-            .navbar-toggler {
-                padding: 8px 12px;
-            }
+            transform: translateY(-4px);
         }
     </style>
     
     @stack('styles')
 </head>
 <body>
-    <!-- Navbar -->
+    <!-- Navbar - Logo di pojok kiri (ke sudut) seperti gambar yang Anda maksud -->
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
-            <!-- LOGO SECTION - RAPI -->
+            <!-- LOGO SECTION: Diletakkan di pojok kiri/sudut kiri navbar -->
             <div class="logo-wrapper">
-                <img src="{{ asset('image/Logo/logobankindonesia.jpg') }}" alt="Bank Indonesia" class="logo-img">
+                <!-- Logo Bank Indonesia -->
+                <img src="{{ asset('image/Logo/logobankindonesia.jpg') }}" alt="Bank Indonesia" class="logo-img" loading="lazy">
+                <!-- Pembatas -->
                 <div class="logo-divider"></div>
-                <img src="{{ asset('image/Logo/del.jpg') }}" alt="Logo Del" class="logo-img">
+                <!-- Logo Del -->
+                <img src="{{ asset('image/Logo/del.jpg') }}" alt="Logo Del" class="logo-img" loading="lazy">
+                <!-- Pembatas -->
                 <div class="logo-divider"></div>
+                <!-- Teks GeoToba di samping kanan logo -->
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Geo<span>Toba</span>
                 </a>
             </div>
             
-            <!-- Tombol Hamburger -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <!-- Tombol Hamburger untuk mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
+            <!-- Menu Navigasi - diletakkan di kanan -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
@@ -403,7 +403,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('informasi') ? 'active' : '' }}" href="{{ url('/informasi') }}">
-                            <i ></i> Informasi
+                            <i></i> Informasi
                         </a>
                     </li>
                     
@@ -415,22 +415,22 @@
                            role="button" 
                            data-bs-toggle="dropdown" 
                            aria-expanded="false">
-                            <i ></i> Destinasi
+                            <i></i> Destinasi
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="destinasiDropdown">
-                            <li><h6 class="dropdown-header">KATEGORI DESTINASI</h6></li>
+                            <li><h6 class="dropdown-header"><i class="fas fa-tag me-1"></i> KATEGORI DESTINASI</h6></li>
                             <li><a class="dropdown-item" href="{{ url('/destinasi/alam') }}">
-                                <i ></i> Destinasi Alam
+                                <i></i> Destinasi Alam
                             </a></li>
                             <li><a class="dropdown-item" href="{{ url('/destinasi/buatan') }}">
-                                <i ></i> Destinasi Buatan
+                                <i></i> Destinasi Buatan
                             </a></li>
                             <li><a class="dropdown-item" href="{{ url('/destinasi/budaya') }}">
-                                <i ></i> Destinasi Budaya
+                                <i></i> Destinasi Budaya
                             </a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ url('/destinasi') }}">
-                                <i ></i> Semua Destinasi
+                                <i></i> Semua Destinasi
                             </a></li>
                         </ul>
                     </li>
@@ -447,7 +447,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('kontak') ? 'active' : '' }}" href="{{ url('/kontak') }}">
-                            <i ></i> Kontak
+                            <i></i> Kontak
                         </a>
                     </li>
                 </ul>
@@ -468,10 +468,10 @@
                     <h5>Geo<span style="color: #c6a43b;">Toba</span></h5>
                     <p style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">Sistem Informasi Geosite Danau Toba - Menyajikan informasi lengkap tentang keindahan geologi dan budaya Batak di kawasan Danau Toba.</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 
@@ -516,13 +516,13 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2024 GeoToba - Geopark Danau Toba. All rights reserved.</p>
+                <p>&copy; 2025 GeoToba - Geopark Danau Toba. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTop">
+    <div class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </div>
 
@@ -533,7 +533,6 @@
     <script>
         AOS.init({ duration: 1000, once: true });
         
-        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', function() {
             if (window.scrollY > 50) {
@@ -543,7 +542,6 @@
             }
         });
         
-        // Back to top
         const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', function() {
             if (window.scrollY > 300) {
@@ -556,6 +554,19 @@
         backToTop.addEventListener('click', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+        
+        // Mobile menu close after click
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        if (navbarCollapse) {
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 992 && navbarCollapse.classList.contains('show')) {
+                        new bootstrap.Collapse(navbarCollapse, { toggle: false }).hide();
+                    }
+                });
+            });
+        }
     </script>
     
     @stack('scripts')
