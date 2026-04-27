@@ -1,4 +1,5 @@
 <?php
+// app/Models/Galeri.php
 
 namespace App\Models;
 
@@ -8,21 +9,44 @@ use Illuminate\Database\Eloquent\Model;
 class Galeri extends Model
 {
     use HasFactory;
-    
-    protected $table = 'galeri';
+
+    protected $table = 'galeris';
     
     protected $fillable = [
-        'judul', 'slug', 'deskripsi', 'gambar', 'kategori', 
-        'lokasi', 'tanggal_foto', 'status', 'views'
+        'judul',
+        'kategori',
+        'deskripsi',
+        'gambar',
+        'lokasi',
+        'tanggal_foto',
+        'status',
+        'views'
     ];
-    
+
     protected $casts = [
-        'tanggal_foto' => 'date',
-        'status' => 'boolean'
+        'status' => 'boolean',
+        'tanggal_foto' => 'date'
     ];
-    
-    public function getRouteKeyName()
+
+    // Helper untuk mendapatkan path folder berdasarkan kategori
+    public static function getPathByKategori($kategori)
     {
-        return 'slug';
+        return match($kategori) {
+            'Meat' => 'image/meat/galeri',
+            'Batu Bahisan' => 'image/batu-bahisan/galeri',
+            'Liang Sipege' => 'image/liang-sipege/galeri',
+            default => 'image/galeri',
+        };
+    }
+    
+    // Helper untuk mendapatkan path publik
+    public static function getPublicPathByKategori($kategori)
+    {
+        return match($kategori) {
+            'Meat' => '/image/meat/galeri',
+            'Batu Bahisan' => '/image/batu-bahisan/galeri',
+            'Liang Sipege' => '/image/liang-sipege/galeri',
+            default => '/image/galeri',
+        };
     }
 }

@@ -1,60 +1,56 @@
 <?php
+// database/seeders/GaleriSeeder.php
 
 namespace Database\Seeders;
 
-use App\Models\Galeri;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
+use App\Models\Galeri;
 
 class GaleriSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
-        $galeri = [
-            [
-                'judul' => 'Pemandangan Danau Toba',
-                'slug' => 'pemandangan-danau-toba',
-                'deskripsi' => 'Keindahan Danau Toba dari atas Bukit Holbung dengan pemandangan yang memukau',
-                'gambar' => '/image/toba.jpg',
-                'kategori' => 'Balige',
-                'lokasi' => 'Balige, Toba Samosir',
-                'status' => true,
-                'views' => 0
-            ],
-            [
-                'judul' => 'Rumah Adat Batak',
-                'slug' => 'rumah-adat-batak',
-                'deskripsi' => 'Arsitektur tradisional rumah adat Batak Toba yang masih terjaga',
-                'gambar' => '/image/meat.jpg',
-                'kategori' => 'Meat',
-                'lokasi' => 'Desa Meat, Toba Samosir',
-                'status' => true,
-                'views' => 0
-            ],
-            [
-                'judul' => 'Batu Bahisan',
-                'slug' => 'batu-bahisan',
-                'deskripsi' => 'Formasi batuan unik hasil proses geologi jutaan tahun',
-                'gambar' => '/image/batu.jpg',
-                'kategori' => 'Batu Bahisan',
-                'lokasi' => 'Samosir',
-                'status' => true,
-                'views' => 0
-            ],
-            [
-                'judul' => 'Liang Sipege',
-                'slug' => 'liang-sipege',
-                'deskripsi' => 'Goa alami dengan stalaktit dan stalakmit yang indah',
-                'gambar' => '/image/liang.jpg',
-                'kategori' => 'Liang Sipege',
-                'lokasi' => 'Samosir',
-                'status' => true,
-                'views' => 0
-            ],
-        ];
-
-        foreach ($galeri as $item) {
-            Galeri::create($item);
-        }
+        // Data sample untuk Meat
+        Galeri::create([
+            'judul' => 'Pantai Meat Sunset',
+            'kategori' => 'Meat',
+            'deskripsi' => 'Pemandangan sunset yang indah di Pantai Meat',
+            'gambar' => '/image/meat/galeri/1.jpg',
+            'lokasi' => 'Pantai Meat',
+            'tanggal_foto' => '2024-01-15',
+            'status' => true,
+        ]);
+        
+        Galeri::create([
+            'judul' => 'Rumah Adat Meat',
+            'kategori' => 'Meat',
+            'deskripsi' => 'Rumah adat Batak khas Meat',
+            'gambar' => '/image/meat/galeri/2.jpg',
+            'lokasi' => 'Desa Meat',
+            'tanggal_foto' => '2024-01-20',
+            'status' => true,
+        ]);
+        
+        // Data sample untuk Batu Bahisan
+        Galeri::create([
+            'judul' => 'Formasi Batu Bahisan',
+            'kategori' => 'Batu Bahisan',
+            'deskripsi' => 'Formasi batuan unik Batu Bahisan',
+            'gambar' => '/image/batu-bahisan/galeri/1.jpg',
+            'lokasi' => 'Batu Bahisan',
+            'tanggal_foto' => '2024-02-10',
+            'status' => true,
+        ]);
+        
+        // Data sample untuk Liang Sipege
+        Galeri::create([
+            'judul' => 'Mulut Goa Liang Sipege',
+            'kategori' => 'Liang Sipege',
+            'deskripsi' => 'Pintu masuk Goa Liang Sipege',
+            'gambar' => '/image/liang-sipege/galeri/1.jpg',
+            'lokasi' => 'Liang Sipege',
+            'tanggal_foto' => '2024-03-05',
+            'status' => true,
+        ]);
     }
 }

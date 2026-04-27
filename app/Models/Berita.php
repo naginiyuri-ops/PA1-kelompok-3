@@ -1,33 +1,52 @@
 <?php
+// app/Models/Berita.php
 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Berita extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'berita';
     
     protected $fillable = [
-        'judul', 'slug', 'konten', 'gambar', 'kategori_id', 
-        'penulis', 'tanggal_terbit', 'status', 'views', 'komentar'
+        'judul',
+        'slug',
+        'excerpt',
+        'content',
+        'gambar',
+        'penulis',
+        'views',
+        'status',
+        'tanggal_berita'
     ];
-    
+
     protected $casts = [
-        'tanggal_terbit' => 'date',
-        'status' => 'boolean'
+        'status' => 'boolean',
+        'tanggal_berita' => 'date'
     ];
-    
-    public function kategori()
+
+    // Auto generate slug
+    protected static function boot()
     {
-        return $this->belongsTo(Kategori::class, 'kategori_id');
+        parent::boot();
+        
+        static::creating(function ($berita) {
+            $berita->slug = Str::slug($berita->judul);
+        });
+        
+        static::updating(function ($berita) {
+            $berita->slug = Str::slug($berita->judul);
+        });
     }
     
-    public function getRouteKeyName()
+    // Increment views
+    public function incrementViews()
     {
-        return 'slug';
+        $this->increment('views');
     }
 }

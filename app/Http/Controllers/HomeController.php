@@ -2,48 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Galeri;
+use App\Models\Berita;
+
 class HomeController extends Controller
 {
-    public function index()
-    {
-        $destinasi = [
-            (object)[
-                'slug'=>'balige',
-                'nama'=>'Balige',
-                'gambar'=>'balige.jpg',
-                'deskripsi'=>'Pusat wisata Danau Toba yang indah'
-            ],
-            (object)[
-                'slug'=>'meat',
-                'nama'=>'Meat',
-                'gambar'=>'meat.jpg',
-                'deskripsi'=>'Desa wisata tradisional di tepi danau'
-            ],
-            (object)[
-                'slug'=>'liang-sipege',
-                'nama'=>'Liang Sipege',
-                'gambar'=>'liang.jpg',
-                'deskripsi'=>'Goa alami yang eksotis'
-            ],
-            (object)[
-                'slug'=>'batu-bahisan',
-                'nama'=>'Batu Bahisan',
-                'gambar'=>'batu.jpg',
-                'deskripsi'=>'Wisata batu unik dan instagramable'
-            ]
-        ];
-
-        return view('pages.home', compact('destinasi'));
-    }
-
-    public function detail($slug)
-    {
-        $data = (object)[
-            'nama'=>ucwords(str_replace('-', ' ', $slug)),
-            'gambar'=>'balige.jpg',
-            'deskripsi'=>'Ini adalah detail destinasi wisata yang sangat menarik untuk dikunjungi.'
-        ];
-
-        return view('pages.detail', compact('data'));
+   public function index()
+{
+    $galeri = Galeri::where('status', true)->latest()->take(6)->get();
+    $berita = Berita::with('kategori')->where('status', true)->latest()->take(3)->get();
+    
+    $destinasi = [
+        (object)[
+            'slug' => 'meat',
+            'nama' => 'Meat',
+            'gambar' => '/images/meat/thumbnail.jpg',
+            'deskripsi' => 'Desa adat dengan makam Raja Hunsa dan budaya Batak'
+        ],
+        (object)[
+            'slug' => 'batu-bahisan',
+            'nama' => 'Batu Bahisan',
+            'gambar' => '/images/batu-bahisan/thumbnail.jpg',
+            'deskripsi' => 'Formasi batuan unik dengan spot foto Instagramable'
+        ],
+        (object)[
+            'slug' => 'liang-sipege',
+            'nama' => 'Liang Sipege',
+            'gambar' => '/images/liang-sipege/thumbnail.jpg',
+            'deskripsi' => 'Goa alami dengan stalaktit dan stalakmit'
+        ]
+    ];
+    
+    return view('pages.home', compact('galeri', 'berita', 'destinasi'));
     }
 }
