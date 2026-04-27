@@ -66,7 +66,7 @@
         <div class="sejarah-item">
             <div class="sejarah-image"><img src="/image/meat/sejarah1.jpg"></div>
             <div class="sejarah-text">
-                <p>Meat merupakan salah satu desa tertua di Danau Toba. Desa ini menjadi pusat budaya Batak Toba dan tempat tinggal para raja Batak. Makam Opung Raja Hunsa menjadi bukti sejarah kejayaan masa lalu.</p>
+                <p>Meat adalah salah satu desa di Kecamatan Tampahan,Kabupaten Toba, Provinsi Sumatra Utara,Indonesia.</p>
             </div>
         </div>
         <div class="sejarah-item reverse">
