@@ -403,7 +403,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('informasi') ? 'active' : '' }}" href="{{ url('/informasi') }}">
-                            <i class="fas fa-info-circle me-1"></i> Informasi
+                            <i ></i> Informasi
                         </a>
                     </li>
                     
@@ -415,7 +415,7 @@
                            role="button" 
                            data-bs-toggle="dropdown" 
                            aria-expanded="false">
-                            <i class="fas fa-map-marked-alt me-1"></i> Destinasi
+                            <i ></i> Destinasi
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="destinasiDropdown">
                             <li><h6 class="dropdown-header">KATEGORI DESTINASI</h6></li>
@@ -437,17 +437,17 @@
                     
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('galeri') ? 'active' : '' }}" href="{{ url('/galeri') }}">
-                            <i class="fas fa-images me-1"></i> Galeri
+                            <i></i> Galeri
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('berita') ? 'active' : '' }}" href="{{ url('/berita') }}">
-                            <i class="fas fa-newspaper me-1"></i> Berita
+                            <i></i> Berita
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('kontak') ? 'active' : '' }}" href="{{ url('/kontak') }}">
-                            <i class="fas fa-envelope me-1"></i> Kontak
+                            <i ></i> Kontak
                         </a>
                     </li>
                 </ul>
