@@ -46,57 +46,58 @@
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
         
-        /* Container navbar - beri jarak dari tepi */
-       .navbar .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 5px;        /* Kurangi padding - makin kecil makin ke sudut */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.logo-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-left: -200px;  
-    margin-right: auto;
-}
-
-.logo-img {
-    height: 40px;
-    width: auto;
-    border-radius: 6px;
-    object-fit: cover;
-}
-
-.logo-divider {
-    width: 1px;
-    height: 28px;
-    background: rgba(255, 255, 255, 0.3);
-}
-
-.navbar-brand {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: white !important;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar-brand span {
-    color: var(--gold);
-}
+        /* Container navbar */
+        .navbar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
         
-        /* Navbar Links - perbaiki font-size */
+        /* Logo Wrapper - STABIL TIDAK BERGERAK */
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .logo-img {
+            height: 40px;
+            width: auto;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+        
+        .logo-divider {
+            width: 1px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .navbar-brand {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white !important;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar-brand span {
+            color: var(--gold);
+        }
+        
+        /* Navbar Links */
         .nav-link {
             color: white !important;
             font-weight: 500;
             margin: 0 0.3rem;
             transition: all 0.3s ease;
-            font-size: 0.95rem;  /* Perbaiki dari 1,5 rem (salah format) */
+            font-size: 0.95rem;
             padding: 0.5rem 1rem;
             border-radius: 8px;
         }
@@ -111,9 +112,10 @@
             background: rgba(198, 164, 59, 0.15);
         }
         
-        /* Menu navbar - beri jarak dari kanan */
+        /* Menu navbar */
         .navbar-nav {
-            margin-right: 0;
+            margin: 0;
+            padding: 0;
         }
         
         /* Dropdown Menu */
@@ -277,97 +279,97 @@
             transform: translateY(-3px);
         }
         
-       /* ==================== RESPONSIVE ==================== */
-@media (max-width: 991px) {
-    .navbar .container {
-        padding: 0 20px;
-    }
-    
-    /* Tambahkan ini - atur margin-left untuk tablet */
-    .logo-wrapper {
-        margin-left: -50px !important;
-    }
-    
-    .navbar-collapse {
-        background: rgba(0, 51, 102, 0.98);
-        padding: 1rem;
-        border-radius: 16px;
-        margin-top: 1rem;
-        max-height: 80vh;
-        overflow-y: auto;
-    }
-    
-    .nav-link {
-        text-align: center;
-        padding: 0.7rem !important;
-        font-size: 0.9rem;
-    }
-    
-    .dropdown-menu {
-        background: rgba(0, 51, 102, 0.9);
-        margin: 0.5rem 0;
-    }
-    
-    .dropdown-item {
-        text-align: center;
-    }
-}
-
-@media (max-width: 768px) {
-    .navbar .container {
-        padding: 0 15px;
-    }
-    
-    /* Tambahkan ini - atur margin-left untuk HP */
-    .logo-wrapper {
-        margin-left: -100px !important;
-    }
-    
-    .logo-img {
-        height: 32px;
-    }
-    
-    .logo-divider {
-        height: 24px;
-    }
-    
-    .navbar-brand {
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .navbar .container {
-        padding: 0 12px;
-    }
-    
-    /* Tambahkan ini - atur margin-left untuk HP kecil */
-    .logo-wrapper {
-        margin-left: -150px !important;
-        gap: 4px;
-    }
-    
-    .logo-img {
-        height: 28px;
-    }
-    
-    .logo-divider {
-        height: 20px;
-    }
-    
-    .navbar-brand {
-        font-size: 0.95rem;
-    }
-    
-    .nav-link {
-        font-size: 0.85rem;
-        padding: 0.6rem !important;
-    }
-    
-    .navbar-toggler {
-        padding: 8px 12px;
-    }
-}
+        /* ==================== RESPONSIVE - LOGO STABIL ==================== */
+        @media (max-width: 991px) {
+            .navbar .container {
+                padding: 0 15px;
+            }
+            
+            .logo-img {
+                height: 35px;
+            }
+            
+            .logo-divider {
+                height: 25px;
+            }
+            
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+            
+            .navbar-collapse {
+                background: rgba(0, 51, 102, 0.98);
+                padding: 1rem;
+                border-radius: 16px;
+                margin-top: 1rem;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+            
+            .nav-link {
+                text-align: center;
+                padding: 0.7rem !important;
+                font-size: 0.9rem;
+            }
+            
+            .dropdown-menu {
+                background: rgba(0, 51, 102, 0.9);
+                margin: 0.5rem 0;
+            }
+            
+            .dropdown-item {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar .container {
+                padding: 0 12px;
+            }
+            
+            .logo-img {
+                height: 30px;
+            }
+            
+            .logo-divider {
+                height: 22px;
+            }
+            
+            .navbar-brand {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .navbar .container {
+                padding: 0 10px;
+            }
+            
+            .logo-wrapper {
+                gap: 6px;
+            }
+            
+            .logo-img {
+                height: 28px;
+            }
+            
+            .logo-divider {
+                height: 20px;
+            }
+            
+            .navbar-brand {
+                font-size: 0.9rem;
+            }
+            
+            .nav-link {
+                font-size: 0.85rem;
+                padding: 0.6rem !important;
+            }
+            
+            .navbar-toggler {
+                padding: 8px 12px;
+            }
+        }
     </style>
     
     @stack('styles')
