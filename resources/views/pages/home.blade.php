@@ -771,8 +771,10 @@
                     <div class="destinasi-content">
                         <div class="destinasi-number">01 — GEOSITE</div>
                         <h3>Meat</h3>
-                        <div class="destinasi-location">Pulau Sibandang, Danau Toba</div>
-                        <p class="destinasi-desc">Desa adat yang kaya budaya Batak. Makam Opung Raja Hunsa, rumah adat tradisional, tarian Tortor, dan tenun ulos khas Meat.</p>
+                        <div class="destinasi-location">Desa Tampahan, Kecamatan Tampahan, Kabupaten Toba, Provinsi Sumatera Utara,</div>
+                        <p class="destinasi-desc">Desa Meat adalah salah satu desa wisata yang terletak di Kecamatan Balige, Kabupaten Toba, di tepi Danau Toba. Desa ini terkenal dengan keindahan alamnya yang memadukan perbukitan hijau, persawahan, dan panorama danau yang menenangkan.
+
+Selain menawarkan pemandangan yang indah, Desa Meat juga kaya akan budaya Batak Toba, tradisi lokal, serta kehidupan masyarakat yang masih sangat kental dengan adat istiadat. Potensi ini menjadikan Desa Meat sebagai destinasi wisata yang menarik untuk menikmati alam sekaligus mengenal budaya lokal</p>
                         <div class="destinasi-tags">
                             <span>Makam Raja Hunsa</span>
                             <span>Tari Tortor</span>
@@ -791,8 +793,10 @@
                     <div class="destinasi-content">
                         <div class="destinasi-number">02 — GEOSITE</div>
                         <h3>Batu Bahisan</h3>
-                        <div class="destinasi-location">Pulau Sibandang, Danau Toba</div>
-                        <p class="destinasi-desc">Formasi batuan unik hasil erosi ribuan tahun. Spot favorit untuk sunrise, sunset, dan fotografi landscape.</p>
+                        <div class="destinasi-location">Desa Aek Bolon Jae, Balige, Toba, Kecamatan Balige, Kabupaten Toba, Provinsi Sumatera Utara,</div>
+                        <p class="destinasi-desc"> Batu Basiha merupakan salah satu situs batu bersejarah di kawasan Balige yang memiliki nilai budaya dan legenda dalam masyarakat Batak Toba. Batu ini dikenal sebagai simbol kekuatan, kepercayaan, dan kearifan lokal yang diwariskan secara turun-temurun.
+
+Selain menjadi bagian dari cerita rakyat, Batu Basiha juga memiliki potensi sebagai objek wisata budaya, karena keunikan bentuknya serta nilai historis yang melekat di dalamnya.</p>
                         <div class="destinasi-tags">
                             <span>Formasi Batuan Unik</span>
                             <span>Spot Fotografi</span>
@@ -811,8 +815,12 @@
                     <div class="destinasi-content">
                         <div class="destinasi-number">03 — GEOSITE</div>
                         <h3>Liang Sipege</h3>
-                        <div class="destinasi-location">Pulau Sibandang, Danau Toba</div>
-                        <p class="destinasi-desc">Goa alami dengan stalaktit dan stalakmit menakjubkan. Cocok untuk caving, eksplorasi, dan edukasi geologi.</p>
+                        <div class="destinasi-location">Hutagaol Peatalun, Kec. Balige, Toba, Sumatera Utara </div>
+                        <p class="destinasi-desc"> Gua Liang Sipege adalah destinasi wisata alam yang terletak di Desa Simarmar Pea Talun Hutagaol, Kecamatan Balige, Kabupaten Toba. Gua ini dikenal sebagai habitat kelelawar yang menghasilkan guano, dimanfaatkan masyarakat sebagai pupuk organik.
+
+Selain keindahan alamnya, gua ini juga kaya akan nilai sejarah dan legenda, salah satunya kisah Raja Sijorat Panjaitan yang terkenal karena keberanian dan kesaktiannya.
+
+Dengan perpaduan alam, budaya, dan mitos, Gua Liang Sipege memiliki potensi besar sebagai objek wisata unggulan di kawasan Danau Toba.</p>
                         <div class="destinasi-tags">
                             <span>Goa Alami</span>
                             <span>Caving</span>
