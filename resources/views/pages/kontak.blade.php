@@ -391,15 +391,7 @@
 </style>
 
 <!-- ==================== LOGO SECTION ==================== -->
-    <div class="logo-divider"></div>
-    
-    <div class="geotoba-wrapper">
-        <div style="display: flex; flex-direction: column; line-height: 1.2;">
-            <span class="geotoba-text">GEOTOBA</span>
-            <span class="geotoba-sub">Geopark Danau Toba</span>
-        </div>
-    </div>
-</div>
+   
 
 <!-- HERO -->
 <section class="kontak-hero">
