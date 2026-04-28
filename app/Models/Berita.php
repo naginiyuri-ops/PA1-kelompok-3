@@ -43,7 +43,13 @@ class Berita extends Model
             $berita->slug = Str::slug($berita->judul);
         });
     }
-    
+
+    public function kategori()
+      {
+    return $this->belongsTo(Kategori::class, 'kategori_id');
+             }
+
+
     // Increment views
     public function incrementViews()
     {
