@@ -516,7 +516,7 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2025 GeoToba - Geopark Danau Toba. All rights reserved.</p>
+                <p>&copy; 2026 GeoToba - Geopark Danau Toba. All rights reserved.</p>
             </div>
         </div>
     </footer>
