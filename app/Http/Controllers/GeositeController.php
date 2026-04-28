@@ -21,4 +21,4 @@ class GeositeController extends Controller
     {
         return view('geosite.liang-sipege');
     }
-}
+}   
