@@ -72,13 +72,14 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // ==================== ADMIN ROUTES ====================
-Route::prefix('admin')->middleware('auth')->group(function () {
-    // Dashboard Admin
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    
     Route::get('/', function () {
-        $totalGaleri = App\Models\Galeri::count();
-        $totalBerita = App\Models\Berita::count();
-        $totalInformasi = App\Models\Informasi::count();
-        $totalViews = App\Models\Berita::sum('views') + App\Models\Galeri::sum('views') + App\Models\Informasi::sum('views');
+        $totalGaleri = DB::table('galeris')->count();
+        $totalBerita = DB::table('berita')->count();
+        $totalInformasi = DB::table('informasi')->count();
+        $totalViews = 0; // Sementara 0 karena kolom views belum ada
+        
         return view('admin.dashboard', compact('totalGaleri', 'totalBerita', 'totalInformasi', 'totalViews'));
     })->name('admin.dashboard');
     
@@ -89,4 +90,5 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     
     // Toggle Status Galeri
     Route::post('galeri/toggle-status/{id}', [GaleriController::class, 'toggleStatus'])->name('admin.galeri.toggle-status');
-});
+    
+}); // ← PASTIKAN KURUNG TUTUP INI ADA!

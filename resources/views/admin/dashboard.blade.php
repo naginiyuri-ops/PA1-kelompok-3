@@ -35,7 +35,7 @@
 <div class="card-table">
     <h5>Berita Terbaru</h5>
     <div class="table-responsive">
-        <table>
+        <table class="table">
             <thead>
                 <tr><th>Judul</th><th>Tanggal</th><th>Status</th><th></th></tr>
             </thead>
@@ -43,7 +43,7 @@
                 @foreach(\App\Models\Berita::latest()->limit(5)->get() as $item)
                 <tr>
                     <td>{{ Str::limit($item->judul, 30) }}</td>
-                    <td>{{ $item->tanggal_terbit->format('d/m/Y') }}</td>
+                    <td>{{ $item->tanggal_terbit ? \Carbon\Carbon::parse($item->tanggal_terbit)->format('d/m/Y') : '-' }}</td>
                     <td>@if($item->status)<span class="badge-success badge">Publish</span>@else<span class="badge-danger badge">Draft</span>@endif</td>
                     <td><a href="{{ route('admin.berita.edit', $item->id) }}" class="btn btn-sm btn-primary">Edit</a></td>
                 </tr>
