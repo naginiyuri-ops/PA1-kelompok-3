@@ -1,227 +1,87 @@
 @extends('layouts.app')
 
-@section('title', 'GeoToba ')
+@section('title', 'GeoToba - Gallery')
 
 @section('content')
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Playfair+Display:wght@700&display=swap');
-
-    body {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        background-color: #f8f9fa;
-        margin: 0;
-    }
-
-    .gallery-wrapper {
-        padding: 80px 20px;
-        text-align: center;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-
-    .gallery-wrapper h1 {
-        font-family: 'Playfair Display', serif;
-        font-size: 3.5rem;
-        margin-bottom: 60px;
-        color: #1a1a1a;
-    }
-
-    /* 1. LAYOUT STACKING (8 per baris) */
-    .stack-area {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 40px 0; /* Jarak antar baris */
-        padding: 40px 20px;
-    }
-
+    /* UI PREMIUM STACKING KAMU */
+    .gallery-wrapper { padding: 80px 20px; text-align: center; max-width: 1400px; margin: 0 auto; }
+    .stack-area { display: flex; flex-wrap: wrap; justify-content: center; gap: 60px 0; padding: 40px 20px; }
     .card-item {
-        position: relative;
-        width: 180px; 
-        height: 320px;
-        margin-left: -80px; /* Efek tumpuk */
-        border-radius: 20px;
-        overflow: hidden;
-        background: #333;
-        box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+        position: relative; width: 180px; height: 300px; margin-left: -80px; 
+        border-radius: 20px; overflow: hidden; background: #333;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.15);
         transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        cursor: pointer;
-        z-index: 1;
-        border: 2px solid rgba(255,255,255,0.1);
+        cursor: pointer; z-index: 1; border: 2px solid rgba(255,255,255,0.1);
     }
-
     .card-item:nth-child(8n+1) { margin-left: 0; }
-
-    .card-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
+    .card-item img { width: 100%; height: 100%; object-fit: cover; }
     .card-item:hover {
-        z-index: 100 !important;
-        transform: translateY(-20px) scale(1.1) rotate(2deg);
-        box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-        margin-right: 30px;
+        z-index: 100 !important; transform: translateY(-25px) scale(1.15) rotate(2deg);
+        box-shadow: 0 25px 50px rgba(0,0,0,0.4); margin-right: 40px;
     }
 
-    /* 2. MODAL PREMIUM (PERBAIKAN TOTAL) */
-    .modal-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.9); /* Latar gelap agar foto menonjol */
-        backdrop-filter: blur(15px);
-        z-index: 9999;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    }
-
-    .modal-box {
-        background: #1a1a1a; /* Box gelap */
-        width: 90%;
-        max-width: 1000px;
-        display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        border-radius: 30px;
-        overflow: hidden;
-        box-shadow: 0 50px 100px rgba(0,0,0,0.5);
-        border: 1px solid rgba(255,255,255,0.1);
-        position: relative;
-        animation: slideUp 0.4s ease-out;
-    }
-
-    @keyframes slideUp {
-        from { opacity: 0; transform: translateY(50px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    .modal-image-part {
-        background: #000;
-        display: flex;
-        align-items: center;
-    }
-
-    .modal-image-part img {
-        width: 100%;
-        height: 100%;
-        max-height: 600px;
-        object-fit: contain; /* Foto asli tidak terpotong */
-    }
-
-    .modal-info-part {
-        padding: 60px 40px;
-        color: white;
-        text-align: left;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .modal-info-part small {
-        color: #00d2ff;
-        text-transform: uppercase;
-        letter-spacing: 4px;
-        font-weight: 800;
-        font-size: 0.8rem;
-        margin-bottom: 15px;
-    }
-
-    .modal-info-part h2 {
-        font-family: 'Playfair Display', serif;
-        font-size: 3rem;
-        margin: 0 0 20px 0;
-        line-height: 1.1;
-    }
-
-    .modal-info-part p {
-        color: #ccc;
-        line-height: 1.8;
-        font-size: 1.1rem;
-        margin: 0;
-    }
-
-    .close-btn {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        width: 45px;
-        height: 45px;
-        background: rgba(255,255,255,0.1);
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: 0.3s;
-        z-index: 10;
-    }
-
-    .close-btn:hover { background: #ff4757; transform: rotate(90deg); }
-
-    /* Mobile */
-    @media (max-width: 768px) {
-        .modal-box { grid-template-columns: 1fr; }
-        .modal-image-part { height: 300px; }
-        .modal-info-part { padding: 30px; }
-        .modal-info-part h2 { font-size: 2rem; }
-        .card-item { width: 120px; height: 200px; margin-left: -50px; }
-    }
+    /* MODAL STYLE */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+    .modal-box { background: #1a1a1a; width: 90%; max-width: 1000px; display: grid; grid-template-columns: 1.2fr 1fr; border-radius: 20px; overflow: hidden; }
+    .modal-img-part img { width: 100%; max-height: 80vh; object-fit: contain; }
+    .modal-text-part { padding: 40px; color: white; text-align: left; }
+    .close-btn { position: absolute; top: 20px; right: 20px; color: white; font-size: 2rem; cursor: pointer; }
+    @media (max-width: 768px) { .modal-box { grid-template-columns: 1fr; } }
 </style>
 
 <div class="gallery-wrapper">
-    <h1>Explore...</h1>
+    <h1 style="font-family: serif; font-size: 3.5rem;">Explore...</h1>
 
     <div class="stack-area">
-        @foreach(['Meat', 'Batu Bahisan', 'Liang Sipege'] as $kategori)
-            @if(isset($galeriByKategori[Str::slug($kategori)]))
-                @foreach($galeriByKategori[Str::slug($kategori)] as $item)
-                <div class="card-item" onclick="openMe('{{ base64_encode($item->gambar) }}', '{{ $item->judul }}', '{{ addslashes($item->deskripsi) }}', '{{ $kategori }}')">
-                    <img src="data:image/jpeg;base64,{{ base64_encode($item->gambar) }}" alt="{{ $item->judul }}">
+        @foreach($galeriByKategori as $kategori => $items)
+            @foreach($items as $item)
+                @php
+                    // DETEKSI SUMBER GAMBAR
+                    // 1. Cek apakah biner (panjang data > 500)
+                    if (strlen($item->gambar) > 500) {
+                        $src = 'data:image/jpeg;base64,' . base64_encode($item->gambar);
+                    } 
+                    // 2. Cek apakah itu path file di storage
+                    else {
+                        $src = asset('storage/' . $item->gambar);
+                    }
+                @endphp
+                
+                <div class="card-item" onclick="openPhoto('{{ $src }}', '{{ $item->judul }}', '{{ addslashes($item->deskripsi) }}', '{{ strtoupper($kategori) }}')">
+                    <img src="{{ $src }}" onerror="this.src='https://via.placeholder.com/300x500?text=Upload+Ulang+Foto'">
                 </div>
-                @endforeach
-            @endif
+            @endforeach
         @endforeach
     </div>
 </div>
 
-<div id="premiumModal" class="modal-overlay" onclick="closeMe()">
+<div id="pModal" class="modal-overlay" onclick="closePhoto()">
+    <div class="close-btn">&times;</div>
     <div class="modal-box" onclick="event.stopPropagation()">
-        <div class="close-btn" onclick="closeMe()"><i class="bi bi-x-lg"></i></div>
-        <div class="modal-image-part">
-            <img src="" id="mImg">
-        </div>
-        <div class="modal-info-part">
-            <small id="mTag"></small>
-            <h2 id="mTitle"></h2>
-            <div style="width: 50px; height: 3px; background: #00d2ff; margin-bottom: 25px;"></div>
-            <p id="mDesc"></p>
+        <div class="modal-img-part"><img src="" id="mImg"></div>
+        <div class="modal-text-part">
+            <small id="mTag" style="color: cyan; letter-spacing: 2px;"></small>
+            <h2 id="mTitle" style="font-size: 2rem; margin: 10px 0;"></h2>
+            <p id="mDesc" style="color: #bbb; line-height: 1.6;"></p>
         </div>
     </div>
 </div>
 
 <script>
-    function openMe(img, title, desc, tag) {
-        const modal = document.getElementById('premiumModal');
-        document.getElementById('mImg').src = 'data:image/jpeg;base64,' + img;
+    function openPhoto(src, title, desc, tag) {
+        document.getElementById('mImg').src = src;
         document.getElementById('mTitle').innerText = title;
         document.getElementById('mTag').innerText = tag;
-        document.getElementById('mDesc').innerHTML = desc.replace(/\n/g, '<br>');
-
-        modal.style.display = 'flex';
+        document.getElementById('mDesc').innerText = desc || 'Tidak ada deskripsi.';
+        document.getElementById('pModal').style.display = 'flex';
         document.body.style.overflow = 'hidden';
     }
-
-    function closeMe() {
-        const modal = document.getElementById('premiumModal');
-        modal.style.display = 'none';
+    function closePhoto() {
+        document.getElementById('pModal').style.display = 'none';
         document.body.style.overflow = 'auto';
     }
 </script>
-
 @endsection
