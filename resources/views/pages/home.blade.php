@@ -747,7 +747,7 @@
                     <p>Kawasan ini menyimpan nilai geologi luar biasa, keanekaragaman hayati, dan warisan budaya Batak yang autentik. Tiga geosite unggulan di Pulau Sibandang menanti Anda jelajahi.</p>
                 </div>
                 <div class="about-image" data-aos="fade-left">
-                    <img src="/image/about-toba.jpg" alt="Danau Toba">
+                    <img src="/image/berita.jpg" alt="Danau Toba">
                 </div>
             </div>
         </div>
