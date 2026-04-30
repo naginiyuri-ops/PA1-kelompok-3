@@ -19,11 +19,8 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
    <style>
-        * {
-            font-family: 'Inter', sans-serif;
-        }
+        * { font-family: 'Inter', sans-serif; }
         
-        /* ==================== WARNA ==================== */
         :root {
             --blue-dark: #003366;
             --blue-medium: #1a4a7a;
@@ -31,7 +28,6 @@
             --white: #ffffff;
         }
         
-        /* ==================== NAVBAR ==================== */
         .navbar {
             transition: all 0.4s ease;
             padding: 0.8rem 0;
@@ -57,7 +53,6 @@
             width: 100%;
         }
         
-        /* ========== LOGO SECTION - POJOK KIRI (KE SUDUT) ========== */
         .logo-wrapper {
             display: flex;
             align-items: center;
@@ -66,7 +61,6 @@
             padding: 0;
         }
         
-        /* Logo gambar - ukuran besar, sudut lembut, efek melayang */
         .logo-img {
             height: 60px;
             width: auto;
@@ -74,7 +68,6 @@
             object-fit: cover;
             transition: all 0.3s ease;
             box-shadow: 0 8px 16px -6px rgba(0, 0, 0, 0.2);
-            background: rgba(255,255,255,0.05);
         }
         
         .logo-img:hover {
@@ -82,7 +75,6 @@
             box-shadow: 0 14px 24px -8px rgba(0, 0, 0, 0.3);
         }
         
-        /* Pembatas vertikal antar logo */
         .logo-divider {
             width: 1.5px;
             height: 42px;
@@ -90,7 +82,6 @@
             border-radius: 2px;
         }
         
-        /* Teks GeoToba - di samping kanan logo */
         .navbar-brand {
             font-size: 1.65rem;
             font-weight: 800;
@@ -99,15 +90,10 @@
             padding: 0 0 0 6px;
             letter-spacing: -0.3px;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.2s ease;
         }
         
-        .navbar-brand span {
-            color: var(--gold);
-            font-weight: 800;
-        }
+        .navbar-brand span { color: var(--gold); font-weight: 800; }
         
-        /* Navbar Links - menu di kanan */
         .nav-link {
             color: white !important;
             font-weight: 500;
@@ -129,7 +115,6 @@
             background: rgba(198, 164, 59, 0.2);
         }
         
-        /* Dropdown Menu */
         .dropdown-menu {
             background: rgba(0, 51, 102, 0.96);
             backdrop-filter: blur(16px);
@@ -163,11 +148,6 @@
             letter-spacing: 1px;
         }
         
-        .dropdown-divider {
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-        }
-        
-        /* Navbar Toggler */
         .navbar-toggler {
             border: none;
             background: rgba(255, 255, 255, 0.15);
@@ -175,93 +155,36 @@
             border-radius: 14px;
         }
         
-        .navbar-toggler:focus {
-            box-shadow: 0 0 0 3px rgba(198, 164, 59, 0.4);
-            outline: none;
-        }
-        
         .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
         
-        /* ==================== RESPONSIVE ==================== */
         @media (max-width: 991px) {
-            .logo-img {
-                height: 52px;
-            }
-            .logo-divider {
-                height: 36px;
-            }
-            .navbar-brand {
-                font-size: 1.5rem;
-            }
-            .logo-wrapper {
-                gap: 10px;
-            }
-            
+            .logo-img { height: 52px; }
+            .logo-divider { height: 36px; }
+            .navbar-brand { font-size: 1.5rem; }
             .navbar-collapse {
                 background: rgba(0, 51, 102, 0.96);
                 backdrop-filter: blur(20px);
                 padding: 1.2rem;
                 border-radius: 28px;
                 margin-top: 1rem;
-                border: 1px solid rgba(255,255,255,0.15);
             }
-            
-            .nav-link {
-                text-align: center;
-                padding: 0.7rem !important;
-            }
-            .dropdown-item {
-                text-align: center;
-            }
+            .nav-link { text-align: center; }
         }
         
         @media (max-width: 768px) {
-            .logo-img {
-                height: 46px;
-                border-radius: 14px;
-            }
-            .logo-divider {
-                height: 32px;
-            }
-            .navbar-brand {
-                font-size: 1.35rem;
-            }
-            .logo-wrapper {
-                gap: 8px;
-            }
+            .logo-img { height: 46px; }
+            .logo-divider { height: 32px; }
+            .navbar-brand { font-size: 1.35rem; }
         }
         
         @media (max-width: 576px) {
-            .logo-img {
-                height: 40px;
-                border-radius: 12px;
-            }
-            .logo-divider {
-                height: 28px;
-            }
-            .navbar-brand {
-                font-size: 1.2rem;
-            }
-            .logo-wrapper {
-                gap: 6px;
-            }
+            .logo-img { height: 40px; }
+            .logo-divider { height: 28px; }
+            .navbar-brand { font-size: 1.2rem; }
         }
         
-        @media (max-width: 400px) {
-            .logo-img {
-                height: 36px;
-            }
-            .logo-divider {
-                height: 24px;
-            }
-            .navbar-brand {
-                font-size: 1rem;
-            }
-        }
-        
-        /* ==================== FOOTER ==================== */
         .footer {
             background: var(--blue-dark);
             color: white;
@@ -322,9 +245,7 @@
             transform: translateY(-3px);
         }
         
-        .social-icons a:hover i {
-            color: var(--blue-dark);
-        }
+        .social-icons a:hover i { color: var(--blue-dark); }
         
         .copyright {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -369,98 +290,46 @@
     @stack('styles')
 </head>
 <body>
-    <!-- Navbar - Logo di pojok kiri (ke sudut) seperti gambar yang Anda maksud -->
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
-            <!-- LOGO SECTION: Diletakkan di pojok kiri/sudut kiri navbar -->
+            <!-- LOGO SECTION - LANGSUNG DARI ASSET (TANPA QUERY DATABASE) -->
             <div class="logo-wrapper">
-                <!-- Logo Bank Indonesia -->
                 <img src="{{ asset('image/Logo/logobankindonesia.jpg') }}" alt="Bank Indonesia" class="logo-img" loading="lazy">
-                <!-- Pembatas -->
                 <div class="logo-divider"></div>
-                <!-- Logo Del -->
                 <img src="{{ asset('image/Logo/del.jpg') }}" alt="Logo Del" class="logo-img" loading="lazy">
-                <!-- Pembatas -->
                 <div class="logo-divider"></div>
-                <!-- Teks GeoToba di samping kanan logo -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Geo<span>Toba</span>
-                </a>
+                <a class="navbar-brand" href="{{ url('/') }}">Geo<span>Toba</span></a>
             </div>
             
-            <!-- Tombol Hamburger untuk mobile -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-            <!-- Menu Navigasi - diletakkan di kanan -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ url('/') }}">
-                            <i></i> Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('informasi') ? 'active' : '' }}" href="{{ url('/informasi') }}">
-                            <i></i> Informasi
-                        </a>
-                    </li>
-                    
-                    <!-- DESTINASI DROPDOWN -->
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ url('/') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('informasi') ? 'active' : '' }}" href="{{ url('/informasi') }}">Informasi</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ request()->routeIs('destinasi*') ? 'active' : '' }}" 
-                           href="#" 
-                           id="destinasiDropdown" 
-                           role="button" 
-                           data-bs-toggle="dropdown" 
-                           aria-expanded="false">
-                            <i></i> Destinasi
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="destinasiDropdown">
+                        <a class="nav-link dropdown-toggle {{ request()->routeIs('destinasi*') ? 'active' : '' }}" href="#" data-bs-toggle="dropdown">Destinasi</a>
+                        <ul class="dropdown-menu">
                             <li><h6 class="dropdown-header"><i class="fas fa-tag me-1"></i> KATEGORI DESTINASI</h6></li>
-                            <li><a class="dropdown-item" href="{{ url('/destinasi/alam') }}">
-                                <i></i> Destinasi Alam
-                            </a></li>
-                            <li><a class="dropdown-item" href="{{ url('/destinasi/buatan') }}">
-                                <i></i> Destinasi Buatan
-                            </a></li>
-                            <li><a class="dropdown-item" href="{{ url('/destinasi/budaya') }}">
-                                <i></i> Destinasi Budaya
-                            </a></li>
+                            <li><a class="dropdown-item" href="{{ url('/destinasi/alam') }}">Destinasi Alam</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/destinasi/buatan') }}">Destinasi Buatan</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/destinasi/budaya') }}">Destinasi Budaya</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ url('/destinasi') }}">
-                                <i></i> Semua Destinasi
-                            </a></li>
+                            <li><a class="dropdown-item" href="{{ url('/destinasi') }}">Semua Destinasi</a></li>
                         </ul>
                     </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('galeri') ? 'active' : '' }}" href="{{ url('/galeri') }}">
-                            <i></i> Galeri
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('berita') ? 'active' : '' }}" href="{{ url('/berita') }}">
-                            <i></i> Berita
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('kontak') ? 'active' : '' }}" href="{{ url('/kontak') }}">
-                            <i></i> Kontak
-                        </a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('galeri') ? 'active' : '' }}" href="{{ url('/galeri') }}">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('berita') ? 'active' : '' }}" href="{{ url('/berita') }}">Berita</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('kontak') ? 'active' : '' }}" href="{{ url('/kontak') }}">Kontak</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main>
-        @yield('content')
-    </main>
+    <main>@yield('content')</main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="row">
@@ -468,13 +337,12 @@
                     <h5>Geo<span style="color: #c6a43b;">Toba</span></h5>
                     <p style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">Sistem Informasi Geosite Danau Toba - Menyajikan informasi lengkap tentang keindahan geologi dan budaya Batak di kawasan Danau Toba.</p>
                     <div class="social-icons">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                
                 <div class="col-lg-2 col-md-6 mb-4">
                     <h5>Tautan</h5>
                     <ul class="list-unstyled">
@@ -485,7 +353,6 @@
                         <li class="mb-2"><a href="{{ url('/kontak') }}">Kontak</a></li>
                     </ul>
                 </div>
-                
                 <div class="col-lg-3 col-md-6 mb-4">
                     <h5>Destinasi</h5>
                     <ul class="list-unstyled">
@@ -495,38 +362,21 @@
                         <li class="mb-2"><a href="{{ url('/destinasi') }}">Semua Destinasi</a></li>
                     </ul>
                 </div>
-                
                 <div class="col-lg-3 col-md-6 mb-4">
                     <h5>Kontak</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2">
-                            <i class="fas fa-map-marker-alt me-2" style="color: #c6a43b;"></i> 
-                            Danau Toba, Sumatera Utara
-                        </li>
-                        <li class="mb-2">
-                            <i class="fas fa-phone me-2" style="color: #c6a43b;"></i> 
-                            +62 812 3456 7890
-                        </li>
-                        <li class="mb-2">
-                            <i class="fas fa-envelope me-2" style="color: #c6a43b;"></i> 
-                            info@geotoba.com
-                        </li>
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2" style="color: #c6a43b;"></i> Danau Toba, Sumatera Utara</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2" style="color: #c6a43b;"></i> +62 812 3456 7890</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2" style="color: #c6a43b;"></i> info@geotoba.com</li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="copyright">
-                <p>&copy; 2026 GeoToba - Geopark Danau Toba. All rights reserved.</p>
-            </div>
+            <div class="copyright"><p>&copy; 2026 GeoToba - Geopark Danau Toba. All rights reserved.</p></div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTop" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </div>
+    <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
 
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
@@ -535,38 +385,19 @@
         
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
         });
         
         const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
+            if (window.scrollY > 300) backToTop.classList.add('show');
+            else backToTop.classList.remove('show');
         });
         
         backToTop.addEventListener('click', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-        
-        // Mobile menu close after click
-        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-        const navbarCollapse = document.querySelector('.navbar-collapse');
-        if (navbarCollapse) {
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (window.innerWidth < 992 && navbarCollapse.classList.contains('show')) {
-                        new bootstrap.Collapse(navbarCollapse, { toggle: false }).hide();
-                    }
-                });
-            });
-        }
     </script>
     
     @stack('scripts')

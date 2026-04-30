@@ -50,6 +50,7 @@ Route::get('/galeri/{slug}', function ($slug) {
     return view('pages.galeri-detail', compact('galeri'));
 })->name('galeri.detail');
 
+
 // UMKM
 Route::get('/umkm', [HomeController::class, 'umkm'])->name('umkm');
 
