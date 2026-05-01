@@ -50,7 +50,6 @@ Route::get('/galeri/{slug}', function ($slug) {
     return view('pages.galeri-detail', compact('galeri'));
 })->name('galeri.detail');
 
-
 // UMKM
 Route::get('/umkm', [HomeController::class, 'umkm'])->name('umkm');
 
@@ -79,18 +78,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         $totalGaleri = DB::table('galeris')->count();
         $totalBerita = DB::table('berita')->count();
         $totalInformasi = DB::table('informasi')->count();
-        $totalViews = 0; // Sementara 0 karena kolom views belum ada
+        $totalViews = 0;
         
         return view('admin.dashboard', compact('totalGaleri', 'totalBerita', 'totalInformasi', 'totalViews'));
     })->name('admin.dashboard');
     
-    
-    // Resource Controllers
     Route::resource('galeri', GaleriController::class)->names('admin.galeri');
     Route::resource('berita', BeritaController::class)->names('admin.berita');
     Route::resource('informasi', InformasiController::class)->names('admin.informasi');
-    
-    // Toggle Status Galeri
     Route::post('galeri/toggle-status/{id}', [GaleriController::class, 'toggleStatus'])->name('admin.galeri.toggle-status');
     
-}); // ← PASTIKAN KURUNG TUTUP INI ADA!
+});

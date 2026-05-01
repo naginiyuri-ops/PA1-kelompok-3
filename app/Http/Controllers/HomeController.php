@@ -3,90 +3,64 @@
 namespace App\Http\Controllers;
 
 use App\Models\Galeri;
+use App\Models\KoleksiFoto;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        // Ambil slide hero (cari gambar yang mengandung kata 'slide')
-        $heroSlides = Galeri::where('gambar', 'like', '%slide%')
-            ->where('status', 1)
-            ->orderBy('id', 'asc')
-            ->get();
+        // Hero Slider (5 foto)
+        $slide1 = KoleksiFoto::where('nama_foto', 'slide1.jpg')->first();
+        $slide2 = KoleksiFoto::where('nama_foto', 'slide2.jpg')->first();
+        $slide3 = KoleksiFoto::where('nama_foto', 'slide3.jpg')->first();
+        $slide4 = KoleksiFoto::where('nama_foto', 'slide4.jpg')->first();
+        $slide5 = KoleksiFoto::where('nama_foto', 'slide5.jpg')->first();
         
-        // Jika slides kosong, gunakan data dari kategori 'meat'
-        if ($heroSlides->isEmpty()) {
-            $heroSlides = Galeri::where('kategori', 'meat')
-                ->where('status', 1)
-                ->orderBy('id', 'asc')
-                ->take(5)
-                ->get();
-        }
+        // About Image
+        $aboutImage = KoleksiFoto::where('nama_foto', 'berita.jpg')->first();
         
-        // Jika masih kosong, gunakan data dari kategori 'hero_slider'
-        if ($heroSlides->isEmpty()) {
-            $heroSlides = Galeri::where('kategori', 'hero_slider')
-                ->where('status', 1)
-                ->orderBy('id', 'asc')
-                ->take(5)
-                ->get();
-        }
+        // Destinasi Images
+        $destinasiMeat = KoleksiFoto::where('nama_foto', 'meat-detail.jpg')->first();
+        $destinasiBatu = KoleksiFoto::where('nama_foto', 'batu-detail.jpg')->first();
+        $destinasiLiang = KoleksiFoto::where('nama_foto', 'liang-detail.jpg')->first();
         
-        // Ambil about image (kategori 'about')
-        $aboutImage = Galeri::where('kategori', 'about')
-            ->where('status', 1)
-            ->first();
-        
-        // Ambil gambar destinasi dari database
-        $destinasiMeat = Galeri::where('kategori', 'meat')
-            ->where('gambar', 'like', '%meat-detail%')
-            ->first();
-        
-        $destinasiBatu = Galeri::where('kategori', 'batu-bahisan')
-            ->where('gambar', 'like', '%batu-detail%')
-            ->first();
-        
-        $destinasiLiang = Galeri::where('kategori', 'liang-sipege')
-            ->where('gambar', 'like', '%liang-detail%')
-            ->first();
-        
-        // Data destinasi lengkap
+        // Data destinasi
         $destinasi = [
             (object)[
                 'slug' => 'meat',
                 'nama' => 'Meat',
-                'gambar' => $destinasiMeat ? $destinasiMeat->gambar : 'image/meat/meat-detail.jpg',
-                'lokasi' => 'Desa Tampahan, Kecamatan Tampahan, Kabupaten Toba, Provinsi Sumatera Utara',
-                'deskripsi' => 'Desa Meat adalah salah satu desa wisata yang terletak di Kecamatan Balige, Kabupaten Toba, di tepi Danau Toba. Desa ini terkenal dengan keindahan alamnya yang memadukan perbukitan hijau, persawahan, dan panorama danau yang menenangkan.',
-                'tags' => ['Makam Raja Hunsa', 'Tari Tortor', 'Tenun Ulos', 'Rumah Adat Batak'],
+                'foto' => $destinasiMeat,
+                'lokasi' => 'Desa Tampahan, Kecamatan Tampahan, Kabupaten Toba',
+                'deskripsi' => 'Desa Meat adalah desa wisata di tepi Danau Toba.',
+                'tags' => ['Makam Raja Hunsa', 'Tari Tortor', 'Tenun Ulos'],
                 'number' => '01'
             ],
             (object)[
                 'slug' => 'batu-bahisan',
                 'nama' => 'Batu Bahisan',
-                'gambar' => $destinasiBatu ? $destinasiBatu->gambar : 'image/meat/batu-detail.jpg',
-                'lokasi' => 'Desa Aek Bolon Jae, Balige, Toba, Kecamatan Balige, Kabupaten Toba',
-                'deskripsi' => 'Batu Basiha merupakan salah satu situs batu bersejarah di kawasan Balige yang memiliki nilai budaya dan legenda dalam masyarakat Batak Toba. Batu ini dikenal sebagai simbol kekuatan, kepercayaan, dan kearifan lokal.',
-                'tags' => ['Formasi Batuan Unik', 'Spot Fotografi', 'Sunrise View', 'Sunset View'],
+                'foto' => $destinasiBatu,
+                'lokasi' => 'Desa Aek Bolon Jae, Balige',
+                'deskripsi' => 'Situs batu bersejarah dengan nilai budaya Batak.',
+                'tags' => ['Formasi Batuan Unik', 'Spot Fotografi'],
                 'number' => '02'
             ],
             (object)[
                 'slug' => 'liang-sipege',
                 'nama' => 'Liang Sipege',
-                'gambar' => $destinasiLiang ? $destinasiLiang->gambar : 'image/meat/liang-detail.jpg',
-                'lokasi' => 'Hutagaol Peatalun, Kec. Balige, Toba, Sumatera Utara',
-                'deskripsi' => 'Gua Liang Sipege adalah destinasi wisata alam yang terletak di Desa Simarmar Pea Talun Hutagaol, Kecamatan Balige, Kabupaten Toba. Gua ini dikenal sebagai habitat kelelawar yang menghasilkan guano, dimanfaatkan masyarakat sebagai pupuk organik.',
-                'tags' => ['Goa Alami', 'Caving', 'Stalaktit dan Stalakmit', 'Edukasi Geologi'],
+                'foto' => $destinasiLiang,
+                'lokasi' => 'Hutagaol Peatalun, Balige',
+                'deskripsi' => 'Gua alam dengan stalaktit dan stalakmit.',
+                'tags' => ['Goa Alami', 'Caving'],
                 'number' => '03'
             ],
         ];
         
-        // Ambil semua galeri untuk ditampilkan di home (6 foto terbaru)
+        // Galeri untuk CRUD
         $galeri = Galeri::where('status', 1)
             ->orderBy('created_at', 'desc')
             ->take(6)
             ->get();
         
-        return view('pages.home', compact('heroSlides', 'aboutImage', 'destinasi', 'galeri'));
+        return view('pages.home', compact('slide1', 'slide2', 'slide3', 'slide4', 'slide5', 'aboutImage', 'destinasi', 'galeri'));
     }
 }

@@ -3,147 +3,6 @@
 @section('content')
 
 <style>
-    /* ==================== LOGO SECTION STYLE ==================== */
-    .logo-container {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        background: rgba(0, 51, 102, 0.98);
-        padding: 8px 24px;
-        border-radius: 60px;
-        backdrop-filter: blur(8px);
-        box-shadow: 0 8px 25px rgba(0, 51, 102, 0.3);
-        transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    .logo-container:hover {
-        background: #0a4a7a;
-        box-shadow: 0 12px 30px rgba(0, 51, 102, 0.4);
-        transform: translateY(-2px);
-    }
-    
-    .flag-logo-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-    
-    .flag-img {
-        width: 100px;
-        height: auto;
-        border-radius: 6px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-        transition: transform 0.2s ease;
-        border: 1px solid rgba(255,255,255,0.3);
-    }
-    
-    .flag-img:hover {
-        transform: scale(1.05);
-    }
-    
-    .logo-divider {
-        width: 2px;
-        height: 35px;
-        background: rgba(255,255,255,0.3);
-        border-radius: 2px;
-    }
-    
-    .del-logo-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-    
-    .del-logo-wrapper:hover {
-        transform: scale(1.02);
-    }
-    
-    .del-img {
-        width: 50px;
-        height: auto;
-        border-radius: 8px;
-        transition: transform 0.2s ease;
-    }
-    
-    .del-img:hover {
-        transform: scale(1.05);
-    }
-    
-    .geotoba-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-    
-    .geotoba-text {
-        font-size: 1.5rem;
-        font-weight: 800;
-        letter-spacing: 1px;
-        color: white;
-        font-family: 'Inter', 'Poppins', sans-serif;
-        line-height: 1.2;
-    }
-    
-    .geotoba-sub {
-        font-size: 0.7rem;
-        font-weight: 500;
-        color: rgba(255,255,255,0.8);
-        letter-spacing: 0.5px;
-    }
-    
-    @media (max-width: 768px) {
-        .logo-container {
-            top: 12px;
-            left: 12px;
-            padding: 6px 18px;
-            gap: 14px;
-        }
-        .flag-img {
-            width: 60px;
-        }
-        .del-img {
-            width: 35px;
-        }
-        .geotoba-text {
-            font-size: 1.2rem;
-        }
-        .geotoba-sub {
-            font-size: 0.6rem;
-        }
-        .logo-divider {
-            height: 28px;
-        }
-    }
-    
-    @media (max-width: 576px) {
-        .logo-container {
-            padding: 5px 14px;
-            gap: 10px;
-        }
-        .flag-img {
-            width: 45px;
-        }
-        .del-img {
-            width: 28px;
-        }
-        .geotoba-text {
-            font-size: 0.9rem;
-        }
-        .geotoba-sub {
-            font-size: 0.5rem;
-        }
-        .logo-divider {
-            height: 24px;
-        }
-    }
-    
     /* ==================== HERO SLIDER ==================== */
     .hero-section {
         height: 100vh;
@@ -179,11 +38,12 @@
         transform: scale(1);
     }
     
-    .slide-1 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide1.jpg'); }
-    .slide-2 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide2.jpg'); }
-    .slide-3 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide3.jpg'); }
-    .slide-4 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide4.jpg'); }
-    .slide-5 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide5.jpg'); }
+    /* HERO SLIDER - dari BLOB */
+    .slide-1 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('{{ $slide1 ? "data:image/jpeg;base64," . base64_encode($slide1->file_foto) : "" }}'); }
+    .slide-2 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('{{ $slide2 ? "data:image/jpeg;base64," . base64_encode($slide2->file_foto) : "" }}'); }
+    .slide-3 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('{{ $slide3 ? "data:image/jpeg;base64," . base64_encode($slide3->file_foto) : "" }}'); }
+    .slide-4 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('{{ $slide4 ? "data:image/jpeg;base64," . base64_encode($slide4->file_foto) : "" }}'); }
+    .slide-5 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('{{ $slide5 ? "data:image/jpeg;base64," . base64_encode($slide5->file_foto) : "" }}'); }
     
     .hero-content {
         position: absolute;
@@ -254,7 +114,6 @@
         to { opacity: 1; transform: translateY(0); }
     }
     
-    /* Slider Dots */
     .slider-dots {
         position: absolute;
         bottom: 30px;
@@ -284,7 +143,6 @@
         background: #c6a43b;
     }
     
-    /* Scroll Indicator */
     .scroll-indicator {
         position: absolute;
         bottom: 30px;
@@ -679,267 +537,273 @@
     }
 </style>
 
+<!-- ==================== HERO SLIDER ==================== -->
+<section class="hero-section" id="home">
+    <div class="slides-container">
+        <div class="slide slide-1 active"></div>
+        <div class="slide slide-2"></div>
+        <div class="slide slide-3"></div>
+        <div class="slide slide-4"></div>
+        <div class="slide slide-5"></div>
+    </div>
     
-    <!-- ==================== HERO SLIDER ==================== -->
-    <section class="hero-section" id="home">
-        <div class="slides-container">
-            <div class="slide slide-1 active"></div>
-            <div class="slide slide-2"></div>
-            <div class="slide slide-3"></div>
-            <div class="slide slide-4"></div>
-            <div class="slide slide-5"></div>
+    <div class="slider-dots">
+        <div class="dot active" data-slide="0"></div>
+        <div class="dot" data-slide="1"></div>
+        <div class="dot" data-slide="2"></div>
+        <div class="dot" data-slide="3"></div>
+        <div class="dot" data-slide="4"></div>
+    </div>
+    
+    <div class="hero-content">
+        <div>
+            <div class="hero-subtitle">Global Geopark</div>
+            <h1 class="hero-title">BALIGE · MEAT · BATU BAHISAN<br>LIANG SIPEGE</h1>
+            <div class="hero-divider"></div>
+            <a href="#destinasi" class="hero-btn">Jelajahi Sekarang</a>
         </div>
-        
-        <div class="slider-dots">
-            <div class="dot active" data-slide="0"></div>
-            <div class="dot" data-slide="1"></div>
-            <div class="dot" data-slide="2"></div>
-            <div class="dot" data-slide="3"></div>
-            <div class="dot" data-slide="4"></div>
-        </div>
-        
-        <div class="hero-content">
-            <div>
-                <div class="hero-subtitle"> Global Geopark</div>
-                <h1 class="hero-title"> BALIGE · MEAT · BATU BAHISAN<br>LIANG SIPEGE</h1>
-                <div class="hero-divider"></div>
-                <a href="#destinasi" class="hero-btn">Jelajahi Sekarang</a>
+    </div>
+    
+    <div class="scroll-indicator" onclick="document.getElementById('destinasi').scrollIntoView({behavior:'smooth'})">
+        <span>SCROLL</span>
+        <div class="line"></div>
+    </div>
+</section>
+
+<!-- ==================== STATISTICS ==================== -->
+<section class="section section-white">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item" data-aos="fade-up">
+                <div class="stat-number">3</div>
+                <div class="stat-label">GEOSITES</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-number">74.000</div>
+                <div class="stat-label">TAHUN SEJARAH</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">WARISAN BUDAYA</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">UMKM LOKAL</div>
             </div>
         </div>
-        
-        <div class="scroll-indicator" onclick="document.getElementById('destinasi').scrollIntoView({behavior:'smooth'})">
-            <span>SCROLL</span>
-            <div class="line"></div>
-        </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ==================== STATISTICS ==================== -->
-    <section class="section section-white">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item" data-aos="fade-up">
-                    <div class="stat-number">3</div>
-                    <div class="stat-label">GEOSITES</div>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="stat-number">74.000</div>
-                    <div class="stat-label">TAHUN SEJARAH</div>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-number">15+</div>
-                    <div class="stat-label">WARISAN BUDAYA</div>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label">UMKM LOKAL</div>
-                </div>
+<!-- ==================== ABOUT ==================== -->
+<section class="section section-light" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-content" data-aos="fade-right">
+                <h3>Warisan Geologi Kelas Dunia</h3>
+                <p>Danau Toba, terbentuk dari letusan supervolcano 74.000 tahun lalu, adalah danau vulkanik terbesar di dunia. Diakui UNESCO sebagai Global Geopark pada tahun 2020.</p>
+                <p>Kawasan ini menyimpan nilai geologi luar biasa, keanekaragaman hayati, dan warisan budaya Batak yang autentik. Tiga geosite unggulan di Pulau Sibandang menanti Anda jelajahi.</p>
+            </div>
+            <div class="about-image" data-aos="fade-left">
+                @if($aboutImage)
+                <img src="data:image/jpeg;base64,{{ base64_encode($aboutImage->file_foto) }}" alt="Danau Toba">
+                @else
+                <img src="/image/berita.jpg" alt="Danau Toba">
+                @endif
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ==================== ABOUT ==================== -->
-    <section class="section section-light" id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-content" data-aos="fade-right">
-                    <h3>Warisan Geologi Kelas Dunia</h3>
-                    <p>Danau Toba, terbentuk dari letusan supervolcano 74.000 tahun lalu, adalah danau vulkanik terbesar di dunia. Diakui UNESCO sebagai Global Geopark pada tahun 2020.</p>
-                    <p>Kawasan ini menyimpan nilai geologi luar biasa, keanekaragaman hayati, dan warisan budaya Batak yang autentik. Tiga geosite unggulan di Pulau Sibandang menanti Anda jelajahi.</p>
-                </div>
-                <div class="about-image" data-aos="fade-left">
-                    <img src="/image/berita.jpg" alt="Danau Toba">
-                </div>
-            </div>
+<!-- ==================== DESTINASI ==================== -->
+<section id="destinasi" class="section section-white">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Destinasi Unggulan</h2>
+            <div class="divider"></div>
+            <p>Tiga geosite di Pulau Sibandang, Caldera Danau Toba</p>
         </div>
-    </section>
-
-    <!-- ==================== DESTINASI ==================== -->
-    <section id="destinasi" class="section section-white">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2>Destinasi Unggulan</h2>
-                <div class="divider"></div>
-                <p>Tiga geosite di Pulau Sibandang, Caldera Danau Toba</p>
-            </div>
-            <div class="destinasi-list">
-                
-                <!-- MEAT -->
-                <div class="destinasi-item" data-aos="fade-up">
-                    <div class="destinasi-image">
-                        <img src="/image/meat/meat-detail.jpg" alt="Meat">
-                    </div>
-                    <div class="destinasi-content">
-                        <div class="destinasi-number">01 — GEOSITE</div>
-                        <h3>Meat</h3>
-                        <div class="destinasi-location">Desa Tampahan, Kecamatan Tampahan, Kabupaten Toba, Provinsi Sumatera Utara,</div>
-                        <p class="destinasi-desc">Desa Meat adalah salah satu desa wisata yang terletak di Kecamatan Balige, Kabupaten Toba, di tepi Danau Toba. Desa ini terkenal dengan keindahan alamnya yang memadukan perbukitan hijau, persawahan, dan panorama danau yang menenangkan.
-
-Selain menawarkan pemandangan yang indah, Desa Meat juga kaya akan budaya Batak Toba, tradisi lokal, serta kehidupan masyarakat yang masih sangat kental dengan adat istiadat. Potensi ini menjadikan Desa Meat sebagai destinasi wisata yang menarik untuk menikmati alam sekaligus mengenal budaya lokal</p>
-                        <div class="destinasi-tags">
-                            <span>Makam Raja Hunsa</span>
-                            <span>Tari Tortor</span>
-                            <span>Tenun Ulos</span>
-                            <span>Rumah Adat Batak</span>
-                        </div>
-                        <a href="{{ url('/geosite/meat') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
-                    </div>
+        <div class="destinasi-list">
+            
+            <!-- MEAT -->
+            <div class="destinasi-item" data-aos="fade-up">
+                <div class="destinasi-image">
+                    @if($destinasi[0]->foto)
+                    <img src="data:image/jpeg;base64,{{ base64_encode($destinasi[0]->foto->file_foto) }}" alt="Meat">
+                    @else
+                    <img src="/image/meat/meat-detail.jpg" alt="Meat">
+                    @endif
                 </div>
-                
-                <!-- BATU BAHISAN -->
-                <div class="destinasi-item reverse" data-aos="fade-up">
-                    <div class="destinasi-image">
-                        <img src="/image/meat/batu-detail.jpg" alt="Batu Bahisan">
+                <div class="destinasi-content">
+                    <div class="destinasi-number">01 — GEOSITE</div>
+                    <h3>Meat</h3>
+                    <div class="destinasi-location">Desa Tampahan, Kecamatan Tampahan, Kabupaten Toba</div>
+                    <p class="destinasi-desc">Desa Meat adalah salah satu desa wisata yang terletak di Kecamatan Balige, Kabupaten Toba, di tepi Danau Toba.</p>
+                    <div class="destinasi-tags">
+                        <span>Makam Raja Hunsa</span>
+                        <span>Tari Tortor</span>
+                        <span>Tenun Ulos</span>
+                        <span>Rumah Adat Batak</span>
                     </div>
-                    <div class="destinasi-content">
-                        <div class="destinasi-number">02 — GEOSITE</div>
-                        <h3>Batu Bahisan</h3>
-                        <div class="destinasi-location">Desa Aek Bolon Jae, Balige, Toba, Kecamatan Balige, Kabupaten Toba, Provinsi Sumatera Utara,</div>
-                        <p class="destinasi-desc"> Batu Basiha merupakan salah satu situs batu bersejarah di kawasan Balige yang memiliki nilai budaya dan legenda dalam masyarakat Batak Toba. Batu ini dikenal sebagai simbol kekuatan, kepercayaan, dan kearifan lokal yang diwariskan secara turun-temurun.
-
-Selain menjadi bagian dari cerita rakyat, Batu Basiha juga memiliki potensi sebagai objek wisata budaya, karena keunikan bentuknya serta nilai historis yang melekat di dalamnya.</p>
-                        <div class="destinasi-tags">
-                            <span>Formasi Batuan Unik</span>
-                            <span>Spot Fotografi</span>
-                            <span>Sunrise View</span>
-                            <span>Sunset View</span>
-                        </div>
-                        <a href="{{ url('/geosite/batu-bahisan') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
-                    </div>
+                    <a href="{{ url('/geosite/meat') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
                 </div>
-                
-                <!-- LIANG SIPEGE -->
-                <div class="destinasi-item" data-aos="fade-up">
-                    <div class="destinasi-image">
-                        <img src="/image/meat/liang-detail.jpg" alt="Liang Sipege">
-                    </div>
-                    <div class="destinasi-content">
-                        <div class="destinasi-number">03 — GEOSITE</div>
-                        <h3>Liang Sipege</h3>
-                        <div class="destinasi-location">Hutagaol Peatalun, Kec. Balige, Toba, Sumatera Utara </div>
-                        <p class="destinasi-desc"> Gua Liang Sipege adalah destinasi wisata alam yang terletak di Desa Simarmar Pea Talun Hutagaol, Kecamatan Balige, Kabupaten Toba. Gua ini dikenal sebagai habitat kelelawar yang menghasilkan guano, dimanfaatkan masyarakat sebagai pupuk organik.
-
-Selain keindahan alamnya, gua ini juga kaya akan nilai sejarah dan legenda, salah satunya kisah Raja Sijorat Panjaitan yang terkenal karena keberanian dan kesaktiannya.
-
-Dengan perpaduan alam, budaya, dan mitos, Gua Liang Sipege memiliki potensi besar sebagai objek wisata unggulan di kawasan Danau Toba.</p>
-                        <div class="destinasi-tags">
-                            <span>Goa Alami</span>
-                            <span>Caving</span>
-                            <span>Stalaktit dan Stalakmit</span>
-                            <span>Edukasi Geologi</span>
-                        </div>
-                        <a href="{{ url('/geosite/liang-sipege') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== PETA LOKASI 3 DESA ==================== -->
-    <section class="section section-light">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2>Lokasi 3 Geosite</h2>
-                <div class="divider"></div>
-                <p>Meat, Batu Bahisan, dan Liang Sipege - Pulau Sibandang</p>
             </div>
             
-            <div class="maps-container" data-aos="fade-up">
-                <iframe 
-                    id="mapsIframe"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0!2d98.8835095!3d2.4339262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e0415b8f7da39%3A0xc6beb74287f355a5!2sPulau%20Sibandang!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-                <div class="maps-info">
-                    <div class="maps-locations">
-                        <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Meat+Village+Pulau+Sibandang', '_blank')">
-                            <i class="fas fa-location-dot"></i>
-                            <span>Meat Village</span>
-                        </div>
-                        <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Batu+Bahisan+Pulau+Sibandang', '_blank')">
-                            <i class="fas fa-location-dot"></i>
-                            <span>Batu Bahisan</span>
-                        </div>
-                        <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Liang+Sipege+Pulau+Sibandang', '_blank')">
-                            <i class="fas fa-location-dot"></i>
-                            <span>Liang Sipege</span>
-                        </div>
+            <!-- BATU BAHISAN -->
+            <div class="destinasi-item reverse" data-aos="fade-up">
+                <div class="destinasi-image">
+                    @if($destinasi[1]->foto)
+                    <img src="data:image/jpeg;base64,{{ base64_encode($destinasi[1]->foto->file_foto) }}" alt="Batu Bahisan">
+                    @else
+                    <img src="/image/meat/batu-detail.jpg" alt="Batu Bahisan">
+                    @endif
+                </div>
+                <div class="destinasi-content">
+                    <div class="destinasi-number">02 — GEOSITE</div>
+                    <h3>Batu Bahisan</h3>
+                    <div class="destinasi-location">Desa Aek Bolon Jae, Balige</div>
+                    <p class="destinasi-desc">Batu Basiha merupakan salah satu situs batu bersejarah di kawasan Balige yang memiliki nilai budaya dan legenda dalam masyarakat Batak Toba.</p>
+                    <div class="destinasi-tags">
+                        <span>Formasi Batuan Unik</span>
+                        <span>Spot Fotografi</span>
+                        <span>Sunrise View</span>
+                        <span>Sunset View</span>
                     </div>
-                    <div class="maps-note">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Klik lokasi untuk melihat peta detail</span>
+                    <a href="{{ url('/geosite/batu-bahisan') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
+                </div>
+            </div>
+            
+            <!-- LIANG SIPEGE -->
+            <div class="destinasi-item" data-aos="fade-up">
+                <div class="destinasi-image">
+                    @if($destinasi[2]->foto)
+                    <img src="data:image/jpeg;base64,{{ base64_encode($destinasi[2]->foto->file_foto) }}" alt="Liang Sipege">
+                    @else
+                    <img src="/image/meat/liang-detail.jpg" alt="Liang Sipege">
+                    @endif
+                </div>
+                <div class="destinasi-content">
+                    <div class="destinasi-number">03 — GEOSITE</div>
+                    <h3>Liang Sipege</h3>
+                    <div class="destinasi-location">Hutagaol Peatalun, Balige</div>
+                    <p class="destinasi-desc">Gua Liang Sipege adalah destinasi wisata alam yang terletak di Desa Simarmar Pea Talun Hutagaol, Kecamatan Balige, Kabupaten Toba.</p>
+                    <div class="destinasi-tags">
+                        <span>Goa Alami</span>
+                        <span>Caving</span>
+                        <span>Stalaktit dan Stalakmit</span>
+                        <span>Edukasi Geologi</span>
                     </div>
+                    <a href="{{ url('/geosite/liang-sipege') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ==================== CTA ==================== -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content" data-aos="fade-up">
-                <h3>Mulai Petualangan Anda</h3>
-                <div class="divider"></div>
-                <p>Temukan keajaiban geologi dan kekayaan budaya Batak di Geopark Toba, warisan dunia yang diakui UNESCO.</p>
-                <a href="#destinasi" class="cta-btn">Jelajahi Sekarang</a>
+<!-- ==================== PETA LOKASI 3 DESA ==================== -->
+<section class="section section-light">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Lokasi 3 Geosite</h2>
+            <div class="divider"></div>
+            <p>Meat, Batu Bahisan, dan Liang Sipege - Pulau Sibandang</p>
+        </div>
+        
+        <div class="maps-container" data-aos="fade-up">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0!2d98.8835095!3d2.4339262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e0415b8f7da39%3A0xc6beb74287f355a5!2sPulau%20Sibandang!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <div class="maps-info">
+                <div class="maps-locations">
+                    <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Meat+Village+Pulau+Sibandang', '_blank')">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Meat Village</span>
+                    </div>
+                    <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Batu+Bahisan+Pulau+Sibandang', '_blank')">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Batu Bahisan</span>
+                    </div>
+                    <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Liang+Sipege+Pulau+Sibandang', '_blank')">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Liang Sipege</span>
+                    </div>
+                </div>
+                <div class="maps-note">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Klik lokasi untuk melihat peta detail</span>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <script>
-        // ==================== HERO SLIDER ====================
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-        let slideInterval;
-        const slideCount = slides.length;
+<!-- ==================== CTA ==================== -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content" data-aos="fade-up">
+            <h3>Mulai Petualangan Anda</h3>
+            <div class="divider"></div>
+            <p>Temukan keajaiban geologi dan kekayaan budaya Batak di Geopark Toba, warisan dunia yang diakui UNESCO.</p>
+            <a href="#destinasi" class="cta-btn">Jelajahi Sekarang</a>
+        </div>
+    </div>
+</section>
 
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                if (dots[i]) dots[i].classList.remove('active');
-            });
-            
-            slides[index].classList.add('active');
-            if (dots[index]) dots[index].classList.add('active');
-            currentSlide = index;
-        }
+<script>
+    // ==================== HERO SLIDER ====================
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    let slideInterval;
+    const slideCount = slides.length;
 
-        function nextSlide() {
-            let next = (currentSlide + 1) % slideCount;
-            showSlide(next);
-        }
-
-        function startSlider() {
-            if (slideInterval) clearInterval(slideInterval);
-            slideInterval = setInterval(nextSlide, 5000);
-        }
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                clearInterval(slideInterval);
-                showSlide(index);
-                startSlider();
-            });
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (dots[i]) dots[i].classList.remove('active');
         });
+        
+        slides[index].classList.add('active');
+        if (dots[index]) dots[index].classList.add('active');
+        currentSlide = index;
+    }
 
-        startSlider();
+    function nextSlide() {
+        let next = (currentSlide + 1) % slideCount;
+        showSlide(next);
+    }
 
-        // ==================== SMOOTH SCROLL ====================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
+    function startSlider() {
+        if (slideInterval) clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 5000);
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            clearInterval(slideInterval);
+            showSlide(index);
+            startSlider();
         });
-    </script>
+    });
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <script>AOS.init({ duration: 800, once: true, offset: 50 });</script>
+    startSlider();
+
+    // ==================== SMOOTH SCROLL ====================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script>AOS.init({ duration: 800, once: true, offset: 50 });</script>
 
 @endsection
