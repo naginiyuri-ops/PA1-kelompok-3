@@ -3,6 +3,107 @@
 @section('content')
 
 <style>
+    /* ==================== ANIMASI GLOBAL ==================== */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes fadeInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    @keyframes fadeInRight {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    @keyframes zoomIn {
+        from {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+    }
+    
+    @keyframes shimmer {
+        0% {
+            background-position: -1000px 0;
+        }
+        100% {
+            background-position: 1000px 0;
+        }
+    }
+    
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+    
+    @keyframes rotateSlow {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes borderGlow {
+        0%, 100% {
+            box-shadow: 0 0 5px rgba(198, 164, 59, 0.3);
+        }
+        50% {
+            box-shadow: 0 0 20px rgba(198, 164, 59, 0.8);
+        }
+    }
+    
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
     /* ==================== HERO SLIDER ==================== */
     .hero-section {
         height: 100vh;
@@ -28,7 +129,7 @@
         background-repeat: no-repeat;
         opacity: 0;
         transform: scale(1.05);
-        transition: opacity 1.5s ease-in-out, transform 6s ease-out;
+        transition: opacity 1.5s ease-in-out, transform 8s ease-out;
         z-index: 1;
     }
     
@@ -38,12 +139,22 @@
         transform: scale(1);
     }
     
-    /* HERO SLIDER - dari BLOB */
-    .slide-1 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('{{ $slide1 ? "data:image/jpeg;base64," . base64_encode($slide1->file_foto) : "" }}'); }
-    .slide-2 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('{{ $slide2 ? "data:image/jpeg;base64," . base64_encode($slide2->file_foto) : "" }}'); }
-    .slide-3 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('{{ $slide3 ? "data:image/jpeg;base64," . base64_encode($slide3->file_foto) : "" }}'); }
-    .slide-4 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('{{ $slide4 ? "data:image/jpeg;base64," . base64_encode($slide4->file_foto) : "" }}'); }
-    .slide-5 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('{{ $slide5 ? "data:image/jpeg;base64," . base64_encode($slide5->file_foto) : "" }}'); }
+    .slide::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(0,51,102,0.4) 0%, rgba(0,102,153,0.2) 100%);
+        animation: shimmer 3s infinite;
+    }
+    
+    .slide-1 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide1.jpg'); }
+    .slide-2 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide2.jpg'); }
+    .slide-3 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide3.jpg'); }
+    .slide-4 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide4.jpg'); }
+    .slide-5 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide5.jpg'); }
     
     .hero-content {
         position: absolute;
@@ -63,7 +174,7 @@
         margin-bottom: 20px;
         font-weight: 300;
         opacity: 0.9;
-        animation: fadeUp 0.8s ease;
+        animation: fadeInUp 0.8s ease;
     }
     
     .hero-title {
@@ -74,7 +185,7 @@
         margin-bottom: 25px;
         color: white;
         text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
-        animation: fadeUp 0.8s ease 0.1s both;
+        animation: fadeInUp 0.8s ease 0.1s both;
     }
     
     .hero-divider {
@@ -82,7 +193,7 @@
         height: 2px;
         background: #c6a43b;
         margin: 0 auto 30px;
-        animation: fadeUp 0.8s ease 0.2s both;
+        animation: fadeInUp 0.8s ease 0.2s both;
     }
     
     .hero-btn {
@@ -97,9 +208,29 @@
         text-decoration: none;
         font-weight: 600;
         border-radius: 40px;
-        animation: fadeUp 0.8s ease 0.3s both;
+        animation: fadeInUp 0.8s ease 0.3s both;
         border: none;
         cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.5);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+    
+    .hero-btn:hover::before {
+        width: 300px;
+        height: 300px;
     }
     
     .hero-btn:hover {
@@ -107,9 +238,10 @@
         color: #003366;
         transform: translateY(-3px);
         letter-spacing: 0.3em;
+        animation: pulse 0.5s ease;
     }
     
-    @keyframes fadeUp {
+    @keyframes fadeInUp {
         from { opacity: 0; transform: translateY(40px); }
         to { opacity: 1; transform: translateY(0); }
     }
@@ -131,6 +263,24 @@
         background: rgba(255, 255, 255, 0.5);
         cursor: pointer;
         transition: all 0.4s ease;
+        position: relative;
+    }
+    
+    .dot::after {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border-radius: 50%;
+        background: rgba(198, 164, 59, 0.3);
+        transform: scale(0);
+        transition: transform 0.3s ease;
+    }
+    
+    .dot:hover::after {
+        transform: scale(1);
     }
     
     .dot.active {
@@ -141,6 +291,7 @@
     
     .dot:hover {
         background: #c6a43b;
+        transform: scale(1.2);
     }
     
     .scroll-indicator {
@@ -167,6 +318,12 @@
         height: 30px;
         background: white;
         margin-top: 5px;
+        transition: height 0.3s ease;
+    }
+    
+    .scroll-indicator:hover .line {
+        height: 40px;
+        background: #c6a43b;
     }
     
     @keyframes bounce {
@@ -175,10 +332,33 @@
     }
     
     /* ==================== SECTION UMUM ==================== */
-    .section { padding: 90px 0; }
+    .section { padding: 90px 0; position: relative; overflow: hidden; }
     .section-white { background: linear-gradient(135deg, #f0f7ff 0%, #e8f0fa 100%); }
     .section-light { background: linear-gradient(135deg, #e0ecf7 0%, #d4e4f2 100%); }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    /* Decorative Elements */
+    .section::before {
+        content: '✦';
+        position: absolute;
+        font-size: 8rem;
+        color: rgba(198, 164, 59, 0.05);
+        bottom: -50px;
+        right: -50px;
+        transform: rotate(15deg);
+        pointer-events: none;
+    }
+    
+    .section::after {
+        content: '✦';
+        position: absolute;
+        font-size: 6rem;
+        color: rgba(198, 164, 59, 0.05);
+        top: -30px;
+        left: -30px;
+        transform: rotate(-10deg);
+        pointer-events: none;
+    }
     
     .section-title {
         text-align: center;
@@ -190,19 +370,61 @@
         font-weight: 500;
         margin-bottom: 15px;
         color: #003366;
+        position: relative;
+        display: inline-block;
+        animation: fadeInUp 0.8s ease;
     }
+    
+    .section-title h2::before {
+        content: '❖';
+        position: absolute;
+        left: -30px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #c6a43b;
+        font-size: 1rem;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+    
+    .section-title h2::after {
+        content: '❖';
+        position: absolute;
+        right: -30px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #c6a43b;
+        font-size: 1rem;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+    
+    .section-title:hover h2::before,
+    .section-title:hover h2::after {
+        opacity: 1;
+        left: -25px;
+        right: -25px;
+    }
+    
     .section-title .divider {
         width: 50px;
         height: 2px;
         background: #c6a43b;
         margin: 0 auto;
+        transition: width 0.5s ease;
     }
+    
+    .section-title:hover .divider {
+        width: 100px;
+    }
+    
     .section-title p {
         color: #2c5f8a;
         max-width: 550px;
         margin: 20px auto 0;
         font-size: 0.85rem;
         line-height: 1.6;
+        animation: fadeInUp 0.8s ease 0.2s both;
     }
     
     /* ==================== STATS ==================== */
@@ -216,28 +438,60 @@
     .stat-item { 
         flex: 1; 
         min-width: 100px; 
-        transition: transform 0.3s ease;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         padding: 20px;
         background: rgba(0, 51, 102, 0.05);
         border-radius: 16px;
+        position: relative;
+        overflow: hidden;
     }
+    
+    .stat-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(198,164,59,0.2), transparent);
+        transition: left 0.6s ease;
+    }
+    
+    .stat-item:hover::before {
+        left: 100%;
+    }
+    
     .stat-item:hover { 
-        transform: translateY(-5px);
+        transform: translateY(-10px) scale(1.05);
         background: rgba(0, 51, 102, 0.1);
+        animation: borderGlow 1s infinite;
     }
+    
     .stat-number {
         font-size: 2.5rem;
         font-family: 'Cormorant Garamond', serif;
         font-weight: 600;
         color: #c6a43b;
         margin-bottom: 8px;
+        transition: all 0.3s ease;
     }
+    
+    .stat-item:hover .stat-number {
+        transform: scale(1.1);
+        color: #003366;
+    }
+    
     .stat-label {
         font-size: 0.65rem;
         letter-spacing: 0.2em;
         text-transform: uppercase;
         color: #003366;
         font-weight: 600;
+        transition: letter-spacing 0.3s ease;
+    }
+    
+    .stat-item:hover .stat-label {
+        letter-spacing: 0.3em;
     }
     
     /* ==================== ABOUT ==================== */
@@ -255,22 +509,80 @@
         margin-bottom: 20px;
         line-height: 1.3;
         color: #003366;
+        position: relative;
+        display: inline-block;
     }
+    
+    .about-content h3::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #c6a43b;
+        transition: width 0.5s ease;
+    }
+    
+    .about-content:hover h3::after {
+        width: 100%;
+    }
+    
     .about-content p {
         color: #2c5f8a;
         line-height: 1.8;
         margin-bottom: 20px;
         font-size: 0.9rem;
+        transform: translateX(0);
+        transition: all 0.3s ease;
     }
+    
+    .about-content p:hover {
+        transform: translateX(10px);
+        color: #003366;
+    }
+    
     .about-image {
         flex: 1;
         border-radius: 12px;
         overflow: hidden;
-        transition: transform 0.5s ease, box-shadow 0.3s ease;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         box-shadow: 0 10px 30px rgba(0, 51, 102, 0.15);
+        position: relative;
     }
-    .about-image:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0, 51, 102, 0.25); }
-    .about-image img { width: 100%; height: auto; display: block; }
+    
+    .about-image::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(198,164,59,0.3), transparent);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 1;
+    }
+    
+    .about-image:hover::before {
+        opacity: 1;
+    }
+    
+    .about-image:hover { 
+        transform: scale(1.03) translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 51, 102, 0.25);
+    }
+    
+    .about-image img { 
+        width: 100%; 
+        height: auto; 
+        display: block; 
+        transition: transform 0.5s ease;
+    }
+    
+    .about-image:hover img {
+        transform: scale(1.05);
+    }
     
     /* ==================== DESTINASI ==================== */
     .destinasi-list { display: flex; flex-direction: column; gap: 80px; }
@@ -279,18 +591,65 @@
         align-items: center;
         gap: 60px;
         flex-wrap: wrap;
+        transition: all 0.5s ease;
     }
+    
     .destinasi-item.reverse { flex-direction: row-reverse; }
+    
     .destinasi-image {
         flex: 1;
         border-radius: 12px;
         overflow: hidden;
         box-shadow: 0 10px 30px rgba(0, 51, 102, 0.15);
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        position: relative;
+    }
+    
+    .destinasi-image::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: radial-gradient(circle, rgba(198,164,59,0.4), transparent);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+        z-index: 1;
+    }
+    
+    .destinasi-image:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .destinasi-image:hover { 
+        transform: scale(1.05) translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 51, 102, 0.25);
+        animation: pulse 0.5s ease;
+    }
+    
+    .destinasi-image img { 
+        width: 100%; 
+        height: auto; 
+        display: block; 
+        transition: transform 0.5s ease;
+    }
+    
+    .destinasi-image:hover img {
+        transform: scale(1.08);
+    }
+    
+    .destinasi-content { 
+        flex: 1; 
         transition: all 0.5s ease;
     }
-    .destinasi-image:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0, 51, 102, 0.25); }
-    .destinasi-image img { width: 100%; height: auto; display: block; transition: transform 0.5s ease; }
-    .destinasi-content { flex: 1; }
+    
+    .destinasi-item:hover .destinasi-content {
+        transform: translateX(15px);
+    }
+    
     .destinasi-number {
         font-size: 0.7rem;
         letter-spacing: 0.2em;
@@ -298,14 +657,39 @@
         margin-bottom: 12px;
         text-transform: uppercase;
         font-weight: 600;
+        position: relative;
+        display: inline-block;
     }
+    
+    .destinasi-number::before {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: #c6a43b;
+        transition: width 0.4s ease;
+    }
+    
+    .destinasi-item:hover .destinasi-number::before {
+        width: 100%;
+    }
+    
     .destinasi-content h3 {
         font-size: 2rem;
         font-family: 'Cormorant Garamond', serif;
         font-weight: 500;
         margin-bottom: 15px;
         color: #003366;
+        transition: all 0.3s ease;
     }
+    
+    .destinasi-item:hover .destinasi-content h3 {
+        transform: translateX(10px);
+        color: #c6a43b;
+    }
+    
     .destinasi-location {
         font-size: 0.7rem;
         letter-spacing: 0.1em;
@@ -313,34 +697,67 @@
         margin-bottom: 20px;
         text-transform: uppercase;
         font-weight: 500;
+        transition: all 0.3s ease;
     }
+    
+    .destinasi-item:hover .destinasi-location {
+        transform: translateX(10px);
+    }
+    
     .destinasi-desc {
         color: #2c5f8a;
         line-height: 1.8;
         margin-bottom: 25px;
         font-size: 0.9rem;
+        transition: all 0.3s ease;
     }
+    
+    .destinasi-item:hover .destinasi-desc {
+        transform: translateX(10px);
+    }
+    
     .destinasi-tags {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
         margin-bottom: 30px;
     }
+    
     .destinasi-tags span {
         background: rgba(0, 51, 102, 0.1);
         padding: 5px 16px;
         font-size: 0.7rem;
         color: #003366;
         border-radius: 30px;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         cursor: pointer;
         font-weight: 500;
+        position: relative;
+        overflow: hidden;
     }
+    
+    .destinasi-tags span::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(198,164,59,0.3), transparent);
+        transition: left 0.4s ease;
+    }
+    
+    .destinasi-tags span:hover::before {
+        left: 100%;
+    }
+    
     .destinasi-tags span:hover {
         background: #c6a43b;
         color: #003366;
-        transform: translateY(-2px);
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 5px 15px rgba(198,164,59,0.3);
     }
+    
     .destinasi-link {
         display: inline-block;
         border: 1px solid #c6a43b;
@@ -350,30 +767,61 @@
         letter-spacing: 0.15em;
         text-transform: uppercase;
         text-decoration: none;
-        transition: all 0.4s ease;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         border-radius: 40px;
         background: transparent;
+        position: relative;
+        overflow: hidden;
     }
+    
+    .destinasi-link::before {
+        content: '→';
+        position: absolute;
+        right: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: right 0.4s ease;
+        opacity: 0;
+    }
+    
+    .destinasi-link:hover::before {
+        right: 15px;
+        opacity: 1;
+    }
+    
     .destinasi-link:hover {
         background: #c6a43b;
         color: #003366;
-        letter-spacing: 0.2em;
-        transform: translateY(-2px);
+        letter-spacing: 0.25em;
+        transform: translateY(-3px) scale(1.05);
+        padding-right: 45px;
+        box-shadow: 0 8px 20px rgba(198,164,59,0.3);
     }
     
-    /* ==================== PETA LOKASI 3 DESA ==================== */
+    /* ==================== PETA LOKASI ==================== */
     .maps-container {
         background: white;
         border-radius: 24px;
         overflow: hidden;
         box-shadow: 0 15px 35px rgba(0, 51, 102, 0.15);
         margin-bottom: 30px;
+        transition: all 0.5s ease;
+    }
+    
+    .maps-container:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 45px rgba(0, 51, 102, 0.25);
     }
     
     .maps-container iframe {
         width: 100%;
         height: 450px;
         border: 0;
+        transition: transform 0.5s ease;
+    }
+    
+    .maps-container:hover iframe {
+        transform: scale(1.02);
     }
     
     .maps-info {
@@ -400,29 +848,54 @@
         background: rgba(255,255,255,0.1);
         padding: 10px 24px;
         border-radius: 50px;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         cursor: pointer;
         border: 1px solid transparent;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .maps-location-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.4s ease;
+    }
+    
+    .maps-location-item:hover::before {
+        left: 100%;
     }
     
     .maps-location-item:hover {
         background: #c6a43b;
-        transform: translateY(-2px);
+        transform: translateY(-5px) scale(1.05);
         border-color: rgba(255,255,255,0.3);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
     
     .maps-location-item i {
         font-size: 1rem;
         color: #c6a43b;
+        transition: all 0.3s ease;
     }
     
     .maps-location-item:hover i {
         color: #003366;
+        transform: rotate(360deg) scale(1.2);
     }
     
     .maps-location-item span {
         font-size: 0.85rem;
         font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    .maps-location-item:hover span {
+        letter-spacing: 1px;
     }
     
     .maps-note {
@@ -431,10 +904,17 @@
         display: flex;
         align-items: center;
         gap: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .maps-note:hover {
+        transform: translateX(5px);
+        color: white;
     }
     
     .maps-note i {
         color: #c6a43b;
+        animation: pulse 2s infinite;
     }
     
     /* ==================== CTA ==================== */
@@ -445,6 +925,7 @@
         position: relative;
         overflow: hidden;
     }
+    
     .cta-section::before {
         content: '';
         position: absolute;
@@ -452,38 +933,61 @@
         left: -50%;
         width: 200%;
         height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
         animation: rotate 20s linear infinite;
     }
+    
+    .cta-section::after {
+        content: '✦';
+        position: absolute;
+        font-size: 3rem;
+        color: rgba(255,255,255,0.05);
+        bottom: 20px;
+        right: 30px;
+        animation: float 3s ease-in-out infinite;
+    }
+    
     @keyframes rotate {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
     }
+    
     .cta-content { 
         max-width: 600px; 
         margin: 0 auto;
         position: relative;
         z-index: 2;
     }
+    
     .cta-content h3 {
         font-size: 2rem;
         font-family: 'Cormorant Garamond', serif;
         font-weight: 500;
         margin-bottom: 20px;
         color: white;
+        animation: fadeInUp 0.8s ease;
     }
+    
     .cta-content .divider {
         width: 50px;
         height: 2px;
         background: #c6a43b;
         margin: 0 auto 25px;
+        transition: width 0.5s ease;
     }
+    
+    .cta-content:hover .divider {
+        width: 100px;
+    }
+    
     .cta-content p {
         color: rgba(255, 255, 255, 0.8);
         margin-bottom: 35px;
         font-size: 0.9rem;
         line-height: 1.7;
+        animation: fadeInUp 0.8s ease 0.2s both;
     }
+    
     .cta-btn {
         display: inline-block;
         background: #c6a43b;
@@ -492,15 +996,39 @@
         font-size: 0.75rem;
         letter-spacing: 0.2em;
         text-transform: uppercase;
-        transition: all 0.4s ease;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         text-decoration: none;
         border-radius: 40px;
         font-weight: 600;
+        position: relative;
+        overflow: hidden;
+        animation: fadeInUp 0.8s ease 0.4s both;
     }
+    
+    .cta-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.5);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+    
+    .cta-btn:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+    
     .cta-btn:hover {
         background: white;
         color: #003366;
-        transform: translateY(-3px);
+        transform: translateY(-5px) scale(1.05);
+        letter-spacing: 0.3em;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
     }
     
     /* ==================== RESPONSIVE ==================== */
@@ -574,19 +1102,19 @@
 <section class="section section-white">
     <div class="container">
         <div class="stats-grid">
-            <div class="stat-item" data-aos="fade-up">
+            <div class="stat-item" data-aos="zoom-in" data-aos-duration="800">
                 <div class="stat-number">3</div>
                 <div class="stat-label">GEOSITES</div>
             </div>
-            <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="stat-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
                 <div class="stat-number">74.000</div>
                 <div class="stat-label">TAHUN SEJARAH</div>
             </div>
-            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
                 <div class="stat-number">15+</div>
                 <div class="stat-label">WARISAN BUDAYA</div>
             </div>
-            <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+            <div class="stat-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
                 <div class="stat-number">100+</div>
                 <div class="stat-label">UMKM LOKAL</div>
             </div>
@@ -598,17 +1126,13 @@
 <section class="section section-light" id="about">
     <div class="container">
         <div class="about-grid">
-            <div class="about-content" data-aos="fade-right">
+            <div class="about-content" data-aos="fade-right" data-aos-duration="1000">
                 <h3>Warisan Geologi Kelas Dunia</h3>
                 <p>Danau Toba, terbentuk dari letusan supervolcano 74.000 tahun lalu, adalah danau vulkanik terbesar di dunia. Diakui UNESCO sebagai Global Geopark pada tahun 2020.</p>
                 <p>Kawasan ini menyimpan nilai geologi luar biasa, keanekaragaman hayati, dan warisan budaya Batak yang autentik. Tiga geosite unggulan di Pulau Sibandang menanti Anda jelajahi.</p>
             </div>
-            <div class="about-image" data-aos="fade-left">
-                @if($aboutImage)
-                <img src="data:image/jpeg;base64,{{ base64_encode($aboutImage->file_foto) }}" alt="Danau Toba">
-                @else
-                <img src="/image/berita.jpg" alt="Danau Toba">
-                @endif
+            <div class="about-image" data-aos="fade-left" data-aos-duration="1000">
+                <img src="/image/meat/berita.jpg" alt="Danau Toba">
             </div>
         </div>
     </div>
@@ -617,7 +1141,7 @@
 <!-- ==================== DESTINASI ==================== -->
 <section id="destinasi" class="section section-white">
     <div class="container">
-        <div class="section-title" data-aos="fade-up">
+        <div class="section-title" data-aos="fade-up" data-aos-duration="800">
             <h2>Destinasi Unggulan</h2>
             <div class="divider"></div>
             <p>Tiga geosite di Pulau Sibandang, Caldera Danau Toba</p>
@@ -625,13 +1149,9 @@
         <div class="destinasi-list">
             
             <!-- MEAT -->
-            <div class="destinasi-item" data-aos="fade-up">
+            <div class="destinasi-item" data-aos="fade-up" data-aos-duration="1000">
                 <div class="destinasi-image">
-                    @if($destinasi[0]->foto)
-                    <img src="data:image/jpeg;base64,{{ base64_encode($destinasi[0]->foto->file_foto) }}" alt="Meat">
-                    @else
                     <img src="/image/meat/meat-detail.jpg" alt="Meat">
-                    @endif
                 </div>
                 <div class="destinasi-content">
                     <div class="destinasi-number">01 — GEOSITE</div>
@@ -649,13 +1169,9 @@
             </div>
             
             <!-- BATU BAHISAN -->
-            <div class="destinasi-item reverse" data-aos="fade-up">
+            <div class="destinasi-item reverse" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                 <div class="destinasi-image">
-                    @if($destinasi[1]->foto)
-                    <img src="data:image/jpeg;base64,{{ base64_encode($destinasi[1]->foto->file_foto) }}" alt="Batu Bahisan">
-                    @else
                     <img src="/image/meat/batu-detail.jpg" alt="Batu Bahisan">
-                    @endif
                 </div>
                 <div class="destinasi-content">
                     <div class="destinasi-number">02 — GEOSITE</div>
@@ -673,13 +1189,9 @@
             </div>
             
             <!-- LIANG SIPEGE -->
-            <div class="destinasi-item" data-aos="fade-up">
+            <div class="destinasi-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                 <div class="destinasi-image">
-                    @if($destinasi[2]->foto)
-                    <img src="data:image/jpeg;base64,{{ base64_encode($destinasi[2]->foto->file_foto) }}" alt="Liang Sipege">
-                    @else
                     <img src="/image/meat/liang-detail.jpg" alt="Liang Sipege">
-                    @endif
                 </div>
                 <div class="destinasi-content">
                     <div class="destinasi-number">03 — GEOSITE</div>
@@ -702,13 +1214,13 @@
 <!-- ==================== PETA LOKASI 3 DESA ==================== -->
 <section class="section section-light">
     <div class="container">
-        <div class="section-title" data-aos="fade-up">
+        <div class="section-title" data-aos="fade-up" data-aos-duration="800">
             <h2>Lokasi 3 Geosite</h2>
             <div class="divider"></div>
             <p>Meat, Batu Bahisan, dan Liang Sipege - Pulau Sibandang</p>
         </div>
         
-        <div class="maps-container" data-aos="fade-up">
+        <div class="maps-container" data-aos="zoom-in" data-aos-duration="1000">
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0!2d98.8835095!3d2.4339262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e0415b8f7da39%3A0xc6beb74287f355a5!2sPulau%20Sibandang!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
                 allowfullscreen="" 
@@ -742,7 +1254,7 @@
 <!-- ==================== CTA ==================== -->
 <section class="cta-section">
     <div class="container">
-        <div class="cta-content" data-aos="fade-up">
+        <div class="cta-content" data-aos="fade-up" data-aos-duration="800">
             <h3>Mulai Petualangan Anda</h3>
             <div class="divider"></div>
             <p>Temukan keajaiban geologi dan kekayaan budaya Batak di Geopark Toba, warisan dunia yang diakui UNESCO.</p>
@@ -799,6 +1311,28 @@
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
+    });
+    
+    // ==================== ADDITIONAL ANIMATION ON SCROLL ====================
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('.stat-item, .destinasi-item, .maps-container').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.8s ease';
+        observer.observe(el);
     });
 </script>
 

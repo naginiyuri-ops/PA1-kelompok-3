@@ -292,7 +292,7 @@
 <body>
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
-            <!-- LOGO SECTION - LANGSUNG DARI ASSET (TANPA QUERY DATABASE) -->
+            <!-- LOGO SECTION - LANGSUNG DARI FOLDER public/image/Logo/ -->
             <div class="logo-wrapper">
                 <img src="{{ asset('image/Logo/logobankindonesia.jpg') }}" alt="Bank Indonesia" class="logo-img" loading="lazy">
                 <div class="logo-divider"></div>

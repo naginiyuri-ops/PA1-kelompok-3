@@ -55,7 +55,7 @@ class HomeController extends Controller
             ],
         ];
         
-        // Galeri untuk CRUD
+        // Galeri untuk CRUD (6 foto terbaru)
         $galeri = Galeri::where('status', 1)
             ->orderBy('created_at', 'desc')
             ->take(6)
