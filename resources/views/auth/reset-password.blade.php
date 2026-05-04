@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Admin - GeoToba</title>
+    <title>Reset Password - GeoToba</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -14,11 +14,8 @@
             justify-content: center;
         }
         .card { border-radius: 16px; border: none; }
-        .btn-dark { background: #003366; border: none; }
-        .btn-dark:hover { background: #c6a43b; color: #003366; }
-        .forgot-link { text-align: right; margin-top: 10px; }
-        .forgot-link a { color: #c6a43b; text-decoration: none; font-size: 0.8rem; }
-        .forgot-link a:hover { text-decoration: underline; }
+        .btn-gold { background: #c6a43b; color: #003366; font-weight: 600; }
+        .btn-gold:hover { background: #003366; color: white; }
     </style>
 </head>
 <body>
@@ -27,29 +24,32 @@
             <div class="col-md-5">
                 <div class="card shadow">
                     <div class="card-header bg-dark text-white text-center">
-                        <h4 class="mb-0">🔐 Login Admin GeoToba</h4>
+                        <h4 class="mb-0">🔄 Buat Password Baru</h4>
                     </div>
                     <div class="card-body">
-                        @if(session('success'))
-                            <div class="alert alert-success">{{ session('success') }}</div>
-                        @endif
                         @if($errors->any())
                             <div class="alert alert-danger">{{ $errors->first() }}</div>
                         @endif
-                        <form method="POST" action="{{ route('login') }}">
+                        <p class="text-muted mb-3">Silakan buat password baru untuk akun Anda.</p>
+                        <form method="POST" action="{{ route('password.update') }}">
                             @csrf
+                            <input type="hidden" name="token" value="{{ $token }}">
                             <div class="mb-3">
                                 <label class="form-label">Email</label>
-                                <input type="email" name="email" class="form-control" required autofocus>
+                                <input type="email" name="email" class="form-control" required value="{{ $email }}" readonly>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control" required>
+                                <label class="form-label">Password Baru</label>
+                                <input type="password" name="password" class="form-control" required placeholder="Minimal 6 karakter">
                             </div>
-                            <div class="forgot-link">
-                                <a href="{{ route('password.request') }}">Lupa Password?</a>
+                            <div class="mb-3">
+                                <label class="form-label">Konfirmasi Password Baru</label>
+                                <input type="password" name="password_confirmation" class="form-control" required>
                             </div>
-                            <button type="submit" class="btn btn-dark w-100 mt-3">Login</button>
+                            <button type="submit" class="btn btn-gold w-100">Simpan Password Baru</button>
+                            <div class="text-center mt-3">
+                                <a href="{{ route('login') }}" class="text-decoration-none">← Kembali ke Login</a>
+                            </div>
                         </form>
                     </div>
                 </div>

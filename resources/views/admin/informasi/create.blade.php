@@ -1,48 +1,106 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Galeri')
+@section('title', 'Tambah Sejarah Caldera Toba')
 
 @section('content')
 <div class="d-flex align-items-center mb-3">
-    <a href="{{ route('admin.galeri.index') }}" class="btn btn-sm btn-secondary me-2"><i class="fas fa-arrow-left"></i></a>
-    <h5 class="mb-0">Tambah Galeri</h5>
+    <a href="{{ route('admin.informasi.index') }}" class="btn btn-sm btn-secondary me-2">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <h5 class="mb-0">Tambah Data Sejarah</h5>
 </div>
 
-<div class="form-card">
-    <form action="{{ route('admin.galeri.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Judul</label>
-                <input type="text" name="judul" class="form-control" required>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Kategori</label>
-                <select name="kategori" class="form-select" required>
-                    <option value="">Pilih</option>
-                    <option value="Balige">Balige</option>
-                    <option value="Meat">Meat</option>
-                    <option value="Batu Bahisan">Batu Bahisan</option>
-                    <option value="Liang Sipege">Liang Sipege</option>
-                </select>
-            </div>
-            <div class="col-12 mb-3">
-                <label class="form-label">Deskripsi</label>
-                <textarea name="deskripsi" class="form-control" rows="3" required></textarea>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Gambar</label>
-                <input type="file" name="gambar" class="form-control" accept="image/*" required>
-            </div>
-            <div class="col-md-6 mb-3">
-                <div class="form-check mt-4">
-                    <input class="form-check-input" type="checkbox" name="status" value="1" checked>
-                    <label class="form-check-label">Aktifkan</label>
+<div class="card">
+    <div class="card-body">
+        <form action="{{ route('admin.informasi.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            
+            <div class="row">
+                <div class="col-md-8 mb-3">
+                    <label class="form-label required">Judul</label>
+                    <input type="text" name="judul" class="form-control @error('judul') is-invalid @enderror" 
+                           value="{{ old('judul') }}" required>
+                    @error('judul')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                
+                <div class="col-md-4 mb-3">
+                    <label class="form-label required">Urutan</label>
+                    <input type="number" name="urutan" class="form-control @error('urutan') is-invalid @enderror" 
+                           value="{{ old('urutan') }}" required placeholder="1, 2, 3...">
+                    <small class="text-muted">Semakin kecil angka, semakin atas tampilannya</small>
+                    @error('urutan')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                
+                <div class="col-md-12 mb-3">
+                    <label class="form-label">Gambar</label>
+                    <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" 
+                           accept="image/jpeg,image/png,image/jpg" id="inputGambar">
+                    <small class="text-muted">Format: JPG, PNG. Max: 5MB</small>
+                    <div class="preview-container mt-2" id="previewContainer" style="display: none;">
+                        <label>Preview Gambar:</label>
+                        <img id="previewImage" class="preview-image" style="max-width: 200px; border-radius: 8px;">
+                    </div>
+                    @error('gambar')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                
+                <div class="col-12 mb-3">
+                    <label class="form-label required">Konten</label>
+                    <textarea name="konten" class="form-control @error('konten') is-invalid @enderror" 
+                              rows="10" required>{{ old('konten') }}</textarea>
+                    @error('konten')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                
+                <div class="col-12 mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="status" value="1" 
+                               id="statusCheck" {{ old('status') ? 'checked' : 'checked' }}>
+                        <label class="form-check-label" for="statusCheck">
+                            <i class="fas fa-check-circle text-success me-1"></i> Aktifkan
+                        </label>
+                        <br>
+                        <small class="text-muted">Jika diaktifkan, akan ditampilkan di halaman publik</small>
+                    </div>
                 </div>
             </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Simpan</button>
-        <a href="{{ route('admin.galeri.index') }}" class="btn btn-secondary">Batal</a>
-    </form>
+            
+            <hr>
+            
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-2"></i> Simpan
+                </button>
+                <a href="{{ route('admin.informasi.index') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-2"></i> Batal
+                </a>
+            </div>
+        </form>
+    </div>
 </div>
+
+<script>
+    document.getElementById('inputGambar').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const previewContainer = document.getElementById('previewContainer');
+        const previewImage = document.getElementById('previewImage');
+        
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                previewImage.src = event.target.result;
+                previewContainer.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        } else {
+            previewContainer.style.display = 'none';
+        }
+    });
+</script>
 @endsection

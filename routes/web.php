@@ -9,6 +9,8 @@ use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GaleriController as PublicGaleriController;
 use App\Http\Controllers\GeositeController;
+use App\Http\Controllers\InformasiController as PublicInformasiController;
+use Illuminate\Support\Facades\DB;
 
 // ==================== FRONTEND ROUTES ====================
 
@@ -21,11 +23,8 @@ Route::get('/destinasi/alam', [DestinasiController::class, 'alam'])->name('desti
 Route::get('/destinasi/buatan', [DestinasiController::class, 'buatan'])->name('destinasi.buatan');
 Route::get('/destinasi/budaya', [DestinasiController::class, 'budaya'])->name('destinasi.budaya');
 
-// Informasi
-Route::get('/informasi', function () {
-    $informasi = App\Models\Informasi::where('status', true)->latest()->paginate(10);
-    return view('pages.informasi', compact('informasi'));
-})->name('informasi');
+// Informasi (Halaman Sejarah Caldera Toba) - TANPA KATEGORI
+Route::get('/informasi', [PublicInformasiController::class, 'index'])->name('informasi');
 
 // Galeri Publik (AMBIL DARI DATABASE)
 Route::get('/galeri', [PublicGaleriController::class, 'index'])->name('galeri');
@@ -66,10 +65,16 @@ Route::get('/geosite/meat', [GeositeController::class, 'meat'])->name('geosite.m
 Route::get('/geosite/batu-bahisan', [GeositeController::class, 'batuBahisan'])->name('geosite.batu-bahisan');
 Route::get('/geosite/liang-sipege', [GeositeController::class, 'liangSipege'])->name('geosite.liang-sipege');
 
-// ==================== AUTH ROUTES ====================
+// ==================== AUTH ROUTES (LOGIN & LUPA PASSWORD) ====================
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Lupa Password Routes
+Route::get('/forgot-password', [AuthController::class, 'showForgotForm'])->name('password.request');
+Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])->name('password.email');
+Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
 
 // ==================== ADMIN ROUTES ====================
 Route::prefix('admin')->middleware(['auth'])->group(function () {
