@@ -218,9 +218,9 @@
                 </div>
             </div>
             <div class="fasilitas-item">
-                <img src="/image/meat/fasilitas-musholla.jpg" class="fasilitas-img" alt="Musholla">
+                <img src="meat-detail.jpg" class="fasilitas-img" alt="Musholla">
                 <div class="fasilitas-content">
-                    <h4>Tempat Ibadah (Musholla)</h4>
+                    <h4>Tempat Ibadah (Gereja)</h4>
                     <p>Fasilitas ibadah bersih dan nyaman untuk umat Muslim</p>
                     <div class="fasilitas-price">Gratis untuk pengunjung</div>
                 </div>

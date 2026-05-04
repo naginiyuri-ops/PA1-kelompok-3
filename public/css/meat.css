@@ -254,7 +254,7 @@ body {
 }
 .sejarah-image img {
     width: 100%;
-    height: 250px;
+    height: 200px;
     object-fit: cover;
     transition: 0.3s;
 }
@@ -287,11 +287,11 @@ body {
 }
 .card-img {
     width: 100%;
-    height: 170px;
+    height: 140px;
     object-fit: cover;
 }
 .card-content {
-    padding: 18px;
+    padding: 15px;
 }
 .card-content h3 {
     font-size: 1.1rem;
@@ -330,11 +330,11 @@ body {
 }
 .fasilitas-img {
     width: 100%;
-    height: 130px;
+    height: 110px;
     object-fit: cover;
 }
 .fasilitas-content {
-    padding: 14px;
+    padding: 12px;
 }
 .fasilitas-content h4 {
     font-size: 0.9rem;

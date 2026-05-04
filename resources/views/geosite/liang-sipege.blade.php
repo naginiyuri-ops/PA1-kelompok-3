@@ -289,7 +289,7 @@
         </div>
         <div class="sejarah-grid">
             <div class="sejarah-item" data-aos="fade-right">
-                <div class="sejarah-image"><img src="/image/liang/sejarah1.jpg" alt="Sejarah 1"></div>
+                <div class="sejarah-image"><img src="/image/liang/" alt="Sejarah 1"></div>
                 <div class="sejarah-text">
                     <p>Liang Sipege dalam bahasa Batak berarti "goa yang curam". Goa ini dipercaya oleh masyarakat setempat sebagai tempat pertapaan para raja-raja Batak zaman dahulu. Beberapa artefak kuno ditemukan di dalam goa, seperti gerabah pecah, peralatan dari batu, dan bekas pembakaran.</p>
                 </div>
