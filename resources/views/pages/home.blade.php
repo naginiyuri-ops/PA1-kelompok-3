@@ -1158,12 +1158,6 @@
                     <h3>Meat</h3>
                     <div class="destinasi-location">Desa Tampahan, Kecamatan Tampahan, Kabupaten Toba</div>
                     <p class="destinasi-desc">Desa Meat adalah salah satu desa wisata yang terletak di Kecamatan Balige, Kabupaten Toba, di tepi Danau Toba.</p>
-                    <div class="destinasi-tags">
-                        <span>Makam Raja Hunsa</span>
-                        <span>Tari Tortor</span>
-                        <span>Tenun Ulos</span>
-                        <span>Rumah Adat Batak</span>
-                    </div>
                     <a href="{{ url('/geosite/meat') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
                 </div>
             </div>
@@ -1178,12 +1172,6 @@
                     <h3>Batu Bahisan</h3>
                     <div class="destinasi-location">Desa Aek Bolon Jae, Balige</div>
                     <p class="destinasi-desc">Batu Basiha merupakan salah satu situs batu bersejarah di kawasan Balige yang memiliki nilai budaya dan legenda dalam masyarakat Batak Toba.</p>
-                    <div class="destinasi-tags">
-                        <span>Formasi Batuan Unik</span>
-                        <span>Spot Fotografi</span>
-                        <span>Sunrise View</span>
-                        <span>Sunset View</span>
-                    </div>
                     <a href="{{ url('/geosite/batu-bahisan') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
                 </div>
             </div>
@@ -1198,12 +1186,6 @@
                     <h3>Liang Sipege</h3>
                     <div class="destinasi-location">Hutagaol Peatalun, Balige</div>
                     <p class="destinasi-desc">Gua Liang Sipege adalah destinasi wisata alam yang terletak di Desa Simarmar Pea Talun Hutagaol, Kecamatan Balige, Kabupaten Toba.</p>
-                    <div class="destinasi-tags">
-                        <span>Goa Alami</span>
-                        <span>Caving</span>
-                        <span>Stalaktit dan Stalakmit</span>
-                        <span>Edukasi Geologi</span>
-                    </div>
                     <a href="{{ url('/geosite/liang-sipege') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
                 </div>
             </div>
