@@ -60,25 +60,29 @@
 <section id="sejarah" class="section">
     <div class="container">
         <div class="section-title">
-            <h2>Sejarah</h2>
+            <h2>Sejarah & Budaya</h2>
             <div class="divider"></div>
+            <p>Warisan budaya Batak yang autentik dan masih hidup</p>
         </div>
         <div class="sejarah-item">
-            <div class="sejarah-image"><img src="/image/meat/sejarah1.jpg"></div>
+            <div class="sejarah-image"><img src="/image/meat/sejarah1.jpg" alt="Desa Meat"></div>
             <div class="sejarah-text">
-                <p>Meat adalah salah satu desa di Kecamatan Tampahan,Kabupaten Toba, Provinsi Sumatra Utara,Indonesia.</p>
+                <h3>Desa Meat - Jantung Budaya Batak</h3>
+                <p>Meat adalah salah satu desa bersejarah di Kecamatan Balige, Kabupaten Toba, Provinsi Sumatra Utara. Terletak di pinggiran Pulau Sibandang di tengah Danau Toba, desa ini menjadi pusat pelestarian budaya Batak yang otentik. Dengan tradisi turun-temurun, masyarakat Meat tetap menjaga identitas budaya mereka sambil membuka pintu bagi wisatawan untuk mengenal kekayaan warisan leluhur.</p>
             </div>
         </div>
         <div class="sejarah-item reverse">
-            <div class="sejarah-image"><img src="/image/meat/sejarah2.jpg"></div>
+            <div class="sejarah-image"><img src="/image/meat/sejarah2.jpg" alt="Tradisi Batak"></div>
             <div class="sejarah-text">
-                <p>Hingga kini, masyarakat Meat menjaga tradisi leluhur seperti upacara adat, tarian Tortor, pembuatan ulos, dan Gondang. Nilai luhur ini terus diwariskan.</p>
+                <h3>Tradisi Hidup yang Diwariskan</h3>
+                <p>Hingga kini, masyarakat Meat tetap menjaga tradisi leluhur dengan penuh dedikasi. Upacara adat yang sakral, tarian Tortor yang penuh makna filosofis, pembuatan Ulos (kain tenun tradisional) dengan motif unik, dan musik Gondang yang merdu masih menjadi bagian integral kehidupan sehari-hari. Setiap tradisi ini bukan sekadar ritual, tetapi representasi nilai-nilai luhur yang diajarkan turun-temurun oleh para leluhur.</p>
             </div>
         </div>
         <div class="sejarah-item">
-            <div class="sejarah-image"><img src="/image/meat/sejarah3.jpg"></div>
+            <div class="sejarah-image"><img src="/image/meat/sejarah3.jpg" alt="Wisata Budaya"></div>
             <div class="sejarah-text">
-                <p>Budaya dan kearifan lokal yang masih terjaga menjadikan Meat destinasi wisata budaya menarik di Geopark Danau Toba.</p>
+                <h3>Destinasi Wisata Budaya Unggulan</h3>
+                <p>Budaya dan kearifan lokal yang masih terjaga dengan baik telah menjadikan Meat sebagai destinasi wisata budaya yang paling menarik di kawasan Geopark Danau Toba. Pengunjung tidak hanya dapat menikmati keindahan alam Danau Toba yang memukau, tetapi juga merasakan autentisitas kehidupan budaya Batak secara langsung, berinteraksi dengan masyarakat lokal, dan belajar tentang filosofi hidup yang tersimpan dalam setiap tradisi mereka.</p>
             </div>
         </div>
     </div>
@@ -90,33 +94,34 @@
         <div class="section-title">
             <h2>UMKM Lokal</h2>
             <div class="divider"></div>
+            <p>Produk autentik dan berkualitas dari pengrajin lokal Meat</p>
         </div>
         <div class="grid-3">
             <div class="card">
-                <img src="/image/meat/umkm-ulos.jpg" class="card-img">
+                <img src="/image/meat/umkm-ulos.jpg" class="card-img" alt="Tenun Ulos">
                 <div class="card-content">
-                    <h3>Tenun Ulos</h3>
-                    <p>Kain tenun khas Batak dengan motif tradisional.</p>
+                    <h3>Tenun Ulos Batak</h3>
+                    <p>Kain tenun tradisional dengan motif khas Batak yang penuh makna. Setiap motif menceritakan kisah dan filosofi kehidupan. Diproduksi dengan teknik tenun tradisional yang telah disempurnakan turun-temurun.</p>
                     <div class="card-location">📍 Desa Meat</div>
-                    <div class="card-contact">📞 [KONTAK_UMKM1]</div>
+                    <div class="card-contact">📞 Hubungi pengrajin lokal</div>
                 </div>
             </div>
             <div class="card">
-                <img src="/image/meat/umkm-anyaman.jpg" class="card-img">
+                <img src="/image/meat/umkm-anyaman.jpg" class="card-img" alt="Anyaman Bambu">
                 <div class="card-content">
-                    <h3>Anyaman Bambu</h3>
-                    <p>Kerajinan tangan dari bambu.</p>
+                    <h3>Anyaman Bambu & Rotan</h3>
+                    <p>Kerajinan tangan berkualitas tinggi dari bahan bambu dan rotan pilihan. Menghasilkan berbagai produk mulai dari hiasan rumah, keranjang, hingga furnitur dengan desain modern yang mempertahankan nilai tradisional.</p>
                     <div class="card-location">📍 Desa Meat</div>
-                    <div class="card-contact">📞 [KONTAK_UMKM2]</div>
+                    <div class="card-contact">📞 Hubungi pengrajin lokal</div>
                 </div>
             </div>
             <div class="card">
-                <img src="/image/meat/umkm-madu.jpg" class="card-img">
+                <img src="/image/meat/umkm-madu.jpg" class="card-img" alt="Madu Hutan">
                 <div class="card-content">
-                    <h3>Madu Hutan</h3>
-                    <p>Madu alami premium dari hutan sekitar.</p>
-                    <div class="card-location">📍 Kawasan Hutan</div>
-                    <div class="card-contact">📞 [KONTAK_UMKM3]</div>
+                    <h3>Madu Hutan Murni</h3>
+                    <p>Madu alami premium dari hutan sekitar dengan kualitas terbaik. Dipanen secara tradisional untuk menjaga nutrisi dan kemurniannya. Kaya akan manfaat kesehatan dan rasa alami yang autentik.</p>
+                    <div class="card-location">📍 Kawasan Hutan Toba</div>
+                    <div class="card-contact">📞 Hubungi penghasil madu</div>
                 </div>
             </div>
         </div>
@@ -127,35 +132,36 @@
 <section id="penginapan" class="section">
     <div class="container">
         <div class="section-title">
-            <h2>Penginapan</h2>
+            <h2>Penginapan & Akomodasi</h2>
             <div class="divider"></div>
+            <p>Pilihan tempat menginap dengan nuansa budaya Batak yang autentik</p>
         </div>
         <div class="grid-3">
             <div class="card">
-                <img src="/image/meat/homestay.jpg" class="card-img">
+                <img src="/image/meat/homestay.jpg" class="card-img" alt="Homestay Desa Meat">
                 <div class="card-content">
                     <h3>Homestay Desa Meat</h3>
-                    <p>Menginap di rumah adat Batak.</p>
-                    <div class="card-price">💰 [HARGA1] / malam</div>
-                    <div class="card-contact">📞 [KONTAK_HOMESTAY]</div>
+                    <p>Pengalaman menginap di rumah adat Batak yang asli. Rasakan kehangatan keluarga lokal, nikmati makanan tradisional, dan belajar tentang kehidupan sehari-hari masyarakat Batak secara langsung.</p>
+                    <div class="card-price">💰 Mulai dari Rp 150.000 / malam</div>
+                    <div class="card-contact">📞 Hubungi pengelola</div>
                 </div>
             </div>
             <div class="card">
-                <img src="/image/meat/lakeview.jpg" class="card-img">
+                <img src="/image/meat/lakeview.jpg" class="card-img" alt="Sibandang Lake View">
                 <div class="card-content">
                     <h3>Sibandang Lake View</h3>
-                    <p>Pemandangan langsung Danau Toba.</p>
-                    <div class="card-price">💰 [HARGA2] / malam</div>
-                    <div class="card-contact">📞 [KONTAK_LAKEVIEW]</div>
+                    <p>Resort dengan pemandangan langsung ke Danau Toba yang menakjubkan. Fasilitas modern dengan sentuhan desain tradisional. Nikmati sunset yang indah dari balkon kamar Anda sambil menikmati kesegaran udara danau.</p>
+                    <div class="card-price">💰 Mulai dari Rp 250.000 / malam</div>
+                    <div class="card-contact">📞 Hubungi reservasi</div>
                 </div>
             </div>
             <div class="card">
-                <img src="/image/meat/lodge.jpg" class="card-img">
+                <img src="/image/meat/lodge.jpg" class="card-img" alt="Meat Traditional Lodge">
                 <div class="card-content">
                     <h3>Meat Traditional Lodge</h3>
-                    <p>Tradisional dengan fasilitas modern.</p>
-                    <div class="card-price">💰 [HARGA3] / malam</div>
-                    <div class="card-contact">📞 [KONTAK_LODGE]</div>
+                    <p>Penginapan dengan arsitektur tradisional Batak namun dilengkapi dengan fasilitas modern lengkap. Lokasi strategis dengan akses mudah ke semua tempat wisata utama dan spot foto terbaik.</p>
+                    <div class="card-price">💰 Mulai dari Rp 200.000 / malam</div>
+                    <div class="card-contact">📞 Hubungi pengelola</div>
                 </div>
             </div>
         </div>
@@ -166,56 +172,57 @@
 <section id="fasilitas" class="section bg-light">
     <div class="container">
         <div class="section-title">
-            <h2>Fasilitas</h2>
+            <h2>Fasilitas & Layanan</h2>
             <div class="divider"></div>
+            <p>Berbagai fasilitas lengkap untuk kenyamanan wisatawan</p>
         </div>
         <div class="grid-2">
             <div class="fasilitas-item">
-                <img src="/image/meat/fasilitas-parkir.jpg" class="fasilitas-img">
+                <img src="/image/meat/fasilitas-parkir.jpg" class="fasilitas-img" alt="Area Parkir">
                 <div class="fasilitas-content">
                     <h4>Area Parkir</h4>
-                    <p>Luas dan aman</p>
-                    <div class="fasilitas-price">[PARKIR]</div>
+                    <p>Parkir luas, aman, dan terjaga di dekat lokasi wisata</p>
+                    <div class="fasilitas-price">Gratis untuk pengunjung</div>
                 </div>
             </div>
             <div class="fasilitas-item">
-                <img src="/image/meat/fasilitas-toilet.jpg" class="fasilitas-img">
+                <img src="/image/meat/fasilitas-toilet.jpg" class="fasilitas-img" alt="Toilet Bersih">
                 <div class="fasilitas-content">
-                    <h4>Toilet</h4>
-                    <p>Bersih</p>
-                    <div class="fasilitas-price">[TOILET]</div>
+                    <h4>Toilet Umum</h4>
+                    <p>Toilet bersih, terawat, dan dilengkapi dengan air bersih</p>
+                    <div class="fasilitas-price">Gratis untuk pengunjung</div>
                 </div>
             </div>
             <div class="fasilitas-item">
-                <img src="/image/meat/fasilitas-warung.jpg" class="fasilitas-img">
+                <img src="/image/meat/fasilitas-warung.jpg" class="fasilitas-img" alt="Warung Makan">
                 <div class="fasilitas-content">
-                    <h4>Warung Makan</h4>
-                    <p>Kuliner khas</p>
-                    <div class="fasilitas-price">Mulai [WARUNG]</div>
+                    <h4>Warung Makan & Café</h4>
+                    <p>Menyajikan kuliner tradisional Batak dan makanan modern berkualitas</p>
+                    <div class="fasilitas-price">Mulai dari Rp 20.000</div>
                 </div>
             </div>
             <div class="fasilitas-item">
-                <img src="/image/meat/fasilitas-camping.jpg" class="fasilitas-img">
+                <img src="/image/meat/fasilitas-camping.jpg" class="fasilitas-img" alt="Area Camping">
                 <div class="fasilitas-content">
                     <h4>Area Camping</h4>
-                    <p>View danau</p>
-                    <div class="fasilitas-price">[CAMPING]</div>
+                    <p>Tempat camping dengan pemandangan langsung Danau Toba yang spektakuler</p>
+                    <div class="fasilitas-price">Mulai dari Rp 50.000</div>
                 </div>
             </div>
             <div class="fasilitas-item">
-                <img src="/image/meat/fasilitas-spotfoto.jpg" class="fasilitas-img">
+                <img src="/image/meat/fasilitas-spotfoto.jpg" class="fasilitas-img" alt="Spot Foto">
                 <div class="fasilitas-content">
-                    <h4>Spot Foto</h4>
-                    <p>Instagramable</p>
-                    <div class="fasilitas-price">Gratis</div>
+                    <h4>Spot Foto Instagramable</h4>
+                    <p>Berbagai lokasi foto menarik dengan latar belakang alam yang memukau</p>
+                    <div class="fasilitas-price">Gratis untuk pengunjung</div>
                 </div>
             </div>
             <div class="fasilitas-item">
-                <img src="/image/meat/fasilitas-musholla.jpg" class="fasilitas-img">
+                <img src="/image/meat/fasilitas-musholla.jpg" class="fasilitas-img" alt="Musholla">
                 <div class="fasilitas-content">
-                    <h4>Musholla</h4>
-                    <p>Tempat ibadah</p>
-                    <div class="fasilitas-price">Gratis</div>
+                    <h4>Tempat Ibadah (Musholla)</h4>
+                    <p>Fasilitas ibadah bersih dan nyaman untuk umat Muslim</p>
+                    <div class="fasilitas-price">Gratis untuk pengunjung</div>
                 </div>
             </div>
         </div>
@@ -228,6 +235,7 @@
         <div class="section-title">
             <h2>Galeri Pantai</h2>
             <div class="divider"></div>
+            <p>Keindahan alam Meat yang memukau dalam setiap musim</p>
         </div>
         <div class="galeri-tabs">
             <button class="tab-btn active" data-tab="pantai1">Pantai 1</button>
@@ -235,9 +243,9 @@
             <button class="tab-btn" data-tab="pantai3">Pantai 3</button>
         </div>
         <div class="galeri-grid" id="galeriGrid">
-            @for($i=1;$i<=4;$i++)<div class="galeri-item pantai1"><img src="/image/meat/pantai1-{{$i}}.jpg"></div>@endfor
-            @for($i=1;$i<=4;$i++)<div class="galeri-item pantai2" style="display:none"><img src="/image/meat/pantai2-{{$i}}.jpg"></div>@endfor
-            @for($i=1;$i<=4;$i++)<div class="galeri-item pantai3" style="display:none"><img src="/image/meat/pantai3-{{$i}}.jpg"></div>@endfor
+            @for($i=1;$i<=4;$i++)<div class="galeri-item pantai1"><img src="/image/meat/pantai1-{{$i}}.jpg" alt="Pantai 1 - Foto {{$i}}" loading="lazy"></div>@endfor
+            @for($i=1;$i<=4;$i++)<div class="galeri-item pantai2" style="display:none"><img src="/image/meat/pantai2-{{$i}}.jpg" alt="Pantai 2 - Foto {{$i}}" loading="lazy"></div>@endfor
+            @for($i=1;$i<=4;$i++)<div class="galeri-item pantai3" style="display:none"><img src="/image/meat/pantai3-{{$i}}.jpg" alt="Pantai 3 - Foto {{$i}}" loading="lazy"></div>@endfor
         </div>
     </div>
 </section>
@@ -246,17 +254,30 @@
 <section id="lokasi" class="section bg-light">
     <div class="container">
         <div class="section-title">
-            <h2>Lokasi & Rute</h2>
+            <h2>Lokasi & Cara Mencapai</h2>
             <div class="divider"></div>
+            <p>Lokasi strategis di Pulau Sibandang, mudah diakses dari Kota Balige</p>
         </div>
         <div class="maps-section">
             <div class="maps-container">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0!2d99.0835095!3d2.3339262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e0415b8f7da39%3A0xc6beb74287f355a5!2sBalige%2C%20Toba%20Samosir%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="rute-info">
-                <div class="rute-item"><h4>Motor</h4><p>Balige → Ajibata (30m) → Ferry (20m) → Meat (15m)</p></div>
-                <div class="rute-item"><h4>Mobil</h4><p>Balige → Ajibata (30m) → Parkir → Ferry → Transportasi lokal</p></div>
-                <div class="rute-item"><h4>Estimasi</h4><p>Dari Balige: ± 1.5 jam</p></div>
+                <div class="rute-item">
+                    <h4>🏍️ Dengan Motor</h4>
+                    <p>Balige → Ajibata (30m) → Ferry (20m) → Meat (15m)</p>
+                    <span class="rute-time">± 1.5 jam</span>
+                </div>
+                <div class="rute-item">
+                    <h4>🚗 Dengan Mobil</h4>
+                    <p>Balige → Ajibata (30m) → Parkir → Ferry → Transportasi lokal</p>
+                    <span class="rute-time">± 2 jam</span>
+                </div>
+                <div class="rute-item">
+                    <h4>⛴️ Ferry Schedule</h4>
+                    <p>Operasional setiap hari 06:00 - 17:00 WIB</p>
+                    <span class="rute-time">Kapasitas penuh</span>
+                </div>
             </div>
         </div>
     </div>
@@ -265,10 +286,13 @@
 <!-- CTA -->
 <section class="cta">
     <div class="container">
-        <h3>Kunjungi Meat Sekarang</h3>
+        <h3>Jangan Lewatkan Keindahan Meat</h3>
         <div class="divider"></div>
-        <p>Rasakan pengalaman wisata budaya Batak yang autentik</p>
-        <a href="{{ url('/') }}" class="cta-btn">Kembali ke Beranda</a>
+        <p>Rasakan pengalaman wisata budaya Batak yang autentik, nikmati keindahan alam Danau Toba yang memukau, dan ciptakan kenangan indah bersama keluarga tercinta di Meat</p>
+        <div class="cta-buttons">
+            <a href="{{ url('/') }}" class="cta-btn">Kembali ke Beranda</a>
+            <a href="#penginapan" class="cta-btn cta-btn-secondary">Pesan Penginapan</a>
+        </div>
     </div>
 </section>
 
@@ -300,14 +324,150 @@
     </div>
 </footer>
 
-<!-- LIGHTBOX -->
+<!-- LIGHTBOX ZOOM -->
 <div class="lightbox" id="lightbox">
-    <div class="lightbox-close" onclick="closeLightbox()">×</div>
-    <img id="lightboxImg">
+    <div class="lightbox-container">
+        <div class="lightbox-close" onclick="closeLightbox()">✕</div>
+        <button class="lightbox-prev" id="lightboxPrev" onclick="prevLightboxImage()">‹</button>
+        <div class="lightbox-image-wrapper">
+            <img id="lightboxImg" class="lightbox-img-zoomable">
+            <div class="zoom-controls">
+                <button class="zoom-btn" onclick="zoomLightboxImage(-0.2)" title="Zoom Out">−</button>
+                <span class="zoom-level" id="zoomLevel">100%</span>
+                <button class="zoom-btn" onclick="zoomLightboxImage(0.2)" title="Zoom In">+</button>
+                <button class="zoom-btn" onclick="resetLightboxZoom()" title="Reset">⟲</button>
+            </div>
+        </div>
+        <button class="lightbox-next" id="lightboxNext" onclick="nextLightboxImage()">›</button>
+    </div>
+    <div class="lightbox-info">
+        <span id="lightboxCounter">1/12</span>
+        <span class="lightbox-hint">Scroll untuk zoom | Klik tombol +/- untuk zoom manual</span>
+    </div>
 </div>
 
 <script>
-    // Hamburger Menu
+    // ========== LIGHTBOX ZOOM ADVANCED ==========
+    let currentImageIndex = 0;
+    let allGaleriImages = [];
+    let currentZoom = 1;
+    let currentPanX = 0;
+    let currentPanY = 0;
+    
+    function initLightboxImages() {
+        allGaleriImages = Array.from(document.querySelectorAll('.galeri-item:not([style*="display:none"]) img'));
+    }
+
+    function openLightbox(img) {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        initLightboxImages();
+        
+        const allImages = document.querySelectorAll('.galeri-item img');
+        currentImageIndex = Array.from(allImages).indexOf(img);
+        
+        lightboxImg.src = img.src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        resetLightboxZoom();
+        updateLightboxCounter();
+    }
+
+    function closeLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        resetLightboxZoom();
+    }
+
+    function zoomLightboxImage(delta) {
+        const newZoom = currentZoom + delta;
+        if (newZoom >= 1 && newZoom <= 3) {
+            currentZoom = newZoom;
+            updateLightboxImage();
+        }
+    }
+
+    function resetLightboxZoom() {
+        currentZoom = 1;
+        currentPanX = 0;
+        currentPanY = 0;
+        updateLightboxImage();
+    }
+
+    function updateLightboxImage() {
+        const img = document.getElementById('lightboxImg');
+        img.style.transform = `scale(${currentZoom}) translate(${currentPanX}px, ${currentPanY}px)`;
+        document.getElementById('zoomLevel').textContent = Math.round(currentZoom * 100) + '%';
+    }
+
+    function nextLightboxImage() {
+        const allImages = document.querySelectorAll('.galeri-item:not([style*="display:none"]) img');
+        currentImageIndex = (currentImageIndex + 1) % allImages.length;
+        openLightbox(allImages[currentImageIndex]);
+    }
+
+    function prevLightboxImage() {
+        const allImages = document.querySelectorAll('.galeri-item:not([style*="display:none"]) img');
+        currentImageIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
+        openLightbox(allImages[currentImageIndex]);
+    }
+
+    function updateLightboxCounter() {
+        const allImages = document.querySelectorAll('.galeri-item:not([style*="display:none"]) img');
+        document.getElementById('lightboxCounter').textContent = (currentImageIndex + 1) + '/' + allImages.length;
+    }
+
+    // Lightbox scroll zoom
+    const lightboxContainer = document.querySelector('.lightbox-image-wrapper');
+    if (lightboxContainer) {
+        lightboxContainer.addEventListener('wheel', function(e) {
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                e.preventDefault();
+                if (e.deltaY < 0) {
+                    zoomLightboxImage(0.1);
+                } else {
+                    zoomLightboxImage(-0.1);
+                }
+            }
+        }, { passive: false });
+
+        // Pinch zoom support
+        let lastDistance = 0;
+        lightboxContainer.addEventListener('touchmove', function(e) {
+            if (document.getElementById('lightbox').classList.contains('active') && e.touches.length === 2) {
+                e.preventDefault();
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const distance = Math.hypot(
+                    touch2.clientX - touch1.clientX,
+                    touch2.clientY - touch1.clientY
+                );
+                if (lastDistance !== 0) {
+                    const delta = (distance - lastDistance) / 100;
+                    zoomLightboxImage(delta);
+                }
+                lastDistance = distance;
+            }
+        }, { passive: false });
+
+        lightboxContainer.addEventListener('touchend', function() {
+            lastDistance = 0;
+        });
+    }
+
+    // Lightbox keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (document.getElementById('lightbox').classList.contains('active')) {
+            if (e.key === 'ArrowRight') nextLightboxImage();
+            if (e.key === 'ArrowLeft') prevLightboxImage();
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === '+' || e.key === '=') zoomLightboxImage(0.1);
+            if (e.key === '-') zoomLightboxImage(-0.1);
+        }
+    });
+
+    // ========== HAMBURGER MENU ==========
     var hamburger = document.getElementById('hamburger');
     var mobileOverlay = document.getElementById('mobileOverlay');
     var mobileClose = document.getElementById('mobileClose');
@@ -327,7 +487,7 @@
         link.addEventListener('click', closeMenu);
     });
 
-    // Galeri tabs
+    // ========== GALERI TABS ==========
     document.querySelectorAll('.tab-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
             document.querySelectorAll('.tab-btn').forEach(function(b) {
@@ -338,26 +498,24 @@
             document.querySelectorAll('.galeri-item').forEach(function(item) {
                 item.style.display = item.classList.contains(tab) ? 'block' : 'none';
             });
+            resetLightboxZoom();
         });
     });
 
-    // Lightbox
-    var lightbox = document.getElementById('lightbox');
+    // ========== GALERI IMAGE CLICK ==========
     document.querySelectorAll('.galeri-item img').forEach(function(img) {
         img.addEventListener('click', function() {
-            lightbox.classList.add('active');
-            document.getElementById('lightboxImg').src = img.src;
+            openLightbox(this);
         });
     });
 
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-    }
+    // Lightbox click outside
+    const lightbox = document.getElementById('lightbox');
     lightbox.addEventListener('click', function(e) {
         if (e.target === lightbox) closeLightbox();
     });
 
-    // Smooth scroll
+    // ========== SMOOTH SCROLL ==========
     document.querySelectorAll('.nav-link[href^="#"], .mobile-link[href^="#"]').forEach(function(anchor) {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
