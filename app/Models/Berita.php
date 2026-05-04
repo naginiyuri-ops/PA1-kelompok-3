@@ -1,36 +1,29 @@
 <?php
-// app/Models/Berita.php
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class Berita extends Model
 {
-    use HasFactory;
-
     protected $table = 'berita';
-    
+
     protected $fillable = [
         'judul',
         'slug',
-        'excerpt',
-        'content',
+        'konten',
         'gambar',
         'penulis',
         'views',
-        'status',
-        'tanggal_berita'
+        'status'
     ];
 
     protected $casts = [
         'status' => 'boolean',
-        'tanggal_berita' => 'date'
+        'views' => 'integer'
     ];
 
-    // Auto generate slug
     protected static function boot()
     {
         parent::boot();
@@ -42,17 +35,5 @@ class Berita extends Model
         static::updating(function ($berita) {
             $berita->slug = Str::slug($berita->judul);
         });
-    }
-
-    public function kategori()
-      {
-    return $this->belongsTo(Kategori::class, 'kategori_id');
-             }
-
-
-    // Increment views
-    public function incrementViews()
-    {
-        $this->increment('views');
     }
 }

@@ -6,25 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('berita', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->string('slug')->unique();
-            $table->text('konten');
-            $table->string('gambar');
-            $table->foreignId('kategori_id')->constrained('kategori')->onDelete('cascade');
-            $table->string('penulis');
-            $table->date('tanggal_terbit');
-            $table->boolean('status')->default(true);
+            $table->string('judul', 255);
+            $table->string('slug', 255)->unique();
+            $table->longText('konten');
+            $table->longText('gambar')->nullable(); // base64
+            $table->string('penulis', 100)->nullable();
             $table->integer('views')->default(0);
-            $table->integer('komentar')->default(0);
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('berita');
     }

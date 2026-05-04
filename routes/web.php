@@ -23,11 +23,18 @@ Route::get('/destinasi/alam', [DestinasiController::class, 'alam'])->name('desti
 Route::get('/destinasi/buatan', [DestinasiController::class, 'buatan'])->name('destinasi.buatan');
 Route::get('/destinasi/budaya', [DestinasiController::class, 'budaya'])->name('destinasi.budaya');
 
-// Informasi (Halaman Sejarah Caldera Toba) - TANPA KATEGORI
+// Informasi (Halaman Sejarah Caldera Toba)
 Route::get('/informasi', [PublicInformasiController::class, 'index'])->name('informasi');
 
-// Galeri Publik (AMBIL DARI DATABASE)
+// Galeri Publik
 Route::get('/galeri', [PublicGaleriController::class, 'index'])->name('galeri');
+
+// Detail Galeri
+Route::get('/galeri/{slug}', function ($slug) {
+    $galeri = App\Models\Galeri::where('slug', $slug)->firstOrFail();
+    $galeri->increment('views');
+    return view('pages.galeri-detail', compact('galeri'));
+})->name('galeri.detail');
 
 // Berita Publik
 Route::get('/berita', function () {
@@ -42,13 +49,6 @@ Route::get('/berita/{slug}', function ($slug) {
     return view('pages.berita-detail', compact('berita'));
 })->name('berita.detail');
 
-// Detail Galeri
-Route::get('/galeri/{slug}', function ($slug) {
-    $galeri = App\Models\Galeri::where('slug', $slug)->firstOrFail();
-    $galeri->increment('views');
-    return view('pages.galeri-detail', compact('galeri'));
-})->name('galeri.detail');
-
 // UMKM
 Route::get('/umkm', [HomeController::class, 'umkm'])->name('umkm');
 
@@ -60,12 +60,12 @@ Route::get('/kontak', function () {
     return view('pages.kontak');
 })->name('kontak');
 
-// ==================== GEOSITE ROUTES (TIGA GEOSITE) ====================
+// ==================== GEOSITE ROUTES ====================
 Route::get('/geosite/meat', [GeositeController::class, 'meat'])->name('geosite.meat');
 Route::get('/geosite/batu-bahisan', [GeositeController::class, 'batuBahisan'])->name('geosite.batu-bahisan');
 Route::get('/geosite/liang-sipege', [GeositeController::class, 'liangSipege'])->name('geosite.liang-sipege');
 
-// ==================== AUTH ROUTES (LOGIN & LUPA PASSWORD) ====================
+// ==================== AUTH ROUTES ====================
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -87,6 +87,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         
         return view('admin.dashboard', compact('totalGaleri', 'totalBerita', 'totalInformasi', 'totalViews'));
     })->name('admin.dashboard');
+    
+
+    Route::resource('berita', BeritaController::class)->names('admin.berita');
+
     
     Route::resource('galeri', GaleriController::class)->names('admin.galeri');
     Route::resource('berita', BeritaController::class)->names('admin.berita');
