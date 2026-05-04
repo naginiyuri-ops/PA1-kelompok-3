@@ -1,116 +1,111 @@
 <?php
-// app/Http/Controllers/Admin/BeritaController.php
 
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Berita;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class BeritaController extends Controller
 {
-    // Index untuk admin
     public function index()
     {
-        $berita = Berita::orderBy('created_at', 'desc')->paginate(10);
+        $berita = Berita::latest()->paginate(10);
         return view('admin.berita.index', compact('berita'));
     }
-    
-    // Create form
+
     public function create()
     {
         return view('admin.berita.create');
     }
-    
-    // Store data
+
     public function store(Request $request)
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'excerpt' => 'required|string',
-            'content' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'tanggal_berita' => 'nullable|date',
+            'konten' => 'required|string',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'penulis' => 'nullable|string|max:100',
             'status' => 'nullable|boolean'
         ]);
-        
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->judul);
-        $data['penulis'] = auth()->user()->name ?? 'Admin';
-        $data['status'] = $request->has('status');
-        
-        // Upload gambar
+
+        $data = [
+            'judul' => $request->judul,
+            'konten' => $request->konten,
+            'penulis' => $request->penulis ?? 'Admin',
+            'status' => $request->has('status') ? 1 : 0
+        ];
+
+        // Konversi gambar ke base64
         if ($request->hasFile('gambar')) {
-            $gambar = $request->file('gambar');
-            $filename = time() . '_' . Str::slug($request->judul) . '.' . $gambar->getClientOriginalExtension();
-            $path = $gambar->storeAs('berita', $filename, 'public');
-            $data['gambar'] = '/storage/' . $path;
+            $image = $request->file('gambar');
+            $imageData = file_get_contents($image->getRealPath());
+            $base64 = base64_encode($imageData);
+            $mimeType = $image->getMimeType();
+            $data['gambar'] = 'data:' . $mimeType . ';base64,' . $base64;
         }
-        
+
         Berita::create($data);
-        
+
         return redirect()->route('admin.berita.index')
-            ->with('success', 'Berita berhasil ditambahkan');
+            ->with('success', 'Berita berhasil ditambahkan!');
     }
-    
-    // Edit form
+
     public function edit($id)
     {
         $berita = Berita::findOrFail($id);
         return view('admin.berita.edit', compact('berita'));
     }
-    
-    // Update data
+
     public function update(Request $request, $id)
     {
         $berita = Berita::findOrFail($id);
-        
+
         $request->validate([
             'judul' => 'required|string|max:255',
-            'excerpt' => 'required|string',
-            'content' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'tanggal_berita' => 'nullable|date',
+            'konten' => 'required|string',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'penulis' => 'nullable|string|max:100',
             'status' => 'nullable|boolean'
         ]);
-        
-        $data = $request->all();
-        $data['status'] = $request->has('status');
-        
-        // Upload gambar baru
+
+        $data = [
+            'judul' => $request->judul,
+            'konten' => $request->konten,
+            'penulis' => $request->penulis ?? 'Admin',
+            'status' => $request->has('status') ? 1 : 0
+        ];
+
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama
-            if ($berita->gambar && Storage::disk('public')->exists(str_replace('/storage/', '', $berita->gambar))) {
-                Storage::disk('public')->delete(str_replace('/storage/', '', $berita->gambar));
-            }
-            
-            $gambar = $request->file('gambar');
-            $filename = time() . '_' . Str::slug($request->judul) . '.' . $gambar->getClientOriginalExtension();
-            $path = $gambar->storeAs('berita', $filename, 'public');
-            $data['gambar'] = '/storage/' . $path;
+            $image = $request->file('gambar');
+            $imageData = file_get_contents($image->getRealPath());
+            $base64 = base64_encode($imageData);
+            $mimeType = $image->getMimeType();
+            $data['gambar'] = 'data:' . $mimeType . ';base64,' . $base64;
         }
-        
+
         $berita->update($data);
-        
+
         return redirect()->route('admin.berita.index')
-            ->with('success', 'Berita berhasil diupdate');
+            ->with('success', 'Berita berhasil diupdate!');
     }
-    
-    // Delete
+
     public function destroy($id)
     {
         $berita = Berita::findOrFail($id);
-        
-        // Hapus gambar
-        if ($berita->gambar && Storage::disk('public')->exists(str_replace('/storage/', '', $berita->gambar))) {
-            Storage::disk('public')->delete(str_replace('/storage/', '', $berita->gambar));
-        }
-        
         $berita->delete();
-        
+
         return redirect()->route('admin.berita.index')
-            ->with('success', 'Berita berhasil dihapus');
+            ->with('success', 'Berita berhasil dihapus!');
+    }
+
+    public function toggleStatus($id)
+    {
+        $berita = Berita::findOrFail($id);
+        $berita->status = !$berita->status;
+        $berita->save();
+
+        return response()->json(['success' => true, 'status' => $berita->status]);
     }
 }
