@@ -23,25 +23,25 @@ class DestinasiController extends Controller
                 'nama' => 'Liang Sipege',
                 'lokasi' => 'Pulau Sibandang, Danau Toba',
                 'deskripsi' => 'Goa alami dengan stalaktit dan stalakmit yang indah. Tempat eksplorasi dan edukasi geologi.',
-                'gambar' => '/image/liang-sipege/hero.jpg',
+                'gambar' => '/image/meat/liang-sipege-hero.jpg',
                 'tags' => ['Goa Alami', 'Caving', 'Stalaktit', 'Geologi'],
                 'url' => '/geosite/liang-sipege'
             ],
             (object)[
                 'id' => 2,
-                'nama' => 'Batu Bahisan',
+                'nama' => 'Batu Basiha',
                 'lokasi' => 'Pulau Sibandang, Danau Toba',
                 'deskripsi' => 'Formasi batuan unik hasil erosi ribuan tahun. Spot favorit untuk sunrise, sunset, dan fotografi landscape.',
-                'gambar' => '/image/batu-bahisan/hero.jpg',
+                'gambar' => '/image/meat/batu-bahisan.jpg',
                 'tags' => ['Formasi Batuan', 'Sunrise', 'Sunset', 'Fotografi'],
                 'url' => '/geosite/batu-bahisan'
             ],
             (object)[
                 'id' => 3,
-                'nama' => 'Air Terjun Efrata',
+                'nama' => 'Pantai Meat',
                 'lokasi' => 'Balige, Danau Toba',
                 'deskripsi' => 'Air terjun cantik dengan air jernih dan suasana asri, cocok untuk refreshing keluarga.',
-                'gambar' => '/image/destinasi/air-terjun.jpg',
+                'gambar' => '/image/meat/batu-detail.jpg',
                 'tags' => ['Air Terjun', 'Refreshing', 'Keluarga', 'Alam'],
                 'url' => '/destinasi/air-terjun-efrata'
             ]
