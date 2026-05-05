@@ -79,6 +79,7 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 // ==================== ADMIN ROUTES ====================
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     
+    // Dashboard
     Route::get('/', function () {
         $totalGaleri = DB::table('galeris')->count();
         $totalBerita = DB::table('berita')->count();
@@ -88,13 +89,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         return view('admin.dashboard', compact('totalGaleri', 'totalBerita', 'totalInformasi', 'totalViews'));
     })->name('admin.dashboard');
     
-
-    Route::resource('berita', BeritaController::class)->names('admin.berita');
-
-    
+    // CRUD Resources (TANPA DUPLIKASI)
     Route::resource('galeri', GaleriController::class)->names('admin.galeri');
     Route::resource('berita', BeritaController::class)->names('admin.berita');
     Route::resource('informasi', InformasiController::class)->names('admin.informasi');
+    
+    // Additional Routes
     Route::post('galeri/toggle-status/{id}', [GaleriController::class, 'toggleStatus'])->name('admin.galeri.toggle-status');
+    Route::post('berita/toggle-status/{id}', [BeritaController::class, 'toggleStatus'])->name('admin.berita.toggle-status');
+    Route::post('informasi/toggle-status/{id}', [InformasiController::class, 'toggleStatus'])->name('admin.informasi.toggle-status');
     
 });
