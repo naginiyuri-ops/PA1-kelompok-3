@@ -111,8 +111,8 @@
                 <div class="card-content">
                     <h3>Anyaman Bambu & Rotan</h3>
                     <p>Kerajinan tangan berkualitas tinggi dari bahan bambu dan rotan pilihan. Menghasilkan berbagai produk mulai dari hiasan rumah, keranjang, hingga furnitur dengan desain modern yang mempertahankan nilai tradisional.</p>
-                    <div class="card-location">📍 Desa Meat</div>
-                    <div class="card-contact">📞 Hubungi pengrajin lokal</div>
+                    <div class="card-location"> Desa Meat</div>
+                    <div class="card-contact"> Hubungi pengrajin lokal</div>
                 </div>
             </div>
             <div class="card">
