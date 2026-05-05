@@ -256,6 +256,7 @@
         <div class="nav-menu">
             <a href="{{ url('/') }}" class="nav-link home-btn">Home</a>
             <a href="#sejarah" class="nav-link">Sejarah</a>
+            <a href="#informasi" class="nav-link">Informasi</a>
             <a href="#galeri" class="nav-link">Galeri</a>
         </div>
         <div class="hamburger" id="hamburger">
@@ -269,6 +270,7 @@
     <div class="mobile-close" id="mobileClose">×</div>
     <a href="{{ url('/') }}" class="mobile-link mobile-home">Home</a>
     <a href="#sejarah" class="mobile-link">Sejarah</a>
+    <a href="#informasi" class="mobile-link">Informasi</a>
     <a href="#galeri" class="mobile-link">Galeri</a>
 </div>
 
@@ -276,7 +278,7 @@
 <section class="hero">
     <div data-aos="fade-up">
         <h1 class="hero-title">LIANG SIPEGE</h1>
-        <p class="hero-subtitle">Pulau Sibandang · Danau Toba</p>
+        <p class="hero-subtitle">Gua Bersejarah · Desa Simarmar Pea Talun Hutagaol · Balige</p>
     </div>
 </section>
 
@@ -291,19 +293,22 @@
             <div class="sejarah-item" data-aos="fade-right">
                 <div class="sejarah-image"><img src="/image/liang/" alt="Sejarah 1"></div>
                 <div class="sejarah-text">
-                    <p>Liang Sipege dalam bahasa Batak berarti "goa yang curam". Goa ini dipercaya oleh masyarakat setempat sebagai tempat pertapaan para raja-raja Batak zaman dahulu. Beberapa artefak kuno ditemukan di dalam goa, seperti gerabah pecah, peralatan dari batu, dan bekas pembakaran.</p>
+                    <h4 style="color: var(--bi-blue); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Legenda Si Lundu Ni Pahu</h4>
+                    <p>Masyarakat setempat meyakini bahwa Liang Sipege adalah bekas tempat bertapa dan tempat persembunyian leluhur mereka. Cerita turun-temurun menceritakan bahwa gua ini merupakan asal-usul leluhur marga Panjaitan. Ibunya diasingkan karena tidak kunjung melahirkan setelah hamil lebih dari sembilan bulan, kondisi yang dianggap aib pada saat itu. Akhirnya, sang leluhur bernama Si Lundu Ni Pahu (yang dibesarkan oleh tanaman pakis) lahir di Liang Sipege dan tumbuh menjadi pemuda yang cerdas dan tangkas.</p>
                 </div>
             </div>
             <div class="sejarah-item reverse" data-aos="fade-left">
                 <div class="sejarah-image"><img src="/image/liang/sejarah2.jpg" alt="Sejarah 2"></div>
                 <div class="sejarah-text">
-                    <p>Goa ini terbentuk secara alami dari proses geologi selama ribuan tahun akibat aktivitas vulkanik dan erosi air. Formasi stalaktit dan stalakmit yang indah merupakan hasil dari proses tetesan air yang mengandung mineral kalsium selama bertahun-tahun.</p>
+                    <h4 style="color: var(--bi-blue); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Raja Sijorat Paraliman Panjaitan</h4>
+                    <p>Si Lundu Ni Pahu kemudian dikenal sebagai Raja Sijorat Paraliman Panjaitan, seorang tokoh yang dianggap memiliki kekuatan dan keberanian luar biasa. Raja ini terkenal di kalangan penggembala dan sering memenangkan berbagai perlombaan. Salah satu kisah legendanya adalah ketika ia berhasil menangkap kuda liar milik Raja Sisingamangaraja XII yang kabur, dari mana ia mendapat gelar "Raja Si Jorat" yang berarti raja yang mampu menangkap kuda liar.</p>
                 </div>
             </div>
             <div class="sejarah-item" data-aos="fade-right">
                 <div class="sejarah-image"><img src="/image/liang/sejarah3.jpg" alt="Sejarah 3"></div>
                 <div class="sejarah-text">
-                    <p>Sekarang, Liang Sipege menjadi destinasi favorit bagi wisatawan petualang dan peneliti geologi. Keindahan di dalam goa yang eksotis serta nilai sejarah dan geologinya yang tinggi menjadikan tempat ini sebagai salah satu geosite unggulan di Danau Toba.</p>
+                    <h4 style="color: var(--bi-blue); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Tempat Spiritual dan Habitat Alami</h4>
+                    <p>Hingga hari ini, gua ini dijadikan sebagai tempat mencari kekuatan spiritual oleh para raja dan tokoh adat setempat. Para pengunjung masih selalu menemukan persembahan atau sesajen di altar batu yang sengaja dibuat untuk tujuan itu. Liang Sipege juga terkenal sebagai habitat kelelawar, yang kotorannya (guano) dimanfaatkan oleh penduduk setempat sebagai pupuk organik untuk sawah, kebun, dan tanaman mereka, memberikan manfaat ekonomi yang berkelanjutan bagi masyarakat sekitar.</p>
                 </div>
             </div>
         </div>
@@ -316,7 +321,7 @@
         <div class="section-title" data-aos="fade-up">
             <h2>Galeri</h2>
             <div class="divider"></div>
-            <p>Keindahan Liang Sipege</p>
+            <p>Keindahan dan Misteri Liang Sipege yang Menakjubkan</p>
         </div>
         <div class="galeri-grid" id="galeriGrid">
             <div class="galeri-item"><img src="/image/liang/galeri1.jpg" alt="Galeri 1"></div>
@@ -328,12 +333,45 @@
     </div>
 </section>
 
+<!-- INFORMASI PRAKTIS -->
+<section id="informasi" class="section bg-light">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Informasi Praktis</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="sejarah-grid">
+            <div class="sejarah-item" data-aos="fade-right">
+                <div class="sejarah-image"><img src="/image/liang/lokasi.jpg" alt="Lokasi"></div>
+                <div class="sejarah-text">
+                    <h4 style="color: var(--bi-blue); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Lokasi & Aksesibilitas</h4>
+                    <p>Liang Sipege terletak di Desa Simarmar Pea Talun Hutagaol, Kecamatan Balige. Dari Simpang Sibulele (Balige, Kabupaten Tobasa), jaraknya sekitar 4 km. Dari desa ke lokasi gua harus ditempuh dengan berjalan kaki, menambah petualangan Anda menjelajahi keindahan alam sekitar.</p>
+                </div>
+            </div>
+            <div class="sejarah-item reverse" data-aos="fade-left">
+                <div class="sejarah-image"><img src="/image/liang/fauna.jpg" alt="Kelelawar"></div>
+                <div class="sejarah-text">
+                    <h4 style="color: var(--bi-blue); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Habitat Kelelawar & Manfaat Ekonomi</h4>
+                    <p>Gua ini adalah koloni alami bagi ribuan kelelawar. Kotoran kelelawar (guano) yang terkumpul di dasar gua dimanfaatkan oleh masyarakat setempat sebagai pupuk organik berkualitas tinggi untuk pertanian mereka, menciptakan harmoni antara konservasi dan kesejahteraan ekonomi lokal.</p>
+                </div>
+            </div>
+            <div class="sejarah-item" data-aos="fade-right">
+                <div class="sejarah-image"><img src="/image/liang/misteri.jpg" alt="Misteri"></div>
+                <div class="sejarah-text">
+                    <h4 style="color: var(--bi-blue); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Misteri dan Penelitian</h4>
+                    <p>Beberapa lorong Liang Sipege masih belum sepenuhnya terpetakan. Mitos menyebutkan bahwa ada jalur bawah tanah yang menghubungkan gua ini dengan daerah lain di luar Kabupaten Toba. Cerita penduduk tentang serbuk padi yang terbawa angin masuk ke gua memperkuat kepercayaan ini, membuat Liang Sipege menjadi objek penelitian yang menarik.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- CTA -->
 <section class="cta">
     <div class="container" data-aos="fade-up">
-        <h3>Kunjungi Liang Sipege Sekarang</h3>
+        <h3>Jelajahi Keindahan dan Legenda Liang Sipege</h3>
         <div class="divider"></div>
-        <p>Jelajahi keindahan goa alami dengan stalaktit dan stalakmit yang menakjubkan</p>
+        <p>Tempat bersejarah dengan nilai spiritual tinggi, habitat alami kelelawar, dan cerita leluhur yang menakjubkan</p>
         <a href="{{ url('/') }}" class="cta-btn">Kembali ke Beranda</a>
     </div>
 </section>
