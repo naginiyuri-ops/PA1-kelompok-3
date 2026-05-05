@@ -14,13 +14,11 @@ class Informasi extends Model
         'slug',
         'konten',
         'gambar',
-        'urutan',
         'status'
     ];
 
     protected $casts = [
-        'status' => 'boolean',
-        'urutan' => 'integer'
+        'status' => 'boolean'
     ];
 
     protected static function boot()
