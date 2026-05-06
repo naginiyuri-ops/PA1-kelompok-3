@@ -49,9 +49,8 @@
 <!-- HERO -->
 <section class="hero">
     <div>
-        <div class="hero-badge">UNESCO Global Geopark</div>
         <h1 class="hero-title">MEAT</h1>
-        <p class="hero-subtitle">Pulau Sibandang · Danau Toba</p>
+        <p class="hero-subtitle">Balige · Danau Toba</p>
     </div>
 </section>
 
