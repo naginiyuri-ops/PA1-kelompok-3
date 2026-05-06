@@ -48,7 +48,7 @@
 
 <!-- HERO -->
 <section class="hero">
-    <div class="hero-content">
+    <div>
         <div class="hero-badge">UNESCO Global Geopark</div>
         <h1 class="hero-title">MEAT</h1>
         <p class="hero-subtitle">Pulau Sibandang · Danau Toba</p>
@@ -60,37 +60,29 @@
     <div class="container">
         <div class="section-header">
             <div class="badge">Warisan Budaya</div>
-            <h2>Desa Meat<br>Jantung Wisata Budaya Batak</h2>
+            <h2>Desa Meat<br>Jantung Wisata Batak</h2>
             <div class="divider"></div>
-            <p>Desa bersejarah dengan panorama alam indah, sawah bertangga, dan budaya autentik yang masih hidup</p>
+            <p>Desa bersejarah dengan panorama alam indah dan budaya autentik</p>
         </div>
-        <div class="sejarah-grid">
-            <div class="sejarah-item">
-                <div class="sejarah-image">
-                    <img src="{{ asset('image/meat/sejarah1.jpg') }}" alt="Desa Meat">
-                </div>
-                <div class="sejarah-text">
-                    <h3>Desa Meat - Pesona Alam dan Budaya</h3>
-                    <p>Desa Meat di Kecamatan Tampahan, Kabupaten Toba, adalah destinasi wisata yang menawarkan nuansa tradisional, alami, dan mempesona. Terletak di pinggiran Danau Toba dengan pemandangan spektakuler: hamparan persawahan bertangga yang mirip Bali, perbukitan hijau, dan pantai pasir putih yang bersih. Sejak ditetapkan sebagai Desa Wisata pada tahun 2017, Meat berkembang pesat menjadi salah satu dari 21 objek wisata unggulan Kabupaten Toba.</p>
-                </div>
+        <div class="sejarah-item">
+            <div class="sejarah-image"><img src="{{ asset('image/meat/sejarah1.jpg') }}" alt="Desa Meat"></div>
+            <div class="sejarah-text">
+                <h3>Pesona Alam dan Budaya</h3>
+                <p>Desa Meat di Kecamatan Tampahan, Kabupaten Toba, terletak di pinggiran Danau Toba dengan pemandangan spektakuler: sawah bertangga, perbukitan hijau, dan pantai pasir putih. Sejak 2017, Meat menjadi desa wisata unggulan Kabupaten Toba.</p>
             </div>
-            <div class="sejarah-item reverse">
-                <div class="sejarah-image">
-                    <img src="{{ asset('image/meat/sejarah2.jpg') }}" alt="Tenun Ulos">
-                </div>
-                <div class="sejarah-text">
-                    <h3>Tenun Ulos Ragi Hotang</h3>
-                    <p>Tenun Ulos tradisional Batak telah menjadi ciri khas Meat selama berabad-abad. Ulos Ragi Hotang adalah jenis tenun paling sakral, digunakan dalam upacara pernikahan adat sebagai simbol pengikat dua keluarga. Kini, ratusan pengrajin perempuan Meat menghasilkan ulos dengan kualitas tinggi yang tidak dapat ditiru desa lain. Harga meningkat dari Rp 200-300 ribu menjadi Rp 500-600 ribu per lembar sejak menjadi Desa Wisata 2017.</p>
-                </div>
+        </div>
+        <div class="sejarah-item reverse">
+            <div class="sejarah-image"><img src="{{ asset('image/meat/sejarah2.jpg') }}" alt="Tenun Ulos"></div>
+            <div class="sejarah-text">
+                <h3>Tenun Ulos Ragi Hotang</h3>
+                <p>Ulos Ragi Hotang adalah tenun paling sakral, digunakan dalam upacara pernikahan adat. Ratusan pengrajin perempuan Meat menghasilkan ulos berkualitas premium dengan harga Rp 500-600 ribu per lembar.</p>
             </div>
-            <div class="sejarah-item">
-                <div class="sejarah-image">
-                    <img src="{{ asset('image/meat/sejarah3.jpg') }}" alt="Penenun Ulos">
-                </div>
-                <div class="sejarah-text">
-                    <h3>Transformasi Ekonomi</h3>
-                    <p>Sejak ditetapkan sebagai Desa Wisata tahun 2017, ekonomi masyarakat Meat mengalami transformasi luar biasa. Jumlah penenun ulos meningkat dari 87 KK (2016) menjadi 120-140 KK (2020) dengan pendapatan meningkat lebih dari 100%. Ulos Meat dipasarkan hingga ke Kepri, Palembang, Jakarta, dan Jawa Barat, bahkan diekspor ke luar negeri.</p>
-                </div>
+        </div>
+        <div class="sejarah-item">
+            <div class="sejarah-image"><img src="{{ asset('image/meat/sejarah3.jpg') }}" alt="Penenun"></div>
+            <div class="sejarah-text">
+                <h3>Transformasi Ekonomi</h3>
+                <p>Sejak jadi desa wisata, penenun meningkat dari 87 KK jadi 120-140 KK dengan pendapatan naik lebih dari 100%. Ulos Meat dipasarkan hingga Jakarta dan diekspor ke luar negeri.</p>
             </div>
         </div>
     </div>
@@ -101,9 +93,9 @@
     <div class="container">
         <div class="section-header">
             <div class="badge">Produk Lokal</div>
-            <h2>Tenun Ulos & UMKM</h2>
+            <h2>UMKM Meat</h2>
             <div class="divider"></div>
-            <p>Ratusan pengrajin perempuan menghasilkan produk berkualitas premium</p>
+            <p>Produk berkualitas dari pengrajin lokal</p>
         </div>
         <div class="grid-3">
             @forelse($umkm as $item)
@@ -112,7 +104,7 @@
                     <img src="{{ $item->gambar }}" class="card-img" alt="{{ $item->nama }}">
                 @else
                     <div style="height:220px; background:#e2e8f0; display:flex; align-items:center; justify-content:center;">
-                        <i class="fas fa-image" style="font-size:2.5rem; color:#94a3b8;"></i>
+                        <i class="fas fa-image" style="font-size:2rem; color:#94a3b8;"></i>
                     </div>
                 @endif
                 <div class="card-content">
@@ -123,10 +115,7 @@
                 </div>
             </div>
             @empty
-            <div class="empty-state">
-                <i class="fas fa-store"></i>
-                <p>Belum ada data UMKM</p>
-            </div>
+            <div class="empty-state"><i class="fas fa-store"></i><p>Belum ada data UMKM</p></div>
             @endforelse
         </div>
     </div>
@@ -137,9 +126,9 @@
     <div class="container">
         <div class="section-header">
             <div class="badge">Akomodasi</div>
-            <h2>Penginapan & Akomodasi</h2>
+            <h2>Penginapan</h2>
             <div class="divider"></div>
-            <p>Pilihan tempat menginap dengan nuansa budaya Batak yang autentik</p>
+            <p>Tempat menginap dengan nuansa budaya Batak</p>
         </div>
         <div class="grid-3">
             @forelse($penginapan as $item)
@@ -148,21 +137,18 @@
                     <img src="{{ $item->gambar }}" class="card-img" alt="{{ $item->nama }}">
                 @else
                     <div style="height:220px; background:#e2e8f0; display:flex; align-items:center; justify-content:center;">
-                        <i class="fas fa-hotel" style="font-size:2.5rem; color:#94a3b8;"></i>
+                        <i class="fas fa-hotel" style="font-size:2rem; color:#94a3b8;"></i>
                     </div>
                 @endif
                 <div class="card-content">
                     <h3>{{ $item->nama }}</h3>
                     <p>{{ Str::limit($item->deskripsi, 100) }}</p>
-                    <div class="card-price"><i class="fas fa-tag"></i> {{ $item->harga ?? 'Hubungi untuk info' }}</div>
-                    <div class="card-contact"><i class="fas fa-phone"></i> {{ $item->kontak ?? 'Hubungi pengelola' }}</div>
+                    <div class="card-price"><i class="fas fa-tag"></i> {{ $item->harga ?? 'Hubungi' }}</div>
+                    <div class="card-contact"><i class="fas fa-phone"></i> {{ $item->kontak ?? 'Hubungi' }}</div>
                 </div>
             </div>
             @empty
-            <div class="empty-state">
-                <i class="fas fa-hotel"></i>
-                <p>Belum ada data penginapan</p>
-            </div>
+            <div class="empty-state"><i class="fas fa-hotel"></i><p>Belum ada data penginapan</p></div>
             @endforelse
         </div>
     </div>
@@ -173,9 +159,9 @@
     <div class="container">
         <div class="section-header">
             <div class="badge">Layanan</div>
-            <h2>Fasilitas Wisata</h2>
+            <h2>Fasilitas</h2>
             <div class="divider"></div>
-            <p>Fasilitas lengkap untuk kenyamanan wisatawan</p>
+            <p>Fasilitas lengkap untuk kenyamanan Anda</p>
         </div>
         <div class="grid-2">
             @forelse($fasilitas as $item)
@@ -184,7 +170,7 @@
                     <img src="{{ $item->gambar }}" class="fasilitas-img" alt="{{ $item->nama }}">
                 @else
                     <div style="width:120px; height:120px; background:#e2e8f0; display:flex; align-items:center; justify-content:center;">
-                        <i class="fas fa-tools" style="font-size:2rem; color:#94a3b8;"></i>
+                        <i class="fas fa-tools" style="font-size:1.8rem; color:#94a3b8;"></i>
                     </div>
                 @endif
                 <div class="fasilitas-content">
@@ -194,10 +180,7 @@
                 </div>
             </div>
             @empty
-            <div class="empty-state" style="grid-column:1/-1;">
-                <i class="fas fa-tools"></i>
-                <p>Belum ada data fasilitas</p>
-            </div>
+            <div class="empty-state" style="grid-column:1/-1;"><i class="fas fa-tools"></i><p>Belum ada data fasilitas</p></div>
             @endforelse
         </div>
     </div>
@@ -210,28 +193,16 @@
             <div class="badge">Lokasi</div>
             <h2>Cara Mencapai</h2>
             <div class="divider"></div>
-            <p>Lokasi strategis di Pulau Sibandang, mudah diakses dari Kota Balige</p>
+            <p>Lokasi strategis di Pulau Sibandang</p>
         </div>
         <div class="maps-section">
             <div class="maps-container">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0!2d99.0835095!3d2.3339262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e0415b8f7da39%3A0xc6beb74287f355a5!2sBalige%2C%20Toba%20Samosir%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="rute-info">
-                <div class="rute-item">
-                    <h4><i class="fas fa-motorcycle"></i> Dengan Motor</h4>
-                    <p>Balige → Ajibata (30m) → Ferry (20m) → Meat (15m)</p>
-                    <span class="rute-time">⏱️ ± 1.5 jam</span>
-                </div>
-                <div class="rute-item">
-                    <h4><i class="fas fa-car"></i> Dengan Mobil</h4>
-                    <p>Balige → Ajibata (30m) → Parkir → Ferry → Transportasi lokal</p>
-                    <span class="rute-time">⏱️ ± 2 jam</span>
-                </div>
-                <div class="rute-item">
-                    <h4><i class="fas fa-ship"></i> Jadwal Ferry</h4>
-                    <p>Operasional setiap hari 06:00 - 17:00 WIB</p>
-                    <span class="rute-time">Kapasitas terbatas</span>
-                </div>
+                <div class="rute-item"><h4><i class="fas fa-motorcycle"></i> Motor</h4><p>Balige → Ajibata (30m) → Ferry (20m) → Meat (15m)</p><span class="rute-time">⏱️ ± 1.5 jam</span></div>
+                <div class="rute-item"><h4><i class="fas fa-car"></i> Mobil</h4><p>Balige → Ajibata (30m) → Parkir → Ferry → Transportasi lokal</p><span class="rute-time">⏱️ ± 2 jam</span></div>
+                <div class="rute-item"><h4><i class="fas fa-ship"></i> Ferry</h4><p>Operasional setiap hari 06:00 - 17:00 WIB</p><span class="rute-time">Kapasitas terbatas</span></div>
             </div>
         </div>
     </div>
@@ -240,14 +211,12 @@
 <!-- CTA -->
 <section class="cta">
     <div class="container">
-        <div class="cta-content">
-            <h3>Kunjungi Desa Meat</h3>
-            <div class="divider"></div>
-            <p>Rasakan pengalaman wisata budaya autentik, belajar membuat Ulos Ragi Hotang dari pengrajin profesional</p>
-            <div class="cta-buttons">
-                <a href="{{ url('/') }}" class="cta-btn">Beranda</a>
-                <a href="#penginapan" class="cta-btn cta-btn-outline">Pesan Penginapan</a>
-            </div>
+        <h3>Kunjungi Desa Meat</h3>
+        <div class="divider"></div>
+        <p>Rasakan pengalaman wisata budaya Batak yang autentik</p>
+        <div class="cta-buttons">
+            <a href="{{ url('/') }}" class="cta-btn">Beranda</a>
+            <a href="#penginapan" class="cta-btn cta-btn-outline">Pesan Penginapan</a>
         </div>
     </div>
 </section>
@@ -264,16 +233,49 @@
             <a href="#lokasi">Lokasi</a>
         </div>
         <div class="footer-copyright">
-            <p>&copy; 2025 GEOTOBA - Geopark Danau Toba. All rights reserved.</p>
+            <p>&copy; 2025 GEOTOBA - Geopark Danau Toba</p>
         </div>
     </div>
 </footer>
 
 <script>
-    // HAMBURGER MENU
     var hamburger = document.getElementById('hamburger');
     var mobileOverlay = document.getElementById('mobileOverlay');
     var mobileClose = document.getElementById('mobileClose');
 
     hamburger.addEventListener('click', function() {
         mobileOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+
+    function closeMenu() {
+        mobileOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    mobileClose.addEventListener('click', closeMenu);
+    document.querySelectorAll('.mobile-link').forEach(function(link) {
+        link.addEventListener('click', closeMenu);
+    });
+
+    document.querySelectorAll('.nav-link[href^="#"], .mobile-link[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            var target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    window.addEventListener('scroll', function() {
+        var navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            navbar.style.background = 'rgba(0, 51, 102, 0.98)';
+            navbar.style.padding = '10px 0';
+        } else {
+            navbar.style.background = 'rgba(0, 51, 102, 0.96)';
+            navbar.style.padding = '14px 0';
+        }
+    });
+</script>
+</body>
+</html>
