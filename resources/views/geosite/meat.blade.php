@@ -60,29 +60,56 @@
     <div class="container">
         <div class="section-header">
             <div class="badge">Warisan Budaya</div>
-            <h2>Desa Meat<br>Jantung Wisata Batak</h2>
+            <h2>Desa Meat<br>Destinasi Wisata Batak Autentik</h2>
             <div class="divider"></div>
-            <p>Desa bersejarah dengan panorama alam indah dan budaya autentik</p>
         </div>
+        
+        <div class="sejarah-intro">
+            <p>
+                Desa Meat merupakan salah satu daerah wisata yang bernuansa tradisional, alami, dan mempesona. Keunggulan desa Meat yang berada di Kecamatan Tampahan, Kabupaten Toba Samosir (Tobasa), Sumatera Utara ini adalah keindahan lembah dengan pegunungan dan pantai Danau Toba yang memikat hati wisatawan. Keindahan inilah yang menjadi penarik utama bagi wisatawan yang berkunjung. Posisi desa ini sangat strategis karena dari Desa Meat bisa melanjutkan perjalanan wisata ke tempat yang lain melalui perjalanan kapal di Danau Toba.
+            </p>
+            <p>
+                Desa Meat berada di pinggiran Danau Toba sehingga wisatawan bisa merasakan sejuknya hembusan angin danau dan sejuknya udara pepohonan. Tiupan angin dari danau dan suara kicauan burung melengkapi indahnya panorama Meat. Persawahan bertangga yang mirip seperti di Bali langsung menghadap ke Danau Toba, menciptakan pemandangan yang tak terlupakan. Pasir putih tempat wisatawan untuk melakukan aktivitas bermain dan berenang di danau membuat wisatawan bisa betah berlama-lama dan santai. Pepohonan yang tumbuh secara alami memberikan perlindungan kepada wisatawan dari terpaan sinar matahari.
+            </p>
+        </div>
+
         <div class="sejarah-item">
             <div class="sejarah-image"><img src="{{ asset('image/meat/sejarah1.jpg') }}" alt="Desa Meat"></div>
             <div class="sejarah-text">
-                <h3>Pesona Alam dan Budaya</h3>
-                <p>Desa Meat di Kecamatan Tampahan, Kabupaten Toba, terletak di pinggiran Danau Toba dengan pemandangan spektakuler: sawah bertangga, perbukitan hijau, dan pantai pasir putih. Sejak 2017, Meat menjadi desa wisata unggulan Kabupaten Toba.</p>
+                <h3>Tenun Ulos Batak Tradisional</h3>
+                <p>Wisatawan bisa melihat bagaimana cara membuat atau menenun ulos Batak yang biasa dikerjakan oleh kaum wanita. Proses pengerjaan ini disebut dalam bahasa Batak Toba "martonun" (bertenun) ulos. Menggunakan alat-alat tradisional, satu lembar kain ulos biasanya memakan waktu pembuatan selama seminggu penuh. Ulos Ragi Hotang adalah tenun paling sakral yang digunakan dalam upacara pernikahan adat. Ratusan pengrajin perempuan Meat menghasilkan ulos berkualitas premium yang kini dipasarkan hingga ke Jakarta dan diekspor ke luar negeri.</p>
             </div>
         </div>
+
         <div class="sejarah-item reverse">
-            <div class="sejarah-image"><img src="{{ asset('image/meat/sejarah2.jpg') }}" alt="Tenun Ulos"></div>
+            <div class="sejarah-image"><img src="{{ asset('image/meat/sejarah2.jpg') }}" alt="Aktivitas Masyarakat"></div>
             <div class="sejarah-text">
-                <h3>Tenun Ulos Ragi Hotang</h3>
-                <p>Ulos Ragi Hotang adalah tenun paling sakral, digunakan dalam upacara pernikahan adat. Ratusan pengrajin perempuan Meat menghasilkan ulos berkualitas premium dengan harga Rp 500-600 ribu per lembar.</p>
+                <h3>Kehidupan Masyarakat Batak</h3>
+                <p>Selain menenun ulos ada juga kegiatan masyarakat yaitu bertani sawah, nelayan, dan berkebun. Masyarakat Desa Meat berasal dari kelompok Suku Toba yang menganut agama Kristen. Pengunjung dapat berinteraksi langsung dengan penduduk lokal untuk belajar lebih banyak tentang kehidupan sehari-hari mereka dan tradisi yang telah diwariskan turun-temurun. Di dekat daerah Meat ada juga Batu Tuktuk Simundi di daerah pantai Pakodian yang konon berhubungan dengan peristiwa geologis dari letusan Gunung Toba dahulu kala.</p>
             </div>
         </div>
+
         <div class="sejarah-item">
-            <div class="sejarah-image"><img src="{{ asset('image/meat/sejarah3.jpg') }}" alt="Penenun"></div>
+            <div class="sejarah-image"><img src="{{ asset('image/meat/sejarah3.jpg') }}" alt="Festival 1000 Tenda"></div>
             <div class="sejarah-text">
-                <h3>Transformasi Ekonomi</h3>
-                <p>Sejak jadi desa wisata, penenun meningkat dari 87 KK jadi 120-140 KK dengan pendapatan naik lebih dari 100%. Ulos Meat dipasarkan hingga Jakarta dan diekspor ke luar negeri.</p>
+                <h3>Festival 1000 Tenda Tahunan</h3>
+                <p>Setiap tahunnya Desa Meat mengadakan event seribu tenda yang menjadi ajang tahunan yang dinanti-nanti oleh masyarakat dari berbagai usia dan kalangan. Tenda-tenda warna-warni seolah menjadi bunga yang mekar dengan indah di kawasan tersebut, menciptakan pemandangan dan pengalaman yang menyenangkan. Event ini mampu menampung lebih dari 1.000 unit tenda dan menjadi spot foto terbaik yang dimiliki Kabupaten Toba, semakin memperkuat posisi Meat sebagai destinasi wisata unggulan di piggiran Danau Toba.</p>
+            </div>
+        </div>
+
+        <div class="sejarah-item reverse">
+            <div class="sejarah-image"><img src="{{ asset('image/meat/sejarah4.jpg') }}" alt="Rumah Adat Batak"></div>
+            <div class="sejarah-text">
+                <h3>Rumah Adat Batak Bersejarah</h3>
+                <p>Desa Adat Ragihotang menampilkan 4 unit rumah adat Batak yang berusia ratusan tahun dan telah direnovasi oleh Kementerian Pariwisata. Rumah-rumah tradisional ini dijadikan homestay yang memungkinkan wisatawan merasakan pengalaman menginap dengan nuansa budaya Batak yang autentik. Dilengkapi fasilitas modern termasuk kamar mandi premium, lahan parkir, gazebo, dan jogging track, homestay ini menawarkan kenyamanan tanpa mengorbankan keaslian budaya.</p>
+            </div>
+        </div>
+
+        <div class="sejarah-item">
+            <div class="sejarah-image"><img src="{{ asset('image/meat/sejarah5.jpg') }}" alt="Budaya Batak"></div>
+            <div class="sejarah-text">
+                <h3>Atraksi Budaya dan Wisata Alam</h3>
+                <p>Desa Meat menawarkan berbagai atraksi budaya autentik termasuk pertunjukan tarian tradisional Batak Toba dengan pakaian adat yang memukau, alunan musik tradisional dengan alat musik gondang sabangunan dan taganing, pameran budaya, serta pelajaran keterampilan tradisional. Wisatawan juga dapat mengatur perjalanan wisata ke lokasi-lokasi menarik seperti Danau Toba, Bukit Indah Simarjarunjung, atau Air Terjun Sipisopiso untuk menikmati panorama yang menawan. Potensi keunikan geologis, keberagaman budaya, dan kekayaan alam desa wisata Meat menambah kekayaan parawisata Kabupaten Toba.</p>
             </div>
         </div>
     </div>
