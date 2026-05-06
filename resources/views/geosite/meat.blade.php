@@ -60,10 +60,10 @@
     <div class="container">
         <div class="section-header">
             <div class="badge">Warisan Budaya</div>
-            <h2>Desa Meat<br>Destinasi Wisata Batak Autentik</h2>
+            <h2>Desa Meat<br>Jantung Wisata Batak</h2>
             <div class="divider"></div>
+            <p>Desa bersejarah dengan panorama alam indah dan budaya autentik</p>
         </div>
-<<<<<<< HEAD
         <div class="sejarah-grid">
             <div class="sejarah-item">
                 <div class="sejarah-image">
@@ -91,55 +91,6 @@
                     <h3>Transformasi Ekonomi</h3>
                     <p>Sejak jadi desa wisata, penenun meningkat dari 87 KK jadi 120-140 KK dengan pendapatan naik lebih dari 100%. Ulos Meat dipasarkan hingga ke berbagai daerah.</p>
                 </div>
-=======
-        
-        <div class="sejarah-intro">
-            <p>
-                Desa Meat merupakan salah satu daerah wisata yang bernuansa tradisional, alami, dan mempesona. Keunggulan desa Meat yang berada di Kecamatan Tampahan, Kabupaten Toba Samosir (Tobasa), Sumatera Utara ini adalah keindahan lembah dengan pegunungan dan pantai Danau Toba yang memikat hati wisatawan. Keindahan inilah yang menjadi penarik utama bagi wisatawan yang berkunjung. Posisi desa ini sangat strategis karena dari Desa Meat bisa melanjutkan perjalanan wisata ke tempat yang lain melalui perjalanan kapal di Danau Toba.
-            </p>
-            <p>
-                Desa Meat berada di pinggiran Danau Toba sehingga wisatawan bisa merasakan sejuknya hembusan angin danau dan sejuknya udara pepohonan. Tiupan angin dari danau dan suara kicauan burung melengkapi indahnya panorama Meat. Persawahan bertangga yang mirip seperti di Bali langsung menghadap ke Danau Toba, menciptakan pemandangan yang tak terlupakan. Pasir putih tempat wisatawan untuk melakukan aktivitas bermain dan berenang di danau membuat wisatawan bisa betah berlama-lama dan santai. Pepohonan yang tumbuh secara alami memberikan perlindungan kepada wisatawan dari terpaan sinar matahari.
-            </p>
-        </div>
-
-        <div class="sejarah-item">
-            <div class="sejarah-image"><img src="{{ asset('image/meat/sejarah1.jpg') }}" alt="Desa Meat"></div>
-            <div class="sejarah-text">
-                <h3>Tenun Ulos Batak Tradisional</h3>
-                <p>Wisatawan bisa melihat bagaimana cara membuat atau menenun ulos Batak yang biasa dikerjakan oleh kaum wanita. Proses pengerjaan ini disebut dalam bahasa Batak Toba "martonun" (bertenun) ulos. Menggunakan alat-alat tradisional, satu lembar kain ulos biasanya memakan waktu pembuatan selama seminggu penuh. Ulos Ragi Hotang adalah tenun paling sakral yang digunakan dalam upacara pernikahan adat. Ratusan pengrajin perempuan Meat menghasilkan ulos berkualitas premium yang kini dipasarkan hingga ke Jakarta dan diekspor ke luar negeri.</p>
-            </div>
-        </div>
-
-        <div class="sejarah-item reverse">
-            <div class="sejarah-image"><img src="{{ asset('image/meat/sejarah2.jpg') }}" alt="Aktivitas Masyarakat"></div>
-            <div class="sejarah-text">
-                <h3>Kehidupan Masyarakat Batak</h3>
-                <p>Selain menenun ulos ada juga kegiatan masyarakat yaitu bertani sawah, nelayan, dan berkebun. Masyarakat Desa Meat berasal dari kelompok Suku Toba yang menganut agama Kristen. Pengunjung dapat berinteraksi langsung dengan penduduk lokal untuk belajar lebih banyak tentang kehidupan sehari-hari mereka dan tradisi yang telah diwariskan turun-temurun. Di dekat daerah Meat ada juga Batu Tuktuk Simundi di daerah pantai Pakodian yang konon berhubungan dengan peristiwa geologis dari letusan Gunung Toba dahulu kala.</p>
-            </div>
-        </div>
-
-        <div class="sejarah-item">
-            <div class="sejarah-image"><img src="{{ asset('image/meat/sejarah3.jpg') }}" alt="Festival 1000 Tenda"></div>
-            <div class="sejarah-text">
-                <h3>Festival 1000 Tenda Tahunan</h3>
-                <p>Setiap tahunnya Desa Meat mengadakan event seribu tenda yang menjadi ajang tahunan yang dinanti-nanti oleh masyarakat dari berbagai usia dan kalangan. Tenda-tenda warna-warni seolah menjadi bunga yang mekar dengan indah di kawasan tersebut, menciptakan pemandangan dan pengalaman yang menyenangkan. Event ini mampu menampung lebih dari 1.000 unit tenda dan menjadi spot foto terbaik yang dimiliki Kabupaten Toba, semakin memperkuat posisi Meat sebagai destinasi wisata unggulan di piggiran Danau Toba.</p>
-            </div>
-        </div>
-
-        <div class="sejarah-item reverse">
-            <div class="sejarah-image"><img src="{{ asset('image/meat/sejarah4.jpg') }}" alt="Rumah Adat Batak"></div>
-            <div class="sejarah-text">
-                <h3>Rumah Adat Batak Bersejarah</h3>
-                <p>Desa Adat Ragihotang menampilkan 4 unit rumah adat Batak yang berusia ratusan tahun dan telah direnovasi oleh Kementerian Pariwisata. Rumah-rumah tradisional ini dijadikan homestay yang memungkinkan wisatawan merasakan pengalaman menginap dengan nuansa budaya Batak yang autentik. Dilengkapi fasilitas modern termasuk kamar mandi premium, lahan parkir, gazebo, dan jogging track, homestay ini menawarkan kenyamanan tanpa mengorbankan keaslian budaya.</p>
-            </div>
-        </div>
-
-        <div class="sejarah-item">
-            <div class="sejarah-image"><img src="{{ asset('image/meat/sejarah5.jpg') }}" alt="Budaya Batak"></div>
-            <div class="sejarah-text">
-                <h3>Atraksi Budaya dan Wisata Alam</h3>
-                <p>Desa Meat menawarkan berbagai atraksi budaya autentik termasuk pertunjukan tarian tradisional Batak Toba dengan pakaian adat yang memukau, alunan musik tradisional dengan alat musik gondang sabangunan dan taganing, pameran budaya, serta pelajaran keterampilan tradisional. Wisatawan juga dapat mengatur perjalanan wisata ke lokasi-lokasi menarik seperti Danau Toba, Bukit Indah Simarjarunjung, atau Air Terjun Sipisopiso untuk menikmati panorama yang menawan. Potensi keunikan geologis, keberagaman budaya, dan kekayaan alam desa wisata Meat menambah kekayaan parawisata Kabupaten Toba.</p>
->>>>>>> 6e9d12e73ffc2e7102536e446248403a1a585365
             </div>
         </div>
     </div>
@@ -160,27 +111,15 @@
                 @if($item->gambar && str_starts_with($item->gambar, 'data:image'))
                     <img src="{{ $item->gambar }}" class="card-img" alt="{{ $item->nama }}">
                 @else
-                    <div style="height:220px; background:#e2e8f0; display:flex; align-items:center; justify-content:center;">
-                        <i class="fas fa-store" style="font-size:2rem; color:#94a3b8;"></i>
+                    <div style="height:200px; background:#e2e8f0; display:flex; align-items:center; justify-content:center;">
+                        <i class="fas fa-image" style="font-size:2rem; color:#94a3b8;"></i>
                     </div>
                 @endif
                 <div class="card-content">
                     <h3>{{ $item->nama }}</h3>
-                    <p class="card-desc">{{ Str::limit($item->deskripsi, 90) }}</p>
-                    
-                    @if($item->menu && is_array(json_decode($item->menu, true)))
-                    <div class="card-menu">
-                        @foreach(json_decode($item->menu, true) as $menu)
-                        <div class="menu-item">
-                            <span class="menu-name">{{ $menu['nama'] }}</span>
-                            <span class="menu-price">{{ $menu['harga'] }}</span>
-                        </div>
-                        @endforeach
-                    </div>
-                    @endif
-                    
+                    <p>{{ Str::limit($item->deskripsi, 90) }}</p>
                     <div class="card-location"><i class="fas fa-map-marker-alt"></i> {{ $item->lokasi ?? 'Desa Meat' }}</div>
-                    <div class="card-contact"><i class="fas fa-phone"></i> {{ $item->kontak ?? 'Hubungi' }}</div>
+                    <div class="card-contact"><i class="fas fa-phone"></i> {{ $item->kontak ?? 'Hubungi pengrajin' }}</div>
                 </div>
             </div>
             @empty
@@ -204,32 +143,19 @@
         </div>
         <div class="grid-3">
             @forelse($penginapan as $item)
-            <div class="room-card">
+            <div class="card">
                 @if($item->gambar && str_starts_with($item->gambar, 'data:image'))
-                    <img src="{{ $item->gambar }}" class="room-img" alt="{{ $item->nama }}">
+                    <img src="{{ $item->gambar }}" class="card-img" alt="{{ $item->nama }}">
                 @else
-                    <div style="height:220px; background:#e2e8f0; display:flex; align-items:center; justify-content:center;">
+                    <div style="height:200px; background:#e2e8f0; display:flex; align-items:center; justify-content:center;">
                         <i class="fas fa-hotel" style="font-size:2rem; color:#94a3b8;"></i>
                     </div>
                 @endif
-                <div class="room-content">
+                <div class="card-content">
                     <h3>{{ $item->nama }}</h3>
-                    <p class="room-desc">{{ Str::limit($item->deskripsi, 100) }}</p>
-                    
-                    <div class="room-price">
-                        <i class="fas fa-tag"></i> {{ $item->harga ?? 'Hubungi untuk info' }}
-                        <span>/ malam</span>
-                    </div>
-                    
-                    @if($item->fasilitas_kamar && is_array(json_decode($item->fasilitas_kamar, true)))
-                    <div class="room-facilities">
-                        @foreach(json_decode($item->fasilitas_kamar, true) as $fas)
-                        <span><i class="fas fa-check-circle" style="font-size:0.55rem; margin-right:4px;"></i> {{ $fas }}</span>
-                        @endforeach
-                    </div>
-                    @endif
-                    
-                    <div class="room-contact"><i class="fas fa-phone"></i> {{ $item->kontak ?? 'Hubungi pengelola' }}</div>
+                    <p>{{ Str::limit($item->deskripsi, 90) }}</p>
+                    <div class="card-price"><i class="fas fa-tag"></i> {{ $item->harga ?? 'Hubungi' }}</div>
+                    <div class="card-contact"><i class="fas fa-phone"></i> {{ $item->kontak ?? 'Hubungi' }}</div>
                 </div>
             </div>
             @empty
@@ -257,14 +183,14 @@
                 @if($item->gambar && str_starts_with($item->gambar, 'data:image'))
                     <img src="{{ $item->gambar }}" class="fasilitas-img" alt="{{ $item->nama }}">
                 @else
-                    <div class="fasilitas-img" style="background:#e2e8f0; display:flex; align-items:center; justify-content:center;">
-                        <i class="fas fa-check" style="font-size:1.5rem; color:#94a3b8;"></i>
+                    <div style="width:110px; height:110px; background:#e2e8f0; display:flex; align-items:center; justify-content:center;">
+                        <i class="fas fa-tools" style="font-size:1.5rem; color:#94a3b8;"></i>
                     </div>
                 @endif
                 <div class="fasilitas-content">
                     <h4>{{ $item->nama }}</h4>
-                    <p class="fasilitas-desc">{{ Str::limit($item->deskripsi, 80) }}</p>
-                    <div class="fasilitas-price">{{ $item->harga ?? 'Gratis' }}</div>
+                    <p>{{ Str::limit($item->deskripsi, 70) }}</p>
+                    <div class="fasilitas-price"><i class="fas fa-tag"></i> {{ $item->harga ?? 'Gratis' }}</div>
                 </div>
             </div>
             @empty
@@ -325,62 +251,3 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-nav">
-            <a href="{{ url('/') }}">Home</a>
-            <a href="#sejarah">Sejarah</a>
-            <a href="#umkm">UMKM</a>
-            <a href="#penginapan">Penginapan</a>
-            <a href="#fasilitas">Fasilitas</a>
-            <a href="#lokasi">Lokasi</a>
-        </div>
-        <div class="footer-copyright">
-            <p>&copy; 2025 GEOTOBA - Geopark Danau Toba. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
-
-<script>
-    const hamburger = document.getElementById('hamburger');
-    const mobileOverlay = document.getElementById('mobileOverlay');
-    const mobileClose = document.getElementById('mobileClose');
-
-    hamburger.addEventListener('click', () => {
-        mobileOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
-
-    function closeMenu() {
-        mobileOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    mobileClose.addEventListener('click', closeMenu);
-    document.querySelectorAll('.mobile-link').forEach(link => {
-        link.addEventListener('click', closeMenu);
-    });
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    });
-
-    window.addEventListener('scroll', () => {
-        const navbar = document.getElementById('navbar');
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(0, 51, 102, 0.98)';
-            navbar.style.padding = '12px 0';
-        } else {
-            navbar.style.background = 'rgba(0, 51, 102, 0.96)';
-            navbar.style.padding = '16px 0';
-        }
-    });
-</script>
-</body>
-</html>
