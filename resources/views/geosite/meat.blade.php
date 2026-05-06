@@ -60,29 +60,29 @@
 <section id="sejarah" class="section">
     <div class="container">
         <div class="section-title">
-            <h2>Sejarah & Budaya</h2>
+            <h2>Desa Meat: Jantung Wisata Budaya Batak</h2>
             <div class="divider"></div>
-            <p>Warisan budaya Batak yang autentik dan masih hidup</p>
+            <p>Desa bersejarah dengan panorama alam indah, sawah bertangga, dan budaya autentik yang masih hidup</p>
         </div>
         <div class="sejarah-item">
             <div class="sejarah-image"><img src="/image/meat/sejarah1.jpg" alt="Desa Meat"></div>
             <div class="sejarah-text">
-                <h3>Desa Meat - Jantung Budaya Batak</h3>
-                <p>Meat adalah salah satu desa bersejarah di Kecamatan Balige, Kabupaten Toba, Provinsi Sumatra Utara. Terletak di pinggiran Pulau Sibandang di tengah Danau Toba, desa ini menjadi pusat pelestarian budaya Batak yang otentik. Dengan tradisi turun-temurun, masyarakat Meat tetap menjaga identitas budaya mereka sambil membuka pintu bagi wisatawan untuk mengenal kekayaan warisan leluhur.</p>
+                <h3>Desa Meat - Pesona Alam dan Budaya Sekaligus</h3>
+                <p>Desa Meat di Kecamatan Tampahan, Kabupaten Toba, adalah destinasi wisata yang menawarkan nuansa tradisional, alami, dan mempesona. Terletak di pinggiran Danau Toba dengan pemandangan spektakuler: hamparan persawahan bertangga yang mirip Bali, perbukitan hijau, dan pantai pasir putih yang bersih. Sejak ditetapkan sebagai Desa Wisata pada tahun 2017, Meat berkembang pesat menjadi salah satu dari 21 objek wisata unggulan Kabupaten Toba. Tiupan angin danau, suara kicauan burung, dan pepohonan alami memberikan pengalaman wisata yang autentik dan menyenangkan.</p>
             </div>
         </div>
         <div class="sejarah-item reverse">
-            <div class="sejarah-image"><img src="/image/meat/sejarah2.jpg" alt="Tradisi Batak"></div>
+            <div class="sejarah-image"><img src="/image/meat/sejarah2.jpg" alt="Tenun Ulos"></div>
             <div class="sejarah-text">
-                <h3>Tradisi Hidup yang Diwariskan</h3>
-                <p>Hingga kini, masyarakat Meat tetap menjaga tradisi leluhur dengan penuh dedikasi. Upacara adat yang sakral, tarian Tortor yang penuh makna filosofis, pembuatan Ulos (kain tenun tradisional) dengan motif unik, dan musik Gondang yang merdu masih menjadi bagian integral kehidupan sehari-hari. Setiap tradisi ini bukan sekadar ritual, tetapi representasi nilai-nilai luhur yang diajarkan turun-temurun oleh para leluhur.</p>
+                <h3>Tenun Ulos Ragi Hotang: Warisan Berabad-abad Sakral</h3>
+                <p>Tenun Ulos tradisional Batak telah menjadi ciri khas Meat selama berabad-abad, sejak zaman Raja Batak. Ulos Ragi Hotang adalah jenis tenun paling sakral, digunakan dalam upacara pernikahan adat sebagai simbol pengikat dua keluarga. Motif Ragi Hotang menggambarkan ruas-ruas rotan - simbol pengikat yang kuat dengan makna filosofis mendalam: keteguhan, kekuatan, dan sumber kehidupan dalam rumah tangga. Kini, ratusan pengrajin perempuan Meat menghasilkan ulos dengan kualitas tinggi yang tidak dapat ditiru desa lain. Harga meningkat dari Rp 200-300 ribu menjadi Rp 500-600 ribu per lembar sejak menjadi Desa Wisata 2017.</p>
             </div>
         </div>
         <div class="sejarah-item">
-            <div class="sejarah-image"><img src="/image/meat/sejarah3.jpg" alt="Wisata Budaya"></div>
+            <div class="sejarah-image"><img src="/image/meat/sejarah3.jpg" alt="Penenun Ulos"></div>
             <div class="sejarah-text">
-                <h3>Destinasi Wisata Budaya Unggulan</h3>
-                <p>Budaya dan kearifan lokal yang masih terjaga dengan baik telah menjadikan Meat sebagai destinasi wisata budaya yang paling menarik di kawasan Geopark Danau Toba. Pengunjung tidak hanya dapat menikmati keindahan alam Danau Toba yang memukau, tetapi juga merasakan autentisitas kehidupan budaya Batak secara langsung, berinteraksi dengan masyarakat lokal, dan belajar tentang filosofi hidup yang tersimpan dalam setiap tradisi mereka.</p>
+                <h3>Transformasi Ekonomi Sejak Desa Wisata 2017</h3>
+                <p>Sejak ditetapkan sebagai Desa Wisata tahun 2017, ekonomi masyarakat Meat mengalami transformasi luar biasa. Jumlah penenun ulos meningkat dari 87 KK (2016) menjadi 120-140 KK (2020) dengan pendapatan meningkat lebih dari 100%. Penenun seperti Elida Siahaan (33 tahun) kini dapat memproduksi 3 helai Ulos Ragi Hotang per minggu dengan penghasilan Rp 1,8 juta. Evi Boru Simanjuntak (76 tahun) bersama keluarganya menghasilkan 3 pasang sarung dan selendang dengan harga Rp 850 ribu per pasang. Ulos Meat dipasarkan hingga ke Kepri, Palembang, Jakarta, dan Jawa Barat, bahkan diekspor ke luar negeri.</p>
             </div>
         </div>
     </div>
@@ -92,18 +92,18 @@
 <section id="umkm" class="section bg-light">
     <div class="container">
         <div class="section-title">
-            <h2>UMKM Lokal</h2>
+            <h2>Tenun Ulos & UMKM Lokal</h2>
             <div class="divider"></div>
-            <p>Produk autentik dan berkualitas dari pengrajin lokal Meat</p>
+            <p>Ratusan pengrajin perempuan menghasilkan produk berkualitas premium dengan peningkatan pendapatan lebih dari 100%</p>
         </div>
         <div class="grid-3">
             <div class="card">
                 <img src="/image/meat/umkm-ulos.jpg" class="card-img" alt="Tenun Ulos">
                 <div class="card-content">
-                    <h3>Tenun Ulos Batak</h3>
-                    <p>Kain tenun tradisional dengan motif khas Batak yang penuh makna. Setiap motif menceritakan kisah dan filosofi kehidupan. Diproduksi dengan teknik tenun tradisional yang telah disempurnakan turun-temurun.</p>
-                    <div class="card-location">📍 Desa Meat</div>
-                    <div class="card-contact">📞 Hubungi pengrajin lokal</div>
+                    <h3>Tenun Ulos Ragi Hotang - Premium Quality</h3>
+                    <p><strong>Ratusan pengrajin perempuan</strong> menghasilkan Ulos Ragi Hotang dan Ulos Sarung berkualitas tinggi. Sejak Desa Wisata 2017: penenun naik dari 87 KK → 120-140 KK, pendapatan naik 100%+. Motif warisan turun-temurun tidak dapat ditiru, kualitas terjamin rapi, warna tidak pudar. Pengrajin terkenal: Elida Siahaan (Rp 1,8 juta/minggu), Evi Boru Simanjuntak (Rp 850 ribu/pasang). <strong>Harga: Rp 500.000-600.000 per lembar</strong>.</p>
+                    <div class="card-location">📍 Desa Meat - Kecamatan Tampahan</div>
+                    <div class="card-contact">📞 Hubungi pengrajin atau melalui agen</div>
                 </div>
             </div>
             <div class="card">
@@ -116,12 +116,12 @@
                 </div>
             </div>
             <div class="card">
-                <img src="/image/meat/umkm-madu.jpg" class="card-img" alt="Madu Hutan">
+                <img src="/image/meat/umkm-madu.jpg" class="card-img" alt="Madu & Kuliner">
                 <div class="card-content">
-                    <h3>Madu Hutan Murni</h3>
-                    <p>Madu alami premium dari hutan sekitar dengan kualitas terbaik. Dipanen secara tradisional untuk menjaga nutrisi dan kemurniannya. Kaya akan manfaat kesehatan dan rasa alami yang autentik.</p>
-                    <div class="card-location">📍 Kawasan Hutan Toba</div>
-                    <div class="card-contact">📞 Hubungi penghasil madu</div>
+                    <h3>Kuliner Tradisional Batak</h3>
+                    <p>Makanan tradisional Batak yang menggugah selera dari warung-warung tradisional di Meat. Coba masakan otentik dengan cita rasa turun-temurun. Juga tersedia madu hutan murni dari kawasan sekitar. Pengalaman kuliner yang tidak akan Anda lupakan.</p>
+                    <div class="card-location">📍 Warung-warung Meat</div>
+                    <div class="card-contact">📞 Tersedia di berbagai lokasi</div>
                 </div>
             </div>
         </div>
@@ -138,12 +138,12 @@
         </div>
         <div class="grid-3">
             <div class="card">
-                <img src="/image/meat/homestay.jpg" class="card-img" alt="Homestay Desa Meat">
+                <img src="/image/meat/homestay.jpg" class="card-img" alt="Rumah Adat Batak">
                 <div class="card-content">
-                    <h3>Homestay Desa Meat</h3>
-                    <p>Pengalaman menginap di rumah adat Batak yang asli. Rasakan kehangatan keluarga lokal, nikmati makanan tradisional, dan belajar tentang kehidupan sehari-hari masyarakat Batak secara langsung.</p>
-                    <div class="card-price">💰 Mulai dari Rp 150.000 / malam</div>
-                    <div class="card-contact">📞 Hubungi pengelola</div>
+                    <h3>Rumah Adat Batak - Pengalaman Autentik</h3>
+                    <p>4 unit rumah adat Batak berusia ratusan tahun yang telah direhabilitasi oleh Kementerian Pariwisata. Arsitektur tradisional Batak dengan pelayanan modern. Menginap sambil belajar budaya langsung dari pemilik rumah. Wisata edukasi yang mendalam dan berkesan.</p>
+                    <div class="card-price">💰 Rp 200.000 / malam</div>
+                    <div class="card-contact">📞 Hubungi pengelola desa wisata</div>
                 </div>
             </div>
             <div class="card">
@@ -172,9 +172,9 @@
 <section id="fasilitas" class="section bg-light">
     <div class="container">
         <div class="section-title">
-            <h2>Fasilitas & Layanan</h2>
+            <h2>Fasilitas & Pengalaman Wisata</h2>
             <div class="divider"></div>
-            <p>Berbagai fasilitas lengkap untuk kenyamanan wisatawan</p>
+            <p>Fasilitas lengkap dengan pengalaman wisata budaya mendalam: workshop tenun ulos langsung dari pengrajin berpengalaman</p>
         </div>
         <div class="grid-2">
             <div class="fasilitas-item">
@@ -204,24 +204,24 @@
             <div class="fasilitas-item">
                 <img src="/image/meat/fasilitas-camping.jpg" class="fasilitas-img" alt="Area Camping">
                 <div class="fasilitas-content">
-                    <h4>Area Camping</h4>
-                    <p>Tempat camping dengan pemandangan langsung Danau Toba yang spektakuler</p>
+                    <h4>Area Camping 1.000 Tenda</h4>
+                    <p>Lokasi camping spektakuler dengan kapasitas hingga 1.000 tenda. Spot foto terbaik dengan pemandangan Danau Toba yang menakjubkan</p>
                     <div class="fasilitas-price">Mulai dari Rp 50.000</div>
+                </div>
+            </div>
+            <div class="fasilitas-item">
+                <img src="/image/meat/fasilitas-workshop.jpg" class="fasilitas-img" alt="Workshop Tenun">
+                <div class="fasilitas-content">
+                    <h4>Workshop Tenun Ulos Langsung</h4>
+                    <p>Belajar menenun Ulos dari pengrajin profesional seperti Elida Siahaan. Bisa langsung membeli hasil karya Anda atau order khusus</p>
+                    <div class="fasilitas-price">Paket wisata edukatif tersedia</div>
                 </div>
             </div>
             <div class="fasilitas-item">
                 <img src="/image/meat/fasilitas-spotfoto.jpg" class="fasilitas-img" alt="Spot Foto">
                 <div class="fasilitas-content">
                     <h4>Spot Foto Instagramable</h4>
-                    <p>Berbagai lokasi foto menarik dengan latar belakang alam yang memukau</p>
-                    <div class="fasilitas-price">Gratis untuk pengunjung</div>
-                </div>
-            </div>
-            <div class="fasilitas-item">
-                <img src="meat-detail.jpg" class="fasilitas-img" alt="Musholla">
-                <div class="fasilitas-content">
-                    <h4>Tempat Ibadah (Gereja)</h4>
-                    <p>Fasilitas ibadah bersih dan nyaman untuk umat Muslim</p>
+                    <p>Berbagai lokasi foto menarik dengan latar belakang alam Danau Toba dan sawah yang memukau</p>
                     <div class="fasilitas-price">Gratis untuk pengunjung</div>
                 </div>
             </div>
@@ -233,9 +233,9 @@
 <section id="galeri" class="section">
     <div class="container">
         <div class="section-title">
-            <h2>Galeri Pantai</h2>
+            <h2>Galeri Panorama Alam</h2>
             <div class="divider"></div>
-            <p>Keindahan alam Meat yang memukau dalam setiap musim</p>
+            <p>Keindahan Danau Toba, sawah bertangga, perbukitan, dan pantai pasir putih Meat yang menakjubkan</p>
         </div>
         <div class="galeri-tabs">
             <button class="tab-btn active" data-tab="pantai1">Pantai 1</button>
@@ -286,9 +286,9 @@
 <!-- CTA -->
 <section class="cta">
     <div class="container">
-        <h3>Jangan Lewatkan Keindahan Meat</h3>
+        <h3>Kunjungi Desa Meat - Jantung Budaya Batak</h3>
         <div class="divider"></div>
-        <p>Rasakan pengalaman wisata budaya Batak yang autentik, nikmati keindahan alam Danau Toba yang memukau, dan ciptakan kenangan indah bersama keluarga tercinta di Meat</p>
+        <p>Rasakan pengalaman wisata budaya autentik, belajar membuat Ulos Ragi Hotang dari pengrajin profesional, nikmati keindahan sawah bertangga & Danau Toba, ciptakan kenangan indah bersama keluarga</p>
         <div class="cta-buttons">
             <a href="{{ url('/') }}" class="cta-btn">Kembali ke Beranda</a>
             <a href="#penginapan" class="cta-btn cta-btn-secondary">Pesan Penginapan</a>
