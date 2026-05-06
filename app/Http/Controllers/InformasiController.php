@@ -8,10 +8,10 @@ class InformasiController extends Controller
 {
     public function index()
     {
-        $sejarahList = Informasi::where('status', 1)
+        $informasiList = Informasi::where('status', 1)
             ->orderBy('id', 'asc')
             ->get();
         
-        return view('pages.informasi', compact('sejarahList'));
+        return view('pages.informasi', compact('informasiList'));
     }
 }

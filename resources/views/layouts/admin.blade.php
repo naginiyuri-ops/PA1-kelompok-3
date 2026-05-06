@@ -1,358 +1,636 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Admin Panel - @yield('title')</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - GeoToba</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f7fa;
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
         }
-        
-        /* Sidebar */
+
+        /* ========== SIDEBAR ========== */
         .sidebar {
             position: fixed;
             top: 0;
             left: 0;
             width: 260px;
             height: 100%;
-            background: #1e293b;
-            color: #94a3b8;
-            transition: transform 0.3s ease;
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
             z-index: 1000;
-            transform: translateX(-100%);
+            overflow-y: auto;
         }
-        
-        .sidebar.open {
-            transform: translateX(0);
-        }
-        
+
         .sidebar-header {
-            padding: 20px;
-            border-bottom: 1px solid #334155;
+            padding: 24px 20px;
+            border-bottom: 1px solid #e2e8f0;
         }
-        
-        .sidebar-header h4 {
-            color: white;
+
+        .sidebar-header h3 {
             font-size: 1.2rem;
-            margin: 0;
+            font-weight: 700;
+            color: #0f172a;
         }
-        
-        .sidebar-header h4 span {
-            color: #3b82f6;
+
+        .sidebar-header h3 span {
+            color: #c6a43b;
         }
-        
+
+        .sidebar-header p {
+            font-size: 0.7rem;
+            color: #64748b;
+            margin-top: 4px;
+        }
+
         .sidebar-menu {
-            padding: 15px 0;
+            padding: 16px 0;
         }
-        
+
+        .sidebar-menu .menu-title {
+            padding: 8px 20px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+        }
+
         .sidebar-menu a {
             display: flex;
             align-items: center;
-            padding: 12px 20px;
-            color: #94a3b8;
+            gap: 12px;
+            padding: 10px 20px;
+            color: #475569;
             text-decoration: none;
-            transition: 0.2s;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin: 2px 8px;
+            border-radius: 8px;
         }
-        
-        .sidebar-menu a i {
-            width: 25px;
-            margin-right: 10px;
-        }
-        
+
         .sidebar-menu a:hover {
-            background: #334155;
-            color: white;
+            background: #f1f5f9;
+            color: #0f172a;
         }
-        
+
         .sidebar-menu a.active {
-            background: #3b82f6;
-            color: white;
+            background: #eef2ff;
+            color: #003366;
         }
-        
-        /* Overlay */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
-            display: none;
+
+        .sidebar-menu a i {
+            width: 20px;
+            font-size: 1rem;
         }
-        
-        .overlay.show {
-            display: block;
-        }
-        
-        /* Main Content */
+
+        /* ========== MAIN CONTENT ========== */
         .main-content {
-            padding: 15px;
+            margin-left: 260px;
+            padding: 24px 32px;
+            min-height: 100vh;
         }
-        
-        /* Top Bar */
+
+        /* ========== TOP BAR ========== */
         .top-bar {
-            background: white;
-            border-radius: 12px;
-            padding: 12px 15px;
-            margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 28px;
         }
-        
-        .menu-btn {
-            background: #1e293b;
+
+        .page-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: white;
+            padding: 6px 16px;
+            border-radius: 40px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .user-name {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #334155;
+        }
+
+        .logout-btn {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 500;
             border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        /* ========== STATISTICS CARDS ========== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 16px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+        }
+
+        .stat-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: #64748b;
+            margin-top: 4px;
+        }
+
+        /* ========== TABLE CARD ========== */
+        .card-table {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .card-header h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        /* ========== BUTTONS ========== */
+        .btn-primary {
+            background: #003366;
             color: white;
-            padding: 8px 12px;
+            padding: 8px 16px;
             border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
             cursor: pointer;
         }
-        
-        .page-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin: 0;
+
+        .btn-primary:hover {
+            background: #1a4a7a;
         }
-        
-        .user-info {
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            transition: all 0.2s;
+        }
+
+        .btn-back:hover {
+            color: #003366;
+        }
+
+        .btn-submit {
+            background: #003366;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: #1a4a7a;
+        }
+
+        .btn-cancel {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 10px 24px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-cancel:hover {
+            background: #e2e8f0;
+        }
+
+        /* ========== FORM STYLES ========== */
+        .form-page {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .form-card h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .form-card p {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-bottom: 28px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 6px;
+        }
+
+        .form-group .required {
+            color: #ef4444;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #003366;
+            box-shadow: 0 0 0 3px rgba(0,51,102,0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group small {
+            display: block;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .form-check {
             display: flex;
             align-items: center;
             gap: 10px;
+            margin: 20px 0;
         }
-        
-        .user-name {
+
+        .form-check input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .form-check label {
             font-size: 0.85rem;
-            display: none;
+            color: #334155;
+            cursor: pointer;
         }
-        
-        .logout-btn {
-            background: #ef4444;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 8px;
-            color: white;
-            font-size: 0.75rem;
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
         }
-        
-        /* Cards */
-        .stat-card {
-            background: white;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border-left: 3px solid #3b82f6;
+
+        /* ========== TABLE STYLES ========== */
+        .table-responsive {
+            overflow-x: auto;
         }
-        
-        .stat-number {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-        
-        .stat-label {
-            font-size: 0.75rem;
-            color: #666;
-        }
-        
-        /* Table Card */
-        .card-table {
-            background: white;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        .card-table h5 {
-            font-size: 1rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        
+
         table {
             width: 100%;
-            font-size: 0.8rem;
+            border-collapse: collapse;
         }
-        
+
         th {
             text-align: left;
-            padding: 10px 0;
-            color: #666;
-            font-weight: 500;
-            border-bottom: 1px solid #eee;
+            padding: 12px 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
+            border-bottom: 1px solid #e2e8f0;
         }
-        
+
         td {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
+            padding: 12px 8px;
+            font-size: 0.85rem;
+            color: #334155;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
         }
-        
+
+        /* ========== BADGES ========== */
         .badge {
-            padding: 3px 8px;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .badge-success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .badge-number {
+            display: inline-block;
+            min-width: 30px;
+            text-align: center;
+            background: #f1f5f9;
+            padding: 4px 8px;
             border-radius: 20px;
             font-size: 0.7rem;
+            font-weight: 600;
+            color: #475569;
         }
-        
-        .badge-success {
-            background: #10b981;
-            color: white;
-        }
-        
-        .badge-danger {
-            background: #ef4444;
-            color: white;
-        }
-        
-        /* Quick Actions */
-        .action-buttons {
+
+        /* ========== ACTION BUTTONS ========== */
+        .btn-group {
             display: flex;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 8px;
         }
-        
-        .action-btn {
-            flex: 1;
-            background: #f1f5f9;
-            text-align: center;
-            padding: 10px;
-            border-radius: 10px;
+
+        .btn-edit {
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 500;
             text-decoration: none;
-            color: #333;
-            font-size: 0.75rem;
+            transition: all 0.2s;
+            display: inline-block;
         }
-        
-        .action-btn i {
-            display: block;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
+
+        .btn-edit:hover {
+            background: #c7d2fe;
         }
-        
-        /* Preview Image */
-        .preview-img {
-            width: 40px;
-            height: 40px;
+
+        .btn-delete {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-delete:hover {
+            background: #fecaca;
+        }
+
+        /* ========== IMAGE PREVIEW ========== */
+        .img-preview {
+            width: 45px;
+            height: 45px;
             object-fit: cover;
             border-radius: 8px;
         }
-        
-        /* Button */
-        .btn-sm {
-            padding: 5px 10px;
-            font-size: 0.7rem;
-            border-radius: 6px;
+
+        .img-placeholder {
+            width: 45px;
+            height: 45px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            color: #94a3b8;
         }
-        
-        /* Responsive Tablet */
-        @media (min-width: 768px) {
+
+        /* ========== ALERT ========== */
+        .alert-success {
+            background: #dcfce7;
+            color: #166534;
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* ========== EMPTY STATE ========== */
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #94a3b8;
+        }
+
+        /* ========== PAGINATION ========== */
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1200px) {
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
             .sidebar {
-                transform: translateX(0);
+                transform: translateX(-100%);
             }
             .main-content {
-                margin-left: 260px;
+                margin-left: 0;
+                padding: 16px;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .form-card {
                 padding: 20px;
             }
-            .menu-btn {
-                display: none;
-            }
-            .user-name {
-                display: inline;
-            }
-            .stat-card {
-                margin-bottom: 0;
-            }
-            .stat-number {
-                font-size: 2rem;
+            .btn-group {
+                flex-direction: column;
+                gap: 4px;
             }
         }
-        
-        /* Responsive Desktop */
-        @media (min-width: 992px) {
-            .stat-number {
-                font-size: 2.2rem;
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .top-bar {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+            th, td {
+                font-size: 0.75rem;
+                padding: 8px 4px;
+            }
+            .btn-edit, .btn-delete {
+                padding: 4px 8px;
+                font-size: 0.65rem;
             }
         }
     </style>
-    
     @stack('styles')
 </head>
 <body>
-    <!-- Overlay -->
-    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
-    
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h4>Geo<span>Toba</span></h4>
-        </div>
-        <div class="sidebar-menu">
-            <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                <i class="fas fa-tachometer-alt"></i> Dashboard
-            </a>
-            <a href="{{ route('admin.galeri.index') }}" class="{{ request()->routeIs('admin.galeri.*') ? 'active' : '' }}">
-                <i class="fas fa-images"></i> Galeri
-            </a>
-            <a href="{{ route('admin.berita.index') }}" class="{{ request()->routeIs('admin.berita.*') ? 'active' : '' }}">
-                <i class="fas fa-newspaper"></i> Berita
-            </a>
-            <a href="{{ route('admin.informasi.index') }}" class="{{ request()->routeIs('admin.informasi.*') ? 'active' : '' }}">
-                <i class="fas fa-info-circle"></i> Informasi
-            </a>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <div class="sidebar-header">
+        <h3>Geo<span>Toba</span></h3>
+        <p>Administrator</p>
+    </div>
+    <div class="sidebar-menu">
+        <div class="menu-title">Menu</div>
+        <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+            <i class="fas fa-chart-pie"></i> Dashboard
+        </a>
+        
+        <div class="menu-title">Konten</div>
+        <a href="{{ route('admin.galeri.index') }}" class="{{ request()->routeIs('admin.galeri.*') ? 'active' : '' }}">
+            <i class="fas fa-images"></i> Galeri
+        </a>
+        <a href="{{ route('admin.berita.index') }}" class="{{ request()->routeIs('admin.berita.*') ? 'active' : '' }}">
+            <i class="fas fa-newspaper"></i> Berita
+        </a>
+        <a href="{{ route('admin.informasi.index') }}" class="{{ request()->routeIs('admin.informasi.*') ? 'active' : '' }}">
+            <i class="fas fa-info-circle"></i> Informasi
+        </a>
+        
+        <div class="menu-title">Desa Meat</div>
+        <a href="{{ route('admin.umkm.index') }}" class="{{ request()->routeIs('admin.umkm.*') ? 'active' : '' }}">
+            <i class="fas fa-store"></i> UMKM
+        </a>
+        <a href="{{ route('admin.fasilitas.index') }}" class="{{ request()->routeIs('admin.fasilitas.*') ? 'active' : '' }}">
+            <i class="fas fa-tools"></i> Fasilitas
+        </a>
+        <a href="{{ route('admin.penginapan.index') }}" class="{{ request()->routeIs('admin.penginapan.*') ? 'active' : '' }}">
+            <i class="fas fa-hotel"></i> Penginapan
+        </a>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+    <div class="top-bar">
+        <div class="page-title">@yield('title', 'Dashboard')</div>
+        <div class="user-menu">
+            <span class="user-name">{{ Auth::user()->name ?? 'Admin' }}</span>
+            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                @csrf
+                <button type="submit" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Keluar
+                </button>
+            </form>
         </div>
     </div>
-    
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="top-bar">
-            <button class="menu-btn" id="menuBtn" onclick="toggleSidebar()">
-                <i class="fas fa-bars"></i>
-            </button>
-            <span class="page-title">@yield('title')</span>
-            <div class="user-info">
-                <span class="user-name">{{ Auth::user()->name ?? 'Admin' }}</span>
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Keluar</button>
-                </form>
-            </div>
-        </div>
-        
-        @yield('content')
-    </div>
-    
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            sidebar.classList.toggle('open');
-            overlay.classList.toggle('show');
-        }
-        
-        function closeSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            sidebar.classList.remove('open');
-            overlay.classList.remove('show');
-        }
-    </script>
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    @stack('scripts')
+
+    @yield('content')
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+@stack('scripts')
 </body>
 </html>

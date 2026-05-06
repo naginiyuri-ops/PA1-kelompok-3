@@ -10,8 +10,13 @@
     .gallery-wrapper { padding: 80px 20px; text-align: center; max-width: 1400px; margin: 0 auto; }
     .stack-area { display: flex; flex-wrap: wrap; justify-content: center; gap: 60px 0; padding: 40px 20px; }
     .card-item {
-        position: relative; width: 180px; height: 300px; margin-left: -80px; 
-        border-radius: 20px; overflow: hidden; background: #333;
+        position: relative;
+        
+         width: 180px; 
+         height: 300px;
+          margin-left: -80px; 
+        border-radius: 20px;
+         overflow: hidden; background: #333;
         box-shadow: -10px 0 30px rgba(0,0,0,0.15);
         transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         cursor: pointer; z-index: 1; border: 2px solid rgba(255,255,255,0.1);
@@ -31,6 +36,11 @@
     .close-btn { position: absolute; top: 20px; right: 20px; color: white; font-size: 2rem; cursor: pointer; }
     @media (max-width: 768px) { .modal-box { grid-template-columns: 1fr; } }
 </style>
+
+    <audio id="bgMusic" loop>
+        <source src="{{ asset('audio/GONDANG.mp4') }}" type="audio/mpeg">
+         Your browser does not support the audio element.
+    </audio>
 
 <div class="gallery-wrapper">
     <h1 style="font-family: serif; font-size: 3.5rem;">Explore...</h1>
@@ -53,6 +63,7 @@
                 <div class="card-item" onclick="openPhoto('{{ $src }}', '{{ $item->judul }}', '{{ addslashes($item->deskripsi) }}', '{{ strtoupper($kategori) }}')">
                     <img src="{{ $src }}" onerror="this.src='https://via.placeholder.com/300x500?text=Upload+Ulang+Foto'">
                 </div>
+                
             @endforeach
         @endforeach
     </div>
@@ -71,6 +82,11 @@
 </div>
 
 <script>
+    document.body.addEventListener('click', function() {
+        var audio = document.getElementById('bgMusic');
+        audio.play();
+    }, { once: true });
+
     function openPhoto(src, title, desc, tag) {
         document.getElementById('mImg').src = src;
         document.getElementById('mTitle').innerText = title;
