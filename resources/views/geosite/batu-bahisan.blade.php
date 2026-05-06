@@ -27,7 +27,7 @@
             <a href="{{ url('/') }}" class="nav-link home-btn">Home</a>
             <a href="#sejarah" class="nav-link">Sejarah</a>
             <a href="#informasi" class="nav-link">Informasi</a>
-            <a href="#galeri" class="nav-link">Galeri</a>
+          
         </div>
         <div class="hamburger" id="hamburger">
             <span></span><span></span><span></span>
@@ -41,7 +41,7 @@
     <a href="{{ url('/') }}" class="mobile-link mobile-home">Home</a>
     <a href="#sejarah" class="mobile-link">Sejarah</a>
     <a href="#informasi" class="mobile-link">Informasi</a>
-    <a href="#galeri" class="mobile-link">Galeri</a>
+    
 </div>
 
 <!-- HERO -->
@@ -62,6 +62,7 @@
         
         <div class="sejarah-intro" style="margin-bottom: 50px; line-height: 1.8; color: #444; font-size: 0.95rem;">
             <p>
+        
                 Batu Basiha merupakan salah satu geosite paling istimewa di Kabupaten Toba Samosir (Tobasa), Sumatera Utara, yang berlokasi di Desa Aek Bolon Jae, Kecamatan Balige. Tempat ini bukan hanya sekadar formasi batu biasa, tetapi merupakan manifestasi fisik dari keajaiban geologi dan kearifan lokal masyarakat Batak yang telah dipercayai dan dihormati selama berabad-abad. Batu Basiha telah mendapatkan pengakuan internasional sebagai salah satu dari 16 geosite yang diakui oleh UNESCO pada 7 Juli 2020, menjadikan Danau Toba sebagai UNESCO Global Geopark, sebuah penghargaan bergengsi untuk kawasan dengan nilai geologi dan kebudayaan yang luar biasa.
             </p>
             <p>
@@ -76,7 +77,7 @@
             <!-- Sejarah 1: Legenda Kayu Disambar Petir -->
             <div class="sejarah-item" data-aos="fade-right">
                 <div class="sejarah-image">
-                    <img src="/image/batu/sejarah1.jpg" alt="Batu Basiha Legenda">
+                    <img src="/image/meat/batu-bahisan.jpg" alt="Batu Basiha Legenda">
                 </div>
                 <div class="sejarah-text">
                     <h4 style="color: var(--blue-dark); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Legenda "Batu Sian Hau" (Batu dari Kayu)</h4>
@@ -86,7 +87,7 @@
             <!-- Sejarah 2: Geologi Struktur Kekar Kolom -->
             <div class="sejarah-item reverse" data-aos="fade-left">
                 <div class="sejarah-image">
-                    <img src="/image/batu/sejarah2.jpg" alt="Batu Basiha Geologi">
+                    <img src="/image/meat/batu-bahisan.jpg" alt="Batu Basiha Geologi">
                 </div>
                 <div class="sejarah-text">
                     <h4 style="color: var(--blue-dark); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Formasi Geologis: Struktur Kekar Kolom</h4>
@@ -96,7 +97,7 @@
             <!-- Sejarah 3: Tempat Musyawarah dan Kearifan Lokal -->
             <div class="sejarah-item" data-aos="fade-right">
                 <div class="sejarah-image">
-                    <img src="/image/batu/sejarah3.jpg" alt="Batu Basiha Spiritual">
+                    <img src="/image/meat/batu-bahisan.jpg" alt="Batu Basiha Spiritual">
                 </div>
                 <div class="sejarah-text">
                     <h4 style="color: var(--blue-dark); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Tempat Musyawarah dan Kearifan Leluhur</h4>
@@ -116,47 +117,26 @@
         </div>
         <div class="sejarah-grid">
             <div class="sejarah-item" data-aos="fade-right">
-                <div class="sejarah-image"><img src="/image/batu/lokasi.jpg" alt="Lokasi"></div>
+                <div class="sejarah-image"><img src="/image/meat/batu-bahisan.jpg" alt="Lokasi"></div>
                 <div class="sejarah-text">
                     <h4 style="color: var(--blue-dark); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Pengakuan UNESCO Global Geopark</h4>
                     <p>Batu Basiha adalah salah satu dari 16 geosite yang telah diakui Dewan Eksekutif UNESCO pada 7 Juli 2020. Pengakuan ini menjadikan Danau Toba sebagai UNESCO Global Geopark, tempat yang menarik bagi penelitian geologi internasional. Status ini menegaskan nilai geologi dan kebudayaan yang luar biasa dari kawasan ini.</p>
                 </div>
             </div>
             <div class="sejarah-item reverse" data-aos="fade-left">
-                <div class="sejarah-image"><img src="/image/batu/wisata.jpg" alt="Wisata"></div>
+                <div class="sejarah-image"><img src="/image/meat/batu-bahisan.jpg" alt="Wisata"></div>
                 <div class="sejarah-text">
                     <h4 style="color: var(--blue-dark); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;\">Ekowisata dan Agrowisata</h4>
                     <p>Pemerintah setempat telah mengembangkan kawasan sekitar Batu Basiha menjadi lokasi ekowisata dan agrowisata. Pengunjung dapat menikmati keindahan alam, belajar tentang geologi vulkanik, dan merasakan kearifan lokal masyarakat Batak dalam pengelolaan sumber daya alam secara berkelanjutan.</p>
                 </div>
             </div>
             <div class="sejarah-item" data-aos="fade-right">
-                <div class="sejarah-image"><img src="/image/batu/balige.jpg" alt="Balige"></div>
+                <div class="sejarah-image"><img src="/image/meat/batu-bahisan.jpg" alt="Balige"></div>
                 <div class="sejarah-text">
                     <h4 style="color: var(--blue-dark); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;\">Balige: Jantung Peradaban Toba</h4>
                     <p>Balige adalah salah satu pusat peradaban Toba dengan warisan kolonial, tinggalan budaya, dan Museum Batak TB Silalahi yang memiliki koleksi terlengkap mengenai kebudayaan Toba. Mengunjungi Balige seperti membaca kitab besar tentang Toba, di mana setiap lembah, batu, dan gua menyimpan cerita tak terhingga.</p>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- GALERI (TANPA TAB) -->
-<section id="galeri" class="section bg-light">
-    <div class="container">
-        <div class="section-title" data-aos="fade-up">
-            <h2>Galeri</h2>
-            <div class="divider"></div>
-            <p>Keindahan Formasi Batu dan Keajaiban Geologi Batu Basiha</p>
-        </div>
-        <div class="galeri-grid" id="galeriGrid">
-            <div class="galeri-item"><img src="/image/batu/galeri1.jpg" alt="Batu Bahisan 1"></div>
-            <div class="galeri-item"><img src="/image/batu/galeri2.jpg" alt="Batu Bahisan 2"></div>
-            <div class="galeri-item"><img src="/image/batu/galeri3.jpg" alt="Batu Bahisan 3"></div>
-            <div class="galeri-item"><img src="/image/batu/galeri4.jpg" alt="Batu Bahisan 4"></div>
-            <div class="galeri-item"><img src="/image/batu/galeri5.jpg" alt="Batu Bahisan 5"></div>
-            <div class="galeri-item"><img src="/image/batu/galeri6.jpg" alt="Batu Bahisan 6"></div>
-            <div class="galeri-item"><img src="/image/batu/galeri7.jpg" alt="Batu Bahisan 7"></div>
-            <div class="galeri-item"><img src="/image/batu/galeri8.jpg" alt="Batu Bahisan 8"></div>
         </div>
     </div>
 </section>
