@@ -286,9 +286,22 @@
 <section id="sejarah" class="section">
     <div class="container">
         <div class="section-title" data-aos="fade-up">
-            <h2>Sejarah</h2>
+            <h2>Sejarah & Legenda</h2>
             <div class="divider"></div>
         </div>
+        
+        <div class="sejarah-intro" style="margin-bottom: 50px; line-height: 1.8; color: #444; font-size: 0.95rem;">
+            <p>
+                Liang Sipege merupakan sebuah gua bersejarah yang terletak di Desa Simarmar Pea Talun Hutagaol, Kecamatan Balige, Kabupaten Tobasa, Sumatera Utara. Gua ini bukan sekadar formasi geologis biasa, tetapi merupakan situs spiritual dan budaya yang kaya dengan legenda dan mitos yang telah diwariskan turun-temurun oleh masyarakat setempat. Masyarakat Batak Toba, khususnya keluarga besar marga Panjaitan, menganggap Liang Sipege sebagai tempat yang sangat sakral dan bermakna dalam sejarah leluhur mereka.
+            </p>
+            <p>
+                Cerita rakyat menceritakan bahwa Liang Sipege adalah asal-usul marga Panjaitan, bermula dari seorang tokoh legendaris bernama Si Lundu Ni Pahu. Menurut kepercayaan masyarakat, gua ini adalah bekas tempat bertapa dan tempat persembunyian leluhur mereka pada masa lalu. Kehadiran Liang Sipege di tengah landscape Kabupaten Tobasa menjadikannya sebagai salah satu destinasi wisata budaya dan spiritual yang menarik, menggabungkan nilai historis, religius, dan ekologis dalam satu tempat yang menakjubkan.
+            </p>
+            <p>
+                Selain nilai sejarah dan spiritualnya, Liang Sipege juga memiliki signifikansi ekologis yang penting. Gua ini adalah habitat alami bagi ribuan kelelawar, yang kotorannya (guano) telah menjadi sumber daya alam yang bermanfaat bagi masyarakat setempat. Guano dari Liang Sipege dimanfaatkan sebagai pupuk organik berkualitas tinggi untuk pertanian, kebun, dan tanaman masyarakat lokal, menciptakan hubungan harmonis antara pelestarian alam dan kesejahteraan ekonomi. Hingga saat ini, Liang Sipege tetap menjadi tempat yang dikunjungi oleh para peziarah spiritual, peneliti, dan wisatawan yang tertarik dengan warisan budaya dan keunikan alam Kabupaten Tobasa.
+            </p>
+        </div>
+        
         <div class="sejarah-grid">
             <div class="sejarah-item" data-aos="fade-right">
                 <div class="sejarah-image"><img src="/image/liang/" alt="Sejarah 1"></div>

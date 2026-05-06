@@ -56,9 +56,22 @@
 <section id="sejarah" class="section">
     <div class="container">
         <div class="section-title" data-aos="fade-up">
-            <h2>Sejarah</h2>
+            <h2>Sejarah & Legenda</h2>
             <div class="divider"></div>
         </div>
+        
+        <div class="sejarah-intro" style="margin-bottom: 50px; line-height: 1.8; color: #444; font-size: 0.95rem;">
+            <p>
+                Batu Basiha merupakan salah satu geosite paling istimewa di Kabupaten Toba Samosir (Tobasa), Sumatera Utara, yang berlokasi di Desa Aek Bolon Jae, Kecamatan Balige. Tempat ini bukan hanya sekadar formasi batu biasa, tetapi merupakan manifestasi fisik dari keajaiban geologi dan kearifan lokal masyarakat Batak yang telah dipercayai dan dihormati selama berabad-abad. Batu Basiha telah mendapatkan pengakuan internasional sebagai salah satu dari 16 geosite yang diakui oleh UNESCO pada 7 Juli 2020, menjadikan Danau Toba sebagai UNESCO Global Geopark, sebuah penghargaan bergengsi untuk kawasan dengan nilai geologi dan kebudayaan yang luar biasa.
+            </p>
+            <p>
+                Nama "Batu Basiha" berasal dari bahasa Batak "Batu Sian Hau" yang berarti "batu dari kayu", mencerminkan bentuk unik formasi batuan ini yang menyerupai batang kayu yang telah membatu. Batu Basiha terbentuk dari proses geologis letusan Gunung Api Toba ratusan ribu tahun lalu, di mana magma yang mengalir dari kaldera Porsea membeku dan mengalami kontraksi teratur, membentuk struktur kekar kolom yang sangat khas. Kolom-kolom vertikal alami berukuran besar ini menciptakan sebuah pemandangan yang menakjubkan dan menjadi bukti nyata aktivitas vulkanik purba di Danau Toba. Batuan andesit yang kaya silika ini telah menjadi sumber pembelajaran bagi para peneliti geologi dari seluruh dunia.
+            </p>
+            <p>
+                Selain nilai geologisnya, Batu Basiha memiliki makna spiritual dan budaya yang sangat penting bagi masyarakat Batak setempat. Menurut cerita turun-temurun, batu ini dipercayai sebagai tempat di mana roh leluhur hadir dalam bentuk harimau untuk memberikan pertanda dan nasihat. Batu Basiha telah lama dimanfaatkan sebagai tempat bermusyawarah dan mengambil keputusan penting bagi masyarakat. Keberadaannya mencerminkan kearifan lokal tentang konservasi lingkungan dan pentingnya musyawarah dalam kehidupan kolektif. Hingga saat ini, Batu Basiha tetap menjadi simbol harmoni antara kekuatan alam, nilai budaya, dan kebijaksanaan leluhur masyarakat Batak.
+            </p>
+        </div>
+        
         <div class="sejarah-grid">
             <!-- Sejarah 1: Legenda Kayu Disambar Petir -->
             <div class="sejarah-item" data-aos="fade-right">
