@@ -37,7 +37,6 @@ class FasilitasController extends Controller
             'status' => $request->has('status') ? 1 : 0
         ];
 
-        // Konversi gambar ke base64 untuk DATABASE
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
             $imageData = file_get_contents($image->getRealPath());
@@ -47,7 +46,7 @@ class FasilitasController extends Controller
         }
 
         Fasilitas::create($data);
-        return redirect()->route('admin.fasilitas.index')->with('success', 'Fasilitas berhasil ditambahkan! Foto tersimpan di database.');
+        return redirect()->route('admin.fasilitas.index')->with('success', 'Fasilitas berhasil ditambahkan!');
     }
 
     public function edit($id)
