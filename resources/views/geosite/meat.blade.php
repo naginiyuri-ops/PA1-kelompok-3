@@ -67,28 +67,28 @@
         <div class="sejarah-grid">
             <div class="sejarah-item">
                 <div class="sejarah-image">
-                    <img src="{{ asset('image/meat/sejarah1.jpg') }}" alt="Desa Meat">
+                    <img src="{{ asset('image/meat/meat-detail.jpg') }}" alt="Desa Meat">
                 </div>
                 <div class="sejarah-text">
-                    <h3>Pesona Alam dan Budaya</h3>
+                    <h3>Pantai satu</h3>
                     <p>Desa Meat di Kecamatan Tampahan, Kabupaten Toba, terletak di pinggiran Danau Toba. Sejak 2017, Meat menjadi desa wisata unggulan Kabupaten Toba dengan pemandangan sawah bertangga, perbukitan hijau, dan pantai pasir putih.</p>
                 </div>
             </div>
             <div class="sejarah-item reverse">
                 <div class="sejarah-image">
-                    <img src="{{ asset('image/meat/sejarah2.jpg') }}" alt="Tenun Ulos">
+                    <img src="{{ asset('image/meat/meat-hero.jpg') }}" alt="Tenun Ulos">
                 </div>
                 <div class="sejarah-text">
-                    <h3>Tenun Ulos Ragi Hotang</h3>
+                    <h3>Pantai  tiga </h3>
                     <p>Ulos Ragi Hotang adalah tenun paling sakral, digunakan dalam upacara pernikahan adat. Ratusan pengrajin perempuan Meat menghasilkan ulos berkualitas premium.</p>
                 </div>
             </div>
             <div class="sejarah-item">
                 <div class="sejarah-image">
-                    <img src="{{ asset('image/meat/sejarah3.jpg') }}" alt="Penenun">
+                    <img src="{{ asset('image/meat/slide1.jpg') }}" alt="Penenun">
                 </div>
                 <div class="sejarah-text">
-                    <h3>Transformasi Ekonomi</h3>
+                    <h3>Pantai dua</h3>
                     <p>Sejak jadi desa wisata, penenun meningkat dari 87 KK jadi 120-140 KK dengan pendapatan naik lebih dari 100%. Ulos Meat dipasarkan hingga ke berbagai daerah.</p>
                 </div>
             </div>
