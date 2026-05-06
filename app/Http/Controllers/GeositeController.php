@@ -10,9 +10,9 @@ class GeositeController extends Controller
 {
     public function meat()
     {
-        $umkm = Umkm::where('status', 1)->orderBy('urutan', 'asc')->get();
-        $fasilitas = Fasilitas::where('status', 1)->orderBy('urutan', 'asc')->get();
-        $penginapan = Penginapan::where('status', 1)->orderBy('urutan', 'asc')->get();
+        $umkm = Umkm::where('status', 1)->orderBy('urutan')->get();
+        $fasilitas = Fasilitas::where('status', 1)->orderBy('urutan')->get();
+        $penginapan = Penginapan::where('status', 1)->orderBy('urutan')->get();
         
         return view('geosite.meat', compact('umkm', 'fasilitas', 'penginapan'));
     }

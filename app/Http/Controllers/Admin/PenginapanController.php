@@ -3,21 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Umkm;
+use App\Models\Penginapan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class UmkmController extends Controller
+class PenginapanController extends Controller
 {
     public function index()
     {
-        $data = Umkm::orderBy('urutan')->paginate(10);
-        return view('admin.umkm.index', compact('data'));
+        $data = Penginapan::orderBy('urutan')->paginate(10);
+        return view('admin.penginapan.index', compact('data'));
     }
 
     public function create()
     {
-        return view('admin.umkm.create');
+        return view('admin.penginapan.create');
     }
 
     public function store(Request $request)
@@ -32,13 +32,13 @@ class UmkmController extends Controller
         $data = [
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
-            'lokasi' => $request->lokasi,
+            'harga' => $request->harga,
             'kontak' => $request->kontak,
             'urutan' => $request->urutan,
             'status' => $request->has('status') ? 1 : 0
         ];
 
-        // Konversi gambar ke base64 untuk disimpan di DATABASE
+        // Konversi gambar ke base64 untuk DATABASE
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
             $imageData = file_get_contents($image->getRealPath());
@@ -47,19 +47,19 @@ class UmkmController extends Controller
             $data['gambar'] = 'data:' . $mimeType . ';base64,' . $base64;
         }
 
-        Umkm::create($data);
-        return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil ditambahkan! Foto tersimpan di database.');
+        Penginapan::create($data);
+        return redirect()->route('admin.penginapan.index')->with('success', 'Penginapan berhasil ditambahkan! Foto tersimpan di database.');
     }
 
     public function edit($id)
     {
-        $data = Umkm::findOrFail($id);
-        return view('admin.umkm.edit', compact('data'));
+        $data = Penginapan::findOrFail($id);
+        return view('admin.penginapan.edit', compact('data'));
     }
 
     public function update(Request $request, $id)
     {
-        $data = Umkm::findOrFail($id);
+        $data = Penginapan::findOrFail($id);
         
         $request->validate([
             'nama' => 'required|string|max:255',
@@ -71,13 +71,12 @@ class UmkmController extends Controller
         $input = [
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
-            'lokasi' => $request->lokasi,
+            'harga' => $request->harga,
             'kontak' => $request->kontak,
             'urutan' => $request->urutan,
             'status' => $request->has('status') ? 1 : 0
         ];
 
-        // Konversi gambar baru ke base64 untuk database
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
             $imageData = file_get_contents($image->getRealPath());
@@ -87,13 +86,13 @@ class UmkmController extends Controller
         }
 
         $data->update($input);
-        return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil diupdate!');
+        return redirect()->route('admin.penginapan.index')->with('success', 'Penginapan berhasil diupdate!');
     }
 
     public function destroy($id)
     {
-        $data = Umkm::findOrFail($id);
+        $data = Penginapan::findOrFail($id);
         $data->delete();
-        return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil dihapus!');
+        return redirect()->route('admin.penginapan.index')->with('success', 'Penginapan berhasil dihapus!');
     }
 }

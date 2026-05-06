@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
-@section('title', 'Manajemen UMKM Meat')
+@section('title', 'Manajemen Fasilitas Meat')
 
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h5 class="mb-0">🏪 UMKM Meat</h5>
-    <a href="{{ route('admin.umkm.create') }}" class="btn btn-primary">
-        <i class="fas fa-plus"></i> Tambah UMKM
+    <h5 class="mb-0">🛠️ Fasilitas Meat</h5>
+    <a href="{{ route('admin.fasilitas.create') }}" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Tambah Fasilitas
     </a>
 </div>
 
@@ -23,7 +23,7 @@
                         <th width="50">No</th>
                         <th width="80">Gambar</th>
                         <th>Nama</th>
-                        <th>Lokasi</th>
+                        <th>Harga</th>
                         <th width="80">Urutan</th>
                         <th width="80">Status</th>
                         <th width="120">Aksi</th>
@@ -43,7 +43,7 @@
                             @endif
                         </td>
                         <td><strong>{{ $item->nama }}</strong></td>
-                        <td>{{ $item->lokasi ?? '-' }}</td>
+                        <td>{{ $item->harga ?? '-' }}</td>
                         <td>{{ $item->urutan }}</td>
                         <td>
                             <span class="badge {{ $item->status ? 'bg-success' : 'bg-danger' }}">
@@ -51,10 +51,10 @@
                             </span>
                         </td>
                         <td>
-                            <a href="{{ route('admin.umkm.edit', $item->id) }}" class="btn btn-sm btn-warning">
+                            <a href="{{ route('admin.fasilitas.edit', $item->id) }}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form action="{{ route('admin.umkm.destroy', $item->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('admin.fasilitas.destroy', $item->id) }}" method="POST" class="d-inline">
                                 @csrf @method('DELETE')
                                 <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus?')">
                                     <i class="fas fa-trash"></i>
@@ -63,7 +63,7 @@
                         </span>
                     </tr>
                     @empty
-                    <tr><td colspan="7" class="text-center">Belum ada data UMKM</td></tr>
+                    <tr><td colspan="7" class="text-center">Belum ada data Fasilitas</td></tr>
                     @endforelse
                 </tbody>
             </table>

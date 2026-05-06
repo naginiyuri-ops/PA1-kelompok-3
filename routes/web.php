@@ -5,6 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\GaleriController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\InformasiController;
+use App\Http\Controllers\Admin\UmkmController;
+use App\Http\Controllers\Admin\FasilitasController;
+use App\Http\Controllers\Admin\PenginapanController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GaleriController as PublicGaleriController;
@@ -49,7 +52,7 @@ Route::get('/berita/{slug}', function ($slug) {
     return view('pages.berita-detail', compact('berita'));
 })->name('berita.detail');
 
-// UMKM
+// UMKM Publik
 Route::get('/umkm', [HomeController::class, 'umkm'])->name('umkm');
 
 // Budaya
@@ -84,15 +87,21 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         $totalGaleri = DB::table('galeris')->count();
         $totalBerita = DB::table('berita')->count();
         $totalInformasi = DB::table('informasi')->count();
+        $totalUmkm = DB::table('umkm')->count();
+        $totalFasilitas = DB::table('fasilitas')->count();
+        $totalPenginapan = DB::table('penginapan')->count();
         $totalViews = 0;
         
-        return view('admin.dashboard', compact('totalGaleri', 'totalBerita', 'totalInformasi', 'totalViews'));
+        return view('admin.dashboard', compact('totalGaleri', 'totalBerita', 'totalInformasi', 'totalUmkm', 'totalFasilitas', 'totalPenginapan', 'totalViews'));
     })->name('admin.dashboard');
     
-    // CRUD Resources (TANPA DUPLIKASI)
+    // CRUD Resources
     Route::resource('galeri', GaleriController::class)->names('admin.galeri');
     Route::resource('berita', BeritaController::class)->names('admin.berita');
     Route::resource('informasi', InformasiController::class)->names('admin.informasi');
+    Route::resource('umkm', UmkmController::class)->names('admin.umkm');
+    Route::resource('fasilitas', FasilitasController::class)->names('admin.fasilitas');
+    Route::resource('penginapan', PenginapanController::class)->names('admin.penginapan');
     
     // Additional Routes
     Route::post('galeri/toggle-status/{id}', [GaleriController::class, 'toggleStatus'])->name('admin.galeri.toggle-status');
