@@ -25,7 +25,7 @@ class BeritaController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'konten' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:4096', // 4MB
             'penulis' => 'nullable|string|max:100',
             'status' => 'nullable|boolean'
         ]);
@@ -37,7 +37,6 @@ class BeritaController extends Controller
             'status' => $request->has('status') ? 1 : 0
         ];
 
-        // Konversi gambar ke base64
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
             $imageData = file_get_contents($image->getRealPath());
@@ -49,7 +48,7 @@ class BeritaController extends Controller
         Berita::create($data);
 
         return redirect()->route('admin.berita.index')
-            ->with('success', 'Berita berhasil ditambahkan!');
+            ->with('success', 'Berita berhasil ditambahkan! (Gambar max 4MB)');
     }
 
     public function edit($id)
@@ -65,7 +64,7 @@ class BeritaController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'konten' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:4096', // 4MB
             'penulis' => 'nullable|string|max:100',
             'status' => 'nullable|boolean'
         ]);

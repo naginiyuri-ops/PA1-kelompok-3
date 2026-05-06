@@ -25,8 +25,11 @@ class UmkmController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-            'urutan' => 'required|integer'
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:4096', // 4MB
+            'urutan' => 'required|integer',
+            'lokasi' => 'nullable|string',
+            'kontak' => 'nullable|string',
+            'status' => 'nullable|boolean'
         ]);
 
         $data = [
@@ -47,7 +50,8 @@ class UmkmController extends Controller
         }
 
         Umkm::create($data);
-        return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil ditambahkan!');
+        return redirect()->route('admin.umkm.index')
+            ->with('success', 'UMKM berhasil ditambahkan! (Gambar max 4MB)');
     }
 
     public function edit($id)
@@ -63,8 +67,11 @@ class UmkmController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-            'urutan' => 'required|integer'
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:4096', // 4MB
+            'urutan' => 'required|integer',
+            'lokasi' => 'nullable|string',
+            'kontak' => 'nullable|string',
+            'status' => 'nullable|boolean'
         ]);
 
         $input = [
@@ -85,13 +92,15 @@ class UmkmController extends Controller
         }
 
         $data->update($input);
-        return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil diupdate!');
+        return redirect()->route('admin.umkm.index')
+            ->with('success', 'UMKM berhasil diupdate!');
     }
 
     public function destroy($id)
     {
         $data = Umkm::findOrFail($id);
         $data->delete();
-        return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil dihapus!');
+        return redirect()->route('admin.umkm.index')
+            ->with('success', 'UMKM berhasil dihapus!');
     }
 }
