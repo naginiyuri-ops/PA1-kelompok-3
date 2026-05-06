@@ -38,7 +38,6 @@ class UmkmController extends Controller
             'status' => $request->has('status') ? 1 : 0
         ];
 
-        // Konversi gambar ke base64 untuk disimpan di DATABASE
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
             $imageData = file_get_contents($image->getRealPath());
@@ -48,7 +47,7 @@ class UmkmController extends Controller
         }
 
         Umkm::create($data);
-        return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil ditambahkan! Foto tersimpan di database.');
+        return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil ditambahkan!');
     }
 
     public function edit($id)
@@ -77,7 +76,6 @@ class UmkmController extends Controller
             'status' => $request->has('status') ? 1 : 0
         ];
 
-        // Konversi gambar baru ke base64 untuk database
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
             $imageData = file_get_contents($image->getRealPath());

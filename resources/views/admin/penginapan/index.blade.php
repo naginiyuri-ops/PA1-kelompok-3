@@ -14,7 +14,7 @@
     <div class="card-body">
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
+                <i class="fas fa-check-circle"></i> {{ session('success') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         @endif
@@ -30,7 +30,7 @@
                         <th>Kontak</th>
                         <th width="80">Urutan</th>
                         <th width="80">Status</th>
-                        <th width="120">Aksi</th>
+                        <th width="150">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,11 +38,11 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>
-                            @if($item->gambar)
-                                <img src="{{ asset($item->gambar) }}" width="50" height="50" style="object-fit: cover; border-radius: 8px;">
+                            @if($item->gambar && str_starts_with($item->gambar, 'data:image'))
+                                <img src="{{ $item->gambar }}" width="50" height="50" style="object-fit: cover; border-radius: 8px;">
                             @else
                                 <div class="bg-secondary text-white text-center" style="width: 50px; height: 50px; line-height: 50px; border-radius: 8px;">
-                                    <i class="fas fa-image"></i>
+                                    <i class="fas fa-hotel"></i>
                                 </div>
                             @endif
                         </td>
@@ -54,19 +54,19 @@
                             @if($item->status)
                                 <span class="badge bg-success">Aktif</span>
                             @else
-                                <span class="badge bg-danger">Tidak Aktif</span>
+                                <span class="badge bg-danger">Tidak</span>
                             @endif
                         </td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="{{ route('admin.penginapan.edit', $item->id) }}" class="btn btn-sm btn-warning">
-                                    <i class="fas fa-edit"></i>
+                                <a href="{{ route('admin.penginapan.edit', $item->id) }}" class="btn btn-sm btn-warning" title="Edit">
+                                    <i class="fas fa-edit"></i> Edit
                                 </a>
-                                <form action="{{ route('admin.penginapan.destroy', $item->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('admin.penginapan.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus penginapan {{ $item->nama }}?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">
-                                        <i class="fas fa-trash"></i>
+                                    <button type="submit" class="btn btn-sm btn-danger" title="Hapus">
+                                        <i class="fas fa-trash"></i> Hapus
                                     </button>
                                 </form>
                             </div>
@@ -76,7 +76,7 @@
                         <tr>
                             <td colspan="8" class="text-center py-4">
                                 <i class="fas fa-hotel fa-2x text-muted mb-2 d-block"></i>
-                                Belum ada data penginapan. Silakan tambah data baru.
+                                Belum ada data Penginapan
                             </td>
                         </tr>
                     @endforelse
@@ -89,4 +89,4 @@
         </div>
     </div>
 </div>
-@endsection 
+@endsection
