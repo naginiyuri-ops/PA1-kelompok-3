@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Destinasi ' . $kategori . ' - Geosite Danau Toba')
+@section('title', 'Destinasi ' . ucfirst($kategori) . ' - Geosite Danau Toba')
 
 @section('content')
 
@@ -9,7 +9,7 @@
     .kategori-hero {
         height: 40vh;
         min-height: 350px;
-        background: linear-gradient(135deg, rgba(0,51,102,0.75), rgba(0,51,102,0.55)), url('/image/destinasi-{{ strtolower($kategori) }}.jpg');
+        background: linear-gradient(135deg, rgba(0,51,102,0.75), rgba(0,51,102,0.55));
         background-size: cover;
         background-position: center;
         display: flex;
@@ -24,6 +24,7 @@
         font-size: 2.5rem;
         font-weight: 700;
         margin-bottom: 10px;
+        font-family: 'Cormorant Garamond', serif;
     }
     
     .kategori-hero p {
@@ -51,6 +52,9 @@
         overflow: hidden;
         box-shadow: 0 10px 25px rgba(0,0,0,0.08);
         transition: all 0.4s ease;
+        cursor: pointer;
+        text-decoration: none;
+        display: block;
     }
     
     .dest-card:hover {
@@ -83,6 +87,7 @@
         font-weight: 700;
         margin-bottom: 8px;
         color: #003366;
+        font-family: 'Cormorant Garamond', serif;
     }
     
     .card-location {
@@ -144,6 +149,31 @@
         color: #999;
     }
     
+    /* Back Button */
+    .back-button {
+        margin-top: 30px;
+        text-align: center;
+    }
+    
+    .btn-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #003366;
+        color: white;
+        padding: 10px 25px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 0.8rem;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-back:hover {
+        background: #c6a43b;
+        color: #003366;
+        transform: translateX(-5px);
+    }
+    
     /* Responsive */
     @media (max-width: 992px) {
         .destinasi-grid {
@@ -173,10 +203,20 @@
 </style>
 
 <!-- HERO SECTION -->
-<section class="kategori-hero">
-    <div data-aos="fade-up">
-        <h1>Destinasi {{ $kategori }}</h1>
-        <p>{{ $deskripsi }}</p>
+@php
+    $bgImage = asset('image/destinasi/' . strtolower($kategori) . '.jpg');
+    $deskripsiKategori = [
+        'alam' => 'Keindahan Alam Geopark Kaldera Toba',
+        'buatan' => 'Fasilitas Wisata Terbaik di Danau Toba',
+        'budaya' => 'Warisan Budaya Batak yang Lestari'
+    ];
+    $currentDesc = $deskripsiKategori[strtolower($kategori)] ?? 'Jelajahi Destinasi Menarik';
+@endphp
+
+<section class="kategori-hero" style="background-image: linear-gradient(135deg, rgba(0,51,102,0.75), rgba(0,51,102,0.55)), url('{{ $bgImage }}');">
+    <div>
+        <h1>Destinasi {{ ucfirst($kategori) }}</h1>
+        <p>{{ $currentDesc }}</p>
     </div>
 </section>
 
@@ -185,23 +225,27 @@
     <div class="container">
         <div class="destinasi-grid">
             @forelse($destinasi as $item)
-            <div class="dest-card" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+            @php
+                // Convert to array if needed (handle both object and array)
+                $itemArray = is_object($item) ? (array)$item : $item;
+            @endphp
+            <a href="{{ url('/destinasi/' . strtolower($kategori) . '/' . ($itemArray['slug'] ?? $itemArray['id'] ?? '')) }}" class="dest-card">
                 <div class="card-image">
-                    <img src="{{ $item->gambar }}" alt="{{ $item->nama }}">
+                    <img src="{{ asset('image/' . ($itemArray['gambar'] ?? 'default.jpg')) }}" alt="{{ $itemArray['nama'] ?? 'Destinasi' }}">
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">{{ $item->nama }}</h3>
+                    <h3 class="card-title">{{ $itemArray['nama'] ?? 'Destinasi' }}</h3>
                     <div class="card-location">
-                        <i class="fas fa-map-marker-alt"></i> {{ $item->lokasi }}
+                        <i class="fas fa-map-marker-alt"></i> {{ $itemArray['lokasi'] ?? 'Danau Toba' }}
                     </div>
-                    <p class="card-desc">{{ $item->deskripsi }}</p>
+                    <p class="card-desc">{{ Str::limit($itemArray['deskripsi'] ?? 'Destinasi menarik di Danau Toba', 100) }}</p>
                     <div class="card-tags">
-                        @foreach($item->tags as $tag)
+                        @foreach(($itemArray['tags'] ?? []) as $tag)
                         <span>#{{ $tag }}</span>
                         @endforeach
                     </div>
                 </div>
-            </div>
+            </a>
             @empty
             <div class="empty-state">
                 <i class="fas fa-mountain"></i>
@@ -209,6 +253,12 @@
                 <p>Destinasi pada kategori ini akan segera ditambahkan.</p>
             </div>
             @endforelse
+        </div>
+        
+        <div class="back-button">
+            <a href="{{ url('/destinasi') }}" class="btn-back">
+                <i class="fas fa-arrow-left"></i> Kembali ke Semua Destinasi
+            </a>
         </div>
     </div>
 </section>

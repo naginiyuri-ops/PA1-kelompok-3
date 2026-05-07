@@ -20,11 +20,12 @@ use Illuminate\Support\Facades\DB;
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Destinasi Routes
+// ==================== DESTINASI ROUTES (LENGKAP) ====================
 Route::get('/destinasi', [DestinasiController::class, 'index'])->name('destinasi');
 Route::get('/destinasi/alam', [DestinasiController::class, 'alam'])->name('destinasi.alam');
 Route::get('/destinasi/buatan', [DestinasiController::class, 'buatan'])->name('destinasi.buatan');
 Route::get('/destinasi/budaya', [DestinasiController::class, 'budaya'])->name('destinasi.budaya');
+Route::get('/destinasi/{kategori}/{slug}', [DestinasiController::class, 'detail'])->name('destinasi.detail');
 
 // Informasi (Halaman Sejarah Caldera Toba)
 Route::get('/informasi', [PublicInformasiController::class, 'index'])->name('informasi');

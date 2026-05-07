@@ -185,30 +185,43 @@
             .navbar-brand { font-size: 1.2rem; }
         }
         
+        /* ========== FOOTER - TETAP SAMPINGAN DI HP ========== */
         .footer {
-            background: var(--blue-dark);
+            background: linear-gradient(135deg, #003366 0%, #0a2a4a 100%);
             color: white;
-            padding: 40px 0 20px;
+            padding: 45px 0 20px;
             margin-top: 0;
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #c6a43b, #e8c45a, #c6a43b);
         }
         
         .footer h5 {
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: 700;
             margin-bottom: 1rem;
             position: relative;
             display: inline-block;
+            padding-bottom: 6px;
         }
         
         .footer h5::after {
             content: '';
             position: absolute;
-            bottom: -6px;
+            bottom: 0;
             left: 0;
             width: 35px;
             height: 2px;
             background: var(--gold);
-            border-radius: 4px;
+            border-radius: 2px;
         }
         
         .footer a {
@@ -216,6 +229,7 @@
             text-decoration: none;
             transition: all 0.3s ease;
             font-size: 0.8rem;
+            display: inline-block;
         }
         
         .footer a:hover {
@@ -223,10 +237,27 @@
             transform: translateX(5px);
         }
         
+        .footer p {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+        }
+        
+        .footer ul {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .footer li {
+            margin-bottom: 8px;
+            list-style: none;
+        }
+        
         .social-icons {
             display: flex;
             gap: 10px;
             margin-top: 15px;
+            flex-wrap: wrap;
         }
         
         .social-icons a {
@@ -249,11 +280,123 @@
         
         .copyright {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 15px;
-            margin-top: 25px;
+            padding-top: 18px;
+            margin-top: 30px;
             text-align: center;
             font-size: 0.7rem;
             color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* ========== RESPONSIVE FOOTER - TETAP SAMPINGAN ========== */
+        /* Desktop: 4 kolom */
+        @media (min-width: 992px) {
+            .footer .row {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .footer .col-lg-4 { width: 33.333%; }
+            .footer .col-lg-2 { width: 16.666%; }
+            .footer .col-lg-3 { width: 25%; }
+        }
+        
+        /* Tablet & HP: TETAP SAMPINGAN (tidak bersusun ke bawah) */
+        @media (max-width: 991px) {
+            .footer .row {
+                display: flex;
+                flex-wrap: wrap;
+                margin: 0 -10px;
+            }
+            
+            .footer .row > div {
+                padding: 0 10px;
+                margin-bottom: 25px;
+            }
+            
+            /* Di tablet dan HP, tetap pakai grid sampingan */
+            .footer .col-md-4 { width: 33.333%; }
+            .footer .col-md-6 { width: 50%; }
+            .footer .col-sm-6 { width: 50%; }
+            .footer .col-6 { width: 50%; }
+        }
+        
+        /* HP: tetap sampingan, ukuran diperkecil proporsional */
+        @media (max-width: 576px) {
+            .footer {
+                padding: 35px 0 15px;
+            }
+            
+            .footer .container {
+                padding: 0 15px;
+            }
+            
+            /* TETAP SAMPINGAN - pakai flex wrap */
+            .footer .row {
+                display: flex;
+                flex-wrap: wrap;
+                margin: 0 -8px;
+            }
+            
+            .footer .row > div {
+                padding: 0 8px;
+                margin-bottom: 25px;
+            }
+            
+            /* 2 kolom di HP (tetap sampingan) */
+            .footer .row > div:nth-child(1) {
+                width: 100%; /* Brand full width di atas */
+                margin-bottom: 20px;
+            }
+            .footer .row > div:nth-child(2),
+            .footer .row > div:nth-child(3),
+            .footer .row > div:nth-child(4) {
+                width: 33.333%; /* 3 kolom sampingan di bawah */
+            }
+            
+            .footer h5 {
+                font-size: 0.85rem;
+                margin-bottom: 10px;
+            }
+            
+            .footer h5::after {
+                width: 25px;
+            }
+            
+            .footer p,
+            .footer a,
+            .footer li {
+                font-size: 0.7rem;
+            }
+            
+            .social-icons a {
+                width: 30px;
+                height: 30px;
+                font-size: 0.7rem;
+            }
+            
+            .copyright {
+                font-size: 0.6rem;
+                margin-top: 15px;
+                padding-top: 12px;
+            }
+        }
+        
+        /* HP sangat kecil - tetap sampingan */
+        @media (max-width: 450px) {
+            .footer .row > div:nth-child(2),
+            .footer .row > div:nth-child(3),
+            .footer .row > div:nth-child(4) {
+                width: 50%; /* jadi 2 kolom sampingan */
+            }
+            
+            .footer h5 {
+                font-size: 0.8rem;
+            }
+            
+            .footer p,
+            .footer a,
+            .footer li {
+                font-size: 0.65rem;
+            }
         }
         
         .back-to-top {
@@ -285,6 +428,16 @@
             background: white;
             transform: translateY(-4px);
         }
+        
+        @media (max-width: 576px) {
+            .back-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 36px;
+                height: 36px;
+                font-size: 0.7rem;
+            }
+        }
     </style>
     
     @stack('styles')
@@ -292,7 +445,6 @@
 <body>
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
-            <!-- LOGO SECTION - LANGSUNG DARI FOLDER public/image/Logo/ -->
             <div class="logo-wrapper">
                 <img src="{{ asset('image/Logo/logobankindonesia.jpg') }}" alt="Bank Indonesia" class="logo-img" loading="lazy">
                 <div class="logo-divider"></div>
@@ -330,12 +482,13 @@
 
     <main>@yield('content')</main>
 
+    <!-- FOOTER - TETAP SAMPINGAN DI HP -->
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-4 col-md-12 mb-4">
                     <h5>Geo<span style="color: #c6a43b;">Toba</span></h5>
-                    <p style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">Sistem Informasi Geosite Danau Toba - Menyajikan informasi lengkap tentang keindahan geologi dan budaya Batak di kawasan Danau Toba.</p>
+                    <p>Sistem Informasi Geosite Danau Toba - Menyajikan informasi lengkap tentang keindahan geologi dan budaya Batak di kawasan Danau Toba.</p>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -343,7 +496,7 @@
                         <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6 mb-4">
+                <div class="col-lg-2 col-md-4 col-sm-6 col-6 mb-4">
                     <h5>Tautan</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="{{ url('/') }}">Beranda</a></li>
@@ -353,7 +506,7 @@
                         <li class="mb-2"><a href="{{ url('/kontak') }}">Kontak</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4">
                     <h5>Destinasi</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="{{ url('/destinasi/alam') }}">Destinasi Alam</a></li>
@@ -362,7 +515,7 @@
                         <li class="mb-2"><a href="{{ url('/destinasi') }}">Semua Destinasi</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4">
+                <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
                     <h5>Kontak</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2"><i class="fas fa-map-marker-alt me-2" style="color: #c6a43b;"></i> Danau Toba, Sumatera Utara</li>
@@ -371,7 +524,9 @@
                     </ul>
                 </div>
             </div>
-            <div class="copyright"><p>&copy; 2026 GeoToba - Geopark Danau Toba. All rights reserved.</p></div>
+            <div class="copyright">
+                <p>&copy; 2026 GeoToba - Geopark Danau Toba. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
@@ -402,4 +557,4 @@
     
     @stack('scripts')
 </body>
-</html>
+</html> 

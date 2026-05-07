@@ -251,8 +251,8 @@
 
 <!-- HERO SECTION -->
 <section class="destinasi-hero">
-    <div data-aos="fade-up">
-        <h1>Destinasi Geosite</h1>
+    <div>
+        <h1 class="display-4 fw-bold">Destinasi Geosite</h1>
         <p>Jelajahi Pesona Caldera Danau Toba</p>
     </div>
 </section>
@@ -260,7 +260,7 @@
 <!-- CATEGORY SECTION -->
 <section class="category-section">
     <div class="container">
-        <div class="section-header" data-aos="fade-up">
+        <div class="section-header">
             <span class="subtitle">PILIH KATEGORI</span>
             <h2>Temukan Destinasi Favoritmu</h2>
             <div class="divider"></div>
@@ -269,9 +269,9 @@
         
         <div class="category-grid">
             <!-- Destinasi Alam -->
-            <a href="{{ url('/destinasi/alam') }}" class="category-card" data-aos="fade-up" data-aos-delay="0">
+            <a href="{{ url('/destinasi/alam') }}" class="category-card">
                 <div class="card-image">
-                    <img src="/image/destinasi/alam.jpg" alt="Destinasi Alam">
+                    <img src="{{ asset('image/destinasi/alam.jpg') }}" alt="Destinasi Alam">
                     <div class="card-overlay"></div>
                 </div>
                 <div class="card-content">
@@ -284,9 +284,9 @@
             </a>
             
             <!-- Destinasi Buatan -->
-            <a href="{{ url('/destinasi/buatan') }}" class="category-card" data-aos="fade-up" data-aos-delay="100">
+            <a href="{{ url('/destinasi/buatan') }}" class="category-card">
                 <div class="card-image">
-                    <img src="/image/destinasi/buatan.jpg" alt="Destinasi Buatan">
+                    <img src="{{ asset('image/destinasi/buatan.jpg') }}" alt="Destinasi Buatan">
                     <div class="card-overlay"></div>
                 </div>
                 <div class="card-content">
@@ -299,9 +299,9 @@
             </a>
             
             <!-- Destinasi Budaya -->
-            <a href="{{ url('/destinasi/budaya') }}" class="category-card" data-aos="fade-up" data-aos-delay="200">
+            <a href="{{ url('/destinasi/budaya') }}" class="category-card">
                 <div class="card-image">
-                    <img src="/image/destinasi/budaya.jpg" alt="Destinasi Budaya">
+                    <img src="{{ asset('image/destinasi/budaya.jpg') }}" alt="Destinasi Budaya">
                     <div class="card-overlay"></div>
                 </div>
                 <div class="card-content">
@@ -320,19 +320,19 @@
 <section class="stats-section">
     <div class="container">
         <div class="stats-grid">
-            <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
+            <div class="stat-item">
                 <div class="stat-number">74.000+</div>
                 <div class="stat-label">TAHUN SEJARAH</div>
             </div>
-            <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="stat-item">
                 <div class="stat-number">3</div>
                 <div class="stat-label">GEOSITE UNGGULAN</div>
             </div>
-            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-item">
                 <div class="stat-number">15+</div>
                 <div class="stat-label">WARISAN BUDAYA</div>
             </div>
-            <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+            <div class="stat-item">
                 <div class="stat-number">100+</div>
                 <div class="stat-label">UMKM LOKAL</div>
             </div>
