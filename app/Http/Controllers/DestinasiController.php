@@ -21,7 +21,8 @@ class DestinasiController extends Controller
         $destinasi = [
             (object)[
                 'id' => 1,
-
+                'slug' => 'liang-sipege',
+                'kategori' => 'alam',
                 'nama' => 'Liang Sipege',
                 'lokasi' => 'Pulau Sibandang, Danau Toba',
                 'deskripsi' => 'Goa alami dengan stalaktit dan stalakmit yang indah. Tempat eksplorasi dan edukasi geologi.',
@@ -32,6 +33,8 @@ class DestinasiController extends Controller
             (object)[
                 'id' => 2,
                 'nama' => 'Batu Basiha',
+                'slug' => 'batu basiha',
+                'kategori' => 'alam',
                 'lokasi' => 'Pulau Sibandang, Danau Toba',
                 'deskripsi' => 'Formasi batuan unik hasil erosi ribuan tahun. Spot favorit untuk sunrise, sunset, dan fotografi landscape.',
                 'gambar' => '/image/meat/batu-bahisan.jpg',
