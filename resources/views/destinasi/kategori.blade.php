@@ -26,7 +26,6 @@
         font-weight: 700;
         margin-bottom: 10px;
         font-family: 'Cormorant Garamond', serif;
-        text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
     }
     
     .kategori-hero p {
@@ -41,12 +40,6 @@
         background: #f8f9fa;
     }
     
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-    
     .destinasi-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -58,7 +51,7 @@
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-        transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        transition: all 0.4s ease;
         text-decoration: none;
         display: block;
     }
@@ -71,14 +64,13 @@
     .card-image {
         height: 220px;
         overflow: hidden;
-        position: relative;
     }
     
     .card-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.6s ease;
+        transition: transform 0.5s ease;
     }
     
     .dest-card:hover .card-image img {
@@ -95,7 +87,6 @@
         border-radius: 20px;
         font-size: 0.7rem;
         font-weight: 700;
-        z-index: 2;
     }
     
     .card-content {
@@ -111,16 +102,12 @@
     }
     
     .card-location {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         gap: 5px;
         font-size: 0.7rem;
         color: #c6a43b;
         margin-bottom: 12px;
-    }
-    
-    .card-location i {
-        font-size: 0.6rem;
     }
     
     .card-desc {
@@ -174,139 +161,67 @@
     }
     
     @media (max-width: 992px) {
-        .destinasi-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+        .destinasi-grid { grid-template-columns: repeat(2, 1fr); }
     }
     
     @media (max-width: 768px) {
         .kategori-hero { min-height: 280px; }
         .kategori-hero h1 { font-size: 1.8rem; }
         .destinasi-section { padding: 40px 0; }
-        .destinasi-grid { grid-template-columns: 1fr; gap: 20px; }
+        .destinasi-grid { grid-template-columns: 1fr; }
         .card-image { height: 200px; }
     }
 </style>
 
 @php
-    // ==================== DATA DESTINASI ====================
+    // Data destinasi dengan 1 foto per destinasi
     $dataDestinasi = [
         'alam' => [
             'judul' => 'Destinasi Alam',
             'deskripsi' => 'Destinasi wisata alam yang menampilkan keindahan geologi, pegunungan, dan keunikan alam Danau Toba.',
-            'foto1' => 'image/destinasi/alam1.jpg',
-            'foto2' => 'image/destinasi/alam2.jpg',
-            'foto3' => 'image/destinasi/alam3.jpg',
+            'bg_hero' => 'image/destinasi/alam1.jpg',
             'items' => [
-                [
-                    'slug' => 'desa-wisata-meat',
-                    'nama' => 'Desa Wisata Meat',
-                    'lokasi' => 'Kec. Tampahan, Kab. Toba Samosir',
-                    'deskripsi' => 'Dikenal sebagai "New Zealand-nya Toba" dengan hamparan sawah hijau terasering yang membentang hingga ke pinggir Danau Toba.',
-                    'tags' => ['Sawah Terasering', 'Panorama', 'Spot Foto', 'New Zealand']
-                ],
-                [
-                    'slug' => 'geosite-batu-basiha',
-                    'nama' => 'Geosite Batu Basiha',
-                    'lokasi' => 'Desa Aek Bolon, Balige',
-                    'deskripsi' => 'Tumpukan batu-batu balok raksasa sisa letusan dahsyat Gunung Toba 74.000 tahun lalu.',
-                    'tags' => ['Batu Raksasa', 'Geologi', 'Sunrise', 'Sunset']
-                ],
-                [
-                    'slug' => 'liang-sipege',
-                    'nama' => 'Liang Sipege',
-                    'lokasi' => 'Kawasan Balige',
-                    'deskripsi' => 'Goa alami dengan stalaktit dan stalakmit yang terbentuk secara alami, menyimpan nilai sejarah dan geologi.',
-                    'tags' => ['Goa Alami', 'Sejarah', 'Geowisata', 'Edukasi']
-                ]
+                1 => ['slug' => 'desa-wisata-meat', 'nama' => 'Desa Wisata Meat', 'lokasi' => 'Kec. Tampahan, Kab. Toba Samosir', 'deskripsi' => 'Dikenal sebagai "New Zealand-nya Toba" dengan hamparan sawah hijau terasering yang membentang hingga ke pinggir Danau Toba.', 'tags' => ['Sawah Terasering', 'Panorama', 'Spot Foto']],
+                2 => ['slug' => 'geosite-batu-basiha', 'nama' => 'Geosite Batu Basiha', 'lokasi' => 'Desa Aek Bolon, Balige', 'deskripsi' => 'Tumpukan batu-batu balok raksasa sisa letusan dahsyat Gunung Toba 74.000 tahun lalu.', 'tags' => ['Batu Raksasa', 'Geologi', 'Sunrise']],
+                3 => ['slug' => 'liang-sipege', 'nama' => 'Liang Sipege', 'lokasi' => 'Kawasan Balige', 'deskripsi' => 'Goa alami dengan stalaktit dan stalakmit yang terbentuk secara alami, menyimpan nilai sejarah dan geologi.', 'tags' => ['Goa Alami', 'Sejarah', 'Geowisata']]
             ]
         ],
         'budaya' => [
             'judul' => 'Destinasi Budaya',
             'deskripsi' => 'Destinasi wisata budaya yang menampilkan kearifan lokal, adat istiadat, dan warisan leluhur Batak Toba yang masih lestari.',
-            'foto1' => 'image/destinasi/budaya1.jpg',
-            'foto2' => 'image/destinasi/budaya2.jpg',
-            'foto3' => 'image/destinasi/budaya3.jpg',
+            'bg_hero' => 'image/destinasi/budaya1.jpg',
             'items' => [
-                [
-                    'slug' => 'sentra-tenun-ulos',
-                    'nama' => 'Sentra Tenun Ulos',
-                    'lokasi' => 'Desa Meat, Kec. Tampahan',
-                    'deskripsi' => 'Wisatawan dapat melihat langsung proses martonun (menenun) ulos yang dikerjakan oleh kaum wanita setempat.',
-                    'tags' => ['Tenun Ulos', 'Kerajinan Tangan', 'Budaya Batak', 'Oleh-oleh']
-                ],
-                [
-                    'slug' => 'rumah-adat-batak',
-                    'nama' => 'Rumah Adat Batak',
-                    'lokasi' => 'Desa Meat, Kec. Tampahan',
-                    'deskripsi' => 'Rumah tradisional Batak Toba yang khas dengan arsitektur dan ornamen penuh makna filosofis.',
-                    'tags' => ['Rumah Adat', 'Arsitektur', 'Budaya Batak', 'Sejarah']
-                ],
-                [
-                    'slug' => 'sigale-gale',
-                    'nama' => 'Patung Sigale-gale',
-                    'lokasi' => 'Tomok, Pulau Samosir',
-                    'deskripsi' => 'Patung kayu khas Batak yang dapat menari, simbol ritual kematian dan penghormatan leluhur.',
-                    'tags' => ['Sigale-gale', 'Budaya Batak', 'Tari Tradisional', 'Sejarah']
-                ]
+                1 => ['slug' => 'sentra-tenun-ulos', 'nama' => 'Sentra Tenun Ulos', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'deskripsi' => 'Wisatawan dapat melihat langsung proses martonun (menenun) ulos yang dikerjakan oleh kaum wanita setempat.', 'tags' => ['Tenun Ulos', 'Kerajinan Tangan', 'Budaya Batak']],
+                2 => ['slug' => 'rumah-adat-batak', 'nama' => 'Rumah Adat Batak', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'deskripsi' => 'Rumah tradisional Batak Toba yang khas dengan arsitektur dan ornamen penuh makna filosofis.', 'tags' => ['Rumah Adat', 'Arsitektur', 'Budaya Batak']],
+                3 => ['slug' => 'sigale-gale', 'nama' => 'Patung Sigale-gale', 'lokasi' => 'Tomok, Pulau Samosir', 'deskripsi' => 'Patung kayu khas Batak yang dapat menari, simbol ritual kematian dan penghormatan leluhur.', 'tags' => ['Sigale-gale', 'Budaya Batak', 'Sejarah']]
             ]
         ],
         'buatan' => [
             'judul' => 'Destinasi Buatan',
             'deskripsi' => 'Fasilitas wisata yang dikembangkan untuk mendukung kenyamanan wisatawan di kawasan Danau Toba.',
-            'foto1' => 'image/destinasi/buatan1.jpg',
-            'foto2' => 'image/destinasi/buatan2.jpg',
-            'foto3' => 'image/destinasi/buatan3.jpg',
+            'bg_hero' => 'image/destinasi/buatan1.jpg',
             'items' => [
-                [
-                    'slug' => 'spot-pantai-meat',
-                    'nama' => 'Spot Pantai Meat',
-                    'lokasi' => 'Desa Meat, Kec. Tampahan',
-                    'deskripsi' => 'Area pinggir Danau Toba yang ditata untuk bersantai menikmati pemandangan danau dan perbukitan.',
-                    'tags' => ['Pantai', 'Santai', 'Keluarga', 'Spot Foto']
-                ],
-                [
-                    'slug' => 'homestay-meat',
-                    'nama' => 'Homestay Meat',
-                    'lokasi' => 'Desa Meat, Kec. Tampahan',
-                    'deskripsi' => 'Penginapan berbasis budaya yang dikelola warga setempat dengan pemandangan sawah dan Danau Toba.',
-                    'tags' => ['Homestay', 'Budaya', 'Penginapan', 'Ramah']
-                ],
-                [
-                    'slug' => 'jalur-trekking-sawah',
-                    'nama' => 'Jalur Trekking Sawah',
-                    'lokasi' => 'Desa Meat, Kec. Tampahan',
-                    'deskripsi' => 'Jalur setapak di tengah persawahan terasering dengan pemandangan spektakuler Danau Toba.',
-                    'tags' => ['Trekking', 'Sawah Terasering', 'Panorama', 'Olahraga']
-                ]
+                1 => ['slug' => 'spot-pantai-meat', 'nama' => 'Spot Pantai Meat', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'deskripsi' => 'Area pinggir Danau Toba yang ditata untuk bersantai menikmati pemandangan danau dan perbukitan.', 'tags' => ['Pantai', 'Santai', 'Keluarga']],
+                2 => ['slug' => 'homestay-meat', 'nama' => 'Homestay Meat', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'deskripsi' => 'Penginapan berbasis budaya yang dikelola warga setempat dengan pemandangan sawah dan Danau Toba.', 'tags' => ['Homestay', 'Budaya', 'Penginapan']],
+                3 => ['slug' => 'jalur-trekking-sawah', 'nama' => 'Jalur Trekking Sawah', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'deskripsi' => 'Jalur setapak di tengah persawahan terasering dengan pemandangan spektakuler Danau Toba.', 'tags' => ['Trekking', 'Sawah Terasering', 'Panorama']]
             ]
         ]
     ];
     
-    // Ambil data berdasarkan kategori
     $data = $dataDestinasi[$kategori] ?? $dataDestinasi['alam'];
-    $bgImage = asset($data['foto1']);
+    $bgImage = asset($data['bg_hero']);
     
-    // Siapkan destinasi dengan foto (foto 1,2,3)
     $destinasi = [];
-    foreach ($data['items'] as $index => $item) {
-        $noFoto = $index + 1;
+    foreach ($data['items'] as $noFoto => $item) {
         $destinasi[] = (object)[
-            'id' => $index + 1,
+            'id' => $noFoto,
             'slug' => $item['slug'],
             'kategori' => $kategori,
             'nama' => $item['nama'],
             'lokasi' => $item['lokasi'],
             'deskripsi' => $item['deskripsi'],
             'gambar' => 'image/destinasi/' . $kategori . $noFoto . '.jpg',
-            'gambar_hero' => 'image/destinasi/' . $kategori . $noFoto . '.jpg',
-            'galeri' => [
-                'image/destinasi/' . $kategori . '1.jpg',
-                'image/destinasi/' . $kategori . '2.jpg',
-                'image/destinasi/' . $kategori . '3.jpg'
-            ],
-            'tags' => $item['tags'],
-            'deskripsi_lengkap' => $item['deskripsi'] . ' Kunjungi dan nikmati keindahan ' . $item['nama'] . ' di Danau Toba. Destinasi ini menawarkan pengalaman wisata yang tak terlupakan bagi Anda dan keluarga.',
-            'jam_operasional' => $kategori == 'alam' ? '06:00 - 18:00 WIB' : ($kategori == 'budaya' ? '08:00 - 17:00 WIB' : '09:00 - 21:00 WIB'),
-            'harga_tiket' => $kategori == 'alam' ? 'Rp 10.000 - Rp 25.000' : ($kategori == 'budaya' ? 'Rp 15.000 - Rp 30.000' : 'Rp 5.000 - Rp 20.000')
+            'tags' => $item['tags']
         ];
     }
 @endphp
@@ -357,4 +272,4 @@
     AOS.init({ duration: 800, once: true, offset: 50 });
 </script>
 
-@endsection 
+@endsection

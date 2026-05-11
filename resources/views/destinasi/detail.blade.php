@@ -114,7 +114,7 @@
         margin-bottom: 50px;
     }
     
-    /* Gallery Side */
+    /* Gallery Side - 1 FOTO SAJA */
     .gallery-side {
         background: white;
         border-radius: 24px;
@@ -130,7 +130,7 @@
     
     .gallery-main {
         position: relative;
-        height: 350px;
+        height: 400px;
         overflow: hidden;
         cursor: pointer;
     }
@@ -157,54 +157,6 @@
         border-radius: 20px;
         font-size: 0.7rem;
         font-weight: 500;
-    }
-    
-    .gallery-thumbs {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 5px;
-        padding: 5px;
-        background: #f5f5f5;
-    }
-    
-    .thumb-item {
-        height: 100px;
-        overflow: hidden;
-        cursor: pointer;
-        position: relative;
-        transition: all 0.3s ease;
-    }
-    
-    .thumb-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-    
-    .thumb-item:hover img {
-        transform: scale(1.1);
-    }
-    
-    .thumb-item.active {
-        border: 2px solid #c6a43b;
-    }
-    
-    .thumb-item.active::after {
-        content: '✓';
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        background: #c6a43b;
-        color: #003366;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-        font-weight: bold;
     }
     
     /* Info Side */
@@ -432,22 +384,9 @@
         transform: rotate(90deg);
     }
     
-    .lightbox-caption {
-        position: absolute;
-        bottom: 20px;
-        left: 0;
-        right: 0;
-        text-align: center;
-        color: white;
-        font-size: 0.8rem;
-        background: rgba(0,0,0,0.6);
-        padding: 8px;
-    }
-    
     @media (max-width: 992px) {
         .detail-grid { grid-template-columns: 1fr; gap: 30px; }
-        .gallery-main { height: 300px; }
-        .thumb-item { height: 80px; }
+        .gallery-main { height: 350px; }
     }
     
     @media (max-width: 768px) {
@@ -458,8 +397,7 @@
         .info-side h2 { font-size: 1.4rem; }
         .info-cards { grid-template-columns: 1fr; }
         .full-description { padding: 20px; }
-        .gallery-main { height: 250px; }
-        .thumb-item { height: 70px; }
+        .gallery-main { height: 280px; }
     }
 </style>
 
@@ -486,20 +424,13 @@
     <div class="container">
         
         <div class="detail-grid">
-            <!-- Gallery Side -->
+            <!-- Gallery Side - 1 FOTO -->
             <div class="gallery-side" data-aos="fade-right" data-aos-duration="800">
                 <div class="gallery-main" id="mainImage">
-                    <img src="{{ asset($destinasi->galeri[0]) }}" alt="{{ $destinasi->nama }}" id="mainImg">
+                    <img src="{{ asset($destinasi->gambar) }}" alt="{{ $destinasi->nama }}" id="mainImg">
                     <div class="gallery-badge">
-                        <i class="fas fa-images"></i> {{ count($destinasi->galeri) }} Foto
+                        <i class="fas fa-image"></i> 1 Foto
                     </div>
-                </div>
-                <div class="gallery-thumbs">
-                    @foreach($destinasi->galeri as $index => $img)
-                    <div class="thumb-item {{ $index == 0 ? 'active' : '' }}" onclick="changeImage('{{ asset($img) }}', this)">
-                        <img src="{{ asset($img) }}" alt="Thumbnail {{ $index+1 }}">
-                    </div>
-                    @endforeach
                 </div>
             </div>
             
@@ -550,10 +481,10 @@
     </div>
 </section>
 
+<!-- Lightbox -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
     <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
     <img src="" alt="" id="lightboxImg">
-    <div class="lightbox-caption" id="lightboxCaption"></div>
 </div>
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -561,21 +492,12 @@
 <script>
     AOS.init({ duration: 800, once: true, offset: 50 });
     
-    function changeImage(src, element) {
-        document.getElementById('mainImg').src = src;
-        document.querySelectorAll('.thumb-item').forEach(thumb => {
-            thumb.classList.remove('active');
-        });
-        element.classList.add('active');
-    }
-    
+    // Lightbox untuk 1 foto
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxCaption = document.getElementById('lightboxCaption');
     
     document.getElementById('mainImg').addEventListener('click', function() {
         lightboxImg.src = this.src;
-        lightboxCaption.innerHTML = '{{ $destinasi->nama }}';
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
     });
