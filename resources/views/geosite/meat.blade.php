@@ -79,20 +79,20 @@
             </div>
             <div class="sejarah-item reverse">
                 <div class="sejarah-image">
-                    <img src="{{ asset('image/meat/meat-hero.jpg') }}" alt="Tenun Ulos">
+                    <img src="{{ asset('image/meat/slide1.jpg') }}" alt="Penenun">
                 </div>
                 <div class="sejarah-text">
-                    <h3>Pantai Meat Dua </h3>
-                    <p>Ulos Ragi Hotang adalah tenun paling sakral, digunakan dalam upacara pernikahan adat. Ratusan pengrajin perempuan Meat menghasilkan ulos berkualitas premium.</p>
+                    <h3>Pantai Meat Dua</h3>
+                    <p>Sejak jadi desa wisata, penenun meningkat dari 87 KK jadi 120-140 KK dengan pendapatan naik lebih dari 100%. Ulos Meat dipasarkan hingga ke berbagai daerah.</p>
                 </div>
             </div>
             <div class="sejarah-item">
                 <div class="sejarah-image">
-                    <img src="{{ asset('image/meat/slide1.jpg') }}" alt="Penenun">
+                    <img src="{{ asset('image/meat/meat-hero.jpg') }}" alt="Tenun Ulos">
                 </div>
                 <div class="sejarah-text">
                     <h3>Pantai Meat Tiga</h3>
-                    <p>Sejak jadi desa wisata, penenun meningkat dari 87 KK jadi 120-140 KK dengan pendapatan naik lebih dari 100%. Ulos Meat dipasarkan hingga ke berbagai daerah.</p>
+                    <p>Ulos Ragi Hotang adalah tenun paling sakral, digunakan dalam upacara pernikahan adat. Ratusan pengrajin perempuan Meat menghasilkan ulos berkualitas premium.</p>
                 </div>
             </div>
         </div>
