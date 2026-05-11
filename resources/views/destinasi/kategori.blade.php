@@ -5,11 +5,12 @@
 @section('content')
 
 <style>
-    /* ==================== HERO SECTION ==================== */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+    
     .kategori-hero {
         height: 40vh;
         min-height: 350px;
-        background: linear-gradient(135deg, rgba(0,51,102,0.75), rgba(0,51,102,0.55)), url('/image/destinasi-{{ strtolower($kategori) }}.jpg');
+        background: linear-gradient(135deg, rgba(0,51,102,0.8), rgba(0,51,102,0.6));
         background-size: cover;
         background-position: center;
         display: flex;
@@ -24,6 +25,8 @@
         font-size: 2.5rem;
         font-weight: 700;
         margin-bottom: 10px;
+        font-family: 'Cormorant Garamond', serif;
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
     }
     
     .kategori-hero p {
@@ -33,7 +36,6 @@
         opacity: 0.9;
     }
     
-    /* ==================== DESTINASI GRID ==================== */
     .destinasi-section {
         padding: 60px 0;
         background: #f8f9fa;
@@ -47,15 +49,17 @@
     
     .dest-card {
         background: white;
-        border-radius: 16px;
+        border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-        transition: all 0.4s ease;
+        transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        text-decoration: none;
+        display: block;
     }
     
     .dest-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 35px rgba(0,0,0,0.12);
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     }
     
     .card-image {
@@ -67,11 +71,11 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.5s ease;
+        transition: transform 0.6s ease;
     }
     
     .dest-card:hover .card-image img {
-        transform: scale(1.05);
+        transform: scale(1.08);
     }
     
     .card-content {
@@ -83,6 +87,7 @@
         font-weight: 700;
         margin-bottom: 8px;
         color: #003366;
+        font-family: 'Cormorant Garamond', serif;
     }
     
     .card-location {
@@ -119,13 +124,12 @@
         color: #003366;
     }
     
-    /* Empty State */
     .empty-state {
         grid-column: 1 / -1;
         text-align: center;
         padding: 60px 20px;
         background: white;
-        border-radius: 16px;
+        border-radius: 20px;
     }
     
     .empty-state i {
@@ -137,71 +141,83 @@
     .empty-state h3 {
         font-size: 1.3rem;
         color: #666;
-        margin-bottom: 8px;
     }
     
-    .empty-state p {
-        color: #999;
+    .back-button {
+        text-align: center;
+        margin-top: 40px;
     }
     
-    /* Responsive */
+    .btn-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #003366;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-back:hover {
+        background: #c6a43b;
+        color: #003366;
+        transform: translateX(-5px);
+    }
+    
     @media (max-width: 992px) {
-        .destinasi-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-        }
+        .destinasi-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
     }
     
     @media (max-width: 768px) {
-        .kategori-hero {
-            min-height: 280px;
-        }
-        .kategori-hero h1 {
-            font-size: 1.8rem;
-        }
-        .destinasi-section {
-            padding: 40px 0;
-        }
-        .destinasi-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-        .card-image {
-            height: 200px;
-        }
+        .kategori-hero { min-height: 280px; }
+        .kategori-hero h1 { font-size: 1.8rem; }
+        .destinasi-section { padding: 40px 0; }
+        .destinasi-grid { grid-template-columns: 1fr; gap: 20px; }
+        .card-image { height: 200px; }
     }
 </style>
 
-<!-- HERO SECTION -->
-<section class="kategori-hero">
+@php
+    $bgImages = [
+        'Alam' => 'image/meat/meat-hero.jpg',
+        'Buatan' => 'image/meat/slide2.jpg',
+        'Budaya' => 'image/meat/gallery1.jpg'
+    ];
+    $bgImage = asset($bgImages[$kategori] ?? 'image/meat/meat-hero.jpg');
+@endphp
+
+<section class="kategori-hero" style="background-image: linear-gradient(135deg, rgba(0,51,102,0.8), rgba(0,51,102,0.6)), url('{{ $bgImage }}');">
     <div data-aos="fade-up">
         <h1>Destinasi {{ $kategori }}</h1>
         <p>{{ $deskripsi }}</p>
     </div>
 </section>
 
-<!-- DESTINASI GRID -->
 <section class="destinasi-section">
     <div class="container">
         <div class="destinasi-grid">
             @forelse($destinasi as $item)
-            <div class="dest-card" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+            <a href="{{ url('/destinasi/' . $item->kategori . '/' . $item->slug) }}" class="dest-card" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
                 <div class="card-image">
-                    <img src="{{ $item->gambar }}" alt="{{ $item->nama }}">
+                    <img src="{{ asset($item->gambar) }}" alt="{{ $item->nama }}">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">{{ $item->nama }}</h3>
                     <div class="card-location">
                         <i class="fas fa-map-marker-alt"></i> {{ $item->lokasi }}
                     </div>
-                    <p class="card-desc">{{ $item->deskripsi }}</p>
+                    <p class="card-desc">{{ Str::limit($item->deskripsi, 100) }}</p>
                     <div class="card-tags">
-                        @foreach($item->tags as $tag)
+                        @foreach(array_slice($item->tags, 0, 3) as $tag)
                         <span>#{{ $tag }}</span>
                         @endforeach
                     </div>
                 </div>
-            </div>
+            </a>
             @empty
             <div class="empty-state">
                 <i class="fas fa-mountain"></i>
@@ -210,18 +226,19 @@
             </div>
             @endforelse
         </div>
+        
+        <div class="back-button">
+            <a href="{{ url('/destinasi') }}" class="btn-back">
+                <i class="fas fa-arrow-left"></i> Kembali ke Semua Destinasi
+            </a>
+        </div>
     </div>
 </section>
 
-<!-- AOS -->
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
-    AOS.init({
-        duration: 800,
-        once: true,
-        offset: 50
-    });
+    AOS.init({ duration: 800, once: true, offset: 50 });
 </script>
 
 @endsection

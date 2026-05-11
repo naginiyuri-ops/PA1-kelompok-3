@@ -86,6 +86,6 @@ class GaleriTableSeeder extends Seeder
         }
         
         $this->command->info("");
-        $this->command->info("✅ SELESAI! Total $count foto masuk database.");
+        $this->command->info(" SELESAI! Total $count foto masuk database.");
     }
 }

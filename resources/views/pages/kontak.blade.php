@@ -5,521 +5,471 @@
 @section('content')
 
 <style>
-    /* ==================== LOGO SECTION ==================== */
-    .logo-container {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        background: rgba(255, 255, 255, 0.98);
-        padding: 8px 24px;
-        border-radius: 60px;
-        backdrop-filter: blur(8px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        border: 1px solid rgba(255, 255, 255, 0.8);
-    }
-    
-    .logo-container:hover {
-        background: white;
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-        transform: translateY(-2px);
-    }
-    
-    .flag-logo-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-    
-    .flag-img {
-        width: 100px;
-        height: auto;
-        border-radius: 6px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-        transition: transform 0.2s ease;
-        border: 1px solid rgba(255,255,255,0.3);
-    }
-    
-    .flag-img:hover {
-        transform: scale(1.05);
-    }
-    
-    .logo-divider {
-        width: 2px;
-        height: 35px;
-        background: #e0e0e0;
-        border-radius: 2px;
-    }
-    
-    .del-logo-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-    
-    .del-logo-wrapper:hover {
-        transform: scale(1.02);
-    }
-    
-    .del-img {
-        width: 50px;
-        height: auto;
-        border-radius: 8px;
-        transition: transform 0.2s ease;
-    }
-    
-    .del-img:hover {
-        transform: scale(1.05);
-    }
-    
-    .geotoba-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-    
-    .geotoba-text {
-        font-size: 1.5rem;
-        font-weight: 800;
-        letter-spacing: 1px;
-        background: linear-gradient(135deg, #1a3c5e, #2c5f8a);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        font-family: 'Inter', 'Poppins', sans-serif;
-        line-height: 1.2;
-    }
-    
-    .geotoba-sub {
-        font-size: 0.7rem;
-        font-weight: 500;
-        color: #5a6e7c;
-        letter-spacing: 0.5px;
-    }
-    
-    @media (max-width: 768px) {
-        .logo-container {
-            top: 12px;
-            left: 12px;
-            padding: 6px 18px;
-            gap: 14px;
-        }
-        .flag-img {
-            width: 60px;
-        }
-        .del-img {
-            width: 35px;
-        }
-        .geotoba-text {
-            font-size: 1.2rem;
-        }
-        .geotoba-sub {
-            font-size: 0.6rem;
-        }
-        .logo-divider {
-            height: 28px;
-        }
-    }
-    
-    @media (max-width: 576px) {
-        .logo-container {
-            padding: 5px 14px;
-            gap: 10px;
-        }
-        .flag-img {
-            width: 45px;
-        }
-        .del-img {
-            width: 28px;
-        }
-        .geotoba-text {
-            font-size: 0.9rem;
-        }
-        .geotoba-sub {
-            font-size: 0.5rem;
-        }
-        .logo-divider {
-            height: 24px;
-        }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
-    /* ==================== HERO ==================== */
-    .kontak-hero {
-        height: 45vh;
-        background: linear-gradient(135deg, rgba(0,0,0,0.65), rgba(0,0,0,0.4)),
-                    url('/image/kontak-hero.jpg');
+    :root {
+        --primary: #003366;
+        --gold: #c6a43b;
+        --white: #fff;
+        --gray: #666;
+        --bg: #f8fafc;
+        --shadow: 0 5px 20px rgba(0,0,0,0.05);
+        --shadow-lg: 0 10px 30px rgba(0,0,0,0.1);
+        --transition: all 0.3s ease;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--bg);
+    }
+
+    /* HERO */
+    .hero-kontak {
+        height: 50vh;
+        min-height: 350px;
+        background: linear-gradient(rgba(0,51,102,0.7), rgba(0,51,102,0.5)), url('/image/kontak-hero.jpg');
         background-size: cover;
         background-position: center;
-        background-attachment: fixed;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
         color: white;
-        margin-top: 76px;
-        position: relative;
+        margin-top: 70px;
     }
-    
-    .kontak-hero::before {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 80px;
-        background: linear-gradient(to top, #fafaf8, transparent);
+
+    .hero-kontak h1 {
+        font-size: 3rem;
+        font-family: 'Playfair Display', serif;
+        margin-bottom: 10px;
     }
-    
-    .kontak-hero h1 {
-        font-size: 3.5rem;
-        font-weight: 400;
-        font-family: 'Cormorant Garamond', serif;
-        letter-spacing: 0.02em;
-        margin-bottom: 15px;
-    }
-    
-    .kontak-hero p {
-        font-size: 1rem;
+
+    .hero-kontak p {
+        font-size: 0.9rem;
+        letter-spacing: 2px;
         opacity: 0.85;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
     }
-    
-    /* ==================== KONTAK SECTION ==================== */
-    .kontak-section {
+
+    /* SECTION */
+    .section {
         padding: 60px 0;
     }
-    
-    .kontak-card {
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+
+    /* CONTACT CARDS */
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    .contact-card {
         background: white;
-        border-radius: 20px;
         padding: 30px 20px;
         text-align: center;
-        transition: all 0.3s ease;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.04);
-        border: 1px solid #f0f0f0;
-        height: 100%;
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
     }
-    
-    .kontak-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+
+    .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
     }
-    
-    .kontak-icon {
-        width: 65px;
-        height: 65px;
-        background: rgba(198, 164, 59, 0.1);
+
+    .contact-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(198,164,59,0.1);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto 18px;
+        margin: 0 auto 15px;
     }
-    
-    .kontak-icon i {
-        font-size: 28px;
-        color: #c6a43b;
+
+    .contact-icon i {
+        font-size: 24px;
+        color: var(--gold);
     }
-    
-    .kontak-card h4 {
-        font-size: 1.15rem;
+
+    .contact-card h3 {
+        font-size: 1.1rem;
         font-weight: 600;
-        margin-bottom: 12px;
-        color: #1a1a1a;
+        margin-bottom: 10px;
+        color: var(--primary);
     }
-    
-    .kontak-card p {
-        color: #666;
-        margin-bottom: 5px;
+
+    .contact-card p {
         font-size: 0.85rem;
+        color: var(--gray);
         line-height: 1.5;
     }
-    
-    /* ==================== FORM ==================== */
-    .form-card {
-        background: white;
-        border-radius: 24px;
-        padding: 35px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.04);
-        border: 1px solid #f0f0f0;
-        height: 100%;
+
+    /* MAPS FULL WIDTH */
+    .map-full {
+        margin: 40px 0;
     }
-    
-    .form-card h3 {
-        font-size: 1.5rem;
-        font-family: 'Cormorant Garamond', serif;
-        font-weight: 500;
-        margin-bottom: 20px;
-        color: #1a1a1a;
-    }
-    
-    .form-control, .form-select {
-        border: 1px solid #e0e0e0;
-        border-radius: 12px;
-        padding: 12px 16px;
-        font-size: 0.85rem;
-        transition: all 0.3s ease;
-    }
-    
-    .form-control:focus, .form-select:focus {
-        border-color: #c6a43b;
-        box-shadow: 0 0 0 3px rgba(198, 164, 59, 0.08);
-        outline: none;
-    }
-    
-    .btn-send {
-        background: #1a1a1a;
-        color: white;
-        border: none;
-        padding: 12px 30px;
-        border-radius: 50px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        transition: all 0.3s ease;
+
+    .map-full iframe {
         width: 100%;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-    }
-    
-    .btn-send:hover {
-        background: #c6a43b;
-        color: #1a1a1a;
-        transform: translateY(-2px);
-    }
-    
-    /* ==================== MAPS ==================== */
-    .map-card {
-        border-radius: 24px;
-        overflow: hidden;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.04);
-        border: 1px solid #f0f0f0;
-        background: white;
-        height: 100%;
-    }
-    
-    .map-card iframe {
-        width: 100%;
-        height: 280px;
+        height: 400px;
         border: 0;
+        border-radius: 20px;
+        box-shadow: var(--shadow-lg);
     }
-    
-    .map-info {
-        padding: 20px;
+
+    /* INFO SECTION (Setelah Peta) */
+    .info-section {
+        margin-top: 20px;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .info-card {
+        background: white;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: var(--shadow);
+    }
+
+    .info-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--gold);
+        display: inline-block;
+    }
+
+    /* DESTINASI LIST */
+    .dest-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .dest-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 12px;
+        background: var(--bg);
+        border-radius: 12px;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .dest-item:hover {
+        background: rgba(198,164,59,0.1);
+        transform: translateX(5px);
+    }
+
+    .dest-icon {
+        width: 45px;
+        height: 45px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow);
+    }
+
+    .dest-icon i {
+        font-size: 1.1rem;
+        color: var(--gold);
+    }
+
+    .dest-info h4 {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 3px;
+    }
+
+    .dest-info p {
+        font-size: 0.7rem;
+        color: var(--gray);
+    }
+
+    /* SOSIAL MEDIA */
+    .social-section {
+        margin: 25px 0;
         text-align: center;
     }
-    
-    .map-info h4 {
-        font-size: 1.15rem;
-        font-weight: 600;
-        margin-bottom: 15px;
-        color: #1a1a1a;
-    }
-    
+
     .social-icons {
         display: flex;
         justify-content: center;
-        gap: 12px;
-        margin-bottom: 20px;
+        gap: 15px;
+        margin-top: 10px;
+        flex-wrap: wrap;
     }
-    
+
     .social-icons a {
-        display: inline-flex;
+        width: 38px;
+        height: 38px;
+        background: var(--bg);
+        border-radius: 50%;
+        display: flex;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
-        background: #f5f4f0;
-        border-radius: 50%;
-        color: #1a1a1a;
-        transition: all 0.3s ease;
+        color: var(--primary);
+        transition: var(--transition);
         text-decoration: none;
     }
-    
+
     .social-icons a:hover {
-        background: #c6a43b;
+        background: var(--gold);
         color: white;
         transform: translateY(-3px);
     }
-    
-    .jam-operasional p {
-        margin-bottom: 5px;
-        font-size: 0.85rem;
-        color: #666;
+
+    /* JAM OPERASIONAL */
+    .hours-box {
+        background: linear-gradient(135deg, var(--primary), #1a4a7a);
+        padding: 20px;
+        border-radius: 16px;
+        text-align: center;
+        color: white;
+        margin-top: 20px;
     }
-    
-    .jam-operasional h5 {
+
+    .hours-box h4 {
         font-size: 0.9rem;
-        font-weight: 600;
-        margin-bottom: 8px;
-        color: #1a1a1a;
+        margin-bottom: 10px;
     }
-    
-    /* ==================== RESPONSIVE ==================== */
+
+    .hours-box p {
+        font-size: 0.75rem;
+        opacity: 0.9;
+    }
+
+    .hours-divider {
+        width: 30px;
+        height: 1px;
+        background: rgba(255,255,255,0.3);
+        margin: 10px auto;
+    }
+
+    /* FLOATING WHATSAPP */
+    .whatsapp-float {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        z-index: 100;
+    }
+
+    .whatsapp-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 55px;
+        height: 55px;
+        background: #25D366;
+        border-radius: 50%;
+        color: white;
+        font-size: 1.5rem;
+        box-shadow: 0 5px 15px rgba(37,211,102,0.3);
+        transition: var(--transition);
+        text-decoration: none;
+    }
+
+    .whatsapp-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 20px rgba(37,211,102,0.4);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+        .contact-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+        .map-full iframe {
+            height: 320px;
+        }
+    }
+
     @media (max-width: 768px) {
-        .kontak-hero h1 {
-            font-size: 2.2rem;
+        .hero-kontak h1 {
+            font-size: 2rem;
         }
-        .kontak-hero p {
-            font-size: 0.8rem;
+        .contact-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
-        .kontak-section {
+        .section {
             padding: 40px 0;
         }
-        .form-card {
-            margin-bottom: 25px;
+        .container {
+            padding: 0 20px;
+        }
+        .map-full iframe {
+            height: 280px;
         }
     }
-    
-    @media (max-width: 576px) {
-        .kontak-hero h1 {
-            font-size: 1.8rem;
+
+    @media (max-width: 480px) {
+        .hero-kontak h1 {
+            font-size: 1.5rem;
         }
-        .kontak-card {
-            padding: 20px 15px;
+        .contact-card {
+            padding: 20px;
         }
-        .form-card {
-            padding: 25px;
+        .info-card {
+            padding: 20px;
+        }
+        .whatsapp-btn {
+            width: 48px;
+            height: 48px;
+            font-size: 1.3rem;
+        }
+        .map-full iframe {
+            height: 220px;
         }
     }
 </style>
 
-<!-- ==================== LOGO SECTION ==================== -->
-   
-
 <!-- HERO -->
-<section class="kontak-hero">
-    <div class="container">
-        <h1 data-aos="fade-up">Hubungi Kami</h1>
-        <p data-aos="fade-up" data-aos-delay="100">Senang mendengar dari Anda</p>
+<section class="hero-kontak">
+    <div>
+        <h1>Hubungi Kami</h1>
+        <p>Senang mendengar dari Anda</p>
     </div>
 </section>
 
-<!-- KONTAK SECTION -->
-<section class="kontak-section">
+<!-- CONTACT CARDS -->
+<section class="section">
     <div class="container">
-        <div class="row g-4 mb-5">
-            <!-- ALAMAT -->
-            <div class="col-md-4" data-aos="fade-up">
-                <div class="kontak-card">
-                    <div class="kontak-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h4>Alamat</h4>
-                    <p>Geosite Danau Toba</p>
-                    <p>Pulau Sibandang, Danau Toba</p>
-                    <p>Sumatera Utara, Indonesia</p>
-                </div>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <h3>Alamat</h3>
+                <p>Geosite Danau Toba</p>
+                <p>Pulau Sibandang, Danau Toba</p>
+                <p>Sumatera Utara</p>
             </div>
-            
-            <!-- TELEPON -->
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="kontak-card">
-                    <div class="kontak-icon">
-                        <i class="fas fa-phone-alt"></i>
-                    </div>
-                    <h4>Telepon</h4>
-                    <p>+62 812 3456 7890</p>
-                    <p>+62 813 9876 5432</p>
-                    <p>(0622) 12345</p>
-                </div>
+            <div class="contact-card">
+                <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                <h3>Telepon</h3>
+                <p>+62 812 3456 7890</p>
+                <p>+62 813 9876 5432</p>
+                <p>(0622) 12345</p>
             </div>
-            
-            <!-- EMAIL -->
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="kontak-card">
-                    <div class="kontak-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h4>Email</h4>
-                    <p>info@geotoba.com</p>
-                    <p>reservasi@geotoba.com</p>
-                    <p>support@geotoba.com</p>
-                </div>
+            <div class="contact-card">
+                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                <h3>Email</h3>
+                <p>info@geotoba.com</p>
+                <p>reservasi@geotoba.com</p>
+                <p>support@geotoba.com</p>
             </div>
         </div>
-        
-        <div class="row g-4">
-            <!-- FORM KONTAK -->
-            <div class="col-lg-6" data-aos="fade-right">
-                <div class="form-card">
-                    <h3>Kirim Pesan</h3>
-                    <form action="#" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Nama Lengkap" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="email" class="form-control" placeholder="Email" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="tel" class="form-control" placeholder="Nomor Telepon">
-                        </div>
-                        <div class="mb-3">
-                            <select class="form-select">
-                                <option selected disabled>-- Pilih Subjek --</option>
-                                <option>Informasi Wisata</option>
-                                <option>Reservasi Tiket</option>
-                                <option>Kerjasama</option>
-                                <option>Saran & Masukan</option>
-                                <option>Lainnya</option>
-                            </select>
-                        </div>
-                        <div class="mb-4">
-                            <textarea class="form-control" rows="5" placeholder="Pesan Anda..."></textarea>
-                        </div>
-                        <button type="submit" class="btn-send">
-                            Kirim Pesan <i class="fas fa-paper-plane ms-2"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            
-            <!-- MAPS & SOSIAL -->
-            <div class="col-lg-6" data-aos="fade-left">
-                <div class="map-card">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0!2d99.0835095!3d2.3339262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e0415b8f7da39%3A0xc6beb74287f355a5!2sBalige%2C%20Toba%20Samosir%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
-                        allowfullscreen="" 
-                        loading="lazy">
-                    </iframe>
-                    <div class="map-info">
-                        <h4>Ikuti Kami</h4>
-                        <div class="social-icons">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
-                            <a href="#"><i class="fab fa-tiktok"></i></a>
-                        </div>
-                        <div class="jam-operasional">
-                            <h5>Jam Operasional</h5>
-                            <p>Senin - Jumat: 08:00 - 17:00</p>
-                            <p>Sabtu - Minggu: 08:00 - 18:00</p>
+    </div>
+</section>
+
+<!-- MAPS FULL WIDTH -->
+<div class="container">
+    <div class="map-full">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0!2d99.0835095!3d2.3339262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e0415b8f7da39%3A0xc6beb74287f355a5!2sBalige%2C%20Toba%20Samosir%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
+    </div>
+</div>
+
+<!-- INFO SECTION (Setelah Peta) -->
+<section class="section">
+    <div class="container">
+        <div class="info-grid">
+            <!-- DESTINASI -->
+            <div class="info-card">
+                <h3 class="info-title">Destinasi Unggulan</h3>
+                <div class="dest-list">
+                    <div class="dest-item" onclick="window.location.href='{{ url('/geosite/meat') }}'">
+                        <div class="dest-icon"><i class="fas fa-umbrella-beach"></i></div>
+                        <div class="dest-info">
+                            <h4>Meat Village</h4>
+                            <p>Desa wisata budaya di tepi Danau Toba</p>
                         </div>
                     </div>
+                    <div class="dest-item" onclick="window.location.href='{{ url('/geosite/batu-bahisan') }}'">
+                        <div class="dest-icon"><i class="fas fa-mountain"></i></div>
+                        <div class="dest-info">
+                            <h4>Batu Bahisan</h4>
+                            <p>Situs batu bersejarah dengan pemandangan indah</p>
+                        </div>
+                    </div>
+                    <div class="dest-item" onclick="window.location.href='{{ url('/geosite/liang-sipege') }}'">
+                        <div class="dest-icon"><i class="fas fa-cave"></i></div>
+                        <div class="dest-info">
+                            <h4>Liang Sipege</h4>
+                            <p>Gua alami dengan stalaktit dan stalakmit</p>
+                        </div>
+                    </div>
+                    <div class="dest-item" onclick="window.location.href='{{ url('/galeri') }}'">
+                        <div class="dest-icon"><i class="fas fa-camera"></i></div>
+                        <div class="dest-info">
+                            <h4>Galeri Foto</h4>
+                            <p>Koleksi foto terbaik Geopark Danau Toba</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOSIAL & JAM OPERASIONAL -->
+            <div class="info-card">
+                <h3 class="info-title">Ikuti Kami</h3>
+                <div class="social-section">
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="hours-box">
+                    <h4><i class="far fa-clock"></i> Jam Operasional</h4>
+                    <p>Senin - Jumat: 08:00 - 17:00 WIB</p>
+                    <p>Sabtu - Minggu: 08:00 - 18:00 WIB</p>
+                    <div class="hours-divider"></div>
+                    <p><i class="fas fa-map-marker-alt"></i> Pulau Sibandang, Danau Toba</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<!-- FLOATING WHATSAPP -->
+<div class="whatsapp-float">
+    <a href="https://wa.me/6281234567890" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<!-- AOS -->
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-    AOS.init({
-        duration: 800,
-        once: true
-    });
-</script>
 
 @endsection
