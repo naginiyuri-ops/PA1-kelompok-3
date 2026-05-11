@@ -178,8 +178,7 @@
             <p>Fasilitas lengkap untuk kenyamanan Anda</p>
         </div>
         <div class="grid-2">
-            @forelse($fasilitas as $item)
-            <div class="fasilitas-item">
+            @forelse($fasilitas as $item)           <div class="fasilitas-item">
                 @if($item->gambar && str_starts_with($item->gambar, 'data:image'))
                     <img src="{{ $item->gambar }}" class="fasilitas-img" alt="{{ $item->nama }}">
                 @else
