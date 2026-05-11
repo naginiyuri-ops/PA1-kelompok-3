@@ -11,7 +11,7 @@ class InformasiController extends Controller
 {
     public function index()
     {
-        $informasi = Informasi::latest()->paginate(10);
+        $informasi = Informasi::orderBy('urutan', 'asc')->paginate(10);
         return view('admin.informasi.index', compact('informasi'));
     }
 
@@ -25,13 +25,15 @@ class InformasiController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'konten' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:4096', // 4MB
+            'urutan' => 'required|integer|unique:informasi,urutan',
             'status' => 'nullable|boolean'
         ]);
 
         $data = [
             'judul' => $request->judul,
             'konten' => $request->konten,
+            'urutan' => $request->urutan,
             'status' => $request->has('status') ? 1 : 0
         ];
 
@@ -46,7 +48,7 @@ class InformasiController extends Controller
         Informasi::create($data);
 
         return redirect()->route('admin.informasi.index')
-            ->with('success', '✅ Data informasi berhasil ditambahkan!');
+            ->with('success', 'Informasi berhasil ditambahkan! (Gambar max 4MB)');
     }
 
     public function edit($id)
@@ -62,13 +64,15 @@ class InformasiController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'konten' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:4096', // 4MB
+            'urutan' => 'required|integer|unique:informasi,urutan,' . $id,
             'status' => 'nullable|boolean'
         ]);
 
         $data = [
             'judul' => $request->judul,
             'konten' => $request->konten,
+            'urutan' => $request->urutan,
             'status' => $request->has('status') ? 1 : 0
         ];
 
@@ -83,7 +87,7 @@ class InformasiController extends Controller
         $informasi->update($data);
 
         return redirect()->route('admin.informasi.index')
-            ->with('success', '✅ Data informasi berhasil diupdate!');
+            ->with('success', 'Informasi berhasil diupdate!');
     }
 
     public function destroy($id)
@@ -92,7 +96,7 @@ class InformasiController extends Controller
         $informasi->delete();
 
         return redirect()->route('admin.informasi.index')
-            ->with('success', '🗑️ Data informasi berhasil dihapus!');
+            ->with('success', 'Informasi berhasil dihapus!');
     }
 
     public function toggleStatus($id)

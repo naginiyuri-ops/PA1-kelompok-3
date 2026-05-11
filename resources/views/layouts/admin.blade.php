@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Admin - GeoToba</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -30,6 +30,11 @@
             border-right: 1px solid #e2e8f0;
             z-index: 1000;
             overflow-y: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar.closed {
+            transform: translateX(-100%);
         }
 
         .sidebar-header {
@@ -100,6 +105,11 @@
             margin-left: 260px;
             padding: 24px 32px;
             min-height: 100vh;
+            transition: margin-left 0.3s ease;
+        }
+
+        .main-content.expanded {
+            margin-left: 0;
         }
 
         /* ========== TOP BAR ========== */
@@ -108,6 +118,23 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 28px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #475569;
+        }
+
+        .menu-toggle:hover {
+            background: #f1f5f9;
         }
 
         .page-title {
@@ -385,6 +412,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 600px;
         }
 
         th {
@@ -440,6 +468,7 @@
         .btn-group {
             display: flex;
             gap: 8px;
+            flex-wrap: wrap;
         }
 
         .btn-edit {
@@ -516,6 +545,8 @@
             margin-top: 20px;
             display: flex;
             justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         /* ========== RESPONSIVE ========== */
@@ -526,49 +557,113 @@
         }
 
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
             .sidebar {
                 transform: translateX(-100%);
             }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
             .main-content {
                 margin-left: 0;
                 padding: 16px;
             }
+            
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
             }
+            
             .card-header {
                 flex-direction: column;
                 align-items: flex-start;
             }
+            
             .form-row {
                 grid-template-columns: 1fr;
                 gap: 0;
             }
+            
             .form-card {
                 padding: 20px;
             }
+            
             .btn-group {
+                flex-direction: row;
+            }
+            
+            .page-title {
+                font-size: 1.1rem;
+            }
+            
+            .top-bar {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .user-menu {
+                padding: 4px 12px;
+            }
+            
+            .user-name {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .top-bar {
                 flex-direction: column;
-                gap: 4px;
+                align-items: stretch;
+            }
+            
+            .user-menu {
+                justify-content: space-between;
+            }
+            
+            th, td {
+                font-size: 0.7rem;
+                padding: 6px 4px;
+            }
+            
+            .btn-edit, .btn-delete {
+                padding: 3px 8px;
+                font-size: 0.6rem;
+            }
+            
+            .stat-card {
+                padding: 12px;
+            }
+            
+            .stat-number {
+                font-size: 1.2rem;
+            }
+            
+            .card-table {
+                padding: 12px;
+            }
+            
+            .form-card {
+                padding: 16px;
+            }
+            
+            .form-card h2 {
+                font-size: 1.1rem;
             }
         }
 
         @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            .top-bar {
+            .btn-group {
                 flex-direction: column;
-                gap: 12px;
-                align-items: flex-start;
-            }
-            th, td {
-                font-size: 0.75rem;
-                padding: 8px 4px;
-            }
-            .btn-edit, .btn-delete {
-                padding: 4px 8px;
-                font-size: 0.65rem;
+                gap: 4px;
             }
         }
     </style>
@@ -577,7 +672,7 @@
 <body>
 
 <!-- SIDEBAR -->
-<div class="sidebar">
+<div class="sidebar" id="sidebar">
     <div class="sidebar-header">
         <h3>Geo<span>Toba</span></h3>
         <p>Administrator</p>
@@ -613,11 +708,16 @@
 </div>
 
 <!-- MAIN CONTENT -->
-<div class="main-content">
+<div class="main-content" id="mainContent">
     <div class="top-bar">
-        <div class="page-title">@yield('title', 'Dashboard')</div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="page-title">@yield('title', 'Dashboard')</div>
+        </div>
         <div class="user-menu">
-            <span class="user-name">{{ Auth::user()->name ?? 'Admin' }}</span>
+            <span class="user-name"><i class="fas fa-user-circle"></i> {{ Auth::user()->name ?? 'Admin' }}</span>
             <form action="{{ route('logout') }}" method="POST" class="d-inline">
                 @csrf
                 <button type="submit" class="logout-btn">
@@ -629,6 +729,34 @@
 
     @yield('content')
 </div>
+
+<script>
+    // Toggle sidebar untuk mobile
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('mainContent');
+
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('open');
+        });
+    }
+
+    // Tutup sidebar saat klik di luar (untuk mobile)
+    document.addEventListener('click', function(event) {
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile && sidebar && !sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+            sidebar.classList.remove('open');
+        }
+    });
+
+    // Handle resize window
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            sidebar.classList.remove('open');
+        }
+    });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @stack('scripts')
