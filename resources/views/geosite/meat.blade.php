@@ -48,10 +48,14 @@
 
 <!-- HERO -->
 <section class="hero">
+<<<<<<< HEAD
+    <div>
+=======
     <div class="hero-content">
         <div class="hero-badge">UNESCO Global Geopark</div>
+>>>>>>> 48dbc5959bb7b91b87b1dcf0e5414671dd0a1a71
         <h1 class="hero-title">MEAT</h1>
-        <p class="hero-subtitle">Pulau Sibandang · Danau Toba</p>
+        <p class="hero-subtitle">Balige · Danau Toba</p>
     </div>
 </section>
 
