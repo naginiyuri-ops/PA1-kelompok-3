@@ -1144,7 +1144,7 @@
         <div class="section-title" data-aos="fade-up" data-aos-duration="800">
             <h2>Destinasi Unggulan</h2>
             <div class="divider"></div>
-            <p>Tiga geosite di Pulau Sibandang, Caldera Danau Toba</p>
+            <p>Tiga geosite di Balige, Caldera Danau Toba</p>
         </div>
         <div class="destinasi-list">
             
@@ -1199,7 +1199,7 @@
         <div class="section-title" data-aos="fade-up" data-aos-duration="800">
             <h2>Lokasi 3 Geosite</h2>
             <div class="divider"></div>
-            <p>Meat, Batu Bahisan, dan Liang Sipege - Pulau Sibandang</p>
+            <p>Meat, Batu Bahisan, dan Liang Sipege</p>
         </div>
         
         <div class="maps-container" data-aos="zoom-in" data-aos-duration="1000">

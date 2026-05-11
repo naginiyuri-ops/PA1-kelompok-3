@@ -48,10 +48,14 @@
 
 <!-- HERO -->
 <section class="hero">
+<<<<<<< HEAD
+    <div>
+=======
     <div class="hero-content">
         <div class="hero-badge">UNESCO Global Geopark</div>
+>>>>>>> 48dbc5959bb7b91b87b1dcf0e5414671dd0a1a71
         <h1 class="hero-title">MEAT</h1>
-        <p class="hero-subtitle">Pulau Sibandang · Danau Toba</p>
+        <p class="hero-subtitle">Balige · Danau Toba</p>
     </div>
 </section>
 
@@ -70,7 +74,7 @@
                     <img src="{{ asset('image/meat/meat-detail.jpg') }}" alt="Desa Meat">
                 </div>
                 <div class="sejarah-text">
-                    <h3>Pantai satu</h3>
+                    <h3>Pantai Meat Satu</h3>
                     <p>Desa Meat di Kecamatan Tampahan, Kabupaten Toba, terletak di pinggiran Danau Toba. Sejak 2017, Meat menjadi desa wisata unggulan Kabupaten Toba dengan pemandangan sawah bertangga, perbukitan hijau, dan pantai pasir putih.</p>
                 </div>
             </div>
@@ -79,7 +83,7 @@
                     <img src="{{ asset('image/meat/meat-hero.jpg') }}" alt="Tenun Ulos">
                 </div>
                 <div class="sejarah-text">
-                    <h3>Pantai  tiga </h3>
+                    <h3>Pantai Meat Dua </h3>
                     <p>Ulos Ragi Hotang adalah tenun paling sakral, digunakan dalam upacara pernikahan adat. Ratusan pengrajin perempuan Meat menghasilkan ulos berkualitas premium.</p>
                 </div>
             </div>
@@ -88,7 +92,7 @@
                     <img src="{{ asset('image/meat/slide1.jpg') }}" alt="Penenun">
                 </div>
                 <div class="sejarah-text">
-                    <h3>Pantai dua</h3>
+                    <h3>Pantai Meat Tiga</h3>
                     <p>Sejak jadi desa wisata, penenun meningkat dari 87 KK jadi 120-140 KK dengan pendapatan naik lebih dari 100%. Ulos Meat dipasarkan hingga ke berbagai daerah.</p>
                 </div>
             </div>
