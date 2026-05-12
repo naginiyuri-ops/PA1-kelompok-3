@@ -3,24 +3,9 @@
 @section('title', 'Galeri - GeoToba')
 
 @section('content')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 <style>
-    /* ========== STACKED SLIP CARDS STYLE ========== */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Inter', sans-serif;
-        background: #f0f2f5;
-    }
-
-    /* HERO SECTION - TETAP */
+    /* Hero Section */
     .gallery-hero {
         background: linear-gradient(135deg, #003366 0%, #1a4a7a 100%);
         padding: 80px 0 50px;
@@ -67,7 +52,6 @@
         color: rgba(255,255,255,0.8);
     }
 
-    /* ========== STACKED SLIP CARDS ========== */
     .gallery-section {
         padding: 60px 0 100px;
         background: linear-gradient(135deg, #f8fafc 0%, #eef2f8 100%);
@@ -80,17 +64,17 @@
         padding: 0 24px;
     }
 
-    /* STACK CONTAINER */
+    /* Stack Container */
     .stack-container {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 0;
-        padding: 40px 0;
+        padding: 20px 0;
         position: relative;
     }
 
-    /* SLIP CARD - Seperti kertas slip/kartu */
+    /* Slip Card */
     .slip-card {
         position: relative;
         width: 280px;
@@ -101,25 +85,23 @@
         transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.02);
         margin-left: -60px;
+        display: block;
     }
 
     .slip-card:first-child {
         margin-left: 0;
     }
 
-    /* Efek hover - card naik ke atas seperti slip */
     .slip-card:hover {
         transform: translateY(-20px) scale(1.02);
         z-index: 100;
         box-shadow: 0 25px 40px -10px rgba(0,0,0,0.25);
     }
 
-    /* Efek hover untuk card di sampingnya */
     .slip-card:hover ~ .slip-card {
         transform: translateX(20px);
     }
 
-    /* Container gambar */
     .slip-image {
         position: relative;
         width: 100%;
@@ -139,7 +121,6 @@
         transform: scale(1.05);
     }
 
-    /* Overlay seperti watermark */
     .slip-overlay {
         position: absolute;
         bottom: 0;
@@ -175,7 +156,6 @@
         line-height: 1.3;
     }
 
-    /* Info Card - Seperti slip kertas */
     .slip-info {
         padding: 16px;
         background: white;
@@ -183,7 +163,6 @@
         border-top: 1px solid #f0f0f0;
     }
 
-    /* Decorative line seperti slip */
     .slip-line {
         position: absolute;
         top: 0;
@@ -220,7 +199,6 @@
         color: #c6a43b;
     }
 
-    /* Nomor slip seperti antrian */
     .slip-number {
         position: absolute;
         bottom: 12px;
@@ -231,7 +209,7 @@
         letter-spacing: 1px;
     }
 
-    /* MODAL tetap */
+    /* Modal */
     .modal-overlay { 
         position: fixed; 
         inset: 0; 
@@ -314,33 +292,6 @@
         font-size: 0.85rem;
     }
 
-    /* Music Control */
-    .music-control {
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        background: rgba(0, 51, 102, 0.9);
-        backdrop-filter: blur(8px);
-        border: 1px solid rgba(198, 164, 59, 0.4);
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        z-index: 1000;
-        transition: all 0.3s ease;
-        font-size: 1.1rem;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
-    .music-control:hover {
-        background: #c6a43b;
-        color: #003366;
-        transform: scale(1.1);
-    }
-
     .empty-gallery {
         text-align: center;
         padding: 80px;
@@ -353,14 +304,9 @@
         margin-bottom: 15px;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 1200px) {
-        .slip-card {
-            width: 240px;
-        }
-        .slip-image {
-            height: 280px;
-        }
+        .slip-card { width: 240px; }
+        .slip-image { height: 280px; }
     }
 
     @media (max-width: 992px) {
@@ -373,12 +319,8 @@
             margin-left: 0 !important;
             width: 260px;
         }
-        .slip-card:hover ~ .slip-card {
-            transform: none;
-        }
-        .slip-card:hover {
-            transform: translateY(-10px);
-        }
+        .slip-card:hover ~ .slip-card { transform: none; }
+        .slip-card:hover { transform: translateY(-10px); }
     }
 
     @media (max-width: 768px) { 
@@ -387,47 +329,17 @@
             max-height: 85vh;
             overflow-y: auto;
         }
-        .music-control { 
-            bottom: 15px; 
-            right: 15px; 
-            width: 42px; 
-            height: 42px; 
-            font-size: 1rem; 
-        }
-        .gallery-hero h1 {
-            font-size: 2rem;
-        }
-        .stack-container {
-            gap: 16px;
-        }
-        .slip-card {
-            width: calc(50% - 8px);
-        }
-        .slip-image {
-            height: 260px;
-        }
+        .gallery-hero h1 { font-size: 2rem; }
+        .stack-container { gap: 16px; }
+        .slip-card { width: calc(50% - 8px); }
+        .slip-image { height: 260px; }
     }
 
     @media (max-width: 560px) {
-        .slip-card {
-            width: 100%;
-        }
-        .slip-image {
-            height: 280px;
-        }
+        .slip-card { width: 100%; }
+        .slip-image { height: 280px; }
     }
 </style>
-
-<!-- Audio Background -->
-<audio id="bgMusic" loop preload="auto">
-    <source src="{{ asset('audio/GONDANG.mp4') }}" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
-
-<!-- Music Control -->
-<div class="music-control" id="musicControl">
-    <i class="fas fa-music" id="musicIcon"></i>
-</div>
 
 <!-- HERO SECTION -->
 <div class="gallery-hero">
@@ -442,45 +354,47 @@
     <div class="container">
         <div class="stack-container">
             @php $counter = 1; @endphp
-            @foreach($galeriByKategori as $kategori => $items)
-                @foreach($items as $item)
-                    @php
-                        if (strlen($item->gambar) > 500) {
-                            $src = 'data:image/jpeg;base64,' . base64_encode($item->gambar);
+            @forelse($galeri ?? [] as $item)
+                @php
+                    $src = asset('image/default.jpg');
+                    if (!empty($item->gambar)) {
+                        if (str_starts_with($item->gambar, 'data:image')) {
+                            $src = $item->gambar;
+                        } elseif (filter_var($item->gambar, FILTER_VALIDATE_URL)) {
+                            $src = $item->gambar;
                         } else {
                             $src = asset('storage/' . $item->gambar);
                         }
-                    @endphp
-                    
-                    <div class="slip-card" onclick="openPhoto('{{ $src }}', '{{ $item->judul }}', '{{ addslashes($item->deskripsi) }}', '{{ strtoupper($kategori) }}')">
-                        <div class="slip-image">
-                            <img src="{{ $src }}" alt="{{ $item->judul }}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x500?text=No+Image'">
-                            <div class="slip-overlay">
-                                <span class="slip-category">{{ strtoupper($kategori) }}</span>
-                                <div class="slip-title-overlay">{{ Str::limit($item->judul, 35) }}</div>
-                            </div>
-                        </div>
-                        <div class="slip-info">
-                            <div class="slip-line"></div>
-                            <div class="slip-title">{{ Str::limit($item->judul, 30) }}</div>
-                            <div class="slip-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>{{ $item->lokasi ?? 'Danau Toba' }}</span>
-                            </div>
-                            <div class="slip-number">#{{ str_pad($counter, 3, '0', STR_PAD_LEFT) }}</div>
+                    }
+                @endphp
+                
+                <div class="slip-card" onclick="openPhoto('{{ $src }}', '{{ addslashes($item->judul) }}', '{{ addslashes($item->deskripsi ?? 'Tidak ada deskripsi') }}', '{{ strtoupper($item->kategori ?? 'GALERI') }}')">
+                    <div class="slip-image">
+                        <img src="{{ $src }}" alt="{{ $item->judul }}" loading="lazy" 
+                             onerror="this.src='{{ asset('image/default.jpg') }}'">
+                        <div class="slip-overlay">
+                            <span class="slip-category">{{ strtoupper($item->kategori ?? 'GALERI') }}</span>
+                            <div class="slip-title-overlay">{{ Str::limit($item->judul, 35) }}</div>
                         </div>
                     </div>
-                    @php $counter++; @endphp
-                @endforeach
-            @endforeach
+                    <div class="slip-info">
+                        <div class="slip-line"></div>
+                        <div class="slip-title">{{ Str::limit($item->judul, 30) }}</div>
+                        <div class="slip-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>{{ $item->lokasi ?? 'Danau Toba' }}</span>
+                        </div>
+                        <div class="slip-number">#{{ str_pad($counter, 3, '0', STR_PAD_LEFT) }}</div>
+                    </div>
+                </div>
+                @php $counter++; @endphp
+            @empty
+                <div class="empty-gallery">
+                    <i class="fas fa-images"></i>
+                    <p>Belum ada foto galeri</p>
+                </div>
+            @endforelse
         </div>
-        
-        @if($counter == 1)
-        <div class="empty-gallery">
-            <i class="fas fa-images"></i>
-            <p>Belum ada foto galeri</p>
-        </div>
-        @endif
     </div>
 </section>
 
@@ -498,53 +412,11 @@
 </div>
 
 <script>
-    // ========== AUDIO CONTROL ==========
-    const audio = document.getElementById('bgMusic');
-    const musicControl = document.getElementById('musicControl');
-    const musicIcon = document.getElementById('musicIcon');
-    let isPlaying = false;
-    
-    function playAudio() {
-        audio.play().then(() => {
-            isPlaying = true;
-            musicIcon.className = 'fas fa-music';
-        }).catch(error => {
-            isPlaying = false;
-            musicIcon.className = 'fas fa-volume-mute';
-        });
-    }
-    
-    function pauseAudio() {
-        audio.pause();
-        isPlaying = false;
-        musicIcon.className = 'fas fa-volume-mute';
-    }
-    
-    let audioStarted = false;
-    
-    function startAudioOnFirstInteraction() {
-        if (!audioStarted) {
-            playAudio();
-            audioStarted = true;
-            document.removeEventListener('click', startAudioOnFirstInteraction);
-            document.removeEventListener('touchstart', startAudioOnFirstInteraction);
-        }
-    }
-    
-    document.addEventListener('click', startAudioOnFirstInteraction);
-    document.addEventListener('touchstart', startAudioOnFirstInteraction);
-    
-    // ========== MODAL FUNCTIONS ==========
     function openPhoto(src, title, desc, tag) {
-        if (!audioStarted) {
-            audioStarted = true;
-        }
-        playAudio();
-        
         document.getElementById('mImg').src = src;
         document.getElementById('mTitle').innerText = title;
         document.getElementById('mTag').innerText = tag;
-        document.getElementById('mDesc').innerText = desc || 'Tidak ada deskripsi.';
+        document.getElementById('mDesc').innerHTML = desc || 'Tidak ada deskripsi.';
         document.getElementById('pModal').style.display = 'flex';
         document.body.style.overflow = 'hidden';
     }
@@ -552,39 +424,13 @@
     function closePhoto() {
         document.getElementById('pModal').style.display = 'none';
         document.body.style.overflow = 'auto';
-        pauseAudio();
     }
-    
-    musicControl.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (isPlaying) {
-            pauseAudio();
-        } else {
-            if (!audioStarted) {
-                audioStarted = true;
-            }
-            playAudio();
-        }
-    });
     
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closePhoto();
         }
-        if (e.key === ' ' || e.key === 'Space') {
-            e.preventDefault();
-            if (isPlaying) {
-                pauseAudio();
-            } else {
-                if (!audioStarted) {
-                    audioStarted = true;
-                }
-                playAudio();
-            }
-        }
     });
-    
-    audio.load();
 </script>
 
 @endsection
