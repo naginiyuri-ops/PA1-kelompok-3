@@ -83,28 +83,7 @@
                     <h4 style="color: var(--blue-dark); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Legenda "Batu Sian Hau" (Batu dari Kayu)</h4>
                     <p>Nama "Batu Basiha" berasal dari bahasa Batak "Batu Sian Hau" yang berarti "batu dari kayu". Cerita turun temurun menceritakan bahwa dahulu ada sekelompok orang yang hendak membangun rumah dan pemukiman dengan menebang pohon-pohon besar di kawasan ini. Namun, seekor harimau misterius muncul memberikan peringatan kepada mereka. Mengabaikan peringatan tersebut, petir menyambar pohon secara ajaib dan mengubahnya menjadi batu, mencegah siapa pun untuk menebang kayu dan membangun di sini sejak saat itu.</p>
                 </div>
-            </div>
-            <!-- Sejarah 2: Geologi Struktur Kekar Kolom -->
-            <div class="sejarah-item reverse" data-aos="fade-left">
-                <div class="sejarah-image">
-                    <img src="/image/meat/batu-bahisan.jpg" alt="Batu Basiha Geologi">
-                </div>
-                <div class="sejarah-text">
-                    <h4 style="color: var(--blue-dark); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Formasi Geologis: Struktur Kekar Kolom</h4>
-                    <p>Batu Basiha terbentuk dari proses geologis letusan Gunung Api Toba ratusan tahun lalu. Magma yang mengalir dari kaldera Porsea membeku dan mengalami kontraksi teratur, membentuk struktur kekar kolom yang khas. Kolom-kolom vertikal alami berukuran besar ini menyerupai garis-garis fosil kayu. Batuan jenis andesit ini kaya silika dan merupakan bukti nyata aktivitas vulkanik purba di Danau Toba.</p>
-                </div>
-            </div>
-            <!-- Sejarah 3: Tempat Musyawarah dan Kearifan Lokal -->
-            <div class="sejarah-item" data-aos="fade-right">
-                <div class="sejarah-image">
-                    <img src="/image/meat/batu-bahisan.jpg" alt="Batu Basiha Spiritual">
-                </div>
-                <div class="sejarah-text">
-                    <h4 style="color: var(--blue-dark); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Tempat Musyawarah dan Kearifan Leluhur</h4>
-                    <p>Batu Basiha dimanfaatkan sebagai tempat bermusyawarah dan mengambil keputusan penting bagi masyarakat. Mereka mempercayai bahwa roh leluhur hadir di sekitar batu ini dalam bentuk harimau untuk memberikan pertanda dan nasihat. Keberadaannya mencerminkan kearifan lokal tentang konservasi lingkungan dan nilai penting musyawarah dalam kehidupan kolektif masyarakat Batak.</p>
-                </div>
-            </div>
-        </div>
+          
     </div>
 </section>
 
@@ -117,21 +96,21 @@
         </div>
         <div class="sejarah-grid">
             <div class="sejarah-item" data-aos="fade-right">
-                <div class="sejarah-image"><img src="/image/meat/batu-bahisan.jpg" alt="Lokasi"></div>
+                <div class="sejarah-image"><img src="/image/meat/batubasiha1.png" alt="Lokasi"></div>
                 <div class="sejarah-text">
                     <h4 style="color: var(--blue-dark); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Pengakuan UNESCO Global Geopark</h4>
                     <p>Batu Basiha adalah salah satu dari 16 geosite yang telah diakui Dewan Eksekutif UNESCO pada 7 Juli 2020. Pengakuan ini menjadikan Danau Toba sebagai UNESCO Global Geopark, tempat yang menarik bagi penelitian geologi internasional. Status ini menegaskan nilai geologi dan kebudayaan yang luar biasa dari kawasan ini.</p>
                 </div>
             </div>
             <div class="sejarah-item reverse" data-aos="fade-left">
-                <div class="sejarah-image"><img src="/image/meat/batu-bahisan.jpg" alt="Wisata"></div>
+                <div class="sejarah-image"><img src="/image/meat/batubasiha2.jpg" alt="Wisata"></div>
                 <div class="sejarah-text">
                     <h4 style="color: var(--blue-dark); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;\">Ekowisata dan Agrowisata</h4>
                     <p>Pemerintah setempat telah mengembangkan kawasan sekitar Batu Basiha menjadi lokasi ekowisata dan agrowisata. Pengunjung dapat menikmati keindahan alam, belajar tentang geologi vulkanik, dan merasakan kearifan lokal masyarakat Batak dalam pengelolaan sumber daya alam secara berkelanjutan.</p>
                 </div>
             </div>
             <div class="sejarah-item" data-aos="fade-right">
-                <div class="sejarah-image"><img src="/image/meat/batu-bahisan.jpg" alt="Balige"></div>
+                <div class="sejarah-image"><img src="/image/meat/batubasiha1.png" alt="Balige"></div>
                 <div class="sejarah-text">
                     <h4 style="color: var(--blue-dark); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;\">Balige: Jantung Peradaban Toba</h4>
                     <p>Balige adalah salah satu pusat peradaban Toba dengan warisan kolonial, tinggalan budaya, dan Museum Batak TB Silalahi yang memiliki koleksi terlengkap mengenai kebudayaan Toba. Mengunjungi Balige seperti membaca kitab besar tentang Toba, di mana setiap lembah, batu, dan gua menyimpan cerita tak terhingga.</p>
