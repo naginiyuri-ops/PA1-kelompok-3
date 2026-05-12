@@ -3,11 +3,18 @@
 @section('title', 'Tambah Informasi')
 
 @section('content')
-<div class="d-flex align-items-center mb-3">
-    <a href="{{ route('admin.informasi.index') }}" class="btn btn-sm btn-secondary me-2">
-        <i class="fas fa-arrow-left"></i>
+<style>
+    .form-group { margin-bottom: 1.5rem; }
+    .form-label { font-weight: 600; margin-bottom: 0.5rem; }
+    .form-label.required::after { content: '*'; color: #dc3545; margin-left: 4px; }
+    .preview-image { max-width: 200px; border-radius: 8px; margin-top: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+</style>
+
+<div class="d-flex align-items-center mb-4">
+    <a href="{{ route('admin.informasi.index') }}" class="btn btn-sm btn-secondary me-3">
+        <i class="fas fa-arrow-left me-1"></i> Kembali
     </a>
-    <h5 class="mb-0">Tambah Informasi</h5>
+    <h4 class="mb-0"><i class="fas fa-plus-circle me-2"></i> Tambah Informasi</h4>
 </div>
 
 <div class="card">
@@ -25,58 +32,57 @@
         <form action="{{ route('admin.informasi.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             
-            <div class="row">
-                <div class="col-md-12 mb-3">
-                    <label class="form-label required">Judul</label>
-                    <input type="text" name="judul" class="form-control @error('judul') is-invalid @enderror" 
-                           value="{{ old('judul') }}" required>
-                    @error('judul')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+            <div class="form-group">
+                <label class="form-label required">Judul Informasi</label>
+                <input type="text" name="judul" class="form-control @error('judul') is-invalid @enderror" 
+                       value="{{ old('judul') }}" placeholder="Masukkan judul informasi" required>
+                @error('judul')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Gambar</label>
+                <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" 
+                       accept="image/jpeg,image/png,image/jpg" id="inputGambar">
+                <small class="text-muted d-block mt-1">
+                    <i class="fas fa-info-circle me-1"></i> Format: JPG, PNG. Maksimal 5MB
+                </small>
+                <div id="previewContainer" style="display: none;">
+                    <img id="previewImage" class="preview-image">
                 </div>
-                
-                <div class="col-md-12 mb-3">
-                    <label class="form-label">Gambar</label>
-                    <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" 
-                           accept="image/jpeg,image/png,image/jpg" id="inputGambar">
-                    <small class="text-muted">Format: JPG, PNG. Max: 5MB</small>
-                    <div class="preview-container mt-2" id="previewContainer" style="display: none;">
-                        <label>Preview Gambar:</label><br>
-                        <img id="previewImage" class="preview-image" style="max-width: 150px; border-radius: 8px; margin-top: 5px;">
-                    </div>
-                    @error('gambar')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                
-                <div class="col-12 mb-3">
-                    <label class="form-label required">Konten</label>
-                    <textarea name="konten" class="form-control @error('konten') is-invalid @enderror" 
-                              rows="12" required>{{ old('konten') }}</textarea>
-                    @error('konten')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                
-                <div class="col-12 mb-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="status" value="1" 
-                               id="statusCheck" {{ old('status') ? 'checked' : 'checked' }}>
-                        <label class="form-check-label" for="statusCheck">
-                            <i class="fas fa-check-circle text-success me-1"></i> Aktifkan
-                        </label>
-                    </div>
+                @error('gambar')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required">Konten</label>
+                <textarea name="konten" class="form-control @error('konten') is-invalid @enderror" 
+                          rows="12" placeholder="Masukkan konten informasi lengkap" required>{{ old('konten') }}</textarea>
+                @error('konten')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="status" value="1" 
+                           id="statusCheck" {{ old('status', '1') ? 'checked' : '' }}>
+                    <label class="form-check-label" for="statusCheck">
+                        <i class="fas fa-check-circle text-success me-1"></i> Aktifkan (ditampilkan di website)
+                    </label>
                 </div>
             </div>
             
-            <hr>
+            <hr class="my-4">
             
             <div class="d-flex gap-2">
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save me-2"></i> Simpan
+                    <i class="fas fa-save me-2"></i> Simpan ke Database
                 </button>
                 <a href="{{ route('admin.informasi.index') }}" class="btn btn-secondary">
-                    <i class="fas fa-arrow-left me-2"></i> Batal
+                    <i class="fas fa-times me-2"></i> Batal
                 </a>
             </div>
         </form>
