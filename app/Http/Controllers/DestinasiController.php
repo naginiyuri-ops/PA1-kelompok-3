@@ -42,36 +42,47 @@ class DestinasiController extends Controller
                 'items' => [
                     'desa-wisata-meat' => [
                         'id' => 1,
-                        'nama' => 'Desa Wisata Meat',
+                        'nama' => 'Pantai Meat',
                         'slug' => 'desa-wisata-meat',
                         'kategori' => 'alam',
                         'lokasi' => 'Kec. Tampahan, Kab. Toba Samosir',
-                        'deskripsi' => 'Dikenal sebagai "New Zealand-nya Toba" dengan hamparan sawah hijau terasering yang membentang hingga ke pinggir Danau Toba.',
-                        'deskripsi_lengkap' => 'Desa Wisata Meat adalah permata tersembunyi di tepi Danau Toba. Dengan hamparan sawah hijau terasering yang membentang hingga ke pinggir danau, desa ini dijuluki "New Zealand-nya Toba". Pengunjung dapat menikmati keindahan alam yang masih asli, berjalan-jalan di tengah persawahan, atau bersantai di tepi pantai berpasir.',
-                        'jam_operasional' => '08:00 - 18:00 WIB',
-                        'harga_tiket' => 'Rp 5.000 - Rp 15.000',
+                        'deskripsi' => 'Pantai Meat di Desa Meat, Kecamatan Tampahan, Kabupaten Toba, menawarkan panorama Danau Toba yang indah dengan hamparan pasir putih, air jernih, dan perbukitan hijau. Suasananya tenang dan alami, cocok untuk bersantai, berfoto, maupun menikmati kehidupan masyarakat lokal di sekitar danau.',
+                        'deskripsi_lengkap' => 'Pantai Meat merupakan salah satu destinasi wisata alam unggulan yang terletak di Desa Meat, Kecamatan Tampahan, Kabupaten Toba, Sumatera Utara. Berjarak sekitar 12 kilometer dari Kota Balige, pantai ini berada di tepian Danau Toba dan menawarkan panorama menakjubkan berupa hamparan air danau yang luas, perbukitan hijau, serta persawahan terasering khas kawasan Toba.
+                                                Suasana Pantai Meat dikenal tenang dan alami, menjadikannya tempat ideal untuk bersantai, menikmati pemandangan, maupun melakukan aktivitas fotografi. Dari kawasan pantai, pengunjung dapat menyaksikan keindahan bentang alam Kaldera Toba, peninggalan letusan supervulkan purba ribuan tahun lalu.
+                                                Selain panorama yang memukau, Pantai Meat juga memperlihatkan eratnya hubungan masyarakat lokal dengan alam Danau Toba. Aktivitas pertanian, perikanan, hingga budaya Batak yang masih terjaga dapat ditemui di sekitar kawasan ini.',
+                        'jam_operasional' => '24 jam',
+                        'harga_tiket' => 'Rp 5.000 per orang',
                         'tags' => ['Sawah Terasering', 'Panorama', 'Spot Foto', 'New Zealand']
                     ],
                     'geosite-batu-basiha' => [
                         'id' => 2,
-                        'nama' => 'Geosite Batu Basiha',
+                        'nama' => 'Batu Basiha',
                         'slug' => 'geosite-batu-basiha',
                         'kategori' => 'alam',
                         'lokasi' => 'Desa Aek Bolon, Balige',
-                        'deskripsi' => 'Tumpukan batu-batu balok raksasa sisa letusan dahsyat Gunung Toba 74.000 tahun lalu.',
-                        'deskripsi_lengkap' => 'Geosite Batu Basiha merupakan formasi batuan unik yang menjadi sak bisu letusan dahsyat Gunung Toba 74.000 tahun lalu. Batu-batu raksasa ini tersusun rapi menyerupai tiang kayu, menciptakan pemandangan yang menakjubkan.',
+                        'deskripsi' => 'Batu Basiha (Batu Martindi) bukan sekadar tumpukan batu tua — ia adalah saksi bisu perjalanan spiritual, budaya, dan sejarah masyarakat Batak Toba di Desa Sibodiala. Dengan perlindungan yang tepat dan pengembangan wisata berbasis edukasi, situs ini dapat menjadi warisan budaya yang memberi manfaat bagi ilmu pengetahuan, kebanggaan lokal, dan sektor pariwisata Toba.',
+                        'deskripsi_lengkap' => 'Batu Basiha, yang juga dikenal sebagai Batu Martindi, merupakan salah satu situs geowisata dan cagar budaya penting yang berada di Desa Sibodiala, Kecamatan Parmaksian, Kabupaten Toba, Sumatera Utara. Destinasi ini tidak hanya menyuguhkan keunikan formasi batuan alam, tetapi juga menyimpan nilai sejarah, budaya, dan kearifan lokal masyarakat Batak yang diwariskan secara turun-temurun.
+                        Secara geologis, Batu Basiha terbentuk dari proses pendinginan magma hasil aktivitas vulkanik purba di kawasan Kaldera Toba. Lava yang mengalir dari letusan gunung purba kemudian membeku dan mengalami proses kontraksi alami sehingga membentuk struktur kekar kolom (columnar joint) yang khas. Formasi batuan andesit ini tersusun dalam kolom-kolom vertikal besar yang tampak menyerupai batang atau fosil kayu. Struktur tersebut menjadi salah satu bukti proses geologi vulkanik purba yang membentuk kawasan Danau Toba dan sekitarnya.
+                        Nama “Basiha” berasal dari istilah Batak “batu sian hau” yang berarti “batu yang berasal dari kayu”. Masyarakat setempat meyakini bahwa batu ini memiliki hubungan erat dengan sebuah legenda leluhur. Dahulu kala, sekelompok masyarakat bermaksud membuka pemukiman dengan menebang pohon-pohon besar di kawasan tersebut. Namun, seekor harimau muncul sebagai pertanda dan peringatan agar hutan tetap dijaga. Karena larangan itu diabaikan, petir kemudian menyambar pohon besar hingga berubah menjadi batu. Sejak saat itu, masyarakat mempercayai kawasan Batu Basiha sebagai tempat sakral yang mengandung pesan tentang pentingnya menjaga alam dan kelestarian lingkungan.
+                        Dalam tradisi masyarakat Batak Toba, Batu Basiha juga dikenal sebagai Batu Martindi, yaitu tempat dilaksanakannya ritual adat “martindi”. Ritual ini dilakukan oleh para tetua adat dan datu sebagai sarana untuk memohon petunjuk leluhur, menentukan keputusan penting, meramal keadaan kampung, hingga menyelesaikan persoalan masyarakat. Batu ini dipercaya menjadi media spiritual yang menghubungkan manusia dengan roh nenek moyang.
+                        Di sekitar Batu Basiha terdapat beberapa peninggalan budaya seperti batu duduk untuk musyawarah, batu persembahan, dan area ritual adat yang dahulu digunakan masyarakat setempat. Keberadaan situs ini mencerminkan nilai-nilai kehidupan masyarakat Batak yang menjunjung tinggi musyawarah, kebersamaan, penghormatan terhadap leluhur, serta konservasi alam.
+                        Selain menjadi situs budaya dan sejarah, Batu Basiha juga menawarkan panorama alam yang indah dengan suasana perbukitan hijau dan udara sejuk khas kawasan Toba. Pengunjung dapat menikmati wisata edukasi geologi, sejarah budaya Batak, fotografi alam, hingga mendengarkan cerita rakyat dan legenda lokal dari masyarakat sekitar.
+                        Saat ini, Batu Basiha telah ditetapkan sebagai salah satu cagar budaya yang dilindungi pemerintah daerah bersama Balai Pelestarian Kebudayaan Sumatera Utara. Pelestarian dilakukan melalui pemasangan informasi sejarah, perlindungan situs dari vandalisme, serta pengembangan wisata edukasi budaya dan geowisata sebagai bagian dari upaya menjaga warisan sejarah dan budaya masyarakat Batak untuk generasi mendatang.',
                         'jam_operasional' => '06:00 - 18:00 WIB',
                         'harga_tiket' => 'Rp 10.000 - Rp 20.000',
                         'tags' => ['Batu Raksasa', 'Geologi', 'Sunrise', 'Sunset']
                     ],
                     'liang-sipege' => [
                         'id' => 3,
-                        'nama' => 'Liang Sipege',
+                        'nama' => 'Gua Liang Sipege',
                         'slug' => 'liang-sipege',
                         'kategori' => 'alam',
-                        'lokasi' => 'Kawasan Balige',
+                        'lokasi' => 'Desa Simarmar Pea Talun Hutagaol, Kecamatan Balige',
                         'deskripsi' => 'Goa alami dengan stalaktit dan stalakmit yang terbentuk secara alami, menyimpan nilai sejarah dan geologi.',
-                        'deskripsi_lengkap' => 'Liang Sipege adalah goa alami yang menyimpan nilai sejarah dan geologi yang tinggi. Formasi batuan di dalam goa ini sangat unik, dengan stalaktit dan stalakmit yang terbentuk secara alami.',
+                        'deskripsi_lengkap' => 'Gua Liang Sipege merupakan destinasi wisata alam yang berada tidak jauh dari pusat Kota Balige, Kabupaten Toba, Sumatera Utara. Lokasinya dapat dijangkau dengan kendaraan roda dua maupun roda empat dengan waktu tempuh sekitar 30 menit. Akses menuju kawasan gua cukup baik, mulai dari jalan desa hingga jalur rabat beton menuju mulut gua sehingga memudahkan pengunjung menikmati keindahan alam di sekitarnya.
+                        Gua ini memiliki mulut gua dengan lebar sekitar 15 meter dan dikelilingi formasi batuan unik yang menjadi daya tarik utama. Kawasan Gua Liang Sipege didominasi batuan andesit dengan struktur kekar kolom horizontal berukuran besar yang menyerupai formasi dyke atau retas raksasa. Keunikan geologi tersebut menjadikan kawasan ini tidak hanya menarik sebagai objek wisata alam, tetapi juga berpotensi menjadi lokasi penelitian bagi para ahli geologi dan akademisi.
+                        Selain keindahan alamnya, gua ini juga dikenal memiliki suasana yang tenang dan penuh nuansa misterius. Masyarakat setempat mewariskan berbagai cerita rakyat yang melekat dengan kawasan gua, salah satunya mitos Basiha atau “Batu Sian Hau” yang dipercaya sebagai batu yang berasal dari kayu. Kisah tersebut menjadi bagian dari kekayaan budaya lokal yang menambah daya tarik wisata kawasan ini.
+                        Dengan perpaduan panorama alam, formasi batuan langka, serta suasana khas pegunungan Toba, Gua Liang Sipege menjadi salah satu destinasi wisata alam yang menarik untuk dikunjungi sekaligus dinikmati keunikan alam dan budaya yang dimilikinya.',
                         'jam_operasional' => '08:00 - 17:00 WIB',
                         'harga_tiket' => 'Rp 15.000 - Rp 25.000',
                         'tags' => ['Goa Alami', 'Sejarah', 'Geowisata', 'Edukasi']
