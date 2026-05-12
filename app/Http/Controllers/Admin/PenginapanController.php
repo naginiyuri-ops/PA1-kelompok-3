@@ -67,7 +67,7 @@ class PenginapanController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:4096', // 4MB
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:4096',
             'urutan' => 'required|integer',
             'harga' => 'nullable|string',
             'kontak' => 'nullable|string',

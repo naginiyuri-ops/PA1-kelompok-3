@@ -71,7 +71,7 @@ class DestinasiController extends Controller
                         Selain menjadi situs budaya dan sejarah, Batu Basiha juga menawarkan panorama alam yang indah dengan suasana perbukitan hijau dan udara sejuk khas kawasan Toba. Pengunjung dapat menikmati wisata edukasi geologi, sejarah budaya Batak, fotografi alam, hingga mendengarkan cerita rakyat dan legenda lokal dari masyarakat sekitar.
                         Saat ini, Batu Basiha telah ditetapkan sebagai salah satu cagar budaya yang dilindungi pemerintah daerah bersama Balai Pelestarian Kebudayaan Sumatera Utara. Pelestarian dilakukan melalui pemasangan informasi sejarah, perlindungan situs dari vandalisme, serta pengembangan wisata edukasi budaya dan geowisata sebagai bagian dari upaya menjaga warisan sejarah dan budaya masyarakat Batak untuk generasi mendatang.',
                         'jam_operasional' => '06:00 - 18:00 WIB',
-                        'harga_tiket' => 'Rp 10.000 - Rp 20.000',
+                        'harga_tiket' => 'Free',
                         'tags' => ['Batu Raksasa', 'Geologi', 'Sunrise', 'Sunset'],
                         //  TAMBAHKAN FIELD FOTO DI SINI
                         'foto' => 'image/meat/batubasiha1.png'
@@ -88,7 +88,7 @@ class DestinasiController extends Controller
                         Selain keindahan alamnya, gua ini juga dikenal memiliki suasana yang tenang dan penuh nuansa misterius. Masyarakat setempat mewariskan berbagai cerita rakyat yang melekat dengan kawasan gua, salah satunya mitos Basiha atau "Batu Sian Hau" yang dipercaya sebagai batu yang berasal dari kayu. Kisah tersebut menjadi bagian dari kekayaan budaya lokal yang menambah daya tarik wisata kawasan ini.
                         Dengan perpaduan panorama alam, formasi batuan langka, serta suasana khas pegunungan Toba, Gua Liang Sipege menjadi salah satu destinasi wisata alam yang menarik untuk dikunjungi sekaligus dinikmati keunikan alam dan budaya yang dimilikinya.',
                         'jam_operasional' => '08:00 - 17:00 WIB',
-                        'harga_tiket' => 'Rp 15.000 - Rp 25.000',
+                        'harga_tiket' => 'Free',
                         'tags' => ['Goa Alami', 'Sejarah', 'Geowisata', 'Edukasi'],
                         // 👇 TAMBAHKAN FIELD FOTO DI SINI
                         'foto' => 'image/meat/liang-sipege-hero.jpg'

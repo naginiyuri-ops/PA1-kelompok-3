@@ -179,7 +179,7 @@
         'alam' => [
             'judul' => 'Destinasi Alam',
             'deskripsi' => 'Destinasi wisata alam yang menampilkan keindahan geologi, pegunungan, dan keunikan alam Danau Toba.',
-            'bg_hero' => 'image/destinasi/alam1.jpg',
+            'bg_hero' => 'image/meat/meat-detail.jpg',
             'items' => [
                 1 => ['slug' => 'desa-wisata-meat', 'nama' => 'Desa Wisata Meat', 'lokasi' => 'Kec. Tampahan, Kab. Toba Samosir', 'deskripsi' => 'Dikenal sebagai "New Zealand-nya Toba" dengan hamparan sawah hijau terasering yang membentang hingga ke pinggir Danau Toba.', 'tags' => ['Sawah Terasering', 'Panorama', 'Spot Foto']],
                 2 => ['slug' => 'geosite-batu-basiha', 'nama' => 'Geosite Batu Basiha', 'lokasi' => 'Desa Aek Bolon, Balige', 'deskripsi' => 'Tumpukan batu-batu balok raksasa sisa letusan dahsyat Gunung Toba 74.000 tahun lalu.', 'tags' => ['Batu Raksasa', 'Geologi', 'Sunrise']],
@@ -189,7 +189,7 @@
         'budaya' => [
             'judul' => 'Destinasi Budaya',
             'deskripsi' => 'Destinasi wisata budaya yang menampilkan kearifan lokal, adat istiadat, dan warisan leluhur Batak Toba yang masih lestari.',
-            'bg_hero' => 'image/destinasi/budaya1.jpg',
+            'bg_hero' => 'image/meat/batubasiha2.jpg',
             'items' => [
                 1 => ['slug' => 'sentra-tenun-ulos', 'nama' => 'Sentra Tenun Ulos', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'deskripsi' => 'Wisatawan dapat melihat langsung proses martonun (menenun) ulos yang dikerjakan oleh kaum wanita setempat.', 'tags' => ['Tenun Ulos', 'Kerajinan Tangan', 'Budaya Batak']],
                 2 => ['slug' => 'rumah-adat-batak', 'nama' => 'Rumah Adat Batak', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'deskripsi' => 'Rumah tradisional Batak Toba yang khas dengan arsitektur dan ornamen penuh makna filosofis.', 'tags' => ['Rumah Adat', 'Arsitektur', 'Budaya Batak']],
@@ -199,7 +199,7 @@
         'buatan' => [
             'judul' => 'Destinasi Buatan',
             'deskripsi' => 'Fasilitas wisata yang dikembangkan untuk mendukung kenyamanan wisatawan di kawasan Danau Toba.',
-            'bg_hero' => 'image/destinasi/buatan1.jpg',
+            'bg_hero' => 'image/meat/slide1.jpg',
             'items' => [
                 1 => ['slug' => 'spot-pantai-meat', 'nama' => 'Spot Pantai Meat', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'deskripsi' => 'Area pinggir Danau Toba yang ditata untuk bersantai menikmati pemandangan danau dan perbukitan.', 'tags' => ['Pantai', 'Santai', 'Keluarga']],
                 2 => ['slug' => 'homestay-meat', 'nama' => 'Homestay Meat', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'deskripsi' => 'Penginapan berbasis budaya yang dikelola warga setempat dengan pemandangan sawah dan Danau Toba.', 'tags' => ['Homestay', 'Budaya', 'Penginapan']],
