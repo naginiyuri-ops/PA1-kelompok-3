@@ -212,7 +212,7 @@
             <div class="badge">Lokasi</div>
             <h2>Cara Mencapai</h2>
             <div class="divider"></div>
-            <p>Lokasi strategis di Pulau Sibandang</p>
+            <p>Lokasi strategis </p>
         </div>
         <div class="maps-section">
             <div class="maps-container">
@@ -246,8 +246,11 @@
         <div class="divider"></div>
         <p>Rasakan pengalaman wisata budaya Batak yang autentik</p>
         <div class="cta-buttons">
-            <a href="{{ url('/') }}" class="cta-btn">Beranda</a>
-            <a href="#penginapan" class="cta-btn cta-btn-outline">Pesan Penginapan</a>
+            <a href="{{ url('/') }}" class="cta-btn">Kembali ke home </a>
+            <a href="#penginapan" class="cta-btn cta-btn-outline">Penginapan</a>
+            <a href="#umkm" class="cta-btn cta-btn-outline">Umkm</a>
+            <a href="#fasilitas" class="cta-btn cta-btn-outline">Fasilitas</a>
+            <a href="#sejarah" class="cta-btn cta-btn-outline">Sejarah</a>
         </div>
     </div>
 </section>

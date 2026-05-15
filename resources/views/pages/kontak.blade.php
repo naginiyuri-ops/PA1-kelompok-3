@@ -373,8 +373,8 @@
             <div class="contact-card">
                 <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
                 <h3>Telepon</h3>
-                <p>+62 812 3456 7890</p>
-                <p>+62 813 9876 5432</p>
+                <p>+62 823-6582-3679</p>
+                <p>+08 123-456-789</p>
                 <p>(0622) 12345</p>
             </div>
             <div class="contact-card">
