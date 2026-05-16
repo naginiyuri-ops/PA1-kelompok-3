@@ -257,7 +257,6 @@
             <a href="{{ url('/') }}" class="nav-link home-btn">Home</a>
             <a href="#sejarah" class="nav-link">Sejarah</a>
             <a href="#informasi" class="nav-link">Informasi</a>
-            <a href="#galeri" class="nav-link">Galeri</a>
         </div>
         <div class="hamburger" id="hamburger">
             <span></span><span></span><span></span>
@@ -306,14 +305,14 @@
             <div class="sejarah-item" data-aos="fade-right">
                 <div class="sejarah-image"><img src="/image/liang/" alt="Sejarah 1"></div>
                 <div class="sejarah-text">
-                    <h4 style="color: var(--bi-blue); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Legenda Si Lundu Ni Pahu</h4>
+                    <h4 style="color: var(--bi-blue); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Legenda Liang sipege</h4>
                     <p>Masyarakat setempat meyakini bahwa Liang Sipege adalah bekas tempat bertapa dan tempat persembunyian leluhur mereka. Cerita turun-temurun menceritakan bahwa gua ini merupakan asal-usul leluhur marga Panjaitan. Ibunya diasingkan karena tidak kunjung melahirkan setelah hamil lebih dari sembilan bulan, kondisi yang dianggap aib pada saat itu. Akhirnya, sang leluhur bernama Si Lundu Ni Pahu (yang dibesarkan oleh tanaman pakis) lahir di Liang Sipege dan tumbuh menjadi pemuda yang cerdas dan tangkas.</p>
                 </div>
             </div>
             <div class="sejarah-item reverse" data-aos="fade-left">
-                <div class="sejarah-image"><img src="/image/liang/sejarah2.jpg" alt="Sejarah 2"></div>
+                <div class="sejarah-image"><img src="/image/meat/liang-sipege-hero.jpg" alt="Sejarah 2"></div>
                 <div class="sejarah-text">
-                    <h4 style="color: var(--bi-blue); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Raja Sijorat Paraliman Panjaitan</h4>
+                    <h4 style="color: var(--bi-blue); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Liang sipege</h4>
                     <p>Si Lundu Ni Pahu kemudian dikenal sebagai Raja Sijorat Paraliman Panjaitan, seorang tokoh yang dianggap memiliki kekuatan dan keberanian luar biasa. Raja ini terkenal di kalangan penggembala dan sering memenangkan berbagai perlombaan. Salah satu kisah legendanya adalah ketika ia berhasil menangkap kuda liar milik Raja Sisingamangaraja XII yang kabur, dari mana ia mendapat gelar "Raja Si Jorat" yang berarti raja yang mampu menangkap kuda liar.</p>
                 </div>
             </div>
@@ -328,23 +327,6 @@
     </div>
 </section>
 
-<!-- GALERI -->
-<section id="galeri" class="section bg-light">
-    <div class="container">
-        <div class="section-title" data-aos="fade-up">
-            <h2>Galeri</h2>
-            <div class="divider"></div>
-            <p>Keindahan dan Misteri Liang Sipege yang Menakjubkan</p>
-        </div>
-        <div class="galeri-grid" id="galeriGrid">
-            <div class="galeri-item"><img src="/image/liang/galeri1.jpg" alt="Galeri 1"></div>
-            <div class="galeri-item"><img src="/image/liang/galeri2.jpg" alt="Galeri 2"></div>
-            <div class="galeri-item"><img src="/image/liang/galeri3.jpg" alt="Galeri 3"></div>
-            <div class="galeri-item"><img src="/image/liang/galeri4.jpg" alt="Galeri 4"></div>
-           
-        </div>
-    </div>
-</section>
 
 <!-- INFORMASI PRAKTIS -->
 <section id="informasi" class="section bg-light">
@@ -353,14 +335,6 @@
             <h2>Informasi Praktis</h2>
             <div class="divider"></div>
         </div>
-        <div class="sejarah-grid">
-            <div class="sejarah-item" data-aos="fade-right">
-                <div class="sejarah-image"><img src="/image/liang/lokasi.jpg" alt="Lokasi"></div>
-                <div class="sejarah-text">
-                    <h4 style="color: var(--bi-blue); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif;">Lokasi & Aksesibilitas</h4>
-                    <p>Liang Sipege terletak di Desa Simarmar Pea Talun Hutagaol, Kecamatan Balige. Dari Simpang Sibulele (Balige, Kabupaten Tobasa), jaraknya sekitar 4 km. Dari desa ke lokasi gua harus ditempuh dengan berjalan kaki, menambah petualangan Anda menjelajahi keindahan alam sekitar.</p>
-                </div>
-            </div>
             <div class="sejarah-item reverse" data-aos="fade-left">
                 <div class="sejarah-image"><img src="/image/liang/fauna.jpg" alt="Kelelawar"></div>
                 <div class="sejarah-text">
