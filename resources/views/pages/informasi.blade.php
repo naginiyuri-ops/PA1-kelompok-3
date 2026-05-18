@@ -5,12 +5,9 @@
 @section('content')
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-    
-    /* Hero Section - Diperbesar */
     .info-hero {
-        height: 40vh;
-        min-height: 320px;
+        height: 35vh;
+        min-height: 280px;
         background: linear-gradient(135deg, rgba(0,51,102,0.75), rgba(0,51,102,0.55)), url('{{ asset("image/sejarah-hero.jpg") }}');
         background-size: cover;
         background-position: center;
@@ -23,22 +20,21 @@
     }
     
     .info-hero h1 { 
-        font-size: 2.5rem; 
+        font-size: 2rem; 
         font-weight: 700;
-        margin-bottom: 12px;
+        margin-bottom: 8px;
     }
     
     .info-hero p { 
-        font-size: 0.85rem; 
+        font-size: 0.7rem; 
         letter-spacing: 0.2em; 
         text-transform: uppercase; 
         opacity: 0.85;
     }
     
-    /* Main Content */
     .info-section {
-        padding: 60px 0;
-        background: #f5f7fa;
+        padding: 50px 0;
+        background: #f8f9fa;
     }
     
     .container {
@@ -47,166 +43,96 @@
         padding: 0 20px;
     }
     
-    .section-header {
-        text-align: center;
-        margin-bottom: 50px;
-    }
-    
-    .section-header h2 {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #003366;
-        margin-bottom: 10px;
-    }
-    
-    .divider {
-        width: 60px;
-        height: 3px;
-        background: #c6a43b;
-        margin: 12px auto 0;
-    }
-    
-    .section-header p {
-        font-size: 0.9rem;
-        color: #2c5f8a;
-        margin-top: 12px;
-    }
-    
-    /* Info Grid */
     .info-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 50px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
     }
     
-    /* Info Card - Lebih besar */
     .info-card {
         background: white;
-        border-radius: 24px;
+        border-radius: 16px;
         overflow: hidden;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
         transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
     }
     
     .info-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.12);
     }
     
-    .info-card-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    
-    /* FOTO - Diperbesar */
-    .info-card-image {
-        flex: 1;
-        min-width: 380px;
-        background: #f0f2f5;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .info-card-img {
+        height: 200px;
         overflow: hidden;
     }
     
-    .info-card-image img {
+    .info-card-img img {
         width: 100%;
-        height: 420px;
+        height: 100%;
         object-fit: cover;
-        display: block;
-        transition: transform 0.5s ease;
+        transition: transform 0.4s ease;
     }
     
-    .info-card:hover .info-card-image img {
-        transform: scale(1.03);
+    .info-card:hover .info-card-img img {
+        transform: scale(1.05);
     }
     
-    /* Konten - Diperbesar */
-    .info-card-content {
+    .info-card-body {
+        padding: 20px;
         flex: 1;
-        padding: 35px;
-        background: white;
         display: flex;
         flex-direction: column;
-        justify-content: center;
     }
     
-    .info-card-wrapper.reverse {
-        flex-direction: row-reverse;
-    }
-    
-    /* Badge */
-    .info-badge {
+    .info-date {
+        font-size: 11px;
+        color: #c6a43b;
         display: inline-block;
-        background: #c6a43b;
-        color: #003366;
-        padding: 5px 16px;
-        border-radius: 25px;
-        font-size: 0.75rem;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        margin-bottom: 18px;
-        width: fit-content;
+        margin-bottom: 10px;
     }
     
-    /* Title */
-    .info-card-content h3 {
-        font-size: 1.8rem;
+    .info-card-body h3 {
+        font-size: 1.15rem;
         font-weight: 700;
         color: #003366;
-        margin-bottom: 18px;
-        line-height: 1.3;
+        margin-bottom: 12px;
+        line-height: 1.4;
     }
     
-    /* Meta */
-    .info-meta {
-        display: flex;
-        gap: 15px;
-        margin-bottom: 20px;
-        padding-bottom: 12px;
-        border-bottom: 1px solid #eef2f8;
+    .info-excerpt {
+        color: #666;
         font-size: 0.8rem;
-        color: #888;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        flex: 1;
     }
     
-    /* Konten Preview - Dipotong */
-    .info-content-preview {
-        color: #444;
-        line-height: 1.8;
-        font-size: 0.95rem;
-        margin-bottom: 20px;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-    }
-    
-    /* Tombol Selengkapnya */
-    .btn-read-more {
+    .btn-readmore {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        background: transparent;
+        gap: 6px;
         color: #c6a43b;
-        border: 1px solid #c6a43b;
-        padding: 10px 24px;
-        border-radius: 40px;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         font-weight: 600;
         text-decoration: none;
         transition: all 0.3s ease;
-        width: fit-content;
+        margin-top: 10px;
+        cursor: pointer;
+        background: none;
+        border: none;
     }
     
-    .btn-read-more:hover {
-        background: #c6a43b;
+    .btn-readmore:hover {
+        gap: 10px;
         color: #003366;
-        gap: 12px;
-        transform: translateY(-2px);
     }
     
-    /* Modal Detail */
-    .modal-detail {
+    /* Modal */
+    .modal {
         display: none;
         position: fixed;
         top: 0;
@@ -219,105 +145,92 @@
         padding: 40px 20px;
     }
     
-    .modal-detail.active {
+    .modal.active {
         display: block;
     }
     
-    .modal-detail-container {
-        max-width: 900px;
+    .modal-container {
+        max-width: 800px;
         margin: 0 auto;
         background: white;
-        border-radius: 24px;
+        border-radius: 20px;
         overflow: hidden;
-        animation: modalFadeIn 0.4s ease;
+        animation: fadeIn 0.3s ease;
     }
     
-    @keyframes modalFadeIn {
+    @keyframes fadeIn {
         from { opacity: 0; transform: scale(0.95); }
         to { opacity: 1; transform: scale(1); }
     }
     
-    .modal-detail-header {
+    .modal-header {
         position: relative;
-        height: 300px;
+        height: 250px;
         overflow: hidden;
     }
     
-    .modal-detail-header img {
+    .modal-header img {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
     
-    .modal-detail-header .overlay {
+    .modal-header .overlay {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
         background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-        padding: 40px 30px 20px;
+        padding: 30px 25px 20px;
     }
     
-    .modal-detail-header .overlay h2 {
+    .modal-header .overlay h2 {
         color: white;
-        font-size: 1.8rem;
-        font-weight: 700;
+        font-size: 1.5rem;
         margin: 0;
     }
     
-    .modal-detail-body {
-        padding: 30px;
+    .modal-body {
+        padding: 25px;
     }
     
-    .modal-detail-body .meta {
-        display: flex;
-        gap: 15px;
-        margin-bottom: 20px;
-        padding-bottom: 12px;
-        border-bottom: 1px solid #eef2f8;
-        font-size: 0.8rem;
+    .modal-body .meta {
+        font-size: 0.75rem;
         color: #888;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
     }
     
-    .modal-detail-body .full-content {
+    .modal-body .full-content {
         color: #444;
         line-height: 1.8;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
     
-    .modal-detail-body .full-content p {
+    .modal-body .full-content p {
         margin-bottom: 1em;
     }
     
-    .modal-detail-body .full-content ul,
-    .modal-detail-body .full-content ol {
-        margin: 1em 0;
-        padding-left: 1.8em;
-    }
-    
-    .modal-detail-body .full-content li {
-        margin-bottom: 0.5em;
-    }
-    
-    .modal-detail-close {
+    .modal-close {
         position: fixed;
         top: 20px;
         right: 30px;
         background: rgba(0,0,0,0.7);
         color: white;
-        width: 45px;
-        height: 45px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         transition: all 0.3s ease;
         z-index: 10001;
     }
     
-    .modal-detail-close:hover {
+    .modal-close:hover {
         background: #c6a43b;
         color: #003366;
         transform: rotate(90deg);
@@ -327,148 +240,90 @@
         overflow: hidden;
     }
     
-    /* Tags - HIDDEN */
-    .info-tags {
-        display: none;
-    }
-    
     .empty-state {
         text-align: center;
-        padding: 60px 20px;
+        padding: 50px 20px;
         background: white;
-        border-radius: 20px;
+        border-radius: 16px;
     }
     
-    /* Responsive */
     @media (max-width: 992px) {
-        .info-card-image {
-            min-width: 320px;
-        }
-        .info-card-image img {
-            height: 360px;
-        }
-        .info-card-content h3 {
-            font-size: 1.5rem;
+        .info-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
         }
     }
     
     @media (max-width: 768px) {
-        .info-hero {
-            min-height: 260px;
-        }
         .info-hero h1 {
-            font-size: 1.8rem;
-        }
-        .info-section {
-            padding: 40px 0;
-        }
-        .section-header h2 {
             font-size: 1.6rem;
         }
-        .info-card-wrapper {
-            flex-direction: column !important;
+        .info-section {
+            padding: 35px 0;
         }
-        .info-card-image {
-            min-width: 100%;
+        .info-grid {
+            grid-template-columns: 1fr;
         }
-        .info-card-image img {
-            height: 280px;
+        .info-card-img {
+            height: 180px;
         }
-        .info-card-content {
-            padding: 25px;
+        .modal-header {
+            height: 200px;
         }
-        .info-card-content h3 {
-            font-size: 1.4rem;
+        .modal-header .overlay h2 {
+            font-size: 1.2rem;
         }
-        .modal-detail-header {
-            height: 220px;
-        }
-        .modal-detail-header .overlay h2 {
-            font-size: 1.4rem;
-        }
-        .modal-detail-body {
+        .modal-body {
             padding: 20px;
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .info-card-content {
-            padding: 20px;
-        }
-        .info-card-content h3 {
-            font-size: 1.3rem;
-        }
-        .info-card-image img {
-            height: 220px;
-        }
-        .btn-read-more {
-            padding: 8px 20px;
-            font-size: 0.7rem;
         }
     }
 </style>
 
 <!-- HERO SECTION -->
-<section class="info-hero">
+<div class="info-hero">
     <div data-aos="fade-up">
         <h1>Informasi Geopark</h1>
         <p>Jelajahi Pengetahuan Tentang Geopark Danau Toba</p>
     </div>
-</section>
+</div>
 
 <!-- MAIN CONTENT -->
 <section class="info-section">
     <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <h2>Informasi Lengkap</h2>
-            <div class="divider"></div>
-            <p>Temukan berbagai informasi menarik seputar Geopark Danau Toba</p>
-        </div>
-        
         <div class="info-grid">
-            @forelse($informasiList as $index => $item)
-            <div class="info-card" data-aos="fade-up" data-aos-delay="{{ min($index * 50, 300) }}">
-                <div class="info-card-wrapper {{ $index % 2 == 1 ? 'reverse' : '' }}">
-                    <div class="info-card-image">
-                        @php
-                            $gambarSrc = asset('image/default.jpg');
-                            if (!empty($item->gambar)) {
-                                if (str_starts_with($item->gambar, 'data:image')) {
-                                    $gambarSrc = $item->gambar;
-                                } elseif (filter_var($item->gambar, FILTER_VALIDATE_URL)) {
-                                    $gambarSrc = $item->gambar;
-                                } else {
-                                    $gambarSrc = asset('storage/' . $item->gambar);
-                                }
+            @forelse($informasiList as $item)
+            <div class="info-card" data-aos="fade-up">
+                <div class="info-card-img">
+                    @php
+                        $imgSrc = asset('image/default.jpg');
+                        if (!empty($item->gambar)) {
+                            if (str_starts_with($item->gambar, 'data:image')) {
+                                $imgSrc = $item->gambar;
+                            } elseif (filter_var($item->gambar, FILTER_VALIDATE_URL)) {
+                                $imgSrc = $item->gambar;
+                            } else {
+                                $imgSrc = asset('storage/' . $item->gambar);
                             }
-                        @endphp
-                        <img src="{{ $gambarSrc }}" alt="{{ $item->judul }}" loading="lazy">
-                    </div>
-                    <div class="info-card-content">
-                        <span class="info-badge">INFORMASI GEOPARK</span>
-                        <h3>{{ $item->judul }}</h3>
-                        
-                        <div class="info-meta">
-                            <span>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') }}</span>
-                            <span>•</span>
-                            <span>{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
-                        </div>
-                        
-                        <!-- Preview konten (3 baris) -->
-                        <div class="info-content-preview">
-                            {!! Str::limit(strip_tags($item->konten), 200) !!}
-                        </div>
-                        
-                        <!-- Tombol Selengkapnya -->
-                        <button class="btn-read-more" onclick="openDetail({{ $item->id }})">
-                            Selengkapnya <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
+                        }
+                    @endphp
+                    <img src="{{ $imgSrc }}" alt="{{ $item->judul }}" loading="lazy">
+                </div>
+                <div class="info-card-body">
+                    <span class="info-date">
+                        📅 {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') }}
+                    </span>
+                    <h3>{{ $item->judul }}</h3>
+                    <p class="info-excerpt">
+                        {{ Str::limit(strip_tags($item->konten), 100) }}
+                    </p>
+                    <button class="btn-readmore" onclick="showDetail({{ $item->id }})">
+                        Baca Selengkapnya →
+                    </button>
                 </div>
             </div>
             @empty
-            <div class="empty-state" data-aos="fade-up">
-                <i class="fas fa-database"></i>
+            <div class="empty-state">
+                <i class="fas fa-database fa-3x text-muted mb-3"></i>
                 <h3>Belum Ada Informasi</h3>
                 <p>Belum ada data informasi yang tersedia.</p>
             </div>
@@ -477,17 +332,17 @@
     </div>
 </section>
 
-<!-- MODAL DETAIL -->
-<div id="modalDetail" class="modal-detail">
-    <div class="modal-detail-close" onclick="closeDetail()">&times;</div>
-    <div class="modal-detail-container">
-        <div class="modal-detail-header" id="modalHeader">
+<!-- MODAL -->
+<div id="infoModal" class="modal">
+    <div class="modal-close" onclick="closeModal()">&times;</div>
+    <div class="modal-container">
+        <div class="modal-header">
             <img src="" alt="" id="modalImg">
             <div class="overlay">
                 <h2 id="modalTitle"></h2>
             </div>
         </div>
-        <div class="modal-detail-body">
+        <div class="modal-body">
             <div class="meta" id="modalMeta"></div>
             <div class="full-content" id="modalContent"></div>
         </div>
@@ -498,7 +353,7 @@
     // Data informasi dari server
     const infoData = @json($informasiList);
     
-    function openDetail(id) {
+    function showDetail(id) {
         const item = infoData.find(x => x.id === id);
         if (!item) return;
         
@@ -518,36 +373,34 @@
         document.getElementById('modalImg').src = imgSrc;
         document.getElementById('modalTitle').innerText = item.judul;
         document.getElementById('modalMeta').innerHTML = `
-            <span>📅 ${new Date(item.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
-            <span>•</span>
-            <span>🕐 ${new Date(item.created_at).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}</span>
+            📅 ${new Date(item.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
         `;
         document.getElementById('modalContent').innerHTML = item.konten;
         
         // Tampilkan modal
-        document.getElementById('modalDetail').classList.add('active');
+        document.getElementById('infoModal').classList.add('active');
         document.body.classList.add('modal-open');
     }
     
-    function closeDetail() {
-        document.getElementById('modalDetail').classList.remove('active');
+    function closeModal() {
+        document.getElementById('infoModal').classList.remove('active');
         document.body.classList.remove('modal-open');
     }
     
     // ESC key to close
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
-            const modal = document.getElementById('modalDetail');
+            const modal = document.getElementById('infoModal');
             if (modal.classList.contains('active')) {
-                closeDetail();
+                closeModal();
             }
         }
     });
     
     // Klik di luar modal container untuk close
-    document.getElementById('modalDetail').addEventListener('click', function(e) {
+    document.getElementById('infoModal').addEventListener('click', function(e) {
         if (e.target === this) {
-            closeDetail();
+            closeModal();
         }
     });
 </script>
@@ -562,5 +415,8 @@
         offset: 50
     });
 </script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 @endsection
