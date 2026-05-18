@@ -109,7 +109,7 @@ class DestinasiController extends Controller
                         'harga_tiket' => 'Gratis (belajar tenun: Rp 25.000)',
                         'tags' => ['Tenun Ulos', 'Kerajinan Tangan', 'Budaya Batak', 'Oleh-oleh'],
                         // 👇 TAMBAHKAN FIELD FOTO DI SINI
-                        'foto' => 'image/destinasi/budaya1.jpg'
+                        'foto' => 'image/meat/ulos.jpg'
                     ],
                     'rumah-adat-batak' => [
                         'id' => 2,
@@ -120,24 +120,10 @@ class DestinasiController extends Controller
                         'deskripsi' => 'Rumah tradisional Batak Toba yang khas dengan arsitektur dan ornamen penuh makna filosofis.',
                         'deskripsi_lengkap' => 'Rumah adat Batak di Desa Meat bukan hanya bangunan biasa, tetapi juga pusat kegiatan budaya yang masih dihuni dan dirawat dengan baik. Pengunjung dapat melihat langsung arsitektur khas Batak, termasuk ukiran-ukiran dan ornamen yang memiliki makna filosofis.',
                         'jam_operasional' => '08:00 - 18:00 WIB',
-                        'harga_tiket' => 'Rp 5.000',
+                        'harga_tiket' => '',
                         'tags' => ['Rumah Adat', 'Arsitektur', 'Budaya Batak', 'Sejarah'],
                         // 👇 TAMBAHKAN FIELD FOTO DI SINI
-                        'foto' => 'image/destinasi/budaya2.jpg'
-                    ],
-                    'sigale-gale' => [
-                        'id' => 3,
-                        'nama' => 'Patung Sigale-gale',
-                        'slug' => 'sigale-gale',
-                        'kategori' => 'budaya',
-                        'lokasi' => 'Tomok, Pulau Samosir',
-                        'deskripsi' => 'Patung kayu khas Batak yang dapat menari, simbol ritual kematian dan penghormatan leluhur.',
-                        'deskripsi_lengkap' => 'Sigale-gale adalah patung kayu khas Batak Toba yang dapat menari mengikuti irama musik. Patung ini digunakan dalam ritual kematian untuk menghormati arwah leluhur. Saat ini, Sigale-gale menjadi atraksi wisata budaya yang populer di Pulau Samosir.',
-                        'jam_operasional' => '09:00 - 17:00 WIB',
-                        'harga_tiket' => 'Rp 10.000',
-                        'tags' => ['Sigale-gale', 'Budaya Batak', 'Tari Tradisional', 'Sejarah'],
-                        // 👇 TAMBAHKAN FIELD FOTO DI SINI
-                        'foto' => 'image/destinasi/budaya3.jpg'
+                        'foto' => 'image/meat/jabubatak.jpg'
                     ]
                 ]
             ],
