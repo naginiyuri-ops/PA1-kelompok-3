@@ -367,7 +367,7 @@
                 <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                 <h3>Alamat</h3>
                 <p>Geosite Danau Toba</p>
-                <p>Pulau Sibandang, Danau Toba</p>
+                <p>Meat, Danau Toba</p>
                 <p>Sumatera Utara</p>
             </div>
             <div class="contact-card">
@@ -382,7 +382,7 @@
                 <h3>Email</h3>
                 <p>info@geotoba.com</p>
                 <p>reservasi@geotoba.com</p>
-                <p>support@geotoba.com</p>
+                <p>Meat@geotoba.com</p>
             </div>
         </div>
     </div>
