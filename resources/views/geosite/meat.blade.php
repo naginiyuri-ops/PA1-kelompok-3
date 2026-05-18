@@ -172,7 +172,7 @@
         </div>
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; margin-bottom:2rem;">
             <div style="background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,.06);">
-                <i class="fas fa-campground" style="color:#2d7a5e; font-size:1.8rem; margin-bottom:.8rem; display:block;"></i>
+    
                 <h4">Camping Ground Tepi Danau</h4>
                 <p style="margin:0; font-size:.92rem; color:#555;">
                     Pinggiran danau yang landai dan berumput menjadikan Desa Meat sebagai lokasi berkemah impian. 
@@ -181,7 +181,7 @@
                 </p>
             </div>
             <div style="background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,.06);">
-                <i class="fas fa-flag" style="color:#2d7a5e; font-size:1.8rem; margin-bottom:.8rem; display:block;"></i>
+               
                 <h4 style="margin:0 0 .5rem;">Festival 1.000 Tenda</h4>
                 <p style="margin:0; font-size:.92rem; color:#555;">
                     Desa Meat menjadi tuan rumah <strong>Festival 1.000 Tenda</strong>, acara tahunan populer yang 
@@ -190,7 +190,7 @@
                 </p>
             </div>
             <div style="background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,.06);">
-                <i class="fas fa-camera" style="color:#2d7a5e; font-size:1.8rem; margin-bottom:.8rem; display:block;"></i>
+                
                 <h4 style="margin:0 0 .5rem;">Spot Foto & Bird's Eye View</h4>
                 <p style="margin:0; font-size:.92rem; color:#555;">
                     Jalanan aspal yang membelah persawahan menuju desa menjadi jalur favorit fotografer dan pesepeda. 
@@ -202,7 +202,7 @@
 
         <!-- Kuliner & Homestay -->
         <div style="background:#f8faf9; border-radius:12px; padding:2rem; margin-top:1rem;">
-            <h3 style="margin:0 0 1rem; color:#2d7a5e;"><i class="fas fa-utensils" style="margin-right:.5rem;"></i>Kuliner & Penginapan Tradisional</h3>
+            <h3 style="margin:0 0 1rem; color:#2d7a5e;"> Kuliner & Penginapan Tradisional</h3>
             <p style="margin:0; color:#444; line-height:1.8;">
                 Wisatawan dapat mencicipi berbagai makanan khas Batak yang disuguhkan di warung-warung tradisional yang nyaman. 
                 Desa Meat sudah memiliki <strong>homestay</strong> dengan nuansa rumah tradisional Batak, memberikan pengalaman 
@@ -344,22 +344,22 @@
             </div>
             <div class="rute-info">
                 <div class="rute-item">
-                    <h4><i class="fas fa-city"></i> Dari Kota Balige</h4>
+                    <h4> Dari Kota Balige</h4>
                     <p>Berkendara dari pusat Kota Balige menuju Kecamatan Tampahan melalui jalan yang berkelok menuruni perbukitan. Sepanjang jalan menawarkan <em>bird's eye view</em> Danau Toba yang spektakuler.</p>
                     <span class="rute-time">± 20–30 menit</span>
                 </div>
                 <div class="rute-item">
-                    <h4><i class="fas fa-plane-arrival"></i> Dari Bandara Silangit</h4>
+                    <h4> </i> Dari Bandara Silangit</h4>
                     <p>Bandara Sisingamangaraja XII (Silangit) di Siborongborong, Tapanuli Utara, adalah pintu masuk utama ke kawasan Danau Toba. Dari sini, lanjutkan perjalanan darat menuju Desa Meat.</p>
                     <span class="rute-time">± 40 menit</span>
                 </div>
                 <div class="rute-item">
-                    <h4><i class="fas fa-ship"></i> Melalui Danau Toba</h4>
+                    <h4>  Melalui Danau Toba</h4>
                     <p>Karena terletak di pinggiran Danau Toba, Desa Meat juga dapat dicapai atau diteruskan ke destinasi lain menggunakan kapal di Danau Toba, menjadikan posisi desa ini sangat strategis.</p>
                     <span class="rute-time">Sesuai jadwal kapal</span>
                 </div>
                 <div class="rute-item">
-                    <h4><i class="fas fa-exclamation-circle"></i> Catatan Perjalanan</h4>
+                    <h4> Catatan Perjalanan</h4>
                     <p>Jalan menuju desa cukup berkelok dan menuruni bukit dengan kemiringan cukup curam. Harap berhati-hati. Namun, kondisi jalan sudah cukup baik dan lelah perjalanan terbayar lunas oleh keindahan yang tersaji.</p>
                     <span class="rute-time">Hati-hati di turunan curam</span>
                 </div>
@@ -375,28 +375,28 @@
         </div>
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.2rem;">
             <div style="background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem; box-shadow:0 2px 6px rgba(0,0,0,.05);">
-                <i class="fas fa-mountain" style="color:#2d7a5e; font-size:1.4rem; margin-bottom:.5rem; display:block;"></i>
+            
                 <h4 style="margin:0 0 .3rem;">Bukit Pahoda</h4>
                 <p style="margin:0; font-size:.88rem; color:#555;">
                     Hidden gem di Desa Lumban Silintong, Balige. Populer untuk healing, camping, dan menikmati sunrise/sunset dengan panorama Danau Toba yang menakjubkan.
                 </p>
             </div>
             <div style="background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem; box-shadow:0 2px 6px rgba(0,0,0,.05);">
-                <i class="fas fa-sun" style="color:#2d7a5e; font-size:1.4rem; margin-bottom:.5rem; display:block;"></i>
+                
                 <h4 style="margin:0 0 .3rem;">Bukit Tarabunga</h4>
                 <p style="margin:0; font-size:.88rem; color:#555;">
                     Terletak di Kecamatan Tampahan, ±8 km dari pusat Balige. Menawarkan pemandangan Danau Toba dari sisi selatan, populer untuk menikmati sunset.
                 </p>
             </div>
             <div style="background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem; box-shadow:0 2px 6px rgba(0,0,0,.05);">
-                <i class="fas fa-water" style="color:#2d7a5e; font-size:1.4rem; margin-bottom:.5rem; display:block;"></i>
+        
                 <h4 style="margin:0 0 .3rem;">Lumban Silintong</h4>
                 <p style="margin:0; font-size:.88rem; color:#555;">
                     Desa wisata pantai di Kecamatan Balige dengan pasir putih dan fasilitas modern di tepian Danau Toba. Ideal untuk berbagai aktivitas wisata air.
                 </p>
             </div>
             <div style="background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem; box-shadow:0 2px 6px rgba(0,0,0,.05);">
-                <i class="fas fa-hot-tub" style="color:#2d7a5e; font-size:1.4rem; margin-bottom:.5rem; display:block;"></i>
+                 
                 <h4 style="margin:0 0 .3rem;">Air Panas Sipoholon</h4>
                 <p style="margin:0; font-size:.88rem; color:#555;">
                     Pemandian air panas alami di Kecamatan Sipoholon, Tapanuli Utara. Terkenal dengan sumber air panas dari bukit kapur yang instagramable.
