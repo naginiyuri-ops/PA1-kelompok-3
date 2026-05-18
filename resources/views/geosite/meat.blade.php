@@ -75,22 +75,19 @@
         <!-- Kartu Pengantar Singkat -->
         <div class="info-highlight-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.2rem; margin-bottom:3rem;">
             <div class="info-highlight-card" style="background:#f0f7f4; border-left:4px solid #2d7a5e; padding:1.2rem; border-radius:8px;">
-                <i class="fas fa-users" style="color:#2d7a5e; margin-bottom:.5rem;"></i>
+                
                 <h4 style="margin:0 0 .3rem;">Penduduk</h4>
                 <p style="margin:0; font-size:.9rem;">Lebih dari 900 jiwa, mayoritas Suku Batak Toba beragama Kristen</p>
             </div>
             <div class="info-highlight-card" style="background:#f0f7f4; border-left:4px solid #2d7a5e; padding:1.2rem; border-radius:8px;">
-                <i class="fas fa-plane" style="color:#2d7a5e; margin-bottom:.5rem;"></i>
                 <h4 style="margin:0 0 .3rem;">Akses Bandara</h4>
                 <p style="margin:0; font-size:.9rem;">±40 menit dari Bandara Sisingamangaraja XII (Silangit)</p>
             </div>
             <div class="info-highlight-card" style="background:#f0f7f4; border-left:4px solid #2d7a5e; padding:1.2rem; border-radius:8px;">
-                <i class="fas fa-map-marker-alt" style="color:#2d7a5e; margin-bottom:.5rem;"></i>
                 <h4 style="margin:0 0 .3rem;">Jarak dari Balige</h4>
                 <p style="margin:0; font-size:.9rem;">20–30 menit berkendara dari pusat Kota Balige</p>
             </div>
             <div class="info-highlight-card" style="background:#f0f7f4; border-left:4px solid #2d7a5e; padding:1.2rem; border-radius:8px;">
-                <i class="fas fa-star" style="color:#2d7a5e; margin-bottom:.5rem;"></i>
                 <h4 style="margin:0 0 .3rem;">Status Wisata</h4>
                 <p style="margin:0; font-size:.9rem;">Salah satu dari 21 destinasi wisata utama Kabupaten Toba</p>
             </div>
@@ -104,7 +101,7 @@
                     <img src="{{ asset('image/meat/meat-detail.jpg') }}" alt="Panorama Alam Desa Meat">
                 </div>
                 <div class="sejarah-text">
-                    <h3><i class="fas fa-mountain" style="color:#2d7a5e; margin-right:.4rem;"></i> Amfiteater Alam yang Memukau</h3>
+                    <h3> Amfiteater Alam yang Memukau</h3>
                     <p>
                         Desa Meat berada di posisi sangat rendah — tepat di bibir Danau Toba — dikelilingi perbukitan hijau yang menjulang di sisi belakangnya. 
                         Formasi ini menciptakan kesan seperti sebuah <em>amfiteater alam</em> raksasa. 
@@ -125,7 +122,7 @@
                     <img src="{{ asset('image/meat/slide1.jpg') }}" alt="Penenun Ulos Desa Meat">
                 </div>
                 <div class="sejarah-text">
-                    <h3><i class="fas fa-scroll" style="color:#2d7a5e; margin-right:.4rem;"></i> Sentra Tenun Ulos yang Autentik</h3>
+                    <h3>  Sentra Tenun Ulos yang Autentik</h3>
                     <p>
                         Desa Meat dikenal sebagai salah satu <strong>sentra pengrajin Ulos Batak</strong> terbaik di kawasan Danau Toba. 
                         Sebagian besar perempuan desa adalah penenun yang mewarisi keahlian ini secara turun-temurun. 
@@ -148,7 +145,7 @@
                     <img src="{{ asset('image/meat/meat-hero.jpg') }}" alt="Rumah Adat Batak Desa Meat">
                 </div>
                 <div class="sejarah-text">
-                    <h3><i class="fas fa-home" style="color:#2d7a5e; margin-right:.4rem;"></i> Arsitektur <em>Jabu Bolon</em> yang Terjaga</h3>
+                    <h3>  Arsitektur <em>Jabu Bolon</em> yang Terjaga</h3>
                     <p>
                         Di Desa Meat terdapat <strong>4 unit rumah adat Batak Toba</strong> yang dikenal dengan nama <em>Jabu Bolon</em> (Ruma Bolon). 
                         Keempat rumah adat ini telah direnovasi oleh <strong>Kementerian Pariwisata</strong> untuk keperluan wisata budaya, 
@@ -176,7 +173,7 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; margin-bottom:2rem;">
             <div style="background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,.06);">
                 <i class="fas fa-campground" style="color:#2d7a5e; font-size:1.8rem; margin-bottom:.8rem; display:block;"></i>
-                <h4 style="margin:0 0 .5rem;">Camping Ground Tepi Danau</h4>
+                <h4">Camping Ground Tepi Danau</h4>
                 <p style="margin:0; font-size:.92rem; color:#555;">
                     Pinggiran danau yang landai dan berumput menjadikan Desa Meat sebagai lokasi berkemah impian. 
                     Area camping telah dikelola dengan baik dan mampu menampung <strong>lebih dari 1.000 unit tenda</strong>. 
