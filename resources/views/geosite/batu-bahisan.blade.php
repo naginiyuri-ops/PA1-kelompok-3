@@ -211,7 +211,6 @@
         </div>
     </div>
 </section>
-
 <!-- INFORMASI PRAKTIS -->
 <section id="informasi" class="section" style="background:#f8fafe;">
     <div class="container">
@@ -253,7 +252,7 @@
                 </div>
                 <div class="sejarah-text">
                     <h4 style="color: var(--blue-dark); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif; font-size:1.15rem;">
-                        <i class="fas fa-leaf" style="margin-right:.4rem;"></i> Ekowisata & Agrowisata
+                        Ekowisata & Agrowisata
                     </h4>
                     <p>
                         Kawasan sekitar Batu Basiha dikembangkan oleh Pemerintah Kabupaten Toba menjadi 
@@ -275,8 +274,8 @@
                     <img src="{{ asset('image/meat/batu-bahisan.jpg') }}" alt="Balige Pusat Peradaban Toba">
                 </div>
                 <div class="sejarah-text">
-                    <h4 style="color: var(--blue-dark); margin-bottom: 12px; font-family: 'Cormorant Garamond', serif; font-size:1.15rem;">
-                        <i class="fas fa-landmark" style="margin-right:.4rem;"></i> Balige: Jantung Peradaban Toba
+                    <h4 >
+                        Balige: Jantung Peradaban Toba
                     </h4>
                     <p>
                         Kunjungan ke Batu Basiha dapat dikombinasikan dengan menjelajahi <strong>Kota Balige</strong>, 
