@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Kelola Informasi')
+@section('title', 'Kelola Galeri')
 
 @section('content')
 <style>
@@ -19,8 +19,8 @@
         background: #002244;
     }
     .table-img {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
         object-fit: cover;
         border-radius: 8px;
     }
@@ -113,8 +113,8 @@
 </style>
 
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
-    <h4 style="margin: 0;">📄 Kelola Informasi</h4>
-    <a href="{{ route('admin.informasi.create') }}" class="btn-add">+ Tambah Informasi</a>
+    <h4 style="margin: 0;">📸 Kelola Galeri</h4>
+    <a href="{{ route('admin.galeri.create') }}" class="btn-add">+ Tambah Foto</a>
 </div>
 
 <div style="background: white; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
@@ -135,16 +135,18 @@
             <thead>
                 <tr>
                     <th width="50">NO</th>
-                    <th width="70">GAMBAR</th>
+                    <th width="70">FOTO</th>
                     <th>JUDUL</th>
-                    <th>STATUS</th>
+                    <th>KATEGORI</th>
+                    <th>LOKASI</th>
+                    <th width="80">STATUS</th>
                     <th width="180">AKSI</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse($informasi as $key => $item)
+                @forelse($galeris as $key => $item)
                 <tr>
-                    <td>{{ $key + $informasi->firstItem() }}</td>
+                    <td style="text-align: center;">{{ $key + $galeris->firstItem() }} </td>
                     <td>
                         @php
                             $imgSrc = asset('image/default.jpg');
@@ -158,18 +160,20 @@
                         @endphp
                         <img src="{{ $imgSrc }}" class="table-img">
                     </td>
-                    <td>{{ $item->judul }}</td>
+                    <td><strong>{{ $item->judul }}</strong></td>
+                    <td>{{ ucfirst($item->kategori) }}</td>
+                    <td>{{ $item->lokasi ?? '-' }}</td>
                     <td>
                         <span class="{{ $item->status ? 'badge-active' : 'badge-inactive' }}">
                             {{ $item->status ? 'Aktif' : 'Nonaktif' }}
                         </span>
                     </td>
                     <td class="action-buttons">
-                        <a href="{{ route('admin.informasi.edit', $item->id) }}" class="btn-edit">Edit</a>
-                        <form action="{{ route('admin.informasi.destroy', $item->id) }}" method="POST" style="display: inline-block;">
+                        <a href="{{ route('admin.galeri.edit', $item->id) }}" class="btn-edit">Edit</a>
+                        <form action="{{ route('admin.galeri.destroy', $item->id) }}" method="POST" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn-delete" onclick="return confirm('Yakin hapus informasi ini?')">Hapus</button>
+                            <button type="submit" class="btn-delete" onclick="return confirm('Yakin hapus foto ini?')">Hapus</button>
                         </form>
                         <button type="button" class="btn-status {{ $item->status ? '' : 'btn-status-active' }}" 
                                 onclick="toggleStatus({{ $item->id }}, {{ $item->status }})">
@@ -179,8 +183,8 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="5" style="text-align: center; padding: 40px;">
-                        📄 Belum ada informasi
+                    <td colspan="7" style="text-align: center; padding: 40px;">
+                        📷 Belum ada foto galeri
                     </td>
                 </tr>
                 @endforelse
@@ -189,17 +193,17 @@
     </div>
     
     <div style="margin-top: 15px;">
-        {{ $informasi->links() }}
+        {{ $galeris->links() }}
     </div>
 </div>
 
 <script>
     function toggleStatus(id, currentStatus) {
         const action = currentStatus ? 'nonaktifkan' : 'aktifkan';
-        if (confirm(`Yakin ingin ${action} informasi ini?`)) {
+        if (confirm(`Yakin ingin ${action} foto ini?`)) {
             const form = document.createElement('form');
             form.method = 'POST';
-            form.action = `{{ url('admin/informasi/toggle-status') }}/${id}`;
+            form.action = `{{ url('admin/galeri/toggle-status') }}/${id}`;
             form.innerHTML = `@csrf`;
             document.body.appendChild(form);
             form.submit();

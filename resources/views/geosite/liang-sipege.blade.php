@@ -16,7 +16,6 @@
             --bi-gold: #c6a43b;
             --bi-light: #e8f0f0;
         }
-
         /* ========== NAVBAR ========== */
         .navbar {
             position: fixed;
@@ -61,7 +60,6 @@
             padding: 6px 18px;
             border-radius: 40px;
         }
-
         /* ========== HAMBURGER ========== */
         .hamburger {
             display: none;
@@ -170,7 +168,6 @@
             transition: 0.3s;
         }
         .galeri-item:hover img { transform: scale(1.03); }
-
         /* ========== CTA ========== */
         .cta {
             background: var(--bi-blue);
@@ -220,7 +217,6 @@
             font-size: 32px;
             cursor: pointer;
         }
-
         /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
             .nav-menu { display: none; }
@@ -266,7 +262,7 @@
 
 <!-- Mobile Menu -->
 <div class="mobile-overlay" id="mobileOverlay">
-    <div class="mobile-close" id="mobileClose">×</div>
+    <div class="mobile-close" id="mobileClose"> ×</div>
     <a href="{{ url('/') }}" class="mobile-link mobile-home">Home</a>
     <a href="#sejarah" class="mobile-link">Sejarah</a>
     <a href="#informasi" class="mobile-link">Informasi</a>
@@ -288,7 +284,6 @@
             <h2>Sejarah & Legenda</h2>
             <div class="divider"></div>
         </div>
-        
         <div class="sejarah-intro" style="margin-bottom: 50px; line-height: 1.8; color: #444; font-size: 0.95rem;">
             <p>
                 Liang Sipege merupakan sebuah gua bersejarah yang terletak di Desa Simarmar Pea Talun Hutagaol, Kecamatan Balige, Kabupaten Tobasa, Sumatera Utara. Gua ini bukan sekadar formasi geologis biasa, tetapi merupakan situs spiritual dan budaya yang kaya dengan legenda dan mitos yang telah diwariskan turun-temurun oleh masyarakat setempat. Masyarakat Batak Toba, khususnya keluarga besar marga Panjaitan, menganggap Liang Sipege sebagai tempat yang sangat sakral dan bermakna dalam sejarah leluhur mereka.
@@ -326,7 +321,6 @@
         </div>
     </div>
 </section>
-
 
 <!-- INFORMASI PRAKTIS -->
 <section id="informasi" class="section bg-light">
@@ -373,9 +367,7 @@
             
         <div class="footer-full-btn">
             <a href="{{ url('/') }}" class="back-btn">← Kembali ke Dashboard</a>
-        </div>
-        
-        
+        </div>   
 </footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -391,12 +383,10 @@
         mobileOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
     });
-    
     const closeMenu = () => {
         mobileOverlay.classList.remove('active');
         document.body.style.overflow = '';
     };
-    
     mobileClose.addEventListener('click', closeMenu);
     document.querySelectorAll('.mobile-link').forEach(link => {
         link.addEventListener('click', closeMenu);
@@ -416,7 +406,7 @@
             if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
         });
     });
-
+    
     // Lightbox
     const lightbox = document.getElementById('lightbox');
     document.querySelectorAll('.galeri-item img').forEach(img => {

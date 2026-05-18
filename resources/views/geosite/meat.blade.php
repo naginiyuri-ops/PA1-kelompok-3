@@ -94,7 +94,6 @@
         </div>
 
         <div class="sejarah-grid">
-
             <!-- Panorama Alam: Amfiteater Danau Toba -->
             <div class="sejarah-item">
                 <div class="sejarah-image">
@@ -388,15 +387,13 @@
                     Terletak di Kecamatan Tampahan, ±8 km dari pusat Balige. Menawarkan pemandangan Danau Toba dari sisi selatan, populer untuk menikmati sunset.
                 </p>
             </div>
-            <div style="background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem; box-shadow:0 2px 6px rgba(0,0,0,.05);">
-        
+            <div style="background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem; box-shadow:0 2px 6px rgba(0,0,0,.05);">       
                 <h4 style="margin:0 0 .3rem;">Lumban Silintong</h4>
                 <p style="margin:0; font-size:.88rem; color:#555;">
                     Desa wisata pantai di Kecamatan Balige dengan pasir putih dan fasilitas modern di tepian Danau Toba. Ideal untuk berbagai aktivitas wisata air.
                 </p>
             </div>
             <div style="background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem; box-shadow:0 2px 6px rgba(0,0,0,.05);">
-                 
                 <h4 style="margin:0 0 .3rem;">Air Panas Sipoholon</h4>
                 <p style="margin:0; font-size:.88rem; color:#555;">
                     Pemandian air panas alami di Kecamatan Sipoholon, Tapanuli Utara. Terkenal dengan sumber air panas dari bukit kapur yang instagramable.

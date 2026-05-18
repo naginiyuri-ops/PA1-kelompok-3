@@ -56,7 +56,6 @@
             transform: scale(1.05);
         }
     }
-    
     @keyframes shimmer {
         0% {
             background-position: -1000px 0;
@@ -1086,7 +1085,7 @@
     <div class="hero-content">
         <div>
             <div class="hero-subtitle">Global Geopark</div>
-            <h1 class="hero-title">BALIGE · MEAT · BATU BAHISAN<br>LIANG SIPEGE</h1>
+            <h1 class="hero-title">BALIGE · MEAT · BATU BASIHA<br>LIANG SIPEGE</h1>
             <div class="hero-divider"></div>
             <a href="#destinasi" class="hero-btn">Jelajahi Sekarang ya</a>
         </div>
@@ -1103,7 +1102,7 @@
     <div class="container">
         <div class="stats-grid">
             <div class="stat-item" data-aos="zoom-in" data-aos-duration="800">
-                <div class="stat-number">3</div>
+                <div class="stat-number">16</div>
                 <div class="stat-label">GEOSITES</div>
             </div>
             <div class="stat-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
@@ -1111,7 +1110,7 @@
                 <div class="stat-label">TAHUN SEJARAH</div>
             </div>
             <div class="stat-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
-                <div class="stat-number">15+</div>
+                <div class="stat-number"></div>
                 <div class="stat-label">WARISAN BUDAYA</div>
             </div>
             <div class="stat-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">

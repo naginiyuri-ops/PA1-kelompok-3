@@ -6,7 +6,6 @@
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
-    
     .hero-detail {
         height: 55vh;
         min-height: 450px;
@@ -20,7 +19,6 @@
         margin-top: 76px;
         overflow: hidden;
     }
-    
     .hero-overlay {
         position: absolute;
         width: 100%;
