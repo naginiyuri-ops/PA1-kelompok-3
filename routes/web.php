@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\DB;
 Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
 
 // ==================== FRONTEND ROUTES ====================
-
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 

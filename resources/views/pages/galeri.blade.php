@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', 'Galeri - GeoToba')
-
 @section('content')
 
 <style>
@@ -14,7 +12,6 @@
         position: relative;
         overflow: hidden;
     }
-
     .gallery-hero::before {
         content: '';
         position: absolute;
@@ -177,7 +174,6 @@
     .slip-card:hover .slip-line {
         transform: scaleX(1);
     }
-
     .slip-title {
         font-size: 0.9rem;
         font-weight: 600;

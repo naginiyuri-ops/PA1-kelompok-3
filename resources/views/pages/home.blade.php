@@ -56,7 +56,6 @@
             transform: scale(1.05);
         }
     }
-    
     @keyframes shimmer {
         0% {
             background-position: -1000px 0;
