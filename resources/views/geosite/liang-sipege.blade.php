@@ -350,8 +350,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
 <!-- CTA -->
 <section class="cta">
