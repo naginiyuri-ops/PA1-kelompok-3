@@ -31,9 +31,9 @@ Route::get('/destinasi/buatan', [DestinasiController::class, 'buatan'])->name('d
 Route::get('/destinasi/budaya', [DestinasiController::class, 'budaya'])->name('destinasi.budaya');
 Route::get('/destinasi/{kategori}/{slug}', [DestinasiController::class, 'detail'])->name('destinasi.detail');
 
-// Informasi Publik
+// Informasi Publik - HANYA INDEX, TANPA DETAIL
 Route::get('/informasi', [PublicInformasiController::class, 'index'])->name('informasi');
-Route::get('/informasi/{slug}', [PublicInformasiController::class, 'show'])->name('informasi.show');
+// HAPUS route detail di bawah ini! Jangan tambahkan Route::get('/informasi/{slug}')
 
 // Galeri Publik
 Route::get('/galeri', [PublicGaleriController::class, 'index'])->name('galeri');
