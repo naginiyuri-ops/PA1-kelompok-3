@@ -96,8 +96,7 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 // ==================== ADMIN ROUTES ====================
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     
-<<<<<<< HEAD
-=======
+     // tambah admin 
     Route::get('/create-admin', [App\Http\Controllers\Admin\AdminController::class, 'create'])
     ->name('admin.create');
 
@@ -105,7 +104,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     ->name('admin.store');
 
     // Dashboard
->>>>>>> 7bc5aefe76b7c1979b55dd457f2cb5709e8c0f5b
+
     Route::get('/', function () {
         $totalGaleri = DB::table('galeris')->count();
         $totalBerita = DB::table('berita')->count();
