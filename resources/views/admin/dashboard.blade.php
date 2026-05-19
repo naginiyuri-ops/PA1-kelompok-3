@@ -175,5 +175,7 @@
     <a href="{{ route('admin.umkm.create') }}" class="btn-primary"><i class="fas fa-plus-circle"></i> UMKM</a>
     <a href="{{ route('admin.fasilitas.create') }}" class="btn-primary"><i class="fas fa-plus-circle"></i> Fasilitas</a>
     <a href="{{ route('admin.penginapan.create') }}" class="btn-primary"><i class="fas fa-plus-circle"></i> Penginapan</a>
+    <a href="{{ route('admin.create') }}" class="btn-primary">
+    <i class="fas fa-user-plus"></i> Tambah Admin </a>
 </div>
 @endsection 
