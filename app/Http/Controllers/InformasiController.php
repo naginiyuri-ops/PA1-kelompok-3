@@ -48,7 +48,7 @@ class InformasiController extends Controller
                 'konten' => $request->konten,
                 'gambar' => $gambarPath,
                 'status' => $request->has('status') ? 1 : 0,
-                'views' => 0  // 👈 TAMBAHKAN INI
+                'views' => 0  
             ]);
             
             return redirect()->route('admin.informasi.index')
