@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\InformasiController;
 use App\Http\Controllers\Admin\UmkmController;
 use App\Http\Controllers\Admin\FasilitasController;
 use App\Http\Controllers\Admin\PenginapanController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GaleriController as PublicGaleriController;
@@ -95,6 +96,16 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 // ==================== ADMIN ROUTES ====================
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     
+<<<<<<< HEAD
+=======
+    Route::get('/create-admin', [App\Http\Controllers\Admin\AdminController::class, 'create'])
+    ->name('admin.create');
+
+    Route::post('/store-admin', [App\Http\Controllers\Admin\AdminController::class, 'store'])
+    ->name('admin.store');
+
+    // Dashboard
+>>>>>>> 7bc5aefe76b7c1979b55dd457f2cb5709e8c0f5b
     Route::get('/', function () {
         $totalGaleri = DB::table('galeris')->count();
         $totalBerita = DB::table('berita')->count();
@@ -128,4 +139,11 @@ Route::post('/api/informasi/{id}/view', function ($id) {
     Route::post('galeri/toggle-status/{id}', [GaleriController::class, 'toggleStatus'])->name('admin.galeri.toggle-status');
     Route::post('berita/toggle-status/{id}', [BeritaController::class, 'toggleStatus'])->name('admin.berita.toggle-status');
     Route::post('informasi/toggle-status/{id}', [InformasiController::class, 'toggleStatus'])->name('admin.informasi.toggle-status');
+
+    // tambah admin 
+    Route::get('/create-admin', [AdminController::class, 'create'])
+    ->name('admin.create');
+    Route::post('/store-admin', [AdminController::class, 'store'])
+    ->name('admin.store');
+
 });
