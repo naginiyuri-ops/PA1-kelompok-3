@@ -3,15 +3,17 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font-family: 'Inter', sans-serif;
     background: #f0f4f0;
+    color: #000000; /* Teks hitam */
 }
 
-/* ========== WARNA BIRU ========== */
+/* ========== WARNA ========== */
 :root {
     --blue-dark: #003366;
-    --blue-medium: #1a4a7a;
+    --blue-medium: #020b13;
     --blue-light: #e8f0f0;
     --gold: #c6a43b;
     --dark: #1a1a1a;
@@ -29,6 +31,7 @@ body {
     border-bottom: 1px solid rgba(198, 164, 59, 0.3);
     padding: 16px 0;
 }
+
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -37,42 +40,50 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
 .nav-logo {
     display: flex;
     align-items: center;
     gap: 16px;
 }
+
 .flag-img {
     width: 70px;
     height: auto;
     border-radius: 5px;
 }
+
 .logo-divider {
     width: 1px;
     height: 30px;
     background: rgba(255,255,255,0.3);
 }
+
 .del-img {
     width: 35px;
     height: auto;
     border-radius: 5px;
 }
+
 .logo-text h4 {
     font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: 1.5px;
     color: white;
 }
+
 .logo-text p {
     font-size: 0.4rem;
     font-weight: 400;
     color: rgba(255,255,255,0.6);
 }
+
 .nav-menu {
     display: flex;
     gap: 32px;
     align-items: center;
 }
+
 .nav-link {
     font-size: 0.7rem;
     letter-spacing: 0.15em;
@@ -83,19 +94,23 @@ body {
     transition: 0.3s;
     padding: 6px 0;
 }
+
 .nav-link:hover {
     color: var(--gold);
 }
+
 .nav-link.active {
     color: var(--gold);
     border-bottom: 2px solid var(--gold);
 }
+
 .home-btn {
     background: var(--gold);
     color: var(--blue-dark) !important;
     padding: 8px 22px;
     border-radius: 40px;
 }
+
 .home-btn:hover {
     background: white;
     color: var(--blue-dark) !important;
@@ -110,6 +125,7 @@ body {
     border-radius: 50px;
     border: 1px solid rgba(255,255,255,0.2);
 }
+
 .hamburger span {
     display: block;
     width: 22px;
@@ -117,6 +133,7 @@ body {
     background: white;
     margin: 5px 0;
 }
+
 .mobile-overlay {
     position: fixed;
     top: 0;
@@ -130,9 +147,11 @@ body {
     box-shadow: -5px 0 30px rgba(0,0,0,0.3);
     padding: 80px 30px 30px;
 }
+
 .mobile-overlay.active {
     right: 0;
 }
+
 .mobile-close {
     position: absolute;
     top: 20px;
@@ -141,6 +160,7 @@ body {
     cursor: pointer;
     color: white;
 }
+
 .mobile-link {
     display: block;
     font-size: 0.85rem;
@@ -153,9 +173,11 @@ body {
     border-bottom: 1px solid rgba(255,255,255,0.1);
     text-align: center;
 }
+
 .mobile-link:hover {
     color: var(--gold);
 }
+
 .mobile-home {
     background: var(--gold);
     color: var(--blue-dark) !important;
@@ -163,11 +185,11 @@ body {
     margin-bottom: 10px;
 }
 
-/* ========== HERO BIRU ========== */
+/* ========== HERO ========== */
 .hero {
     height: 60vh;
     min-height: 450px;
-    background: linear-gradient(rgba(0, 51, 102, 0.6), rgba(0, 51, 102, 0.4)), url('/image/liang-sipege-hero.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(6, 9, 13, 0.4)), url('/image/liang-sipege-hero.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -179,6 +201,7 @@ body {
     margin-top: 70px;
     position: relative;
 }
+
 .hero::before {
     content: '';
     position: absolute;
@@ -189,10 +212,12 @@ body {
     background: rgba(0, 51, 102, 0.3);
     z-index: 1;
 }
+
 .hero > div {
     position: relative;
     z-index: 2;
 }
+
 .hero-title {
     font-size: 4rem;
     font-weight: 600;
@@ -200,6 +225,7 @@ body {
     margin-bottom: 12px;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
+
 .hero-subtitle {
     font-size: 0.8rem;
     letter-spacing: 0.2em;
@@ -211,32 +237,38 @@ body {
 .section {
     padding: 70px 0;
 }
+
 .bg-light {
     background: var(--blue-light);
 }
+
 .container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 24px;
 }
+
 .section-title {
     text-align: center;
     margin-bottom: 50px;
 }
+
 .section-title h2 {
     font-size: 2.2rem;
     font-family: 'Cormorant Garamond', serif;
     margin-bottom: 12px;
     color: var(--blue-dark);
 }
+
 .divider {
     width: 50px;
     height: 2px;
     background: var(--gold);
     margin: 0 auto;
 }
+
 .section-title p {
-    color: #5a7a8a;
+    color: #000000; /* Teks hitam */
     font-size: 0.85rem;
     margin-top: 12px;
 }
@@ -247,35 +279,50 @@ body {
     flex-direction: column;
     gap: 60px;
 }
+
 .sejarah-item {
     display: flex;
     align-items: center;
     gap: 50px;
     flex-wrap: wrap;
 }
+
 .sejarah-item.reverse {
     flex-direction: row-reverse;
 }
+
 .sejarah-text {
     flex: 1;
 }
+
 .sejarah-text p {
-    color: #2c5f8a;
+    color: #000000; /* Teks hitam */
     line-height: 1.9;
     font-size: 1rem;
 }
+
+.sejarah-text h4 {
+    color: #000000; /* Teks hitam */
+}
+
+.sejarah-text ul li {
+    color: #000000; /* Teks hitam */
+}
+
 .sejarah-image {
     flex: 1;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 51, 102, 0.1);
+    box-shadow: 0 10px 30px rgba(1, 2, 2, 0.1);
 }
+
 .sejarah-image img {
     width: 100%;
     height: 280px;
     object-fit: cover;
     transition: 0.3s;
 }
+
 .sejarah-image:hover img {
     transform: scale(1.02);
 }
@@ -286,6 +333,7 @@ body {
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
 }
+
 .galeri-item {
     aspect-ratio: 1/1;
     overflow: hidden;
@@ -295,40 +343,80 @@ body {
     box-shadow: 0 5px 15px rgba(0, 51, 102, 0.1);
     transition: 0.3s;
 }
+
 .galeri-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: 0.3s;
 }
+
 .galeri-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0, 51, 102, 0.2);
 }
+
 .galeri-item:hover img {
     transform: scale(1.03);
 }
 
-/* ========== CTA BIRU ========== */
+/* ========== INFO PRAKTIS ========== */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.info-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.info-card i {
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+.info-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #000000; /* Teks hitam */
+}
+
+.info-card p {
+    font-size: 0.85rem;
+    color: #000000; /* Teks hitam */
+    line-height: 1.6;
+}
+
+/* ========== CTA ========== */
 .cta {
     background: var(--blue-dark);
     padding: 60px 0;
     text-align: center;
     color: white;
 }
+
 .cta h3 {
     font-size: 1.8rem;
     font-family: 'Cormorant Garamond', serif;
     margin-bottom: 15px;
     color: var(--gold);
 }
+
 .cta .divider {
     margin: 0 auto 20px;
 }
+
 .cta p {
     opacity: 0.8;
     margin-bottom: 30px;
 }
+
 .cta-btn {
     display: inline-block;
     background: var(--gold);
@@ -342,6 +430,7 @@ body {
     font-weight: 500;
     transition: 0.3s;
 }
+
 .cta-btn:hover {
     background: white;
     transform: translateY(-2px);
@@ -361,14 +450,17 @@ body {
     align-items: center;
     cursor: pointer;
 }
+
 .lightbox.active {
     display: flex;
 }
+
 .lightbox img {
     max-width: 90%;
     max-height: 85vh;
     border-radius: 4px;
 }
+
 .lightbox-close {
     position: absolute;
     top: 20px;
@@ -377,6 +469,7 @@ body {
     font-size: 32px;
     cursor: pointer;
 }
+
 .lightbox-close:hover {
     color: var(--gold);
 }
@@ -390,6 +483,7 @@ body {
         font-size: 3rem;
     }
 }
+
 @media (max-width: 768px) {
     .nav-menu {
         display: none;
@@ -435,7 +529,11 @@ body {
     .section-title h2 {
         font-size: 1.8rem;
     }
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
 }
+
 @media (max-width: 576px) {
     .nav-logo {
         gap: 8px;
