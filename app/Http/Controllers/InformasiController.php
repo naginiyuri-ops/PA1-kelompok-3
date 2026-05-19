@@ -47,7 +47,8 @@ class InformasiController extends Controller
                 'slug' => Str::slug($request->judul),
                 'konten' => $request->konten,
                 'gambar' => $gambarPath,
-                'status' => $request->has('status') ? 1 : 0
+                'status' => $request->has('status') ? 1 : 0,
+                'views' => 0  // 👈 TAMBAHKAN INI
             ]);
             
             return redirect()->route('admin.informasi.index')
@@ -151,5 +152,16 @@ class InformasiController extends Controller
     {
         $informasi = Informasi::where('slug', $slug)->where('status', 1)->firstOrFail();
         return view('pages.informasi-detail', compact('informasi'));
+    }
+    
+    // ==================== API METHOD UNTUK VIEWS ====================
+    public function incrementViews($id)
+    {
+        $informasi = Informasi::find($id);
+        if ($informasi) {
+            $informasi->increment('views');
+            return response()->json(['success' => true, 'views' => $informasi->views]);
+        }
+        return response()->json(['success' => false], 404);
     }
 }

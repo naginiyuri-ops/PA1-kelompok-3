@@ -19,8 +19,17 @@ use Illuminate\Support\Facades\DB;
 // ==================== LANGUAGE ROUTE ====================
 Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
 
+// ==================== API ROUTES ====================
+Route::post('/api/informasi/{id}/view', function ($id) {
+    $informasi = App\Models\Informasi::find($id);
+    if ($informasi) {
+        $informasi->increment('views');
+        return response()->json(['success' => true]);
+    }
+    return response()->json(['success' => false], 404);
+});
+
 // ==================== FRONTEND ROUTES ====================
-// Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Destinasi Routes
@@ -30,9 +39,8 @@ Route::get('/destinasi/buatan', [DestinasiController::class, 'buatan'])->name('d
 Route::get('/destinasi/budaya', [DestinasiController::class, 'budaya'])->name('destinasi.budaya');
 Route::get('/destinasi/{kategori}/{slug}', [DestinasiController::class, 'detail'])->name('destinasi.detail');
 
-// Informasi Publik - HANYA INDEX, TANPA DETAIL
+// Informasi Publik
 Route::get('/informasi', [PublicInformasiController::class, 'index'])->name('informasi');
-// HAPUS route detail di bawah ini! Jangan tambahkan Route::get('/informasi/{slug}')
 
 // Galeri Publik
 Route::get('/galeri', [PublicGaleriController::class, 'index'])->name('galeri');
@@ -87,7 +95,6 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 // ==================== ADMIN ROUTES ====================
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     
-    // Dashboard
     Route::get('/', function () {
         $totalGaleri = DB::table('galeris')->count();
         $totalBerita = DB::table('berita')->count();
@@ -100,7 +107,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         return view('admin.dashboard', compact('totalGaleri', 'totalBerita', 'totalInformasi', 'totalUmkm', 'totalFasilitas', 'totalPenginapan', 'totalViews'));
     })->name('admin.dashboard');
     
-    // CRUD Resources
     Route::resource('galeri', GaleriController::class)->names('admin.galeri');
     Route::resource('berita', BeritaController::class)->names('admin.berita');
     Route::resource('informasi', InformasiController::class)->names('admin.informasi');
@@ -108,7 +114,17 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('fasilitas', FasilitasController::class)->names('admin.fasilitas');
     Route::resource('penginapan', PenginapanController::class)->names('admin.penginapan');
     
-    // Additional Routes
+    // ==================== API ROUTES ====================
+Route::post('/api/informasi/{id}/view', function ($id) {
+    $informasi = App\Models\Informasi::find($id);
+    if ($informasi) {
+        $informasi->increment('views');
+        return response()->json(['success' => true, 'views' => $informasi->views]);
+    }
+    return response()->json(['success' => false], 404);
+});
+
+
     Route::post('galeri/toggle-status/{id}', [GaleriController::class, 'toggleStatus'])->name('admin.galeri.toggle-status');
     Route::post('berita/toggle-status/{id}', [BeritaController::class, 'toggleStatus'])->name('admin.berita.toggle-status');
     Route::post('informasi/toggle-status/{id}', [InformasiController::class, 'toggleStatus'])->name('admin.informasi.toggle-status');
