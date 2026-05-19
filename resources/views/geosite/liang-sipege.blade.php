@@ -137,7 +137,7 @@
         .section-title { text-align: center; margin-bottom: 45px; }
         .section-title h2 { font-size: 2rem; font-family: 'Cormorant Garamond', serif; color: var(--bi-blue); }
         .divider { width: 50px; height: 2px; background: var(--bi-gold); margin: 10px auto 0; }
-        .section-title p { color: #6c7a7a; font-size: 0.85rem; margin-top: 12px; }
+        .section-title p { color: #041717; font-size: 0.85rem; margin-top: 12px; }
 
         /* ========== SEJARAH 2 KOLOM ========== */
         .sejarah-grid { display: flex; flex-direction: column; gap: 50px; }

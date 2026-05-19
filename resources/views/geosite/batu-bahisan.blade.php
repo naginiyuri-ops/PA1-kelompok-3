@@ -59,7 +59,7 @@
         </div>
 
         <!-- Paragraf Pengantar -->
-        <div class="sejarah-intro" style="margin-bottom: 50px; line-height: 1.9; color: #444; font-size: 0.95rem;">
+        <div class="sejarah-intro" style="margin-bottom: 50px; line-height: 1.9; color: #0c0101; font-size: 0.95rem;">
             <p style="margin-bottom: 1.2rem;">
                 Geosite Batu Basiha adalah bebatuan yang berada di <strong>Desa Aek Bolon Jae, Kecamatan Balige, Kabupaten Toba, Provinsi Sumatera Utara</strong>. 
                 Situs ini merupakan salah satu peninggalan sejarah yang terbentuk dari <strong>pecahan batu akibat letusan Gunung Api Toba</strong> yang terjadi sekitar 
@@ -81,22 +81,22 @@
 
         <!-- Kartu Fakta Singkat -->
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.2rem; margin-bottom:3.5rem;">
-            <div style="background:#f0f7f9; border-left:4px solid #1a5f7a; padding:1.2rem; border-radius:8px;">
+            <div style="background:#f0f7f9; border-left:4px solid #070e10; padding:1.2rem; border-radius:8px;">
                 <i class="fas fa-map-marker-alt" style="color:#1a5f7a; margin-bottom:.5rem; display:block; font-size:1.2rem;"></i>
                 <h4 style="margin:0 0 .3rem; font-size:.95rem;">Lokasi</h4>
                 <p style="margin:0; font-size:.88rem; color:#555;">Desa Aek Bolon Jae, Kecamatan Balige, Kabupaten Toba, Sumatera Utara</p>
             </div>
-            <div style="background:#f0f7f9; border-left:4px solid #1a5f7a; padding:1.2rem; border-radius:8px;">
+            <div style="background:#f0f7f9; border-left:4px solid #040809; padding:1.2rem; border-radius:8px;">
                 <i class="fas fa-globe" style="color:#1a5f7a; margin-bottom:.5rem; display:block; font-size:1.2rem;"></i>
                 <h4 style="margin:0 0 .3rem; font-size:.95rem;">Status UNESCO</h4>
                 <p style="margin:0; font-size:.88rem; color:#555;">1 dari 16 geosite UNESCO Global Geopark, diakui 7 Juli 2020</p>
             </div>
-            <div style="background:#f0f7f9; border-left:4px solid #1a5f7a; padding:1.2rem; border-radius:8px;">
+            <div style="background:#f0f7f9; border-left:4px solid #050b0d; padding:1.2rem; border-radius:8px;">
                 <i class="fas fa-mountain" style="color:#1a5f7a; margin-bottom:.5rem; display:block; font-size:1.2rem;"></i>
                 <h4 style="margin:0 0 .3rem; font-size:.95rem;">Terbentuk</h4>
                 <p style="margin:0; font-size:.88rem; color:#555;">Letusan Gunung Api Toba ~74.000 tahun lalu — batuan andesit kekar kolom horizontal</p>
             </div>
-            <div style="background:#f0f7f9; border-left:4px solid #1a5f7a; padding:1.2rem; border-radius:8px;">
+            <div style="background:#f0f7f9; border-left:4px solid #000000; padding:1.2rem; border-radius:8px;">
                 <i class="fas fa-leaf" style="color:#1a5f7a; margin-bottom:.5rem; display:block; font-size:1.2rem;"></i>
                 <h4 style="margin:0 0 .3rem; font-size:.95rem;">Pengembangan</h4>
                 <p style="margin:0; font-size:.88rem; color:#555;">Dikembangkan sebagai kawasan ekowisata dan agrowisata oleh Pemkab Toba</p>
