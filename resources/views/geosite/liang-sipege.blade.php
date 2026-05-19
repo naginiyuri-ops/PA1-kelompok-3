@@ -285,15 +285,24 @@
             <div class="divider"></div>
         </div>
         <div class="sejarah-intro" style="margin-bottom: 50px; line-height: 1.8; color: #444; font-size: 0.95rem;">
-            <p>
-                Liang Sipege merupakan sebuah gua bersejarah yang terletak di Desa Simarmar Pea Talun Hutagaol, Kecamatan Balige, Kabupaten Tobasa, Sumatera Utara. Gua ini bukan sekadar formasi geologis biasa, tetapi merupakan situs spiritual dan budaya yang kaya dengan legenda dan mitos yang telah diwariskan turun-temurun oleh masyarakat setempat. Masyarakat Batak Toba, khususnya keluarga besar marga Panjaitan, menganggap Liang Sipege sebagai tempat yang sangat sakral dan bermakna dalam sejarah leluhur mereka.
-            </p>
-            <p>
-                Cerita rakyat menceritakan bahwa Liang Sipege adalah asal-usul marga Panjaitan, bermula dari seorang tokoh legendaris bernama Si Lundu Ni Pahu. Menurut kepercayaan masyarakat, gua ini adalah bekas tempat bertapa dan tempat persembunyian leluhur mereka pada masa lalu. Kehadiran Liang Sipege di tengah landscape Kabupaten Tobasa menjadikannya sebagai salah satu destinasi wisata budaya dan spiritual yang menarik, menggabungkan nilai historis, religius, dan ekologis dalam satu tempat yang menakjubkan.
-            </p>
-            <p>
-                Selain nilai sejarah dan spiritualnya, Liang Sipege juga memiliki signifikansi ekologis yang penting. Gua ini adalah habitat alami bagi ribuan kelelawar, yang kotorannya (guano) telah menjadi sumber daya alam yang bermanfaat bagi masyarakat setempat. Guano dari Liang Sipege dimanfaatkan sebagai pupuk organik berkualitas tinggi untuk pertanian, kebun, dan tanaman masyarakat lokal, menciptakan hubungan harmonis antara pelestarian alam dan kesejahteraan ekonomi. Hingga saat ini, Liang Sipege tetap menjadi tempat yang dikunjungi oleh para peziarah spiritual, peneliti, dan wisatawan yang tertarik dengan warisan budaya dan keunikan alam Kabupaten Tobasa.
-            </p>
+<p>
+    Liang Sipege merupakan sebuah gua bersejarah yang terletak di Desa Simarmar Pea Talun Hutagaol, Kecamatan Balige, Kabupaten Toba, Sumatera Utara. Gua ini bukan sekadar formasi geologis biasa, tetapi merupakan situs budaya dan spiritual yang kaya akan legenda serta cerita rakyat yang diwariskan turun-temurun oleh masyarakat Batak Toba. Bagi masyarakat sekitar, khususnya keluarga besar marga Panjaitan, Liang Sipege dianggap sebagai tempat yang sakral dan memiliki hubungan erat dengan sejarah leluhur mereka.
+</p>
+<p>
+    Menurut cerita rakyat Batak Toba, Liang Sipege berkaitan dengan asal-usul tokoh legendaris bernama Si Lundu Ni Pahu atau Silundu Ni Pahu. Konon, tokoh ini lahir di dalam gua setelah ibunya diasingkan dari kampung karena mengalami kehamilan yang dianggap tidak biasa. Selama tinggal di gua, sang ibu bertahan hidup dengan memakan tumbuhan pakis liar yang tumbuh di sekitar mulut gua. Dari kisah inilah nama “Pahu” yang berarti pakis berasal. Cerita tersebut kemudian berkembang menjadi legenda penting dalam sejarah lisan masyarakat Batak Toba dan dipercaya memiliki kaitan dengan keturunan marga Panjaitan.
+</p>
+<p>
+    Selain memiliki nilai legenda dan sejarah budaya, Liang Sipege juga dikenal sebagai tempat pertapaan dan lokasi perlindungan masyarakat pada masa lampau. Letaknya yang berada di kawasan perbukitan membuat gua ini sering dijadikan tempat persembunyian saat terjadi konflik atau peperangan. Hingga kini, suasana di dalam gua masih terasa alami dengan lorong batu yang lembap, udara yang sejuk, dan pencahayaan yang minim sehingga menambah kesan mistis bagi para pengunjung.
+</p>
+<p>
+    Secara geologi, Liang Sipege berada di kawasan Kaldera Toba yang terbentuk akibat letusan supervulkanik sekitar 74.000 tahun lalu. Struktur gua didominasi oleh batuan kapur dan batuan vulkanik andesit yang terbentuk melalui proses alam selama ribuan tahun. Dinding gua memiliki pola alami menyerupai mosaik akibat aliran mineral dan tetesan air yang terus berlangsung dalam waktu lama. Keunikan geologi ini menjadikan Liang Sipege tidak hanya penting dari sisi budaya, tetapi juga bernilai ilmiah dan ekologis.
+</p>
+<p>
+    Liang Sipege juga menjadi habitat alami bagi ribuan kelelawar yang hidup di bagian dalam gua. Kotoran kelelawar atau guano yang dihasilkan dimanfaatkan masyarakat sebagai pupuk organik untuk pertanian dan perkebunan. Hal ini menciptakan hubungan yang harmonis antara pelestarian alam dan kehidupan ekonomi masyarakat sekitar.
+</p>
+<p>
+    Hingga saat ini, Liang Sipege masih menjadi salah satu destinasi wisata budaya, sejarah, dan alam di Kabupaten Toba. Banyak wisatawan, peneliti, serta peziarah budaya datang untuk melihat langsung keunikan gua, mendengar cerita legendanya, dan menikmati suasana alami yang masih terjaga. Perpaduan antara sejarah, mitos, budaya Batak Toba, dan keindahan geologi menjadikan Liang Sipege sebagai salah satu warisan budaya yang penting di kawasan Danau Toba.
+</p>
         </div>
         
         <div class="sejarah-grid">
