@@ -1,7 +1,5 @@
 @extends('layouts.admin')
-
 @section('title', 'Tambah Penginapan')
-
 @section('content')
 <div class="d-flex align-items-center mb-3">
     <a href="{{ route('admin.penginapan.index') }}" class="btn btn-sm btn-secondary me-2">
@@ -9,7 +7,6 @@
     </a>
     <h5 class="mb-0">Tambah Penginapan</h5>
 </div>
-
 <div class="card">
     <div class="card-body">
         <form action="{{ route('admin.penginapan.store') }}" method="POST" enctype="multipart/form-data">

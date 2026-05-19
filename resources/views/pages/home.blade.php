@@ -56,7 +56,6 @@
             transform: scale(1.05);
         }
     }
-    
     @keyframes shimmer {
         0% {
             background-position: -1000px 0;
@@ -1169,7 +1168,7 @@
                 </div>
                 <div class="destinasi-content">
                     <div class="destinasi-number">02 — GEOSITE</div>
-                    <h3>Batu Bahisan</h3>
+                    <h3>Batu Basiha</h3>
                     <div class="destinasi-location">Desa Aek Bolon Jae, Balige</div>
                     <p class="destinasi-desc">Batu Basiha merupakan salah satu situs batu bersejarah di kawasan Balige yang memiliki nilai budaya dan legenda dalam masyarakat Batak Toba.</p>
                     <a href="{{ url('/geosite/batu-bahisan') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
@@ -1226,7 +1225,7 @@
                 </div>
                 <div class="maps-note">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>Klik lokasi untuk melihat peta detail</span>
+                    <span>Klik salah satu lokasi untuk melihat lokasi detail</span>
                 </div>
             </div>
         </div>

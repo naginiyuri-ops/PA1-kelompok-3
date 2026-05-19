@@ -1,7 +1,5 @@
 @extends('layouts.admin')
-
 @section('title', 'Edit Penginapan')
-
 @section('content')
 <div class="d-flex align-items-center mb-3">
     <a href="{{ route('admin.penginapan.index') }}" class="btn btn-sm btn-secondary me-2">

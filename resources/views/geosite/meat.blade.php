@@ -65,7 +65,7 @@
             <h2>Desa Meat<br><em>"New Zealand van Toba"</em></h2>
             <div class="divider"></div>
             <p>
-                Desa Meat terletak di pesisir Danau Toba, Kecamatan Tampahan, Kabupaten Toba, Sumatera Utara — 
+                Desa Meat merupakan salah satu desa tua yang terletak di pesisir Danau Toba, yang berada di Kecamatan Tampahan, Kabupaten Toba, Sumatera Utara — 
                 dihuni lebih dari 900 jiwa dari Suku Batak Toba yang mayoritas beragama Kristen. 
                 Desa ini merupakan salah satu dari 21 destinasi wisata unggulan di kawasan Danau Toba, 
                 dan sering dijuluki <strong>"New Zealand van Toba"</strong> karena keindahan bentang alamnya yang dramatis dan memukau.

@@ -1,7 +1,5 @@
 @extends('layouts.admin')
-
 @section('title', 'Tambah UMKM')
-
 @section('content')
 <div class="card">
     <div class="card-header">

@@ -486,6 +486,7 @@ h1, h2, h3, h4, .serif {
     margin-bottom: 14px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -552,7 +553,8 @@ h1, h2, h3, h4, .serif {
     color: var(--text-gray);
     line-height: 1.5;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }

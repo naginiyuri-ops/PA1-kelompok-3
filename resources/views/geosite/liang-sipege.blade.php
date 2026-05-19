@@ -168,7 +168,6 @@
             transition: 0.3s;
         }
         .galeri-item:hover img { transform: scale(1.03); }
-
         /* ========== CTA ========== */
         .cta {
             background: var(--bi-blue);
@@ -323,7 +322,6 @@
     </div>
 </section>
 
-
 <!-- INFORMASI PRAKTIS -->
 <section id="informasi" class="section bg-light">
     <div class="container">
@@ -346,8 +344,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
 <!-- CTA -->
 <section class="cta">
