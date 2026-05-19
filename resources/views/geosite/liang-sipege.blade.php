@@ -584,7 +584,7 @@
             
             <div class="sejarah-item reverse" data-aos="fade-up" data-aos-delay="100">
                 <div class="sejarah-image">
-                    <img src="{{ asset('image/meat/slide2.jpg') }}" alt="Raja Sijorat Paraliman Panjaitan">
+                    <img src="{{ asset('image/meat/liang-sipege-hero.jpg') }}" alt="Raja Sijorat Paraliman Panjaitan">
                 </div>
                 <div class="sejarah-text">
                     <h3>Raja Sijorat Paraliman Panjaitan</h3>
@@ -594,7 +594,7 @@
             
             <div class="sejarah-item" data-aos="fade-up" data-aos-delay="200">
                 <div class="sejarah-image">
-                    <img src="{{ asset('image/meat/slide3.jpg') }}" alt="Tempat Spiritual">
+                    <img src="{{ asset('image/meat/liang-sipege-hero.jpg') }}" alt="Tempat Spiritual">
                 </div>
                 <div class="sejarah-text">
                     <h3>Tempat Spiritual & Habitat Alami</h3>
@@ -617,7 +617,7 @@
         
         <div class="grid-2">
             <div class="info-card" data-aos="fade-up" data-aos-delay="0">
-                <img src="{{ asset('image/meat/slide4.jpg') }}" class="info-card-img" alt="Habitat Kelelawar">
+                <img src="{{ asset('image/meat/liang-sipege-hero.jpg') }}" class="info-card-img" alt="Habitat Kelelawar">
                 <div class="info-card-content">
                     <h3>Habitat Kelelawar & Manfaat Ekonomi</h3>
                     <p>Gua ini adalah koloni alami bagi ribuan kelelawar. Kotoran kelelawar (guano) yang terkumpul di dasar gua dimanfaatkan oleh masyarakat setempat sebagai pupuk organik berkualitas tinggi untuk pertanian mereka, menciptakan harmoni antara konservasi dan kesejahteraan ekonomi lokal.</p>
@@ -625,7 +625,7 @@
             </div>
             
             <div class="info-card" data-aos="fade-up" data-aos-delay="100">
-                <img src="{{ asset('image/meat/slide5.jpg') }}" class="info-card-img" alt="Misteri dan Penelitian">
+                <img src="{{ asset('image/meat/liang-sipege-hero.jpg') }}" class="info-card-img" alt="Misteri dan Penelitian">
                 <div class="info-card-content">
                     <h3>Misteri dan Penelitian</h3>
                     <p>Beberapa lorong Liang Sipege masih belum sepenuhnya terpetakan. Mitos menyebutkan bahwa ada jalur bawah tanah yang menghubungkan gua ini dengan daerah lain di luar Kabupaten Toba. Cerita penduduk tentang serbuk padi yang terbawa angin masuk ke gua memperkuat kepercayaan ini, membuat Liang Sipege menjadi objek penelitian yang menarik.</p>

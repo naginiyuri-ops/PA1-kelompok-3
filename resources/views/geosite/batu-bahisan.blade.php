@@ -747,7 +747,7 @@
             <!-- 3: Pengakuan UNESCO & Pengembangan -->
             <div class="sejarah-item" data-aos="fade-up" data-aos-delay="200">
                 <div class="sejarah-image">
-                    <img src="{{ asset('image/meat/slide2.jpg') }}" alt="Batu Basiha UNESCO Global Geopark">
+                    <img src="{{ asset('image/meat/batubasiha2.jpg') }}" alt="Batu Basiha UNESCO Global Geopark">
                 </div>
                 <div class="sejarah-text">
                     <h3>Pengakuan UNESCO Global Geopark & Pengembangan Wisata</h3>
@@ -790,29 +790,12 @@
         </div>
         
         <div class="sejarah-grid">
-            <!-- Cara Menuju -->
-            <div class="sejarah-item" data-aos="fade-up">
-                <div class="sejarah-image">
-                    <img src="{{ asset('image/meat/slide3.jpg') }}" alt="Akses Menuju Batu Basiha">
-                </div>
-                <div class="sejarah-text">
-                    <h3><i class="fas fa-directions"></i> Akses & Lokasi</h3>
-                    <p>Geosite Batu Basiha terletak di <strong>Desa Aek Bolon Jae, Kecamatan Balige, Kabupaten Toba</strong> — 
-                        tidak jauh dari pusat Kota Balige. Kawasan ini juga berada di area <strong>Perbukitan Sibodiala</strong>, 
-                        memberikan suasana alam perbukitan yang sejuk dan asri.</p>
-                    <ul style="padding-left: 1.5rem; margin-top: 15px;">
-                        <li style="margin-bottom: 8px;">Dari pusat Kota Balige: ±10–15 menit berkendara</li>
-                        <li style="margin-bottom: 8px;">Dari Bandara Silangit (Sisingamangaraja XII): ±50–60 menit</li>
-                        <li style="margin-bottom: 8px;">Pemerintah daerah telah membangun <strong>jalan setapak</strong> menuju lokasi geosite</li>
-                        <li style="margin-bottom: 8px;">Tersedia area parkir di sekitar kawasan desa</li>
-                    </ul>
-                </div>
-            </div>
+    
             
             <!-- Ekowisata & Agrowisata -->
             <div class="sejarah-item reverse" data-aos="fade-up" data-aos-delay="100">
                 <div class="sejarah-image">
-                    <img src="{{ asset('image/meat/slide4.jpg') }}" alt="Ekowisata Agrowisata Batu Basiha">
+                    <img src="{{ asset('image/meat/batu-bahisan.jpg') }}" alt="Ekowisata Agrowisata Batu Basiha">
                 </div>
                 <div class="sejarah-text">
                     <h3><i class="fas fa-tree"></i> Ekowisata & Agrowisata</h3>
@@ -831,7 +814,7 @@
             <!-- Balige & Museum Batak -->
             <div class="sejarah-item" data-aos="fade-up" data-aos-delay="200">
                 <div class="sejarah-image">
-                    <img src="{{ asset('image/meat/slide5.jpg') }}" alt="Balige Pusat Peradaban Toba">
+                    <img src="{{ asset('image/meat/batubasiha1.png') }}" alt="Balige Pusat Peradaban Toba">
                 </div>
                 <div class="sejarah-text">
                     <h3><i class="fas fa-city"></i> Balige: Jantung Peradaban Toba</h3>
