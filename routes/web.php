@@ -95,6 +95,13 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 // ==================== ADMIN ROUTES ====================
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     
+     // tambah admin 
+    Route::get('/create-admin', [App\Http\Controllers\Admin\AdminController::class, 'create'])
+    ->name('admin.create');
+
+    Route::post('/store-admin', [App\Http\Controllers\Admin\AdminController::class, 'store'])
+    ->name('admin.store');
+
     // Dashboard
     Route::get('/', function () {
         $totalGaleri = DB::table('galeris')->count();
@@ -107,13 +114,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         
         return view('admin.dashboard', compact('totalGaleri', 'totalBerita', 'totalInformasi', 'totalUmkm', 'totalFasilitas', 'totalPenginapan', 'totalViews'));
     })->name('admin.dashboard');
-    
-    // ========== TAMBAHKAN ROUTE INI ==========
-    // Route untuk halaman create (redirect ke dashboard jika tidak ada)
-    Route::get('/create', function () {
-        return redirect()->route('admin.dashboard');
-    })->name('admin.create');
-    
+     
     // Atau jika ingin halaman create yang lebih spesifik:
     // Route::get('/create/{type}', [AdminController::class, 'createGeneric'])->name('admin.create');
     // ===========================================
