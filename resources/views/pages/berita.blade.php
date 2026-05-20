@@ -5,702 +5,873 @@
 @section('content')
 
 <style>
-    /* ========== STACKED SLIP CARDS STYLE - SAME AS GALERI ========== */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+    /* ==================== FONTS & VARIABLES ==================== */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+    
+    :root {
+        --primary: #003366;
+        --primary-light: #1a4a7a;
+        --primary-dark: #001f3f;
+        --gold: #c6a43b;
+        --gold-light: #f1d26b;
+        --gold-dark: #967a28;
+        --text-dark: #0f172a;
+        --text-gray: #334155;
+        --text-light: #64748b;
+        --white: #ffffff;
+        --bg-light: #f8fafc;
+        --bg-gray: #f1f5f9;
+        
+        /* Premium Shadows */
+        --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+        --shadow-md: 0 10px 30px rgba(0,0,0,0.06);
+        --shadow-xl: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
+        
+        --radius-lg: 20px;
+        --radius-md: 14px;
+        --radius-sm: 8px;
     }
-
+    
     body {
         font-family: 'Inter', sans-serif;
-        background: #f0f2f5;
+        color: var(--text-dark);
+        background-color: var(--bg-light);
+        -webkit-font-smoothing: antialiased;
     }
-
-    /* HERO SECTION - SAME AS GALERI */
-    .news-hero {
-        background: linear-gradient(135deg, #003366 0%, #1a4a7a 100%);
-        padding: 80px 0 50px;
-        margin-top: 70px;
+    
+    /* ==================== HERO SECTION ==================== */
+    .hero-berita {
+        background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+        padding: 120px 0 80px;
+        margin-top: 60px;
         text-align: center;
         position: relative;
         overflow: hidden;
     }
-
-    .news-hero::before {
+    
+    .hero-berita::before {
         content: '';
         position: absolute;
         top: -50%;
         left: -50%;
         width: 200%;
         height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-        animation: slowRotate 20s linear infinite;
+        background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
+        animation: slowRotate 40s linear infinite;
     }
-
+    
     @keyframes slowRotate {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
     }
-
-    .news-hero-content {
+    
+    .hero-berita .container {
         position: relative;
         z-index: 2;
     }
-
-    .news-hero h1 {
-        font-size: 2.8rem;
+    
+    .hero-badge {
+        display: inline-block;
+        background: rgba(198, 164, 59, 0.12);
+        border: 1px solid rgba(198, 164, 59, 0.3);
+        color: var(--gold-light);
+        padding: 6px 20px;
+        border-radius: 50px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+    
+    .hero-berita h1 {
+        font-size: 3rem;
         font-weight: 700;
         font-family: 'Playfair Display', serif;
-        color: white;
-        margin-bottom: 10px;
-        letter-spacing: 2px;
+        color: var(--white);
+        margin-bottom: 14px;
+        letter-spacing: -0.5px;
     }
-
-    .news-hero p {
-        font-size: 0.85rem;
-        letter-spacing: 3px;
+    
+    .hero-berita p {
+        font-size: 0.92rem;
+        letter-spacing: 1.5px;
         text-transform: uppercase;
-        color: rgba(255,255,255,0.8);
+        color: rgba(255,255,255,0.75);
     }
-
-    /* NEWS SECTION */
-    .news-section {
-        padding: 60px 0 100px;
-        background: linear-gradient(135deg, #f8fafc 0%, #eef2f8 100%);
-        min-height: 100vh;
+    
+    .hero-divider {
+        width: 50px;
+        height: 3px;
+        background: var(--gold);
+        margin: 24px auto 0;
+        border-radius: 4px;
     }
-
+    
+    /* ==================== BERITA SECTION ==================== */
+    .berita-section {
+        padding: 80px 0;
+        background: var(--bg-light);
+    }
+    
     .container {
-        max-width: 1400px;
+        max-width: 1240px;
         margin: 0 auto;
         padding: 0 24px;
     }
-
-    /* STACK CONTAINER - SAME AS GALERI */
-    .stack-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0;
-        padding: 40px 0;
-        position: relative;
+    
+    .berita-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 35px;
     }
-
-    /* SLIP CARD - SAME EXACT STYLE AS GALERI */
-    .slip-card {
+    
+    /* Card Berita Modern */
+    .berita-card {
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgba(15, 23, 42, 0.04);
+    }
+    
+    .berita-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-xl);
+        border-color: rgba(198, 164, 59, 0.15);
+    }
+    
+    /* Wrapper Gambar Interaktif */
+    .card-image-wrapper {
         position: relative;
-        width: 280px;
-        background: white;
-        border-radius: 16px;
+        height: 230px;
         overflow: hidden;
         cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.02);
-        margin-left: -60px;
     }
-
-    .slip-card:first-child {
-        margin-left: 0;
-    }
-
-    /* Efek hover - card naik ke atas seperti slip */
-    .slip-card:hover {
-        transform: translateY(-20px) scale(1.02);
-        z-index: 100;
-        box-shadow: 0 25px 40px -10px rgba(0,0,0,0.25);
-    }
-
-    /* Efek hover untuk card di sampingnya */
-    .slip-card:hover ~ .slip-card {
-        transform: translateX(20px);
-    }
-
-    /* Container gambar - SAME AS GALERI */
-    .slip-image {
-        position: relative;
-        width: 100%;
-        height: 320px;
-        overflow: hidden;
-        background: linear-gradient(135deg, #1e293b, #0f172a);
-    }
-
-    .slip-image img {
+    
+    .card-image-wrapper img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.5s ease;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    .slip-card:hover .slip-image img {
-        transform: scale(1.05);
+    
+    .berita-card:hover .card-image-wrapper img {
+        transform: scale(1.06);
     }
-
-    /* Overlay - SAME AS GALERI */
-    .slip-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-        padding: 30px 16px 16px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .slip-card:hover .slip-overlay {
-        opacity: 1;
-    }
-
-    .slip-category {
-        display: inline-block;
-        background: #c6a43b;
-        color: #003366;
-        padding: 3px 10px;
-        border-radius: 20px;
-        font-size: 0.6rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    .slip-title-overlay {
-        color: white;
-        font-size: 0.85rem;
-        font-weight: 600;
-        margin-top: 8px;
-        line-height: 1.3;
-    }
-
-    /* Info Card - SAME AS GALERI */
-    .slip-info {
-        padding: 16px;
-        background: white;
-        position: relative;
-        border-top: 1px solid #f0f0f0;
-    }
-
-    /* Decorative line seperti slip */
-    .slip-line {
+    
+    /* Hover Overlay Efek Glass */
+    .card-image-overlay {
         position: absolute;
         top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #c6a43b, #e8c45a, #c6a43b);
-        transform: scaleX(0);
-        transition: transform 0.3s ease;
-    }
-
-    .slip-card:hover .slip-line {
-        transform: scaleX(1);
-    }
-
-    .slip-title {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #1e293b;
-        margin-bottom: 6px;
-        line-height: 1.4;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-    /* News specific - excerpt preview */
-    .slip-excerpt {
-        font-size: 0.7rem;
-        color: #64748b;
-        line-height: 1.4;
-        margin-bottom: 8px;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-    .slip-date {
-        font-size: 0.7rem;
-        color: #94a3b8;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-
-    .slip-date i {
-        font-size: 0.65rem;
-        color: #c6a43b;
-    }
-
-    /* Nomor slip seperti antrian - SAME AS GALERI */
-    .slip-number {
-        position: absolute;
-        bottom: 12px;
-        right: 16px;
-        font-size: 0.6rem;
-        color: #cbd5e1;
-        font-family: monospace;
-        letter-spacing: 1px;
-    }
-
-    /* Views counter */
-    .slip-views {
-        position: absolute;
-        bottom: 12px;
-        left: 16px;
-        font-size: 0.6rem;
-        color: #cbd5e1;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-    }
-
-    .slip-views i {
-        font-size: 0.55rem;
-        color: #c6a43b;
-    }
-
-    /* MODAL READER - TETAP SAMA (FUNGSI BERITA) */
-    #fullReader {
-        position: fixed;
-        top: 100%;
         left: 0;
         width: 100%;
         height: 100%;
-        background: white;
-        z-index: 99999;
-        transition: top 0.7s cubic-bezier(0.86, 0, 0.07, 1);
+        background: rgba(0, 31, 63, 0.35);
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        z-index: 1;
+        backdrop-filter: blur(2px);
+    }
+    
+    .card-image-overlay i {
+        color: var(--white);
+        font-size: 1.3rem;
+        background: var(--gold);
+        padding: 14px;
+        border-radius: 50%;
+        box-shadow: 0 6px 15px rgba(198, 164, 59, 0.3);
+        transform: scale(0.8);
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .card-image-wrapper:hover .card-image-overlay {
+        opacity: 1;
+    }
+    
+    .card-image-wrapper:hover .card-image-overlay i {
+        transform: scale(1);
+    }
+    
+    .card-category {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: var(--white);
+        color: var(--primary-dark);
+        padding: 5px 14px;
+        border-radius: 30px;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        z-index: 2;
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .card-date {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(8px);
+        color: white;
+        padding: 5px 14px;
+        border-radius: 30px;
+        font-size: 0.68rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        z-index: 2;
+    }
+    
+    /* Konten Card */
+    .card-content {
+        padding: 26px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        font-family: 'Playfair Display', serif;
+        margin-bottom: 12px;
+        line-height: 1.4;
+        cursor: pointer;
+        transition: color 0.2s ease;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .card-title:hover {
+        color: var(--gold-dark);
+    }
+    
+    .card-excerpt {
+        font-size: 0.88rem;
+        color: var(--text-gray);
+        line-height: 1.6;
+        margin-bottom: 20px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: auto;
+        padding-top: 18px;
+        border-top: 1px solid var(--bg-gray);
+    }
+    
+    .card-views {
+        font-size: 0.75rem;
+        color: var(--text-light);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    
+    .read-more {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--gold-dark);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.3s ease;
+    }
+    
+    .read-more:hover {
+        gap: 10px;
+        color: var(--primary);
+    }
+    
+    /* ==================== PREMIUM OVERLAY READER MODAL ==================== */
+    .reader-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--white);
+        z-index: 1050;
         overflow-y: auto;
         visibility: hidden;
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    #fullReader.active {
-        top: 0;
+    
+    .reader-modal.active {
         visibility: visible;
+        opacity: 1;
     }
-
+    
     .progress-container {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 4px;
-        background: #eee;
-        z-index: 100;
+        background: rgba(0,0,0,0.01);
+        z-index: 1060;
     }
-
+    
     .progress-bar {
         height: 4px;
-        background: #c6a43b;
+        background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
         width: 0%;
         transition: width 0.1s ease;
     }
-
+    
     .reader-nav {
-        padding: 20px 5%;
+        position: sticky;
+        top: 0;
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 14px 40px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: rgba(255,255,255,0.98);
-        backdrop-filter: blur(12px);
-        position: sticky;
-        top: 0;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.05);
         z-index: 99;
-        border-bottom: 1px solid rgba(0,0,0,0.05);
     }
-
+    
     .reader-logo {
         font-family: 'Playfair Display', serif;
-        font-size: 1.2rem;
+        font-size: 1.35rem;
         font-weight: 700;
-        color: #003366;
+        color: var(--primary-dark);
     }
-
+    
     .reader-logo span {
-        color: #c6a43b;
+        color: var(--gold);
     }
-
-    .btn-close-circle {
-        width: 42px;
-        height: 42px;
+    
+    .btn-close {
+        width: 38px;
+        height: 38px;
         border-radius: 50%;
-        background: #f0f0f0;
+        background: var(--bg-gray);
         border: none;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         transition: all 0.3s ease;
-        color: #1a1a1a;
+        color: var(--text-dark);
+        font-size: 0.85rem;
     }
-
-    .btn-close-circle:hover {
-        background: #c6a43b;
-        color: #003366;
+    
+    .btn-close:hover {
+        background: var(--primary-dark);
+        color: var(--white);
         transform: rotate(90deg);
     }
-
-    .reader-content-wrap {
-        max-width: 850px;
+    
+    .reader-content {
+        max-width: 740px; /* Lebar lebih ringkas & ideal membaca santai */
         margin: 0 auto;
-        padding: 40px 30px 60px;
+        padding: 50px 24px 80px;
+        transform: translateY(20px);
         opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.6s ease 0.2s;
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
     }
-
-    #fullReader.active .reader-content-wrap {
-        opacity: 1;
+    
+    .reader-modal.active .reader-content {
         transform: translateY(0);
+        opacity: 1;
     }
-
+    
     .reader-header {
         text-align: center;
-        margin-bottom: 40px;
+        margin-bottom: 35px;
     }
-
-    .reader-date {
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        color: #c6a43b;
+    
+    .reader-category {
         display: inline-block;
-        margin-bottom: 15px;
-    }
-
-    .reader-title-display {
-        font-family: 'Playfair Display', serif;
-        font-size: 2.5rem;
-        line-height: 1.25;
-        color: #1a1a1a;
-        margin: 20px 0;
+        background: rgba(198, 164, 59, 0.08);
+        color: var(--gold-dark);
+        padding: 5px 16px;
+        border-radius: 30px;
+        font-size: 0.7rem;
         font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
     }
-
-    .reader-divider {
-        width: 50px;
-        height: 2px;
-        background: #c6a43b;
-        margin: 20px auto;
+    
+    /* Judul Modal - Diperkecil & Lebih Elegant */
+    .reader-title {
+        font-size: 2.2rem; 
+        font-weight: 700;
+        font-family: 'Playfair Display', serif;
+        color: var(--primary-dark);
+        margin-bottom: 20px;
+        line-height: 1.3;
+        letter-spacing: -0.3px;
     }
-
-    .reader-author {
-        font-size: 13px;
-        color: #999;
+    
+    .reader-meta {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        font-size: 0.82rem;
+        color: var(--text-light);
+        flex-wrap: wrap;
+        border-bottom: 1px solid var(--bg-gray);
+        padding-bottom: 24px;
+    }
+    
+    .reader-meta span {
         display: flex;
         align-items: center;
-        justify-content: center;
-        gap: 8px;
+        gap: 6px;
     }
-
-    .reader-hero-img {
+    
+    .reader-image-container {
         width: 100%;
-        height: auto;
-        max-height: 500px;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        margin: 35px 0;
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .reader-image {
+        width: 100%;
+        max-height: 440px;
         object-fit: cover;
-        border-radius: 16px;
-        margin: 30px 0 40px;
-        box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+        display: block;
     }
-
-    .reader-article-body {
-        font-size: 16px;
-        line-height: 1.9;
-        color: #2c3e50;
-        text-align: left;
+    
+    /* ==================== PROPORSIONAL TYPOGRAPHY ENGINE (Fills & Inputs) ==================== */
+    .reader-body {
         font-family: 'Inter', sans-serif;
+        font-size: 1rem; /* Ukuran font dikecilkan dari 1.125rem agar pas & rapi */
+        line-height: 1.75; /* Spasi yang seimbang dengan ukuran huruf */
+        color: var(--text-gray);
     }
-
-    .reader-article-body p {
-        margin-bottom: 25px;
+    
+    .reader-body p {
+        margin-bottom: 1.4rem;
+        font-weight: 400;
+        text-align: justify;
     }
-
+    
+    /* Judul di dalam artikel dari Text Editor */
+    .reader-body h1, .reader-body h2, .reader-body h3, .reader-body h4 {
+        color: var(--primary-dark);
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        line-height: 1.35;
+        margin: 1.8rem 0 0.8rem;
+    }
+    
+    .reader-body h1 { font-size: 1.75rem; }
+    .reader-body h2 { font-size: 1.5rem; border-left: 3px solid var(--gold); padding-left: 12px; }
+    .reader-body h3 { font-size: 1.25rem; }
+    
+    .reader-body img {
+        max-width: 100%;
+        height: auto !important;
+        border-radius: var(--radius-sm);
+        margin: 20px auto;
+        display: block;
+    }
+    
+    .reader-body ul, .reader-body ol {
+        margin-bottom: 1.4rem;
+        padding-left: 20px;
+    }
+    
+    .reader-body li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .reader-body table {
+        width: 100% !important;
+        margin: 24px 0;
+        border-collapse: collapse;
+        font-size: 0.88rem;
+        overflow-x: auto;
+        display: block;
+    }
+    
+    .reader-body th, .reader-body td {
+        padding: 10px 14px;
+        border: 1px solid var(--bg-gray);
+    }
+    
+    .reader-body th {
+        background-color: var(--bg-light);
+        color: var(--primary-dark);
+    }
+    
+    .reader-body blockquote {
+        border-left: 3px solid var(--gold);
+        padding: 16px 24px;
+        margin: 30px 0;
+        background: var(--bg-light);
+        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        font-style: italic;
+        color: var(--primary-light);
+        font-size: 1.08rem;
+        font-family: 'Playfair Display', serif;
+    }
+    
+    .reader-body strong {
+        color: var(--primary-dark);
+        font-weight: 600;
+    }
+    
+    /* ==================== FOOTER MODAL ==================== */
     .reader-footer {
-        margin: 60px 0 0;
-        text-align: center;
-        border-top: 1px solid #eee;
-        padding-top: 40px;
+        margin-top: 50px;
+        padding-top: 35px;
+        border-top: 1px solid var(--bg-gray);
+        display: flex;
+        justify-content: center;
+        gap: 15px;
     }
-
-    .btn-back {
-        background: #003366;
-        color: white;
-        padding: 12px 32px;
-        border-radius: 40px;
+    
+    .btn-back-reader {
+        background: var(--primary-dark);
+        color: var(--white);
+        padding: 12px 30px;
+        border-radius: 50px;
         border: none;
-        font-size: 12px;
-        letter-spacing: 1px;
+        font-size: 0.82rem;
+        font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
     }
-
-    .btn-back:hover {
-        background: #c6a43b;
-        color: #003366;
-        transform: translateY(-3px);
+    
+    .btn-back-reader:hover {
+        background: var(--gold-dark);
+        transform: translateY(-2px);
     }
-
-    .empty-news {
+    
+    .btn-share-reader {
+        background: transparent;
+        color: var(--primary-dark);
+        padding: 12px 30px;
+        border-radius: 50px;
+        border: 1px solid rgba(0, 31, 63, 0.15);
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    
+    .btn-share-reader:hover {
+        background: var(--bg-light);
+        border-color: var(--primary-dark);
+        transform: translateY(-2px);
+    }
+    
+    /* Empty State */
+    .empty-state {
         text-align: center;
-        padding: 80px;
-        background: white;
-        border-radius: 16px;
+        padding: 80px 24px;
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        grid-column: span 3;
+        box-shadow: var(--shadow-sm);
     }
-
-    .empty-news i {
-        font-size: 3rem;
-        color: #cbd5e1;
-        margin-bottom: 15px;
+    
+    .empty-state i {
+        font-size: 4rem;
+        color: var(--gold);
+        opacity: 0.25;
+        margin-bottom: 20px;
     }
-
-    /* RESPONSIVE - SAME AS GALERI */
-    @media (max-width: 1200px) {
-        .slip-card {
-            width: 240px;
-        }
-        .slip-image {
-            height: 280px;
-        }
+    
+    .empty-state h3 {
+        font-size: 1.35rem;
+        color: var(--primary-dark);
+        margin-bottom: 8px;
+        font-family: 'Playfair Display', serif;
     }
-
-    @media (max-width: 992px) {
-        .stack-container {
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .slip-card {
-            margin-left: 0 !important;
-            width: 260px;
-        }
-        .slip-card:hover ~ .slip-card {
-            transform: none;
-        }
-        .slip-card:hover {
-            transform: translateY(-10px);
-        }
+    
+    /* Pagination */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 50px;
     }
-
+    
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 1024px) {
+        .berita-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+        .hero-berita h1 { font-size: 2.6rem; }
+    }
+    
     @media (max-width: 768px) {
-        .slip-card {
-            width: calc(50% - 8px);
-        }
-        .slip-image {
-            height: 260px;
-        }
-        .news-hero h1 {
-            font-size: 2rem;
-        }
-        .reader-title-display {
-            font-size: 1.6rem;
-        }
-        .reader-content-wrap {
-            padding: 20px;
-        }
-    }
-
-    @media (max-width: 560px) {
-        .slip-card {
-            width: 100%;
-        }
-        .slip-image {
-            height: 280px;
-        }
+        .hero-berita h1 { font-size: 2rem; }
+        .berita-grid { grid-template-columns: 1fr; }
+        .reader-title { font-size: 1.8rem; }
+        .reader-nav { padding: 14px 20px; }
+        .reader-content { padding: 35px 16px 50px; }
     }
 </style>
 
-<!-- HERO SECTION - SAME AS GALERI -->
-<div class="news-hero">
-    <div class="news-hero-content">
-        <h1>BERITA TERKINI</h1>
-        <p>Discover Geosite Toba</p>
-    </div>
-</div>
-
-<!-- STACKED SLIP CARDS SECTION - SAME VISUAL AS GALERI -->
-<section class="news-section">
+<!-- ==================== HERO SECTION ==================== -->
+<section class="hero-berita">
     <div class="container">
-        <div class="stack-container">
-            @php $counter = 1; @endphp
-            @forelse($berita as $item)
-                @php
-                    // Handle gambar sama seperti galeri
-                    if (!empty($item->gambar)) {
-                        if (strlen($item->gambar) > 500 && !filter_var($item->gambar, FILTER_VALIDATE_URL)) {
-                            $imageSrc = $item->gambar;
-                        } elseif (filter_var($item->gambar, FILTER_VALIDATE_URL)) {
-                            $imageSrc = $item->gambar;
-                        } else {
-                            $imageSrc = asset('storage/' . $item->gambar);
-                        }
-                    } else {
-                        $imageSrc = asset('image/default.jpg');
-                    }
-                    
-                    // Excerpt untuk preview
-                    $excerpt = strip_tags($item->konten);
-                    $excerpt = Str::limit($excerpt, 80);
-                @endphp
-                
-                <div class="slip-card" onclick="openReader({{ $item->id }})">
-                    <div class="slip-image">
-                        <img src="{{ $imageSrc }}" 
-                             alt="{{ $item->judul }}" 
-                             loading="lazy" 
-                             onerror="this.src='{{ asset('image/default.jpg') }}'">
-                        <div class="slip-overlay">
-                            <span class="slip-category">BERITA</span>
-                            <div class="slip-title-overlay">{{ Str::limit($item->judul, 35) }}</div>
-                        </div>
-                    </div>
-                    <div class="slip-info">
-                        <div class="slip-line"></div>
-                        <div class="slip-title">{{ Str::limit($item->judul, 30) }}</div>
-                        <div class="slip-excerpt">{{ $excerpt }}</div>
-                        <div class="slip-date">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') }}</span>
-                        </div>
-                        <div class="slip-views">
-                            <i class="fas fa-eye"></i>
-                            <span>{{ $item->views ?? 0 }}</span>
-                        </div>
-                        <div class="slip-number">#{{ str_pad($counter, 3, '0', STR_PAD_LEFT) }}</div>
-                    </div>
-                </div>
-                @php $counter++; @endphp
-            @empty
-                <div class="empty-news">
-                    <i class="fas fa-newspaper"></i>
-                    <h3>Belum Ada Berita</h3>
-                    <p style="color: #999; margin-top: 10px;">Silakan tambah berita melalui panel admin.</p>
-                </div>
-            @endforelse
-        </div>
+        <div class="hero-badge">UPDATE TERBARU</div>
+        <h1>Berita Terkini</h1>
+        <p>Informasi & Perkembangan Terbaru Geopark Danau Toba</p>
+        <div class="hero-divider"></div>
     </div>
 </section>
 
-<!-- READER MODAL - FUNGSI BERITA TETAP -->
-<div id="fullReader">
+<!-- ==================== BERITA SECTION ==================== -->
+<section class="berita-section">
+    <div class="container">
+        <div class="berita-grid">
+            @forelse($berita as $item)
+            <div class="berita-card" data-aos="fade-up" data-aos-delay="{{ ($loop->index % 3) * 100 }}">
+                @php
+                    $imgSrc = asset('image/default.jpg');
+                    if (!empty($item->gambar)) {
+                        if (str_starts_with($item->gambar, 'data:image')) {
+                            $imgSrc = $item->gambar;
+                        } elseif (filter_var($item->gambar, FILTER_VALIDATE_URL)) {
+                            $imgSrc = $item->gambar;
+                        } else {
+                            $imgSrc = asset('storage/' . $item->gambar);
+                        }
+                    }
+                @endphp
+                
+                <div class="card-image-wrapper" onclick="openBerita({{ $item->id }})">
+                    <img src="{{ $imgSrc }}" alt="{{ $item->judul }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                    <div class="card-image-overlay">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <span class="card-category">BERITA</span>
+                    <span class="card-date">
+                        <i class="far fa-calendar-alt"></i>
+                        {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') }}
+                    </span>
+                </div>
+                
+                <div class="card-content">
+                    <h3 class="card-title" onclick="openBerita({{ $item->id }})">{{ $item->judul }}</h3>
+                    <p class="card-excerpt">{{ Str::limit(strip_tags($item->konten), 110) }}</p>
+                    <div class="card-footer">
+                        <span class="card-views" id="views-{{ $item->id }}">
+                            <i class="far fa-eye"></i> {{ number_format($item->views ?? 0) }} dibaca
+                        </span>
+                        <a href="javascript:void(0)" class="read-more" onclick="openBerita({{ $item->id }})">
+                            Baca Selengkapnya <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @empty
+            <div class="empty-state">
+                <i class="far fa-newspaper"></i>
+                <h3>Belum Ada Berita</h3>
+                <p>Silakan tambahkan berita terbaru melalui panel admin.</p>
+            </div>
+            @endforelse
+        </div>
+        
+        @if(method_exists($berita, 'links'))
+        <div class="pagination">
+            {{ $berita->links() }}
+        </div>
+        @endif
+    </div>
+</section>
+
+<!-- ==================== MODAL READER PREMIUM ==================== -->
+<div id="readerModal" class="reader-modal">
     <div class="progress-container">
-        <div class="progress-bar" id="myBar"></div>
+        <div class="progress-bar" id="progressBar"></div>
     </div>
     
     <div class="reader-nav">
         <div class="reader-logo">Geo<span>Toba</span></div>
-        <button class="btn-close-circle" onclick="closeReader()">
+        <button class="btn-close" onclick="closeBerita()">
             <i class="fas fa-times"></i>
         </button>
     </div>
-
-    <div class="reader-content-wrap">
+    
+    <div class="reader-content">
         <div class="reader-header">
-            <span class="reader-date" id="r-date"></span>
-            <h1 id="r-title" class="reader-title-display"></h1>
-            <div class="reader-divider"></div>
-            <div class="reader-author">
-                <i class="far fa-user"></i>
-                <span id="r-author">Admin GeoToba</span>
-            </div>
+            <span class="reader-category" id="modalCategory">BERITA</span>
+            <h1 class="reader-title" id="modalTitle"></h1>
+            <div class="reader-meta" id="modalMeta"></div>
         </div>
-
-        <img id="r-img" src="" class="reader-hero-img" alt="">
-
-        <div id="r-content" class="reader-article-body"></div>
-
+        
+        <div class="reader-image-container">
+            <img id="modalImage" class="reader-image" src="" alt="">
+        </div>
+        
+        <!-- Target isi tulisan berita -->
+        <div class="reader-body" id="modalContent"></div>
+        
         <div class="reader-footer">
-            <button class="btn-back" onclick="closeReader()">
-                <i class="fas fa-arrow-left"></i> Kembali ke Berita
+            <button class="btn-back-reader" onclick="closeBerita()">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </button>
+            <button class="btn-share-reader" onclick="bagikanBerita()">
+                <i class="fas fa-share-alt"></i> Bagikan Artikel
             </button>
         </div>
     </div>
 </div>
 
 <script>
-    // Data berita dari server
-    const newsData = @json($berita->items());
-
-    function openReader(id) {
-        const item = newsData.find(x => x.id === id);
-        if(!item) return;
-
-        // Handle gambar untuk reader
-        let imgSrc = '{{ asset("image/default.jpg") }}';
+    const beritaData = @json($berita->items());
+    
+    async function openBerita(id) {
+        const item = beritaData.find(x => x.id === id);
+        if (!item) return;
         
-        if (item.gambar && item.gambar.trim() !== '') {
-            if (item.gambar.length > 500 && !item.gambar.startsWith('http')) {
+        let imgSrc = '{{ asset("image/default.jpg") }}';
+        if (item.gambar) {
+            if (item.gambar.startsWith('data:image') || item.gambar.startsWith('http')) {
                 imgSrc = item.gambar;
-            } else if (item.gambar.startsWith('http')) {
-                imgSrc = item.gambar;
-            } else if (item.gambar) {
+            } else {
                 imgSrc = '{{ asset("storage") }}/' + item.gambar;
             }
         }
-
-        // Set content
-        document.getElementById('r-title').innerText = item.judul;
-        document.getElementById('r-content').innerHTML = item.konten;
-        document.getElementById('r-img').src = imgSrc;
-        document.getElementById('r-date').innerHTML = new Date(item.created_at).toLocaleDateString('id-ID', {
+        
+        const tgl = new Date(item.created_at);
+        const tanggalFormatted = tgl.toLocaleDateString('id-ID', {
             day: 'numeric',
             month: 'long',
             year: 'numeric'
         });
-        document.getElementById('r-author').innerHTML = item.penulis || 'Admin GeoToba';
-
-        // Aktifkan Reader
-        const reader = document.getElementById('fullReader');
-        reader.classList.add('active');
-        document.body.style.overflow = 'hidden';
-
-        // Reset Scroll Progress
-        const progressBar = document.getElementById("myBar");
-        if (progressBar) {
-            progressBar.style.width = "0%";
-        }
         
-        // Increment views via AJAX
-        fetch(`/api/berita/${id}/view`, { 
-            method: 'POST', 
-            headers: { 
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                'Content-Type': 'application/json'
-            } 
-        }).catch(err => console.log('View increment error:', err));
+        document.getElementById('modalTitle').innerText = item.judul;
+        document.getElementById('modalContent').innerHTML = item.konten;
+        document.getElementById('modalImage').src = imgSrc;
+        document.getElementById('modalMeta').innerHTML = `
+            <span><i class="far fa-calendar"></i> ${tanggalFormatted}</span>
+            <span><i class="far fa-user"></i> ${item.penulis || 'Admin GeoToba'}</span>
+            <span><i class="far fa-eye"></i> <span id="modalViews">${(item.views || 0).toLocaleString()}</span> dibaca</span>
+        `;
+        
+        const modal = document.getElementById('readerModal');
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        modal.scrollTop = 0;
+        document.getElementById('progressBar').style.width = '0%';
+        
+        try {
+            const response = await fetch('/api/berita/' + id + '/view', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            });
+            const data = await response.json();
+            
+            if (data.success) {
+                const viewsSpan = document.getElementById('views-' + id);
+                if (viewsSpan) {
+                    viewsSpan.innerHTML = `<i class="far fa-eye"></i> ${data.views.toLocaleString()} dibaca`;
+                }
+                const modalViews = document.getElementById('modalViews');
+                if (modalViews) {
+                    modalViews.innerText = data.views.toLocaleString();
+                }
+            }
+        } catch (err) {
+            console.error('Gagal memperbarui data views:', err);
+        }
     }
-
-    function closeReader() {
-        const reader = document.getElementById('fullReader');
-        reader.classList.remove('active');
+    
+    function closeBerita() {
+        const modal = document.getElementById('readerModal');
+        modal.classList.remove('active');
         document.body.style.overflow = 'auto';
     }
-
-    // Progress Bar saat scroll
-    const readerElement = document.getElementById('fullReader');
-    if (readerElement) {
-        readerElement.onscroll = function() {
-            const winScroll = readerElement.scrollTop;
-            const height = readerElement.scrollHeight - readerElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            const progressBar = document.getElementById("myBar");
-            if (progressBar) {
-                progressBar.style.width = scrolled + "%";
-            }
-        };
+    
+    function bagikanBerita() {
+        const title = document.getElementById('modalTitle').innerText;
+        const url = window.location.href;
+        
+        if (navigator.share) {
+            navigator.share({
+                title: title,
+                text: 'Baca berita menarik seputar GeoToba terbaru ini:',
+                url: url
+            }).catch(err => console.log('Share dibatalkan'));
+        } else {
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Tautan berita berhasil disalin ke clipboard!');
+            }).catch(() => {
+                alert('Salin tautan berikut: ' + url);
+            });
+        }
     }
-
-    // ESC key to close
+    
+    const modalElement = document.getElementById('readerModal');
+    if (modalElement) {
+        modalElement.addEventListener('scroll', function() {
+            const scrollTop = modalElement.scrollTop;
+            const scrollHeight = modalElement.scrollHeight - modalElement.clientHeight;
+            const scrolled = (scrollTop / scrollHeight) * 100;
+            const progressBar = document.getElementById('progressBar');
+            if (progressBar && scrollHeight > 0) {
+                progressBar.style.width = scrolled + '%';
+            }
+        });
+    }
+    
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
-            const reader = document.getElementById('fullReader');
-            if (reader && reader.classList.contains('active')) {
-                closeReader();
+            const modal = document.getElementById('readerModal');
+            if (modal && modal.classList.contains('active')) {
+                closeBerita();
             }
         }
     });
 </script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 60,
+        easing: 'ease-out-quad'
+    });
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 @endsection
