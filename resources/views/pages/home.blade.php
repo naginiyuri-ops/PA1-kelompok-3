@@ -1225,7 +1225,7 @@
                 </div>
                 <div class="maps-note">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>Klik salah satu lokasi untuk melihat lokasi detail</span>
+                    <span>Klik salah satu lokasi disamping untuk melihat lokasi detail</span>
                 </div>
             </div>
         </div>
