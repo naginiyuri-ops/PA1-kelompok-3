@@ -1153,7 +1153,7 @@
                     <img src="/image/meat/meat-detail.jpg" alt="Meat">
                 </div>
                 <div class="destinasi-content">
-                    <div class="destinasi-number">01 — GEOSITE</div>
+                    <div class="destinasi-number">01 —Meat </div>
                     <h3>Meat</h3>
                     <div class="destinasi-location">Desa Tampahan, Kecamatan Tampahan, Kabupaten Toba</div>
                     <p class="destinasi-desc">Desa Meat adalah salah satu desa wisata yang terletak di Kecamatan Balige, Kabupaten Toba, di tepi Danau Toba.</p>
@@ -1167,7 +1167,7 @@
                     <img src="/image/meat/batu-detail.jpg" alt="Batu Bahisan">
                 </div>
                 <div class="destinasi-content">
-                    <div class="destinasi-number">02 — GEOSITE</div>
+                    <div class="destinasi-number">02 — Batu Basiha </div>
                     <h3>Batu Basiha</h3>
                     <div class="destinasi-location">Desa Aek Bolon Jae, Balige</div>
                     <p class="destinasi-desc">Batu Basiha merupakan salah satu situs batu bersejarah di kawasan Balige yang memiliki nilai budaya dan legenda dalam masyarakat Batak Toba.</p>
@@ -1181,7 +1181,7 @@
                     <img src="/image/meat/liang-detail.jpg" alt="Liang Sipege">
                 </div>
                 <div class="destinasi-content">
-                    <div class="destinasi-number">03 — GEOSITE</div>
+                    <div class="destinasi-number">03 — Liang Sipege </div>
                     <h3>Liang Sipege</h3>
                     <div class="destinasi-location">Hutagaol Peatalun, Balige</div>
                     <p class="destinasi-desc">Gua Liang Sipege adalah destinasi wisata alam yang terletak di Desa Simarmar Pea Talun Hutagaol, Kecamatan Balige, Kabupaten Toba.</p>

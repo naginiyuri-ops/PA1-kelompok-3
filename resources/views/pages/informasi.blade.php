@@ -503,7 +503,7 @@
                 <div class="info-card-body">
                     <div class="info-meta">
                         <span class="info-date">📅 {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') }}</span>
-                        <span class="info-views" id="views-{{ $item->id }}">👁️ {{ number_format($item->views ?? 0) }} x dibaca</span>
+                        <span class="info-views" id="views-{{ $item->id }}">Views {{ number_format($item->views ?? 0) }}  dilihat</span>
                     </div>
                     <h3>{{ $item->judul }}</h3>
                     <p class="info-excerpt">{{ Str::limit(strip_tags($item->konten), 120) }}</p>
