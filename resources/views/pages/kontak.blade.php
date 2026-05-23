@@ -365,7 +365,7 @@
         <div class="contact-grid">
             <div class="contact-card">
                 <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                <h3>Alamat</h3>
+                <h3>Alamat </h3>
                 <p>Geosite Danau Toba</p>
                 <p>Meat, Danau Toba</p>
                 <p>Sumatera Utara</p>
