@@ -679,22 +679,22 @@
         <!-- Kartu Fakta Singkat -->
         <div class="facts-grid" data-aos="fade-up">
             <div class="fact-card">
-                <i class="fas fa-map-marker-alt"></i>
+                <i> </i>
                 <h4>Lokasi</h4>
                 <p>Desa Aek Bolon Jae, Kecamatan Balige, Kabupaten Toba, Sumatera Utara</p>
             </div>
             <div class="fact-card">
-                <i class="fas fa-globe"></i>
+                <i ></i>
                 <h4>Status UNESCO</h4>
                 <p>1 dari 16 geosite UNESCO Global Geopark, diakui 7 Juli 2020</p>
             </div>
             <div class="fact-card">
-                <i class="fas fa-mountain"></i>
+                <i ></i>
                 <h4>Terbentuk</h4>
                 <p>Letusan Gunung Api Toba ~74.000 tahun lalu — batuan andesit kekar kolom horizontal</p>
             </div>
             <div class="fact-card">
-                <i class="fas fa-leaf"></i>
+                <i></i>
                 <h4>Pengembangan</h4>
                 <p>Dikembangkan sebagai kawasan ekowisata dan agrowisata oleh Pemkab Toba</p>
             </div>
@@ -798,7 +798,7 @@
                     <img src="{{ asset('image/meat/batu-bahisan.jpg') }}" alt="Ekowisata Agrowisata Batu Basiha">
                 </div>
                 <div class="sejarah-text">
-                    <h3><i class="fas fa-tree"></i> Ekowisata & Agrowisata</h3>
+                    <h3>Ekowisata & Agrowisata</h3>
                     <p>Kawasan sekitar Batu Basiha dikembangkan oleh Pemerintah Kabupaten Toba menjadi 
                         <strong>destinasi ekowisata dan agrowisata</strong>. Di sekitar situs, wisatawan dapat menikmati:</p>
                     <ul style="padding-left: 1.5rem; margin-top: 15px;">
@@ -817,7 +817,7 @@
                     <img src="{{ asset('image/meat/batubasiha1.png') }}" alt="Balige Pusat Peradaban Toba">
                 </div>
                 <div class="sejarah-text">
-                    <h3><i class="fas fa-city"></i> Balige: Jantung Peradaban Toba</h3>
+                    <h3> Balige: Jantung Peradaban Toba</h3>
                     <p>Kunjungan ke Batu Basiha dapat dikombinasikan dengan menjelajahi <strong>Kota Balige</strong>, 
                         salah satu pusat peradaban Batak Toba dengan ragam warisan sejarah dan budaya. 
                         Di Balige terdapat <strong>Museum Batak TB Silalahi</strong> yang memiliki koleksi terlengkap tentang 
@@ -832,22 +832,20 @@
         <!-- Tips Kunjungan -->
         <div class="tips-grid" data-aos="fade-up">
             <div class="tip-card">
-                <i class="fas fa-clock"></i>
+                <i></i>
                 <h4>Waktu Kunjungan</h4>
                 <p>Pagi hingga sore hari. Pagi hari disarankan untuk menikmati udara segar perbukitan dan cahaya terbaik untuk fotografi.</p>
             </div>
             <div class="tip-card">
-                <i class="fas fa-shoe-prints"></i>
                 <h4>Persiapan Fisik</h4>
                 <p>Gunakan alas kaki yang nyaman. Jalan setapak telah dibangun, namun medan perbukitan tetap memerlukan kewaspadaan.</p>
             </div>
             <div class="tip-card">
-                <i class="fas fa-hands"></i>
+                <i></i>
                 <h4>Hormati Adat Setempat</h4>
                 <p>Batu Basiha adalah situs keramat. Harap bersikap sopan, tidak membuang sampah, dan tidak merusak formasi batuan.</p>
             </div>
             <div class="tip-card">
-                <i class="fas fa-camera"></i>
                 <h4>Fotografi</h4>
                 <p>Formasi batu balok andesit yang tersusun rapi menawarkan latar foto yang unik dan langka dengan latar perbukitan.</p>
             </div>

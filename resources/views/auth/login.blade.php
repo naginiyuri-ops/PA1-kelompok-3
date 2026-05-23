@@ -47,7 +47,7 @@
                                 <input type="password" name="password" class="form-control" required>
                             </div>
                             <div class="forgot-link">
-                                <a href="{{ route('password.request') }}">Lupa Password?</a>
+                                <a href="{{ route('password.request') }}">Reset Password?</a>
                             </div>
                             <button type="submit" class="btn btn-dark w-100 mt-3">Login</button>
                         </form>
