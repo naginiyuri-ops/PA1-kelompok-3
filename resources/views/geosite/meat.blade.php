@@ -985,7 +985,6 @@
     });
     
     startSlider();
-    
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -997,7 +996,6 @@
         });
     });
 </script>
-
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init({
@@ -1007,5 +1005,4 @@
         easing: 'ease-out-quad'
     });
 </script>
-
 @endsection

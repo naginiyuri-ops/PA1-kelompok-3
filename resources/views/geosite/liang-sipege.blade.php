@@ -669,7 +669,6 @@
         </div>
     </div>
 </section>
-
 <!-- ==================== CTA SECTION ==================== -->
 <section class="cta-section">
     <div class="container">
@@ -702,5 +701,4 @@
         });
     });
 </script>
-
 @endsection
