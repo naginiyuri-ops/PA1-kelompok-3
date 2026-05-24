@@ -727,7 +727,7 @@
     <div class="hero-content" data-aos="fade-up">
         <div class="hero-badge">UNESCO Global Geopark</div>
         <h1 class="hero-title">MEAT</h1>
-        <p class="hero-subtitle">Kec. Tampahan · Kab. Toba · "New Zealand van Toba"</p>
+        <p class="hero-subtitle">Kec. Tampahan · Kab. Toba · Geopark Kaldera Toba</p>
         <div class="hero-divider"></div>
     </div>
     
@@ -744,7 +744,7 @@
             <span class="badge">Warisan Budaya</span>
             <h2>Sejarah & Budaya</h2>
             <div class="divider"></div>
-            <p>Warisan budaya Batak yang autentik dan masih hidup</p>
+            <p>Mengenal kekayaan sejarah dan tradisi masyarakat Batak yang masih terjaga hingga hari ini di Desa Meat</p>
         </div>
         
         <div class="sejarah-grid">
@@ -754,7 +754,7 @@
                 </div>
                 <div class="sejarah-text">
                     <h3>Desa Meat - Jantung Budaya Batak</h3>
-                    <p>Meat adalah salah satu desa adat tertua di Kecamatan Tampahan, Kabupaten Toba, Provinsi Sumatra Utara. Terletak tepat di bibir Danau Toba dan dikelilingi bentangan perbukitan hijau yang menjulang, desa ini menjadi pusat pelestarian budaya Batak yang otentik. Perpaduan hamparan sawah bertingkat yang menghadap langsung ke Danau Toba dan suasana perbukitan yang dramatis menjadikan Meat dijuluki <strong>"New Zealand van Toba"</strong> oleh para wisatawan yang terpesona.</p>
+                    <p>Meat adalah salah satu desa adat tertua di Kecamatan Tampahan, Kabupaten Toba, Provinsi Sumatra Utara. Terletak tepat di bibir Danau Toba dan dikelilingi bentangan perbukitan hijau yang menjulang, desa ini telah lama menjadi pusat pelestarian budaya Batak yang otentik. Perpaduan hamparan sawah bertingkat yang menghadap langsung ke Danau Toba dan suasana perbukitan yang dramatis menjadikan Meat dijuluki <strong>"New Zealand van Toba"</strong> — sebuah julukan yang mencerminkan betapa mempesonanya lanskap desa ini bagi setiap pengunjung.</p>
                 </div>
             </div>
             
@@ -764,7 +764,7 @@
                 </div>
                 <div class="sejarah-text">
                     <h3>Tradisi Hidup yang Diwariskan</h3>
-                    <p>Hingga kini, masyarakat Meat tetap menjaga tradisi leluhur dengan penuh dedikasi. Sekitar 80% wanita di desa ini berprofesi sebagai penenun kain Ulos secara tradisional di kolong Ruma Bolon — rumah adat Batak berusia ratusan tahun. Selain tenun Ulos, tarian Tor-tor yang penuh makna filosofis dan musik Gondang yang merdu masih menjadi bagian integral kehidupan sehari-hari masyarakat Meat.</p>
+                    <p>Hingga kini, masyarakat Meat tetap menjaga tradisi leluhur dengan penuh dedikasi. Sekitar 80% wanita di desa ini berprofesi sebagai penenun kain Ulos secara tradisional di kolong Ruma Bolon — rumah adat Batak berusia lebih dari 126 tahun. Suara alat tenun kayu yang beradu menjadi musik alami yang khas. Selain tenun Ulos, tarian Tor-tor yang penuh makna filosofis dan musik Gondang yang merdu juga masih menjadi bagian integral kehidupan sehari-hari masyarakat Meat yang terus dilestarikan lintas generasi.</p>
                 </div>
             </div>
             
@@ -774,7 +774,7 @@
                 </div>
                 <div class="sejarah-text">
                     <h3>Destinasi Wisata Budaya Unggulan</h3>
-                    <p>Budaya dan kearifan lokal yang masih terjaga dengan baik menjadikan Meat sebagai destinasi wisata unggulan di kawasan Geopark Kaldera Toba. Desa ini memiliki 4 unit Ruma Bolon yang telah direhab oleh Kementerian Pariwisata RI, serta area camping ground yang dapat menampung hingga 1.000 tenda di tepi Danau Toba. Pengunjung dapat berinteraksi langsung dengan masyarakat, belajar menenun Ulos, menikmati kuliner khas Batak, dan menyaksikan sunrise terbaik menghadap Danau Toba.</p>
+                    <p>Kearifan lokal yang masih terjaga menjadikan Meat sebagai salah satu destinasi wisata budaya unggulan di kawasan Geopark Kaldera Toba. Desa ini memiliki 4 unit Ruma Bolon yang telah direhab oleh Kementerian Pariwisata RI, area camping ground berkapasitas hingga 1.000 tenda di tepi Danau Toba, serta jalur persawahan yang menjadi spot foto favorit para fotografer dan pesepeda. Pengunjung dapat belajar menenun Ulos, menikmati kuliner khas Batak, dan menyaksikan sunrise terbaik langsung menghadap Danau Toba.</p>
                 </div>
             </div>
         </div>
@@ -788,7 +788,7 @@
             <span class="badge">Produk Lokal</span>
             <h2>UMKM Lokal</h2>
             <div class="divider"></div>
-            <p>Produk autentik dan berkualitas dari pengrajin lokal Meat</p>
+            <p>Dukung ekonomi lokal dengan membeli produk autentik dan berkualitas langsung dari tangan pengrajin Desa Meat</p>
         </div>
         
         <div class="grid-3">
@@ -829,7 +829,7 @@
             <span class="badge">Akomodasi</span>
             <h2>Penginapan</h2>
             <div class="divider"></div>
-            <p>Pilihan menginap dengan nuansa budaya Batak yang autentik</p>
+            <p>Nikmati pengalaman menginap dengan nuansa arsitektur tradisional Batak yang hangat dan autentik di tengah alam Desa Meat</p>
         </div>
         
         <div class="grid-3">
@@ -870,7 +870,7 @@
             <span class="badge">Layanan</span>
             <h2>Fasilitas</h2>
             <div class="divider"></div>
-            <p>Fasilitas lengkap untuk kenyamanan wisatawan</p>
+            <p>Berbagai fasilitas pendukung tersedia untuk memastikan kenyamanan dan kelengkapan pengalaman wisata Anda di Desa Meat</p>
         </div>
         
         <div class="grid-2">
