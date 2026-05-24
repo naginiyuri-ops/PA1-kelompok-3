@@ -316,7 +316,7 @@
                 <div class="stat-label">TAHUN SEJARAH</div>
             </div>
             <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
-                <div class="stat-number">3</div>
+                <div class="stat-number">3+</div>
                 <div class="stat-label">GEOSITE UNGGULAN</div>
             </div>
             <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
