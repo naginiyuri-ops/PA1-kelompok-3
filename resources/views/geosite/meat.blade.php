@@ -1110,7 +1110,7 @@
 <<<<<<< HEAD
     // ==================== SMOOTH SCROLL ====================
 =======
-    // Smooth scroll for anchor links
+    // Smooth scroll for anchor linksph
 >>>>>>> ec178c7af7c703850816c92ac522107b2e7643f9
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
