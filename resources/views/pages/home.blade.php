@@ -3,7 +3,7 @@
 @section('content')
 
 <style>
-    /* ==================== ANIMASI GLOBAL (HANYA UNTUK TEKS) ==================== */
+    /* ==================== ANIMASI GLOBAL ==================== */
     @keyframes fadeInUp {
         from {
             opacity: 0;
@@ -37,6 +37,34 @@
         }
     }
     
+    @keyframes zoomIn {
+        from {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+    }
+    @keyframes shimmer {
+        0% {
+            background-position: -1000px 0;
+        }
+        100% {
+            background-position: 1000px 0;
+        }
+    }
+    
     @keyframes float {
         0%, 100% {
             transform: translateY(0);
@@ -46,12 +74,36 @@
         }
     }
     
-    @keyframes bounce {
-        0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.8; }
-        50% { transform: translateX(-50%) translateY(-10px); opacity: 0.4; }
+    @keyframes rotateSlow {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
     }
     
-    /* ==================== HERO VIDEO BACKGROUND ==================== */
+    @keyframes borderGlow {
+        0%, 100% {
+            box-shadow: 0 0 5px rgba(198, 164, 59, 0.3);
+        }
+        50% {
+            box-shadow: 0 0 20px rgba(198, 164, 59, 0.8);
+        }
+    }
+    
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    /* ==================== HERO SLIDER ==================== */
     .hero-section {
         height: 100vh;
         position: relative;
@@ -59,26 +111,49 @@
         margin-top: 0;
     }
     
-    .video-background {
-        position: absolute;
-        top: 50%;
-        left: 50%;
+    .slides-container {
+        position: relative;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        transform: translate(-50%, -50%);
-        z-index: 1;
     }
     
-    .hero-overlay {
+    .slide {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, rgba(0,51,102,0.5) 0%, rgba(0,102,153,0.4) 100%);
-        z-index: 2;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0;
+        transform: scale(1.05);
+        transition: opacity 1.5s ease-in-out, transform 8s ease-out;
+        z-index: 1;
     }
+    
+    .slide.active {
+        opacity: 1;
+        z-index: 2;
+        transform: scale(1);
+    }
+    
+    .slide::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(0,51,102,0.4) 0%, rgba(0,102,153,0.2) 100%);
+        animation: shimmer 3s infinite;
+    }
+    
+    .slide-1 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide1.jpg'); }
+    .slide-2 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide2.jpg'); }
+    .slide-3 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide3.jpg'); }
+    .slide-4 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide4.jpg'); }
+    .slide-5 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide5.jpg'); }
     
     .hero-content {
         position: absolute;
@@ -162,6 +237,60 @@
         color: #003366;
         transform: translateY(-3px);
         letter-spacing: 0.3em;
+        animation: pulse 0.5s ease;
+    }
+    
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .slider-dots {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 12px;
+        z-index: 15;
+    }
+    
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: all 0.4s ease;
+        position: relative;
+    }
+    
+    .dot::after {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border-radius: 50%;
+        background: rgba(198, 164, 59, 0.3);
+        transform: scale(0);
+        transition: transform 0.3s ease;
+    }
+    
+    .dot:hover::after {
+        transform: scale(1);
+    }
+    
+    .dot.active {
+        background: #c6a43b;
+        width: 28px;
+        border-radius: 10px;
+    }
+    
+    .dot:hover {
+        background: #c6a43b;
+        transform: scale(1.2);
     }
     
     .scroll-indicator {
@@ -194,6 +323,11 @@
     .scroll-indicator:hover .line {
         height: 40px;
         background: #c6a43b;
+    }
+    
+    @keyframes bounce {
+        0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.8; }
+        50% { transform: translateX(-50%) translateY(-10px); opacity: 0.4; }
     }
     
     /* ==================== SECTION UMUM ==================== */
@@ -303,7 +437,7 @@
     .stat-item { 
         flex: 1; 
         min-width: 100px; 
-        transition: all 0.3s ease;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         padding: 20px;
         background: rgba(0, 51, 102, 0.05);
         border-radius: 16px;
@@ -327,8 +461,9 @@
     }
     
     .stat-item:hover { 
-        transform: translateY(-5px);
+        transform: translateY(-10px) scale(1.05);
         background: rgba(0, 51, 102, 0.1);
+        animation: borderGlow 1s infinite;
     }
     
     .stat-number {
@@ -341,6 +476,7 @@
     }
     
     .stat-item:hover .stat-number {
+        transform: scale(1.1);
         color: #003366;
     }
     
@@ -396,6 +532,7 @@
         line-height: 1.8;
         margin-bottom: 20px;
         font-size: 0.9rem;
+        transform: translateX(0);
         transition: all 0.3s ease;
     }
     
@@ -408,14 +545,42 @@
         flex: 1;
         border-radius: 12px;
         overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         box-shadow: 0 10px 30px rgba(0, 51, 102, 0.15);
-        transition: box-shadow 0.3s ease;
+        position: relative;
+    }
+    
+    .about-image::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(198,164,59,0.3), transparent);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 1;
+    }
+    
+    .about-image:hover::before {
+        opacity: 1;
+    }
+    
+    .about-image:hover { 
+        transform: scale(1.03) translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 51, 102, 0.25);
     }
     
     .about-image img { 
         width: 100%; 
         height: auto; 
         display: block; 
+        transition: transform 0.5s ease;
+    }
+    
+    .about-image:hover img {
+        transform: scale(1.05);
     }
     
     /* ==================== DESTINASI ==================== */
@@ -425,7 +590,7 @@
         align-items: center;
         gap: 60px;
         flex-wrap: wrap;
-        transition: all 0.3s ease;
+        transition: all 0.5s ease;
     }
     
     .destinasi-item.reverse { flex-direction: row-reverse; }
@@ -435,18 +600,53 @@
         border-radius: 12px;
         overflow: hidden;
         box-shadow: 0 10px 30px rgba(0, 51, 102, 0.15);
-        transition: box-shadow 0.3s ease;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        position: relative;
+    }
+    
+    .destinasi-image::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: radial-gradient(circle, rgba(198,164,59,0.4), transparent);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+        z-index: 1;
+    }
+    
+    .destinasi-image:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .destinasi-image:hover { 
+        transform: scale(1.05) translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 51, 102, 0.25);
+        animation: pulse 0.5s ease;
     }
     
     .destinasi-image img { 
         width: 100%; 
         height: auto; 
         display: block; 
+        transition: transform 0.5s ease;
+    }
+    
+    .destinasi-image:hover img {
+        transform: scale(1.08);
     }
     
     .destinasi-content { 
         flex: 1; 
-        transition: all 0.3s ease;
+        transition: all 0.5s ease;
+    }
+    
+    .destinasi-item:hover .destinasi-content {
+        transform: translateX(15px);
     }
     
     .destinasi-number {
@@ -528,15 +728,33 @@
         font-size: 0.7rem;
         color: #003366;
         border-radius: 30px;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         cursor: pointer;
         font-weight: 500;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .destinasi-tags span::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(198,164,59,0.3), transparent);
+        transition: left 0.4s ease;
+    }
+    
+    .destinasi-tags span:hover::before {
+        left: 100%;
     }
     
     .destinasi-tags span:hover {
         background: #c6a43b;
         color: #003366;
-        transform: translateY(-2px);
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 5px 15px rgba(198,164,59,0.3);
     }
     
     .destinasi-link {
@@ -548,16 +766,35 @@
         letter-spacing: 0.15em;
         text-transform: uppercase;
         text-decoration: none;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         border-radius: 40px;
         background: transparent;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .destinasi-link::before {
+        content: '→';
+        position: absolute;
+        right: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: right 0.4s ease;
+        opacity: 0;
+    }
+    
+    .destinasi-link:hover::before {
+        right: 15px;
+        opacity: 1;
     }
     
     .destinasi-link:hover {
         background: #c6a43b;
         color: #003366;
         letter-spacing: 0.25em;
+        transform: translateY(-3px) scale(1.05);
         padding-right: 45px;
+        box-shadow: 0 8px 20px rgba(198,164,59,0.3);
     }
     
     /* ==================== PETA LOKASI ==================== */
@@ -567,10 +804,11 @@
         overflow: hidden;
         box-shadow: 0 15px 35px rgba(0, 51, 102, 0.15);
         margin-bottom: 30px;
-        transition: box-shadow 0.3s ease;
+        transition: all 0.5s ease;
     }
     
     .maps-container:hover {
+        transform: translateY(-10px);
         box-shadow: 0 25px 45px rgba(0, 51, 102, 0.25);
     }
     
@@ -578,6 +816,11 @@
         width: 100%;
         height: 450px;
         border: 0;
+        transition: transform 0.5s ease;
+    }
+    
+    .maps-container:hover iframe {
+        transform: scale(1.02);
     }
     
     .maps-info {
@@ -604,14 +847,33 @@
         background: rgba(255,255,255,0.1);
         padding: 10px 24px;
         border-radius: 50px;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         cursor: pointer;
         border: 1px solid transparent;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .maps-location-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.4s ease;
+    }
+    
+    .maps-location-item:hover::before {
+        left: 100%;
     }
     
     .maps-location-item:hover {
         background: #c6a43b;
-        transform: translateY(-3px);
+        transform: translateY(-5px) scale(1.05);
+        border-color: rgba(255,255,255,0.3);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
     
     .maps-location-item i {
@@ -622,6 +884,7 @@
     
     .maps-location-item:hover i {
         color: #003366;
+        transform: rotate(360deg) scale(1.2);
     }
     
     .maps-location-item span {
@@ -650,6 +913,7 @@
     
     .maps-note i {
         color: #c6a43b;
+        animation: pulse 2s infinite;
     }
     
     /* ==================== CTA ==================== */
@@ -731,7 +995,7 @@
         font-size: 0.75rem;
         letter-spacing: 0.2em;
         text-transform: uppercase;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         text-decoration: none;
         border-radius: 40px;
         font-weight: 600;
@@ -761,8 +1025,9 @@
     .cta-btn:hover {
         background: white;
         color: #003366;
-        transform: translateY(-3px);
+        transform: translateY(-5px) scale(1.05);
         letter-spacing: 0.3em;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
     }
     
     /* ==================== RESPONSIVE ==================== */
@@ -793,25 +1058,36 @@
     @media (max-width: 480px) {
         .hero-title { font-size: 1.6rem; }
         .hero-subtitle { font-size: 0.5rem; letter-spacing: 0.15em; }
+        .dot { width: 8px; height: 8px; }
+        .dot.active { width: 20px; }
         .maps-container iframe { height: 220px; }
     }
 </style>
 
-<!-- ==================== HERO VIDEO BACKGROUND ==================== -->
+<!-- ==================== HERO SLIDER ==================== -->
 <section class="hero-section" id="home">
-    <video class="video-background" autoplay muted loop playsinline>
-        <source src="/image/slide.mp4" type="video/mp4">
-        <!-- Fallback jika video tidak bisa diputar -->
-        Your browser does not support the video tag.
-    </video>
-    <div class="hero-overlay"></div>
+    <div class="slides-container">
+        <div class="slide slide-1 active"></div>
+        <div class="slide slide-2"></div>
+        <div class="slide slide-3"></div>
+        <div class="slide slide-4"></div>
+        <div class="slide slide-5"></div>
+    </div>
+    
+    <div class="slider-dots">
+        <div class="dot active" data-slide="0"></div>
+        <div class="dot" data-slide="1"></div>
+        <div class="dot" data-slide="2"></div>
+        <div class="dot" data-slide="3"></div>
+        <div class="dot" data-slide="4"></div>
+    </div>
     
     <div class="hero-content">
         <div>
             <div class="hero-subtitle">Global Geopark</div>
             <h1 class="hero-title">BALIGE · MEAT · BATU BASIHA<br>LIANG SIPEGE</h1>
             <div class="hero-divider"></div>
-            <a href="#destinasi" class="hero-btn">Jelajahi Sekarang</a>
+            <a href="#destinasi" class="hero-btn">Jelajahi Sekarang ya</a>
         </div>
     </div>
     
@@ -834,8 +1110,8 @@
                 <div class="stat-label">TAHUN SEJARAH</div>
             </div>
             <div class="stat-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
-                <div class="stat-number">3</div>
-                <div class="stat-label">GEOSITE UNGGULAN</div>
+                <div class="stat-number"></div>
+                <div class="stat-label">WARISAN BUDAYA</div>
             </div>
             <div class="stat-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
                 <div class="stat-number">100+</div>
@@ -852,7 +1128,7 @@
             <div class="about-content" data-aos="fade-right" data-aos-duration="1000">
                 <h3>Warisan Geologi Kelas Dunia</h3>
                 <p>Danau Toba, terbentuk dari letusan supervolcano 74.000 tahun lalu, adalah danau vulkanik terbesar di dunia. Diakui UNESCO sebagai Global Geopark pada tahun 2020.</p>
-                <p>Kawasan ini menyimpan nilai geologi luar biasa, keanekaragaman hayati, dan warisan budaya Batak yang autentik. Tiga geosite unggulan di Kecamatan Balige menanti Anda jelajahi.</p>
+                <p>Kawasan ini menyimpan nilai geologi luar biasa, keanekaragaman hayati, dan warisan budaya Batak yang autentik. Tiga geosite unggulan di Pulau Sibandang menanti Anda jelajahi.</p>
             </div>
             <div class="about-image" data-aos="fade-left" data-aos-duration="1000">
                 <img src="/image/meat/slide1.jpg" alt="Danau Toba">
@@ -877,15 +1153,10 @@
                     <img src="/image/meat/meat-detail.jpg" alt="Meat">
                 </div>
                 <div class="destinasi-content">
-                    <div class="destinasi-number">01 — MEAT</div>
+                    <div class="destinasi-number">01 —Meat </div>
                     <h3>Meat</h3>
                     <div class="destinasi-location">Desa Tampahan, Kecamatan Tampahan, Kabupaten Toba</div>
-                    <p class="destinasi-desc">Desa Meat adalah salah satu desa wisata yang terletak di Kecamatan Balige, Kabupaten Toba, di tepi Danau Toba. Menawarkan pemandangan danau yang indah dan budaya Batak yang kental.</p>
-                    <div class="destinasi-tags">
-                        <span>#DanauToba</span>
-                        <span>#DesaWisata</span>
-                        <span>#BudayaBatak</span>
-                    </div>
+                    <p class="destinasi-desc">Desa Meat adalah salah satu desa wisata yang terletak di Kecamatan Balige, Kabupaten Toba, di tepi Danau Toba.</p>
                     <a href="{{ url('/geosite/meat') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
                 </div>
             </div>
@@ -896,15 +1167,10 @@
                     <img src="/image/meat/batu-detail.jpg" alt="Batu Bahisan">
                 </div>
                 <div class="destinasi-content">
-                    <div class="destinasi-number">02 — BATU BAHISAN</div>
-                    <h3>Batu Bahisan</h3>
+                    <div class="destinasi-number">02 — Batu Basiha </div>
+                    <h3>Batu Basiha</h3>
                     <div class="destinasi-location">Desa Aek Bolon Jae, Balige</div>
-                    <p class="destinasi-desc">Batu Bahisan merupakan salah satu situs batu bersejarah di kawasan Balige yang memiliki nilai budaya dan legenda dalam masyarakat Batak Toba. Konon batu ini digunakan sebagai tempat mengasah senjata.</p>
-                    <div class="destinasi-tags">
-                        <span>#SitusBersejarah</span>
-                        <span>#BatakToba</span>
-                        <span>#WarisanBudaya</span>
-                    </div>
+                    <p class="destinasi-desc">Batu Basiha merupakan salah satu situs batu bersejarah di kawasan Balige yang memiliki nilai budaya dan legenda dalam masyarakat Batak Toba.</p>
                     <a href="{{ url('/geosite/batu-bahisan') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
                 </div>
             </div>
@@ -915,15 +1181,10 @@
                     <img src="/image/meat/liang-detail.jpg" alt="Liang Sipege">
                 </div>
                 <div class="destinasi-content">
-                    <div class="destinasi-number">03 — LIANG SIPEGE</div>
+                    <div class="destinasi-number">03 — Liang Sipege </div>
                     <h3>Liang Sipege</h3>
                     <div class="destinasi-location">Hutagaol Peatalun, Balige</div>
-                    <p class="destinasi-desc">Gua Liang Sipege adalah destinasi wisata alam yang terletak di Desa Simarmar Pea Talun Hutagaol, Kecamatan Balige, Kabupaten Toba. Memiliki stalaktit dan stalagmit yang indah.</p>
-                    <div class="destinasi-tags">
-                        <span>#GuaAlam</span>
-                        <span>#Petualangan</span>
-                        <span>#Geowisata</span>
-                    </div>
+                    <p class="destinasi-desc">Gua Liang Sipege adalah destinasi wisata alam yang terletak di Desa Simarmar Pea Talun Hutagaol, Kecamatan Balige, Kabupaten Toba.</p>
                     <a href="{{ url('/geosite/liang-sipege') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
                 </div>
             </div>
@@ -937,38 +1198,41 @@
         <div class="section-title" data-aos="fade-up" data-aos-duration="800">
             <h2>Lokasi 3 Geosite</h2>
             <div class="divider"></div>
-            <p>Meat, Batu Bahisan, dan Liang Sipege - Balige, Toba</p>
+            <p>Meat, Batu Bahisan, dan Liang Sipege</p>
         </div>
         
         <div class="maps-container" data-aos="zoom-in" data-aos-duration="1000">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31892.45522108672!2d98.96240686371921!3d2.316828414712955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e1b2618ee6569%3A0x36e2c26fb20124ca!2sMeat%2C%20Kec.%20Tampahan%2C%20Toba%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1779549114075!5m2!1sid!2sid"
-                width="600" 
-                height="450"
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+           
+        
+        <iframe
+            
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31892.45522108672!2d98.96240686371921!3d2.316828414712955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e1b2618ee6569%3A0x36e2c26fb20124ca!2sMeat%2C%20Kec.%20Tampahan%2C%20Toba%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1779549114075!5m2!1sid!2sid"
+                 width="600" 
+                 
+                 height="450"
+                  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                
+                </iframe>
+
 
             <div class="maps-info">
                 <div class="maps-locations">
-                    <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Meat+Village+Balige+Toba', '_blank')">
+                    <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Meat+Village+Pulau+Sibandang', '_blank')">
                         <i class="fas fa-location-dot"></i>
                         <span>Meat Village</span>
                     </div>
-                    <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Batu+Bahisan+Balige+Toba', '_blank')">
+                    <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Batu+Bahisan+Pulau+Sibandang', '_blank')">
                         <i class="fas fa-location-dot"></i>
                         <span>Batu Bahisan</span>
                     </div>
-                    <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Liang+Sipege+Balige+Toba', '_blank')">
+                    <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Liang+Sipege+Pulau+Sibandang', '_blank')">
                         <i class="fas fa-location-dot"></i>
                         <span>Liang Sipege</span>
                     </div>
                 </div>
                 <div class="maps-note">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>Klik salah satu lokasi di samping untuk melihat rute detail</span>
+                    <span>Klik salah satu lokasi disamping untuk melihat lokasi detail</span>
                 </div>
             </div>
         </div>
@@ -988,9 +1252,47 @@
 </section>
 
 <script>
+    // ==================== HERO SLIDER ====================
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    let slideInterval;
+    const slideCount = slides.length;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (dots[i]) dots[i].classList.remove('active');
+        });
+        
+        slides[index].classList.add('active');
+        if (dots[index]) dots[index].classList.add('active');
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        let next = (currentSlide + 1) % slideCount;
+        showSlide(next);
+    }
+
+    function startSlider() {
+        if (slideInterval) clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 5000);
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            clearInterval(slideInterval);
+            showSlide(index);
+            startSlider();
+        });
+    });
+
+    startSlider();
+
     // ==================== SMOOTH SCROLL ====================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('clic   k', function(e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
@@ -999,7 +1301,7 @@
         });
     });
     
-    // ==================== ANIMATION ON SCROLL ====================
+    // ==================== ADDITIONAL ANIMATION ON SCROLL ====================
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -1020,14 +1322,6 @@
         el.style.transition = 'all 0.8s ease';
         observer.observe(el);
     });
-    
-    // ==================== PRELOAD VIDEO ====================
-    const video = document.querySelector('.video-background');
-    if (video) {
-        video.addEventListener('loadeddata', () => {
-            video.play().catch(e => console.log('Video autoplay failed:', e));
-        });
-    }
 </script>
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
