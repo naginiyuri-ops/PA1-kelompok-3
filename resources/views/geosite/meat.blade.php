@@ -992,7 +992,8 @@
     </div>
 </section>
 
- 
+=======
+>>>>>>> 84dea222e0df3b955c024ca45e2a6225442f34be
 <!-- ==================== LOKASI & AKSES ==================== -->
 <section id="lokasi" class="section section-white">
     <div class="container">
