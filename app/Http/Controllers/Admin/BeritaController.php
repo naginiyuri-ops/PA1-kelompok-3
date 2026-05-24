@@ -25,30 +25,27 @@ class BeritaController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'konten' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:4096', // 4MB
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
             'penulis' => 'nullable|string|max:100',
             'status' => 'nullable|boolean'
         ]);
 
         $data = [
             'judul' => $request->judul,
+            'slug' => Str::slug($request->judul),
             'konten' => $request->konten,
             'penulis' => $request->penulis ?? 'Admin',
-            'status' => $request->has('status') ? 1 : 0
+            'status' => $request->has('status') ? 1 : 0,
+            'views' => 0
         ];
 
         if ($request->hasFile('gambar')) {
-            $image = $request->file('gambar');
-            $imageData = file_get_contents($image->getRealPath());
-            $base64 = base64_encode($imageData);
-            $mimeType = $image->getMimeType();
-            $data['gambar'] = 'data:' . $mimeType . ';base64,' . $base64;
+            $file = $request->file('gambar');
+            $data['gambar'] = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file));
         }
 
         Berita::create($data);
-
-        return redirect()->route('admin.berita.index')
-            ->with('success', 'Berita berhasil ditambahkan! (Gambar max 4MB)');
+        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil ditambahkan!');
     }
 
     public function edit($id)
@@ -64,47 +61,32 @@ class BeritaController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'konten' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:4096', // 4MB
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
             'penulis' => 'nullable|string|max:100',
             'status' => 'nullable|boolean'
         ]);
 
         $data = [
             'judul' => $request->judul,
+            'slug' => Str::slug($request->judul),
             'konten' => $request->konten,
             'penulis' => $request->penulis ?? 'Admin',
             'status' => $request->has('status') ? 1 : 0
         ];
 
         if ($request->hasFile('gambar')) {
-            $image = $request->file('gambar');
-            $imageData = file_get_contents($image->getRealPath());
-            $base64 = base64_encode($imageData);
-            $mimeType = $image->getMimeType();
-            $data['gambar'] = 'data:' . $mimeType . ';base64,' . $base64;
+            $file = $request->file('gambar');
+            $data['gambar'] = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file));
         }
 
         $berita->update($data);
-
-        return redirect()->route('admin.berita.index')
-            ->with('success', 'Berita berhasil diupdate!');
+        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil diupdate!');
     }
 
     public function destroy($id)
     {
         $berita = Berita::findOrFail($id);
         $berita->delete();
-
-        return redirect()->route('admin.berita.index')
-            ->with('success', 'Berita berhasil dihapus!');
-    }
-
-    public function toggleStatus($id)
-    {
-        $berita = Berita::findOrFail($id);
-        $berita->status = !$berita->status;
-        $berita->save();
-
-        return response()->json(['success' => true, 'status' => $berita->status]);
+        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil dihapus!');
     }
 }

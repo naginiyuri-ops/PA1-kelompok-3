@@ -3,6 +3,7 @@
 @section('title', 'Desa Wisata Meat - Geosite Danau Toba')
 
 @section('content')
+@php use Illuminate\Support\Facades\Storage; @endphp
 
 <style>
     /* ==================== FONTS & VARIABLES ==================== */
@@ -281,7 +282,7 @@
         line-height: 1.7;
     }
     
-    /* ==================== SEJARAH (NO CARD, SMOOTH) ==================== */
+    /* ==================== SEJARAH ==================== */
     .sejarah-grid {
         display: flex;
         flex-direction: column;
@@ -305,6 +306,7 @@
         overflow: hidden;
         box-shadow: var(--shadow-lg);
         transition: all 0.4s ease;
+        cursor: pointer;
     }
     
     .sejarah-image:hover {
@@ -359,16 +361,11 @@
         margin-top: 15px;
     }
     
-    /* ==================== CARDS FOR UMKM, PENGINAPAN, FASILITAS ==================== */
-    .grid-3 {
+    /* ==================== CARDS - BISA 20+ FOTO ==================== */
+    /* GRID OTOMATIS: bukan fixed 3 kolom */
+    .grid-umkm {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
-    }
-    
-    .grid-2 {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 30px;
     }
     
@@ -378,6 +375,8 @@
         overflow: hidden;
         box-shadow: var(--shadow-md);
         transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        display: flex;
+        flex-direction: column;
     }
     
     .card:hover {
@@ -390,6 +389,7 @@
         height: 220px;
         object-fit: cover;
         transition: transform 0.5s ease;
+        cursor: pointer;
     }
     
     .card:hover .card-img {
@@ -398,6 +398,9 @@
     
     .card-content {
         padding: 22px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
     }
     
     .card-content h3 {
@@ -420,7 +423,7 @@
         overflow: hidden;
     }
     
-    .card-location, .card-contact, .card-price {
+    .card-location, .card-contact {
         font-size: 0.75rem;
         color: var(--gold-dark);
         margin-top: 8px;
@@ -429,71 +432,143 @@
         gap: 8px;
     }
     
-    .card-location i, .card-contact i, .card-price i {
-        width: 18px;
-        font-size: 0.75rem;
-    }
-    
-    /* Fasilitas Item - Horizontal Card */
-    .fasilitas-item {
-        background: var(--white);
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: var(--shadow-md);
-        transition: all 0.4s ease;
-        display: flex;
-        gap: 0;
-    }
-    
-    .fasilitas-item:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-xl);
-    }
-    
-    .fasilitas-img {
-        width: 130px;
-        height: 130px;
-        object-fit: cover;
-        transition: transform 0.4s ease;
-    }
-    
-    .fasilitas-item:hover .fasilitas-img {
-        transform: scale(1.05);
-    }
-    
-    .fasilitas-content {
-        padding: 18px 18px 18px 20px;
-        flex: 1;
-    }
-    
-    .fasilitas-content h4 {
-        font-size: 1rem;
-        font-weight: 700;
-        color: var(--primary-dark);
-        margin-bottom: 8px;
-        font-family: 'Playfair Display', serif;
-    }
-    
-    .fasilitas-content p {
-        font-size: 0.8rem;
-        color: var(--text-gray);
-        margin-bottom: 10px;
-        line-height: 1.5;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-    
-    .fasilitas-price {
-        font-size: 0.7rem;
+    .btn-readmore {
+        margin-top: 15px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        border: none;
         color: var(--gold-dark);
+        font-size: 0.75rem;
         font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 8px 0;
+        width: fit-content;
+    }
+    
+    .btn-readmore:hover {
+        gap: 12px;
+        color: var(--primary-dark);
+    }
+    
+    /* ==================== MODAL DESKRIPSI ==================== */
+    .detail-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.85);
+        z-index: 10000;
+        overflow-y: auto;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .detail-modal.active {
+        display: flex;
+    }
+    
+    .detail-modal-container {
+        background: white;
+        max-width: 800px;
+        width: 90%;
+        margin: 50px auto;
+        border-radius: 24px;
+        overflow: hidden;
+        animation: zoomIn 0.3s ease;
+    }
+    
+    .detail-modal-header {
+        position: relative;
+        height: 250px;
+        overflow: hidden;
+    }
+    
+    .detail-modal-header img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .detail-modal-header .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        padding: 30px 30px 20px;
+    }
+    
+    .detail-modal-header .overlay h3 {
+        color: white;
+        font-size: 1.5rem;
+        font-family: 'Playfair Display', serif;
+        margin-bottom: 8px;
+    }
+    
+    .detail-modal-header .overlay .type {
         display: inline-block;
+        background: var(--gold);
+        color: var(--primary-dark);
         padding: 4px 12px;
-        background: rgba(198, 164, 59, 0.1);
         border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 600;
+    }
+    
+    .detail-modal-body {
+        padding: 30px;
+    }
+    
+    .detail-modal-body .detail-info {
+        margin-bottom: 20px;
+    }
+    
+    .detail-modal-body .detail-info p {
+        margin-bottom: 8px;
+        font-size: 0.85rem;
+        color: var(--text-gray);
+    }
+    
+    .detail-modal-body .detail-info i {
+        width: 24px;
+        color: var(--gold);
+    }
+    
+    .detail-modal-body .full-description {
+        color: var(--text-dark);
+        line-height: 1.8;
+        font-size: 0.95rem;
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+        margin-top: 10px;
+    }
+    
+    .detail-modal-close {
+        position: fixed;
+        top: 20px;
+        right: 30px;
+        background: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        z-index: 10001;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .detail-modal-close:hover {
+        background: var(--gold);
+        transform: rotate(90deg);
     }
     
     /* ==================== MAPS SECTION ==================== */
@@ -577,7 +652,6 @@
         padding: 60px;
         background: var(--white);
         border-radius: 24px;
-        grid-column: span 3;
         box-shadow: var(--shadow-sm);
     }
     
@@ -668,7 +742,6 @@
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 1024px) {
         .hero-title { font-size: 3rem; }
-        .grid-3 { grid-template-columns: repeat(2, 1fr); }
     }
     
     @media (max-width: 992px) {
@@ -687,16 +760,17 @@
         .hero-badge { font-size: 0.6rem; padding: 4px 14px; }
         .section { padding: 60px 0; }
         .section-header h2 { font-size: 1.6rem; }
-        .grid-3, .grid-2 { grid-template-columns: 1fr; }
         .sejarah-image img { height: 230px; }
         .card-img { height: 200px; }
-        .fasilitas-item { flex-direction: column; }
-        .fasilitas-img { width: 100%; height: 180px; }
-        .fasilitas-content { padding: 18px; text-align: center; }
         .maps-container iframe { height: 280px; }
         .cta-section { padding: 50px 0; }
         .cta-content h3 { font-size: 1.5rem; }
-        .empty-state { grid-column: span 1; }
+        .detail-modal-header { height: 200px; }
+        .detail-modal-header .overlay h3 { font-size: 1.2rem; }
+        .detail-modal-body { padding: 20px; }
+        .grid-umkm {
+            grid-template-columns: 1fr;
+        }
     }
     
     @media (max-width: 480px) {
@@ -737,7 +811,7 @@
     </div>
 </section>
 
-<!-- ==================== SEJARAH & BUDAYA (NO CARD, SMOOTH) ==================== -->
+<!-- ==================== SEJARAH & BUDAYA ==================== -->
 <section id="sejarah" class="section section-white">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
@@ -749,7 +823,7 @@
         
         <div class="sejarah-grid">
             <div class="sejarah-item" data-aos="fade-up">
-                <div class="sejarah-image">
+                <div class="sejarah-image" onclick="openImageModal('{{ asset('image/meat/slide1.jpg') }}')">
                     <img src="{{ asset('image/meat/slide1.jpg') }}" alt="Desa Meat">
                 </div>
                 <div class="sejarah-text">
@@ -759,7 +833,7 @@
             </div>
             
             <div class="sejarah-item reverse" data-aos="fade-up" data-aos-delay="100">
-                <div class="sejarah-image">
+                <div class="sejarah-image" onclick="openImageModal('{{ asset('image/meat/slide2.jpg') }}')">
                     <img src="{{ asset('image/meat/slide2.jpg') }}" alt="Tradisi Batak">
                 </div>
                 <div class="sejarah-text">
@@ -769,7 +843,7 @@
             </div>
             
             <div class="sejarah-item" data-aos="fade-up" data-aos-delay="200">
-                <div class="sejarah-image">
+                <div class="sejarah-image" onclick="openImageModal('{{ asset('image/meat/slide3.jpg') }}')">
                     <img src="{{ asset('image/meat/slide3.jpg') }}" alt="Wisata Budaya">
                 </div>
                 <div class="sejarah-text">
@@ -781,7 +855,7 @@
     </div>
 </section>
 
-<!-- ==================== UMKM (WITH CARD) ==================== -->
+<!-- ==================== UMKM - BISA 20+ FOTO ==================== -->
 <section id="umkm" class="section section-light">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
@@ -791,112 +865,45 @@
             <p>Produk autentik dan berkualitas dari pengrajin lokal Meat</p>
         </div>
         
-        <div class="grid-3">
-            @forelse($umkm ?? [] as $index => $item)
-            <div class="card" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}">
+        <div class="grid-umkm">
+            @forelse($umkm as $index => $item)
+            <div class="card" data-aos="fade-up" data-aos-delay="{{ min(($index % 5) * 100, 400) }}">
                 @php
                     $imgSrc = asset('image/meat/slide1.jpg');
+                    
                     if (!empty($item->gambar)) {
-                        if (file_exists(public_path('image/meat/' . $item->gambar))) {
-                            $imgSrc = asset('image/meat/' . $item->gambar);
-                        } elseif (file_exists(public_path($item->gambar))) {
+                        if (str_starts_with($item->gambar, 'data:image')) {
+                            $imgSrc = $item->gambar;
+                        } 
+                        elseif (filter_var($item->gambar, FILTER_VALIDATE_URL)) {
+                            $imgSrc = $item->gambar;
+                        }
+                        elseif (Storage::disk('public')->exists($item->gambar)) {
+                            $imgSrc = asset('storage/' . $item->gambar);
+                        }
+                        elseif (file_exists(public_path('storage/' . $item->gambar))) {
+                            $imgSrc = asset('storage/' . $item->gambar);
+                        }
+                        elseif (file_exists(public_path($item->gambar))) {
                             $imgSrc = asset($item->gambar);
                         }
                     }
                 @endphp
-                <img src="{{ $imgSrc }}" class="card-img" alt="{{ $item->nama }}" onerror="this.src='{{ asset('image/meat/slide1.jpg') }}'">
+                <img src="{{ $imgSrc }}" class="card-img" alt="{{ $item->nama }}" onclick="openImageModal('{{ $imgSrc }}')" onerror="this.src='{{ asset('image/meat/slide1.jpg') }}'">
                 <div class="card-content">
                     <h3>{{ $item->nama }}</h3>
                     <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 90) }}</p>
                     <div class="card-location"><i class="fas fa-map-marker-alt"></i> {{ $item->lokasi ?? 'Desa Meat' }}</div>
                     <div class="card-contact"><i class="fas fa-phone"></i> {{ $item->kontak ?? 'Hubungi pengrajin' }}</div>
+                    <button class="btn-readmore" onclick="openDetailModal({{ $index }})">
+                        Baca Selengkapnya <i class="fas fa-arrow-right"></i>
+                    </button>
                 </div>
             </div>
             @empty
             <div class="empty-state" data-aos="fade-up">
                 <i class="fas fa-store"></i>
                 <p>Belum ada data UMKM. Silakan tambahkan melalui admin.</p>
-            </div>
-            @endforelse
-        </div>
-    </div>
-</section>
-
-<!-- ==================== PENGINAPAN (WITH CARD) ==================== -->
-<section id="penginapan" class="section section-white">
-    <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="badge">Akomodasi</span>
-            <h2>Penginapan</h2>
-            <div class="divider"></div>
-            <p>Pilihan menginap dengan nuansa budaya Batak yang autentik</p>
-        </div>
-        
-        <div class="grid-3">
-            @forelse($penginapan ?? [] as $index => $item)
-            <div class="card" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}">
-                @php
-                    $imgSrc = asset('image/meat/slide2.jpg');
-                    if (!empty($item->gambar)) {
-                        if (file_exists(public_path('image/meat/' . $item->gambar))) {
-                            $imgSrc = asset('image/meat/' . $item->gambar);
-                        } elseif (file_exists(public_path($item->gambar))) {
-                            $imgSrc = asset($item->gambar);
-                        }
-                    }
-                @endphp
-                <img src="{{ $imgSrc }}" class="card-img" alt="{{ $item->nama }}" onerror="this.src='{{ asset('image/meat/slide2.jpg') }}'">
-                <div class="card-content">
-                    <h3>{{ $item->nama }}</h3>
-                    <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 90) }}</p>
-                    <div class="card-price"><i class="fas fa-tag"></i> {{ $item->harga ?? 'Hubungi pengelola' }}</div>
-                    <div class="card-contact"><i class="fas fa-phone"></i> {{ $item->kontak ?? 'Hubungi pengelola' }}</div>
-                </div>
-            </div>
-            @empty
-            <div class="empty-state" data-aos="fade-up">
-                <i class="fas fa-hotel"></i>
-                <p>Belum ada data penginapan. Silakan tambahkan melalui admin.</p>
-            </div>
-            @endforelse
-        </div>
-    </div>
-</section>
-
-<!-- ==================== FASILITAS (WITH HORIZONTAL CARD) ==================== -->
-<section id="fasilitas" class="section section-light">
-    <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="badge">Layanan</span>
-            <h2>Fasilitas</h2>
-            <div class="divider"></div>
-            <p>Fasilitas lengkap untuk kenyamanan wisatawan</p>
-        </div>
-        
-        <div class="grid-2">
-            @forelse($fasilitas ?? [] as $index => $item)
-            <div class="fasilitas-item" data-aos="fade-up" data-aos-delay="{{ ($index % 2) * 50 }}">
-                @php
-                    $imgSrc = asset('image/meat/slide3.jpg');
-                    if (!empty($item->gambar)) {
-                        if (file_exists(public_path('image/meat/' . $item->gambar))) {
-                            $imgSrc = asset('image/meat/' . $item->gambar);
-                        } elseif (file_exists(public_path($item->gambar))) {
-                            $imgSrc = asset($item->gambar);
-                        }
-                    }
-                @endphp
-                <img src="{{ $imgSrc }}" class="fasilitas-img" alt="{{ $item->nama }}" onerror="this.src='{{ asset('image/meat/slide4.jpg') }}'">
-                <div class="fasilitas-content">
-                    <h4>{{ $item->nama }}</h4>
-                    <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 70) }}</p>
-                    <div class="fasilitas-price"><i class="fas fa-tag"></i> {{ $item->harga ?? 'Gratis' }}</div>
-                </div>
-            </div>
-            @empty
-            <div class="empty-state" data-aos="fade-up" style="grid-column: span 2;">
-                <i class="fas fa-building"></i>
-                <p>Belum ada data fasilitas. Silakan tambahkan melalui admin.</p>
             </div>
             @endforelse
         </div>
@@ -950,8 +957,38 @@
     </div>
 </section>
 
+<!-- ==================== MODAL LIGHTBOX UNTUK GAMBAR BESAR ==================== -->
+<div id="imageModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; cursor: pointer; align-items: center; justify-content: center;">
+    <span style="position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; z-index: 10000;">&times;</span>
+    <img id="modalImage" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+</div>
+
+<!-- ==================== MODAL DESKRIPSI LENGKAP ==================== -->
+<div id="detailModal" class="detail-modal">
+    <div class="detail-modal-close" onclick="closeDetailModal()">&times;</div>
+    <div class="detail-modal-container">
+        <div class="detail-modal-header">
+            <img id="detailImg" src="" alt="">
+            <div class="overlay">
+                <span class="type">UMKM</span>
+                <h3 id="detailTitle"></h3>
+            </div>
+        </div>
+        <div class="detail-modal-body">
+            <div class="detail-info">
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Lokasi:</strong> <span id="detailLokasi"></span></p>
+                <p><i class="fas fa-phone"></i> <strong>Kontak:</strong> <span id="detailKontak"></span></p>
+            </div>
+            <div class="full-description" id="detailDeskripsi"></div>
+        </div>
+    </div>
+</div>
+
 <script>
-    // Hero Slider
+    // Data dari backend - SEMUA DATA UMKM (bisa 20+)
+    const umkmData = @json($umkm);
+    
+    // ==================== HERO SLIDER ====================
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
@@ -985,7 +1022,8 @@
     });
     
     startSlider();
-    // Smooth scroll for anchor links
+    
+    // ==================== SMOOTH SCROLL ====================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -995,7 +1033,86 @@
             }
         });
     });
+    
+    // ==================== LIGHTBOX MODAL ====================
+    function openImageModal(src) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        if (modal && modalImg) {
+            modal.style.display = 'flex';
+            modalImg.src = src;
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    
+    function closeImageModal() {
+        const modal = document.getElementById('imageModal');
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+    
+    // ==================== DETAIL MODAL ====================
+    function openDetailModal(index) {
+        const item = umkmData[index];
+        if (!item) return;
+        
+        let imgSrc = '{{ asset("image/meat/slide1.jpg") }}';
+        if (item.gambar) {
+            if (item.gambar.startsWith('data:image')) {
+                imgSrc = item.gambar;
+            } else if (item.gambar.startsWith('http')) {
+                imgSrc = item.gambar;
+            } else {
+                imgSrc = '{{ asset("storage") }}/' + item.gambar;
+            }
+        }
+        
+        document.getElementById('detailImg').src = imgSrc;
+        document.getElementById('detailTitle').innerText = item.nama || '-';
+        document.getElementById('detailLokasi').innerText = item.lokasi || 'Desa Meat';
+        document.getElementById('detailKontak').innerText = item.kontak || '-';
+        document.getElementById('detailDeskripsi').innerHTML = item.deskripsi || '<p>Belum ada deskripsi lengkap untuk UMKM ini.</p>';
+        
+        const modal = document.getElementById('detailModal');
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeDetailModal() {
+        const modal = document.getElementById('detailModal');
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    // ==================== EVENT LISTENER MODAL ====================
+    const imageModal = document.getElementById('imageModal');
+    if (imageModal) {
+        imageModal.addEventListener('click', function(e) {
+            if (e.target === this || e.target.tagName === 'SPAN') {
+                closeImageModal();
+            }
+        });
+    }
+    
+    const detailModal = document.getElementById('detailModal');
+    if (detailModal) {
+        detailModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDetailModal();
+            }
+        });
+    }
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeImageModal();
+            closeDetailModal();
+        }
+    });
 </script>
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init({
@@ -1005,4 +1122,5 @@
         easing: 'ease-out-quad'
     });
 </script>
+
 @endsection

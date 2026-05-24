@@ -17,6 +17,8 @@ use App\Http\Controllers\InformasiController as PublicInformasiController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\DB;
 
+Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi');
+
 // ==================== LANGUAGE ROUTE ====================
 Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
 

@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Fasilitas extends Model
 {
+    use HasFactory;
     protected $table = 'fasilitas';
-    protected $fillable = ['nama', 'deskripsi', 'gambar', 'harga', 'urutan', 'status'];
+    protected $fillable = ['nama', 'deskripsi', 'gambar', 'harga', 'status', 'urutan'];
 }

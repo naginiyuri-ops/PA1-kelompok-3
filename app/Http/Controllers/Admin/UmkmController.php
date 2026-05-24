@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Umkm;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class UmkmController extends Controller
 {
@@ -25,10 +25,10 @@ class UmkmController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:4096', // 4MB
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
             'urutan' => 'required|integer',
-            'lokasi' => 'nullable|string',
-            'kontak' => 'nullable|string',
+            'lokasi' => 'nullable|string|max:255',
+            'kontak' => 'nullable|string|max:255',
             'status' => 'nullable|boolean'
         ]);
 
@@ -41,17 +41,16 @@ class UmkmController extends Controller
             'status' => $request->has('status') ? 1 : 0
         ];
 
+        // Simpan gambar sebagai BASE64 ke database
         if ($request->hasFile('gambar')) {
-            $image = $request->file('gambar');
-            $imageData = file_get_contents($image->getRealPath());
-            $base64 = base64_encode($imageData);
-            $mimeType = $image->getMimeType();
-            $data['gambar'] = 'data:' . $mimeType . ';base64,' . $base64;
+            $file = $request->file('gambar');
+            $imageData = base64_encode(file_get_contents($file));
+            $extension = $file->getClientOriginalExtension();
+            $data['gambar'] = 'data:image/' . $extension . ';base64,' . $imageData;
         }
 
         Umkm::create($data);
-        return redirect()->route('admin.umkm.index')
-            ->with('success', 'UMKM berhasil ditambahkan! (Gambar max 4MB)');
+        return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil ditambahkan!');
     }
 
     public function edit($id)
@@ -63,14 +62,14 @@ class UmkmController extends Controller
     public function update(Request $request, $id)
     {
         $data = Umkm::findOrFail($id);
-        
+
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:4096', // 4MB
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
             'urutan' => 'required|integer',
-            'lokasi' => 'nullable|string',
-            'kontak' => 'nullable|string',
+            'lokasi' => 'nullable|string|max:255',
+            'kontak' => 'nullable|string|max:255',
             'status' => 'nullable|boolean'
         ]);
 
@@ -83,24 +82,27 @@ class UmkmController extends Controller
             'status' => $request->has('status') ? 1 : 0
         ];
 
+        // Hapus gambar jika dicentang
+        if ($request->has('hapus_gambar')) {
+            $input['gambar'] = null;
+        }
+
+        // Upload gambar baru sebagai BASE64
         if ($request->hasFile('gambar')) {
-            $image = $request->file('gambar');
-            $imageData = file_get_contents($image->getRealPath());
-            $base64 = base64_encode($imageData);
-            $mimeType = $image->getMimeType();
-            $input['gambar'] = 'data:' . $mimeType . ';base64,' . $base64;
+            $file = $request->file('gambar');
+            $imageData = base64_encode(file_get_contents($file));
+            $extension = $file->getClientOriginalExtension();
+            $input['gambar'] = 'data:image/' . $extension . ';base64,' . $imageData;
         }
 
         $data->update($input);
-        return redirect()->route('admin.umkm.index')
-            ->with('success', 'UMKM berhasil diupdate!');
+        return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil diupdate!');
     }
 
     public function destroy($id)
     {
         $data = Umkm::findOrFail($id);
         $data->delete();
-        return redirect()->route('admin.umkm.index')
-            ->with('success', 'UMKM berhasil dihapus!');
+        return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil dihapus!');
     }
 }
