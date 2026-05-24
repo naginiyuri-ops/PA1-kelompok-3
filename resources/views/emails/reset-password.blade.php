@@ -127,7 +127,6 @@
             </div>
             
             <p>Jika Anda mengalami kendala, silakan hubungi tim support GeoToba.</p>
-            
             <p>Salam,<br><strong>Tim GeoToba</strong></p>
         </div>
         <div class="footer">
