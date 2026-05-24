@@ -801,7 +801,7 @@
     <div class="hero-content" data-aos="fade-up">
         <div class="hero-badge">UNESCO Global Geopark</div>
         <h1 class="hero-title">MEAT</h1>
-        <p class="hero-subtitle">Balige · Danau Toba · "New Zealand van Toba"</p>
+        <p class="hero-subtitle">Kec. Tampahan · Kab. Toba · "New Zealand van Toba"</p>
         <div class="hero-divider"></div>
     </div>
     
@@ -828,7 +828,7 @@
                 </div>
                 <div class="sejarah-text">
                     <h3>Desa Meat - Jantung Budaya Batak</h3>
-                    <p>Meat adalah salah satu desa bersejarah di Kecamatan Balige, Kabupaten Toba, Provinsi Sumatra Utara. Terletak di pinggiran Pulau Sibandang di tengah Danau Toba, desa ini menjadi pusat pelestarian budaya Batak yang otentik. Dengan tradisi turun-temurun, masyarakat Meat tetap menjaga identitas budaya mereka sambil membuka pintu bagi wisatawan untuk mengenal kekayaan warisan leluhur.</p>
+                    <p>Meat adalah salah satu desa adat tertua di Kecamatan Tampahan, Kabupaten Toba, Provinsi Sumatra Utara. Terletak tepat di bibir Danau Toba dan dikelilingi bentangan perbukitan hijau yang menjulang, desa ini menjadi pusat pelestarian budaya Batak yang otentik. Perpaduan hamparan sawah bertingkat yang menghadap langsung ke Danau Toba dan suasana perbukitan yang dramatis menjadikan Meat dijuluki <strong>"New Zealand van Toba"</strong> oleh para wisatawan yang terpesona.</p>
                 </div>
             </div>
             
@@ -838,7 +838,7 @@
                 </div>
                 <div class="sejarah-text">
                     <h3>Tradisi Hidup yang Diwariskan</h3>
-                    <p>Hingga kini, masyarakat Meat tetap menjaga tradisi leluhur dengan penuh dedikasi. Upacara adat yang sakral, tarian Tortor yang penuh makna filosofis, pembuatan Ulos (kain tenun tradisional) dengan motif unik, dan musik Gondang yang merdu masih menjadi bagian integral kehidupan sehari-hari. Setiap tradisi ini bukan sekadar ritual, tetapi representasi nilai-nilai luhur yang diajarkan turun-temurun oleh para leluhur.</p>
+                    <p>Hingga kini, masyarakat Meat tetap menjaga tradisi leluhur dengan penuh dedikasi. Sekitar 80% wanita di desa ini berprofesi sebagai penenun kain Ulos secara tradisional di kolong Ruma Bolon — rumah adat Batak berusia ratusan tahun. Selain tenun Ulos, tarian Tor-tor yang penuh makna filosofis dan musik Gondang yang merdu masih menjadi bagian integral kehidupan sehari-hari masyarakat Meat.</p>
                 </div>
             </div>
             
@@ -848,7 +848,7 @@
                 </div>
                 <div class="sejarah-text">
                     <h3>Destinasi Wisata Budaya Unggulan</h3>
-                    <p>Budaya dan kearifan lokal yang masih terjaga dengan baik telah menjadikan Meat sebagai destinasi wisata budaya yang paling menarik di kawasan Geopark Danau Toba. Pengunjung tidak hanya dapat menikmati keindahan alam Danau Toba yang memukau, tetapi juga merasakan autentisitas kehidupan budaya Batak secara langsung, berinteraksi dengan masyarakat lokal, dan belajar tentang filosofi hidup yang tersimpan dalam setiap tradisi mereka.</p>
+                    <p>Budaya dan kearifan lokal yang masih terjaga dengan baik menjadikan Meat sebagai destinasi wisata unggulan di kawasan Geopark Kaldera Toba. Desa ini memiliki 4 unit Ruma Bolon yang telah direhab oleh Kementerian Pariwisata RI, serta area camping ground yang dapat menampung hingga 1.000 tenda di tepi Danau Toba. Pengunjung dapat berinteraksi langsung dengan masyarakat, belajar menenun Ulos, menikmati kuliner khas Batak, dan menyaksikan sunrise terbaik menghadap Danau Toba.</p>
                 </div>
             </div>
         </div>
@@ -917,7 +917,7 @@
             <span class="badge">Lokasi</span>
             <h2>Lokasi & Akses</h2>
             <div class="divider"></div>
-            <p>Lokasi strategis di Pulau Sibandang, mudah diakses dari Kota Balige</p>
+            <p>Desa Meat, Kecamatan Tampahan, Kabupaten Toba — mudah dijangkau dari Kota Balige maupun Bandara Silangit</p>
         </div>
         
         <div class="maps-section">
@@ -926,19 +926,19 @@
             </div>
             <div class="rute-info" data-aos="fade-left">
                 <div class="rute-item">
-                    <h4><i class="fas fa-motorcycle"></i> Dengan Motor</h4>
-                    <p>Balige → Ajibata (30 menit) → Ferry (20 menit) → Meat (15 menit)</p>
-                    <span class="rute-time">⏱️ ± 1.5 jam</span>
+                    <h4><i class="fas fa-car"></i> Dari Kota Balige</h4>
+                    <p>Kota Balige → Desa Meat melalui jalan darat menuruni bukit yang indah namun cukup curam. Jarak sekitar 10–15 km dengan jalur yang berkelok melewati persawahan hijau.</p>
+                    <span class="rute-time">⏱️ ± 20–30 menit</span>
                 </div>
                 <div class="rute-item">
-                    <h4><i class="fas fa-car"></i> Dengan Mobil</h4>
-                    <p>Balige → Ajibata (30 menit) → Parkir → Ferry → Transportasi lokal</p>
-                    <span class="rute-time">⏱️ ± 2 jam</span>
+                    <h4><i class="fas fa-plane-arrival"></i> Dari Bandara Silangit</h4>
+                    <p>Bandara Sisingamangaraja XII (Silangit) terhubung dari Jakarta (Garuda, Citilink, Batik Air) dan Malaysia (AirAsia, Malindo Air). Dari bandara menuju Desa Meat melalui jalur darat.</p>
+                    <span class="rute-time">⏱️ ± 30–45 menit</span>
                 </div>
                 <div class="rute-item">
-                    <h4><i class="fas fa-ship"></i> Ferry Schedule</h4>
-                    <p>Operasional setiap hari pukul 06:00 - 17:00 WIB</p>
-                    <span class="rute-time">Setiap hari</span>
+                    <h4><i class="fas fa-sun"></i> Waktu Terbaik Berkunjung</h4>
+                    <p>Datanglah sebelum pukul 07.00 WIB untuk menikmati sunrise terbaik. Desa menghadap ke timur langsung ke Danau Toba. Mei–Oktober adalah musim terbaik berkunjung.</p>
+                    <span class="rute-time">🌅 Sunrise ± 05.30 WIB</span>
                 </div>
             </div>
         </div>
@@ -1023,7 +1023,11 @@
     
     startSlider();
     
+<<<<<<< HEAD
     // ==================== SMOOTH SCROLL ====================
+=======
+    // Smooth scroll for anchor links
+>>>>>>> ec178c7af7c703850816c92ac522107b2e7643f9
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();

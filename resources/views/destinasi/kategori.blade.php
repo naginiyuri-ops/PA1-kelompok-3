@@ -256,6 +256,8 @@
         ]
     ];
     
+    // Get current category or default to 'alam'
+    $kategori = $kategori ?? 'alam';
     $data = $dataDestinasi[$kategori] ?? $dataDestinasi['alam'];
     $bgImage = asset($data['bg_hero']);
     
@@ -268,7 +270,6 @@
             'nama' => $item['nama'],
             'lokasi' => $item['lokasi'],
             'deskripsi' => $item['deskripsi'],
-            // ========== PEMANGGILAN FOTO DARI PUBLIC ==========
             'gambar' => $item['foto'],
             'tags' => $item['tags']
         ];
@@ -285,7 +286,7 @@
 <section class="destinasi-section">
     <div class="container">
         <div class="destinasi-grid">
-            @foreach($destinasi as $index => $item)
+            @forelse($destinasi as $index => $item)
             <a href="{{ url('/destinasi/' . $kategori . '/' . $item->slug) }}" class="dest-card" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}">
                 <div class="card-image">
                     <img src="{{ asset($item->gambar) }}" alt="{{ $item->nama }}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=No+Image'">
@@ -304,7 +305,11 @@
                     </div>
                 </div>
             </a>
-            @endforeach
+            @empty
+            <div class="col-12 text-center">
+                <p>Tidak ada destinasi dalam kategori ini.</p>
+            </div>
+            @endforelse
         </div>
         
         <div class="back-button">
@@ -315,10 +320,27 @@
     </div>
 </section>
 
+<!-- Add Font Awesome if not already in your layout -->
+@push('styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+@endpush
+
+@push('scripts')
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
-    AOS.init({ duration: 800, once: true, offset: 50 });
+    // Initialize AOS
+    if (typeof AOS !== 'undefined') {
+        AOS.init({ duration: 800, once: true, offset: 50 });
+    }
+    
+    // Refresh AOS after page load
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof AOS !== 'undefined') {
+            AOS.refresh();
+        }
+    });
 </script>
+@endpush
 
 @endsection
