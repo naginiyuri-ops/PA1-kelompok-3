@@ -61,7 +61,7 @@
                     <td>
                         <div class="btn-group">
                             <a href="{{ route('admin.umkm.edit', $item->id) }}" class="btn-edit">Edit</a>
-                            <form action="{{ route('admin.umkm.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin hapus UMKM {{ $item->nama }}?')">
+                            <form action="{{ route('admin.umkm.destroy', $item->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Yakin hapus UMKM {{ $item->nama }}?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn-delete">Hapus</button>
@@ -105,7 +105,7 @@
                     <td>
                         <div class="btn-group">
                             <a href="{{ route('admin.fasilitas.edit', $item->id) }}" class="btn-edit">Edit</a>
-                            <form action="{{ route('admin.fasilitas.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin hapus fasilitas {{ $item->nama }}?')">
+                            <form action="{{ route('admin.fasilitas.destroy', $item->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Yakin hapus fasilitas {{ $item->nama }}?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn-delete">Hapus</button>
@@ -114,7 +114,7 @@
                     </td>
                 </tr>
                 @empty
-                <td><td colspan="5" class="empty-state">📭 Belum ada data Fasilitas</td></tr>
+                <tr><td colspan="5" class="empty-state">📭 Belum ada data Fasilitas</td></tr>
                 @endforelse
             </tbody>
         </table>
@@ -151,7 +151,7 @@
                     <td>
                         <div class="btn-group">
                             <a href="{{ route('admin.penginapan.edit', $item->id) }}" class="btn-edit">Edit</a>
-                            <form action="{{ route('admin.penginapan.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin hapus penginapan {{ $item->nama }}?')">
+                            <form action="{{ route('admin.penginapan.destroy', $item->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Yakin hapus penginapan {{ $item->nama }}?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn-delete">Hapus</button>
@@ -169,13 +169,12 @@
 
 <!-- QUICK ACTIONS -->
 <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px;">
-    <a href="{{ route('admin.galeri.create') }}" class="btn-primary"><i class="fas fa-plus-circle"></i> Galeri</a>
-    <a href="{{ route('admin.berita.create') }}" class="btn-primary"><i class="fas fa-plus-circle"></i> Berita</a>
-    <a href="{{ route('admin.informasi.create') }}" class="btn-primary"><i class="fas fa-plus-circle"></i> Informasi</a>
-    <a href="{{ route('admin.umkm.create') }}" class="btn-primary"><i class="fas fa-plus-circle"></i> UMKM</a>
-    <a href="{{ route('admin.fasilitas.create') }}" class="btn-primary"><i class="fas fa-plus-circle"></i> Fasilitas</a>
-    <a href="{{ route('admin.penginapan.create') }}" class="btn-primary"><i class="fas fa-plus-circle"></i> Penginapan</a>
-    <a href="{{ route('admin.create') }}" class="btn-primary">
-    <i class="fas fa-user-plus"></i> Tambah Admin </a>
+    <a href="{{ route('admin.galeri.create') }}" class="btn-primary"><i class="fas fa-plus-circle"></i> Tambah Galeri</a>
+    <a href="{{ route('admin.berita.create') }}" class="btn-primary"><i class="fas fa-plus-circle"></i> Tambah Berita</a>
+    <a href="{{ route('admin.informasi.create') }}" class="btn-primary"><i class="fas fa-plus-circle"></i> Tambah Informasi</a>
+    <a href="{{ route('admin.umkm.create') }}" class="btn-primary"><i class="fas fa-plus-circle"></i> Tambah UMKM</a>
+    <a href="{{ route('admin.fasilitas.create') }}" class="btn-primary"><i class="fas fa-plus-circle"></i> Tambah Fasilitas</a>
+    <a href="{{ route('admin.penginapan.create') }}" class="btn-primary"><i class="fas fa-plus-circle"></i> Tambah Penginapan</a>
+    <a href="{{ route('admin.create') }}" class="btn-primary"><i class="fas fa-user-plus"></i> Tambah Admin</a>
 </div>
-@endsection 
+@endsection

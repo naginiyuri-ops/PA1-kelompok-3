@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Admin - GeoToba</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Admin - @yield('title', 'Dashboard')</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -106,10 +107,6 @@
             padding: 24px 32px;
             min-height: 100vh;
             transition: margin-left 0.3s ease;
-        }
-
-        .main-content.expanded {
-            margin-left: 0;
         }
 
         /* ========== TOP BAR ========== */
@@ -440,6 +437,7 @@
             border-radius: 30px;
             font-size: 0.7rem;
             font-weight: 500;
+            display: inline-block;
         }
 
         .badge-success {
@@ -452,16 +450,9 @@
             color: #991b1b;
         }
 
-        .badge-number {
-            display: inline-block;
-            min-width: 30px;
-            text-align: center;
-            background: #f1f5f9;
-            padding: 4px 8px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: #475569;
+        .badge-warning {
+            background: #fef3c7;
+            color: #92400e;
         }
 
         /* ========== ACTION BUTTONS ========== */
@@ -527,6 +518,15 @@
         .alert-success {
             background: #dcfce7;
             color: #166534;
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+        }
+
+        .alert-danger {
+            background: #fee2e2;
+            color: #991b1b;
             padding: 12px 16px;
             border-radius: 10px;
             margin-bottom: 20px;
@@ -718,7 +718,7 @@
         </div>
         <div class="user-menu">
             <span class="user-name"><i class="fas fa-user-circle"></i> {{ Auth::user()->name ?? 'Admin' }}</span>
-            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                 @csrf
                 <button type="submit" class="logout-btn">
                     <i class="fas fa-sign-out-alt"></i> Keluar
@@ -727,6 +727,18 @@
         </div>
     </div>
 
+    @if(session('success'))
+        <div class="alert-success">
+            <i class="fas fa-check-circle"></i> {{ session('success') }}
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert-danger">
+            <i class="fas fa-exclamation-circle"></i> {{ session('error') }}
+        </div>
+    @endif
+
     @yield('content')
 </div>
 
@@ -734,7 +746,6 @@
     // Toggle sidebar untuk mobile
     const menuToggle = document.getElementById('menuToggle');
     const sidebar = document.getElementById('sidebar');
-    const mainContent = document.getElementById('mainContent');
 
     if (menuToggle) {
         menuToggle.addEventListener('click', function() {
@@ -758,7 +769,6 @@
     });
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @stack('scripts')
 </body>
 </html>

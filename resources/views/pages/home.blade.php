@@ -56,15 +56,7 @@
             transform: scale(1.05);
         }
     }
-    @keyframes shimmer {
-        0% {
-            background-position: -1000px 0;
-        }
-        100% {
-            background-position: 1000px 0;
-        }
-    }
-    
+
     @keyframes float {
         0%, 100% {
             transform: translateY(0);
@@ -102,58 +94,46 @@
             transform: translateX(0);
         }
     }
-    
-    /* ==================== HERO SLIDER ==================== */
+
+    /* ==================== HERO VIDEO BACKGROUND ==================== */
     .hero-section {
         height: 100vh;
         position: relative;
         overflow: hidden;
         margin-top: 0;
     }
-    
-    .slides-container {
-        position: relative;
-        width: 100%;
-        height: 100%;
-    }
-    
-    .slide {
+
+    .hero-video-bg {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        opacity: 0;
-        transform: scale(1.05);
-        transition: opacity 1.5s ease-in-out, transform 8s ease-out;
         z-index: 1;
+        overflow: hidden;
     }
-    
-    .slide.active {
-        opacity: 1;
-        z-index: 2;
-        transform: scale(1);
+
+    .hero-video-bg video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
     }
-    
-    .slide::before {
-        content: '';
+
+    .hero-video-overlay {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, rgba(0,51,102,0.4) 0%, rgba(0,102,153,0.2) 100%);
-        animation: shimmer 3s infinite;
+        background: linear-gradient(135deg, rgba(0,51,102,0.55) 0%, rgba(0,102,153,0.35) 100%);
+        z-index: 2;
     }
-    
-    .slide-1 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide1.jpg'); }
-    .slide-2 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide2.jpg'); }
-    .slide-3 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide3.jpg'); }
-    .slide-4 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide4.jpg'); }
-    .slide-5 { background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 102, 153, 0.3)), url('/image/meat/slide5.jpg'); }
     
     .hero-content {
         position: absolute;
@@ -238,59 +218,6 @@
         transform: translateY(-3px);
         letter-spacing: 0.3em;
         animation: pulse 0.5s ease;
-    }
-    
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(40px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .slider-dots {
-        position: absolute;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 12px;
-        z-index: 15;
-    }
-    
-    .dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.5);
-        cursor: pointer;
-        transition: all 0.4s ease;
-        position: relative;
-    }
-    
-    .dot::after {
-        content: '';
-        position: absolute;
-        top: -5px;
-        left: -5px;
-        right: -5px;
-        bottom: -5px;
-        border-radius: 50%;
-        background: rgba(198, 164, 59, 0.3);
-        transform: scale(0);
-        transition: transform 0.3s ease;
-    }
-    
-    .dot:hover::after {
-        transform: scale(1);
-    }
-    
-    .dot.active {
-        background: #c6a43b;
-        width: 28px;
-        border-radius: 10px;
-    }
-    
-    .dot:hover {
-        background: #c6a43b;
-        transform: scale(1.2);
     }
     
     .scroll-indicator {
@@ -1058,30 +985,24 @@
     @media (max-width: 480px) {
         .hero-title { font-size: 1.6rem; }
         .hero-subtitle { font-size: 0.5rem; letter-spacing: 0.15em; }
-        .dot { width: 8px; height: 8px; }
-        .dot.active { width: 20px; }
         .maps-container iframe { height: 220px; }
     }
 </style>
 
-<!-- ==================== HERO SLIDER ==================== -->
+<!-- ==================== HERO VIDEO BACKGROUND ==================== -->
 <section class="hero-section" id="home">
-    <div class="slides-container">
-        <div class="slide slide-1 active"></div>
-        <div class="slide slide-2"></div>
-        <div class="slide slide-3"></div>
-        <div class="slide slide-4"></div>
-        <div class="slide slide-5"></div>
+
+    <!-- Video Background -->
+    <div class="hero-video-bg">
+        <video autoplay muted loop playsinline>
+            <source src="/image/meat/slide.mp4" type="video/mp4">
+        </video>
     </div>
+
+    <!-- Overlay gelap di atas video -->
+    <div class="hero-video-overlay"></div>
     
-    <div class="slider-dots">
-        <div class="dot active" data-slide="0"></div>
-        <div class="dot" data-slide="1"></div>
-        <div class="dot" data-slide="2"></div>
-        <div class="dot" data-slide="3"></div>
-        <div class="dot" data-slide="4"></div>
-    </div>
-    
+    <!-- Konten Hero -->
     <div class="hero-content">
         <div>
             <div class="hero-subtitle">Global Geopark</div>
@@ -1091,6 +1012,7 @@
         </div>
     </div>
     
+    <!-- Scroll Indicator -->
     <div class="scroll-indicator" onclick="document.getElementById('destinasi').scrollIntoView({behavior:'smooth'})">
         <span>SCROLL</span>
         <div class="line"></div>
@@ -1202,18 +1124,12 @@
         </div>
         
         <div class="maps-container" data-aos="zoom-in" data-aos-duration="1000">
-           
-        
-        <iframe
-            
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31892.45522108672!2d98.96240686371921!3d2.316828414712955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e1b2618ee6569%3A0x36e2c26fb20124ca!2sMeat%2C%20Kec.%20Tampahan%2C%20Toba%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1779549114075!5m2!1sid!2sid"
-                 width="600" 
-                 
-                 height="450"
-                  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                
-                </iframe>
-
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31892.45522108672!2d98.96240686371921!3d2.316828414712955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e1b2618ee6569%3A0x36e2c26fb20124ca!2sMeat%2C%20Kec.%20Tampahan%2C%20Toba%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1779549114075!5m2!1sid!2sid"
+                width="600"
+                height="450"
+                style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
 
             <div class="maps-info">
                 <div class="maps-locations">
@@ -1252,47 +1168,9 @@
 </section>
 
 <script>
-    // ==================== HERO SLIDER ====================
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-    let slideInterval;
-    const slideCount = slides.length;
-
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.remove('active');
-            if (dots[i]) dots[i].classList.remove('active');
-        });
-        
-        slides[index].classList.add('active');
-        if (dots[index]) dots[index].classList.add('active');
-        currentSlide = index;
-    }
-
-    function nextSlide() {
-        let next = (currentSlide + 1) % slideCount;
-        showSlide(next);
-    }
-
-    function startSlider() {
-        if (slideInterval) clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, 5000);
-    }
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            clearInterval(slideInterval);
-            showSlide(index);
-            startSlider();
-        });
-    });
-
-    startSlider();
-
     // ==================== SMOOTH SCROLL ====================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('clic   k', function(e) {
+        anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
@@ -1301,7 +1179,7 @@
         });
     });
     
-    // ==================== ADDITIONAL ANIMATION ON SCROLL ====================
+    // ==================== ANIMATION ON SCROLL ====================
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
