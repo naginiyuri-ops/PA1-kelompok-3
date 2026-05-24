@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Galeri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class GaleriController extends Controller
 {
     public function index()
     {
-        $galeris = Galeri::latest()->paginate(10);
-        return view('admin.galeri.index', compact('galeris'));
+        $galeri = Galeri::latest()->paginate(10);
+        return view('admin.galeri.index', compact('galeri'));
     }
 
     public function create()
@@ -24,33 +25,35 @@ class GaleriController extends Controller
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'kategori' => 'required|string',
+            'kategori' => 'required|string|max:100',
             'deskripsi' => 'nullable|string',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:4096',
-            'lokasi' => 'nullable|string',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:10240',
+            'lokasi' => 'nullable|string|max:255',
             'tanggal_foto' => 'nullable|date',
             'status' => 'nullable|boolean'
         ]);
 
-        $image = $request->file('gambar');
-        $imageData = file_get_contents($image->getRealPath());
-        $base64 = base64_encode($imageData);
-        $mimeType = $image->getMimeType();
-        $gambarBase64 = 'data:' . $mimeType . ';base64,' . $base64;
-
-        Galeri::create([
+        $data = [
             'judul' => $request->judul,
             'slug' => Str::slug($request->judul),
             'kategori' => $request->kategori,
             'deskripsi' => $request->deskripsi,
-            'gambar' => $gambarBase64,
             'lokasi' => $request->lokasi,
             'tanggal_foto' => $request->tanggal_foto,
-            'status' => $request->has('status') ? 1 : 0
-        ]);
+            'status' => $request->has('status') ? 1 : 0,
+            'views' => 0
+        ];
 
-        return redirect()->route('admin.galeri.index')
-            ->with('success', 'Galeri berhasil ditambahkan!');
+        if ($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $filename = time() . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('galeri', $filename, 'public');
+            $data['gambar'] = $path; // Simpan PATH, bukan base64
+        }
+
+        Galeri::create($data);
+
+        return redirect()->route('admin.galeri.index')->with('success', 'Galeri berhasil ditambahkan!');
     }
 
     public function edit($id)
@@ -65,10 +68,10 @@ class GaleriController extends Controller
 
         $request->validate([
             'judul' => 'required|string|max:255',
-            'kategori' => 'required|string',
+            'kategori' => 'required|string|max:100',
             'deskripsi' => 'nullable|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:4096',
-            'lokasi' => 'nullable|string',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
+            'lokasi' => 'nullable|string|max:255',
             'tanggal_foto' => 'nullable|date',
             'status' => 'nullable|boolean'
         ]);
@@ -84,34 +87,32 @@ class GaleriController extends Controller
         ];
 
         if ($request->hasFile('gambar')) {
-            $image = $request->file('gambar');
-            $imageData = file_get_contents($image->getRealPath());
-            $base64 = base64_encode($imageData);
-            $mimeType = $image->getMimeType();
-            $data['gambar'] = 'data:' . $mimeType . ';base64,' . $base64;
+            // Hapus gambar lama
+            if ($galeri->gambar && Storage::disk('public')->exists($galeri->gambar)) {
+                Storage::disk('public')->delete($galeri->gambar);
+            }
+            
+            $file = $request->file('gambar');
+            $filename = time() . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('galeri', $filename, 'public');
+            $data['gambar'] = $path;
         }
 
         $galeri->update($data);
 
-        return redirect()->route('admin.galeri.index')
-            ->with('success', 'Galeri berhasil diupdate!');
+        return redirect()->route('admin.galeri.index')->with('success', 'Galeri berhasil diupdate!');
     }
 
     public function destroy($id)
     {
         $galeri = Galeri::findOrFail($id);
+        
+        // Hapus file gambar
+        if ($galeri->gambar && Storage::disk('public')->exists($galeri->gambar)) {
+            Storage::disk('public')->delete($galeri->gambar);
+        }
+        
         $galeri->delete();
-
-        return redirect()->route('admin.galeri.index')
-            ->with('success', 'Galeri berhasil dihapus!');
-    }
-
-    public function toggleStatus($id)
-    {
-        $galeri = Galeri::findOrFail($id);
-        $galeri->status = !$galeri->status;
-        $galeri->save();
-
-        return response()->json(['success' => true, 'status' => $galeri->status]);
+        return redirect()->route('admin.galeri.index')->with('success', 'Galeri berhasil dihapus!');
     }
 }

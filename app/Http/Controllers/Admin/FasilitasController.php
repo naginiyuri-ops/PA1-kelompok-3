@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Fasilitas;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class FasilitasController extends Controller
 {
@@ -25,7 +24,7 @@ class FasilitasController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:4096', // 4MB
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
             'urutan' => 'required|integer',
             'harga' => 'nullable|string',
             'status' => 'nullable|boolean'
@@ -40,16 +39,12 @@ class FasilitasController extends Controller
         ];
 
         if ($request->hasFile('gambar')) {
-            $image = $request->file('gambar');
-            $imageData = file_get_contents($image->getRealPath());
-            $base64 = base64_encode($imageData);
-            $mimeType = $image->getMimeType();
-            $data['gambar'] = 'data:' . $mimeType . ';base64,' . $base64;
+            $file = $request->file('gambar');
+            $data['gambar'] = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file));
         }
 
         Fasilitas::create($data);
-        return redirect()->route('admin.fasilitas.index')
-            ->with('success', 'Fasilitas berhasil ditambahkan! (Gambar max 4MB)');
+        return redirect()->route('admin.fasilitas.index')->with('success', 'Fasilitas berhasil ditambahkan!');
     }
 
     public function edit($id)
@@ -61,11 +56,11 @@ class FasilitasController extends Controller
     public function update(Request $request, $id)
     {
         $data = Fasilitas::findOrFail($id);
-        
+
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:4096', // 4MB
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
             'urutan' => 'required|integer',
             'harga' => 'nullable|string',
             'status' => 'nullable|boolean'
@@ -80,23 +75,18 @@ class FasilitasController extends Controller
         ];
 
         if ($request->hasFile('gambar')) {
-            $image = $request->file('gambar');
-            $imageData = file_get_contents($image->getRealPath());
-            $base64 = base64_encode($imageData);
-            $mimeType = $image->getMimeType();
-            $input['gambar'] = 'data:' . $mimeType . ';base64,' . $base64;
+            $file = $request->file('gambar');
+            $input['gambar'] = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file));
         }
 
         $data->update($input);
-        return redirect()->route('admin.fasilitas.index')
-            ->with('success', 'Fasilitas berhasil diupdate!');
+        return redirect()->route('admin.fasilitas.index')->with('success', 'Fasilitas berhasil diupdate!');
     }
 
     public function destroy($id)
     {
         $data = Fasilitas::findOrFail($id);
         $data->delete();
-        return redirect()->route('admin.fasilitas.index')
-            ->with('success', 'Fasilitas berhasil dihapus!');
+        return redirect()->route('admin.fasilitas.index')->with('success', 'Fasilitas berhasil dihapus!');
     }
 }

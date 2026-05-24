@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Penginapan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class PenginapanController extends Controller
 {
@@ -25,10 +24,10 @@ class PenginapanController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:4096', // 4MB
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
             'urutan' => 'required|integer',
-            'harga' => 'nullable|string',
-            'kontak' => 'nullable|string',
+            'harga' => 'nullable|string|max:255',
+            'kontak' => 'nullable|string|max:255',
             'status' => 'nullable|boolean'
         ]);
 
@@ -42,16 +41,12 @@ class PenginapanController extends Controller
         ];
 
         if ($request->hasFile('gambar')) {
-            $image = $request->file('gambar');
-            $imageData = file_get_contents($image->getRealPath());
-            $base64 = base64_encode($imageData);
-            $mimeType = $image->getMimeType();
-            $data['gambar'] = 'data:' . $mimeType . ';base64,' . $base64;
+            $file = $request->file('gambar');
+            $data['gambar'] = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file));
         }
 
         Penginapan::create($data);
-        return redirect()->route('admin.penginapan.index')
-            ->with('success', 'Penginapan berhasil ditambahkan! (Gambar max 4MB)');
+        return redirect()->route('admin.penginapan.index')->with('success', 'Penginapan berhasil ditambahkan!');
     }
 
     public function edit($id)
@@ -63,14 +58,14 @@ class PenginapanController extends Controller
     public function update(Request $request, $id)
     {
         $data = Penginapan::findOrFail($id);
-        
+
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:4096',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
             'urutan' => 'required|integer',
-            'harga' => 'nullable|string',
-            'kontak' => 'nullable|string',
+            'harga' => 'nullable|string|max:255',
+            'kontak' => 'nullable|string|max:255',
             'status' => 'nullable|boolean'
         ]);
 
@@ -84,23 +79,18 @@ class PenginapanController extends Controller
         ];
 
         if ($request->hasFile('gambar')) {
-            $image = $request->file('gambar');
-            $imageData = file_get_contents($image->getRealPath());
-            $base64 = base64_encode($imageData);
-            $mimeType = $image->getMimeType();
-            $input['gambar'] = 'data:' . $mimeType . ';base64,' . $base64;
+            $file = $request->file('gambar');
+            $input['gambar'] = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file));
         }
 
         $data->update($input);
-        return redirect()->route('admin.penginapan.index')
-            ->with('success', 'Penginapan berhasil diupdate!');
+        return redirect()->route('admin.penginapan.index')->with('success', 'Penginapan berhasil diupdate!');
     }
 
     public function destroy($id)
     {
         $data = Penginapan::findOrFail($id);
         $data->delete();
-        return redirect()->route('admin.penginapan.index')
-            ->with('success', 'Penginapan berhasil dihapus!');
+        return redirect()->route('admin.penginapan.index')->with('success', 'Penginapan berhasil dihapus!');
     }
 }

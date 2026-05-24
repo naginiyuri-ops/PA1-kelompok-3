@@ -42,7 +42,7 @@
                                 <img src="{{ $item->gambar }}" width="50" height="50" style="object-fit: cover; border-radius: 8px;">
                             @else
                                 <div class="bg-secondary text-white text-center" style="width: 50px; height: 50px; line-height: 50px; border-radius: 8px;">
-                                    <i class="fas fa-image"></i>
+                                    <i class="fas fa-store"></i>
                                 </div>
                             @endif
                         </td>
@@ -73,7 +73,7 @@
                         </td>
                     </tr>
                     @empty
-                        <tr>
+                        <td>
                             <td colspan="8" class="text-center py-4">
                                 <i class="fas fa-store fa-2x text-muted mb-2 d-block"></i>
                                 Belum ada data UMKM
