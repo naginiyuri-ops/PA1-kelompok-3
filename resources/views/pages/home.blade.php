@@ -1065,7 +1065,7 @@
         <div class="section-title" data-aos="fade-up" data-aos-duration="800">
             <h2>Destinasi Unggulan</h2>
             <div class="divider"></div>
-            <p>Tiga geosite di Balige, Caldera Danau Toba</p>
+            <p>Tiga geosite di Balige, Caldera Toba</p>
         </div>
         <div class="destinasi-list">
             
@@ -1091,7 +1091,7 @@
                 <div class="destinasi-content">
                     <div class="destinasi-number">02 — Batu Basiha </div>
                     <h3>Batu Basiha</h3>
-                    <div class="destinasi-location">Desa Aek Bolon Jae, Balige</div>
+                    <div class="destinasi-location"> Balige</div>
                     <p class="destinasi-desc">Batu Basiha merupakan salah satu situs batu bersejarah di kawasan Balige yang memiliki nilai budaya dan legenda dalam masyarakat Batak Toba.</p>
                     <a href="{{ url('/geosite/batu-bahisan') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
                 </div>
@@ -1120,7 +1120,7 @@
         <div class="section-title" data-aos="fade-up" data-aos-duration="800">
             <h2>Lokasi 3 Geosite</h2>
             <div class="divider"></div>
-            <p>Meat, Batu Bahisan, dan Liang Sipege</p>
+            <p>Meat,  Batu Bahisan,  dan Liang Sipege</p>
         </div>
         
         <div class="maps-container" data-aos="zoom-in" data-aos-duration="1000">

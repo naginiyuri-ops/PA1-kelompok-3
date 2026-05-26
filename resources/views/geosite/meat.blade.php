@@ -361,9 +361,20 @@
         margin-top: 15px;
     }
     
-    /* ==================== CARDS - BISA 20+ FOTO ==================== */
-    /* GRID OTOMATIS: bukan fixed 3 kolom */
+    /* ==================== CARDS ==================== */
     .grid-umkm {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 30px;
+    }
+    
+    .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 30px;
+    }
+    
+    .grid-2 {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 30px;
@@ -377,6 +388,7 @@
         transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         display: flex;
         flex-direction: column;
+        cursor: pointer;
     }
     
     .card:hover {
@@ -423,13 +435,79 @@
         overflow: hidden;
     }
     
-    .card-location, .card-contact {
+    .card-location, .card-contact, .card-price {
         font-size: 0.75rem;
         color: var(--gold-dark);
         margin-top: 8px;
         display: flex;
         align-items: center;
         gap: 8px;
+    }
+    
+    .fasilitas-item {
+        background: var(--white);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+        transition: all 0.4s ease;
+        display: flex;
+        gap: 0;
+        cursor: pointer;
+    }
+    
+    .fasilitas-item:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-xl);
+    }
+    
+    .fasilitas-img {
+        width: 130px;
+        height: 130px;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+        cursor: pointer;
+    }
+    
+    .fasilitas-item:hover .fasilitas-img {
+        transform: scale(1.05);
+    }
+    
+    .fasilitas-content {
+        padding: 18px 18px 18px 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .fasilitas-content h4 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 8px;
+        font-family: 'Playfair Display', serif;
+    }
+    
+    .fasilitas-content p {
+        font-size: 0.8rem;
+        color: var(--text-gray);
+        margin-bottom: 10px;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .fasilitas-price {
+        font-size: 0.7rem;
+        color: var(--gold-dark);
+        font-weight: 600;
+        display: inline-block;
+        padding: 4px 12px;
+        background: rgba(198, 164, 59, 0.1);
+        border-radius: 20px;
+        margin-bottom: 10px;
     }
     
     .btn-readmore {
@@ -453,7 +531,7 @@
         color: var(--primary-dark);
     }
     
-    /* ==================== MODAL DESKRIPSI ==================== */
+    /* ==================== MODAL ==================== */
     .detail-modal {
         display: none;
         position: fixed;
@@ -646,7 +724,6 @@
         border-radius: 20px;
     }
     
-    /* ==================== EMPTY STATE ==================== */
     .empty-state {
         text-align: center;
         padding: 60px;
@@ -742,6 +819,7 @@
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 1024px) {
         .hero-title { font-size: 3rem; }
+        .grid-3 { grid-template-columns: repeat(2, 1fr); }
     }
     
     @media (max-width: 992px) {
@@ -762,13 +840,17 @@
         .section-header h2 { font-size: 1.6rem; }
         .sejarah-image img { height: 230px; }
         .card-img { height: 200px; }
+        .fasilitas-item { flex-direction: column; }
+        .fasilitas-img { width: 100%; height: 180px; }
+        .fasilitas-content { padding: 18px; text-align: center; }
         .maps-container iframe { height: 280px; }
         .cta-section { padding: 50px 0; }
         .cta-content h3 { font-size: 1.5rem; }
+        .empty-state { grid-column: span 1; }
         .detail-modal-header { height: 200px; }
         .detail-modal-header .overlay h3 { font-size: 1.2rem; }
         .detail-modal-body { padding: 20px; }
-        .grid-umkm {
+        .grid-umkm, .grid-3, .grid-2 {
             grid-template-columns: 1fr;
         }
     }
@@ -801,7 +883,7 @@
     <div class="hero-content" data-aos="fade-up">
         <div class="hero-badge">UNESCO Global Geopark</div>
         <h1 class="hero-title">MEAT</h1>
-        <p class="hero-subtitle">Kec. Tampahan · Kab. Toba · Geopark Kaldera Toba</p>
+        <p class="hero-subtitle">Kec. Tampahan · Kab. Toba · "New Zealand van Toba"</p>
         <div class="hero-divider"></div>
     </div>
     
@@ -818,7 +900,7 @@
             <span class="badge">Warisan Budaya</span>
             <h2>Sejarah & Budaya</h2>
             <div class="divider"></div>
-            <p>Mengenal kekayaan sejarah dan tradisi masyarakat Batak yang masih terjaga hingga hari ini di Desa Meat</p>
+            <p>Warisan budaya Batak yang autentik dan masih hidup</p>
         </div>
         
         <div class="sejarah-grid">
@@ -828,7 +910,7 @@
                 </div>
                 <div class="sejarah-text">
                     <h3>Desa Meat - Jantung Budaya Batak</h3>
-                    <p>Meat adalah salah satu desa adat tertua di Kecamatan Tampahan, Kabupaten Toba, Provinsi Sumatra Utara. Terletak tepat di bibir Danau Toba dan dikelilingi bentangan perbukitan hijau yang menjulang, desa ini telah lama menjadi pusat pelestarian budaya Batak yang otentik. Perpaduan hamparan sawah bertingkat yang menghadap langsung ke Danau Toba dan suasana perbukitan yang dramatis menjadikan Meat dijuluki <strong>"New Zealand van Toba"</strong> — sebuah julukan yang mencerminkan betapa mempesonanya lanskap desa ini bagi setiap pengunjung.</p>
+                    <p>Meat adalah salah satu desa adat tertua di Kecamatan Tampahan, Kabupaten Toba, Provinsi Sumatra Utara. Terletak tepat di bibir Danau Toba dan dikelilingi bentangan perbukitan hijau yang menjulang, desa ini menjadi pusat pelestarian budaya Batak yang otentik. Perpaduan hamparan sawah bertingkat yang menghadap langsung ke Danau Toba dan suasana perbukitan yang dramatis menjadikan Meat dijuluki <strong>"New Zealand van Toba"</strong> oleh para wisatawan yang terpesona.</p>
                 </div>
             </div>
             
@@ -838,7 +920,7 @@
                 </div>
                 <div class="sejarah-text">
                     <h3>Tradisi Hidup yang Diwariskan</h3>
-                    <p>Hingga kini, masyarakat Meat tetap menjaga tradisi leluhur dengan penuh dedikasi. Sekitar 80% wanita di desa ini berprofesi sebagai penenun kain Ulos secara tradisional di kolong Ruma Bolon — rumah adat Batak berusia lebih dari 126 tahun. Suara alat tenun kayu yang beradu menjadi musik alami yang khas. Selain tenun Ulos, tarian Tor-tor yang penuh makna filosofis dan musik Gondang yang merdu juga masih menjadi bagian integral kehidupan sehari-hari masyarakat Meat yang terus dilestarikan lintas generasi.</p>
+                    <p>Hingga kini, masyarakat Meat tetap menjaga tradisi leluhur dengan penuh dedikasi. Sekitar 80% wanita di desa ini berprofesi sebagai penenun kain Ulos secara tradisional di kolong Ruma Bolon — rumah adat Batak berusia ratusan tahun. Selain tenun Ulos, tarian Tor-tor yang penuh makna filosofis dan musik Gondang yang merdu masih menjadi bagian integral kehidupan sehari-hari masyarakat Meat.</p>
                 </div>
             </div>
             
@@ -848,26 +930,26 @@
                 </div>
                 <div class="sejarah-text">
                     <h3>Destinasi Wisata Budaya Unggulan</h3>
-                    <p>Kearifan lokal yang masih terjaga menjadikan Meat sebagai salah satu destinasi wisata budaya unggulan di kawasan Geopark Kaldera Toba. Desa ini memiliki 4 unit Ruma Bolon yang telah direhab oleh Kementerian Pariwisata RI, area camping ground berkapasitas hingga 1.000 tenda di tepi Danau Toba, serta jalur persawahan yang menjadi spot foto favorit para fotografer dan pesepeda. Pengunjung dapat belajar menenun Ulos, menikmati kuliner khas Batak, dan menyaksikan sunrise terbaik langsung menghadap Danau Toba.</p>
+                    <p>Budaya dan kearifan lokal yang masih terjaga dengan baik menjadikan Meat sebagai destinasi wisata unggulan di kawasan Geopark Kaldera Toba. Desa ini memiliki 4 unit Ruma Bolon yang telah direhab oleh Kementerian Pariwisata RI, serta area camping ground yang dapat menampung hingga 1.000 tenda di tepi Danau Toba. Pengunjung dapat berinteraksi langsung dengan masyarakat, belajar menenun Ulos, menikmati kuliner khas Batak, dan menyaksikan sunrise terbaik menghadap Danau Toba.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ==================== UMKM - BISA 20+ FOTO ==================== -->
+<!-- ==================== UMKM ==================== -->
 <section id="umkm" class="section section-light">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
             <span class="badge">Produk Lokal</span>
             <h2>UMKM Lokal</h2>
             <div class="divider"></div>
-            <p>Dukung ekonomi lokal dengan membeli produk autentik dan berkualitas langsung dari tangan pengrajin Desa Meat</p>
+            <p>Produk autentik dan berkualitas dari pengrajin lokal Meat</p>
         </div>
         
         <div class="grid-umkm">
             @forelse($umkm as $index => $item)
-            <div class="card" data-aos="fade-up" data-aos-delay="{{ min(($index % 5) * 100, 400) }}">
+            <div class="card" data-aos="fade-up" data-aos-delay="{{ min(($index % 5) * 100, 400) }}" onclick="openDetailModal('umkm', {{ $index }})">
                 @php
                     $imgSrc = asset('image/meat/slide1.jpg');
                     
@@ -889,13 +971,13 @@
                         }
                     }
                 @endphp
-                <img src="{{ $imgSrc }}" class="card-img" alt="{{ $item->nama }}" onclick="openImageModal('{{ $imgSrc }}')" onerror="this.src='{{ asset('image/meat/slide1.jpg') }}'">
+                <img src="{{ $imgSrc }}" class="card-img" alt="{{ $item->nama }}" onclick="event.stopPropagation(); openImageModal('{{ $imgSrc }}')" onerror="this.src='{{ asset('image/meat/slide1.jpg') }}'">
                 <div class="card-content">
                     <h3>{{ $item->nama }}</h3>
                     <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 90) }}</p>
                     <div class="card-location"><i class="fas fa-map-marker-alt"></i> {{ $item->lokasi ?? 'Desa Meat' }}</div>
                     <div class="card-contact"><i class="fas fa-phone"></i> {{ $item->kontak ?? 'Hubungi pengrajin' }}</div>
-                    <button class="btn-readmore" onclick="openDetailModal({{ $index }})">
+                    <button class="btn-readmore" onclick="event.stopPropagation(); openDetailModal('umkm', {{ $index }})">
                         Baca Selengkapnya <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
@@ -910,36 +992,48 @@
     </div>
 </section>
 
-<<<<<<< HEAD
-<!-- ==================== PENGINAPAN (WITH CARD) ==================== -->
+<!-- ==================== PENGINAPAN ==================== -->
 <section id="penginapan" class="section section-white">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
             <span class="badge">Akomodasi</span>
             <h2>Penginapan</h2>
             <div class="divider"></div>
-            <p>Nikmati pengalaman menginap dengan nuansa arsitektur tradisional Batak yang hangat dan autentik di tengah alam Desa Meat</p>
+            <p>Pilihan menginap dengan nuansa budaya Batak yang autentik</p>
         </div>
         
         <div class="grid-3">
             @forelse($penginapan ?? [] as $index => $item)
-            <div class="card" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}">
+            <div class="card" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}" onclick="openDetailModal('penginapan', {{ $index }})">
                 @php
                     $imgSrc = asset('image/meat/slide2.jpg');
                     if (!empty($item->gambar)) {
-                        if (file_exists(public_path('image/meat/' . $item->gambar))) {
-                            $imgSrc = asset('image/meat/' . $item->gambar);
-                        } elseif (file_exists(public_path($item->gambar))) {
+                        if (str_starts_with($item->gambar, 'data:image')) {
+                            $imgSrc = $item->gambar;
+                        } 
+                        elseif (filter_var($item->gambar, FILTER_VALIDATE_URL)) {
+                            $imgSrc = $item->gambar;
+                        }
+                        elseif (Storage::disk('public')->exists($item->gambar)) {
+                            $imgSrc = asset('storage/' . $item->gambar);
+                        }
+                        elseif (file_exists(public_path('storage/' . $item->gambar))) {
+                            $imgSrc = asset('storage/' . $item->gambar);
+                        }
+                        elseif (file_exists(public_path($item->gambar))) {
                             $imgSrc = asset($item->gambar);
                         }
                     }
                 @endphp
-                <img src="{{ $imgSrc }}" class="card-img" alt="{{ $item->nama }}" onerror="this.src='{{ asset('image/meat/slide2.jpg') }}'">
+                <img src="{{ $imgSrc }}" class="card-img" alt="{{ $item->nama }}" onclick="event.stopPropagation(); openImageModal('{{ $imgSrc }}')" onerror="this.src='{{ asset('image/meat/slide2.jpg') }}'">
                 <div class="card-content">
                     <h3>{{ $item->nama }}</h3>
                     <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 90) }}</p>
                     <div class="card-price"><i class="fas fa-tag"></i> {{ $item->harga ?? 'Hubungi pengelola' }}</div>
                     <div class="card-contact"><i class="fas fa-phone"></i> {{ $item->kontak ?? 'Hubungi pengelola' }}</div>
+                    <button class="btn-readmore" onclick="event.stopPropagation(); openDetailModal('penginapan', {{ $index }})">
+                        Baca Selengkapnya <i class="fas fa-arrow-right"></i>
+                    </button>
                 </div>
             </div>
             @empty
@@ -952,34 +1046,47 @@
     </div>
 </section>
 
-<!-- ==================== FASILITAS (WITH HORIZONTAL CARD) ==================== -->
+<!-- ==================== FASILITAS ==================== -->
 <section id="fasilitas" class="section section-light">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
             <span class="badge">Layanan</span>
             <h2>Fasilitas</h2>
             <div class="divider"></div>
-            <p>Berbagai fasilitas pendukung tersedia untuk memastikan kenyamanan dan kelengkapan pengalaman wisata Anda di Desa Meat</p>
+            <p>Fasilitas lengkap untuk kenyamanan wisatawan</p>
         </div>
         
         <div class="grid-2">
             @forelse($fasilitas ?? [] as $index => $item)
-            <div class="fasilitas-item" data-aos="fade-up" data-aos-delay="{{ ($index % 2) * 50 }}">
+            <div class="fasilitas-item" data-aos="fade-up" data-aos-delay="{{ ($index % 2) * 50 }}" onclick="openDetailModal('fasilitas', {{ $index }})">
                 @php
                     $imgSrc = asset('image/meat/slide3.jpg');
                     if (!empty($item->gambar)) {
-                        if (file_exists(public_path('image/meat/' . $item->gambar))) {
-                            $imgSrc = asset('image/meat/' . $item->gambar);
-                        } elseif (file_exists(public_path($item->gambar))) {
+                        if (str_starts_with($item->gambar, 'data:image')) {
+                            $imgSrc = $item->gambar;
+                        } 
+                        elseif (filter_var($item->gambar, FILTER_VALIDATE_URL)) {
+                            $imgSrc = $item->gambar;
+                        }
+                        elseif (Storage::disk('public')->exists($item->gambar)) {
+                            $imgSrc = asset('storage/' . $item->gambar);
+                        }
+                        elseif (file_exists(public_path('storage/' . $item->gambar))) {
+                            $imgSrc = asset('storage/' . $item->gambar);
+                        }
+                        elseif (file_exists(public_path($item->gambar))) {
                             $imgSrc = asset($item->gambar);
                         }
                     }
                 @endphp
-                <img src="{{ $imgSrc }}" class="fasilitas-img" alt="{{ $item->nama }}" onerror="this.src='{{ asset('image/meat/slide4.jpg') }}'">
+                <img src="{{ $imgSrc }}" class="fasilitas-img" alt="{{ $item->nama }}" onclick="event.stopPropagation(); openImageModal('{{ $imgSrc }}')" onerror="this.src='{{ asset('image/meat/slide4.jpg') }}'">
                 <div class="fasilitas-content">
                     <h4>{{ $item->nama }}</h4>
                     <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 70) }}</p>
                     <div class="fasilitas-price"><i class="fas fa-tag"></i> {{ $item->harga ?? 'Gratis' }}</div>
+                    <button class="btn-readmore" onclick="event.stopPropagation(); openDetailModal('fasilitas', {{ $index }})">
+                        Baca Selengkapnya <i class="fas fa-arrow-right"></i>
+                    </button>
                 </div>
             </div>
             @empty
@@ -992,8 +1099,6 @@
     </div>
 </section>
 
-=======
->>>>>>> 84dea222e0df3b955c024ca45e2a6225442f34be
 <!-- ==================== LOKASI & AKSES ==================== -->
 <section id="lokasi" class="section section-white">
     <div class="container">
@@ -1041,20 +1146,19 @@
     </div>
 </section>
 
-<!-- ==================== MODAL LIGHTBOX UNTUK GAMBAR BESAR ==================== -->
+<!-- ==================== MODALS ==================== -->
 <div id="imageModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; cursor: pointer; align-items: center; justify-content: center;">
     <span style="position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; z-index: 10000;">&times;</span>
     <img id="modalImage" style="max-width: 90%; max-height: 90%; object-fit: contain;">
 </div>
 
-<!-- ==================== MODAL DESKRIPSI LENGKAP ==================== -->
 <div id="detailModal" class="detail-modal">
     <div class="detail-modal-close" onclick="closeDetailModal()">&times;</div>
     <div class="detail-modal-container">
         <div class="detail-modal-header">
             <img id="detailImg" src="" alt="">
             <div class="overlay">
-                <span class="type">UMKM</span>
+                <span class="type" id="detailType"></span>
                 <h3 id="detailTitle"></h3>
             </div>
         </div>
@@ -1062,6 +1166,7 @@
             <div class="detail-info">
                 <p><i class="fas fa-map-marker-alt"></i> <strong>Lokasi:</strong> <span id="detailLokasi"></span></p>
                 <p><i class="fas fa-phone"></i> <strong>Kontak:</strong> <span id="detailKontak"></span></p>
+                <p><i class="fas fa-tag"></i> <strong>Harga:</strong> <span id="detailHarga"></span></p>
             </div>
             <div class="full-description" id="detailDeskripsi"></div>
         </div>
@@ -1069,8 +1174,10 @@
 </div>
 
 <script>
-    // Data dari backend - SEMUA DATA UMKM (bisa 20+)
-    const umkmData = @json($umkm);
+    // Data dari backend untuk SEMUA section
+    const umkmData = @json($umkm ?? []);
+    const penginapanData = @json($penginapan ?? []);
+    const fasilitasData = @json($fasilitas ?? []);
     
     // ==================== HERO SLIDER ====================
     let currentSlide = 0;
@@ -1107,11 +1214,7 @@
     
     startSlider();
     
-<<<<<<< HEAD
     // ==================== SMOOTH SCROLL ====================
-=======
-    // Smooth scroll for anchor linksph
->>>>>>> ec178c7af7c703850816c92ac522107b2e7643f9
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1141,11 +1244,25 @@
         }
     }
     
-    // ==================== DETAIL MODAL ====================
-    function openDetailModal(index) {
-        const item = umkmData[index];
+    // ==================== DETAIL MODAL UNTUK SEMUA ====================
+    function openDetailModal(type, index) {
+        let item = null;
+        let typeName = '';
+        
+        if (type === 'umkm' && umkmData[index]) {
+            item = umkmData[index];
+            typeName = 'UMKM';
+        } else if (type === 'penginapan' && penginapanData[index]) {
+            item = penginapanData[index];
+            typeName = 'PENGINAPAN';
+        } else if (type === 'fasilitas' && fasilitasData[index]) {
+            item = fasilitasData[index];
+            typeName = 'FASILITAS';
+        }
+        
         if (!item) return;
         
+        // Set gambar
         let imgSrc = '{{ asset("image/meat/slide1.jpg") }}';
         if (item.gambar) {
             if (item.gambar.startsWith('data:image')) {
@@ -1158,10 +1275,12 @@
         }
         
         document.getElementById('detailImg').src = imgSrc;
+        document.getElementById('detailType').innerText = typeName;
         document.getElementById('detailTitle').innerText = item.nama || '-';
         document.getElementById('detailLokasi').innerText = item.lokasi || 'Desa Meat';
         document.getElementById('detailKontak').innerText = item.kontak || '-';
-        document.getElementById('detailDeskripsi').innerHTML = item.deskripsi || '<p>Belum ada deskripsi lengkap untuk UMKM ini.</p>';
+        document.getElementById('detailHarga').innerText = item.harga || (typeName === 'UMKM' ? 'Hubungi langsung' : 'Gratis');
+        document.getElementById('detailDeskripsi').innerHTML = item.deskripsi || '<p>Belum ada deskripsi lengkap untuk item ini.</p>';
         
         const modal = document.getElementById('detailModal');
         modal.classList.add('active');
@@ -1174,7 +1293,7 @@
         document.body.style.overflow = 'auto';
     }
     
-    // ==================== EVENT LISTENER MODAL ====================
+    // ==================== EVENT LISTENERS ====================
     const imageModal = document.getElementById('imageModal');
     if (imageModal) {
         imageModal.addEventListener('click', function(e) {
