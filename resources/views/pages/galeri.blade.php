@@ -1,9 +1,10 @@
 @extends('layouts.app')
+
 @section('title', 'Galeri - GeoToba')
+
 @section('content')
 
 <style>
-    /* Hero Section */
     .gallery-hero {
         background: linear-gradient(135deg, #003366 0%, #1a4a7a 100%);
         padding: 80px 0 50px;
@@ -22,17 +23,11 @@
         background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
         animation: slowRotate 20s linear infinite;
     }
-
     @keyframes slowRotate {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
     }
-
-    .gallery-hero-content {
-        position: relative;
-        z-index: 2;
-    }
-
+    .gallery-hero-content { position: relative; z-index: 2; }
     .gallery-hero h1 {
         font-size: 2.8rem;
         font-weight: 700;
@@ -41,27 +36,18 @@
         margin-bottom: 10px;
         letter-spacing: 2px;
     }
-
     .gallery-hero p {
         font-size: 0.85rem;
         letter-spacing: 3px;
         text-transform: uppercase;
         color: rgba(255,255,255,0.8);
     }
-
     .gallery-section {
         padding: 60px 0 100px;
         background: linear-gradient(135deg, #f8fafc 0%, #eef2f8 100%);
         min-height: 100vh;
     }
-
-    .container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 24px;
-    }
-
-    /* Stack Container */
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
     .stack-container {
         display: flex;
         flex-wrap: wrap;
@@ -70,8 +56,6 @@
         padding: 20px 0;
         position: relative;
     }
-
-    /* Slip Card */
     .slip-card {
         position: relative;
         width: 280px;
@@ -80,25 +64,16 @@
         overflow: hidden;
         cursor: pointer;
         transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.02);
+        box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1);
         margin-left: -60px;
-        display: block;
     }
-
-    .slip-card:first-child {
-        margin-left: 0;
-    }
-
+    .slip-card:first-child { margin-left: 0; }
     .slip-card:hover {
         transform: translateY(-20px) scale(1.02);
         z-index: 100;
         box-shadow: 0 25px 40px -10px rgba(0,0,0,0.25);
     }
-
-    .slip-card:hover ~ .slip-card {
-        transform: translateX(20px);
-    }
-
+    .slip-card:hover ~ .slip-card { transform: translateX(20px); }
     .slip-image {
         position: relative;
         width: 100%;
@@ -106,18 +81,13 @@
         overflow: hidden;
         background: linear-gradient(135deg, #1e293b, #0f172a);
     }
-
     .slip-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.5s ease;
     }
-
-    .slip-card:hover .slip-image img {
-        transform: scale(1.05);
-    }
-
+    .slip-card:hover .slip-image img { transform: scale(1.05); }
     .slip-overlay {
         position: absolute;
         bottom: 0;
@@ -128,11 +98,7 @@
         opacity: 0;
         transition: opacity 0.3s ease;
     }
-
-    .slip-card:hover .slip-overlay {
-        opacity: 1;
-    }
-
+    .slip-card:hover .slip-overlay { opacity: 1; }
     .slip-category {
         display: inline-block;
         background: #c6a43b;
@@ -144,7 +110,6 @@
         text-transform: uppercase;
         letter-spacing: 1px;
     }
-
     .slip-title-overlay {
         color: white;
         font-size: 0.85rem;
@@ -152,14 +117,12 @@
         margin-top: 8px;
         line-height: 1.3;
     }
-
     .slip-info {
         padding: 16px;
         background: white;
         position: relative;
         border-top: 1px solid #f0f0f0;
     }
-
     .slip-line {
         position: absolute;
         top: 0;
@@ -170,10 +133,7 @@
         transform: scaleX(0);
         transition: transform 0.3s ease;
     }
-
-    .slip-card:hover .slip-line {
-        transform: scaleX(1);
-    }
+    .slip-card:hover .slip-line { transform: scaleX(1); }
     .slip-title {
         font-size: 0.9rem;
         font-weight: 600;
@@ -181,7 +141,6 @@
         margin-bottom: 6px;
         line-height: 1.4;
     }
-
     .slip-location {
         font-size: 0.7rem;
         color: #94a3b8;
@@ -189,12 +148,7 @@
         align-items: center;
         gap: 5px;
     }
-
-    .slip-location i {
-        font-size: 0.65rem;
-        color: #c6a43b;
-    }
-
+    .slip-location i { font-size: 0.65rem; color: #c6a43b; }
     .slip-number {
         position: absolute;
         bottom: 12px;
@@ -202,59 +156,54 @@
         font-size: 0.6rem;
         color: #cbd5e1;
         font-family: monospace;
-        letter-spacing: 1px;
     }
-
-    /* Modal */
-    .modal-overlay { 
-        position: fixed; 
-        inset: 0; 
-        background: rgba(0,0,0,0.96); 
-        z-index: 9999; 
-        display: none; 
-        align-items: center; 
-        justify-content: center; 
+    
+    /* MODAL STYLE */
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.96);
+        z-index: 9999;
+        display: none;
+        align-items: center;
+        justify-content: center;
         backdrop-filter: blur(12px);
     }
-    .modal-box { 
-        background: #1a1a1a; 
-        width: 90%; 
-        max-width: 1000px; 
-        display: grid; 
-        grid-template-columns: 1.2fr 1fr; 
-        border-radius: 20px; 
-        overflow: hidden; 
+    .modal-box {
+        background: #1a1a1a;
+        width: 90%;
+        max-width: 1000px;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        border-radius: 20px;
+        overflow: hidden;
         animation: modalFadeIn 0.4s ease;
     }
     @keyframes modalFadeIn {
         from { opacity: 0; transform: scale(0.96); }
         to { opacity: 1; transform: scale(1); }
     }
-    .modal-img-part { 
+    .modal-img-part {
         background: #0a0a0a;
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 20px;
     }
-    .modal-img-part img { 
-        width: 100%; 
-        max-height: 70vh; 
-        object-fit: contain; 
-    }
-    .modal-text-part { 
-        padding: 35px; 
-        color: white; 
+    .modal-img-part img { width: 100%; max-height: 70vh; object-fit: contain; }
+    .modal-text-part {
+        padding: 35px;
+        color: white;
         text-align: left;
         background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
     }
-    .close-btn { 
-        position: absolute; 
-        top: 20px; 
-        right: 20px; 
-        color: white; 
-        font-size: 1.5rem; 
-        cursor: pointer; 
+    .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
         transition: all 0.3s ease;
         z-index: 10000;
         width: 40px;
@@ -264,11 +213,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        backdrop-filter: blur(5px);
     }
-    .close-btn:hover { 
-        background: #c6a43b; 
-        color: #003366; 
+    .close-btn:hover {
+        background: #c6a43b;
+        color: #003366;
         transform: rotate(90deg);
     }
     .modal-text-part small {
@@ -282,62 +230,101 @@
         margin: 12px 0;
         font-family: 'Playfair Display', serif;
     }
-    .modal-text-part p {
-        color: #bbb;
-        line-height: 1.7;
-        font-size: 0.85rem;
+    .modal-text-part p { color: #bbb; line-height: 1.7; font-size: 0.85rem; }
+    
+    /* MUSIC PLAYER IN MODAL */
+    .modal-music-player {
+        margin-top: 25px;
+        padding: 12px 16px;
+        background: rgba(0,0,0,0.5);
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border: 1px solid rgba(198,164,59,0.4);
+        backdrop-filter: blur(5px);
     }
-
-    .empty-gallery {
-        text-align: center;
-        padding: 80px;
-        background: white;
-        border-radius: 16px;
+    .modal-music-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #c6a43b, #e8c45a);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse 2s infinite;
     }
-    .empty-gallery i {
-        font-size: 3rem;
-        color: #cbd5e1;
-        margin-bottom: 15px;
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
     }
+    .modal-music-avatar i {
+        color: #003366;
+        font-size: 1.1rem;
+    }
+    .modal-music-info {
+        flex: 1;
+    }
+    .modal-music-title {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: white;
+    }
+    .modal-music-artist {
+        font-size: 0.65rem;
+        color: #c6a43b;
+    }
+    .modal-music-credit {
+        font-size: 0.55rem;
+        color: rgba(255,255,255,0.5);
+        margin-top: 2px;
+    }
+    .modal-music-controls button {
+        background: rgba(255,255,255,0.15);
+        border: none;
+        color: white;
+        cursor: pointer;
+        font-size: 0.9rem;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        transition: all 0.2s;
+    }
+    .modal-music-controls button:hover {
+        background: #c6a43b;
+        color: #003366;
+        transform: scale(1.1);
+    }
+    
+    .empty-gallery { text-align: center; padding: 80px; background: white; border-radius: 16px; }
+    .empty-gallery i { font-size: 3rem; color: #cbd5e1; margin-bottom: 15px; }
 
     @media (max-width: 1200px) {
         .slip-card { width: 240px; }
         .slip-image { height: 280px; }
     }
-
     @media (max-width: 992px) {
-        .stack-container {
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .slip-card {
-            margin-left: 0 !important;
-            width: 260px;
-        }
+        .stack-container { justify-content: center; flex-wrap: wrap; gap: 20px; }
+        .slip-card { margin-left: 0 !important; width: 260px; }
         .slip-card:hover ~ .slip-card { transform: none; }
         .slip-card:hover { transform: translateY(-10px); }
     }
-
-    @media (max-width: 768px) { 
-        .modal-box { 
-            grid-template-columns: 1fr; 
-            max-height: 85vh;
-            overflow-y: auto;
-        }
+    @media (max-width: 768px) {
+        .modal-box { grid-template-columns: 1fr; max-height: 85vh; overflow-y: auto; }
         .gallery-hero h1 { font-size: 2rem; }
         .stack-container { gap: 16px; }
         .slip-card { width: calc(50% - 8px); }
         .slip-image { height: 260px; }
+        .modal-music-player { padding: 10px 12px; }
+        .modal-music-avatar { width: 35px; height: 35px; }
+        .modal-music-title { font-size: 0.7rem; }
     }
-
     @media (max-width: 560px) {
         .slip-card { width: 100%; }
         .slip-image { height: 280px; }
     }
 </style>
 
-<!-- HERO SECTION -->
 <div class="gallery-hero">
     <div class="gallery-hero-content">
         <h1>GALERI</h1>
@@ -345,29 +332,29 @@
     </div>
 </div>
 
-<!-- STACKED SLIP CARDS SECTION -->
 <section class="gallery-section">
     <div class="container">
         <div class="stack-container">
             @php $counter = 1; @endphp
             @forelse($galeri ?? [] as $item)
                 @php
-                    $src = asset('image/default.jpg');
+                    $imgSrc = asset('image/default.jpg');
                     if (!empty($item->gambar)) {
                         if (str_starts_with($item->gambar, 'data:image')) {
-                            $src = $item->gambar;
-                        } elseif (filter_var($item->gambar, FILTER_VALIDATE_URL)) {
-                            $src = $item->gambar;
+                            $imgSrc = $item->gambar;
+                        } elseif (str_starts_with($item->gambar, 'image/')) {
+                            $imgSrc = asset($item->gambar);
+                        } elseif (str_starts_with($item->gambar, '/storage/')) {
+                            $imgSrc = asset($item->gambar);
                         } else {
-                            $src = asset('storage/' . $item->gambar);
+                            $imgSrc = asset('storage/' . $item->gambar);
                         }
                     }
                 @endphp
                 
-                <div class="slip-card" onclick="openPhoto('{{ $src }}', '{{ addslashes($item->judul) }}', '{{ addslashes($item->deskripsi ?? 'Tidak ada deskripsi') }}', '{{ strtoupper($item->kategori ?? 'GALERI') }}')">
+                <div class="slip-card" onclick="openPhoto('{{ $imgSrc }}', '{{ addslashes($item->judul) }}', '{{ addslashes($item->deskripsi ?? 'Tidak ada deskripsi') }}', '{{ strtoupper($item->kategori ?? 'GALERI') }}', '{{ addslashes($item->lokasi ?? 'Danau Toba') }}')">
                     <div class="slip-image">
-                        <img src="{{ $src }}" alt="{{ $item->judul }}" loading="lazy" 
-                             onerror="this.src='{{ asset('image/default.jpg') }}'">
+                        <img src="{{ $imgSrc }}" alt="{{ $item->judul }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
                         <div class="slip-overlay">
                             <span class="slip-category">{{ strtoupper($item->kategori ?? 'GALERI') }}</span>
                             <div class="slip-title-overlay">{{ Str::limit($item->judul, 35) }}</div>
@@ -394,7 +381,7 @@
     </div>
 </section>
 
-<!-- MODAL -->
+<!-- MODAL DENGAN MUSIC PLAYER -->
 <div id="pModal" class="modal-overlay" onclick="closePhoto()">
     <div class="close-btn" onclick="closePhoto()">&times;</div>
     <div class="modal-box" onclick="event.stopPropagation()">
@@ -402,30 +389,103 @@
         <div class="modal-text-part">
             <small id="mTag"></small>
             <h2 id="mTitle"></h2>
+            <p><i class="fas fa-map-marker-alt"></i> <span id="mLocation"></span></p>
             <p id="mDesc"></p>
+            
+            <!-- MUSIC PLAYER DI DALAM MODAL -->
+            <div class="modal-music-player">
+                <div class="modal-music-avatar">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div class="modal-music-info">
+                    <div class="modal-music-title">🎵 Gondang Batak</div>
+                    <div class="modal-music-artist">🎤 Musik Instrumental Batak</div>
+                    <div class="modal-music-credit">🎶 Lagu Daerah Batak Toba - Gondang</div>
+                </div>
+                <div class="modal-music-controls">
+                    <button id="modalPlayPauseBtn" onclick="toggleModalMusic(event)">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-    function openPhoto(src, title, desc, tag) {
+    // ==================== LAGU GONDANG BATAK DARI FOLDER PUBLIC/AUDIO ====================
+    // File: public/audio/GONDANG.mp4
+    const songUrl = "{{ asset('audio/GONDANG.weba') }}";
+    const songTitle = "Gondang Batak";
+    const songArtist = "Musik Instrumental Batak";
+    const songCredit = "Lagu Daerah Batak Toba - Gondang";
+    
+    let modalAudio = new Audio();
+    let isModalPlaying = false;
+    
+    // Set lagu
+    modalAudio.src = songUrl;
+    modalAudio.loop = true; // Loop otomatis
+    
+    function toggleModalMusic(event) {
+        if (event) event.stopPropagation();
+        
+        if (isModalPlaying) {
+            modalAudio.pause();
+            document.getElementById('modalPlayPauseBtn').innerHTML = '<i class="fas fa-play"></i>';
+        } else {
+            modalAudio.play().catch(e => console.log('Play error:', e));
+            document.getElementById('modalPlayPauseBtn').innerHTML = '<i class="fas fa-pause"></i>';
+        }
+        isModalPlaying = !isModalPlaying;
+    }
+    
+    function stopModalMusic() {
+        if (modalAudio) {
+            modalAudio.pause();
+            modalAudio.currentTime = 0;
+            isModalPlaying = false;
+            document.getElementById('modalPlayPauseBtn').innerHTML = '<i class="fas fa-play"></i>';
+        }
+    }
+    
+    function startModalMusic() {
+        if (!isModalPlaying && modalAudio.paused) {
+            modalAudio.play().catch(e => console.log('Play error:', e));
+            document.getElementById('modalPlayPauseBtn').innerHTML = '<i class="fas fa-pause"></i>';
+            isModalPlaying = true;
+        }
+    }
+    
+    // ==================== FUNGSI GALERI ====================
+    function openPhoto(src, title, desc, tag, location) {
         document.getElementById('mImg').src = src;
         document.getElementById('mTitle').innerText = title;
         document.getElementById('mTag').innerText = tag;
         document.getElementById('mDesc').innerHTML = desc || 'Tidak ada deskripsi.';
+        document.getElementById('mLocation').innerText = location || 'Danau Toba';
         document.getElementById('pModal').style.display = 'flex';
         document.body.style.overflow = 'hidden';
+        
+        // PUTAR LAGU OTOMATIS SAAT MODAL TERBUKA
+        startModalMusic();
     }
     
     function closePhoto() {
         document.getElementById('pModal').style.display = 'none';
         document.body.style.overflow = 'auto';
+        
+        // HENTIKAN LAGU SAAT MODAL DITUTUP
+        stopModalMusic();
     }
     
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closePhoto();
-        }
+        if (e.key === 'Escape') closePhoto();
+    });
+    
+    // Reset audio saat halaman dimuat ulang
+    window.addEventListener('beforeunload', function() {
+        if (modalAudio) modalAudio.pause();
     });
 </script>
 

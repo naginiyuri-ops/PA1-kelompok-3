@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Galeri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 
 class GaleriController extends Controller
 {
@@ -35,7 +34,7 @@ class GaleriController extends Controller
 
         $data = [
             'judul' => $request->judul,
-            'slug' => Str::slug($request->judul),
+            'slug' => Str::slug($request->judul) . '-' . time(),
             'kategori' => $request->kategori,
             'deskripsi' => $request->deskripsi,
             'lokasi' => $request->lokasi,
@@ -46,9 +45,13 @@ class GaleriController extends Controller
 
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
-            $filename = time() . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('galeri', $filename, 'public');
-            $data['gambar'] = $path; // Simpan PATH, bukan base64
+            $filename = time() . '_' . Str::slug($request->judul) . '.' . $file->getClientOriginalExtension();
+            
+            // Pindahkan ke folder public/image/galeri/
+            $file->move(public_path('image/galeri'), $filename);
+            
+            // Simpan path ke database
+            $data['gambar'] = 'image/galeri/' . $filename;
         }
 
         Galeri::create($data);
@@ -78,7 +81,7 @@ class GaleriController extends Controller
 
         $data = [
             'judul' => $request->judul,
-            'slug' => Str::slug($request->judul),
+            'slug' => Str::slug($request->judul) . '-' . time(),
             'kategori' => $request->kategori,
             'deskripsi' => $request->deskripsi,
             'lokasi' => $request->lokasi,
@@ -87,15 +90,15 @@ class GaleriController extends Controller
         ];
 
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama
-            if ($galeri->gambar && Storage::disk('public')->exists($galeri->gambar)) {
-                Storage::disk('public')->delete($galeri->gambar);
+            // Hapus gambar lama jika ada
+            if ($galeri->gambar && file_exists(public_path($galeri->gambar))) {
+                unlink(public_path($galeri->gambar));
             }
             
             $file = $request->file('gambar');
-            $filename = time() . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('galeri', $filename, 'public');
-            $data['gambar'] = $path;
+            $filename = time() . '_' . Str::slug($request->judul) . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('image/galeri'), $filename);
+            $data['gambar'] = 'image/galeri/' . $filename;
         }
 
         $galeri->update($data);
@@ -108,11 +111,20 @@ class GaleriController extends Controller
         $galeri = Galeri::findOrFail($id);
         
         // Hapus file gambar
-        if ($galeri->gambar && Storage::disk('public')->exists($galeri->gambar)) {
-            Storage::disk('public')->delete($galeri->gambar);
+        if ($galeri->gambar && file_exists(public_path($galeri->gambar))) {
+            unlink(public_path($galeri->gambar));
         }
         
         $galeri->delete();
         return redirect()->route('admin.galeri.index')->with('success', 'Galeri berhasil dihapus!');
+    }
+    
+    public function toggleStatus($id)
+    {
+        $galeri = Galeri::findOrFail($id);
+        $galeri->status = !$galeri->status;
+        $galeri->save();
+        
+        return response()->json(['success' => true, 'status' => $galeri->status]);
     }
 }
