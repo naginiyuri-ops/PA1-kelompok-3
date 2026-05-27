@@ -41,7 +41,6 @@ class UmkmController extends Controller
             'status' => $request->has('status') ? 1 : 0
         ];
 
-        // Simpan gambar sebagai BASE64 ke database
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
             $imageData = base64_encode(file_get_contents($file));
@@ -82,12 +81,10 @@ class UmkmController extends Controller
             'status' => $request->has('status') ? 1 : 0
         ];
 
-        // Hapus gambar jika dicentang
         if ($request->has('hapus_gambar')) {
             $input['gambar'] = null;
         }
 
-        // Upload gambar baru sebagai BASE64
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
             $imageData = base64_encode(file_get_contents($file));

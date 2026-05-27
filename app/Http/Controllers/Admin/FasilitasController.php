@@ -28,7 +28,6 @@ class FasilitasController extends Controller
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'kontak' => 'nullable|string|max:255',  // ← TAMBAHKAN VALIDASI KONTAK
             'harga' => 'nullable|string|max:255',
             'urutan' => 'required|integer|unique:fasilitas,urutan',
             'status' => 'nullable|boolean'
@@ -37,7 +36,6 @@ class FasilitasController extends Controller
         $data = [
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
-            'kontak' => $request->kontak,  // ← TAMBAHKAN KONTAK
             'harga' => $request->harga,
             'urutan' => $request->urutan,
             'status' => $request->has('status') ? 1 : 0
@@ -69,7 +67,6 @@ class FasilitasController extends Controller
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'kontak' => 'nullable|string|max:255',  // ← TAMBAHKAN VALIDASI KONTAK
             'harga' => 'nullable|string|max:255',
             'urutan' => 'required|integer|unique:fasilitas,urutan,' . $id,
             'status' => 'nullable|boolean'
@@ -78,13 +75,11 @@ class FasilitasController extends Controller
         $input = [
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
-            'kontak' => $request->kontak,  // ← TAMBAHKAN KONTAK
             'harga' => $request->harga,
             'urutan' => $request->urutan,
             'status' => $request->has('status') ? 1 : 0
         ];
 
-        // Hapus gambar jika dicentang
         if ($request->has('hapus_gambar')) {
             if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
                 Storage::disk('public')->delete($data->gambar);
@@ -92,7 +87,6 @@ class FasilitasController extends Controller
             $input['gambar'] = null;
         }
 
-        // Upload gambar baru
         if ($request->hasFile('gambar')) {
             if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
                 Storage::disk('public')->delete($data->gambar);
