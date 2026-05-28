@@ -684,7 +684,11 @@
         background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
         animation: rotate 20s linear infinite;
     }
+<<<<<<< HEAD
     
+=======
+     
+>>>>>>> eec5a1d2016d21f0119dbba616bbd8d8a60e1e3c
     @keyframes rotate {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
