@@ -46,7 +46,14 @@
         
         .navbar .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; width: 100%; }
         .logo-wrapper { display: flex; align-items: center; gap: 12px; }
-        .logo-img { height: 60px; width: auto; border-radius: 16px; object-fit: cover; transition: all 0.3s ease; box-shadow: 0 8px 16px -6px rgba(0, 0, 0, 0.2); }
+        .logo-img { 
+            height: 60px; 
+            width: auto; 
+            border-radius: 8px; /* Sudut lebih tumpul (hampir kotak) */
+            object-fit: cover; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 8px 16px -6px rgba(0, 0, 0, 0.2); 
+        }
         .logo-img:hover { transform: scale(1.02) translateY(-2px); box-shadow: 0 14px 24px -8px rgba(0, 0, 0, 0.3); }
         .logo-divider { width: 1.5px; height: 42px; background: linear-gradient(145deg, rgba(255,255,255,0.5), rgba(255,255,255,0.1)); border-radius: 2px; }
         .navbar-brand { font-size: 1.65rem; font-weight: 800; color: white !important; margin: 0; padding: 0 0 0 6px; }

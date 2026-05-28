@@ -529,7 +529,7 @@
         color: var(--primary-dark);
     }
     
-    /* ==================== MODAL ==================== */
+    /* ==================== MODAL PREMIUM ==================== */
     .detail-modal {
         display: none;
         position: fixed;
@@ -537,30 +537,61 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,0.85);
+        background: var(--bg-light);
         z-index: 10000;
         overflow-y: auto;
-        justify-content: center;
-        align-items: center;
+        opacity: 0;
+        transition: opacity 0.4s ease;
     }
     
     .detail-modal.active {
-        display: flex;
+        display: block;
+        opacity: 1;
     }
     
     .detail-modal-container {
+        max-width: 900px;
+        margin: 100px auto 50px;
+        padding: 0 20px;
+    }
+    
+    .detail-modal-close {
+        position: sticky;
+        top: 20px;
+        margin-bottom: 20px;
+        text-align: right;
+        z-index: 10001;
+    }
+    
+    .close-modal-btn {
         background: white;
-        max-width: 800px;
-        width: 90%;
-        margin: 50px auto;
+        border: 1px solid #e2e8f0;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        font-size: 1.3rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-sm);
+        color: var(--text-dark);
+    }
+    
+    .close-modal-btn:hover {
+        background: var(--primary-dark);
+        color: white;
+        transform: rotate(90deg);
+    }
+    
+    .detail-modal-wrapper {
+        background: var(--white);
         border-radius: 24px;
         overflow: hidden;
-        animation: zoomIn 0.3s ease;
+        box-shadow: var(--shadow-lg);
     }
     
     .detail-modal-header {
         position: relative;
-        height: 250px;
+        height: 400px;
         overflow: hidden;
     }
     
@@ -576,75 +607,62 @@
         left: 0;
         right: 0;
         background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-        padding: 30px 30px 20px;
-    }
-    
-    .detail-modal-header .overlay h3 {
-        color: white;
-        font-size: 1.5rem;
-        font-family: 'Playfair Display', serif;
-        margin-bottom: 8px;
+        padding: 40px 40px 30px;
     }
     
     .detail-modal-header .overlay .type {
         display: inline-block;
         background: var(--gold);
         color: var(--primary-dark);
-        padding: 4px 12px;
-        border-radius: 20px;
+        padding: 6px 18px;
+        border-radius: 30px;
         font-size: 0.7rem;
-        font-weight: 600;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+    }
+    
+    .detail-modal-header .overlay h2 {
+        color: white;
+        font-size: 2rem;
+        font-family: 'Playfair Display', serif;
+        margin-bottom: 10px;
     }
     
     .detail-modal-body {
-        padding: 30px;
+        padding: 40px;
     }
     
-    .detail-modal-body .detail-info {
-        margin-bottom: 20px;
+    .detail-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--bg-gray);
     }
     
-    .detail-modal-body .detail-info p {
-        margin-bottom: 8px;
+    .detail-info p {
+        display: flex;
+        align-items: center;
+        gap: 8px;
         font-size: 0.85rem;
         color: var(--text-gray);
     }
     
-    .detail-modal-body .detail-info i {
+    .detail-info i {
         width: 24px;
         color: var(--gold);
     }
     
-    .detail-modal-body .full-description {
-        color: var(--text-dark);
+    .full-description {
+        color: var(--text-gray);
         line-height: 1.8;
-        font-size: 0.95rem;
-        border-top: 1px solid #eee;
-        padding-top: 20px;
-        margin-top: 10px;
+        font-size: 1rem;
     }
     
-    .detail-modal-close {
-        position: fixed;
-        top: 20px;
-        right: 30px;
-        background: white;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        cursor: pointer;
-        transition: all 0.3s;
-        z-index: 10001;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-    
-    .detail-modal-close:hover {
-        background: var(--gold);
-        transform: rotate(90deg);
+    .full-description p {
+        margin-bottom: 1rem;
     }
     
     /* ==================== MAPS SECTION ==================== */
@@ -818,6 +836,9 @@
     @media (max-width: 1024px) {
         .hero-title { font-size: 3rem; }
         .grid-3 { grid-template-columns: repeat(2, 1fr); }
+        .detail-modal-header { height: 300px; }
+        .detail-modal-header .overlay h2 { font-size: 1.5rem; }
+        .detail-modal-body { padding: 30px; }
     }
     
     @media (max-width: 992px) {
@@ -845,18 +866,22 @@
         .cta-section { padding: 50px 0; }
         .cta-content h3 { font-size: 1.5rem; }
         .empty-state { grid-column: span 1; }
-        .detail-modal-header { height: 200px; }
-        .detail-modal-header .overlay h3 { font-size: 1.2rem; }
+        .detail-modal-header { height: 250px; }
+        .detail-modal-header .overlay { padding: 25px 25px 20px; }
+        .detail-modal-header .overlay h2 { font-size: 1.3rem; }
         .detail-modal-body { padding: 20px; }
-        .grid-umkm, .grid-3, .grid-2 {
-            grid-template-columns: 1fr;
-        }
+        .detail-info { gap: 15px; }
+        .grid-umkm, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+        .detail-modal-container { margin: 80px auto 30px; }
     }
     
     @media (max-width: 480px) {
         .hero-title { font-size: 1.6rem; }
         .container { padding: 0 16px; }
         .section-header h2 { font-size: 1.4rem; }
+        .detail-modal-header { height: 200px; }
+        .detail-modal-header .overlay .type { font-size: 0.6rem; }
+        .detail-modal-header .overlay h2 { font-size: 1.1rem; }
     }
 </style>
 
@@ -999,7 +1024,8 @@
                          alt="{{ $item->nama }}" 
                          onclick="event.stopPropagation(); openImageModal('{{ asset('storage/' . $item->gambar) }}')" 
                          onerror="this.src='{{ asset('image/meat/slide2.jpg') }}'">
-                @else                    <img src="{{ asset('image/meat/slide2.jpg') }}" 
+                @else
+                    <img src="{{ asset('image/meat/slide2.jpg') }}" 
                          class="card-img" 
                          alt="{{ $item->nama }}" 
                          onclick="event.stopPropagation(); openImageModal('{{ asset('image/meat/slide2.jpg') }}')">
@@ -1115,29 +1141,34 @@
     </div>
 </section>
 
-<!-- ==================== MODALS ==================== -->
+<!-- ==================== MODAL LIGHTBOX GAMBAR ==================== -->
 <div id="imageModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; cursor: pointer; align-items: center; justify-content: center;">
     <span style="position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; z-index: 10000;">&times;</span>
     <img id="modalImage" style="max-width: 90%; max-height: 90%; object-fit: contain;">
 </div>
 
+<!-- ==================== MODAL DETAIL PREMIUM ==================== -->
 <div id="detailModal" class="detail-modal">
-    <div class="detail-modal-close" onclick="closeDetailModal()">&times;</div>
     <div class="detail-modal-container">
-        <div class="detail-modal-header">
-            <img id="detailImg" src="" alt="">
-            <div class="overlay">
-                <span class="type" id="detailType"></span>
-                <h3 id="detailTitle"></h3>
-            </div>
+        <div class="detail-modal-close">
+            <button class="close-modal-btn" onclick="closeDetailModal()">&times;</button>
         </div>
-        <div class="detail-modal-body">
-            <div class="detail-info">
-                <p><i class="fas fa-map-marker-alt"></i> <strong>Lokasi:</strong> <span id="detailLokasi"></span></p>
-                <p><i class="fas fa-phone"></i> <strong>Kontak:</strong> <span id="detailKontak"></span></p>
-                <p><i class="fas fa-tag"></i> <strong>Harga:</strong> <span id="detailHarga"></span></p>
+        <div class="detail-modal-wrapper">
+            <div class="detail-modal-header">
+                <img id="detailImg" src="" alt="">
+                <div class="overlay">
+                    <span class="type" id="detailType"></span>
+                    <h2 id="detailTitle"></h2>
+                </div>
             </div>
-            <div class="full-description" id="detailDeskripsi"></div>
+            <div class="detail-modal-body">
+                <div class="detail-info">
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Lokasi:</strong> <span id="detailLokasi"></span></p>
+                    <p><i class="fas fa-phone"></i> <strong>Kontak:</strong> <span id="detailKontak"></span></p>
+                    <p><i class="fas fa-tag"></i> <strong>Harga:</strong> <span id="detailHarga"></span></p>
+                </div>
+                <div class="full-description" id="detailDeskripsi"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -1213,7 +1244,7 @@
         }
     }
     
-    // ==================== DETAIL MODAL UNTUK SEMUA ====================
+    // ==================== DETAIL MODAL PREMIUM ====================
     function openDetailModal(type, index) {
         let item = null;
         let typeName = '';
@@ -1231,12 +1262,19 @@
         
         if (!item) return;
         
-        // Set gambar - PAKAI STORAGE PATH
+        // Set gambar
         let imgSrc = '{{ asset("image/meat/slide1.jpg") }}';
         if (item.gambar) {
-            imgSrc = '{{ asset("storage") }}/' + item.gambar;
+            if (item.gambar.startsWith('data:image')) {
+                imgSrc = item.gambar;
+            } else if (item.gambar.startsWith('http')) {
+                imgSrc = item.gambar;
+            } else {
+                imgSrc = '{{ asset("storage") }}/' + item.gambar;
+            }
         }
         
+        // Update modal
         document.getElementById('detailImg').src = imgSrc;
         document.getElementById('detailType').innerText = typeName;
         document.getElementById('detailTitle').innerText = item.nama || '-';
@@ -1245,6 +1283,7 @@
         document.getElementById('detailHarga').innerText = item.harga || (typeName === 'UMKM' ? 'Hubungi langsung' : 'Gratis');
         document.getElementById('detailDeskripsi').innerHTML = item.deskripsi || '<p>Belum ada deskripsi lengkap untuk item ini.</p>';
         
+        // Tampilkan modal
         const modal = document.getElementById('detailModal');
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';

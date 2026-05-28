@@ -43,7 +43,6 @@
         color: rgba(255,255,255,0.8);
     }
     
-    /* FILTER BUTTONS */
     .filter-buttons {
         display: flex;
         justify-content: center;
@@ -148,7 +147,6 @@
     }
     .slip-location i { font-size: 0.65rem; color: #c6a43b; }
     
-    /* MODAL STYLE */
     .modal-overlay {
         position: fixed;
         inset: 0;
@@ -221,7 +219,6 @@
     }
     .modal-text-part p { color: #bbb; line-height: 1.7; font-size: 0.85rem; }
     
-    /* MUSIC PLAYER IN MODAL */
     .modal-music-player {
         margin-top: 25px;
         padding: 12px 16px;
@@ -288,7 +285,6 @@
 <section class="gallery-section">
     <div class="container">
         
-        <!-- FILTER BUTTONS -->
         <div class="filter-buttons">
             <button class="filter-btn active" data-filter="all">SEMUA</button>
             <button class="filter-btn" data-filter="meat">MEAT</button>
@@ -299,45 +295,48 @@
         <div class="stack-container" id="galleryContainer">
             @forelse($galeri ?? [] as $index => $item)
                 @php
-                    // AMBIL GAMBAR
+                    // TENTUKAN GAMBAR BERDASARKAN KATEGORI JIKA KOSONG
                     $imgSrc = asset('image/default.jpg');
+                    $kategoriLower = strtolower($item->kategori ?? '');
+                    
                     if (!empty($item->gambar)) {
-                        if (str_starts_with($item->gambar, 'data:image')) {
+                        if (str_starts_with($item->gambar, 'http')) {
                             $imgSrc = $item->gambar;
                         } elseif (str_starts_with($item->gambar, '/storage/')) {
-                            $imgSrc = asset($item->gambar);
-                        } elseif (str_starts_with($item->gambar, 'storage/')) {
                             $imgSrc = asset($item->gambar);
                         } elseif (str_starts_with($item->gambar, 'image/')) {
                             $imgSrc = asset($item->gambar);
                         } else {
                             $imgSrc = asset('storage/' . $item->gambar);
                         }
+                    } else {
+                        // GAMBAR DEFAULT BERDASARKAN KATEGORI
+                        if (str_contains($kategoriLower, 'meat')) {
+                            $imgSrc = asset('image/meat/slide1.jpg');
+                        } elseif (str_contains($kategoriLower, 'batu')) {
+                            $imgSrc = asset('image/meat/batu-detail.jpg');
+                        } elseif (str_contains($kategoriLower, 'liang')) {
+                            $imgSrc = asset('image/meat/liang-detail.jpg');
+                        }
                     }
                     
-                    // NORMALISASI KATEGORI UNTUK FILTER (jadikan lowercase)
-                    $kategoriRaw = strtolower(trim($item->kategori ?? ''));
+                    // TENTUKAN FILTER CATEGORY
                     $filterCat = 'other';
-                    
-                    if (str_contains($kategoriRaw, 'meat')) {
+                    if (str_contains($kategoriLower, 'meat')) {
                         $filterCat = 'meat';
-                    } elseif (str_contains($kategoriRaw, 'batu bahisan') || str_contains($kategoriRaw, 'batu')) {
+                    } elseif (str_contains($kategoriLower, 'batu')) {
                         $filterCat = 'batu bahisan';
-                    } elseif (str_contains($kategoriRaw, 'liang sipege') || str_contains($kategoriRaw, 'liang')) {
+                    } elseif (str_contains($kategoriLower, 'liang')) {
                         $filterCat = 'liang sipege';
                     }
                     
-                    // Untuk debugging di console browser
-                    $debugCat = $filterCat;
-                    
-                    // DATA UNTUK MODAL
                     $judul = addslashes($item->judul ?? 'Galeri');
                     $deskripsi = addslashes($item->deskripsi ?? 'Tidak ada deskripsi');
                     $kategoriModal = addslashes(strtoupper($item->kategori ?? 'GALERI'));
                     $lokasi = addslashes($item->lokasi ?? 'Danau Toba');
                 @endphp
                 
-                <div class="slip-card" data-category="{{ $filterCat }}" data-judul="{{ $judul }}"
+                <div class="slip-card" data-category="{{ $filterCat }}"
                      onclick="openPhoto('{{ $imgSrc }}', '{{ $judul }}', '{{ $deskripsi }}', '{{ $kategoriModal }}', '{{ $lokasi }}')">
                     <div class="slip-image">
                         <img src="{{ $imgSrc }}" alt="{{ $item->judul }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
@@ -363,7 +362,6 @@
     </div>
 </section>
 
-<!-- MODAL DENGAN MUSIC PLAYER -->
 <div id="pModal" class="modal-overlay" onclick="closePhoto()">
     <div class="close-btn" onclick="closePhoto()">&times;</div>
     <div class="modal-box" onclick="event.stopPropagation()">
@@ -374,7 +372,6 @@
             <p><i class="fas fa-map-marker-alt"></i> <span id="mLocation"></span></p>
             <p id="mDesc"></p>
             
-            <!-- MUSIC PLAYER -->
             <div class="modal-music-player">
                 <div class="modal-music-avatar">
                     <i class="fas fa-music"></i>
@@ -394,10 +391,7 @@
 </div>
 
 <script>
-    // ==================== MUSIK GONDANG BATAK ====================
-    // Ganti URL sesuai letak file musik Anda
     const songUrl = "{{ asset('audio/GONDANG.weba') }}";
-    
     let modalAudio = new Audio();
     let isModalPlaying = false;
     
@@ -406,7 +400,6 @@
     
     function toggleModalMusic(event) {
         if (event) event.stopPropagation();
-        
         if (isModalPlaying) {
             modalAudio.pause();
             document.getElementById('modalPlayPauseBtn').innerHTML = '<i class="fas fa-play"></i>';
@@ -436,10 +429,7 @@
         }
     }
     
-    // ==================== FUNGSI GALERI ====================
     function openPhoto(src, title, desc, tag, location) {
-        console.log('Opening photo:', {src, title, tag, location});
-        
         document.getElementById('mImg').src = src;
         document.getElementById('mTitle').innerText = title;
         document.getElementById('mTag').innerText = tag;
@@ -447,8 +437,6 @@
         document.getElementById('mLocation').innerHTML = location || 'Danau Toba';
         document.getElementById('pModal').style.display = 'flex';
         document.body.style.overflow = 'hidden';
-        
-        // PUTAR MUSIK OTOMATIS SAAT MODAL BUKA
         startModalMusic();
     }
     
@@ -458,51 +446,27 @@
         stopModalMusic();
     }
     
-    // ==================== FILTER FUNGSI ====================
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-            
             const filterValue = this.getAttribute('data-filter');
             const cards = document.querySelectorAll('.slip-card');
-            
-            console.log('Filter:', filterValue);
-            let visibleCount = 0;
-            
             cards.forEach(card => {
                 if (filterValue === 'all') {
                     card.style.display = 'block';
-                    visibleCount++;
                 } else {
                     const cardCategory = card.getAttribute('data-category');
                     if (cardCategory === filterValue) {
                         card.style.display = 'block';
-                        visibleCount++;
                     } else {
                         card.style.display = 'none';
                     }
                 }
             });
-            
-            console.log('Visible cards:', visibleCount);
         });
     });
     
-    // Debug: tampilkan semua kategori yang ada
-    document.addEventListener('DOMContentLoaded', function() {
-        const cards = document.querySelectorAll('.slip-card');
-        const categories = [];
-        cards.forEach(card => {
-            const cat = card.getAttribute('data-category');
-            if (cat && !categories.includes(cat)) {
-                categories.push(cat);
-            }
-        });
-        console.log('Categories found in cards:', categories);
-    });
-    
-    // ESC KEY
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closePhoto();
     });

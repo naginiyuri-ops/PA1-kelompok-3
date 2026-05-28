@@ -890,8 +890,8 @@
             
             <!-- BATU BAHISAN -->
             <div class="destinasi-item reverse" data-aos="fade-up" data-aos-delay="200">
-                <div class="destinasi-image" onclick="openLightbox('/image/meat/batu-detail.jpg', 'Batu Bahisan', 'Situs batu bersejarah di kawasan Balige')">
-                    <img src="/image/meat/batu-detail.jpg" alt="Batu Bahisan">
+                <div class="destinasi-image" onclick="openLightbox('/image/meat/batubasiha1.png ', 'Batu Bahisan', 'Situs batu bersejarah di kawasan Balige')">
+                    <img src="/image/meat/batubasiha1.png" alt="Batu Bahisan">
                 </div>
                 <div class="destinasi-content">
                     <div class="destinasi-number">02 — BATU BAHISAN</div>
@@ -904,8 +904,8 @@
             
             <!-- LIANG SIPEGE -->
             <div class="destinasi-item" data-aos="fade-up" data-aos-delay="400">
-                <div class="destinasi-image" onclick="openLightbox('/image/meat/liang-detail.jpg', 'Liang Sipege', 'Gua alam dengan keindahan stalaktit dan stalakmit')">
-                    <img src="/image/meat/liang-detail.jpg" alt="Liang Sipege">
+                <div class="destinasi-image" onclick="openLightbox('/image/meat/liang-sipege-hero.jpg', 'Liang Sipege', 'Gua alam dengan keindahan stalaktit dan stalakmit')">
+                    <img src="/image/meat/liang-sipege-hero.jpg" alt="Liang Sipege">
                 </div>
                 <div class="destinasi-content">
                     <div class="destinasi-number">03 — LIANG SIPEGE</div>
