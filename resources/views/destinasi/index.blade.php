@@ -233,6 +233,41 @@
         text-transform: uppercase;
         color: rgba(255,255,255,0.8);
     }
+    .stat-number {
+    display: block !important;
+    visibility: visible !important;
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    text-align: center;
+    padding: 2rem;
+}
+
+.stat-item {
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    letter-spacing: 1px;
+}
     
     @media (max-width: 992px) {
         .category-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
@@ -307,29 +342,24 @@
         </div>
     </div>
 </section>
-
-<section class="stats-section">
-    <div class="container">
-        <div class="stats-grid">
-            <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
-                <div class="stat-number">74.000+</div>
-                <div class="stat-label">TAHUN SEJARAH</div>
-            </div>
-            <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
-                <div class="stat-number">3+</div>
-                <div class="stat-label">GEOSITE UNGGULAN</div>
-            </div>
-            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
-                <div class="stat-number">15+</div>
-                <div class="stat-label">WARISAN BUDAYA</div>
-            </div>
-            <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
-                <div class="stat-number">100+</div>
-                <div class="stat-label">UMKM LOKAL</div>
-            </div>
-        </div>
+<div class="stats-grid">
+    <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
+        <div class="stat-number">16</div>
+        <div class="stat-label">GEOSITES</div>
     </div>
-</section>
+    <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+        <div class="stat-number">74.000+</div>
+        <div class="stat-label">TAHUN SEJARAH</div>
+    </div>
+    <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+        <div class="stat-number">15+</div>
+        <div class="stat-label">WARISAN BUDAYA</div>
+    </div>
+    <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+        <div class="stat-number">100+</div>
+        <div class="stat-label">UMKM LOKAL</div>
+    </div>
+</div>
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

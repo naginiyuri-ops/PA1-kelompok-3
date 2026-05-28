@@ -862,17 +862,7 @@
         background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
         animation: rotate 20s linear infinite;
     }
-    
-    .cta-section::after {
-        content: '✦';
-        position: absolute;
-        font-size: 3rem;
-        color: rgba(255,255,255,0.05);
-        bottom: 20px;
-        right: 30px;
-        animation: float 3s ease-in-out infinite;
-    }
-    
+     
     @keyframes rotate {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
