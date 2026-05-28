@@ -136,6 +136,7 @@
         box-shadow: var(--shadow-md);
         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         border: 1px solid rgba(15, 23, 42, 0.04);
+        cursor: pointer;
     }
 
     .informasi-card:hover {
@@ -148,7 +149,6 @@
         height: 220px;
         overflow: hidden;
         position: relative;
-        cursor: pointer;
     }
 
     .informasi-card-img img {
@@ -240,7 +240,6 @@
         font-family: 'Playfair Display', serif;
         margin: 8px 0 12px;
         line-height: 1.4;
-        cursor: pointer;
         transition: color 0.2s ease;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -290,29 +289,34 @@
     /* ==================== FULL ARTICLE MODAL ==================== */
     .article-view-section {
         display: none;
-        padding: 40px 0 100px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-light);
+        z-index: 1050;
+        overflow-y: auto;
         opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.4s ease, transform 0.4s ease;
+        transition: opacity 0.4s ease;
     }
 
     .article-view-section.active {
         display: block;
         opacity: 1;
-        transform: translateY(0);
     }
 
     .article-container-box {
-        margin-top: 20px;
+        max-width: 900px;
+        margin: 100px auto 50px;
+        padding: 0 20px;
     }
 
     .btn-back-container {
         margin-bottom: 30px;
         position: sticky;
-        top: calc(var(--header-height, 80px) + 20px);
-        z-index: 100;
-        background: transparent;
-        padding: 0;
+        top: 20px;
+        z-index: 1060;
     }
 
     .btn-back {
@@ -329,8 +333,6 @@
         cursor: pointer;
         transition: all 0.3s ease;
         box-shadow: var(--shadow-sm);
-        backdrop-filter: blur(10px);
-        background: rgba(255, 255, 255, 0.95);
     }
 
     .btn-back i {
@@ -364,8 +366,6 @@
 
     .article-content-padding {
         padding: 50px 60px;
-        max-width: 900px;
-        margin: 0 auto;
     }
 
     .article-meta {
@@ -445,18 +445,6 @@
         margin-bottom: 8px;
     }
 
-    /* ==================== ANIMATIONS ==================== */
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 1024px) {
         .informasi-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
@@ -464,15 +452,9 @@
         .article-hero-img { height: 380px; }
         .article-content-padding { padding: 35px 40px; }
         .article-main-title { font-size: 1.8rem; }
-        .btn-back-container {
-            top: calc(var(--header-height, 70px) + 15px);
-        }
     }
 
     @media (max-width: 768px) {
-        :root {
-            --header-height: 60px;
-        }
         .hero-informasi { padding: 110px 0 50px; }
         .hero-informasi h1 { font-size: 1.8rem; }
         .informasi-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -482,23 +464,15 @@
         .article-main-title { font-size: 1.5rem; }
         .article-meta { flex-wrap: wrap; gap: 15px; }
         .btn-back { padding: 10px 22px; font-size: 0.8rem; }
-        .btn-back-container {
-            top: calc(var(--header-height, 60px) + 10px);
-            margin-bottom: 20px;
-        }
+        .article-container-box { margin: 80px auto 30px; }
     }
 
     @media (max-width: 480px) {
         .container { padding: 0 16px; }
         .informasi-card-body h3 { font-size: 1.1rem; }
         .article-hero-img { height: 200px; }
-        .btn-back-container {
-            top: calc(var(--header-height, 60px) + 8px);
-        }
-        .btn-back {
-            padding: 8px 18px;
-            font-size: 0.75rem;
-        }
+        .btn-back { padding: 8px 18px; font-size: 0.75rem; }
+        .article-container-box { margin: 70px auto 20px; }
     }
 </style>
 
@@ -518,7 +492,7 @@
         <div class="container">
             <div class="informasi-grid">
                 @forelse($informasi as $index => $item)
-                <div class="informasi-card" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}">
+                <div class="informasi-card" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}" onclick="showArticle({{ $index }})">
                     @php
                         $imgSrc = asset('image/default.jpg');
                         if (!empty($item->gambar)) {
@@ -532,7 +506,7 @@
                         }
                     @endphp
 
-                    <div class="informasi-card-img" onclick="showArticle({{ $index }})">
+                    <div class="informasi-card-img">
                         <img src="{{ $imgSrc }}" alt="{{ $item->judul }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
                         <div class="card-overlay">
                             <i class="fas fa-book-open"></i>
@@ -545,11 +519,11 @@
                     </div>
                     
                     <div class="informasi-card-body">
-                        <h3 onclick="showArticle({{ $index }})">{{ Str::limit($item->judul, 55) }}</h3>
+                        <h3>{{ Str::limit($item->judul, 55) }}</h3>
                         <p>{{ Str::limit(strip_tags($item->konten), 120) }}</p>
-                        <button class="btn-read" onclick="showArticle({{ $index }})">
+                        <div class="btn-read">
                             Baca Selengkapnya <i class="fas fa-arrow-right"></i>
-                        </button>
+                        </div>
                     </div>
                 </div>
                 @empty
@@ -568,31 +542,29 @@
             @endif
         </div>
     </section>
+</div>
 
-    <!-- FULL ARTICLE VIEW -->
-    <section class="article-view-section" id="articleSection">
-        <div class="container">
-            <div class="article-container-box">
-                <div class="btn-back-container">
-                    <button class="btn-back" onclick="hideArticle()">
-                        <i class="fas fa-arrow-left"></i> Kembali ke Informasi
-                    </button>
-                </div>
+<!-- FULL ARTICLE VIEW (MODAL) -->
+<div id="articleModal" class="article-view-section">
+    <div class="article-container-box">
+        <div class="btn-back-container">
+            <button class="btn-back" onclick="closeArticle()">
+                <i class="fas fa-arrow-left"></i> Kembali ke Informasi
+            </button>
+        </div>
 
-                <div class="article-wrapper">
-                    <img id="viewImg" class="article-hero-img" src="" alt="">
-                    <div class="article-content-padding">
-                        <div class="article-meta">
-                            <span><i class="far fa-calendar-alt"></i> <span id="viewDate"></span></span>
-                            <span><i class="far fa-eye"></i> <span id="viewViews"></span> Pembaca</span>
-                        </div>
-                        <h1 class="article-main-title" id="viewTitle"></h1>
-                        <div class="article-body-text" id="viewContent"></div>
-                    </div>
+        <div class="article-wrapper">
+            <img id="modalImg" class="article-hero-img" src="" alt="">
+            <div class="article-content-padding">
+                <div class="article-meta">
+                    <span><i class="far fa-calendar-alt"></i> <span id="modalDate"></span></span>
+                    <span><i class="far fa-eye"></i> <span id="modalViews"></span> Pembaca</span>
                 </div>
+                <h1 class="article-main-title" id="modalTitle"></h1>
+                <div class="article-body-text" id="modalContent"></div>
             </div>
         </div>
-    </section>
+    </div>
 </div>
 
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
@@ -612,20 +584,20 @@
     const informasiData = @json($informasi->items());
     
     // DOM Elements
-    const gridSection = document.getElementById('gridSection');
-    const articleSection = document.getElementById('articleSection');
     const heroSection = document.getElementById('heroSection');
+    const gridSection = document.getElementById('gridSection');
+    const articleModal = document.getElementById('articleModal');
     
-    // Variable untuk menyimpan posisi scroll sebelum membuka artikel
-    let scrollPositionBeforeArticle = 0;
+    // Variable untuk menyimpan posisi scroll
+    let scrollPosition = 0;
     
     // Function untuk menampilkan artikel
     function showArticle(index) {
         const item = informasiData[index];
         if (!item) return;
         
-        // Simpan posisi scroll saat ini sebelum membuka artikel
-        scrollPositionBeforeArticle = window.pageYOffset || document.documentElement.scrollTop;
+        // Simpan posisi scroll
+        scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
         
         // Proses gambar
         let imgSrc = '{{ asset("image/default.jpg") }}';
@@ -644,24 +616,25 @@
             year: 'numeric'
         });
         
-        // Update konten artikel
-        document.getElementById('viewImg').src = imgSrc;
-        document.getElementById('viewTitle').innerText = item.judul;
-        document.getElementById('viewDate').innerText = tanggalFormatted;
-        document.getElementById('viewViews').innerText = (item.views || 0).toLocaleString();
-        document.getElementById('viewContent').innerHTML = item.konten;
+        // Update konten modal
+        document.getElementById('modalImg').src = imgSrc;
+        document.getElementById('modalTitle').innerText = item.judul;
+        document.getElementById('modalDate').innerText = tanggalFormatted;
+        document.getElementById('modalViews').innerText = (item.views || 0).toLocaleString();
+        document.getElementById('modalContent').innerHTML = item.konten;
         
-        // Sembunyikan hero dan grid section
+        // Sembunyikan hero dan grid
         heroSection.style.display = 'none';
         gridSection.style.display = 'none';
         
-        // Tampilkan artikel dengan animasi
-        articleSection.classList.add('active');
+        // Tampilkan modal
+        articleModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
         
-        // Scroll ke atas dengan smooth
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Scroll ke atas modal
+        articleModal.scrollTop = 0;
         
-        // Update views (async, tidak perlu menunggu)
+        // Update views
         fetch('/api/informasi/' + item.id + '/view', {
             method: 'POST',
             headers: { 
@@ -671,46 +644,49 @@
         }).catch(err => console.log('Error updating views:', err));
     }
     
-    // Function untuk menyembunyikan artikel dan kembali ke grid
-    function hideArticle() {
-        // Hapus class active untuk animasi fade-out
-        articleSection.classList.remove('active');
+    // Function untuk menutup artikel
+    function closeArticle() {
+        // Sembunyikan modal
+        articleModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
         
-        // Setelah animasi selesai, tampilkan kembali hero dan grid
-        setTimeout(() => {
-            heroSection.style.display = 'block';
-            gridSection.style.display = 'block';
-            
-            // Kembali ke posisi scroll sebelumnya
-            window.scrollTo({ 
-                top: scrollPositionBeforeArticle, 
-                behavior: 'smooth' 
-            });
-        }, 400); // Durasi sama dengan transition di CSS
+        // Tampilkan kembali hero dan grid
+        heroSection.style.display = 'block';
+        gridSection.style.display = 'block';
+        
+        // Kembali ke posisi scroll sebelumnya
+        window.scrollTo({ 
+            top: scrollPosition, 
+            behavior: 'smooth' 
+        });
     }
     
-    // Event listener untuk tombol back pada browser (popstate)
+    // Event listener untuk tombol back browser
     window.addEventListener('popstate', function(event) {
-        // Cek apakah artikel sedang ditampilkan
-        if (articleSection.classList.contains('active')) {
+        if (articleModal.classList.contains('active')) {
             event.preventDefault();
-            hideArticle();
-            // Push state lagi agar tidak keluar halaman
+            closeArticle();
             history.pushState(null, '', window.location.href);
         }
     });
     
-    // Push initial state saat halaman dimuat
+    // Push initial state
     history.pushState(null, '', window.location.href);
     
-    // Optional: Tambahkan loading indicator untuk gambar artikel
-    document.getElementById('viewImg').addEventListener('load', function() {
-        this.style.opacity = '1';
+    // Escape key to close
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && articleModal.classList.contains('active')) {
+            closeArticle();
+        }
     });
     
-    // Set initial opacity untuk gambar artikel
-    document.getElementById('viewImg').style.opacity = '0';
-    document.getElementById('viewImg').style.transition = 'opacity 0.3s ease';
+    // Loading effect untuk gambar modal
+    const modalImg = document.getElementById('modalImg');
+    modalImg.style.opacity = '0';
+    modalImg.style.transition = 'opacity 0.3s ease';
+    modalImg.addEventListener('load', function() {
+        this.style.opacity = '1';
+    });
 </script>
 
 @endsection

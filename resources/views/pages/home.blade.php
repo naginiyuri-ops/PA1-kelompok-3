@@ -837,11 +837,11 @@
                 <div class="stat-label">TAHUN SEJARAH</div>
             </div>
             <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
-                <div class="stat-number"></div>
+                <div class="stat-number">15</div>
                 <div class="stat-label">WARISAN BUDAYA</div>
             </div>
             <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
-                <div class="stat-number">100+</div>
+                <div class="stat-number">20+</div>
                 <div class="stat-label">UMKM LOKAL</div>
             </div>
         </div>
