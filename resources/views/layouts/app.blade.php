@@ -6,16 +6,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Geosite Danau Toba')</title>
     
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-   <style>
+    <style>
         * { font-family: 'Inter', sans-serif; }
         
         :root {
@@ -34,262 +30,56 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
         
+        /* Efek saat Navbar Scroll */
         .navbar.scrolled {
-            background: rgba(0, 51, 102, 0.96);
-            padding: 0.4rem 0;
+            background: var(--white) !important;
+            padding: 0.5rem 0;
             box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
         }
-        
-        .navbar .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
+
+        .navbar.scrolled .nav-link, 
+        .navbar.scrolled .navbar-brand { color: var(--blue-dark) !important; }
+
+        .navbar.scrolled .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 51, 102, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
         
-        .logo-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .logo-img {
-            height: 60px;
-            width: auto;
-            border-radius: 16px;
-            object-fit: cover;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 16px -6px rgba(0, 0, 0, 0.2);
-        }
-        
-        .logo-img:hover {
-            transform: scale(1.02) translateY(-2px);
-            box-shadow: 0 14px 24px -8px rgba(0, 0, 0, 0.3);
-        }
-        
-        .logo-divider {
-            width: 1.5px;
-            height: 42px;
-            background: linear-gradient(145deg, rgba(255,255,255,0.5), rgba(255,255,255,0.1));
-            border-radius: 2px;
-        }
-        
-        .navbar-brand {
-            font-size: 1.65rem;
-            font-weight: 800;
-            color: white !important;
-            margin: 0;
-            padding: 0 0 0 6px;
-            letter-spacing: -0.3px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
-        
+        .navbar .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; width: 100%; }
+        .logo-wrapper { display: flex; align-items: center; gap: 12px; }
+        .logo-img { height: 60px; width: auto; border-radius: 16px; object-fit: cover; transition: all 0.3s ease; box-shadow: 0 8px 16px -6px rgba(0, 0, 0, 0.2); }
+        .logo-img:hover { transform: scale(1.02) translateY(-2px); box-shadow: 0 14px 24px -8px rgba(0, 0, 0, 0.3); }
+        .logo-divider { width: 1.5px; height: 42px; background: linear-gradient(145deg, rgba(255,255,255,0.5), rgba(255,255,255,0.1)); border-radius: 2px; }
+        .navbar-brand { font-size: 1.65rem; font-weight: 800; color: white !important; margin: 0; padding: 0 0 0 6px; }
         .navbar-brand span { color: var(--gold); font-weight: 800; }
+        .nav-link { color: white !important; font-weight: 500; margin: 0 0.2rem; transition: all 0.25s ease; font-size: 0.95rem; padding: 0.5rem 1rem; border-radius: 40px; }
+        .nav-link:hover { color: var(--gold) !important; background: rgba(255, 255, 255, 0.12); transform: translateY(-2px); }
+        .nav-link.active { color: var(--gold) !important; background: rgba(198, 164, 59, 0.2); }
         
-        .nav-link {
-            color: white !important;
-            font-weight: 500;
-            margin: 0 0.2rem;
-            transition: all 0.25s ease;
-            font-size: 0.95rem;
-            padding: 0.5rem 1rem;
-            border-radius: 40px;
-        }
+        .dropdown-menu { background: rgba(0, 51, 102, 0.96); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 24px; padding: 0.6rem 0; margin-top: 0.7rem; box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3); }
+        .dropdown-item { color: white; padding: 10px 24px; font-size: 0.85rem; transition: all 0.25s ease; border-radius: 18px; margin: 4px 10px; }
+        .dropdown-item:hover { background: rgba(198, 164, 59, 0.2); color: var(--gold); transform: translateX(5px); }
+        .dropdown-header { color: var(--gold); padding: 8px 24px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
         
-        .nav-link:hover {
-            color: var(--gold) !important;
-            background: rgba(255, 255, 255, 0.12);
-            transform: translateY(-2px);
-        }
-        
-        .nav-link.active {
-            color: var(--gold) !important;
-            background: rgba(198, 164, 59, 0.2);
-        }
-        
-        .dropdown-menu {
-            background: rgba(0, 51, 102, 0.96);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 24px;
-            padding: 0.6rem 0;
-            margin-top: 0.7rem;
-            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3);
-        }
-        
-        .dropdown-item {
-            color: white;
-            padding: 10px 24px;
-            font-size: 0.85rem;
-            transition: all 0.25s ease;
-            border-radius: 18px;
-            margin: 4px 10px;
-        }
-        
-        .dropdown-item:hover {
-            background: rgba(198, 164, 59, 0.2);
-            color: var(--gold);
-            transform: translateX(5px);
-        }
-        
-        .dropdown-header {
-            color: var(--gold);
-            padding: 8px 24px;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .navbar-toggler {
-            border: none;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 8px 12px;
-            border-radius: 14px;
-        }
-        
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        }
-        
-        @media (max-width: 991px) {
-            .logo-img { height: 52px; }
-            .logo-divider { height: 36px; }
-            .navbar-brand { font-size: 1.5rem; }
-            .navbar-collapse {
-                background: rgba(0, 51, 102, 0.96);
-                backdrop-filter: blur(20px);
-                padding: 1.2rem;
-                border-radius: 28px;
-                margin-top: 1rem;
-            }
-            .nav-link { text-align: center; }
-        }
-        
-        @media (max-width: 768px) {
-            .logo-img { height: 46px; }
-            .logo-divider { height: 32px; }
-            .navbar-brand { font-size: 1.35rem; }
-        }
-        
-        @media (max-width: 576px) {
-            .logo-img { height: 40px; }
-            .logo-divider { height: 28px; }
-            .navbar-brand { font-size: 1.2rem; }
-        }
-        
-        .footer {
-            background: var(--blue-dark);
-            color: white;
-            padding: 40px 0 20px;
-            margin-top: 0;
-        }
-        
-        .footer h5 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .footer h5::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 35px;
-            height: 2px;
-            background: var(--gold);
-            border-radius: 4px;
-        }
-        
-        .footer a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 0.8rem;
-        }
-        
-        .footer a:hover {
-            color: var(--gold);
-            transform: translateX(5px);
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .social-icons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .social-icons a:hover {
-            background: var(--gold);
-            transform: translateY(-3px);
-        }
-        
+        .footer { background: var(--blue-dark); color: white; padding: 40px 0 20px; }
+        .footer h5 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; position: relative; display: inline-block; }
+        .footer h5::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 35px; height: 2px; background: var(--gold); border-radius: 4px; }
+        .footer a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: all 0.3s ease; font-size: 0.8rem; }
+        .footer a:hover { color: var(--gold); transform: translateX(5px); }
+        .social-icons { display: flex; gap: 10px; margin-top: 15px; }
+        .social-icons a { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); transition: all 0.3s ease; }
+        .social-icons a:hover { background: var(--gold); transform: translateY(-3px); }
         .social-icons a:hover i { color: var(--blue-dark); }
+        .copyright { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 15px; margin-top: 25px; text-align: center; font-size: 0.7rem; color: rgba(255, 255, 255, 0.5); }
         
-        .copyright {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 15px;
-            margin-top: 25px;
-            text-align: center;
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.5);
-        }
-        
-        .back-to-top {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 44px;
-            height: 44px;
-            border-radius: 22px;
-            background: var(--gold);
-            color: var(--blue-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-        
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            background: white;
-            transform: translateY(-4px);
-        }
+        .back-to-top { position: fixed; bottom: 25px; right: 25px; width: 44px; height: 44px; border-radius: 22px; background: var(--gold); color: var(--blue-dark); display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .back-to-top.show { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: white; transform: translateY(-4px); }
     </style>
-    
     @stack('styles')
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
-            <!-- LOGO SECTION - LANGSUNG DARI FOLDER public/image/Logo/ -->
             <div class="logo-wrapper">
                 <img src="{{ asset('image/Logo/logobankindonesia.jpg') }}" alt="Bank Indonesia" class="logo-img" loading="lazy">
                 <div class="logo-divider"></div>

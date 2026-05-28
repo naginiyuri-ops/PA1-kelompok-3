@@ -30,6 +30,7 @@
         --radius-lg: 24px;
         --radius-md: 16px;
         --radius-sm: 12px;
+        --header-height: 80px;
     }
 
     /* ==================== BASE ==================== */
@@ -118,6 +119,7 @@
     /* ==================== GRID SECTION ==================== */
     .informasi-section {
         padding: 70px 0;
+        transition: opacity 0.3s ease;
     }
 
     .informasi-grid {
@@ -291,7 +293,7 @@
         padding: 40px 0 100px;
         opacity: 0;
         transform: translateY(20px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
+        transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
     .article-view-section.active {
@@ -306,6 +308,11 @@
 
     .btn-back-container {
         margin-bottom: 30px;
+        position: sticky;
+        top: calc(var(--header-height, 80px) + 20px);
+        z-index: 100;
+        background: transparent;
+        padding: 0;
     }
 
     .btn-back {
@@ -322,6 +329,8 @@
         cursor: pointer;
         transition: all 0.3s ease;
         box-shadow: var(--shadow-sm);
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95);
     }
 
     .btn-back i {
@@ -436,6 +445,18 @@
         margin-bottom: 8px;
     }
 
+    /* ==================== ANIMATIONS ==================== */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 1024px) {
         .informasi-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
@@ -443,9 +464,15 @@
         .article-hero-img { height: 380px; }
         .article-content-padding { padding: 35px 40px; }
         .article-main-title { font-size: 1.8rem; }
+        .btn-back-container {
+            top: calc(var(--header-height, 70px) + 15px);
+        }
     }
 
     @media (max-width: 768px) {
+        :root {
+            --header-height: 60px;
+        }
         .hero-informasi { padding: 110px 0 50px; }
         .hero-informasi h1 { font-size: 1.8rem; }
         .informasi-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -455,12 +482,23 @@
         .article-main-title { font-size: 1.5rem; }
         .article-meta { flex-wrap: wrap; gap: 15px; }
         .btn-back { padding: 10px 22px; font-size: 0.8rem; }
+        .btn-back-container {
+            top: calc(var(--header-height, 60px) + 10px);
+            margin-bottom: 20px;
+        }
     }
 
     @media (max-width: 480px) {
         .container { padding: 0 16px; }
         .informasi-card-body h3 { font-size: 1.1rem; }
         .article-hero-img { height: 200px; }
+        .btn-back-container {
+            top: calc(var(--header-height, 60px) + 8px);
+        }
+        .btn-back {
+            padding: 8px 18px;
+            font-size: 0.75rem;
+        }
     }
 </style>
 
@@ -562,18 +600,34 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
 
 <script>
-    AOS.init({ duration: 800, once: true, offset: 60, easing: 'ease-out-quad' });
+    // Inisialisasi AOS
+    AOS.init({ 
+        duration: 800, 
+        once: true, 
+        offset: 60, 
+        easing: 'ease-out-quad' 
+    });
     
+    // Data informasi dari server
     const informasiData = @json($informasi->items());
     
+    // DOM Elements
     const gridSection = document.getElementById('gridSection');
     const articleSection = document.getElementById('articleSection');
     const heroSection = document.getElementById('heroSection');
-
+    
+    // Variable untuk menyimpan posisi scroll sebelum membuka artikel
+    let scrollPositionBeforeArticle = 0;
+    
+    // Function untuk menampilkan artikel
     function showArticle(index) {
         const item = informasiData[index];
         if (!item) return;
         
+        // Simpan posisi scroll saat ini sebelum membuka artikel
+        scrollPositionBeforeArticle = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Proses gambar
         let imgSrc = '{{ asset("image/default.jpg") }}';
         if (item.gambar) {
             if (item.gambar.startsWith('data:image') || item.gambar.startsWith('http')) {
@@ -583,55 +637,80 @@
             }
         }
         
-        const tanggal = new Date(item.created_at);
-        const tanggalFormatted = tanggal.toLocaleDateString('id-ID', {
-            day: 'numeric',
-            month: 'long',
+        // Format tanggal
+        const tanggalFormatted = new Date(item.created_at).toLocaleDateString('id-ID', {
+            day: 'numeric', 
+            month: 'long', 
             year: 'numeric'
         });
         
+        // Update konten artikel
         document.getElementById('viewImg').src = imgSrc;
         document.getElementById('viewTitle').innerText = item.judul;
         document.getElementById('viewDate').innerText = tanggalFormatted;
         document.getElementById('viewViews').innerText = (item.views || 0).toLocaleString();
         document.getElementById('viewContent').innerHTML = item.konten;
         
-        // Sembunyikan grid, tampilkan artikel
-        gridSection.style.display = 'none';
+        // Sembunyikan hero dan grid section
         heroSection.style.display = 'none';
+        gridSection.style.display = 'none';
+        
+        // Tampilkan artikel dengan animasi
         articleSection.classList.add('active');
         
+        // Scroll ke atas dengan smooth
         window.scrollTo({ top: 0, behavior: 'smooth' });
         
-        // Update views via AJAX
+        // Update views (async, tidak perlu menunggu)
         fetch('/api/informasi/' + item.id + '/view', {
             method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
+            headers: { 
+                'X-CSRF-TOKEN': '{{ csrf_token() }}', 
+                'Content-Type': 'application/json' 
             }
         }).catch(err => console.log('Error updating views:', err));
     }
     
+    // Function untuk menyembunyikan artikel dan kembali ke grid
     function hideArticle() {
+        // Hapus class active untuk animasi fade-out
         articleSection.classList.remove('active');
         
+        // Setelah animasi selesai, tampilkan kembali hero dan grid
         setTimeout(() => {
-            gridSection.style.display = 'block';
             heroSection.style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 200);
+            gridSection.style.display = 'block';
+            
+            // Kembali ke posisi scroll sebelumnya
+            window.scrollTo({ 
+                top: scrollPositionBeforeArticle, 
+                behavior: 'smooth' 
+            });
+        }, 400); // Durasi sama dengan transition di CSS
     }
     
-    // Escape key to close article
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            if (articleSection.classList.contains('active')) {
-                hideArticle();
-            }
+    // Event listener untuk tombol back pada browser (popstate)
+    window.addEventListener('popstate', function(event) {
+        // Cek apakah artikel sedang ditampilkan
+        if (articleSection.classList.contains('active')) {
+            event.preventDefault();
+            hideArticle();
+            // Push state lagi agar tidak keluar halaman
+            history.pushState(null, '', window.location.href);
         }
     });
+    
+    // Push initial state saat halaman dimuat
+    history.pushState(null, '', window.location.href);
+    
+    // Optional: Tambahkan loading indicator untuk gambar artikel
+    document.getElementById('viewImg').addEventListener('load', function() {
+        this.style.opacity = '1';
+    });
+    
+    // Set initial opacity untuk gambar artikel
+    document.getElementById('viewImg').style.opacity = '0';
+    document.getElementById('viewImg').style.transition = 'opacity 0.3s ease';
 </script>
 
 @endsection
