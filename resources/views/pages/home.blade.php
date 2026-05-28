@@ -49,39 +49,23 @@
     }
     
     @keyframes pulse {
-        0%, 100% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(1.05);
-        }
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
     }
 
     @keyframes float {
-        0%, 100% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-20px);
-        }
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
     }
     
     @keyframes rotateSlow {
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(360deg);
-        }
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
     }
     
     @keyframes borderGlow {
-        0%, 100% {
-            box-shadow: 0 0 5px rgba(198, 164, 59, 0.3);
-        }
-        50% {
-            box-shadow: 0 0 20px rgba(198, 164, 59, 0.8);
-        }
+        0%, 100% { box-shadow: 0 0 5px rgba(198, 164, 59, 0.3); }
+        50% { box-shadow: 0 0 20px rgba(198, 164, 59, 0.8); }
     }
     
     @keyframes slideInRight {
@@ -92,6 +76,22 @@
         to {
             opacity: 1;
             transform: translateX(0);
+        }
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes zoomInLightbox {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
         }
     }
 
@@ -263,29 +263,6 @@
     .section-light { background: linear-gradient(135deg, #e0ecf7 0%, #d4e4f2 100%); }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     
-    /* Decorative Elements */
-    .section::before {
-        content: '✦';
-        position: absolute;
-        font-size: 8rem;
-        color: rgba(198, 164, 59, 0.05);
-        bottom: -50px;
-        right: -50px;
-        transform: rotate(15deg);
-        pointer-events: none;
-    }
-    
-    .section::after {
-        content: '✦';
-        position: absolute;
-        font-size: 6rem;
-        color: rgba(198, 164, 59, 0.05);
-        top: -30px;
-        left: -30px;
-        transform: rotate(-10deg);
-        pointer-events: none;
-    }
-    
     .section-title {
         text-align: center;
         margin-bottom: 60px;
@@ -299,37 +276,6 @@
         position: relative;
         display: inline-block;
         animation: fadeInUp 0.8s ease;
-    }
-    
-    .section-title h2::before {
-        content: '❖';
-        position: absolute;
-        left: -30px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #c6a43b;
-        font-size: 1rem;
-        opacity: 0;
-        transition: all 0.3s ease;
-    }
-    
-    .section-title h2::after {
-        content: '❖';
-        position: absolute;
-        right: -30px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #c6a43b;
-        font-size: 1rem;
-        opacity: 0;
-        transition: all 0.3s ease;
-    }
-    
-    .section-title:hover h2::before,
-    .section-title:hover h2::after {
-        opacity: 1;
-        left: -25px;
-        right: -25px;
     }
     
     .section-title .divider {
@@ -370,27 +316,6 @@
         border-radius: 16px;
         position: relative;
         overflow: hidden;
-    }
-    
-    .stat-item::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(198,164,59,0.2), transparent);
-        transition: left 0.6s ease;
-    }
-    
-    .stat-item:hover::before {
-        left: 100%;
-    }
-    
-    .stat-item:hover { 
-        transform: translateY(-10px) scale(1.05);
-        background: rgba(0, 51, 102, 0.1);
-        animation: borderGlow 1s infinite;
     }
     
     .stat-number {
@@ -439,33 +364,12 @@
         display: inline-block;
     }
     
-    .about-content h3::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: #c6a43b;
-        transition: width 0.5s ease;
-    }
-    
-    .about-content:hover h3::after {
-        width: 100%;
-    }
-    
     .about-content p {
         color: #2c5f8a;
         line-height: 1.8;
         margin-bottom: 20px;
         font-size: 0.9rem;
-        transform: translateX(0);
         transition: all 0.3s ease;
-    }
-    
-    .about-content p:hover {
-        transform: translateX(10px);
-        color: #003366;
     }
     
     .about-image {
@@ -475,23 +379,7 @@
         transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         box-shadow: 0 10px 30px rgba(0, 51, 102, 0.15);
         position: relative;
-    }
-    
-    .about-image::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, rgba(198,164,59,0.3), transparent);
-        opacity: 0;
-        transition: opacity 0.5s ease;
-        z-index: 1;
-    }
-    
-    .about-image:hover::before {
-        opacity: 1;
+        cursor: pointer;
     }
     
     .about-image:hover { 
@@ -529,31 +417,12 @@
         box-shadow: 0 10px 30px rgba(0, 51, 102, 0.15);
         transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         position: relative;
-    }
-    
-    .destinasi-image::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        background: radial-gradient(circle, rgba(198,164,59,0.4), transparent);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        transition: width 0.6s, height 0.6s;
-        z-index: 1;
-    }
-    
-    .destinasi-image:hover::before {
-        width: 300px;
-        height: 300px;
+        cursor: pointer;
     }
     
     .destinasi-image:hover { 
         transform: scale(1.05) translateY(-10px);
         box-shadow: 0 20px 40px rgba(0, 51, 102, 0.25);
-        animation: pulse 0.5s ease;
     }
     
     .destinasi-image img { 
@@ -567,14 +436,7 @@
         transform: scale(1.08);
     }
     
-    .destinasi-content { 
-        flex: 1; 
-        transition: all 0.5s ease;
-    }
-    
-    .destinasi-item:hover .destinasi-content {
-        transform: translateX(15px);
-    }
+    .destinasi-content { flex: 1; transition: all 0.5s ease; }
     
     .destinasi-number {
         font-size: 0.7rem;
@@ -583,23 +445,7 @@
         margin-bottom: 12px;
         text-transform: uppercase;
         font-weight: 600;
-        position: relative;
         display: inline-block;
-    }
-    
-    .destinasi-number::before {
-        content: '';
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 0;
-        height: 1px;
-        background: #c6a43b;
-        transition: width 0.4s ease;
-    }
-    
-    .destinasi-item:hover .destinasi-number::before {
-        width: 100%;
     }
     
     .destinasi-content h3 {
@@ -623,11 +469,6 @@
         margin-bottom: 20px;
         text-transform: uppercase;
         font-weight: 500;
-        transition: all 0.3s ease;
-    }
-    
-    .destinasi-item:hover .destinasi-location {
-        transform: translateX(10px);
     }
     
     .destinasi-desc {
@@ -635,53 +476,6 @@
         line-height: 1.8;
         margin-bottom: 25px;
         font-size: 0.9rem;
-        transition: all 0.3s ease;
-    }
-    
-    .destinasi-item:hover .destinasi-desc {
-        transform: translateX(10px);
-    }
-    
-    .destinasi-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-bottom: 30px;
-    }
-    
-    .destinasi-tags span {
-        background: rgba(0, 51, 102, 0.1);
-        padding: 5px 16px;
-        font-size: 0.7rem;
-        color: #003366;
-        border-radius: 30px;
-        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        cursor: pointer;
-        font-weight: 500;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .destinasi-tags span::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(198,164,59,0.3), transparent);
-        transition: left 0.4s ease;
-    }
-    
-    .destinasi-tags span:hover::before {
-        left: 100%;
-    }
-    
-    .destinasi-tags span:hover {
-        background: #c6a43b;
-        color: #003366;
-        transform: translateY(-5px) scale(1.05);
-        box-shadow: 0 5px 15px rgba(198,164,59,0.3);
     }
     
     .destinasi-link {
@@ -700,28 +494,89 @@
         overflow: hidden;
     }
     
-    .destinasi-link::before {
-        content: '→';
-        position: absolute;
-        right: -20px;
-        top: 50%;
-        transform: translateY(-50%);
-        transition: right 0.4s ease;
-        opacity: 0;
-    }
-    
-    .destinasi-link:hover::before {
-        right: 15px;
-        opacity: 1;
-    }
-    
     .destinasi-link:hover {
         background: #c6a43b;
         color: #003366;
         letter-spacing: 0.25em;
         transform: translateY(-3px) scale(1.05);
-        padding-right: 45px;
         box-shadow: 0 8px 20px rgba(198,164,59,0.3);
+    }
+    
+    /* ==================== LIGHTBOX ZOOM STYLE ==================== */
+    .lightbox-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.96);
+        z-index: 10000;
+        backdrop-filter: blur(12px);
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    
+    .lightbox-overlay.active {
+        display: flex;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    .lightbox-container {
+        max-width: 90%;
+        max-height: 90%;
+        text-align: center;
+        animation: zoomInLightbox 0.3s ease;
+    }
+    
+    .lightbox-image {
+        max-width: 100%;
+        max-height: 80vh;
+        object-fit: contain;
+        border-radius: 12px;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    }
+    
+    .lightbox-caption {
+        margin-top: 20px;
+        color: white;
+        text-align: center;
+    }
+    
+    .lightbox-caption h3 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+        color: #c6a43b;
+        font-family: 'Cormorant Garamond', serif;
+    }
+    
+    .lightbox-caption p {
+        color: rgba(255,255,255,0.7);
+        font-size: 0.85rem;
+    }
+    
+    .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        z-index: 10001;
+        background: rgba(0,0,0,0.5);
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    
+    .lightbox-close:hover {
+        background: #c6a43b;
+        transform: rotate(90deg);
     }
     
     /* ==================== PETA LOKASI ==================== */
@@ -744,10 +599,6 @@
         height: 450px;
         border: 0;
         transition: transform 0.5s ease;
-    }
-    
-    .maps-container:hover iframe {
-        transform: scale(1.02);
     }
     
     .maps-info {
@@ -777,30 +628,12 @@
         transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         cursor: pointer;
         border: 1px solid transparent;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .maps-location-item::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        transition: left 0.4s ease;
-    }
-    
-    .maps-location-item:hover::before {
-        left: 100%;
     }
     
     .maps-location-item:hover {
         background: #c6a43b;
         transform: translateY(-5px) scale(1.05);
         border-color: rgba(255,255,255,0.3);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
     
     .maps-location-item i {
@@ -817,11 +650,6 @@
     .maps-location-item span {
         font-size: 0.85rem;
         font-weight: 500;
-        transition: all 0.3s ease;
-    }
-    
-    .maps-location-item:hover span {
-        letter-spacing: 1px;
     }
     
     .maps-note {
@@ -830,12 +658,6 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        transition: all 0.3s ease;
-    }
-    
-    .maps-note:hover {
-        transform: translateX(5px);
-        color: white;
     }
     
     .maps-note i {
@@ -863,16 +685,6 @@
         animation: rotate 20s linear infinite;
     }
     
-    .cta-section::after {
-        content: '✦';
-        position: absolute;
-        font-size: 3rem;
-        color: rgba(255,255,255,0.05);
-        bottom: 20px;
-        right: 30px;
-        animation: float 3s ease-in-out infinite;
-    }
-    
     @keyframes rotate {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
@@ -891,7 +703,6 @@
         font-weight: 500;
         margin-bottom: 20px;
         color: white;
-        animation: fadeInUp 0.8s ease;
     }
     
     .cta-content .divider {
@@ -911,7 +722,6 @@
         margin-bottom: 35px;
         font-size: 0.9rem;
         line-height: 1.7;
-        animation: fadeInUp 0.8s ease 0.2s both;
     }
     
     .cta-btn {
@@ -928,7 +738,6 @@
         font-weight: 600;
         position: relative;
         overflow: hidden;
-        animation: fadeInUp 0.8s ease 0.4s both;
     }
     
     .cta-btn::before {
@@ -977,32 +786,25 @@
         .stat-number { font-size: 2rem; }
         .about-content h3 { font-size: 1.6rem; }
         .cta-content h3 { font-size: 1.6rem; }
-        .cta-btn { padding: 10px 28px; font-size: 0.65rem; }
         .maps-container iframe { height: 280px; }
-        .maps-location-item { padding: 6px 18px; }
-        .maps-location-item span { font-size: 0.7rem; }
+        .lightbox-close { top: 10px; right: 15px; width: 35px; height: 35px; font-size: 1.5rem; }
+        .lightbox-caption h3 { font-size: 1rem; }
     }
     @media (max-width: 480px) {
         .hero-title { font-size: 1.6rem; }
-        .hero-subtitle { font-size: 0.5rem; letter-spacing: 0.15em; }
         .maps-container iframe { height: 220px; }
     }
 </style>
 
 <!-- ==================== HERO VIDEO BACKGROUND ==================== -->
 <section class="hero-section" id="home">
-
-    <!-- Video Background -->
     <div class="hero-video-bg">
         <video autoplay muted loop playsinline>
             <source src="/image/meat/slide.mp4" type="video/mp4">
         </video>
     </div>
-
-    <!-- Overlay gelap di atas video -->
     <div class="hero-video-overlay"></div>
     
-    <!-- Konten Hero -->
     <div class="hero-content">
         <div>
             <div class="hero-subtitle">Global Geopark</div>
@@ -1012,7 +814,6 @@
         </div>
     </div>
     
-    <!-- Scroll Indicator -->
     <div class="scroll-indicator" onclick="document.getElementById('destinasi').scrollIntoView({behavior:'smooth'})">
         <span>SCROLL</span>
         <div class="line"></div>
@@ -1023,19 +824,19 @@
 <section class="section section-white">
     <div class="container">
         <div class="stats-grid">
-            <div class="stat-item" data-aos="zoom-in" data-aos-duration="800">
+            <div class="stat-item" data-aos="zoom-in">
                 <div class="stat-number">16</div>
                 <div class="stat-label">GEOSITES</div>
             </div>
-            <div class="stat-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+            <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
                 <div class="stat-number">74.000</div>
                 <div class="stat-label">TAHUN SEJARAH</div>
             </div>
-            <div class="stat-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+            <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
                 <div class="stat-number"></div>
                 <div class="stat-label">WARISAN BUDAYA</div>
             </div>
-            <div class="stat-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
+            <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
                 <div class="stat-number">100+</div>
                 <div class="stat-label">UMKM LOKAL</div>
             </div>
@@ -1047,12 +848,12 @@
 <section class="section section-light" id="about">
     <div class="container">
         <div class="about-grid">
-            <div class="about-content" data-aos="fade-right" data-aos-duration="1000">
+            <div class="about-content" data-aos="fade-right">
                 <h3>Warisan Geologi Kelas Dunia</h3>
                 <p>Danau Toba, terbentuk dari letusan supervolcano 74.000 tahun lalu, adalah danau vulkanik terbesar di dunia. Diakui UNESCO sebagai Global Geopark pada tahun 2020.</p>
                 <p>Kawasan ini menyimpan nilai geologi luar biasa, keanekaragaman hayati, dan warisan budaya Batak yang autentik. Tiga geosite unggulan di Pulau Sibandang menanti Anda jelajahi.</p>
             </div>
-            <div class="about-image" data-aos="fade-left" data-aos-duration="1000">
+            <div class="about-image" data-aos="fade-left" onclick="openLightbox('/image/meat/slide1.jpg', 'Danau Toba', 'Pemandangan indah Danau Toba')">
                 <img src="/image/meat/slide1.jpg" alt="Danau Toba">
             </div>
         </div>
@@ -1062,7 +863,7 @@
 <!-- ==================== DESTINASI ==================== -->
 <section id="destinasi" class="section section-white">
     <div class="container">
-        <div class="section-title" data-aos="fade-up" data-aos-duration="800">
+        <div class="section-title" data-aos="fade-up">
             <h2>Destinasi Unggulan</h2>
             <div class="divider"></div>
             <p>Tiga geosite di Balige, Caldera Toba</p>
@@ -1070,12 +871,12 @@
         <div class="destinasi-list">
             
             <!-- MEAT -->
-            <div class="destinasi-item" data-aos="fade-up" data-aos-duration="1000">
-                <div class="destinasi-image">
+            <div class="destinasi-item" data-aos="fade-up">
+                <div class="destinasi-image" onclick="openLightbox('/image/meat/meat-detail.jpg', 'Desa Meat', 'Desa wisata adat Batak di tepi Danau Toba')">
                     <img src="/image/meat/meat-detail.jpg" alt="Meat">
                 </div>
                 <div class="destinasi-content">
-                    <div class="destinasi-number">01 —Meat </div>
+                    <div class="destinasi-number">01 — MEAT</div>
                     <h3>Meat</h3>
                     <div class="destinasi-location">Desa Tampahan, Kecamatan Tampahan, Kabupaten Toba</div>
                     <p class="destinasi-desc">Desa Meat adalah salah satu desa wisata yang terletak di Kecamatan Balige, Kabupaten Toba, di tepi Danau Toba.</p>
@@ -1084,26 +885,26 @@
             </div>
             
             <!-- BATU BAHISAN -->
-            <div class="destinasi-item reverse" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                <div class="destinasi-image">
+            <div class="destinasi-item reverse" data-aos="fade-up" data-aos-delay="200">
+                <div class="destinasi-image" onclick="openLightbox('/image/meat/batu-detail.jpg', 'Batu Bahisan', 'Situs batu bersejarah di kawasan Balige')">
                     <img src="/image/meat/batu-detail.jpg" alt="Batu Bahisan">
                 </div>
                 <div class="destinasi-content">
-                    <div class="destinasi-number">02 — Batu Basiha </div>
-                    <h3>Batu Basiha</h3>
-                    <div class="destinasi-location"> Balige</div>
-                    <p class="destinasi-desc">Batu Basiha merupakan salah satu situs batu bersejarah di kawasan Balige yang memiliki nilai budaya dan legenda dalam masyarakat Batak Toba.</p>
+                    <div class="destinasi-number">02 — BATU BAHISAN</div>
+                    <h3>Batu Bahisan</h3>
+                    <div class="destinasi-location">Balige</div>
+                    <p class="destinasi-desc">Batu Bahisan merupakan salah satu situs batu bersejarah di kawasan Balige yang memiliki nilai budaya dan legenda dalam masyarakat Batak Toba.</p>
                     <a href="{{ url('/geosite/batu-bahisan') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
                 </div>
             </div>
             
             <!-- LIANG SIPEGE -->
-            <div class="destinasi-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                <div class="destinasi-image">
+            <div class="destinasi-item" data-aos="fade-up" data-aos-delay="400">
+                <div class="destinasi-image" onclick="openLightbox('/image/meat/liang-detail.jpg', 'Liang Sipege', 'Gua alam dengan keindahan stalaktit dan stalakmit')">
                     <img src="/image/meat/liang-detail.jpg" alt="Liang Sipege">
                 </div>
                 <div class="destinasi-content">
-                    <div class="destinasi-number">03 — Liang Sipege </div>
+                    <div class="destinasi-number">03 — LIANG SIPEGE</div>
                     <h3>Liang Sipege</h3>
                     <div class="destinasi-location">Hutagaol Peatalun, Balige</div>
                     <p class="destinasi-desc">Gua Liang Sipege adalah destinasi wisata alam yang terletak di Desa Simarmar Pea Talun Hutagaol, Kecamatan Balige, Kabupaten Toba.</p>
@@ -1117,18 +918,18 @@
 <!-- ==================== PETA LOKASI 3 DESA ==================== -->
 <section class="section section-light">
     <div class="container">
-        <div class="section-title" data-aos="fade-up" data-aos-duration="800">
+        <div class="section-title" data-aos="fade-up">
             <h2>Lokasi 3 Geosite</h2>
             <div class="divider"></div>
-            <p>Meat,  Batu Bahisan,  dan Liang Sipege</p>
+            <p>Meat, Batu Bahisan, dan Liang Sipege</p>
         </div>
         
-        <div class="maps-container" data-aos="zoom-in" data-aos-duration="1000">
+        <div class="maps-container" data-aos="zoom-in">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31892.45522108672!2d98.96240686371921!3d2.316828414712955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e1b2618ee6569%3A0x36e2c26fb20124ca!2sMeat%2C%20Kec.%20Tampahan%2C%20Toba%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1779549114075!5m2!1sid!2sid"
                 width="600"
                 height="450"
-                style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                style="border:0;" allowfullscreen="" loading="lazy">
             </iframe>
 
             <div class="maps-info">
@@ -1158,7 +959,7 @@
 <!-- ==================== CTA ==================== -->
 <section class="cta-section">
     <div class="container">
-        <div class="cta-content" data-aos="fade-up" data-aos-duration="800">
+        <div class="cta-content" data-aos="fade-up">
             <h3>Mulai Petualangan Anda</h3>
             <div class="divider"></div>
             <p>Temukan keajaiban geologi dan kekayaan budaya Batak di Geopark Toba, warisan dunia yang diakui UNESCO.</p>
@@ -1167,7 +968,50 @@
     </div>
 </section>
 
+<!-- LIGHTBOX ZOOM -->
+<div id="lightboxOverlay" class="lightbox-overlay" onclick="closeLightbox()">
+    <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
+    <div class="lightbox-container" onclick="event.stopPropagation()">
+        <img id="lightboxImage" class="lightbox-image" src="" alt="">
+        <div class="lightbox-caption">
+            <h3 id="lightboxTitle"></h3>
+            <p id="lightboxDesc"></p>
+        </div>
+    </div>
+</div>
+
 <script>
+    // ==================== LIGHTBOX ZOOM FUNCTION ====================
+    function openLightbox(imgSrc, title, desc) {
+        const overlay = document.getElementById('lightboxOverlay');
+        const lightboxImg = document.getElementById('lightboxImage');
+        const titleEl = document.getElementById('lightboxTitle');
+        const descEl = document.getElementById('lightboxDesc');
+        
+        if (overlay && lightboxImg) {
+            lightboxImg.src = imgSrc;
+            titleEl.innerText = title || 'Galeri GeoToba';
+            descEl.innerText = desc || 'Keindahan Geosite Danau Toba';
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    
+    function closeLightbox() {
+        const overlay = document.getElementById('lightboxOverlay');
+        if (overlay) {
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+    
+    // Escape key to close
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeLightbox();
+        }
+    });
+    
     // ==================== SMOOTH SCROLL ====================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -1177,28 +1021,6 @@
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
-    });
-    
-    // ==================== ANIMATION ON SCROLL ====================
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    document.querySelectorAll('.stat-item, .destinasi-item, .maps-container').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.8s ease';
-        observer.observe(el);
     });
 </script>
 
