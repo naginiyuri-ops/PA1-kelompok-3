@@ -4,196 +4,76 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-
-            <div class="card shadow border-0 rounded-4">
+    <div class="card">
+        <div class="card-header">
+            <h5>Edit Data UMKM</h5>
+            <a href="{{ route('admin.umkm.index') }}" class="btn btn-secondary">Kembali</a>
+        </div>
+        <div class="card-body">
+            <form action="{{ route('admin.umkm.update', $data->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
                 
-                <!-- Header -->
-                <div class="card-header bg-primary text-white rounded-top-4 py-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h4 class="mb-0 fw-bold">
-                                <i class="fas fa-store me-2"></i> Edit Data UMKM
-                            </h4>
-                            <small>Perbarui informasi UMKM dengan lengkap</small>
-                        </div>
+                <div class="mb-3">
+                    <label>Nama UMKM <span class="text-danger">*</span></label>
+                    <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama', $data->nama) }}" required>
+                    @error('nama')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                </div>
+                
+                <div class="mb-3">
+                    <label>Deskripsi <span class="text-danger">*</span></label>
+                    <textarea name="deskripsi" rows="5" class="form-control @error('deskripsi') is-invalid @enderror" required>{{ old('deskripsi', $data->deskripsi) }}</textarea>
+                    @error('deskripsi')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Lokasi</label>
+                        <input type="text" name="lokasi" class="form-control" value="{{ old('lokasi', $data->lokasi) }}">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Kontak</label>
+                        <input type="text" name="kontak" class="form-control" value="{{ old('kontak', $data->kontak) }}">
                     </div>
                 </div>
-
-                <!-- Body -->
-                <div class="card-body p-4">
-
-                    <form action="{{ route('admin.umkm.update', $data->id) }}" 
-                          method="POST" 
-                          enctype="multipart/form-data">
-
-                        @csrf
-                        @method('PUT')
-
-                        <!-- Nama -->
-                        <div class="mb-4">
-                            <label class="form-label fw-semibold">
-                                Nama UMKM
-                            </label>
-                            <input type="text" 
-                                   name="nama" 
-                                   class="form-control rounded-3"
-                                   placeholder="Masukkan nama UMKM"
-                                   value="{{ $data->nama }}" 
-                                   required>
-                        </div>
-
-                        <!-- Deskripsi -->
-                        <div class="mb-4">
-                            <label class="form-label fw-semibold">
-                                Deskripsi
-                            </label>
-                            <textarea name="deskripsi" 
-                                      class="form-control rounded-3"
-                                      rows="5"
-                                      placeholder="Masukkan deskripsi UMKM"
-                                      required>{{ $data->deskripsi }}</textarea>
-                        </div>
-
-                        <!-- Lokasi & Kontak -->
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <label class="form-label fw-semibold">
-                                    Lokasi
-                                </label>
-                                <input type="text" 
-                                       name="lokasi" 
-                                       class="form-control rounded-3"
-                                       placeholder="Masukkan lokasi"
-                                       value="{{ $data->lokasi }}">
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Urutan <span class="text-danger">*</span></label>
+                        <input type="number" name="urutan" class="form-control @error('urutan') is-invalid @enderror" value="{{ old('urutan', $data->urutan) }}" required>
+                        <small class="text-muted">Semakin kecil angka, semakin atas tampilannya</small>
+                        @error('urutan')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Gambar Saat Ini</label><br>
+                        @if($data->gambar)
+                            <img src="{{ $data->gambar_url }}" width="80" height="80" style="object-fit: cover; border-radius: 8px;">
+                            <div class="mt-2">
+                                <input type="checkbox" name="hapus_gambar" id="hapus_gambar" value="1">
+                                <label for="hapus_gambar" class="text-danger"> Hapus gambar ini</label>
                             </div>
-
-                            <div class="col-md-6 mb-4">
-                                <label class="form-label fw-semibold">
-                                    Kontak
-                                </label>
-                                <input type="text" 
-                                       name="kontak" 
-                                       class="form-control rounded-3"
-                                       placeholder="Masukkan kontak"
-                                       value="{{ $data->kontak }}">
-                            </div>
-                        </div>
-
-                        <!-- Urutan -->
-                        <div class="mb-4">
-                            <label class="form-label fw-semibold">
-                                Urutan
-                            </label>
-                            <input type="number" 
-                                   name="urutan" 
-                                   class="form-control rounded-3"
-                                   placeholder="Masukkan nomor urutan"
-                                   value="{{ $data->urutan }}" 
-                                   required>
-                        </div>
-
-                        <!-- Gambar -->
-                        <div class="mb-4">
-                            <label class="form-label fw-semibold">
-                                Gambar UMKM
-                            </label>
-
-                            <div class="border rounded-4 p-3 bg-light">
-
-                                @if($data->gambar)
-                                    <div class="mb-3">
-                                        <p class="text-muted mb-2">
-                                            Gambar Saat Ini
-                                        </p>
-
-                                        <img src="{{ $data->gambar }}" 
-                                             alt="Gambar UMKM"
-                                             class="img-thumbnail rounded-4 shadow-sm"
-                                             width="180">
-                                    </div>
-                                @endif
-
-                                <input type="file" 
-                                       name="gambar" 
-                                       class="form-control rounded-3"
-                                       accept="image/*"
-                                       id="inputGambar">
-
-                                <!-- Preview -->
-                                <div class="mt-3 text-center" 
-                                     id="previewContainer" 
-                                     style="display: none;">
-
-                                    <p class="text-muted mb-2">
-                                        Preview Gambar Baru
-                                    </p>
-
-                                    <img id="previewImage"
-                                         class="img-fluid rounded-4 shadow-sm border"
-                                         style="max-width: 220px;">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Status -->
-                        <div class="mb-4">
-                            <div class="form-check form-switch">
-                                <input class="form-check-input"
-                                       type="checkbox"
-                                       name="status"
-                                       value="1"
-                                       id="statusSwitch"
-                                       {{ $data->status ? 'checked' : '' }}>
-
-                                <label class="form-check-label fw-semibold"
-                                       for="statusSwitch">
-                                    Aktifkan UMKM
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Tombol -->
-                        <div class="d-flex justify-content-end gap-2">
-
-                            <a href="{{ route('admin.umkm.index') }}" 
-                               class="btn btn-outline-secondary rounded-3 px-4">
-                                <i class="fas fa-arrow-left me-1"></i> Batal
-                            </a>
-
-                            <button type="submit" 
-                                    class="btn btn-primary rounded-3 px-4">
-                                <i class="fas fa-save me-1"></i> Update Data
-                            </button>
-                        </div>
-
-                    </form>
+                        @else
+                            <span class="text-muted">Tidak ada gambar</span>
+                        @endif
+                    </div>
                 </div>
-            </div>
-
+                
+                <div class="mb-3">
+                    <label>Ganti Gambar</label>
+                    <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" accept="image/jpeg,image/png,image/jpg,image/webp">
+                    <small class="text-muted">Format: JPG, PNG, WEBP. Max: 10MB</small>
+                    @error('gambar')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                </div>
+                
+                <div class="mb-3">
+                    <input type="checkbox" name="status" id="status" value="1" {{ old('status', $data->status) ? 'checked' : '' }}>
+                    <label for="status"> Aktifkan UMKM</label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a href="{{ route('admin.umkm.index') }}" class="btn btn-secondary">Batal</a>
+            </form>
         </div>
     </div>
 </div>
-
-<!-- Preview Image -->
-<script>
-    document.getElementById('inputGambar')?.addEventListener('change', function(e) {
-
-        const file = e.target.files[0];
-        const preview = document.getElementById('previewContainer');
-        const previewImg = document.getElementById('previewImage');
-
-        if (file) {
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                previewImg.src = e.target.result;
-                preview.style.display = 'block';
-            }
-
-            reader.readAsDataURL(file);
-        }
-    });
-</script>
 @endsection

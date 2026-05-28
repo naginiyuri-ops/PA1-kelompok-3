@@ -42,6 +42,31 @@
         text-transform: uppercase;
         color: rgba(255,255,255,0.8);
     }
+    
+    /* FILTER BUTTONS */
+    .filter-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+    }
+    .filter-btn {
+        background: transparent;
+        border: 2px solid #c6a43b;
+        padding: 8px 24px;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: #003366;
+    }
+    .filter-btn.active, .filter-btn:hover {
+        background: #c6a43b;
+        color: #003366;
+    }
+    
     .gallery-section {
         padding: 60px 0 100px;
         background: linear-gradient(135deg, #f8fafc 0%, #eef2f8 100%);
@@ -52,9 +77,8 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 0;
+        gap: 25px;
         padding: 20px 0;
-        position: relative;
     }
     .slip-card {
         position: relative;
@@ -65,19 +89,15 @@
         cursor: pointer;
         transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1);
-        margin-left: -60px;
     }
-    .slip-card:first-child { margin-left: 0; }
     .slip-card:hover {
-        transform: translateY(-20px) scale(1.02);
-        z-index: 100;
+        transform: translateY(-10px);
         box-shadow: 0 25px 40px -10px rgba(0,0,0,0.25);
     }
-    .slip-card:hover ~ .slip-card { transform: translateX(20px); }
     .slip-image {
         position: relative;
         width: 100%;
-        height: 320px;
+        height: 260px;
         overflow: hidden;
         background: linear-gradient(135deg, #1e293b, #0f172a);
     }
@@ -108,38 +128,16 @@
         font-size: 0.6rem;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-    .slip-title-overlay {
-        color: white;
-        font-size: 0.85rem;
-        font-weight: 600;
-        margin-top: 8px;
-        line-height: 1.3;
     }
     .slip-info {
         padding: 16px;
         background: white;
-        position: relative;
-        border-top: 1px solid #f0f0f0;
     }
-    .slip-line {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #c6a43b, #e8c45a, #c6a43b);
-        transform: scaleX(0);
-        transition: transform 0.3s ease;
-    }
-    .slip-card:hover .slip-line { transform: scaleX(1); }
     .slip-title {
         font-size: 0.9rem;
         font-weight: 600;
         color: #1e293b;
         margin-bottom: 6px;
-        line-height: 1.4;
     }
     .slip-location {
         font-size: 0.7rem;
@@ -149,14 +147,6 @@
         gap: 5px;
     }
     .slip-location i { font-size: 0.65rem; color: #c6a43b; }
-    .slip-number {
-        position: absolute;
-        bottom: 12px;
-        right: 16px;
-        font-size: 0.6rem;
-        color: #cbd5e1;
-        font-family: monospace;
-    }
     
     /* MODAL STYLE */
     .modal-overlay {
@@ -204,7 +194,6 @@
         color: white;
         font-size: 1.5rem;
         cursor: pointer;
-        transition: all 0.3s ease;
         z-index: 10000;
         width: 40px;
         height: 40px;
@@ -242,7 +231,6 @@
         align-items: center;
         gap: 12px;
         border: 1px solid rgba(198,164,59,0.4);
-        backdrop-filter: blur(5px);
     }
     .modal-music-avatar {
         width: 40px;
@@ -258,33 +246,15 @@
         0%, 100% { transform: scale(1); }
         50% { transform: scale(1.05); }
     }
-    .modal-music-avatar i {
-        color: #003366;
-        font-size: 1.1rem;
-    }
-    .modal-music-info {
-        flex: 1;
-    }
-    .modal-music-title {
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: white;
-    }
-    .modal-music-artist {
-        font-size: 0.65rem;
-        color: #c6a43b;
-    }
-    .modal-music-credit {
-        font-size: 0.55rem;
-        color: rgba(255,255,255,0.5);
-        margin-top: 2px;
-    }
+    .modal-music-avatar i { color: #003366; font-size: 1.1rem; }
+    .modal-music-info { flex: 1; }
+    .modal-music-title { font-size: 0.8rem; font-weight: 700; color: white; }
+    .modal-music-artist { font-size: 0.65rem; color: #c6a43b; }
     .modal-music-controls button {
         background: rgba(255,255,255,0.15);
         border: none;
         color: white;
         cursor: pointer;
-        font-size: 0.9rem;
         width: 32px;
         height: 32px;
         border-radius: 50%;
@@ -299,29 +269,12 @@
     .empty-gallery { text-align: center; padding: 80px; background: white; border-radius: 16px; }
     .empty-gallery i { font-size: 3rem; color: #cbd5e1; margin-bottom: 15px; }
 
-    @media (max-width: 1200px) {
-        .slip-card { width: 240px; }
-        .slip-image { height: 280px; }
-    }
-    @media (max-width: 992px) {
-        .stack-container { justify-content: center; flex-wrap: wrap; gap: 20px; }
-        .slip-card { margin-left: 0 !important; width: 260px; }
-        .slip-card:hover ~ .slip-card { transform: none; }
-        .slip-card:hover { transform: translateY(-10px); }
-    }
     @media (max-width: 768px) {
         .modal-box { grid-template-columns: 1fr; max-height: 85vh; overflow-y: auto; }
-        .gallery-hero h1 { font-size: 2rem; }
-        .stack-container { gap: 16px; }
-        .slip-card { width: calc(50% - 8px); }
-        .slip-image { height: 260px; }
-        .modal-music-player { padding: 10px 12px; }
-        .modal-music-avatar { width: 35px; height: 35px; }
-        .modal-music-title { font-size: 0.7rem; }
+        .slip-card { width: calc(50% - 10px); }
     }
     @media (max-width: 560px) {
         .slip-card { width: 100%; }
-        .slip-image { height: 280px; }
     }
 </style>
 
@@ -334,43 +287,72 @@
 
 <section class="gallery-section">
     <div class="container">
-        <div class="stack-container">
-            @php $counter = 1; @endphp
-            @forelse($galeri ?? [] as $item)
+        
+        <!-- FILTER BUTTONS -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">SEMUA</button>
+            <button class="filter-btn" data-filter="meat">MEAT</button>
+            <button class="filter-btn" data-filter="batu bahisan">BATU BAHISAN</button>
+            <button class="filter-btn" data-filter="liang sipege">LIANG SIPEGE</button>
+        </div>
+        
+        <div class="stack-container" id="galleryContainer">
+            @forelse($galeri ?? [] as $index => $item)
                 @php
+                    // AMBIL GAMBAR
                     $imgSrc = asset('image/default.jpg');
                     if (!empty($item->gambar)) {
                         if (str_starts_with($item->gambar, 'data:image')) {
                             $imgSrc = $item->gambar;
-                        } elseif (str_starts_with($item->gambar, 'image/')) {
-                            $imgSrc = asset($item->gambar);
                         } elseif (str_starts_with($item->gambar, '/storage/')) {
+                            $imgSrc = asset($item->gambar);
+                        } elseif (str_starts_with($item->gambar, 'storage/')) {
+                            $imgSrc = asset($item->gambar);
+                        } elseif (str_starts_with($item->gambar, 'image/')) {
                             $imgSrc = asset($item->gambar);
                         } else {
                             $imgSrc = asset('storage/' . $item->gambar);
                         }
                     }
+                    
+                    // NORMALISASI KATEGORI UNTUK FILTER (jadikan lowercase)
+                    $kategoriRaw = strtolower(trim($item->kategori ?? ''));
+                    $filterCat = 'other';
+                    
+                    if (str_contains($kategoriRaw, 'meat')) {
+                        $filterCat = 'meat';
+                    } elseif (str_contains($kategoriRaw, 'batu bahisan') || str_contains($kategoriRaw, 'batu')) {
+                        $filterCat = 'batu bahisan';
+                    } elseif (str_contains($kategoriRaw, 'liang sipege') || str_contains($kategoriRaw, 'liang')) {
+                        $filterCat = 'liang sipege';
+                    }
+                    
+                    // Untuk debugging di console browser
+                    $debugCat = $filterCat;
+                    
+                    // DATA UNTUK MODAL
+                    $judul = addslashes($item->judul ?? 'Galeri');
+                    $deskripsi = addslashes($item->deskripsi ?? 'Tidak ada deskripsi');
+                    $kategoriModal = addslashes(strtoupper($item->kategori ?? 'GALERI'));
+                    $lokasi = addslashes($item->lokasi ?? 'Danau Toba');
                 @endphp
                 
-                <div class="slip-card" onclick="openPhoto('{{ $imgSrc }}', '{{ addslashes($item->judul) }}', '{{ addslashes($item->deskripsi ?? 'Tidak ada deskripsi') }}', '{{ strtoupper($item->kategori ?? 'GALERI') }}', '{{ addslashes($item->lokasi ?? 'Danau Toba') }}')">
+                <div class="slip-card" data-category="{{ $filterCat }}" data-judul="{{ $judul }}"
+                     onclick="openPhoto('{{ $imgSrc }}', '{{ $judul }}', '{{ $deskripsi }}', '{{ $kategoriModal }}', '{{ $lokasi }}')">
                     <div class="slip-image">
                         <img src="{{ $imgSrc }}" alt="{{ $item->judul }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
                         <div class="slip-overlay">
                             <span class="slip-category">{{ strtoupper($item->kategori ?? 'GALERI') }}</span>
-                            <div class="slip-title-overlay">{{ Str::limit($item->judul, 35) }}</div>
                         </div>
                     </div>
                     <div class="slip-info">
-                        <div class="slip-line"></div>
                         <div class="slip-title">{{ Str::limit($item->judul, 30) }}</div>
                         <div class="slip-location">
                             <i class="fas fa-map-marker-alt"></i>
                             <span>{{ $item->lokasi ?? 'Danau Toba' }}</span>
                         </div>
-                        <div class="slip-number">#{{ str_pad($counter, 3, '0', STR_PAD_LEFT) }}</div>
                     </div>
                 </div>
-                @php $counter++; @endphp
             @empty
                 <div class="empty-gallery">
                     <i class="fas fa-images"></i>
@@ -392,7 +374,7 @@
             <p><i class="fas fa-map-marker-alt"></i> <span id="mLocation"></span></p>
             <p id="mDesc"></p>
             
-            <!-- MUSIC PLAYER DI DALAM MODAL -->
+            <!-- MUSIC PLAYER -->
             <div class="modal-music-player">
                 <div class="modal-music-avatar">
                     <i class="fas fa-music"></i>
@@ -400,7 +382,6 @@
                 <div class="modal-music-info">
                     <div class="modal-music-title">🎵 Gondang Batak</div>
                     <div class="modal-music-artist">🎤 Musik Instrumental Batak</div>
-                    <div class="modal-music-credit">🎶 Lagu Daerah Batak Toba - Gondang</div>
                 </div>
                 <div class="modal-music-controls">
                     <button id="modalPlayPauseBtn" onclick="toggleModalMusic(event)">
@@ -413,19 +394,15 @@
 </div>
 
 <script>
-    // ==================== LAGU GONDANG BATAK DARI FOLDER PUBLIC/AUDIO ====================
-    // File: public/audio/GONDANG.mp4
+    // ==================== MUSIK GONDANG BATAK ====================
+    // Ganti URL sesuai letak file musik Anda
     const songUrl = "{{ asset('audio/GONDANG.weba') }}";
-    const songTitle = "Gondang Batak";
-    const songArtist = "Musik Instrumental Batak";
-    const songCredit = "Lagu Daerah Batak Toba - Gondang";
     
     let modalAudio = new Audio();
     let isModalPlaying = false;
     
-    // Set lagu
     modalAudio.src = songUrl;
-    modalAudio.loop = true; // Loop otomatis
+    modalAudio.loop = true;
     
     function toggleModalMusic(event) {
         if (event) event.stopPropagation();
@@ -445,48 +422,96 @@
             modalAudio.pause();
             modalAudio.currentTime = 0;
             isModalPlaying = false;
-            document.getElementById('modalPlayPauseBtn').innerHTML = '<i class="fas fa-play"></i>';
+            const btn = document.getElementById('modalPlayPauseBtn');
+            if (btn) btn.innerHTML = '<i class="fas fa-play"></i>';
         }
     }
     
     function startModalMusic() {
         if (!isModalPlaying && modalAudio.paused) {
             modalAudio.play().catch(e => console.log('Play error:', e));
-            document.getElementById('modalPlayPauseBtn').innerHTML = '<i class="fas fa-pause"></i>';
+            const btn = document.getElementById('modalPlayPauseBtn');
+            if (btn) btn.innerHTML = '<i class="fas fa-pause"></i>';
             isModalPlaying = true;
         }
     }
     
     // ==================== FUNGSI GALERI ====================
     function openPhoto(src, title, desc, tag, location) {
+        console.log('Opening photo:', {src, title, tag, location});
+        
         document.getElementById('mImg').src = src;
         document.getElementById('mTitle').innerText = title;
         document.getElementById('mTag').innerText = tag;
         document.getElementById('mDesc').innerHTML = desc || 'Tidak ada deskripsi.';
-        document.getElementById('mLocation').innerText = location || 'Danau Toba';
+        document.getElementById('mLocation').innerHTML = location || 'Danau Toba';
         document.getElementById('pModal').style.display = 'flex';
         document.body.style.overflow = 'hidden';
         
-        // PUTAR LAGU OTOMATIS SAAT MODAL TERBUKA
+        // PUTAR MUSIK OTOMATIS SAAT MODAL BUKA
         startModalMusic();
     }
     
     function closePhoto() {
         document.getElementById('pModal').style.display = 'none';
         document.body.style.overflow = 'auto';
-        
-        // HENTIKAN LAGU SAAT MODAL DITUTUP
         stopModalMusic();
     }
     
+    // ==================== FILTER FUNGSI ====================
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            const filterValue = this.getAttribute('data-filter');
+            const cards = document.querySelectorAll('.slip-card');
+            
+            console.log('Filter:', filterValue);
+            let visibleCount = 0;
+            
+            cards.forEach(card => {
+                if (filterValue === 'all') {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    const cardCategory = card.getAttribute('data-category');
+                    if (cardCategory === filterValue) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+            
+            console.log('Visible cards:', visibleCount);
+        });
+    });
+    
+    // Debug: tampilkan semua kategori yang ada
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.slip-card');
+        const categories = [];
+        cards.forEach(card => {
+            const cat = card.getAttribute('data-category');
+            if (cat && !categories.includes(cat)) {
+                categories.push(cat);
+            }
+        });
+        console.log('Categories found in cards:', categories);
+    });
+    
+    // ESC KEY
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closePhoto();
     });
     
-    // Reset audio saat halaman dimuat ulang
     window.addEventListener('beforeunload', function() {
         if (modalAudio) modalAudio.pause();
     });
 </script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 @endsection

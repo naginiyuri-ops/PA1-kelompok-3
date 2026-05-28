@@ -14,6 +14,9 @@ class GaleriController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
         
+        // Debug: lihat data kategori di log
+        \Log::info('Data Galeri:', $galeri->pluck('kategori')->toArray());
+        
         // Kirim variabel $galeri ke view
         return view('pages.galeri', compact('galeri'));
     }

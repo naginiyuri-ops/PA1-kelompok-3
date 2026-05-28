@@ -12,6 +12,14 @@ class Penginapan extends Model
     protected $table = 'penginapan';
     
     protected $fillable = [
-        'nama', 'deskripsi', 'gambar', 'urutan', 'harga', 'kontak', 'status'
+        'nama', 'deskripsi', 'gambar', 'urutan', 'harga', 'lokasi', 'kontak', 'status'
     ];
+
+    public function getGambarUrlAttribute()
+    {
+        if (!$this->gambar) {
+            return asset('image/meat/slide2.jpg');
+        }
+        return asset('storage/' . $this->gambar);
+    }
 }

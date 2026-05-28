@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Fasilitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class FasilitasController extends Controller
 {
@@ -27,9 +28,11 @@ class FasilitasController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'harga' => 'nullable|string|max:255',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'urutan' => 'required|integer|unique:fasilitas,urutan',
+            'harga' => 'nullable|string|max:255',
+            'lokasi' => 'nullable|string|max:255',
+            'kontak' => 'nullable|string|max:255',
             'status' => 'nullable|boolean'
         ]);
 
@@ -37,14 +40,15 @@ class FasilitasController extends Controller
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
             'harga' => $request->harga,
+            'lokasi' => $request->lokasi,
+            'kontak' => $request->kontak,
             'urutan' => $request->urutan,
             'status' => $request->has('status') ? 1 : 0
         ];
 
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
-            $filename = time() . '_' . preg_replace('/[^a-zA-Z0-9]/', '_', pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
-            $filename = $filename . '.' . strtolower($file->getClientOriginalExtension());
+            $filename = time() . '_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
             $path = $file->storeAs('fasilitas', $filename, 'public');
             $data['gambar'] = $path;
         }
@@ -66,9 +70,11 @@ class FasilitasController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'harga' => 'nullable|string|max:255',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'urutan' => 'required|integer|unique:fasilitas,urutan,' . $id,
+            'harga' => 'nullable|string|max:255',
+            'lokasi' => 'nullable|string|max:255',
+            'kontak' => 'nullable|string|max:255',
             'status' => 'nullable|boolean'
         ]);
 
@@ -76,6 +82,8 @@ class FasilitasController extends Controller
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
             'harga' => $request->harga,
+            'lokasi' => $request->lokasi,
+            'kontak' => $request->kontak,
             'urutan' => $request->urutan,
             'status' => $request->has('status') ? 1 : 0
         ];
@@ -91,10 +99,8 @@ class FasilitasController extends Controller
             if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
                 Storage::disk('public')->delete($data->gambar);
             }
-            
             $file = $request->file('gambar');
-            $filename = time() . '_' . preg_replace('/[^a-zA-Z0-9]/', '_', pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
-            $filename = $filename . '.' . strtolower($file->getClientOriginalExtension());
+            $filename = time() . '_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
             $path = $file->storeAs('fasilitas', $filename, 'public');
             $input['gambar'] = $path;
         }
@@ -106,11 +112,9 @@ class FasilitasController extends Controller
     public function destroy($id)
     {
         $data = Fasilitas::findOrFail($id);
-        
         if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
             Storage::disk('public')->delete($data->gambar);
         }
-        
         $data->delete();
         return redirect()->route('admin.fasilitas.index')->with('success', 'Fasilitas berhasil dihapus!');
     }

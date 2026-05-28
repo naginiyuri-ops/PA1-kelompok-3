@@ -12,6 +12,14 @@ class Fasilitas extends Model
     protected $table = 'fasilitas';
     
     protected $fillable = [
-        'nama', 'deskripsi', 'gambar', 'urutan', 'harga', 'status'
+        'nama', 'deskripsi', 'gambar', 'urutan', 'harga', 'lokasi', 'kontak', 'status'
     ];
+
+    public function getGambarUrlAttribute()
+    {
+        if (!$this->gambar) {
+            return asset('image/meat/slide3.jpg');
+        }
+        return asset('storage/' . $this->gambar);
+    }
 }

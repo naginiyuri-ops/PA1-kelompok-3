@@ -3,8 +3,6 @@
 @section('title', 'Desa Wisata Meat - Geosite Danau Toba')
 
 @section('content')
-@php use Illuminate\Support\Facades\Storage; @endphp
-
 <style>
     /* ==================== FONTS & VARIABLES ==================== */
     @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@400;500;600;700;800&display=swap');
@@ -950,28 +948,18 @@
         <div class="grid-umkm">
             @forelse($umkm as $index => $item)
             <div class="card" data-aos="fade-up" data-aos-delay="{{ min(($index % 5) * 100, 400) }}" onclick="openDetailModal('umkm', {{ $index }})">
-                @php
-                    $imgSrc = asset('image/meat/slide1.jpg');
-                    
-                    if (!empty($item->gambar)) {
-                        if (str_starts_with($item->gambar, 'data:image')) {
-                            $imgSrc = $item->gambar;
-                        } 
-                        elseif (filter_var($item->gambar, FILTER_VALIDATE_URL)) {
-                            $imgSrc = $item->gambar;
-                        }
-                        elseif (Storage::disk('public')->exists($item->gambar)) {
-                            $imgSrc = asset('storage/' . $item->gambar);
-                        }
-                        elseif (file_exists(public_path('storage/' . $item->gambar))) {
-                            $imgSrc = asset('storage/' . $item->gambar);
-                        }
-                        elseif (file_exists(public_path($item->gambar))) {
-                            $imgSrc = asset($item->gambar);
-                        }
-                    }
-                @endphp
-                <img src="{{ $imgSrc }}" class="card-img" alt="{{ $item->nama }}" onclick="event.stopPropagation(); openImageModal('{{ $imgSrc }}')" onerror="this.src='{{ asset('image/meat/slide1.jpg') }}'">
+                @if($item->gambar)
+                    <img src="{{ asset('storage/' . $item->gambar) }}" 
+                         class="card-img" 
+                         alt="{{ $item->nama }}" 
+                         onclick="event.stopPropagation(); openImageModal('{{ asset('storage/' . $item->gambar) }}')" 
+                         onerror="this.src='{{ asset('image/meat/slide1.jpg') }}'">
+                @else
+                    <img src="{{ asset('image/meat/slide1.jpg') }}" 
+                         class="card-img" 
+                         alt="{{ $item->nama }}" 
+                         onclick="event.stopPropagation(); openImageModal('{{ asset('image/meat/slide1.jpg') }}')">
+                @endif
                 <div class="card-content">
                     <h3>{{ $item->nama }}</h3>
                     <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 90) }}</p>
@@ -1005,27 +993,17 @@
         <div class="grid-3">
             @forelse($penginapan ?? [] as $index => $item)
             <div class="card" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}" onclick="openDetailModal('penginapan', {{ $index }})">
-                @php
-                    $imgSrc = asset('image/meat/slide2.jpg');
-                    if (!empty($item->gambar)) {
-                        if (str_starts_with($item->gambar, 'data:image')) {
-                            $imgSrc = $item->gambar;
-                        } 
-                        elseif (filter_var($item->gambar, FILTER_VALIDATE_URL)) {
-                            $imgSrc = $item->gambar;
-                        }
-                        elseif (Storage::disk('public')->exists($item->gambar)) {
-                            $imgSrc = asset('storage/' . $item->gambar);
-                        }
-                        elseif (file_exists(public_path('storage/' . $item->gambar))) {
-                            $imgSrc = asset('storage/' . $item->gambar);
-                        }
-                        elseif (file_exists(public_path($item->gambar))) {
-                            $imgSrc = asset($item->gambar);
-                        }
-                    }
-                @endphp
-                <img src="{{ $imgSrc }}" class="card-img" alt="{{ $item->nama }}" onclick="event.stopPropagation(); openImageModal('{{ $imgSrc }}')" onerror="this.src='{{ asset('image/meat/slide2.jpg') }}'">
+                @if($item->gambar)
+                    <img src="{{ asset('storage/' . $item->gambar) }}" 
+                         class="card-img" 
+                         alt="{{ $item->nama }}" 
+                         onclick="event.stopPropagation(); openImageModal('{{ asset('storage/' . $item->gambar) }}')" 
+                         onerror="this.src='{{ asset('image/meat/slide2.jpg') }}'">
+                @else                    <img src="{{ asset('image/meat/slide2.jpg') }}" 
+                         class="card-img" 
+                         alt="{{ $item->nama }}" 
+                         onclick="event.stopPropagation(); openImageModal('{{ asset('image/meat/slide2.jpg') }}')">
+                @endif
                 <div class="card-content">
                     <h3>{{ $item->nama }}</h3>
                     <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 90) }}</p>
@@ -1059,27 +1037,18 @@
         <div class="grid-2">
             @forelse($fasilitas ?? [] as $index => $item)
             <div class="fasilitas-item" data-aos="fade-up" data-aos-delay="{{ ($index % 2) * 50 }}" onclick="openDetailModal('fasilitas', {{ $index }})">
-                @php
-                    $imgSrc = asset('image/meat/slide3.jpg');
-                    if (!empty($item->gambar)) {
-                        if (str_starts_with($item->gambar, 'data:image')) {
-                            $imgSrc = $item->gambar;
-                        } 
-                        elseif (filter_var($item->gambar, FILTER_VALIDATE_URL)) {
-                            $imgSrc = $item->gambar;
-                        }
-                        elseif (Storage::disk('public')->exists($item->gambar)) {
-                            $imgSrc = asset('storage/' . $item->gambar);
-                        }
-                        elseif (file_exists(public_path('storage/' . $item->gambar))) {
-                            $imgSrc = asset('storage/' . $item->gambar);
-                        }
-                        elseif (file_exists(public_path($item->gambar))) {
-                            $imgSrc = asset($item->gambar);
-                        }
-                    }
-                @endphp
-                <img src="{{ $imgSrc }}" class="fasilitas-img" alt="{{ $item->nama }}" onclick="event.stopPropagation(); openImageModal('{{ $imgSrc }}')" onerror="this.src='{{ asset('image/meat/slide4.jpg') }}'">
+                @if($item->gambar)
+                    <img src="{{ asset('storage/' . $item->gambar) }}" 
+                         class="fasilitas-img" 
+                         alt="{{ $item->nama }}" 
+                         onclick="event.stopPropagation(); openImageModal('{{ asset('storage/' . $item->gambar) }}')" 
+                         onerror="this.src='{{ asset('image/meat/slide3.jpg') }}'">
+                @else
+                    <img src="{{ asset('image/meat/slide3.jpg') }}" 
+                         class="fasilitas-img" 
+                         alt="{{ $item->nama }}" 
+                         onclick="event.stopPropagation(); openImageModal('{{ asset('image/meat/slide3.jpg') }}')">
+                @endif
                 <div class="fasilitas-content">
                     <h4>{{ $item->nama }}</h4>
                     <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 70) }}</p>
@@ -1262,16 +1231,10 @@
         
         if (!item) return;
         
-        // Set gambar
+        // Set gambar - PAKAI STORAGE PATH
         let imgSrc = '{{ asset("image/meat/slide1.jpg") }}';
         if (item.gambar) {
-            if (item.gambar.startsWith('data:image')) {
-                imgSrc = item.gambar;
-            } else if (item.gambar.startsWith('http')) {
-                imgSrc = item.gambar;
-            } else {
-                imgSrc = '{{ asset("storage") }}/' + item.gambar;
-            }
+            imgSrc = '{{ asset("storage") }}/' + item.gambar;
         }
         
         document.getElementById('detailImg').src = imgSrc;
