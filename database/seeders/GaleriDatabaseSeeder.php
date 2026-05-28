@@ -150,14 +150,14 @@ class GaleriDatabaseSeeder extends Seeder
         }
         
         $this->command->info("");
-        $this->command->info("📊 STATISTIK:");
+        $this->command->info("STATISTIK:");
         $this->command->info("   - Total foto masuk database: " . count($allData));
         $this->command->info("");
-        $this->command->info("✅ SELESAI!");
+        $this->command->info("SELESAI!");
         
         // Tampilkan rincian per kategori
         $this->command->info("");
-        $this->command->info("📁 RINCIAN PER KATEGORI:");
+        $this->command->info("RINCIAN PER KATEGORI:");
         
         $kategoris = DB::table('galeris')->select('kategori', DB::raw('count(*) as total'))->groupBy('kategori')->get();
         foreach ($kategoris as $kat) {
