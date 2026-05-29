@@ -3,85 +3,451 @@
 @section('title', 'Manajemen Penginapan Meat')
 
 @section('content')
-<div class="container-fluid">
-    <div class="card">
-        <div class="card-header">
-            <h5><i class="fas fa-hotel"></i> Penginapan Meat</h5>
-            <a href="{{ route('admin.penginapan.create') }}" class="btn btn-primary">+ Tambah Penginapan</a>
-        </div>
+<style>
+    .card-table {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+    }
+    
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 24px;
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        border-bottom: 1px solid #e2e8f0;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    
+    .card-header h5 {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #003366;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .card-header h5 i {
+        color: #c6a43b;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, #003366 0%, #1a4a7a 100%);
+        color: white;
+        padding: 8px 18px;
+        border-radius: 10px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
+        color: white;
+    }
+    
+    .alert-success {
+        background: #e8f5e9;
+        color: #2e7d32;
+        padding: 12px 20px;
+        margin: 16px 20px;
+        border-radius: 10px;
+        border-left: 4px solid #2e7d32;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.85rem;
+    }
+    
+    .alert-error {
+        background: #ffebee;
+        color: #c62828;
+        padding: 12px 20px;
+        margin: 16px 20px;
+        border-radius: 10px;
+        border-left: 4px solid #c62828;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.85rem;
+    }
+    
+    .table-wrapper {
+        overflow-x: auto;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 800px;
+    }
+    
+    thead {
+        background: #f8fafc;
+    }
+    
+    th {
+        padding: 14px 16px;
+        text-align: left;
+        font-weight: 700;
+        font-size: 0.8rem;
+        color: #003366;
+        border-bottom: 2px solid #e2e8f0;
+    }
+    
+    td {
+        padding: 14px 16px;
+        border-bottom: 1px solid #eef2f6;
+        vertical-align: middle;
+        font-size: 0.85rem;
+        color: #1e293b;
+    }
+    
+    tbody tr:hover {
+        background: #fafcff;
+    }
+    
+    .table-img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 12px;
+        border-radius: 50px;
+        font-size: 0.7rem;
+        font-weight: 600;
+    }
+    
+    .badge-success {
+        background: #e8f5e9;
+        color: #2e7d32;
+        border: 1px solid #a5d6a7;
+    }
+    
+    .badge-danger {
+        background: #ffebee;
+        color: #c62828;
+        border: 1px solid #ef9a9a;
+    }
+    
+    .btn-group {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    
+    .btn-edit {
+        background: #fff8e1;
+        color: #f57c00;
+        padding: 5px 14px;
+        border-radius: 8px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        border: 1px solid #ffe082;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+    
+    .btn-edit:hover {
+        background: #ffecb3;
+        transform: translateY(-1px);
+        color: #e65100;
+    }
+    
+    .btn-delete {
+        background: #ffebee;
+        color: #d32f2f;
+        padding: 5px 14px;
+        border-radius: 8px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        border: 1px solid #ffcdd2;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+    
+    .btn-delete:hover {
+        background: #ffcdd2;
+        transform: translateY(-1px);
+        color: #b71c1c;
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #94a3b8;
+        font-size: 0.9rem;
+    }
+    
+    .pagination {
+        padding: 16px 20px;
+        background: #f8fafc;
+        border-top: 1px solid #e2e8f0;
+    }
+    
+    .pagination nav {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .pagination .pagination {
+        margin: 0;
+        gap: 5px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .pagination .page-item .page-link {
+        border-radius: 10px;
+        border: none;
+        padding: 6px 12px;
+        color: #003366;
+        font-weight: 500;
+        background: white;
+        transition: all 0.2s ease;
+        font-size: 0.8rem;
+    }
+    
+    .pagination .page-item.active .page-link {
+        background: #003366;
+        color: white;
+    }
+    
+    .pagination .page-item .page-link:hover {
+        background: #e2e8f0;
+    }
+    
+    .stats-bar {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 12px 20px;
+        background: #f8fafc;
+        border-bottom: 1px solid #e2e8f0;
+        flex-wrap: wrap;
+    }
+    
+    .stats-badge {
+        background: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        color: #003366;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    @media (max-width: 768px) {
+        .card-header {
+            padding: 14px 16px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
         
-        @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
+        th, td {
+            padding: 10px 12px;
+            font-size: 0.75rem;
+        }
         
-        @if(session('error'))
-        <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
+        .table-img {
+            width: 40px;
+            height: 40px;
+        }
         
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead class="table-dark">
-                        <tr>
-                            <th width="50">NO</th>
-                            <th width="80">GAMBAR</th>
-                            <th>NAMA</th>
-                            <th>LOKASI</th>
-                            <th>KONTAK</th>
-                            <th>HARGA</th>
-                            <th width="80">URUTAN</th>
-                            <th width="100">STATUS</th>
-                            <th width="150">AKSI</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($data as $key => $item)
-                        <tr>
-                            <td class="text-center">{{ $loop->iteration }}</td>
-                            <td class="text-center">
-                                @if($item->gambar)
-                                    <img src="{{ asset('storage/' . $item->gambar) }}" 
-                                         width="50" height="50" 
-                                         style="object-fit: cover; border-radius: 8px;"
-                                         onerror="this.src='{{ asset('image/meat/slide2.jpg') }}'">
-                                @else
-                                    <img src="{{ asset('image/meat/slide2.jpg') }}" 
-                                         width="50" height="50" 
-                                         style="object-fit: cover; border-radius: 8px;">
-                                @endif
-                            </td>
-                            <td>{{ $item->nama }}</td>
-                            <td>{{ $item->lokasi ?? 'Desa Meat' }}</td>
-                            <td>{{ $item->kontak ?? '-' }}</td>
-                            <td>{{ $item->harga ?? 'Hubungi' }}</td>
-                            <td class="text-center">{{ $item->urutan }}</td>
-                            <td class="text-center">
-                                <span class="badge {{ $item->status ? 'bg-success' : 'bg-danger' }}">
-                                    {{ $item->status ? 'Aktif' : 'Tidak' }}
-                                </span>
-                            </td>
-                            <td class="text-center">
-                                <a href="{{ route('admin.penginapan.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('admin.penginapan.destroy', $item->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">Hapus</button>
-                                </form>
-                            </td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="9" class="text-center py-5">
-                                <i class="fas fa-hotel fa-2x mb-2 d-block text-muted"></i>
-                                Belum ada data Penginapan
-                            </td>
-                        </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-            {{ $data->links() }}
-        </div>
+        .btn-edit, .btn-delete {
+            padding: 4px 10px;
+            font-size: 0.65rem;
+        }
+        
+        .stats-badge {
+            font-size: 0.65rem;
+            padding: 3px 8px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .table-wrapper {
+            overflow-x: visible;
+        }
+        
+        table {
+            min-width: 100%;
+        }
+        
+        thead {
+            display: none;
+        }
+        
+        tbody tr {
+            display: block;
+            margin-bottom: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 12px;
+            background: white;
+        }
+        
+        td {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border: none;
+            font-size: 0.8rem;
+            flex-wrap: wrap;
+        }
+        
+        td:before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: #003366;
+            margin-right: 15px;
+            min-width: 80px;
+        }
+        
+        .btn-group {
+            justify-content: flex-end;
+            width: 100%;
+            margin-top: 5px;
+        }
+        
+        .table-img {
+            width: 50px;
+            height: 50px;
+        }
+    }
+</style>
+
+<div class="card-table">
+    <div class="card-header">
+        <h5>
+            <i class="fas fa-hotel"></i>
+            Penginapan Meat
+        </h5>
+        <a href="{{ route('admin.penginapan.create') }}" class="btn-primary">
+            <i class="fas fa-plus"></i> Tambah Penginapan
+        </a>
     </div>
+    
+    @if(session('success'))
+        <div class="alert-success">
+            <i class="fas fa-check-circle"></i> {{ session('success') }}
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert-error">
+            <i class="fas fa-exclamation-triangle"></i> {{ session('error') }}
+        </div>
+    @endif
+    
+    <div class="stats-bar">
+        <span class="stats-badge">
+            <i class="fas fa-database"></i> Total: {{ $data->total() }}
+        </span>
+        <span class="stats-badge">
+            <i class="fas fa-eye"></i> Halaman {{ $data->currentPage() }} / {{ $data->lastPage() }}
+        </span>
+    </div>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Gambar</th>
+                    <th>Nama</th>
+                    <th>Lokasi</th>
+                    <th>Kontak</th>
+                    <th>Harga</th>
+                    <th>Urutan</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($data as $key => $item)
+                <tr>
+                    <td data-label="No">{{ $loop->iteration }}</td>
+                    <td data-label="Gambar">
+                        @if($item->gambar)
+                            <img src="{{ asset('storage/' . $item->gambar) }}" class="table-img" 
+                                 onerror="this.src='{{ asset('image/meat/slide2.jpg') }}'" alt="{{ $item->nama }}">
+                        @else
+                            <img src="{{ asset('image/meat/slide2.jpg') }}" class="table-img" alt="Default">
+                        @endif
+                    </td>
+                    <td data-label="Nama">
+                        <strong>{{ Str::limit($item->nama, 30) }}</strong>
+                    </td>
+                    <td data-label="Lokasi">{{ $item->lokasi ?? 'Desa Meat' }}</td>
+                    <td data-label="Kontak">{{ $item->kontak ?? '-' }}</td>
+                    <td data-label="Harga">{{ $item->harga ?? 'Hubungi' }}</td>
+                    <td data-label="Urutan" style="text-align: center;">{{ $item->urutan }}</td>
+                    <td data-label="Status">
+                        <span class="badge {{ $item->status ? 'badge-success' : 'badge-danger' }}">
+                            {{ $item->status ? 'Aktif' : 'Tidak' }}
+                        </span>
+                    </td>
+                    <td data-label="Aksi">
+                        <div class="btn-group">
+                            <a href="{{ route('admin.penginapan.edit', $item->id) }}" class="btn-edit">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <form action="{{ route('admin.penginapan.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus data ini?')" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-delete">
+                                    <i class="fas fa-trash-alt"></i> Hapus
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="9" class="empty-state">
+                        <i class="fas fa-hotel" style="font-size: 2rem; opacity: 0.5; display: block; margin-bottom: 10px;"></i>
+                        📭 Belum ada data Penginapan
+                        <p style="margin-top: 10px; font-size: 0.8rem;">Klik tombol "Tambah Penginapan" untuk mulai menambahkan</p>
+                    </td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+    
+    @if($data->hasPages())
+    <div class="pagination">
+        {{ $data->links() }}
+    </div>
+    @endif
 </div>
 @endsection

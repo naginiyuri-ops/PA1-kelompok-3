@@ -36,6 +36,7 @@
     body {
         font-family: 'Inter', sans-serif;
         color: var(--text-dark);
+        overflow-x: hidden;
     }
     
     /* ==================== ANIMATIONS ==================== */
@@ -44,25 +45,16 @@
         to { opacity: 1; transform: translateY(0); }
     }
     
-    @keyframes fadeInLeft {
-        from { opacity: 0; transform: translateX(-40px); }
-        to { opacity: 1; transform: translateX(0); }
-    }
-    
-    @keyframes fadeInRight {
-        from { opacity: 0; transform: translateX(40px); }
-        to { opacity: 1; transform: translateX(0); }
-    }
-    
-    @keyframes zoomIn {
-        from { opacity: 0; transform: scale(0.95); }
-        to { opacity: 1; transform: scale(1); }
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); opacity: 0.6; }
+        50% { transform: translateY(-8px); opacity: 0.3; }
     }
     
     /* ==================== HERO SECTION ==================== */
     .hero-liang {
-        height: 85vh;
-        min-height: 600px;
+        height: 100vh;
+        max-height: 700px;
+        min-height: 500px;
         position: relative;
         overflow: hidden;
         margin-top: 0;
@@ -82,7 +74,7 @@
     
     .hero-content {
         position: absolute;
-        bottom: 20%;
+        bottom: 15%;
         left: 0;
         right: 0;
         text-align: center;
@@ -133,43 +125,32 @@
     
     .scroll-indicator {
         position: absolute;
-        bottom: 30px;
+        bottom: 20px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 15;
         animation: bounce 2s infinite;
         cursor: pointer;
         color: white;
-        font-size: 0.65rem;
+        font-size: 0.6rem;
         letter-spacing: 0.2em;
         text-transform: uppercase;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
         opacity: 0.7;
     }
     
     .scroll-indicator .line {
         width: 1px;
-        height: 35px;
+        height: 30px;
         background: white;
-        transition: height 0.3s ease;
-    }
-    
-    .scroll-indicator:hover .line {
-        height: 50px;
-        background: var(--gold);
-    }
-    
-    @keyframes bounce {
-        0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.7; }
-        50% { transform: translateX(-50%) translateY(-8px); opacity: 0.3; }
     }
     
     /* ==================== SECTION STYLES ==================== */
     .section {
-        padding: 80px 0;
+        padding: 60px 0;
     }
     
     .section-white {
@@ -183,67 +164,67 @@
     .container {
         max-width: 1280px;
         margin: 0 auto;
-        padding: 0 24px;
+        padding: 0 20px;
     }
     
     .section-header {
         text-align: center;
-        margin-bottom: 55px;
+        margin-bottom: 40px;
     }
     
     .section-header .badge {
         display: inline-block;
         background: rgba(198, 164, 59, 0.12);
         color: var(--gold-dark);
-        padding: 5px 16px;
+        padding: 4px 14px;
         border-radius: 30px;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         font-weight: 600;
         letter-spacing: 1.5px;
         text-transform: uppercase;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
     }
     
     .section-header h2 {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
         font-weight: 700;
         color: var(--primary-dark);
         font-family: 'Playfair Display', serif;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
     }
     
     .divider {
-        width: 60px;
+        width: 50px;
         height: 2px;
         background: var(--gold);
-        margin: 0 auto 20px;
+        margin: 0 auto 16px;
         border-radius: 2px;
         transition: width 0.4s ease;
     }
     
     .section-header:hover .divider {
-        width: 100px;
+        width: 80px;
     }
     
     .section-header p {
         color: var(--text-light);
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         max-width: 600px;
         margin: 0 auto;
-        line-height: 1.7;
+        line-height: 1.6;
     }
     
-    /* ==================== SEJARAH (TANPA KOTAK, HALUS) ==================== */
+    /* ==================== SEJARAH & LEGENDA ==================== */
     .sejarah-grid {
         display: flex;
         flex-direction: column;
-        gap: 60px;
+        gap: 50px;
     }
     
     .sejarah-item {
         display: flex;
         align-items: center;
-        gap: 60px;
+        gap: 40px;
         flex-wrap: wrap;
     }
     
@@ -253,20 +234,22 @@
     
     .sejarah-image {
         flex: 1;
-        border-radius: 24px;
+        min-width: 280px;
+        border-radius: 20px;
         overflow: hidden;
         box-shadow: var(--shadow-lg);
         transition: all 0.4s ease;
+        cursor: pointer;
     }
     
     .sejarah-image:hover {
-        transform: translateY(-8px);
+        transform: translateY(-5px);
         box-shadow: var(--shadow-xl);
     }
     
     .sejarah-image img {
         width: 100%;
-        height: 340px;
+        height: 260px;
         object-fit: cover;
         transition: transform 0.6s ease;
     }
@@ -277,14 +260,15 @@
     
     .sejarah-text {
         flex: 1;
+        min-width: 280px;
     }
     
     .sejarah-text h3 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         font-weight: 700;
         color: var(--primary-dark);
         font-family: 'Playfair Display', serif;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
         position: relative;
         display: inline-block;
     }
@@ -292,52 +276,53 @@
     .sejarah-text h3::after {
         content: '';
         position: absolute;
-        bottom: -10px;
+        bottom: -8px;
         left: 0;
-        width: 50px;
+        width: 40px;
         height: 2px;
         background: var(--gold);
         transition: width 0.3s ease;
     }
     
     .sejarah-item:hover .sejarah-text h3::after {
-        width: 80px;
+        width: 60px;
     }
     
     .sejarah-text p {
         color: var(--text-gray);
-        line-height: 1.8;
-        font-size: 1rem;
-        margin-top: 15px;
+        line-height: 1.7;
+        font-size: 0.9rem;
+        margin-top: 12px;
+        text-align: justify;
     }
     
-    /* ==================== CARDS ==================== */
+    /* ==================== INFORMASI CARDS ==================== */
     .grid-2 {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
+        gap: 25px;
     }
     
     .info-card {
         background: var(--white);
-        border-radius: 24px;
+        border-radius: 20px;
         overflow: hidden;
         box-shadow: var(--shadow-md);
         transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        display: flex;
-        flex-direction: column;
+        cursor: pointer;
     }
     
     .info-card:hover {
-        transform: translateY(-8px);
+        transform: translateY(-5px);
         box-shadow: var(--shadow-xl);
     }
     
     .info-card-img {
         width: 100%;
-        height: 240px;
+        height: 200px;
         object-fit: cover;
         transition: transform 0.5s ease;
+        cursor: pointer;
     }
     
     .info-card:hover .info-card-img {
@@ -345,21 +330,21 @@
     }
     
     .info-card-content {
-        padding: 24px;
+        padding: 18px;
     }
     
     .info-card-content h3 {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         font-weight: 700;
         color: var(--primary-dark);
-        margin-bottom: 12px;
+        margin-bottom: 10px;
         font-family: 'Playfair Display', serif;
     }
     
     .info-card-content p {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         color: var(--text-gray);
-        line-height: 1.7;
+        line-height: 1.6;
         margin-bottom: 0;
     }
     
@@ -367,73 +352,73 @@
     .maps-section {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 30px;
+        gap: 25px;
     }
     
     .maps-container {
-        border-radius: 24px;
+        border-radius: 20px;
         overflow: hidden;
         box-shadow: var(--shadow-lg);
         transition: all 0.4s ease;
     }
     
     .maps-container:hover {
-        transform: translateY(-5px);
+        transform: translateY(-3px);
         box-shadow: var(--shadow-xl);
     }
     
     .maps-container iframe {
         width: 100%;
-        height: 380px;
+        height: 320px;
         border: 0;
     }
     
     .rute-info {
         display: flex;
         flex-direction: column;
-        gap: 18px;
+        gap: 15px;
     }
     
     .rute-item {
         background: var(--white);
-        padding: 22px;
-        border-radius: 20px;
+        padding: 18px;
+        border-radius: 18px;
         box-shadow: var(--shadow-md);
         transition: all 0.3s ease;
-        border-left: 4px solid var(--gold);
+        border-left: 3px solid var(--gold);
     }
     
     .rute-item:hover {
-        transform: translateX(8px);
+        transform: translateX(5px);
         box-shadow: var(--shadow-lg);
     }
     
     .rute-item h4 {
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-weight: 700;
         color: var(--primary-dark);
-        margin-bottom: 12px;
+        margin-bottom: 10px;
     }
     
     .rute-item h4 i {
         color: var(--gold);
-        margin-right: 10px;
-        width: 24px;
+        margin-right: 8px;
+        width: 22px;
     }
     
     .rute-item p {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         color: var(--text-gray);
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         line-height: 1.5;
     }
     
     .rute-time {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         color: var(--gold-dark);
         font-weight: 600;
         display: inline-block;
-        padding: 4px 12px;
+        padding: 3px 10px;
         background: rgba(198, 164, 59, 0.1);
         border-radius: 20px;
     }
@@ -441,26 +426,10 @@
     /* ==================== CTA SECTION ==================== */
     .cta-section {
         background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-        padding: 70px 0;
+        padding: 50px 0;
         text-align: center;
         position: relative;
         overflow: hidden;
-    }
-    
-    .cta-section::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-        animation: rotate 25s linear infinite;
-    }
-    
-    @keyframes rotate {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
     }
     
     .cta-content {
@@ -468,36 +437,37 @@
         margin: 0 auto;
         position: relative;
         z-index: 2;
+        padding: 0 20px;
     }
     
     .cta-content h3 {
-        font-size: 2rem;
+        font-size: 1.6rem;
         font-family: 'Playfair Display', serif;
         font-weight: 700;
-        margin-bottom: 18px;
+        margin-bottom: 14px;
         color: var(--white);
     }
     
     .cta-content .divider {
-        margin: 0 auto 20px;
+        margin: 0 auto 16px;
         background: var(--gold);
     }
     
     .cta-content p {
         color: rgba(255,255,255,0.85);
-        margin-bottom: 30px;
-        font-size: 0.95rem;
-        line-height: 1.7;
+        margin-bottom: 25px;
+        font-size: 0.85rem;
+        line-height: 1.6;
     }
     
     .cta-btn {
         display: inline-block;
         background: var(--gold);
         color: var(--primary-dark);
-        padding: 12px 40px;
+        padding: 10px 32px;
         border-radius: 50px;
         text-decoration: none;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         font-weight: 700;
         letter-spacing: 1.5px;
         text-transform: uppercase;
@@ -506,43 +476,231 @@
     
     .cta-btn:hover {
         background: var(--white);
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    
+    /* ==================== LIGHTBOX ZOOM ==================== */
+    .lightbox-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.96);
+        z-index: 20000;
+        backdrop-filter: blur(12px);
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    
+    .lightbox-overlay.active {
+        display: flex;
+    }
+    
+    .lightbox-container {
+        max-width: 90%;
+        max-height: 90%;
+        text-align: center;
+    }
+    
+    .lightbox-image {
+        max-width: 100%;
+        max-height: 80vh;
+        object-fit: contain;
+        border-radius: 12px;
+    }
+    
+    .lightbox-caption {
+        margin-top: 15px;
+    }
+    
+    .lightbox-caption h3 {
+        color: var(--gold);
+        font-size: 1.1rem;
+        font-family: 'Playfair Display', serif;
+    }
+    
+    .lightbox-caption p {
+        color: rgba(255,255,255,0.7);
+        font-size: 0.8rem;
+    }
+    
+    .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        background: rgba(0,0,0,0.5);
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    
+    .lightbox-close:hover {
+        background: var(--gold);
+        transform: rotate(90deg);
     }
     
     /* ==================== RESPONSIVE ==================== */
-    @media (max-width: 1024px) {
-        .hero-title { font-size: 3rem; }
-    }
-    
     @media (max-width: 992px) {
-        .sejarah-item, .sejarah-item.reverse { flex-direction: column; text-align: center; }
-        .sejarah-text h3::after { left: 50%; transform: translateX(-50%); }
-        .sejarah-text { text-align: center; }
-        .sejarah-image img { height: 280px; }
-        .maps-section { grid-template-columns: 1fr; }
-        .hero-title { font-size: 2.8rem; }
-        .grid-2 { grid-template-columns: 1fr; }
+        .hero-title { font-size: 3rem; }
+        .sejarah-item, .sejarah-item.reverse { 
+            flex-direction: column; 
+            text-align: center; 
+        }
+        .sejarah-text h3::after { 
+            left: 50%; 
+            transform: translateX(-50%); 
+        }
+        .sejarah-text { 
+            text-align: center; 
+        }
+        .sejarah-text p {
+            text-align: center;
+        }
+        .maps-section { 
+            grid-template-columns: 1fr; 
+        }
+        .grid-2 { 
+            grid-template-columns: 1fr; 
+        }
     }
     
     @media (max-width: 768px) {
-        .hero-liang { height: 70vh; min-height: 500px; }
-        .hero-title { font-size: 2rem; }
-        .hero-subtitle { font-size: 0.65rem; letter-spacing: 0.2em; }
-        .hero-badge { font-size: 0.6rem; padding: 4px 14px; }
-        .section { padding: 60px 0; }
-        .section-header h2 { font-size: 1.6rem; }
-        .sejarah-image img { height: 230px; }
-        .info-card-img { height: 200px; }
-        .maps-container iframe { height: 280px; }
-        .cta-section { padding: 50px 0; }
-        .cta-content h3 { font-size: 1.5rem; }
+        .hero-liang { 
+            height: 80vh; 
+            max-height: 600px;
+            min-height: 450px;
+        }
+        .hero-title { 
+            font-size: 2rem; 
+        }
+        .hero-subtitle { 
+            font-size: 0.55rem; 
+            letter-spacing: 0.15em; 
+        }
+        .hero-badge { 
+            font-size: 0.55rem; 
+            padding: 4px 12px; 
+            margin-bottom: 12px;
+        }
+        .hero-divider {
+            margin: 15px auto;
+            width: 40px;
+        }
+        .section { 
+            padding: 50px 0; 
+        }
+        .section-header h2 { 
+            font-size: 1.4rem; 
+        }
+        .section-header .badge {
+            font-size: 0.6rem;
+        }
+        .sejarah-image img { 
+            height: 220px; 
+        }
+        .sejarah-text h3 {
+            font-size: 1.3rem;
+        }
+        .sejarah-text p {
+            font-size: 0.85rem;
+        }
+        .info-card-img { 
+            height: 180px; 
+        }
+        .info-card-content h3 {
+            font-size: 1rem;
+        }
+        .info-card-content p {
+            font-size: 0.75rem;
+        }
+        .maps-container iframe { 
+            height: 250px; 
+        }
+        .cta-section { 
+            padding: 40px 0; 
+        }
+        .cta-content h3 { 
+            font-size: 1.3rem; 
+        }
+        .cta-content p {
+            font-size: 0.8rem;
+        }
+        .cta-btn {
+            padding: 8px 24px;
+            font-size: 0.65rem;
+        }
+        .lightbox-close {
+            top: 10px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            font-size: 1.5rem;
+        }
+        .lightbox-caption h3 {
+            font-size: 0.9rem;
+        }
+        .lightbox-caption p {
+            font-size: 0.7rem;
+        }
     }
     
     @media (max-width: 480px) {
-        .hero-title { font-size: 1.6rem; }
-        .container { padding: 0 16px; }
-        .section-header h2 { font-size: 1.4rem; }
+        .hero-title { 
+            font-size: 1.6rem; 
+        }
+        .hero-subtitle {
+            font-size: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+        .hero-badge {
+            font-size: 0.5rem;
+            padding: 3px 10px;
+        }
+        .container { 
+            padding: 0 16px; 
+        }
+        .section-header h2 { 
+            font-size: 1.2rem; 
+        }
+        .section-header p {
+            font-size: 0.8rem;
+        }
+        .sejarah-image img { 
+            height: 180px; 
+        }
+        .sejarah-text h3 {
+            font-size: 1.1rem;
+        }
+        .info-card-content {
+            padding: 14px;
+        }
+        .rute-item {
+            padding: 14px;
+        }
+        .rute-item h4 {
+            font-size: 0.85rem;
+        }
+        .rute-item p {
+            font-size: 0.75rem;
+        }
+        .cta-content h3 {
+            font-size: 1.2rem;
+        }
+        .cta-btn {
+            padding: 8px 20px;
+            font-size: 0.6rem;
+        }
     }
 </style>
 
@@ -573,8 +731,8 @@
         
         <div class="sejarah-grid">
             <div class="sejarah-item" data-aos="fade-up">
-                <div class="sejarah-image">
-                    <img src="{{ asset('image/meat/liang-sipege-hero.jpg') }}" alt="Liang Sipege">
+                <div class="sejarah-image" onclick="openLightbox('{{ asset('image/meat/liang-sipege-hero.jpg') }}', 'Liang Sipege', 'Pemandangan gua Liang Sipege yang megah')">
+                    <img src="{{ asset('image/meat/liang-sipege-hero.jpg') }}" alt="Liang Sipege" loading="lazy">
                 </div>
                 <div class="sejarah-text">
                     <h3>Legenda Liang Sipege</h3>
@@ -583,8 +741,8 @@
             </div>
             
             <div class="sejarah-item reverse" data-aos="fade-up" data-aos-delay="100">
-                <div class="sejarah-image">
-                    <img src="{{ asset('image/meat/liang-sipege-hero.jpg') }}" alt="Raja Sijorat Paraliman Panjaitan">
+                <div class="sejarah-image" onclick="openLightbox('{{ asset('image/meat/liang-sipege-hero.jpg') }}', 'Raja Sijorat Paraliman Panjaitan', 'Tokoh legendaris dari Liang Sipege')">
+                    <img src="{{ asset('image/meat/liang-sipege-hero.jpg') }}" alt="Raja Sijorat Paraliman Panjaitan" loading="lazy">
                 </div>
                 <div class="sejarah-text">
                     <h3>Raja Sijorat Paraliman Panjaitan</h3>
@@ -593,8 +751,8 @@
             </div>
             
             <div class="sejarah-item" data-aos="fade-up" data-aos-delay="200">
-                <div class="sejarah-image">
-                    <img src="{{ asset('image/meat/liang-sipege-hero.jpg') }}" alt="Tempat Spiritual">
+                <div class="sejarah-image" onclick="openLightbox('{{ asset('image/meat/liang-sipege-hero.jpg') }}', 'Tempat Spiritual', 'Liang Sipege sebagai tempat spiritual')">
+                    <img src="{{ asset('image/meat/liang-sipege-hero.jpg') }}" alt="Tempat Spiritual" loading="lazy">
                 </div>
                 <div class="sejarah-text">
                     <h3>Tempat Spiritual & Habitat Alami</h3>
@@ -617,7 +775,7 @@
         
         <div class="grid-2">
             <div class="info-card" data-aos="fade-up" data-aos-delay="0">
-                <img src="{{ asset('image/meat/liang-sipege-hero.jpg') }}" class="info-card-img" alt="Habitat Kelelawar">
+                <img src="{{ asset('image/meat/liang-sipege-hero.jpg') }}" class="info-card-img" alt="Habitat Kelelawar" onclick="openLightbox('{{ asset('image/meat/liang-sipege-hero.jpg') }}', 'Habitat Kelelawar', 'Liang Sipege adalah rumah bagi ribuan kelelawar')" loading="lazy">
                 <div class="info-card-content">
                     <h3>Habitat Kelelawar & Manfaat Ekonomi</h3>
                     <p>Gua ini adalah koloni alami bagi ribuan kelelawar. Kotoran kelelawar (guano) yang terkumpul di dasar gua dimanfaatkan oleh masyarakat setempat sebagai pupuk organik berkualitas tinggi untuk pertanian mereka, menciptakan harmoni antara konservasi dan kesejahteraan ekonomi lokal.</p>
@@ -625,7 +783,7 @@
             </div>
             
             <div class="info-card" data-aos="fade-up" data-aos-delay="100">
-                <img src="{{ asset('image/meat/liang-sipege-hero.jpg') }}" class="info-card-img" alt="Misteri dan Penelitian">
+                <img src="{{ asset('image/meat/liang-sipege-hero.jpg') }}" class="info-card-img" alt="Misteri dan Penelitian" onclick="openLightbox('{{ asset('image/meat/liang-sipege-hero.jpg') }}', 'Misteri Liang Sipege', 'Penelitian tentang gua yang masih misterius')" loading="lazy">
                 <div class="info-card-content">
                     <h3>Misteri dan Penelitian</h3>
                     <p>Beberapa lorong Liang Sipege masih belum sepenuhnya terpetakan. Mitos menyebutkan bahwa ada jalur bawah tanah yang menghubungkan gua ini dengan daerah lain di luar Kabupaten Toba. Cerita penduduk tentang serbuk padi yang terbawa angin masuk ke gua memperkuat kepercayaan ini, membuat Liang Sipege menjadi objek penelitian yang menarik.</p>
@@ -647,28 +805,13 @@
         
         <div class="maps-section">
             <div class="maps-container" data-aos="fade-right">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0!2d99.0835095!3d2.3339262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e0415b8f7da39%3A0xc6beb74287f355a5!2sBalige%2C%20Toba%20Samosir%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="rute-info" data-aos="fade-left">
-                <div class="rute-item">
-                    <h4><i class="fas fa-motorcycle"></i> Dengan Motor</h4>
-                    <p>Balige → Ajibata (30 menit) → Ferry (20 menit) → Liang Sipege (15 menit)</p>
-                    <span class="rute-time">⏱️ ± 1.5 jam</span>
-                </div>
-                <div class="rute-item">
-                    <h4><i class="fas fa-car"></i> Dengan Mobil</h4>
-                    <p>Balige → Ajibata (30 menit) → Parkir → Ferry → Transportasi lokal</p>
-                    <span class="rute-time">⏱️ ± 2 jam</span>
-                </div>
-                <div class="rute-item">
-                    <h4><i class="fas fa-ship"></i> Ferry Schedule</h4>
-                    <p>Operasional setiap hari pukul 06:00 - 17:00 WIB</p>
-                    <span class="rute-time">Setiap hari</span>
-                </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0!2d99.0835095!3d2.3339262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e0415b8f7da39%3A0xc6beb74287f355a5!2sBalige%2C%20Toba%20Samosir%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" allowfullscreen loading="lazy" title="Peta Lokasi Liang Sipege"></iframe>
+        
             </div>
         </div>
     </div>
 </section>
+
 <!-- ==================== CTA SECTION ==================== -->
 <section class="cta-section">
     <div class="container">
@@ -681,16 +824,44 @@
     </div>
 </section>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- ==================== LIGHTBOX ZOOM ==================== -->
+<div id="lightboxOverlay" class="lightbox-overlay" onclick="closeLightbox()">
+    <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
+    <div class="lightbox-container" onclick="event.stopPropagation()">
+        <img id="lightboxImage" class="lightbox-image" src="" alt="">
+        <div class="lightbox-caption">
+            <h3 id="lightboxTitle"></h3>
+            <p id="lightboxDesc"></p>
+        </div>
+    </div>
+</div>
+
 <script>
-    AOS.init({
-        duration: 800,
-        once: true,
-        offset: 50,
-        easing: 'ease-out-quad'
-    });
+    // ==================== LIGHTBOX FUNCTION ====================
+    function openLightbox(imgSrc, title, desc) {
+        const overlay = document.getElementById('lightboxOverlay');
+        const lightboxImg = document.getElementById('lightboxImage');
+        const titleEl = document.getElementById('lightboxTitle');
+        const descEl = document.getElementById('lightboxDesc');
+        
+        if (overlay && lightboxImg) {
+            lightboxImg.src = imgSrc;
+            titleEl.innerText = title || 'Liang Sipege';
+            descEl.innerText = desc || 'Keindahan Geosite Danau Toba';
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
     
-    // Smooth scroll for anchor links
+    function closeLightbox() {
+        const overlay = document.getElementById('lightboxOverlay');
+        if (overlay) {
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+    
+    // ==================== SMOOTH SCROLL ====================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -700,5 +871,23 @@
             }
         });
     });
+    
+    // Escape key to close
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeLightbox();
+        }
+    });
 </script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 600,
+        once: true,
+        offset: 40,
+        easing: 'ease-out-quad'
+    });
+</script>
+
 @endsection

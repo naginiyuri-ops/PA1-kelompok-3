@@ -3,74 +3,301 @@
 @section('title', 'Tambah UMKM')
 
 @section('content')
-<div class="container-fluid">
-    <div class="card">
-        <div class="card-header">
-            <h5>Tambah Data UMKM</h5>
-            <a href="{{ route('admin.umkm.index') }}" class="btn btn-secondary">Kembali</a>
-        </div>
-        <div class="card-body">
-            
-            @if($errors->any())
-            <div class="alert alert-danger">
-                <ul>
+<style>
+    .card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+    }
+    
+    .card-header {
+        padding: 16px 24px;
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        border-bottom: 1px solid #e2e8f0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    
+    .card-header h5 {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #003366;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .card-header h5 i {
+        color: #c6a43b;
+    }
+    
+    .card-body {
+        padding: 24px;
+    }
+    
+    .mb-3 {
+        margin-bottom: 20px;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: #1e293b;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+        outline: none;
+        border-color: #003366;
+        box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+    }
+    
+    textarea.form-control {
+        resize: vertical;
+        min-height: 100px;
+    }
+    
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .col-half {
+        flex: 1;
+        min-width: 200px;
+    }
+    
+    .preview-image {
+        margin-top: 10px;
+        max-width: 120px;
+        border-radius: 10px;
+        display: none;
+    }
+    
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 20px 0;
+    }
+    
+    .checkbox-group input {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+    
+    .checkbox-group label {
+        margin: 0;
+        cursor: pointer;
+    }
+    
+    .btn-group {
+        display: flex;
+        gap: 12px;
+        margin-top: 24px;
+    }
+    
+    .btn-save {
+        background: linear-gradient(135deg, #003366 0%, #1a4a7a 100%);
+        color: white;
+        padding: 10px 24px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-save:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
+    }
+    
+    .btn-cancel {
+        background: #f1f5f9;
+        color: #475569;
+        padding: 10px 24px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-cancel:hover {
+        background: #e2e8f0;
+        transform: translateY(-2px);
+    }
+    
+    .alert-danger {
+        background: #ffebee;
+        color: #c62828;
+        padding: 12px 16px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        border-left: 4px solid #c62828;
+        font-size: 0.85rem;
+    }
+    
+    .alert-danger ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+    
+    .form-text {
+        font-size: 0.7rem;
+        color: #94a3b8;
+        margin-top: 5px;
+    }
+    
+    .form-text i {
+        margin-right: 4px;
+    }
+    
+    @media (max-width: 768px) {
+        .card-header {
+            padding: 12px 18px;
+        }
+        
+        .card-body {
+            padding: 18px;
+        }
+        
+        .row {
+            flex-direction: column;
+            gap: 0;
+        }
+        
+        .btn-save, .btn-cancel {
+            padding: 8px 18px;
+            font-size: 0.8rem;
+        }
+    }
+</style>
+
+<div class="card">
+    <div class="card-header">
+        <h5>
+            <i class="fas fa-store"></i>
+            Tambah Data UMKM
+        </h5>
+        <a href="{{ route('admin.umkm.index') }}" class="btn-cancel" style="padding: 6px 16px;">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+    </div>
+    
+    <div class="card-body">
+        @if($errors->any())
+            <div class="alert-danger">
+                <ul class="mb-0">
                     @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
             </div>
-            @endif
+        @endif
+        
+        <form action="{{ route('admin.umkm.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             
-            <form action="{{ route('admin.umkm.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                
-                <div class="mb-3">
-                    <label>Nama UMKM <span class="text-danger">*</span></label>
-                    <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}" required>
-                    @error('nama')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                </div>
-                
-                <div class="mb-3">
-                    <label>Deskripsi <span class="text-danger">*</span></label>
-                    <textarea name="deskripsi" rows="5" class="form-control @error('deskripsi') is-invalid @enderror" required>{{ old('deskripsi') }}</textarea>
-                    @error('deskripsi')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-6 mb-3">
+            <div class="mb-3">
+                <label>Nama UMKM</label>
+                <input type="text" name="nama" class="form-control" value="{{ old('nama') }}" placeholder="Masukkan nama UMKM" required>
+            </div>
+            
+            <div class="mb-3">
+                <label>Deskripsi</label>
+                <textarea name="deskripsi" class="form-control" rows="5" placeholder="Masukkan deskripsi UMKM" required>{{ old('deskripsi') }}</textarea>
+            </div>
+            
+            <div class="row">
+                <div class="col-half">
+                    <div class="mb-3">
                         <label>Lokasi</label>
-                        <input type="text" name="lokasi" class="form-control" value="{{ old('lokasi', 'Desa Meat') }}">
+                        <input type="text" name="lokasi" class="form-control" value="{{ old('lokasi', 'Desa Meat') }}" placeholder="Contoh: Desa Meat, Balige">
                     </div>
-                    <div class="col-md-6 mb-3">
+                </div>
+                
+                <div class="col-half">
+                    <div class="mb-3">
                         <label>Kontak</label>
-                        <input type="text" name="kontak" class="form-control" value="{{ old('kontak') }}">
+                        <input type="text" name="kontak" class="form-control" value="{{ old('kontak') }}" placeholder="Contoh: 081234567890">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-half">
+                    <div class="mb-3">
+                        <label>Urutan</label>
+                        <input type="number" name="urutan" class="form-control" value="{{ old('urutan', $nextUrutan ?? 1) }}" required>
+                        <div class="form-text">
+                            <i class="fas fa-info-circle"></i> Semakin kecil angka, semakin atas tampilannya
+                        </div>
                     </div>
                 </div>
                 
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label>Urutan <span class="text-danger">*</span></label>
-                        <input type="number" name="urutan" class="form-control @error('urutan') is-invalid @enderror" value="{{ old('urutan', $nextUrutan ?? 1) }}" required>
-                        <small class="text-muted">Semakin kecil angka, semakin atas tampilannya</small>
-                        @error('urutan')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                    </div>
-                    <div class="col-md-6 mb-3">
+                <div class="col-half">
+                    <div class="mb-3">
                         <label>Gambar</label>
-                        <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" accept="image/jpeg,image/png,image/jpg,image/webp">
-                        <small class="text-muted">Format: JPG, PNG, WEBP. Max: 10MB</small>
-                        @error('gambar')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                        <input type="file" name="gambar" class="form-control" accept="image/*" id="inputGambar">
+                        <div class="form-text">
+                            <i class="fas fa-info-circle"></i> Format: JPG, PNG, WEBP. Max: 10MB
+                        </div>
+                        <img id="previewImage" class="preview-image">
                     </div>
                 </div>
-                
-                <div class="mb-3">
-                    <input type="checkbox" name="status" id="status" value="1" {{ old('status', 1) ? 'checked' : '' }}>
-                    <label for="status"> Aktifkan UMKM</label>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Simpan</button>
-                <a href="{{ route('admin.umkm.index') }}" class="btn btn-secondary">Batal</a>
-            </form>
-        </div>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" name="status" value="1" id="status" {{ old('status', 1) ? 'checked' : '' }}>
+                <label for="status">Aktifkan UMKM</label>
+            </div>
+            
+            <div class="btn-group">
+                <button type="submit" class="btn-save">Simpan</button>
+                <a href="{{ route('admin.umkm.index') }}" class="btn-cancel">Batal</a>
+            </div>
+        </form>
     </div>
 </div>
+
+<script>
+    document.getElementById('inputGambar').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const previewImage = document.getElementById('previewImage');
+        
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                previewImage.src = event.target.result;
+                previewImage.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        } else {
+            previewImage.style.display = 'none';
+        }
+    });
+</script>
 @endsection

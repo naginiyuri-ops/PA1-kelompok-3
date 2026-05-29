@@ -4,23 +4,177 @@
 
 @section('content')
 <style>
-    .form-group { margin-bottom: 1.5rem; }
-    .form-label { font-weight: 600; margin-bottom: 0.5rem; }
-    .form-label.required::after { content: '*'; color: #dc3545; margin-left: 4px; }
-    .preview-image { max-width: 200px; border-radius: 8px; margin-top: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+    }
+    
+    .card-header {
+        padding: 16px 24px;
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .card-header h5 {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #003366;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .card-header h5 i {
+        color: #c6a43b;
+    }
+    
+    .card-body {
+        padding: 24px;
+    }
+    
+    .mb-3 {
+        margin-bottom: 20px;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: #1e293b;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+        outline: none;
+        border-color: #003366;
+        box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+    }
+    
+    textarea.form-control {
+        resize: vertical;
+        min-height: 200px;
+    }
+    
+    .preview-image {
+        margin-top: 10px;
+        max-width: 120px;
+        border-radius: 10px;
+        display: none;
+    }
+    
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 24px;
+    }
+    
+    .checkbox-group input {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+    
+    .checkbox-group label {
+        margin: 0;
+        cursor: pointer;
+    }
+    
+    .btn-group {
+        display: flex;
+        gap: 12px;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, #003366 0%, #1a4a7a 100%);
+        color: white;
+        padding: 10px 24px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
+    }
+    
+    .btn-secondary {
+        background: #f1f5f9;
+        color: #475569;
+        padding: 10px 24px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+        background: #e2e8f0;
+        transform: translateY(-2px);
+    }
+    
+    .alert-danger {
+        background: #ffebee;
+        color: #c62828;
+        padding: 12px 16px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        border-left: 4px solid #c62828;
+        font-size: 0.85rem;
+    }
+    
+    .alert-danger ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+    
+    @media (max-width: 768px) {
+        .card-header {
+            padding: 12px 18px;
+        }
+        
+        .card-body {
+            padding: 18px;
+        }
+        
+        .btn-primary, .btn-secondary {
+            padding: 8px 18px;
+            font-size: 0.8rem;
+        }
+    }
 </style>
 
-<div class="d-flex align-items-center mb-4">
-    <a href="{{ route('admin.informasi.index') }}" class="btn btn-sm btn-secondary me-3">
-        <i class="fas fa-arrow-left me-1"></i> Kembali
-    </a>
-    <h4 class="mb-0"><i class="fas fa-plus-circle me-2"></i> Tambah Informasi</h4>
-</div>
-
 <div class="card">
+    <div class="card-header">
+        <h5>
+            <i class="fas fa-plus-circle"></i>
+            Tambah Informasi
+        </h5>
+    </div>
+    
     <div class="card-body">
         @if($errors->any())
-            <div class="alert alert-danger">
+            <div class="alert-danger">
                 <ul class="mb-0">
                     @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -32,58 +186,31 @@
         <form action="{{ route('admin.informasi.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             
-            <div class="form-group">
-                <label class="form-label required">Judul Informasi</label>
-                <input type="text" name="judul" class="form-control @error('judul') is-invalid @enderror" 
-                       value="{{ old('judul') }}" placeholder="Masukkan judul informasi" required>
-                @error('judul')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+            <div class="mb-3">
+                <label>Judul Informasi</label>
+                <input type="text" name="judul" class="form-control" value="{{ old('judul') }}" placeholder="Masukkan judul informasi" required>
             </div>
             
-            <div class="form-group">
-                <label class="form-label">Gambar</label>
-                <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" 
-                       accept="image/jpeg,image/png,image/jpg" id="inputGambar">
-                <small class="text-muted d-block mt-1">
-                    <i class="fas fa-info-circle me-1"></i> Format: JPG, PNG. Maksimal 5MB
-                </small>
-                <div id="previewContainer" style="display: none;">
-                    <img id="previewImage" class="preview-image">
-                </div>
-                @error('gambar')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+            <div class="mb-3">
+                <label>Gambar</label>
+                <input type="file" name="gambar" class="form-control" accept="image/*" id="inputGambar">
+                <small class="text-muted d-block mt-1">Format: JPG, PNG. Max: 2MB</small>
+                <img id="previewImage" class="preview-image">
             </div>
             
-            <div class="form-group">
-                <label class="form-label required">Konten</label>
-                <textarea name="konten" class="form-control @error('konten') is-invalid @enderror" 
-                          rows="12" placeholder="Masukkan konten informasi lengkap" required>{{ old('konten') }}</textarea>
-                @error('konten')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+            <div class="mb-3">
+                <label>Konten</label>
+                <textarea name="konten" class="form-control" rows="10" placeholder="Masukkan konten informasi" required>{{ old('konten') }}</textarea>
             </div>
             
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="status" value="1" 
-                           id="statusCheck" {{ old('status', '1') ? 'checked' : '' }}>
-                    <label class="form-check-label" for="statusCheck">
-                        <i class="fas fa-check-circle text-success me-1"></i> Aktifkan (ditampilkan di website)
-                    </label>
-                </div>
+            <div class="checkbox-group">
+                <input type="checkbox" name="status" value="1" id="status" checked>
+                <label for="status">Aktifkan</label>
             </div>
             
-            <hr class="my-4">
-            
-            <div class="d-flex gap-2">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save me-2"></i> Simpan ke Database
-                </button>
-                <a href="{{ route('admin.informasi.index') }}" class="btn btn-secondary">
-                    <i class="fas fa-times me-2"></i> Batal
-                </a>
+            <div class="btn-group">
+                <button type="submit" class="btn-primary">Simpan</button>
+                <a href="{{ route('admin.informasi.index') }}" class="btn-secondary">Batal</a>
             </div>
         </form>
     </div>
@@ -92,18 +219,17 @@
 <script>
     document.getElementById('inputGambar').addEventListener('change', function(e) {
         const file = e.target.files[0];
-        const previewContainer = document.getElementById('previewContainer');
         const previewImage = document.getElementById('previewImage');
         
         if (file) {
             const reader = new FileReader();
             reader.onload = function(event) {
                 previewImage.src = event.target.result;
-                previewContainer.style.display = 'block';
+                previewImage.style.display = 'block';
             }
             reader.readAsDataURL(file);
         } else {
-            previewContainer.style.display = 'none';
+            previewImage.style.display = 'none';
         }
     });
 </script>

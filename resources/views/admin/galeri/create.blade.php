@@ -1,144 +1,309 @@
-{{-- resources/views/admin/galeri/create.blade.php --}}
 @extends('layouts.admin')
 
 @section('title', 'Tambah Galeri')
 
 @section('content')
 <style>
-    .preview-container {
+    .card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+    }
+    
+    .card-header {
+        padding: 16px 24px;
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .card-header h5 {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #003366;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .card-header h5 i {
+        color: #c6a43b;
+    }
+    
+    .card-body {
+        padding: 24px;
+    }
+    
+    .mb-3 {
+        margin-bottom: 20px;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: #1e293b;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+        outline: none;
+        border-color: #003366;
+        box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+    }
+    
+    textarea.form-control {
+        resize: vertical;
+        min-height: 100px;
+    }
+    
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .col-half {
+        flex: 1;
+        min-width: 200px;
+    }
+    
+    .preview-image {
         margin-top: 10px;
+        max-width: 120px;
+        border-radius: 10px;
         display: none;
     }
-    .preview-image {
-        max-width: 200px;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 20px 0;
     }
-    .required:after {
-        content: " *";
-        color: red;
+    
+    .checkbox-group input {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+    
+    .checkbox-group label {
+        margin: 0;
+        cursor: pointer;
+    }
+    
+    .checkbox-group small {
+        display: block;
+        font-weight: normal;
+        color: #94a3b8;
+        font-size: 0.7rem;
+        margin-left: 28px;
+        margin-top: -5px;
+    }
+    
+    .btn-group {
+        display: flex;
+        gap: 12px;
+        margin-top: 24px;
+    }
+    
+    .btn-save {
+        background: linear-gradient(135deg, #003366 0%, #1a4a7a 100%);
+        color: white;
+        padding: 10px 24px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-save:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
+    }
+    
+    .btn-cancel {
+        background: #f1f5f9;
+        color: #475569;
+        padding: 10px 24px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-cancel:hover {
+        background: #e2e8f0;
+        transform: translateY(-2px);
+    }
+    
+    .alert-danger {
+        background: #ffebee;
+        color: #c62828;
+        padding: 12px 16px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        border-left: 4px solid #c62828;
+        font-size: 0.85rem;
+    }
+    
+    .alert-danger ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+    
+    .form-text {
+        font-size: 0.7rem;
+        color: #94a3b8;
+        margin-top: 5px;
+    }
+    
+    .form-text i {
+        margin-right: 4px;
+    }
+    
+    @media (max-width: 768px) {
+        .card-header {
+            padding: 12px 18px;
+        }
+        
+        .card-body {
+            padding: 18px;
+        }
+        
+        .row {
+            flex-direction: column;
+            gap: 0;
+        }
+        
+        .btn-save, .btn-cancel {
+            padding: 8px 18px;
+            font-size: 0.8rem;
+        }
     }
 </style>
 
 <div class="card">
     <div class="card-header">
-        <h5 class="mb-0">
-            <i class="fas fa-plus-circle me-2" style="color: #c6a43b;"></i>
+        <h5>
+            <i class="fas fa-plus-circle"></i>
             Tambah Galeri Baru
         </h5>
     </div>
+    
     <div class="card-body">
-        <form action="{{ route('admin.galeri.store') }}" method="POST" enctype="multipart/form-data" id="formGaleri">
+        @if($errors->any())
+            <div class="alert-danger">
+                <ul class="mb-0">
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form action="{{ route('admin.galeri.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             
             <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label class="form-label required">Judul</label>
-                    <input type="text" name="judul" class="form-control @error('judul') is-invalid @enderror" 
-                           value="{{ old('judul') }}" required placeholder="Masukkan judul galeri">
-                    @error('judul')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                
-                <div class="col-md-6 mb-3">
-                    <label class="form-label required">Kategori</label>
-                    <select name="kategori" class="form-control @error('kategori') is-invalid @enderror" required>
-                        <option value="">-- Pilih Kategori --</option>
-                        <option value="Balige" {{ old('kategori') == 'Balige' ? 'selected' : '' }}> Balige</option>
-                        <option value="Meat" {{ old('kategori') == 'Meat' ? 'selected' : '' }}> Meat</option>
-                        <option value="Batu Bahisan" {{ old('kategori') == 'Batu Bahisan' ? 'selected' : '' }}> Batu Bahisan</option>
-                        <option value="Liang Sipege" {{ old('kategori') == 'Liang Sipege' ? 'selected' : '' }}> Liang Sipege</option>
-                    </select>
-                    <small class="text-muted">Pilih kategori untuk menentukan folder penyimpanan gambar</small>
-                    @error('kategori')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                
-                <div class="col-md-12 mb-3">
-                    <label class="form-label required">Deskripsi</label>
-                    <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" 
-                              rows="4" required placeholder="Masukkan deskripsi galeri">{{ old('deskripsi') }}</textarea>
-                    @error('deskripsi')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                
-                <div class="col-md-6 mb-3">
-                    <label class="form-label required">Gambar</label>
-                    <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" 
-                           accept="image/jpeg,image/png,image/jpg" required id="inputGambar">
-                    <small class="text-muted">Format: JPG, PNG. Max: 2MB</small>
-                    <div class="preview-container" id="previewContainer">
-                        <img id="previewImage" class="preview-image" alt="Preview Gambar">
+                <div class="col-half">
+                    <div class="mb-3">
+                        <label>Judul</label>
+                        <input type="text" name="judul" class="form-control" value="{{ old('judul') }}" placeholder="Masukkan judul galeri" required>
                     </div>
-                    @error('gambar')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
                 </div>
                 
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">Lokasi</label>
-                    <input type="text" name="lokasi" class="form-control @error('lokasi') is-invalid @enderror" 
-                           value="{{ old('lokasi') }}" placeholder="Contoh: Desa Sibandang, Pulau Samosir">
-                    @error('lokasi')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">Tanggal Foto</label>
-                    <input type="date" name="tanggal_foto" class="form-control @error('tanggal_foto') is-invalid @enderror" 
-                           value="{{ old('tanggal_foto') }}">
-                    @error('tanggal_foto')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                
-                <div class="col-md-6 mb-3">
-                    <div class="form-check mt-4">
-                        <input class="form-check-input" type="checkbox" name="status" value="1" 
-                               id="statusCheck" {{ old('status') ? 'checked' : 'checked' }}>
-                        <label class="form-check-label" for="statusCheck">
-                            <i class="fas fa-check-circle text-success me-1"></i> Aktifkan
-                        </label>
-                        <br>
-                        <small class="text-muted">Jika diaktifkan, galeri akan ditampilkan di halaman publik</small>
+                <div class="col-half">
+                    <div class="mb-3">
+                        <label>Kategori</label>
+                        <select name="kategori" class="form-control" required>
+                            <option value="">-- Pilih Kategori --</option>
+                            <option value="Balige" {{ old('kategori') == 'Balige' ? 'selected' : '' }}>Balige</option>
+                            <option value="Meat" {{ old('kategori') == 'Meat' ? 'selected' : '' }}>Meat</option>
+                            <option value="Batu Bahisan" {{ old('kategori') == 'Batu Bahisan' ? 'selected' : '' }}>Batu Bahisan</option>
+                            <option value="Liang Sipege" {{ old('kategori') == 'Liang Sipege' ? 'selected' : '' }}>Liang Sipege</option>
+                        </select>
                     </div>
                 </div>
             </div>
             
-            <hr>
+            <div class="mb-3">
+                <label>Deskripsi</label>
+                <textarea name="deskripsi" class="form-control" rows="4" placeholder="Masukkan deskripsi galeri" required>{{ old('deskripsi') }}</textarea>
+            </div>
             
-            <div class="d-flex gap-2">
-                <button type="submit" class="btn" style="background: #c6a43b; border: none; color: white;">
-                    <i class="fas fa-save me-2"></i> Simpan
-                </button>
-                <a href="{{ route('admin.galeri.index') }}" class="btn btn-secondary">
-                    <i class="fas fa-arrow-left me-2"></i> Batal
-                </a>
+            <div class="row">
+                <div class="col-half">
+                    <div class="mb-3">
+                        <label>Gambar</label>
+                        <input type="file" name="gambar" class="form-control" accept="image/*" id="inputGambar" required>
+                        <div class="form-text">
+                            <i class="fas fa-info-circle"></i> Format: JPG, PNG. Max: 2MB
+                        </div>
+                        <img id="previewImage" class="preview-image">
+                    </div>
+                </div>
+                
+                <div class="col-half">
+                    <div class="mb-3">
+                        <label>Lokasi</label>
+                        <input type="text" name="lokasi" class="form-control" placeholder="Contoh: Desa Sibandang, Pulau Samosir" value="{{ old('lokasi') }}">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label>Tanggal Foto</label>
+                        <input type="date" name="tanggal_foto" class="form-control" value="{{ old('tanggal_foto') }}">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" name="status" value="1" id="status" {{ old('status') ? 'checked' : '' }}>
+                <label for="status">Aktifkan</label>
+            </div>
+            <div class="form-text" style="margin-top: -10px; margin-bottom: 20px; margin-left: 28px;">
+                Jika diaktifkan, galeri akan ditampilkan di halaman publik
+            </div>
+            
+            <div class="btn-group">
+                <button type="submit" class="btn-save">Simpan</button>
+                <a href="{{ route('admin.galeri.index') }}" class="btn-cancel">Batal</a>
             </div>
         </form>
     </div>
 </div>
 
 <script>
-    // Preview gambar sebelum upload
     document.getElementById('inputGambar').addEventListener('change', function(e) {
         const file = e.target.files[0];
-        const previewContainer = document.getElementById('previewContainer');
         const previewImage = document.getElementById('previewImage');
         
         if (file) {
             const reader = new FileReader();
             reader.onload = function(event) {
                 previewImage.src = event.target.result;
-                previewContainer.style.display = 'block';
+                previewImage.style.display = 'block';
             }
             reader.readAsDataURL(file);
         } else {
-            previewContainer.style.display = 'none';
+            previewImage.style.display = 'none';
         }
     });
 </script>

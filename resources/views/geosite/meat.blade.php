@@ -35,27 +35,13 @@
     body {
         font-family: 'Inter', sans-serif;
         color: var(--text-dark);
+        overflow-x: hidden;
     }
     
     /* ==================== ANIMATIONS ==================== */
     @keyframes fadeInUp {
         from { opacity: 0; transform: translateY(40px); }
         to { opacity: 1; transform: translateY(0); }
-    }
-    
-    @keyframes fadeInLeft {
-        from { opacity: 0; transform: translateX(-40px); }
-        to { opacity: 1; transform: translateX(0); }
-    }
-    
-    @keyframes fadeInRight {
-        from { opacity: 0; transform: translateX(40px); }
-        to { opacity: 1; transform: translateX(0); }
-    }
-    
-    @keyframes zoomIn {
-        from { opacity: 0; transform: scale(0.95); }
-        to { opacity: 1; transform: scale(1); }
     }
     
     @keyframes bounce {
@@ -65,8 +51,9 @@
     
     /* ==================== HERO SLIDER ==================== */
     .hero-meat {
-        height: 85vh;
-        min-height: 600px;
+        height: 100vh;
+        max-height: 700px;
+        min-height: 500px;
         position: relative;
         overflow: hidden;
         margin-top: 0;
@@ -107,15 +94,9 @@
         background: linear-gradient(135deg, rgba(0,51,102,0.5) 0%, rgba(0,0,0,0.4) 100%);
     }
     
-    .slide-1 { background-image: url('{{ asset("image/meat/slide1.jpg") }}'); }
-    .slide-2 { background-image: url('{{ asset("image/meat/slide2.jpg") }}'); }
-    .slide-3 { background-image: url('{{ asset("image/meat/slide3.jpg") }}'); }
-    .slide-4 { background-image: url('{{ asset("image/meat/slide4.jpg") }}'); }
-    .slide-5 { background-image: url('{{ asset("image/meat/slide5.jpg") }}'); }
-    
     .hero-content {
         position: absolute;
-        bottom: 20%;
+        bottom: 15%;
         left: 0;
         right: 0;
         text-align: center;
@@ -175,8 +156,8 @@
     }
     
     .dot {
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
         border-radius: 50%;
         background: rgba(255,255,255,0.5);
         cursor: pointer;
@@ -185,38 +166,38 @@
     
     .dot.active {
         background: var(--gold);
-        width: 28px;
+        width: 24px;
         border-radius: 10px;
     }
     
     .scroll-indicator {
         position: absolute;
-        bottom: 30px;
+        bottom: 20px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 15;
         animation: bounce 2s infinite;
         cursor: pointer;
         color: white;
-        font-size: 0.65rem;
+        font-size: 0.6rem;
         letter-spacing: 0.2em;
         text-transform: uppercase;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
         opacity: 0.7;
     }
     
     .scroll-indicator .line {
         width: 1px;
-        height: 35px;
+        height: 30px;
         background: white;
     }
     
     /* ==================== SECTION STYLES ==================== */
     .section {
-        padding: 80px 0;
+        padding: 60px 0;
     }
     
     .section-white {
@@ -230,67 +211,63 @@
     .container {
         max-width: 1280px;
         margin: 0 auto;
-        padding: 0 24px;
+        padding: 0 20px;
     }
     
     .section-header {
         text-align: center;
-        margin-bottom: 55px;
+        margin-bottom: 40px;
     }
     
     .section-header .badge {
         display: inline-block;
         background: rgba(198, 164, 59, 0.12);
         color: var(--gold-dark);
-        padding: 5px 16px;
+        padding: 4px 14px;
         border-radius: 30px;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         font-weight: 600;
         letter-spacing: 1.5px;
         text-transform: uppercase;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
     }
     
     .section-header h2 {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
         font-weight: 700;
         color: var(--primary-dark);
         font-family: 'Playfair Display', serif;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
     }
     
     .divider {
-        width: 60px;
+        width: 50px;
         height: 2px;
         background: var(--gold);
-        margin: 0 auto 20px;
+        margin: 0 auto 16px;
         border-radius: 2px;
         transition: width 0.4s ease;
     }
     
-    .section-header:hover .divider {
-        width: 100px;
-    }
-    
     .section-header p {
         color: var(--text-light);
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         max-width: 600px;
         margin: 0 auto;
-        line-height: 1.7;
+        line-height: 1.6;
     }
     
     /* ==================== SEJARAH ==================== */
     .sejarah-grid {
         display: flex;
         flex-direction: column;
-        gap: 70px;
+        gap: 50px;
     }
     
     .sejarah-item {
         display: flex;
         align-items: center;
-        gap: 60px;
+        gap: 40px;
         flex-wrap: wrap;
     }
     
@@ -300,7 +277,8 @@
     
     .sejarah-image {
         flex: 1;
-        border-radius: 24px;
+        min-width: 280px;
+        border-radius: 20px;
         overflow: hidden;
         box-shadow: var(--shadow-lg);
         transition: all 0.4s ease;
@@ -308,31 +286,28 @@
     }
     
     .sejarah-image:hover {
-        transform: translateY(-8px);
+        transform: translateY(-5px);
         box-shadow: var(--shadow-xl);
     }
     
     .sejarah-image img {
         width: 100%;
-        height: 340px;
+        height: 260px;
         object-fit: cover;
         transition: transform 0.6s ease;
     }
     
-    .sejarah-image:hover img {
-        transform: scale(1.03);
-    }
-    
     .sejarah-text {
         flex: 1;
+        min-width: 280px;
     }
     
     .sejarah-text h3 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         font-weight: 700;
         color: var(--primary-dark);
         font-family: 'Playfair Display', serif;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
         position: relative;
         display: inline-block;
     }
@@ -340,47 +315,32 @@
     .sejarah-text h3::after {
         content: '';
         position: absolute;
-        bottom: -10px;
+        bottom: -8px;
         left: 0;
-        width: 50px;
+        width: 40px;
         height: 2px;
         background: var(--gold);
         transition: width 0.3s ease;
     }
     
-    .sejarah-item:hover .sejarah-text h3::after {
-        width: 80px;
-    }
-    
     .sejarah-text p {
         color: var(--text-gray);
-        line-height: 1.8;
-        font-size: 1rem;
-        margin-top: 15px;
+        line-height: 1.7;
+        font-size: 0.9rem;
+        margin-top: 12px;
+        text-align: justify;
     }
     
     /* ==================== CARDS ==================== */
-    .grid-umkm {
+    .grid-umkm, .grid-3, .grid-2 {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 30px;
-    }
-    
-    .grid-3 {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 30px;
-    }
-    
-    .grid-2 {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 30px;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
     }
     
     .card {
         background: var(--white);
-        border-radius: 24px;
+        border-radius: 20px;
         overflow: hidden;
         box-shadow: var(--shadow-md);
         transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
@@ -390,42 +350,38 @@
     }
     
     .card:hover {
-        transform: translateY(-8px);
+        transform: translateY(-5px);
         box-shadow: var(--shadow-xl);
     }
     
     .card-img {
         width: 100%;
-        height: 220px;
+        height: 200px;
         object-fit: cover;
         transition: transform 0.5s ease;
         cursor: pointer;
     }
     
-    .card:hover .card-img {
-        transform: scale(1.05);
-    }
-    
     .card-content {
-        padding: 22px;
+        padding: 18px;
         flex: 1;
         display: flex;
         flex-direction: column;
     }
     
     .card-content h3 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-weight: 700;
         color: var(--primary-dark);
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         font-family: 'Playfair Display', serif;
     }
     
     .card-content p {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         color: var(--text-gray);
-        line-height: 1.6;
-        margin-bottom: 15px;
+        line-height: 1.5;
+        margin-bottom: 12px;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         line-clamp: 3;
@@ -434,17 +390,17 @@
     }
     
     .card-location, .card-contact, .card-price {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         color: var(--gold-dark);
-        margin-top: 8px;
+        margin-top: 6px;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
     }
     
     .fasilitas-item {
         background: var(--white);
-        border-radius: 20px;
+        border-radius: 18px;
         overflow: hidden;
         box-shadow: var(--shadow-md);
         transition: all 0.4s ease;
@@ -453,43 +409,34 @@
         cursor: pointer;
     }
     
-    .fasilitas-item:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-xl);
-    }
-    
     .fasilitas-img {
-        width: 130px;
-        height: 130px;
+        width: 110px;
+        height: 110px;
         object-fit: cover;
         transition: transform 0.4s ease;
         cursor: pointer;
     }
     
-    .fasilitas-item:hover .fasilitas-img {
-        transform: scale(1.05);
-    }
-    
     .fasilitas-content {
-        padding: 18px 18px 18px 20px;
+        padding: 14px 16px;
         flex: 1;
         display: flex;
         flex-direction: column;
     }
     
     .fasilitas-content h4 {
-        font-size: 1rem;
+        font-size: 0.95rem;
         font-weight: 700;
         color: var(--primary-dark);
-        margin-bottom: 8px;
+        margin-bottom: 6px;
         font-family: 'Playfair Display', serif;
     }
     
     .fasilitas-content p {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         color: var(--text-gray);
-        margin-bottom: 10px;
-        line-height: 1.5;
+        margin-bottom: 8px;
+        line-height: 1.4;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         line-clamp: 2;
@@ -498,38 +445,39 @@
     }
     
     .fasilitas-price {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         color: var(--gold-dark);
         font-weight: 600;
         display: inline-block;
-        padding: 4px 12px;
+        padding: 3px 10px;
         background: rgba(198, 164, 59, 0.1);
         border-radius: 20px;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
+        width: fit-content;
     }
     
     .btn-readmore {
-        margin-top: 15px;
+        margin-top: 12px;
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
         background: transparent;
         border: none;
         color: var(--gold-dark);
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
-        padding: 8px 0;
+        padding: 6px 0;
         width: fit-content;
     }
     
     .btn-readmore:hover {
-        gap: 12px;
+        gap: 10px;
         color: var(--primary-dark);
     }
     
-    /* ==================== MODAL PREMIUM ==================== */
+    /* ==================== MODAL ==================== */
     .detail-modal {
         display: none;
         position: fixed;
@@ -551,14 +499,14 @@
     
     .detail-modal-container {
         max-width: 900px;
-        margin: 100px auto 50px;
-        padding: 0 20px;
+        margin: 80px auto 40px;
+        padding: 0 16px;
     }
     
     .detail-modal-close {
         position: sticky;
-        top: 20px;
-        margin-bottom: 20px;
+        top: 16px;
+        margin-bottom: 16px;
         text-align: right;
         z-index: 10001;
     }
@@ -566,10 +514,10 @@
     .close-modal-btn {
         background: white;
         border: 1px solid #e2e8f0;
-        width: 45px;
-        height: 45px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         cursor: pointer;
         transition: all 0.3s ease;
         box-shadow: var(--shadow-sm);
@@ -584,14 +532,14 @@
     
     .detail-modal-wrapper {
         background: var(--white);
-        border-radius: 24px;
+        border-radius: 20px;
         overflow: hidden;
         box-shadow: var(--shadow-lg);
     }
     
     .detail-modal-header {
         position: relative;
-        height: 400px;
+        height: 300px;
         overflow: hidden;
     }
     
@@ -607,38 +555,38 @@
         left: 0;
         right: 0;
         background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-        padding: 40px 40px 30px;
+        padding: 30px 25px 20px;
     }
     
     .detail-modal-header .overlay .type {
         display: inline-block;
         background: var(--gold);
         color: var(--primary-dark);
-        padding: 6px 18px;
+        padding: 4px 14px;
         border-radius: 30px;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         font-weight: 700;
         letter-spacing: 1px;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
     
     .detail-modal-header .overlay h2 {
         color: white;
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-family: 'Playfair Display', serif;
-        margin-bottom: 10px;
+        margin-bottom: 6px;
     }
     
     .detail-modal-body {
-        padding: 40px;
+        padding: 25px;
     }
     
     .detail-info {
         display: flex;
         flex-wrap: wrap;
-        gap: 25px;
-        margin-bottom: 30px;
-        padding-bottom: 20px;
+        gap: 15px;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
         border-bottom: 1px solid var(--bg-gray);
     }
     
@@ -646,143 +594,108 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         color: var(--text-gray);
     }
     
     .detail-info i {
-        width: 24px;
+        width: 20px;
         color: var(--gold);
     }
     
     .full-description {
         color: var(--text-gray);
-        line-height: 1.8;
-        font-size: 1rem;
-    }
-    
-    .full-description p {
-        margin-bottom: 1rem;
+        line-height: 1.7;
+        font-size: 0.9rem;
     }
     
     /* ==================== MAPS SECTION ==================== */
     .maps-section {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 30px;
+        gap: 25px;
     }
     
     .maps-container {
-        border-radius: 24px;
+        border-radius: 20px;
         overflow: hidden;
         box-shadow: var(--shadow-lg);
         transition: all 0.4s ease;
     }
     
-    .maps-container:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-xl);
-    }
-    
     .maps-container iframe {
         width: 100%;
-        height: 380px;
+        height: 320px;
         border: 0;
     }
     
     .rute-info {
         display: flex;
         flex-direction: column;
-        gap: 18px;
+        gap: 15px;
     }
     
     .rute-item {
         background: var(--white);
-        padding: 22px;
-        border-radius: 20px;
+        padding: 18px;
+        border-radius: 18px;
         box-shadow: var(--shadow-md);
         transition: all 0.3s ease;
-        border-left: 4px solid var(--gold);
-    }
-    
-    .rute-item:hover {
-        transform: translateX(8px);
-        box-shadow: var(--shadow-lg);
+        border-left: 3px solid var(--gold);
     }
     
     .rute-item h4 {
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-weight: 700;
         color: var(--primary-dark);
-        margin-bottom: 12px;
+        margin-bottom: 10px;
     }
     
     .rute-item h4 i {
         color: var(--gold);
-        margin-right: 10px;
-        width: 24px;
+        margin-right: 8px;
+        width: 22px;
     }
     
     .rute-item p {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         color: var(--text-gray);
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         line-height: 1.5;
     }
     
     .rute-time {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         color: var(--gold-dark);
         font-weight: 600;
         display: inline-block;
-        padding: 4px 12px;
+        padding: 3px 10px;
         background: rgba(198, 164, 59, 0.1);
         border-radius: 20px;
     }
     
     .empty-state {
         text-align: center;
-        padding: 60px;
+        padding: 40px;
         background: var(--white);
-        border-radius: 24px;
+        border-radius: 20px;
         box-shadow: var(--shadow-sm);
     }
     
     .empty-state i {
-        font-size: 3rem;
+        font-size: 2.5rem;
         color: var(--gold);
-        margin-bottom: 16px;
+        margin-bottom: 12px;
         opacity: 0.5;
-    }
-    
-    .empty-state p {
-        color: var(--text-light);
-        font-size: 0.9rem;
     }
     
     /* ==================== CTA SECTION ==================== */
     .cta-section {
         background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-        padding: 70px 0;
+        padding: 50px 0;
         text-align: center;
         position: relative;
         overflow: hidden;
-    }
-    
-    .cta-section::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-        animation: rotate 25s linear infinite;
-    }
-    
-    @keyframes rotate {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
     }
     
     .cta-content {
@@ -790,36 +703,37 @@
         margin: 0 auto;
         position: relative;
         z-index: 2;
+        padding: 0 20px;
     }
     
     .cta-content h3 {
-        font-size: 2rem;
+        font-size: 1.6rem;
         font-family: 'Playfair Display', serif;
         font-weight: 700;
-        margin-bottom: 18px;
+        margin-bottom: 14px;
         color: var(--white);
     }
     
     .cta-content .divider {
-        margin: 0 auto 20px;
+        margin: 0 auto 16px;
         background: var(--gold);
     }
     
     .cta-content p {
         color: rgba(255,255,255,0.85);
-        margin-bottom: 30px;
-        font-size: 0.95rem;
-        line-height: 1.7;
+        margin-bottom: 25px;
+        font-size: 0.85rem;
+        line-height: 1.6;
     }
     
     .cta-btn {
         display: inline-block;
         background: var(--gold);
         color: var(--primary-dark);
-        padding: 12px 40px;
+        padding: 10px 32px;
         border-radius: 50px;
         text-decoration: none;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         font-weight: 700;
         letter-spacing: 1.5px;
         text-transform: uppercase;
@@ -828,71 +742,249 @@
     
     .cta-btn:hover {
         background: var(--white);
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    
+    /* ==================== LIGHTBOX ==================== */
+    .lightbox-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.96);
+        z-index: 20000;
+        backdrop-filter: blur(12px);
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    
+    .lightbox-overlay.active {
+        display: flex;
+    }
+    
+    .lightbox-container {
+        max-width: 90%;
+        max-height: 90%;
+        text-align: center;
+    }
+    
+    .lightbox-image {
+        max-width: 100%;
+        max-height: 80vh;
+        object-fit: contain;
+        border-radius: 12px;
+    }
+    
+    .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        background: rgba(0,0,0,0.5);
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    
+    .lightbox-close:hover {
+        background: var(--gold);
+        transform: rotate(90deg);
     }
     
     /* ==================== RESPONSIVE ==================== */
-    @media (max-width: 1024px) {
-        .hero-title { font-size: 3rem; }
-        .grid-3 { grid-template-columns: repeat(2, 1fr); }
-        .detail-modal-header { height: 300px; }
-        .detail-modal-header .overlay h2 { font-size: 1.5rem; }
-        .detail-modal-body { padding: 30px; }
-    }
-    
     @media (max-width: 992px) {
-        .sejarah-item, .sejarah-item.reverse { flex-direction: column; text-align: center; }
-        .sejarah-text h3::after { left: 50%; transform: translateX(-50%); }
-        .sejarah-text { text-align: center; }
-        .sejarah-image img { height: 280px; }
-        .maps-section { grid-template-columns: 1fr; }
-        .hero-title { font-size: 2.5rem; }
+        .hero-title { font-size: 3rem; }
+        .sejarah-item, .sejarah-item.reverse { 
+            flex-direction: column; 
+            text-align: center; 
+        }
+        .sejarah-text h3::after { 
+            left: 50%; 
+            transform: translateX(-50%); 
+        }
+        .sejarah-text { 
+            text-align: center; 
+        }
+        .maps-section { 
+            grid-template-columns: 1fr; 
+        }
     }
     
     @media (max-width: 768px) {
-        .hero-meat { height: 70vh; min-height: 500px; }
-        .hero-title { font-size: 2rem; }
-        .hero-subtitle { font-size: 0.65rem; letter-spacing: 0.2em; }
-        .hero-badge { font-size: 0.6rem; padding: 4px 14px; }
-        .section { padding: 60px 0; }
-        .section-header h2 { font-size: 1.6rem; }
-        .sejarah-image img { height: 230px; }
-        .card-img { height: 200px; }
-        .fasilitas-item { flex-direction: column; }
-        .fasilitas-img { width: 100%; height: 180px; }
-        .fasilitas-content { padding: 18px; text-align: center; }
-        .maps-container iframe { height: 280px; }
-        .cta-section { padding: 50px 0; }
-        .cta-content h3 { font-size: 1.5rem; }
-        .empty-state { grid-column: span 1; }
-        .detail-modal-header { height: 250px; }
-        .detail-modal-header .overlay { padding: 25px 25px 20px; }
-        .detail-modal-header .overlay h2 { font-size: 1.3rem; }
-        .detail-modal-body { padding: 20px; }
-        .detail-info { gap: 15px; }
-        .grid-umkm, .grid-3, .grid-2 { grid-template-columns: 1fr; }
-        .detail-modal-container { margin: 80px auto 30px; }
+        .hero-meat { 
+            height: 80vh; 
+            max-height: 600px;
+            min-height: 450px;
+        }
+        .hero-title { 
+            font-size: 2rem; 
+        }
+        .hero-subtitle { 
+            font-size: 0.55rem; 
+            letter-spacing: 0.15em; 
+        }
+        .hero-badge { 
+            font-size: 0.55rem; 
+            padding: 4px 12px; 
+            margin-bottom: 12px;
+        }
+        .hero-divider {
+            margin: 15px auto;
+            width: 40px;
+        }
+        .section { 
+            padding: 50px 0; 
+        }
+        .section-header h2 { 
+            font-size: 1.4rem; 
+        }
+        .sejarah-image img { 
+            height: 220px; 
+        }
+        .sejarah-text h3 {
+            font-size: 1.3rem;
+        }
+        .sejarah-text p {
+            font-size: 0.85rem;
+            text-align: center;
+        }
+        .grid-umkm, .grid-3, .grid-2 { 
+            grid-template-columns: 1fr; 
+            gap: 20px;
+        }
+        .fasilitas-item { 
+            flex-direction: column; 
+        }
+        .fasilitas-img { 
+            width: 100%; 
+            height: 160px; 
+        }
+        .fasilitas-content { 
+            padding: 16px; 
+            text-align: center; 
+        }
+        .fasilitas-price {
+            margin: 0 auto 8px;
+        }
+        .btn-readmore {
+            margin: 8px auto 0;
+        }
+        .maps-container iframe { 
+            height: 250px; 
+        }
+        .cta-section { 
+            padding: 40px 0; 
+        }
+        .cta-content h3 { 
+            font-size: 1.3rem; 
+        }
+        .detail-modal-header { 
+            height: 220px; 
+        }
+        .detail-modal-header .overlay h2 { 
+            font-size: 1.2rem; 
+        }
+        .detail-modal-body { 
+            padding: 20px; 
+        }
+        .detail-modal-container { 
+            margin: 60px auto 30px; 
+        }
+        .slider-dots {
+            bottom: 20px;
+            gap: 8px;
+        }
+        .dot {
+            width: 6px;
+            height: 6px;
+        }
+        .dot.active {
+            width: 20px;
+        }
+        .lightbox-close {
+            top: 10px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            font-size: 1.5rem;
+        }
     }
     
     @media (max-width: 480px) {
-        .hero-title { font-size: 1.6rem; }
-        .container { padding: 0 16px; }
-        .section-header h2 { font-size: 1.4rem; }
-        .detail-modal-header { height: 200px; }
-        .detail-modal-header .overlay .type { font-size: 0.6rem; }
-        .detail-modal-header .overlay h2 { font-size: 1.1rem; }
+        .hero-title { 
+            font-size: 1.6rem; 
+        }
+        .hero-subtitle {
+            font-size: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+        .hero-badge {
+            font-size: 0.5rem;
+            padding: 3px 10px;
+        }
+        .container { 
+            padding: 0 16px; 
+        }
+        .section-header h2 { 
+            font-size: 1.2rem; 
+        }
+        .sejarah-image img { 
+            height: 180px; 
+        }
+        .sejarah-text h3 {
+            font-size: 1.1rem;
+        }
+        .card-content h3 {
+            font-size: 1rem;
+        }
+        .rute-item {
+            padding: 14px;
+        }
+        .detail-modal-header { 
+            height: 180px; 
+        }
+        .detail-modal-header .overlay h2 { 
+            font-size: 1rem; 
+        }
+        .detail-info p {
+            font-size: 0.7rem;
+        }
+        .full-description {
+            font-size: 0.8rem;
+        }
+        .close-modal-btn {
+            width: 35px;
+            height: 35px;
+            font-size: 1rem;
+        }
+        .cta-content h3 {
+            font-size: 1.2rem;
+        }
+        .cta-btn {
+            padding: 8px 24px;
+            font-size: 0.65rem;
+        }
     }
 </style>
 
 <!-- ==================== HERO SLIDER ==================== -->
 <section class="hero-meat">
     <div class="slides-container">
-        <div class="slide slide-1 active"></div>
-        <div class="slide slide-2"></div>
-        <div class="slide slide-3"></div>
-        <div class="slide slide-4"></div>
-        <div class="slide slide-5"></div>
+        <div class="slide slide-1 active" style="background-image: url('{{ asset('image/meat/slide1.jpg') }}');"></div>
+        <div class="slide slide-2" style="background-image: url('{{ asset('image/meat/slide2.jpg') }}');"></div>
+        <div class="slide slide-3" style="background-image: url('{{ asset('image/meat/slide3.jpg') }}');"></div>
+        <div class="slide slide-4" style="background-image: url('{{ asset('image/meat/slide4.jpg') }}');"></div>
+        <div class="slide slide-5" style="background-image: url('{{ asset('image/meat/slide5.jpg') }}');"></div>
     </div>
     
     <div class="slider-dots">
@@ -928,8 +1020,8 @@
         
         <div class="sejarah-grid">
             <div class="sejarah-item" data-aos="fade-up">
-                <div class="sejarah-image" onclick="openImageModal('{{ asset('image/meat/slide1.jpg') }}')">
-                    <img src="{{ asset('image/meat/slide1.jpg') }}" alt="Desa Meat">
+                <div class="sejarah-image" onclick="openLightbox('{{ asset('image/meat/slide1.jpg') }}', 'Desa Meat', 'Desa wisata adat Batak di tepi Danau Toba')">
+                    <img src="{{ asset('image/meat/slide1.jpg') }}" alt="Desa Meat" loading="lazy">
                 </div>
                 <div class="sejarah-text">
                     <h3>Desa Meat - Jantung Budaya Batak</h3>
@@ -938,8 +1030,8 @@
             </div>
             
             <div class="sejarah-item reverse" data-aos="fade-up" data-aos-delay="100">
-                <div class="sejarah-image" onclick="openImageModal('{{ asset('image/meat/slide2.jpg') }}')">
-                    <img src="{{ asset('image/meat/slide2.jpg') }}" alt="Tradisi Batak">
+                <div class="sejarah-image" onclick="openLightbox('{{ asset('image/meat/slide2.jpg') }}', 'Tradisi Batak', 'Tradisi menenun Ulos dan budaya Batak yang masih lestari')">
+                    <img src="{{ asset('image/meat/slide2.jpg') }}" alt="Tradisi Batak" loading="lazy">
                 </div>
                 <div class="sejarah-text">
                     <h3>Tradisi Hidup yang Diwariskan</h3>
@@ -948,8 +1040,8 @@
             </div>
             
             <div class="sejarah-item" data-aos="fade-up" data-aos-delay="200">
-                <div class="sejarah-image" onclick="openImageModal('{{ asset('image/meat/slide3.jpg') }}')">
-                    <img src="{{ asset('image/meat/slide3.jpg') }}" alt="Wisata Budaya">
+                <div class="sejarah-image" onclick="openLightbox('{{ asset('image/meat/slide3.jpg') }}', 'Wisata Budaya', 'Destinasi wisata budaya unggulan di Geopark Toba')">
+                    <img src="{{ asset('image/meat/slide3.jpg') }}" alt="Wisata Budaya" loading="lazy">
                 </div>
                 <div class="sejarah-text">
                     <h3>Destinasi Wisata Budaya Unggulan</h3>
@@ -977,17 +1069,19 @@
                     <img src="{{ asset('storage/' . $item->gambar) }}" 
                          class="card-img" 
                          alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openImageModal('{{ asset('storage/' . $item->gambar) }}')" 
-                         onerror="this.src='{{ asset('image/meat/slide1.jpg') }}'">
+                         onclick="event.stopPropagation(); openLightbox('{{ asset('storage/' . $item->gambar) }}', '{{ $item->nama }}', '{{ Str::limit($item->deskripsi ?? '', 100) }}')" 
+                         onerror="this.src='{{ asset('image/meat/slide1.jpg') }}'"
+                         loading="lazy">
                 @else
                     <img src="{{ asset('image/meat/slide1.jpg') }}" 
                          class="card-img" 
                          alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openImageModal('{{ asset('image/meat/slide1.jpg') }}')">
+                         onclick="event.stopPropagation(); openLightbox('{{ asset('image/meat/slide1.jpg') }}', '{{ $item->nama }}', 'UMKM Lokal Meat')"
+                         loading="lazy">
                 @endif
                 <div class="card-content">
-                    <h3>{{ $item->nama }}</h3>
-                    <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 90) }}</p>
+                    <h3>{{ Str::limit($item->nama, 35) }}</h3>
+                    <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 80) }}</p>
                     <div class="card-location"><i class="fas fa-map-marker-alt"></i> {{ $item->lokasi ?? 'Desa Meat' }}</div>
                     <div class="card-contact"><i class="fas fa-phone"></i> {{ $item->kontak ?? 'Hubungi pengrajin' }}</div>
                     <button class="btn-readmore" onclick="event.stopPropagation(); openDetailModal('umkm', {{ $index }})">
@@ -1022,17 +1116,19 @@
                     <img src="{{ asset('storage/' . $item->gambar) }}" 
                          class="card-img" 
                          alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openImageModal('{{ asset('storage/' . $item->gambar) }}')" 
-                         onerror="this.src='{{ asset('image/meat/slide2.jpg') }}'">
+                         onclick="event.stopPropagation(); openLightbox('{{ asset('storage/' . $item->gambar) }}', '{{ $item->nama }}', 'Penginapan di Desa Meat')" 
+                         onerror="this.src='{{ asset('image/meat/slide2.jpg') }}'"
+                         loading="lazy">
                 @else
                     <img src="{{ asset('image/meat/slide2.jpg') }}" 
                          class="card-img" 
                          alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openImageModal('{{ asset('image/meat/slide2.jpg') }}')">
+                         onclick="event.stopPropagation(); openLightbox('{{ asset('image/meat/slide2.jpg') }}', '{{ $item->nama }}', 'Penginapan di Desa Meat')"
+                         loading="lazy">
                 @endif
                 <div class="card-content">
-                    <h3>{{ $item->nama }}</h3>
-                    <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 90) }}</p>
+                    <h3>{{ Str::limit($item->nama, 35) }}</h3>
+                    <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 80) }}</p>
                     <div class="card-price"><i class="fas fa-tag"></i> {{ $item->harga ?? 'Hubungi pengelola' }}</div>
                     <div class="card-contact"><i class="fas fa-phone"></i> {{ $item->kontak ?? 'Hubungi pengelola' }}</div>
                     <button class="btn-readmore" onclick="event.stopPropagation(); openDetailModal('penginapan', {{ $index }})">
@@ -1067,17 +1163,19 @@
                     <img src="{{ asset('storage/' . $item->gambar) }}" 
                          class="fasilitas-img" 
                          alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openImageModal('{{ asset('storage/' . $item->gambar) }}')" 
-                         onerror="this.src='{{ asset('image/meat/slide3.jpg') }}'">
+                         onclick="event.stopPropagation(); openLightbox('{{ asset('storage/' . $item->gambar) }}', '{{ $item->nama }}', 'Fasilitas di Desa Meat')" 
+                         onerror="this.src='{{ asset('image/meat/slide3.jpg') }}'"
+                         loading="lazy">
                 @else
                     <img src="{{ asset('image/meat/slide3.jpg') }}" 
                          class="fasilitas-img" 
                          alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openImageModal('{{ asset('image/meat/slide3.jpg') }}')">
+                         onclick="event.stopPropagation(); openLightbox('{{ asset('image/meat/slide3.jpg') }}', '{{ $item->nama }}', 'Fasilitas di Desa Meat')"
+                         loading="lazy">
                 @endif
                 <div class="fasilitas-content">
-                    <h4>{{ $item->nama }}</h4>
-                    <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 70) }}</p>
+                    <h4>{{ Str::limit($item->nama, 30) }}</h4>
+                    <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 60) }}</p>
                     <div class="fasilitas-price"><i class="fas fa-tag"></i> {{ $item->harga ?? 'Gratis' }}</div>
                     <button class="btn-readmore" onclick="event.stopPropagation(); openDetailModal('fasilitas', {{ $index }})">
                         Baca Selengkapnya <i class="fas fa-arrow-right"></i>
@@ -1106,7 +1204,7 @@
         
         <div class="maps-section">
             <div class="maps-container" data-aos="fade-right">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0!2d99.0835095!3d2.3339262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e0415b8f7da39%3A0xc6beb74287f355a5!2sBalige%2C%20Toba%20Samosir%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" allowfullscreen loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0!2d99.0835095!3d2.3339262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e0415b8f7da39%3A0xc6beb74287f355a5!2sBalige%2C%20Toba%20Samosir%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" allowfullscreen loading="lazy" title="Peta Lokasi Desa Meat"></iframe>
             </div>
             <div class="rute-info" data-aos="fade-left">
                 <div class="rute-item">
@@ -1141,13 +1239,19 @@
     </div>
 </section>
 
-<!-- ==================== MODAL LIGHTBOX GAMBAR ==================== -->
-<div id="imageModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; cursor: pointer; align-items: center; justify-content: center;">
-    <span style="position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; z-index: 10000;">&times;</span>
-    <img id="modalImage" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+<!-- ==================== LIGHTBOX ZOOM ==================== -->
+<div id="lightboxOverlay" class="lightbox-overlay" onclick="closeLightbox()">
+    <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
+    <div class="lightbox-container" onclick="event.stopPropagation()">
+        <img id="lightboxImage" class="lightbox-image" src="" alt="">
+        <div class="lightbox-caption">
+            <h3 id="lightboxTitle" style="color: var(--gold); margin-top: 15px;"></h3>
+            <p id="lightboxDesc" style="color: rgba(255,255,255,0.7);"></p>
+        </div>
+    </div>
 </div>
 
-<!-- ==================== MODAL DETAIL PREMIUM ==================== -->
+<!-- ==================== MODAL DETAIL ==================== -->
 <div id="detailModal" class="detail-modal">
     <div class="detail-modal-container">
         <div class="detail-modal-close">
@@ -1174,7 +1278,7 @@
 </div>
 
 <script>
-    // Data dari backend untuk SEMUA section
+    // Data dari backend
     const umkmData = @json($umkm ?? []);
     const penginapanData = @json($penginapan ?? []);
     const fasilitasData = @json($fasilitas ?? []);
@@ -1204,13 +1308,15 @@
         slideInterval = setInterval(nextSlide, 5000);
     }
     
-    dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => {
-            clearInterval(slideInterval);
-            showSlide(i);
-            startSlider();
+    if (dots.length) {
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                showSlide(i);
+                startSlider();
+            });
         });
-    });
+    }
     
     startSlider();
     
@@ -1225,26 +1331,31 @@
         });
     });
     
-    // ==================== LIGHTBOX MODAL ====================
-    function openImageModal(src) {
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImage');
-        if (modal && modalImg) {
-            modal.style.display = 'flex';
-            modalImg.src = src;
+    // ==================== LIGHTBOX ====================
+    function openLightbox(src, title, desc) {
+        const overlay = document.getElementById('lightboxOverlay');
+        const lightboxImg = document.getElementById('lightboxImage');
+        const titleEl = document.getElementById('lightboxTitle');
+        const descEl = document.getElementById('lightboxDesc');
+        
+        if (overlay && lightboxImg) {
+            lightboxImg.src = src;
+            titleEl.innerText = title || 'Galeri GeoToba';
+            descEl.innerText = desc || 'Keindahan Geosite Danau Toba';
+            overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
     }
     
-    function closeImageModal() {
-        const modal = document.getElementById('imageModal');
-        if (modal) {
-            modal.style.display = 'none';
+    function closeLightbox() {
+        const overlay = document.getElementById('lightboxOverlay');
+        if (overlay) {
+            overlay.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
     }
     
-    // ==================== DETAIL MODAL PREMIUM ====================
+    // ==================== DETAIL MODAL ====================
     function openDetailModal(type, index) {
         let item = null;
         let typeName = '';
@@ -1262,7 +1373,6 @@
         
         if (!item) return;
         
-        // Set gambar
         let imgSrc = '{{ asset("image/meat/slide1.jpg") }}';
         if (item.gambar) {
             if (item.gambar.startsWith('data:image')) {
@@ -1274,16 +1384,14 @@
             }
         }
         
-        // Update modal
         document.getElementById('detailImg').src = imgSrc;
         document.getElementById('detailType').innerText = typeName;
         document.getElementById('detailTitle').innerText = item.nama || '-';
         document.getElementById('detailLokasi').innerText = item.lokasi || 'Desa Meat';
         document.getElementById('detailKontak').innerText = item.kontak || '-';
         document.getElementById('detailHarga').innerText = item.harga || (typeName === 'UMKM' ? 'Hubungi langsung' : 'Gratis');
-        document.getElementById('detailDeskripsi').innerHTML = item.deskripsi || '<p>Belum ada deskripsi lengkap untuk item ini.</p>';
+        document.getElementById('detailDeskripsi').innerHTML = '<p>' + (item.deskripsi || 'Belum ada deskripsi lengkap untuk item ini.') + '</p>';
         
-        // Tampilkan modal
         const modal = document.getElementById('detailModal');
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -1296,11 +1404,11 @@
     }
     
     // ==================== EVENT LISTENERS ====================
-    const imageModal = document.getElementById('imageModal');
-    if (imageModal) {
-        imageModal.addEventListener('click', function(e) {
-            if (e.target === this || e.target.tagName === 'SPAN') {
-                closeImageModal();
+    const lightboxOverlay = document.getElementById('lightboxOverlay');
+    if (lightboxOverlay) {
+        lightboxOverlay.addEventListener('click', function(e) {
+            if (e.target === this || e.target.classList.contains('lightbox-close')) {
+                closeLightbox();
             }
         });
     }
@@ -1316,7 +1424,7 @@
     
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
-            closeImageModal();
+            closeLightbox();
             closeDetailModal();
         }
     });
@@ -1325,9 +1433,9 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init({
-        duration: 800,
+        duration: 600,
         once: true,
-        offset: 50,
+        offset: 40,
         easing: 'ease-out-quad'
     });
 </script>
