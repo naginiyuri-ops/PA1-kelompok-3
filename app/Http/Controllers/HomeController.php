@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Galeri;
 use App\Models\KoleksiFoto;
+use App\Models\Kontak;
 
 class HomeController extends Controller
 {
@@ -62,5 +63,10 @@ class HomeController extends Controller
             ->get();
         
         return view('pages.home', compact('slide1', 'slide2', 'slide3', 'slide4', 'slide5', 'aboutImage', 'destinasi', 'galeri'));
+    }
+        public function kontak()
+    {
+        $kontak = Kontak::first();
+        return view('pages.kontak', compact('kontak'));
     }
 }

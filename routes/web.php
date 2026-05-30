@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\PenginapanController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\KontakController;
 use App\Http\Controllers\GaleriController as PublicGaleriController;
 use App\Http\Controllers\GeositeController;
 use App\Http\Controllers\InformasiController as PublicInformasiController;
@@ -84,9 +85,8 @@ Route::get('/umkm', [HomeController::class, 'umkm'])->name('umkm');
 Route::get('/budaya', [HomeController::class, 'budaya'])->name('budaya');
 
 // Kontak
-Route::get('/kontak', function () {
-    return view('pages.kontak');
-})->name('kontak');
+Route::get('/kontak', [HomeController::class, 'kontak'])->name('kontak');
+
 
 // Geosite Routes
 Route::get('/geosite/meat', [GeositeController::class, 'meat'])->name('geosite.meat');
@@ -137,4 +137,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('galeri/toggle-status/{id}', [GaleriController::class, 'toggleStatus'])->name('admin.galeri.toggle-status');
     Route::post('berita/toggle-status/{id}', [BeritaController::class, 'toggleStatus'])->name('admin.berita.toggle-status');
     Route::post('informasi/toggle-status/{id}', [InformasiController::class, 'toggleStatus'])->name('admin.informasi.toggle-status');
+
+    // kontak web
+Route::get('/kontak', [KontakController::class, 'edit'])
+    ->name('admin.kontak.edit');
+
+Route::put('/kontak', [KontakController::class, 'update'])
+    ->name('admin.kontak.update');
 });

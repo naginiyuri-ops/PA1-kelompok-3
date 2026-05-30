@@ -363,35 +363,54 @@
 <section class="section">
     <div class="container">
         <div class="contact-grid">
+
             <div class="contact-card">
-                <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                <h3>Alamat </h3>
-                <p>Geosite Danau Toba</p>
-                <p>Meat,Liang sipege,Batu basiha ,Danau Toba</p>
-                <p>Sumatera Utara</p>
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Alamat</h3>
+                <p>{{ $kontak->alamat ?? '-' }}</p>
             </div>
+
             <div class="contact-card">
-                <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                <div class="contact-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
                 <h3>Telepon</h3>
-                <p>+62 823-6582-3679</p>
+                <p>{{ $kontak->telepon ?? '-' }}</p>
             </div>
+
             <div class="contact-card">
-                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
                 <h3>Email</h3>
-                <p>info@geotoba.com</p>
+                <p>{{ $kontak->email ?? '-' }}</p>
             </div>
+</div>
+         <iframe
+         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.544029529995!2d99.0011203!3d2.3213969!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e1b14a5be37ed%3A0x22b416e0db744d4a!2sDesa%20Meat!5e0!3m2!1sid!2sid!4v1780156234277!5m2!1sid!2sid"
+         width="100%"
+         height="400"
+         style="border:0;"
+         allowfullscreen=""
+        loading="lazy">
+    </iframe>
         </div>
     </div>
 </section>
-
 <!-- MAPS FULL WIDTH -->
 <div class="container">
-    <div class="map-full">
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0!2d99.0835095!3d2.3339262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e0415b8f7da39%3A0xc6beb74287f355a5!2sBalige%2C%20Toba%20Samosir%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
-            allowfullscreen="" 
-            loading="lazy">
-        </iframe>
+<div class="text-center my-5">
+    <i class="fas fa-map-marked-alt fa-3x text-primary mb-3"></i>
+    <p>Klik tombol di bawah untuk melihat lokasi wisata pada Google Maps.</p>
+    <a href="{{ $kontak->link_maps }}"
+       target="_blank"
+       class="btn btn-primary btn-lg">
+        <i class="fas fa-location-arrow"></i>
+        Buka Lokasi
+    </a>
+</div>
     </div>
 </div>
 
@@ -450,7 +469,7 @@
                     <p>Senin - Jumat: 08:00 - 17:00 WIB</p>
                     <p>Sabtu - Minggu: 08:00 - 18:00 WIB</p>
                     <div class="hours-divider"></div>
-                    <p><i class="fas fa-map-marker-alt"></i> Pulau Sibandang, Danau Toba</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Desa Meat, Kabupaten Toba</p>
                 </div>
             </div>
         </div>

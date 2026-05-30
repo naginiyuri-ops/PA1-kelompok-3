@@ -704,6 +704,11 @@
         <a href="{{ route('admin.penginapan.index') }}" class="{{ request()->routeIs('admin.penginapan.*') ? 'active' : '' }}">
             <i class="fas fa-hotel"></i> Penginapan
         </a>
+        <li>
+         <a href="{{ route('admin.kontak.edit') }}">
+          <i class="fas fa-address-book"></i>Kontak
+        </a>
+</li>
     </div>
 </div>
 
