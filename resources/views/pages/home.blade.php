@@ -967,7 +967,6 @@
             <h3>Mulai Petualangan Anda</h3>
             <div class="divider"></div>
             <p>Temukan keajaiban geologi dan kekayaan budaya Batak di Geopark Toba, warisan dunia yang diakui UNESCO.</p>
-            <a href="#destinasi" class="cta-btn">Jelajahi Sekarang</a>
         </div>
     </div>
 </section>

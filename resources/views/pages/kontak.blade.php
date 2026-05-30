@@ -367,22 +367,18 @@
                 <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                 <h3>Alamat </h3>
                 <p>Geosite Danau Toba</p>
-                <p>Meat, Danau Toba</p>
+                <p>Meat,Liang sipege,Batu basiha ,Danau Toba</p>
                 <p>Sumatera Utara</p>
             </div>
             <div class="contact-card">
                 <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
                 <h3>Telepon</h3>
                 <p>+62 823-6582-3679</p>
-                <p>+08 123-456-789</p>
-                <p>(0622) 12345</p>
             </div>
             <div class="contact-card">
                 <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                 <h3>Email</h3>
                 <p>info@geotoba.com</p>
-                <p>reservasi@geotoba.com</p>
-                <p>Meat@geotoba.com</p>
             </div>
         </div>
     </div>
@@ -443,10 +439,9 @@
                 <h3 class="info-title">Ikuti Kami</h3>
                 <div class="social-section">
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/dispartoba"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.youtube.com/@BonaPasogitID"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
 

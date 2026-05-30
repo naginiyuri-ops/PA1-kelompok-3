@@ -225,13 +225,23 @@
             letter-spacing: 1px; 
         }
         
-        /* ============ FOOTER MODERN - RESPONSIF TETAP HORIZONTAL ============ */
+        /* ============ FOOTER MODERN - DIPERBESAR ============ */
         .footer {
             background: linear-gradient(135deg, #003366 0%, #001f3f 100%);
-            padding: 35px 0 25px;
-            margin-top: 60px;
+            padding: 50px 0 35px;
+            margin-top: 80px;
             position: relative;
-            border-top: 2px solid rgba(198, 164, 59, 0.4);
+            border-top: 3px solid rgba(198, 164, 59, 0.5);
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
         
         .footer-container {
@@ -245,39 +255,39 @@
             display: flex;
             justify-content: center;
             flex-wrap: nowrap;
-            gap: 35px;
-            margin-bottom: 28px;
+            gap: 45px;
+            margin-bottom: 35px;
             overflow-x: auto;
             overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: thin;
-            padding-bottom: 5px;
+            padding-bottom: 8px;
         }
         
         /* Hide scrollbar for cleaner look but keep functionality */
         .footer-menu::-webkit-scrollbar {
-            height: 3px;
+            height: 4px;
         }
         
         .footer-menu::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.1);
-            border-radius: 3px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 4px;
         }
         
         .footer-menu::-webkit-scrollbar-thumb {
             background: var(--gold);
-            border-radius: 3px;
+            border-radius: 4px;
         }
         
         .footer-menu a {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 1rem;
+            font-weight: 600;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
             position: relative;
-            padding: 5px 0;
+            padding: 8px 0;
             white-space: nowrap;
         }
         
@@ -287,14 +297,16 @@
             bottom: 0;
             left: 50%;
             width: 0;
-            height: 2px;
+            height: 2.5px;
             background: var(--gold);
             transition: all 0.3s ease;
             transform: translateX(-50%);
+            border-radius: 2px;
         }
         
         .footer-menu a:hover {
             color: var(--gold);
+            transform: translateY(-2px);
         }
         
         .footer-menu a:hover::after {
@@ -302,11 +314,11 @@
         }
         
         .footer-divider {
-            width: 50px;
-            height: 2px;
-            background: rgba(198, 164, 59, 0.5);
-            margin: 0 auto 22px;
-            border-radius: 2px;
+            width: 70px;
+            height: 2.5px;
+            background: rgba(198, 164, 59, 0.6);
+            margin: 0 auto 28px;
+            border-radius: 3px;
         }
         
         .footer-copyright {
@@ -315,50 +327,66 @@
         
         .footer-copyright p {
             margin: 0;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.75rem;
-            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.85rem;
+            letter-spacing: 0.8px;
+            font-weight: 400;
         }
         
         @media (max-width: 768px) {
             .footer {
-                padding: 25px 0 20px;
-                margin-top: 40px;
+                padding: 40px 0 30px;
+                margin-top: 60px;
             }
             
             .footer-menu {
-                gap: 20px;
-                margin-bottom: 22px;
+                gap: 28px;
+                margin-bottom: 30px;
             }
             
             .footer-menu a {
-                font-size: 0.8rem;
+                font-size: 0.9rem;
+                padding: 6px 0;
             }
             
             .footer-divider {
-                width: 40px;
-                margin-bottom: 18px;
+                width: 55px;
+                margin-bottom: 24px;
             }
             
             .footer-copyright p {
-                font-size: 0.65rem;
+                font-size: 0.75rem;
             }
         }
         
         @media (max-width: 480px) {
+            .footer {
+                padding: 35px 0 25px;
+                margin-top: 50px;
+            }
+            
             .footer-menu {
-                gap: 16px;
+                gap: 22px;
             }
             
             .footer-menu a {
-                font-size: 0.75rem;
+                font-size: 0.85rem;
+            }
+            
+            .footer-divider {
+                width: 45px;
+                margin-bottom: 20px;
+            }
+            
+            .footer-copyright p {
+                font-size: 0.7rem;
             }
         }
         
         /* Untuk HP sangat kecil tetap bisa scroll horizontal */
         @media (max-width: 380px) {
             .footer-menu {
-                gap: 14px;
+                gap: 18px;
                 justify-content: flex-start;
             }
         }
@@ -367,8 +395,8 @@
             position: fixed; 
             bottom: 25px; 
             right: 25px; 
-            width: 44px; 
-            height: 44px; 
+            width: 48px; 
+            height: 48px; 
             border-radius: 50%; 
             background: var(--gold); 
             color: var(--blue-dark); 
@@ -384,6 +412,10 @@
             text-decoration: none;
         }
         
+        .back-to-top i {
+            font-size: 1.2rem;
+        }
+        
         .back-to-top:hover {
             background: white;
             transform: translateY(-5px);
@@ -394,10 +426,10 @@
             .back-to-top {
                 bottom: 15px;
                 right: 15px;
-                width: 38px;
-                height: 38px;
+                width: 42px;
+                height: 42px;
             }
-            .back-to-top i { font-size: 0.9rem; }
+            .back-to-top i { font-size: 1rem; }
         }
         
         .back-to-top.show { opacity: 1; visibility: visible; }
