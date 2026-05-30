@@ -338,7 +338,7 @@
                     <label>Email Admin</label>
                     <div class="field-inner">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" name="email" placeholder="Masukan Email"
+                        <input type="email" name="email" placeholder="Masukkan Email"
                                value="{{ old('email') }}" required autofocus>
                     </div>
                 </div>
@@ -347,7 +347,7 @@
                     <label>Password</label>
                     <div class="field-inner">
                         <i class="fas fa-lock"></i>
-                        <input type="password" name="password" placeholder="Masukan password" required>
+                        <input type="password" name="password" placeholder="Masukkan password" required>
                     </div>
                 </div>
 
