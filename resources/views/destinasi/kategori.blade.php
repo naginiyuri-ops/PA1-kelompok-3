@@ -242,7 +242,7 @@
                     'lokasi' => 'Desa Meat, Kec. Tampahan', 
                     'deskripsi' => 'Area pinggir Danau Toba yang ditata untuk bersantai menikmati pemandangan danau dan perbukitan.', 
                     'tags' => ['Pantai', 'Santai', 'Keluarga'],
-                    'foto' => 'image/destinasi/buatan1.jpg'
+                    'foto' => 'image/meat/meat.jpeg'
                 ],
                 2 => [
                     'slug' => 'homestay-meat', 
@@ -250,7 +250,7 @@
                     'lokasi' => 'Desa Meat, Kec. Tampahan', 
                     'deskripsi' => 'Penginapan berbasis budaya yang dikelola warga setempat dengan pemandangan sawah dan Danau Toba.', 
                     'tags' => ['Homestay', 'Budaya', 'Penginapan'],
-                    'foto' => 'image/destinasi/buatan2.jpg'
+                    'foto' => 'image/meat/meat1.jpeg'
                 ]
             ]
         ]

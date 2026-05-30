@@ -190,7 +190,7 @@ Fasilitas pendukung di kawasan Spot Pantai Meat juga cukup memadai. Terdapat war
                         'jam_operasional' => '06:00 - 18:00 WIB',
                         'harga_tiket' => 'Rp 5.000',
                         'tags' => ['Pantai', 'Santai', 'Keluarga', 'Spot Foto'],
-                        'foto' => 'image/destinasi/buatan1.jpg'
+                        'foto' => 'image/meat/meat.jpeg'
                     ],
 
                     'homestay-meat' => [
@@ -212,7 +212,7 @@ Bagi wisatawan yang datang berkelompok atau bersama keluarga, tersedia pilihan u
                         'jam_operasional' => '24 Jam',
                         'harga_tiket' => 'Rp 150.000 - Rp 300.000 / malam',
                         'tags' => ['Homestay', 'Budaya', 'Penginapan', 'Ramah'],
-                        'foto' => 'image/destinasi/buatan2.jpg'
+                        'foto' => 'image/meat/meat1.jpeg'
                     ],
 
                     'jalur-trekking-sawah' => [
