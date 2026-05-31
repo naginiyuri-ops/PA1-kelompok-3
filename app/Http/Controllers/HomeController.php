@@ -64,9 +64,20 @@ class HomeController extends Controller
         
         return view('pages.home', compact('slide1', 'slide2', 'slide3', 'slide4', 'slide5', 'aboutImage', 'destinasi', 'galeri'));
     }
-        public function kontak()
+    
+    public function kontak()
     {
         $kontak = Kontak::first();
+        
+        // PERBAIKAN: Jika $kontak null, buat object dengan property default
+        if ($kontak === null) {
+            $kontak = new \stdClass();
+            $kontak->alamat = 'Desa Meat, Kabupaten Toba, Sumatera Utara';
+            $kontak->telepon = '0622-123456';
+            $kontak->email = 'info@geositeparumputan.com';
+            $kontak->link_maps = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.544029529995!2d99.0011203!3d2.3213969!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e1b14a5be37ed%3A0x22b416e0db744d4a!2sDesa%20Meat!5e0!3m2!1sid!2sid!4v1780156234277!5m2!1sid!2sid';
+        }
+        
         return view('pages.kontak', compact('kontak'));
     }
 }
