@@ -857,8 +857,8 @@
                 <p>Danau Toba, terbentuk dari letusan supervolcano 74.000 tahun lalu, adalah danau vulkanik terbesar di dunia. Diakui UNESCO sebagai Global Geopark pada tahun 2020.</p>
                 <p>Kawasan ini menyimpan nilai geologi luar biasa, keanekaragaman hayati, dan warisan budaya Batak yang autentik. Tiga geosite unggulan di Pulau Sibandang menanti Anda jelajahi.</p>
             </div>
-            <div class="about-image" data-aos="fade-left" onclick="openLightbox('/image/meat/slide1.jpg', 'Danau Toba', 'Pemandangan indah Danau Toba')">
-                <img src="/image/meat/slide1.jpg" alt="Danau Toba">
+            <div class="about-image" data-aos="fade-left" onclick="openLightbox('/image/meat/danau.jpg', 'Danau Toba', 'Pemandangan indah Danau Toba')">
+                <img src="/image/meat/danau.jpg" alt="Danau Toba">
             </div>
         </div>
     </div>

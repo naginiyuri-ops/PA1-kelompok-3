@@ -25,15 +25,22 @@ class UmkmController extends Controller
 
     public function store(Request $request)
     {
-        // VALIDASI
+        // VALIDASI - KONTAK BISA "-" ATAU 12 DIGIT ANGKA
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
             'urutan' => 'required|integer|unique:umkm,urutan',
             'lokasi' => 'nullable|string|max:255',
-            'kontak' => 'nullable|string|max:255',
+            'kontak' => [
+                'nullable',
+                'string',
+                'max:255',
+                'regex:/^(-|[0-9]{12})$/', // BISA "-" ATAU 12 DIGIT ANGKA
+            ],
             'status' => 'nullable|boolean'
+        ], [
+            'kontak.regex' => 'Nomor kontak harus diisi "-" atau 12 digit angka (contoh: 081234567890)',
         ]);
 
         $data = [
@@ -50,27 +57,13 @@ class UmkmController extends Controller
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
             
-            // Cek apakah file valid
             if ($file->isValid()) {
-                // Buat nama file unik
                 $filename = time() . '_umkm_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
-                
-                // Simpan ke storage/public/umkm
                 $path = $file->storeAs('umkm', $filename, 'public');
-                
-                // Simpan PATH ke database
                 $data['gambar'] = $path;
-                
-                // Debug (cek di log)
-                \Log::info('Gambar tersimpan di: ' . $path);
-            } else {
-                \Log::error('File tidak valid: ' . $file->getErrorMessage());
             }
-        } else {
-            \Log::info('Tidak ada file yang diupload');
         }
 
-        // SIMPAN KE DATABASE
         $umkm = Umkm::create($data);
         
         if ($umkm) {
@@ -90,14 +83,22 @@ class UmkmController extends Controller
     {
         $data = Umkm::findOrFail($id);
 
+        // VALIDASI - KONTAK BISA "-" ATAU 12 DIGIT ANGKA
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
             'urutan' => 'required|integer|unique:umkm,urutan,' . $id,
             'lokasi' => 'nullable|string|max:255',
-            'kontak' => 'nullable|string|max:255',
+            'kontak' => [
+                'nullable',
+                'string',
+                'max:255',
+                'regex:/^(-|[0-9]{12})$/', // BISA "-" ATAU 12 DIGIT ANGKA
+            ],
             'status' => 'nullable|boolean'
+        ], [
+            'kontak.regex' => 'Nomor kontak harus diisi "-" atau 12 digit angka (contoh: 081234567890)',
         ]);
 
         $input = [
@@ -119,7 +120,6 @@ class UmkmController extends Controller
 
         // UPLOAD GAMBAR BARU
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama
             if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
                 Storage::disk('public')->delete($data->gambar);
             }
@@ -129,7 +129,6 @@ class UmkmController extends Controller
                 $filename = time() . '_umkm_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
                 $path = $file->storeAs('umkm', $filename, 'public');
                 $input['gambar'] = $path;
-                \Log::info('Gambar diupdate ke: ' . $path);
             }
         }
 
@@ -141,7 +140,6 @@ class UmkmController extends Controller
     {
         $data = Umkm::findOrFail($id);
         
-        // Hapus file gambar
         if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
             Storage::disk('public')->delete($data->gambar);
         }
