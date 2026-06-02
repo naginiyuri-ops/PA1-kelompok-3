@@ -30,9 +30,9 @@ class GeositeController extends Controller
         return view('geosite.meat', compact('umkm', 'penginapan', 'fasilitas'));
     }
     
-    public function batuBahisan()
+    public function batuBasiha()
     {
-        return view('geosite.batu-bahisan');
+        return view('geosite.batu-basiha');
     }
     
     public function liangSipege()
