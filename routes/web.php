@@ -87,9 +87,10 @@ Route::get('/budaya', [HomeController::class, 'budaya'])->name('budaya');
 // Kontak
 Route::get('/kontak', [HomeController::class, 'kontak'])->name('kontak');
 
-// Geosite Routes
+// ==================== GEOSITE ROUTES ====================
 Route::get('/geosite/meat', [GeositeController::class, 'meat'])->name('geosite.meat');
 Route::get('/geosite/batu-basiha', [GeositeController::class, 'batuBasiha'])->name('geosite.batu-basiha');
+Route::get('/geosite/batu-bahisan', [GeositeController::class, 'batuBasiha'])->name('geosite.batu-bahisan'); // ← TAMBAHAN untuk sinkron dengan link home
 Route::get('/geosite/liang-sipege', [GeositeController::class, 'liangSipege'])->name('geosite.liang-sipege');
 
 // ==================== AUTH ROUTES ====================
@@ -112,7 +113,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     // ========== DASHBOARD ==========
     Route::get('/', function () {
-        $totalGaleri = DB::table('galeri')->count();  // ← PERBAIKI: 'galeri' bukan 'galeris'
+        $totalGaleri = DB::table('galeri')->count();
         $totalBerita = DB::table('berita')->count();
         $totalInformasi = DB::table('informasi')->count();
         $totalUmkm = DB::table('umkm')->count();
