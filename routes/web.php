@@ -87,7 +87,6 @@ Route::get('/budaya', [HomeController::class, 'budaya'])->name('budaya');
 // Kontak
 Route::get('/kontak', [HomeController::class, 'kontak'])->name('kontak');
 
-
 // Geosite Routes
 Route::get('/geosite/meat', [GeositeController::class, 'meat'])->name('geosite.meat');
 Route::get('/geosite/batu-bahisan', [GeositeController::class, 'batuBahisan'])->name('geosite.batu-bahisan');
@@ -113,7 +112,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     // ========== DASHBOARD ==========
     Route::get('/', function () {
-        $totalGaleri = DB::table('galeris')->count();
+        $totalGaleri = DB::table('galeri')->count();  // ← PERBAIKI: 'galeri' bukan 'galeris'
         $totalBerita = DB::table('berita')->count();
         $totalInformasi = DB::table('informasi')->count();
         $totalUmkm = DB::table('umkm')->count();
@@ -139,9 +138,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('informasi/toggle-status/{id}', [InformasiController::class, 'toggleStatus'])->name('admin.informasi.toggle-status');
 
     // kontak web
-Route::get('/kontak', [KontakController::class, 'edit'])
-    ->name('admin.kontak.edit');
-
-Route::put('/kontak', [KontakController::class, 'update'])
-    ->name('admin.kontak.update');
+    Route::get('/kontak', [KontakController::class, 'edit'])->name('admin.kontak.edit');
+    Route::put('/kontak', [KontakController::class, 'update'])->name('admin.kontak.update');
 });

@@ -7,6 +7,7 @@ use App\Models\Penginapan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth; // ← TAMBAHKAN INI
 
 class PenginapanController extends Controller
 {
@@ -25,11 +26,10 @@ class PenginapanController extends Controller
 
     public function store(Request $request)
     {
-        // VALIDASI (5MB MAX)
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120', // 5MB
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'urutan' => 'required|integer|unique:penginapan,urutan',
             'harga' => 'nullable|string|max:255',
             'lokasi' => 'nullable|string|max:255',
@@ -38,25 +38,21 @@ class PenginapanController extends Controller
         ]);
 
         $data = [
+            'user_id' => Auth::id(), // ← TAMBAHKAN INI
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
             'harga' => $request->harga,
             'lokasi' => $request->lokasi,
             'kontak' => $request->kontak,
             'urutan' => $request->urutan,
-            'status' => $request->has('status') ? 1 : 0,
-            'gambar' => null
+            'status' => $request->has('status') ? 1 : 0
         ];
 
-        // PROSES UPLOAD GAMBAR KE STORAGE
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
-            
-            if ($file->isValid()) {
-                $filename = time() . '_penginapan_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
-                $path = $file->storeAs('penginapan', $filename, 'public');
-                $data['gambar'] = $path;
-            }
+            $filename = time() . '_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('penginapan', $filename, 'public');
+            $data['gambar'] = $path;
         }
 
         Penginapan::create($data);
@@ -94,7 +90,8 @@ class PenginapanController extends Controller
             'status' => $request->has('status') ? 1 : 0
         ];
 
-        // HAPUS GAMBAR
+        // Jangan update user_id
+
         if ($request->has('hapus_gambar')) {
             if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
                 Storage::disk('public')->delete($data->gambar);
@@ -102,18 +99,14 @@ class PenginapanController extends Controller
             $input['gambar'] = null;
         }
 
-        // UPLOAD GAMBAR BARU
         if ($request->hasFile('gambar')) {
             if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
                 Storage::disk('public')->delete($data->gambar);
             }
-            
             $file = $request->file('gambar');
-            if ($file->isValid()) {
-                $filename = time() . '_penginapan_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
-                $path = $file->storeAs('penginapan', $filename, 'public');
-                $input['gambar'] = $path;
-            }
+            $filename = time() . '_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('penginapan', $filename, 'public');
+            $input['gambar'] = $path;
         }
 
         $data->update($input);
@@ -123,11 +116,9 @@ class PenginapanController extends Controller
     public function destroy($id)
     {
         $data = Penginapan::findOrFail($id);
-        
         if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
             Storage::disk('public')->delete($data->gambar);
         }
-        
         $data->delete();
         return redirect()->route('admin.penginapan.index')->with('success', 'Penginapan berhasil dihapus!');
     }

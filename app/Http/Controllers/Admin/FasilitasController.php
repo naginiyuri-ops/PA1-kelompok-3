@@ -7,6 +7,7 @@ use App\Models\Fasilitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth; // ← Tambahkan ini
 
 class FasilitasController extends Controller
 {
@@ -37,6 +38,7 @@ class FasilitasController extends Controller
         ]);
 
         $data = [
+            'user_id' => Auth::id(), // ← TAMBAHKAN INI
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
             'harga' => $request->harga,
@@ -87,6 +89,8 @@ class FasilitasController extends Controller
             'urutan' => $request->urutan,
             'status' => $request->has('status') ? 1 : 0
         ];
+
+        // Jangan update user_id, biarkan tetap seperti semula
 
         if ($request->has('hapus_gambar')) {
             if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {

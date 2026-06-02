@@ -10,12 +10,14 @@ return new class extends Migration
     {
         Schema::create('informasi', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->nullable(); // sementara tanpa FK
             $table->string('judul', 255);
             $table->string('slug', 255)->unique();
             $table->longText('konten');
-            $table->longText('gambar')->nullable(); // untuk base64
-            $table->integer('urutan')->default(0);
+            $table->longText('gambar')->nullable();
+            $table->integer('views')->default(0);
             $table->boolean('status')->default(true);
+            $table->enum('geosite', ['meat', 'batu_bahisan', 'liang_sipege'])->nullable();
             $table->timestamps();
         });
     }
