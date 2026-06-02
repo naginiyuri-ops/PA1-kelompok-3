@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Umkm;
+use App\Models\Fasilitas;
+use App\Models\Penginapan;
 
 class GeositeController extends Controller
 {
@@ -11,7 +14,11 @@ class GeositeController extends Controller
      */
     public function meat()
     {
-        return view('geosite.meat');
+        $umkm = Umkm::where('status', true)->latest()->limit(6)->get();
+        $fasilitas = Fasilitas::where('status', true)->latest()->limit(6)->get();
+        $penginapan = Penginapan::where('status', true)->latest()->limit(6)->get();
+        
+        return view('geosite.meat', compact('umkm', 'fasilitas', 'penginapan'));
     }
     
     /**
