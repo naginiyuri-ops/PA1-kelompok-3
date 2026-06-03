@@ -817,11 +817,7 @@
             <div class="hero-subtitle"></div>
             <h1 class="hero-title">BALIGE · MEAT · BATU BASIHA<br>LIANG SIPEGE</h1>
             <div class="hero-divider"></div>
-<<<<<<< HEAD
             <a href="#destinasi" class="hero-btn">Jelajahi Sekarang </a>
-=======
-            <a href="#destinasi" class="hero-btn">Jelajahi Sekarang</a>
->>>>>>> 7836544f4882782f88e1cd0bfc229ba859979507
         </div>
     </div>
     
