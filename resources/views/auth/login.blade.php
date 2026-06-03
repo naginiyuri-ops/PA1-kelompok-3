@@ -163,6 +163,20 @@
             margin-bottom: 8px;
         }
 
+        /* Style Tambahan untuk Link Lupa Password */
+        .forgot-link {
+            font-size: 11px;
+            font-weight: 600;
+            color: #c6a43b;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .forgot-link:hover {
+            color: #003366;
+            text-decoration: underline;
+        }
+
         .field-inner {
             display: flex;
             align-items: center;
@@ -246,6 +260,14 @@
             font-size: 12px;
         }
 
+        /* Style Tambahan untuk Copyright Text */
+        .login-footer-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 11px;
+            color: #bbb;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 800px) {
             .login-wrapper { 
@@ -260,14 +282,15 @@
             .hero-text h2 { font-size: 24px; }
             .right-panel { padding: 36px 32px; }
         }
+        
         /* GARIS PEMISAH ANTARA DUA PARAGRAF - SESUAI GAMBAR */
-.divider-line {
-    width: 60px;
-    height: 3px;
-    background: #c6a43b;  /* Warna emas */
-    margin: 20px 0;
-    border-radius: 3px;
-}
+        .divider-line {
+            width: 60px;
+            height: 3px;
+            background: #c6a43b;  /* Warna emas */
+            margin: 20px 0;
+            border-radius: 3px;
+        }
 
         @media (max-width: 480px) {
             .logo-badge { width: 40px; height: 40px; }
@@ -340,7 +363,10 @@
                 </div>
 
                 <div class="field-group">
-                    <label>PASSWORD</label>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <label class="m-0">PASSWORD</label>
+                        <a href="{{ route('password.request') }}" class="forgot-link">Lupa Password?</a>
+                    </div>
                     <div class="field-inner">
                         <i class="fas fa-lock"></i>
                         <input type="password" name="password" placeholder="Masukkan password" required>
@@ -356,6 +382,10 @@
             <div class="secure-badge">
                 <i class="fas fa-shield-alt"></i>
                 Koneksi aman & terenkripai SSL
+            </div>
+
+            <div class="login-footer-text">
+                &copy; {{ date('Y') }} GeoToba. All Rights Reserved.
             </div>
         </div>
     </div>

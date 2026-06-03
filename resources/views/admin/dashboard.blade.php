@@ -1,267 +1,398 @@
-{{-- resources/views/admin/pengaturan/kontak.blade.php --}}
+{{-- resources/views/admin/dashboard.blade.php --}}
 @extends('layouts.admin')
 
-@section('title', 'Pengaturan Kontak')
+@section('title', 'Dashboard')
 
 @section('content')
 
 <style>
-    /* ==================== CARD TABLE ==================== */
+    /* ==================== CORE DECORATIONS ==================== */
+    .dash-welcome {
+        margin-bottom: 20px;
+    }
+    .dash-welcome h4 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: #003366;
+        font-weight: 700;
+    }
+    .dash-welcome p {
+        margin: 3px 0 0 0;
+        font-size: 0.8rem;
+        color: #64748b;
+    }
+
+    /* ==================== STATS GRID (COMPACT) ==================== */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+    
+    .stat-card {
+        background: white;
+        padding: 14px 16px;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: transform 0.2s;
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .stat-number {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: #003366;
+        line-height: 1;
+        margin-bottom: 4px;
+    }
+    
+    .stat-label {
+        font-size: 0.75rem;
+        color: #64748b;
+        font-weight: 500;
+    }
+
+    /* ==================== CARD TABLE STYLES ==================== */
     .card-table {
         background: white;
-        border-radius: 20px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        margin-bottom: 25px;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        margin-bottom: 20px;
         overflow: hidden;
     }
     
     .card-header {
-        padding: 16px 20px;
+        padding: 12px 16px;
         border-bottom: 1px solid #e2e8f0;
         background: #f8fafc;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
     
     .card-header h5 {
-        font-size: 1rem;
+        font-size: 0.85rem;
         font-weight: 700;
         color: #003366;
         margin: 0;
     }
     
     .card-header h5 i {
-        color: #c6a43b;
-        margin-right: 8px;
+        color: #003366;
+        margin-right: 6px;
     }
-    
-    /* ==================== FORM STYLES ==================== */
-    .form-container {
-        padding: 24px;
-    }
-    
-    .form-group {
-        margin-bottom: 24px;
-    }
-    
-    .form-group label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 600;
-        font-size: 0.85rem;
-        color: #1e293b;
-    }
-    
-    .form-group label i {
-        color: #c6a43b;
-        margin-right: 8px;
-    }
-    
-    .form-control {
-        width: 100%;
-        padding: 10px 14px;
-        border: 1.5px solid #e2e8f0;
-        border-radius: 10px;
-        font-size: 0.85rem;
-        transition: all 0.2s ease;
-        font-family: inherit;
-    }
-    
-    .form-control:focus {
-        outline: none;
-        border-color: #003366;
-        box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
-    }
-    
-    textarea.form-control {
-        resize: vertical;
-        min-height: 100px;
-    }
-    
-    .form-group small {
-        font-size: 0.7rem;
-        color: #94a3b8;
-        display: block;
-        margin-top: 6px;
-    }
-    
-    /* ==================== ALERT STYLES ==================== */
-    .alert {
-        padding: 12px 16px;
-        border-radius: 10px;
-        margin: 16px 20px;
-    }
-    
-    .alert-success {
-        background: #dcfce7;
-        color: #166534;
-    }
-    
-    .alert-danger {
-        background: #fee2e2;
-        color: #991b1b;
-    }
-    
-    .alert i {
-        margin-right: 8px;
-    }
-    
-    .alert ul {
-        margin: 0;
-        padding-left: 20px;
-    }
-    
-    /* ==================== BUTTON ==================== */
-    .btn-save {
-        background: linear-gradient(135deg, #003366 0%, #1a4a7a 100%);
+
+    /* ==================== BUTTONS (PROPORSIONAL) ==================== */
+    .btn-primary-sm {
+        background: #003366;
         color: white;
-        padding: 10px 24px;
-        border-radius: 10px;
-        border: none;
-        cursor: pointer;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 0.75rem;
         font-weight: 600;
-        font-size: 0.85rem;
-        transition: all 0.3s ease;
+        text-decoration: none;
+        transition: background 0.2s;
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        gap: 4px;
     }
-    
-    .btn-save:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
+    .btn-primary-sm:hover {
+        background: #1a4a7a;
+        color: white;
     }
-    
-    .btn-save:active {
-        transform: translateY(0);
+
+    .btn-group-action {
+        display: flex;
+        gap: 6px;
     }
-    
-    /* ==================== ERROR STATES ==================== */
-    .is-invalid {
-        border-color: #dc2626;
+
+    .btn-action-edit {
+        background: #eff6ff;
+        color: #2563eb;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 0.725rem;
+        font-weight: 600;
+        text-decoration: none;
     }
-    
-    .invalid-feedback {
+    .btn-action-edit:hover { background: #dbeafe; }
+
+    .btn-action-delete {
+        background: #fee2e2;
         color: #dc2626;
-        font-size: 0.7rem;
-        margin-top: 4px;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 0.725rem;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+    }
+    .btn-action-delete:hover { background: #fecaca; }
+
+    /* ==================== COMPACT TABLE STYLES ==================== */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
     }
     
-    /* ==================== RESPONSIVE ==================== */
-    @media (max-width: 768px) {
-        .form-container {
-            padding: 16px;
-        }
-        
-        .form-group {
-            margin-bottom: 18px;
-        }
-        
-        .btn-save {
-            width: 100%;
-            justify-content: center;
-        }
+    th {
+        background: #f8fafc;
+        color: #475569;
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 10px 16px;
+        border-bottom: 1px solid #e2e8f0;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+    }
+    
+    td {
+        padding: 10px 16px;
+        border-bottom: 1px solid #f1f5f9;
+        color: #334155;
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    tr:hover td {
+        background-color: #f8fafc;
+    }
+
+    /* ==================== BADGES ==================== */
+    .badge-status {
+        display: inline-flex;
+        padding: 2px 8px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        border-radius: 12px;
+    }
+    .badge-active { background: #dcfce7; color: #166534; }
+    .badge-inactive { background: #f1f5f9; color: #475569; }
+
+    .empty-state {
+        text-align: center;
+        color: #94a3b8;
+        font-size: 0.775rem;
+        padding: 20px !important;
+    }
+
+    /* ==================== QUICK ACTIONS DOCK ==================== */
+    .quick-actions-bar {
+        background: #f8fafc;
+        border: 1px dashed #cbd5e1;
+        padding: 12px;
+        border-radius: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 24px;
+        align-items: center;
+    }
+    .quick-actions-bar span {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #475569;
+        margin-right: 4px;
     }
 </style>
 
-<!-- ==================== FORM PENGATURAN KONTAK ==================== -->
+<div class="dash-welcome">
+    <h4>Dashboard Admin</h4>
+    <p>Ringkasan data operasional website GeoToba Desa Meat.</p>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-number">{{ $totalGaleri ?? 0 }}</div>
+        <div class="stat-label">Total Galeri</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number">{{ $totalBerita ?? 0 }}</div>
+        <div class="stat-label">Total Berita</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number">{{ $totalInformasi ?? 0 }}</div>
+        <div class="stat-label">Total Informasi</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number">{{ $totalUmkm ?? 0 }}</div>
+        <div class="stat-label">Lapak UMKM</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number">{{ $totalFasilitas ?? 0 }}</div>
+        <div class="stat-label">Fasilitas Desa</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number">{{ $totalPenginapan ?? 0 }}</div>
+        <div class="stat-label">Penginapan</div>
+    </div>
+</div>
+
 <div class="card-table">
     <div class="card-header">
-        <h5>
-            <i class="fas fa-address-card"></i>
-            Pengaturan Kontak
-        </h5>
+        <h5><i class="fas fa-store"></i> UMKM Terbaru</h5>
+        <a href="{{ route('admin.umkm.create') }}" class="btn-primary-sm">+ UMKM</a>
     </div>
-    
-    @if(session('success'))
-    <div class="alert alert-success">
-        <i class="fas fa-check-circle"></i> {{ session('success') }}
+    <div style="overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50px;">No</th>
+                    <th>Nama Lapak</th>
+                    <th>Lokasi</th>
+                    <th>Kontak</th>
+                    <th>Status</th>
+                    <th style="width: 120px; text-align: center;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php $umkmList = App\Models\Umkm::latest()->limit(5)->get(); @endphp
+                @forelse($umkmList as $key => $item)
+                <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td style="font-weight: 600; color: #003366;">{{ $item->nama }}</td>
+                    <td>{{ $item->lokasi ?? '-' }}</td>
+                    <td>{{ $item->kontak ?? '-' }}</td>
+                    <td>
+                        <span class="badge-status {{ $item->status ? 'badge-active' : 'badge-inactive' }}">
+                            {{ $item->status ? 'Aktif' : 'Tidak' }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="btn-group-action" style="justify-content: center;">
+                            <a href="{{ route('admin.umkm.edit', $item->id) }}" class="btn-action-edit">Edit</a>
+                            <form action="{{ route('admin.umkm.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus UMKM {{ $item->nama }}?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-action-delete">Hapus</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                @empty
+                <tr><td colspan="6" class="empty-state">📭 Belum ada data UMKM baru</td></tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
-    @endif
-    
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+</div>
+
+<div class="card-table">
+    <div class="card-header">
+        <h5><i class="fas fa-tools"></i> Fasilitas Terbaru</h5>
+        <a href="{{ route('admin.fasilitas.create') }}" class="btn-primary-sm">+ Fasilitas</a>
     </div>
-    @endif
-    
-    <div class="form-container">
-        <form action="{{ route('admin.kontak.update') }}" method="POST">
-            @csrf
-            @method('PUT')
-            
-            <div class="form-group">
-                <label>
-                    <i class="fas fa-map-marker-alt"></i>
-                    Alamat
-                </label>
-                <textarea class="form-control @error('alamat') is-invalid @enderror" 
-                          name="alamat" 
-                          rows="4"
-                          placeholder="Masukkan alamat lengkap">{{ old('alamat', $kontak->alamat ?? '') }}</textarea>
-                <small>Alamat lengkap kantor atau lokasi wisata</small>
-                @error('alamat')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            
-            <div class="form-group">
-                <label>
-                    <i class="fas fa-phone"></i>
-                    Telepon / WhatsApp
-                </label>
-                <input type="text" 
-                       class="form-control @error('telepon') is-invalid @enderror" 
-                       name="telepon" 
-                       value="{{ old('telepon', $kontak->telepon ?? '') }}"
-                       placeholder="08123456789">
-                <small>Nomor telepon yang dapat dihubungi</small>
-                @error('telepon')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            
-            <div class="form-group">
-                <label>
-                    <i class="fas fa-envelope"></i>
-                    Email
-                </label>
-                <input type="email" 
-                       class="form-control @error('email') is-invalid @enderror" 
-                       name="email" 
-                       value="{{ old('email', $kontak->email ?? '') }}"
-                       placeholder="admin@example.com">
-                <small>Email aktif untuk menerima pertanyaan</small>
-                @error('email')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            
-            <div class="form-group">
-                <label>
-                    <i class="fas fa-map"></i>
-                    Link Google Maps
-                </label>
-                <input type="text" 
-                       class="form-control @error('link_maps') is-invalid @enderror" 
-                       name="link_maps" 
-                       value="{{ old('link_maps', $kontak->link_maps ?? '') }}" 
-                       placeholder="https://maps.google.com/...">
-                <small>Link embed atau share dari Google Maps</small>
-                @error('link_maps')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            
-            <div style="margin-top: 32px;">
-                <button type="submit" class="btn-save">
-                    <i class="fas fa-save"></i> Simpan Perubahan
-                </button>
-            </div>
-        </form>
+    <div style="overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50px;">No</th>
+                    <th>Nama Fasilitas</th>
+                    <th>Harga / Tarif</th>
+                    <th>Status</th>
+                    <th style="width: 120px; text-align: center;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php $fasilitasList = App\Models\Fasilitas::latest()->limit(5)->get(); @endphp
+                @forelse($fasilitasList as $key => $item)
+                <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td style="font-weight: 600; color: #003366;">{{ $item->nama }}</td>
+                    <td>{{ $item->harga ?? 'Gratis' }}</td>
+                    <td>
+                        <span class="badge-status {{ $item->status ? 'badge-active' : 'badge-inactive' }}">
+                            {{ $item->status ? 'Aktif' : 'Tidak' }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="btn-group-action" style="justify-content: center;">
+                            <a href="{{ route('admin.fasilitas.edit', $item->id) }}" class="btn-action-edit">Edit</a>
+                            <form action="{{ route('admin.fasilitas.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus fasilitas {{ $item->nama }}?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-action-delete">Hapus</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                @empty
+                <tr><td colspan="5" class="empty-state">📭 Belum ada data Fasilitas baru</td></tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
+</div>
+
+<div class="card-table">
+    <div class="card-header">
+        <h5><i class="fas fa-hotel"></i> Penginapan Terbaru</h5>
+        <a href="{{ route('admin.penginapan.create') }}" class="btn-primary-sm">+ Penginapan</a>
+    </div>
+    <div style="overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50px;">No</th>
+                    <th>Nama Penginapan</th>
+                    <th>Harga / Malam</th>
+                    <th>Kontak Pemilik</th>
+                    <th>Status</th>
+                    <th style="width: 120px; text-align: center;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php $penginapanList = App\Models\Penginapan::latest()->limit(5)->get(); @endphp
+                @forelse($penginapanList as $key => $item)
+                <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td style="font-weight: 600; color: #003366;">{{ $item->nama }}</td>
+                    <td>{{ $item->harga ?? '-' }}</td>
+                    <td>{{ $item->kontak ?? '-' }}</td>
+                    <td>
+                        <span class="badge-status {{ $item->status ? 'badge-active' : 'badge-inactive' }}">
+                            {{ $item->status ? 'Aktif' : 'Tidak' }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="btn-group-action" style="justify-content: center;">
+                            <a href="{{ route('admin.penginapan.edit', $item->id) }}" class="btn-action-edit">Edit</a>
+                            <form action="{{ route('admin.penginapan.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus penginapan {{ $item->nama }}?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-action-delete">Hapus</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                @empty
+                <tr><td colspan="6" class="empty-state">📭 Belum ada data Penginapan baru</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="quick-actions-bar">
+    <span><i class="fas fa-bolt"></i> Pintasan:</span>
+    <a href="{{ route('admin.galeri.create') }}" class="btn-primary-sm"><i class="fas fa-plus"></i> Galeri</a>
+    <a href="{{ route('admin.berita.create') }}" class="btn-primary-sm"><i class="fas fa-plus"></i> Berita</a>
+    <a href="{{ route('admin.informasi.create') }}" class="btn-primary-sm"><i class="fas fa-plus"></i> Info</a>
+    <a href="{{ route('admin.create') }}" class="btn-primary-sm" style="background-color: #475569;"><i class="fas fa-user-plus"></i> Admin Baru</a>
 </div>
 
 @endsection

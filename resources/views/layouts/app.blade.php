@@ -35,7 +35,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-        /* Saat scroll ke bawah - berubah jadi putih */
         .navbar.scrolled-down {
             background: var(--white) !important;
             padding: 0.7rem 0;
@@ -60,7 +59,6 @@
             background: rgba(0, 51, 102, 0.1);
         }
 
-        /* Saat scroll ke atas - kembali ke tampilan awal (biru transparan) */
         .navbar.scrolled-up {
             background: rgba(0, 51, 102, 0.95) !important;
             padding: 1rem 0;
@@ -512,42 +510,36 @@
     <script>
         AOS.init({ duration: 1000, once: true });
 
-        // Elemen DOM
         const navbar = document.getElementById('navbar');
         const backToTop = document.getElementById('backToTop');
         const navbarCollapse = document.getElementById('navbarNav');
         
-        // Variable untuk mendeteksi arah scroll
         let lastScrollTop = 0;
-        let scrollTimeout;
 
         // ==================== FUNGSI SCROLL DENGAN DETEKSI ARAH ====================
         function handleScroll() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // ===== AUTO TUTUP MENU MOBILE SAAT SCROLL =====
+            if (window.innerWidth <= 991 && navbarCollapse.classList.contains('show')) {
+                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                if (bsCollapse) bsCollapse.hide();
+            }
             
-            // Hapus class scrolled-down dan scrolled-up terlebih dahulu
             navbar.classList.remove('scrolled-down', 'scrolled-up');
             
             if (scrollTop > 50) {
-                // Deteksi arah scroll
                 if (scrollTop > lastScrollTop) {
-                    // Scroll ke BAWAH -> navbar berubah jadi putih
                     navbar.classList.add('scrolled-down');
-                } 
-                else if (scrollTop < lastScrollTop) {
-                    // Scroll ke ATAS -> navbar kembali ke tampilan awal (biru transparan)
+                } else if (scrollTop < lastScrollTop) {
                     navbar.classList.add('scrolled-up');
-                }
-                else {
-                    // Jika posisi sama (tidak bergerak) -> tetap putih
+                } else {
                     navbar.classList.add('scrolled-down');
                 }
             }
             
-            // Update lastScrollTop
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
             
-            // Tampilkan/sembunyikan tombol back to top
             if (scrollTop > 300) {
                 backToTop.classList.add('show');
             } else {
@@ -555,7 +547,6 @@
             }
         }
         
-        // Event scroll dengan optimasi
         window.addEventListener('scroll', function() {
             requestAnimationFrame(handleScroll);
         });
@@ -589,19 +580,16 @@
                 e.stopPropagation();
                 
                 if (window.innerWidth > 991) {
-                    // Desktop: gunakan Bootstrap dropdown
                     if (!bsDropdown) {
                         bsDropdown = new bootstrap.Dropdown(toggle, { autoClose: true });
                     }
                     bsDropdown.toggle();
                 } else {
-                    // Mobile: toggle manual
                     const menu = this.parentElement.querySelector('.dropdown-menu');
                     if (!menu) return;
                     
                     const isOpen = menu.classList.contains('show');
                     
-                    // Tutup semua dropdown lain
                     document.querySelectorAll('.navbar-nav .dropdown-menu.show').forEach(function(m) {
                         if (m !== menu) {
                             m.classList.remove('show');
@@ -633,11 +621,9 @@
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(function() {
-                // Reset dropdown yang terbuka
                 document.querySelectorAll('.dropdown-menu.show').forEach(function(menu) {
                     menu.classList.remove('show');
                 });
-                // Reset navbar state
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 navbar.classList.remove('scrolled-down', 'scrolled-up');
                 if (scrollTop > 50) {
@@ -647,7 +633,6 @@
         });
         
         // ==================== INITIAL ====================
-        // Panggil handleScroll sekali untuk memastikan state awal
         setTimeout(() => {
             handleScroll();
         }, 100);
