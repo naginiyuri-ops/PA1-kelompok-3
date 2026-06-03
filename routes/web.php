@@ -89,8 +89,12 @@ Route::get('/kontak', [HomeController::class, 'kontak'])->name('kontak');
 
 // ==================== GEOSITE ROUTES ====================
 Route::get('/geosite/meat', [GeositeController::class, 'meat'])->name('geosite.meat');
+<<<<<<< Updated upstream
 Route::get('/geosite/batu-basiha', [GeositeController::class, 'batuBasiha'])->name('geosite.batu-basiha');
 Route::get('/geosite/batu-bahisan', [GeositeController::class, 'batuBasiha'])->name('geosite.batu-bahisan'); // ← TAMBAHAN untuk sinkron dengan link home
+=======
+Route::get('/geosite/batu-bahisan', [GeositeController::class, 'batuBahisan'])->name('geosite.batu-bahisan');
+>>>>>>> Stashed changes
 Route::get('/geosite/liang-sipege', [GeositeController::class, 'liangSipege'])->name('geosite.liang-sipege');
 
 // ==================== AUTH ROUTES ====================

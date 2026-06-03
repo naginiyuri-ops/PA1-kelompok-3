@@ -21,10 +21,11 @@ class GeositeController extends Controller
         return view('geosite.meat', compact('umkm', 'fasilitas', 'penginapan'));
     }
     
+
     /**
      * Display Batu Bahisan / Batu Basiha geosite page
      */
-    public function batuBasiha()
+    public function batuBahisan()
     {
         return view('geosite.batu-bahisan');
     }
