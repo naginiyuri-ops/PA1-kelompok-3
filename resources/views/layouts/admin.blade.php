@@ -705,7 +705,7 @@
             <i class="fas fa-hotel"></i> Penginapan
         </a>
         <li>
-         <a href="{{ route('admin.kontak.edit') }}">
+         <a href="{{ route('admin.kontak.index') }}">
           <i class="fas fa-address-book"></i>Kontak
         </a>
 </li>
