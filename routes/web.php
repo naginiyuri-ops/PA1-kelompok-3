@@ -18,32 +18,11 @@ use App\Http\Controllers\InformasiController as PublicInformasiController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\DB;
 
-Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi');
-
-// ==================== LANGUAGE ROUTE ====================
-Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
-
-// ==================== API ROUTES ====================
-Route::post('/api/informasi/{id}/view', function ($id) {
-    $informasi = App\Models\Informasi::find($id);
-    if ($informasi) {
-        $informasi->increment('views');
-        return response()->json(['success' => true, 'views' => $informasi->views]);
-    }
-    return response()->json(['success' => false], 404);
-});
-
-Route::post('/api/berita/{id}/view', function ($id) {
-    $berita = App\Models\Berita::find($id);
-    if ($berita) {
-        $berita->increment('views');
-        return response()->json(['success' => true, 'views' => $berita->views]);
-    }
-    return response()->json(['success' => false], 404);
-});
-
 // ==================== FRONTEND ROUTES ====================
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Language Route
+Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
 
 // Destinasi Routes
 Route::get('/destinasi', [DestinasiController::class, 'index'])->name('destinasi');
@@ -84,18 +63,33 @@ Route::get('/umkm', [HomeController::class, 'umkm'])->name('umkm');
 // Budaya
 Route::get('/budaya', [HomeController::class, 'budaya'])->name('budaya');
 
-// Kontak
+// Kontak Publik
 Route::get('/kontak', [HomeController::class, 'kontak'])->name('kontak');
 
 // ==================== GEOSITE ROUTES ====================
 Route::get('/geosite/meat', [GeositeController::class, 'meat'])->name('geosite.meat');
-<<<<<<< Updated upstream
 Route::get('/geosite/batu-basiha', [GeositeController::class, 'batuBasiha'])->name('geosite.batu-basiha');
-Route::get('/geosite/batu-bahisan', [GeositeController::class, 'batuBasiha'])->name('geosite.batu-bahisan'); // ← TAMBAHAN untuk sinkron dengan link home
-=======
 Route::get('/geosite/batu-bahisan', [GeositeController::class, 'batuBahisan'])->name('geosite.batu-bahisan');
->>>>>>> Stashed changes
 Route::get('/geosite/liang-sipege', [GeositeController::class, 'liangSipege'])->name('geosite.liang-sipege');
+
+// ==================== API ROUTES ====================
+Route::post('/api/informasi/{id}/view', function ($id) {
+    $informasi = App\Models\Informasi::find($id);
+    if ($informasi) {
+        $informasi->increment('views');
+        return response()->json(['success' => true, 'views' => $informasi->views]);
+    }
+    return response()->json(['success' => false], 404);
+});
+
+Route::post('/api/berita/{id}/view', function ($id) {
+    $berita = App\Models\Berita::find($id);
+    if ($berita) {
+        $berita->increment('views');
+        return response()->json(['success' => true, 'views' => $berita->views]);
+    }
+    return response()->json(['success' => false], 404);
+});
 
 // ==================== AUTH ROUTES ====================
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -142,7 +136,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('berita/toggle-status/{id}', [BeritaController::class, 'toggleStatus'])->name('admin.berita.toggle-status');
     Route::post('informasi/toggle-status/{id}', [InformasiController::class, 'toggleStatus'])->name('admin.informasi.toggle-status');
 
-    // kontak web
-    Route::get('/kontak', [KontakController::class, 'edit'])->name('admin.kontak.edit');
+    // ========== KONTAK WEB (ADMIN) ==========
+    Route::get('/kontak', [KontakController::class, 'index'])->name('admin.kontak.index');
     Route::put('/kontak', [KontakController::class, 'update'])->name('admin.kontak.update');
 });
