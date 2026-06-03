@@ -644,7 +644,7 @@
     <div class="container">
         <div class="hero-badge">UPDATE TERBARU</div>
         <h1>Berita Terkini</h1>
-        <p>Informasi & Perkembangan Terbaru Geopark Danau Toba</p>
+        <p>Informasi & Perkembangan Terbaru  Balige, Meat, Liang Sipege, Batu Basiha</p>
         <div class="hero-divider"></div>
     </div>
 </section>

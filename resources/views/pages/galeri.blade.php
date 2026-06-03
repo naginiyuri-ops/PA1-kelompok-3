@@ -145,7 +145,7 @@
         align-items: center;
         gap: 5px;
     }
-    .slip-location i { font-size: 0.65rem; color: #c6a43b; }
+    .slip-location i { font-size: 0.65rem; color: #54c63b; }
     
     .modal-overlay {
         position: fixed;

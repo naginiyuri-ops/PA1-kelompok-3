@@ -815,7 +815,7 @@
     <div class="hero-content">
         <div>
             <div class="hero-subtitle"></div>
-            <h1 class="hero-title">BALIGE · MEAT · BATU BAHISAN<br>LIANG SIPEGE</h1>
+            <h1 class="hero-title">BALIGE · MEAT · BATU BASIHA<br>LIANG SIPEGE</h1>
             <div class="hero-divider"></div>
 <<<<<<< HEAD
             <a href="#destinasi" class="hero-btn">Jelajahi Sekarang </a>
@@ -894,17 +894,15 @@
                     <a href="{{ url('/geosite/meat') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
                 </div>
             </div>
-            
-            <!-- BATU BAHISAN -->
             <div class="destinasi-item reverse" data-aos="fade-up" data-aos-delay="200">
                 <div class="destinasi-image" onclick="openLightbox('/image/meat/batubasiha1.png', 'Batu Bahisan', 'Situs batu bersejarah di kawasan Balige')">
                     <img src="/image/meat/batubasiha1.png" alt="Batu Bahisan">
                 </div>
                 <div class="destinasi-content">
-                    <div class="destinasi-number">02 — BATU BAHISAN</div>
-                    <h3>Batu Bahisan</h3>
+                    <div class="destinasi-number">02 — BATU BASIHA</div>
+                    <h3>Batu Basiha</h3>
                     <div class="destinasi-location">Balige</div>
-                    <p class="destinasi-desc">Batu Bahisan merupakan salah satu situs batu bersejarah di kawasan Balige yang memiliki nilai budaya dan legenda dalam masyarakat Batak Toba.</p>
+                    <p class="destinasi-desc">Batu Basiha merupakan salah satu situs batu bersejarah di kawasan Balige yang memiliki nilai budaya dan legenda dalam masyarakat Batak Toba.</p>
                     <a href="{{ url('/geosite/batu-bahisan') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
                 </div>
             </div>
@@ -932,7 +930,7 @@
         <div class="section-title" data-aos="fade-up">
             <h2>Lokasi Geosite</h2>
             <div class="divider"></div>
-            <p>Meat, Batu Bahisan, dan Liang Sipege</p>
+            <p>Meat, Batu Basiha dan Liang Sipege</p>
         </div>
         
         <div class="maps-container" data-aos="zoom-in">
