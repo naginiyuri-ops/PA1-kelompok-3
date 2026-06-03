@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Informasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 
 class InformasiController extends Controller
 {
@@ -51,9 +50,16 @@ class InformasiController extends Controller
 
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
-            // Simpan file ke storage (lebih baik dari base64)
-            $path = $file->store('informasi', 'public');
-            $data['gambar'] = $path;
+            $filename = time() . '_' . Str::slug($request->judul) . '.' . $file->getClientOriginalExtension();
+            
+            // Pastikan folder image/informasi ada
+            if (!file_exists(public_path('image/informasi'))) {
+                mkdir(public_path('image/informasi'), 0777, true);
+            }
+            
+            // Simpan ke public/image/informasi/
+            $file->move(public_path('image/informasi'), $filename);
+            $data['gambar'] = 'image/informasi/' . $filename;
         }
 
         Informasi::create($data);
@@ -96,13 +102,14 @@ class InformasiController extends Controller
 
         if ($request->hasFile('gambar')) {
             // Hapus gambar lama jika ada
-            if ($informasi->gambar && Storage::disk('public')->exists($informasi->gambar)) {
-                Storage::disk('public')->delete($informasi->gambar);
+            if ($informasi->gambar && file_exists(public_path($informasi->gambar))) {
+                unlink(public_path($informasi->gambar));
             }
             
             $file = $request->file('gambar');
-            $path = $file->store('informasi', 'public');
-            $data['gambar'] = $path;
+            $filename = time() . '_' . Str::slug($request->judul) . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('image/informasi'), $filename);
+            $data['gambar'] = 'image/informasi/' . $filename;
         }
 
         $informasi->update($data);
@@ -114,11 +121,20 @@ class InformasiController extends Controller
         $informasi = Informasi::findOrFail($id);
         
         // Hapus file gambar jika ada
-        if ($informasi->gambar && Storage::disk('public')->exists($informasi->gambar)) {
-            Storage::disk('public')->delete($informasi->gambar);
+        if ($informasi->gambar && file_exists(public_path($informasi->gambar))) {
+            unlink(public_path($informasi->gambar));
         }
         
         $informasi->delete();
         return redirect()->route('admin.informasi.index')->with('success', 'Informasi berhasil dihapus!');
+    }
+    
+    public function toggleStatus($id)
+    {
+        $informasi = Informasi::findOrFail($id);
+        $informasi->status = !$informasi->status;
+        $informasi->save();
+        
+        return response()->json(['success' => true, 'status' => $informasi->status]);
     }
 }
