@@ -78,9 +78,9 @@
         gap: 20px;
     }
     
-    .col-third {
+    .col-half {
         flex: 1;
-        min-width: 180px;
+        min-width: 200px;
     }
     
     .preview-image {
@@ -175,6 +175,38 @@
         margin-right: 4px;
     }
     
+    .price-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .price-wrapper .form-control {
+        flex: 1;
+    }
+    
+    .free-checkbox {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+    }
+    
+    .free-checkbox input {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        margin: 0;
+    }
+    
+    .free-checkbox label {
+        margin: 0;
+        cursor: pointer;
+        font-weight: 500;
+        color: #c6a43b;
+    }
+    
     @media (max-width: 768px) {
         .card-header {
             padding: 12px 18px;
@@ -194,6 +226,15 @@
         .btn-save, .btn-cancel {
             padding: 8px 18px;
             font-size: 0.8rem;
+        }
+        
+        .price-wrapper {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        
+        .free-checkbox {
+            justify-content: flex-start;
         }
     }
 </style>
@@ -224,50 +265,64 @@
             @csrf
             
             <div class="mb-3">
-                <label>Nama Fasilitas</label>
+                <label>Nama Fasilitas <span class="text-danger">*</span></label>
                 <input type="text" name="nama" class="form-control" value="{{ old('nama') }}" placeholder="Masukkan nama fasilitas" required>
             </div>
             
             <div class="mb-3">
-                <label>Deskripsi</label>
+                <label>Deskripsi <span class="text-danger">*</span></label>
                 <textarea name="deskripsi" class="form-control" rows="5" placeholder="Masukkan deskripsi fasilitas" required>{{ old('deskripsi') }}</textarea>
             </div>
             
             <div class="row">
-                <div class="col-third">
+                <div class="col-half">
                     <div class="mb-3">
                         <label>Lokasi</label>
                         <input type="text" name="lokasi" class="form-control" value="{{ old('lokasi', 'Desa Meat') }}" placeholder="Contoh: Desa Meat, Balige">
                     </div>
                 </div>
                 
-                <div class="col-third">
+                <div class="col-half">
                     <div class="mb-3">
                         <label>Kontak</label>
-                        <input type="text" name="kontak" class="form-control" value="{{ old('kontak') }}" placeholder="Contoh: 081234567890">
-                    </div>
-                </div>
-                
-                <div class="col-third">
-                    <div class="mb-3">
-                        <label>Harga</label>
-                        <input type="text" name="harga" class="form-control" value="{{ old('harga') }}" placeholder="Gratis / Rp 50.000">
+                        <input type="text" name="kontak" class="form-control" value="{{ old('kontak') }}" placeholder="Contoh: 081234567890 atau -">
+                        <div class="form-text">
+                            <i class="fas fa-info-circle"></i> Isi dengan "-" jika tidak ada, atau 12 digit angka
+                        </div>
                     </div>
                 </div>
             </div>
             
             <div class="row">
-                <div class="col-third">
+                <div class="col-half">
                     <div class="mb-3">
-                        <label>Urutan</label>
+                        <label>Harga</label>
+                        <div class="price-wrapper">
+                            <input type="text" name="harga" id="hargaInput" class="form-control" value="{{ old('harga') }}" placeholder="Contoh: Free, Gratis, Rp150.000/jam">
+                            <div class="free-checkbox">
+                                <input type="checkbox" name="free_harga" id="freeHarga" value="1">
+                                <label for="freeHarga">✅ Free</label>
+                            </div>
+                        </div>
+                        <div class="form-text">
+                            <i class="fas fa-info-circle"></i> Centang Free untuk mengisi otomatis "Free", atau isi manual dengan harga sesuai keinginan
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-half">
+                    <div class="mb-3">
+                        <label>Urutan <span class="text-danger">*</span></label>
                         <input type="number" name="urutan" class="form-control" value="{{ old('urutan', $nextUrutan ?? 1) }}" required>
                         <div class="form-text">
                             <i class="fas fa-info-circle"></i> Semakin kecil angka, semakin atas tampilannya
                         </div>
                     </div>
                 </div>
-                
-                <div class="col-third">
+            </div>
+            
+            <div class="row">
+                <div class="col-half">
                     <div class="mb-3">
                         <label>Gambar</label>
                         <input type="file" name="gambar" class="form-control" accept="image/*" id="inputGambar">
@@ -293,6 +348,7 @@
 </div>
 
 <script>
+    // Preview gambar
     document.getElementById('inputGambar').addEventListener('change', function(e) {
         const file = e.target.files[0];
         const previewImage = document.getElementById('previewImage');
@@ -308,5 +364,23 @@
             previewImage.style.display = 'none';
         }
     });
+    
+    // Free checkbox handler
+    const freeCheckbox = document.getElementById('freeHarga');
+    const hargaInput = document.getElementById('hargaInput');
+    
+    if (freeCheckbox) {
+        freeCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                hargaInput.disabled = true;
+                hargaInput.value = 'Free';
+                hargaInput.placeholder = 'Free';
+            } else {
+                hargaInput.disabled = false;
+                hargaInput.value = '';
+                hargaInput.placeholder = 'Contoh: Free, Gratis, Rp150.000/jam';
+            }
+        });
+    }
 </script>
 @endsection

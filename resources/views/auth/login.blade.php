@@ -10,47 +10,44 @@
         * { box-sizing: border-box; }
 
         body {
-            background: #001f3f;
+            background: #0A1C2E;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Inter', sans-serif;
             padding: 20px;
+            margin: 0;
         }
 
         .login-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            max-width: 900px;
+            max-width: 1000px;
             width: 100%;
-            min-height: 580px;
+            min-height: 620px;
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
         }
 
         /* ===== PANEL KIRI ===== */
         .left-panel {
-            background: #003366;
+            background: linear-gradient(135deg, #003366 0%, #002855 100%);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            padding: 40px 36px;
+            padding: 40px 32px;
             position: relative;
-            overflow: hidden;
         }
 
-     
- 
+        .left-content { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; }
 
-        .left-content { position: relative; z-index: 2; }
-
+        /* Logo Area */
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 14px;
-            margin-bottom: auto;
+            gap: 12px;
+            margin-bottom: 50px;
         }
 
         .logo-badge {
@@ -71,72 +68,45 @@
 
         .logo-sep {
             width: 1.5px;
-            height: 36px;
-            background: rgba(255,255,255,0.3);
+            height: 35px;
+            background: rgba(255,255,255,0.25);
         }
 
         .logo-name {
             color: white;
             font-size: 24px;
             font-weight: 800;
-            letter-spacing: -0.5px;
         }
 
         .logo-name span { color: #c6a43b; }
 
+        /* Hero Text */
         .hero-text {
-            margin: 40px 0 32px;
+            flex: 1;
         }
 
         .hero-text h2 {
             color: white;
             font-size: 28px;
-            font-weight: 800;
-            line-height: 1.25;
-            margin-bottom: 14px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 16px;
         }
 
-        .hero-text h2 em {
+        .hero-text h2 .highlight {
             color: #c6a43b;
-            font-style: normal;
             display: block;
         }
 
         .hero-text p {
-            color: rgba(255,255,255,0.65);
-            font-size: 13.5px;
-            line-height: 1.65;
+            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 16px;
         }
 
-        .stats-row {
-            display: flex;
-            gap: 0;
-            border-top: 1px solid rgba(255,255,255,0.12);
-            padding-top: 24px;
-        }
-
-        .stat-b {
-            flex: 1;
-            text-align: center;
-            border-right: 1px solid rgba(255,255,255,0.12);
-            padding: 0 10px;
-        }
-
-        .stat-b:last-child { border-right: none; }
-
-        .stat-b .num {
-            color: #c6a43b;
-            font-size: 20px;
-            font-weight: 800;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .stat-b .lbl {
-            color: rgba(255,255,255,0.5);
-            font-size: 10px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+        .hero-text p:last-of-type {
+            margin-bottom: 0;
         }
 
         /* ===== PANEL KANAN ===== */
@@ -145,31 +115,51 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 52px 48px;
+            padding: 48px 44px;
         }
 
         .right-panel .welcome-title {
             font-size: 24px;
-            font-weight: 800;
+            font-weight: 700;
             color: #003366;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
         .right-panel .welcome-sub {
-            font-size: 13.5px;
+            font-size: 13px;
             color: #888;
-            margin-bottom: 36px;
+            margin-bottom: 32px;
         }
 
+        /* Alert Styling */
+        .alert {
+            padding: 10px 15px;
+            font-size: 12px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .alert-success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: none;
+        }
+
+        .alert-danger {
+            background: #ffebee;
+            color: #c62828;
+            border: none;
+        }
+
+        /* Form Fields */
         .field-group { margin-bottom: 20px; }
 
         .field-group label {
             display: block;
-            font-size: 11.5px;
+            font-size: 11px;
             font-weight: 700;
             color: #555;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
+            letter-spacing: 0.5px;
             margin-bottom: 8px;
         }
 
@@ -180,7 +170,7 @@
             border: 1.5px solid #e0e0e0;
             border-radius: 12px;
             padding: 0 16px;
-            height: 50px;
+            height: 48px;
             background: #f8f9fa;
             transition: all 0.25s ease;
         }
@@ -188,12 +178,12 @@
         .field-inner:focus-within {
             border-color: #003366;
             background: #fff;
-            box-shadow: 0 0 0 4px rgba(0,51,102,0.08);
+            box-shadow: 0 0 0 3px rgba(0,51,102,0.08);
         }
 
         .field-inner i {
-            font-size: 16px;
-            color: #aaa;
+            font-size: 15px;
+            color: #c6a43b;
             flex-shrink: 0;
         }
 
@@ -201,76 +191,91 @@
             border: none;
             outline: none;
             background: transparent;
-            font-size: 14.5px;
+            font-size: 14px;
             flex: 1;
             color: #222;
             font-family: 'Inter', sans-serif;
         }
 
-        .field-inner input::placeholder { color: #bbb; }
-
-        .forgot-row {
-            text-align: right;
-            margin-bottom: 28px;
-            margin-top: -8px;
+        .field-inner input::placeholder { 
+            color: #bbb;
         }
 
-        .forgot-row a {
-            font-size: 12.5px;
-            color: #c6a43b;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .forgot-row a:hover { text-decoration: underline; }
-
+        /* Login Button */
         .btn-login {
             width: 100%;
-            height: 52px;
+            height: 50px;
             background: #003366;
             color: white;
             border: none;
             border-radius: 12px;
-            font-size: 15px;
-            font-weight: 700;
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            transition: all 0.25s ease;
+            transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
-            letter-spacing: 0.3px;
+            margin-top: 8px;
         }
 
         .btn-login:hover {
             background: #c6a43b;
             color: #003366;
-            transform: translateY(-1px);
-            box-shadow: 0 8px 20px rgba(198,164,59,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(198,164,59,0.3);
         }
 
         .btn-login:active { transform: translateY(0); }
 
+        /* Secure Badge */
         .secure-badge {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            margin-top: 20px;
-            font-size: 12px;
+            gap: 8px;
+            margin-top: 24px;
+            font-size: 11px;
             color: #aaa;
         }
 
-        .secure-badge i { color: #4caf50; font-size: 14px; }
+        .secure-badge i { 
+            color: #4caf50; 
+            font-size: 12px;
+        }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .login-wrapper { grid-template-columns: 1fr; }
-            .left-panel { min-height: 220px; padding: 30px 28px; }
-            .hero-text { margin: 20px 0; }
+        @media (max-width: 800px) {
+            .login-wrapper { 
+                grid-template-columns: 1fr;
+                max-width: 480px;
+            }
+            .left-panel { 
+                padding: 30px 28px;
+                min-height: auto;
+            }
+            .logo-area { margin-bottom: 30px; }
+            .hero-text h2 { font-size: 24px; }
+            .right-panel { padding: 36px 32px; }
+        }
+        /* GARIS PEMISAH ANTARA DUA PARAGRAF - SESUAI GAMBAR */
+.divider-line {
+    width: 60px;
+    height: 3px;
+    background: #c6a43b;  /* Warna emas */
+    margin: 20px 0;
+    border-radius: 3px;
+}
+
+        @media (max-width: 480px) {
+            .logo-badge { width: 40px; height: 40px; }
+            .logo-badge img { width: 30px; height: 30px; }
+            .logo-name { font-size: 20px; }
             .hero-text h2 { font-size: 20px; }
-            .right-panel { padding: 36px 28px; }
+            .right-panel { padding: 30px 24px; }
+            .welcome-title { font-size: 20px; }
         }
     </style>
 </head>
@@ -293,23 +298,14 @@
                 </div>
 
                 <div class="hero-text">
-                    <h2>Selamat Datang <em>di Portal Admin</em></h2>
-                    <p>Kelola destinasi, konten, dan data wisata Geosite Danau Toba dari satu dashboard terpadu.</p>
-                </div>
+                    <h2>
+                        Selamat Datang <span class="highlight">di Portal Admin</span>
+                    </h2>
+                    <p>Kelola destinasi konten dan data wisata Geosite Danau Toba dari satu dashboard terpadu.</p>
 
-                <div class="stats-row">
-                    <div class="stat-b">
-                        <span class="num">16</span>
-                        <span class="lbl">Geosites</span>
-                    </div>
-                    <div class="stat-b">
-                        <span class="num">74rb+</span>
-                        <span class="lbl">Thn Sejarah</span>
-                    </div>
-                    <div class="stat-b">
-                        <span class="num">100+</span>
-                        <span class="lbl">UMKM Lokal</span>
-                    </div>
+                    <div class="divider-line"></div>
+
+                    <p>Menjalankan informasi terintegrasi mengenai kekayaan geologi, warisan budaya, dan titik destinasi wisata.</p>
                 </div>
             </div>
         </div>
@@ -317,17 +313,17 @@
         {{-- PANEL KANAN --}}
         <div class="right-panel">
             <h2 class="welcome-title">Masuk ke Dashboard</h2>
-            <p class="welcome-sub">Masukkan kredensial admin Anda untuk melanjutkan</p>
+            <p class="welcome-sub">Masukkan kredensial admin Anda untuk melanjutkan.</p>
 
             @if(session('success'))
-                <div class="alert alert-success py-2 mb-3" style="font-size:13px; border-radius:10px;">
-                    {{ session('success') }}
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i> {{ session('success') }}
                 </div>
             @endif
 
             @if($errors->any())
-                <div class="alert alert-danger py-2 mb-3" style="font-size:13px; border-radius:10px;">
-                    {{ $errors->first() }}
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i> {{ $errors->first() }}
                 </div>
             @endif
 
@@ -335,7 +331,7 @@
                 @csrf
 
                 <div class="field-group">
-                    <label>Email Admin</label>
+                    <label>EMAIL ADMIN</label>
                     <div class="field-inner">
                         <i class="fas fa-envelope"></i>
                         <input type="email" name="email" placeholder="Masukkan Email"
@@ -344,15 +340,11 @@
                 </div>
 
                 <div class="field-group">
-                    <label>Password</label>
+                    <label>PASSWORD</label>
                     <div class="field-inner">
                         <i class="fas fa-lock"></i>
                         <input type="password" name="password" placeholder="Masukkan password" required>
                     </div>
-                </div>
-
-                <div class="forgot-row">
-                    <a href="{{ route('password.request') }}">Lupa password?</a>
                 </div>
 
                 <button type="submit" class="btn-login">
@@ -363,7 +355,7 @@
 
             <div class="secure-badge">
                 <i class="fas fa-shield-alt"></i>
-                Koneksi aman &amp; terenkripsi SSL
+                Koneksi aman & terenkripai SSL
             </div>
         </div>
     </div>

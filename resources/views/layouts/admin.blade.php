@@ -26,7 +26,7 @@
             left: 0;
             width: 260px;
             height: 100%;
-            background: #ffffff;
+            background: #003366;
             border-right: 1px solid #e2e8f0;
             z-index: 1000;
             overflow-y: auto;
@@ -45,7 +45,7 @@
         .sidebar-header h3 {
             font-size: 1.2rem;
             font-weight: 700;
-            color: #0f172a;
+            color: #ffff;
         }
 
         .sidebar-header h3 span {
@@ -54,7 +54,7 @@
 
         .sidebar-header p {
             font-size: 0.7rem;
-            color: #64748b;
+            color: #ffff;
             margin-top: 4px;
         }
 
@@ -76,7 +76,7 @@
             align-items: center;
             gap: 12px;
             padding: 10px 20px;
-            color: #475569;
+            color: #ffff;
             text-decoration: none;
             transition: all 0.2s;
             font-size: 0.85rem;

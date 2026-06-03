@@ -208,6 +208,38 @@
         margin-right: 4px;
     }
     
+    .price-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .price-wrapper .form-control {
+        flex: 1;
+    }
+    
+    .free-checkbox {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+    }
+    
+    .free-checkbox input {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        margin: 0;
+    }
+    
+    .free-checkbox label {
+        margin: 0;
+        cursor: pointer;
+        font-weight: 500;
+        color: #c6a43b;
+    }
+    
     @media (max-width: 768px) {
         .card-header {
             padding: 12px 18px;
@@ -227,6 +259,15 @@
         .btn-update, .btn-cancel {
             padding: 8px 18px;
             font-size: 0.8rem;
+        }
+        
+        .price-wrapper {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        
+        .free-checkbox {
+            justify-content: flex-start;
         }
     }
 </style>
@@ -258,12 +299,12 @@
             @method('PUT')
             
             <div class="mb-3">
-                <label>Nama Penginapan</label>
+                <label>Nama Penginapan <span class="text-danger">*</span></label>
                 <input type="text" name="nama" class="form-control" value="{{ old('nama', $data->nama) }}" required>
             </div>
             
             <div class="mb-3">
-                <label>Deskripsi</label>
+                <label>Deskripsi <span class="text-danger">*</span></label>
                 <textarea name="deskripsi" class="form-control" rows="5" required>{{ old('deskripsi', $data->deskripsi) }}</textarea>
             </div>
             
@@ -278,14 +319,26 @@
                 <div class="col-third">
                     <div class="mb-3">
                         <label>Kontak</label>
-                        <input type="text" name="kontak" class="form-control" value="{{ old('kontak', $data->kontak) }}">
+                        <input type="text" name="kontak" class="form-control" value="{{ old('kontak', $data->kontak) }}" placeholder="Contoh: 081234567890 atau -">
+                        <div class="form-text">
+                            <i class="fas fa-info-circle"></i> Isi dengan "-" jika tidak ada, atau 12 digit angka
+                        </div>
                     </div>
                 </div>
                 
                 <div class="col-third">
                     <div class="mb-3">
                         <label>Harga</label>
-                        <input type="text" name="harga" class="form-control" value="{{ old('harga', $data->harga) }}">
+                        <div class="price-wrapper">
+                            <input type="text" name="harga" id="hargaInput" class="form-control" value="{{ old('harga', $data->harga) }}" placeholder="Contoh: Rp250.000/malam, Free, 200000">
+                            <div class="free-checkbox">
+                                <input type="checkbox" name="free_harga" id="freeHarga" value="1" {{ old('free_harga', $data->harga == 'Free' ? 'checked' : '') }}>
+                                <label for="freeHarga">✅ Free</label>
+                            </div>
+                        </div>
+                        <div class="form-text">
+                            <i class="fas fa-info-circle"></i> Centang Free untuk mengisi otomatis "Free", atau isi manual dengan harga sesuai keinginan
+                        </div>
                     </div>
                 </div>
             </div>
@@ -293,7 +346,7 @@
             <div class="row">
                 <div class="col-third">
                     <div class="mb-3">
-                        <label>Urutan</label>
+                        <label>Urutan <span class="text-danger">*</span></label>
                         <input type="number" name="urutan" class="form-control" value="{{ old('urutan', $data->urutan) }}" required>
                         <div class="form-text">
                             <i class="fas fa-info-circle"></i> Semakin kecil angka, semakin atas tampilannya
@@ -340,6 +393,7 @@
 </div>
 
 <script>
+    // Preview gambar
     document.getElementById('inputGambar').addEventListener('change', function(e) {
         const file = e.target.files[0];
         const previewImage = document.getElementById('previewImage');
@@ -355,5 +409,22 @@
             previewImage.style.display = 'none';
         }
     });
+    
+    // Free checkbox handler
+    const freeCheckbox = document.getElementById('freeHarga');
+    const hargaInput = document.getElementById('hargaInput');
+    
+    if (freeCheckbox) {
+        freeCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                hargaInput.disabled = true;
+                hargaInput.value = 'Free';
+                hargaInput.placeholder = 'Free';
+            } else {
+                hargaInput.disabled = false;
+                hargaInput.placeholder = 'Contoh: Rp250.000/malam, Free, 200000';
+            }
+        });
+    }
 </script>
 @endsection

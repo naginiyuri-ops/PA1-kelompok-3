@@ -10,8 +10,7 @@ class InformasiSeeder extends Seeder
 {
     public function run()
     {
-        // Hapus data lama
-        Informasi::truncate();
+        // JANGAN HAPUS DATA LAMA - cek dulu apakah sudah ada
 
         $data = [
             [
@@ -35,14 +34,19 @@ class InformasiSeeder extends Seeder
         ];
 
         foreach ($data as $item) {
-            Informasi::create([
-                'judul' => $item['judul'],
-                'slug' => Str::slug($item['judul']),
-                'konten' => $item['konten'],
-                'gambar' => null,
-                'urutan' => $item['urutan'],
-                'status' => $item['status'],
-            ]);
+            // Cek apakah data dengan judul ini sudah ada
+            $exists = Informasi::where('judul', $item['judul'])->exists();
+            
+            if (!$exists) {
+                Informasi::create([
+                    'judul' => $item['judul'],
+                    'slug' => Str::slug($item['judul']),
+                    'konten' => $item['konten'],
+                    'gambar' => null,
+                    'urutan' => $item['urutan'],
+                    'status' => $item['status'],
+                ]);
+            }
         }
     }
 }

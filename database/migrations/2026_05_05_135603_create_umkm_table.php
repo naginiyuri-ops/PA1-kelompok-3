@@ -10,6 +10,8 @@ return new class extends Migration
     {
         Schema::create('umkm', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('kategori_id')->nullable()->constrained('kategoris')->nullOnDelete();
             $table->string('nama', 255);
             $table->text('deskripsi');
             $table->longText('gambar')->nullable();

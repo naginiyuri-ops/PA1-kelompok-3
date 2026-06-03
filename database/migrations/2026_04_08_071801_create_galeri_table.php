@@ -6,10 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('galeri', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->nullable(); // sementara tanpa FK
+            $table->string('galleriable_type')->nullable();
+            $table->unsignedBigInteger('galleriable_id')->nullable();
+            $table->index(['galleriable_type', 'galleriable_id']);
             $table->string('judul');
             $table->string('slug')->unique();
             $table->text('deskripsi');
@@ -23,7 +27,7 @@ return new class extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('galeri');
     }
