@@ -897,10 +897,10 @@
                     <img src="/image/meat/batubasiha1.png" alt="Batu Bahisan">
                 </div>
                 <div class="destinasi-content">
-                    <div class="destinasi-number">02 — BATU BAHISAN</div>
-                    <h3>Batu Bahisan</h3>
+                    <div class="destinasi-number">02 — BATU BASIHA</div>
+                    <h3>Batu Basiha</h3>
                     <div class="destinasi-location">Balige</div>
-                    <p class="destinasi-desc">Batu Bahisan merupakan salah satu situs batu bersejarah di kawasan Balige yang memiliki nilai budaya dan legenda dalam masyarakat Batak Toba.</p>
+                    <p class="destinasi-desc">Batu Basiha merupakan salah satu situs batu bersejarah di kawasan Balige yang memiliki nilai budaya dan legenda dalam masyarakat Batak Toba.</p>
                     <a href="{{ url('/geosite/batu-bahisan') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
                 </div>
             </div>
@@ -928,7 +928,7 @@
         <div class="section-title" data-aos="fade-up">
             <h2>Lokasi Geosite</h2>
             <div class="divider"></div>
-            <p>Meat, Batu Bahisan, dan Liang Sipege</p>
+            <p>Meat, Batu Basiha dan Liang Sipege</p>
         </div>
         
         <div class="maps-container" data-aos="zoom-in">
