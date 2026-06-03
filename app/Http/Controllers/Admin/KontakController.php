@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class KontakController extends Controller
 {
+    public function index()
+    {
+        $kontak = Kontak::first();
+        return view('admin.kontak.index', compact('kontak'));
+    }
+
     public function edit()
     {
         $kontak = Kontak::first();
@@ -16,23 +22,21 @@ class KontakController extends Controller
 
     public function update(Request $request)
     {
-      $request->validate([
-    'alamat'     => 'required',
-    'telepon'    => 'required',
-    'email'      => 'required|email',
-    'link_maps'  => 'nullable',
-    'embed_maps' => 'nullable',
-    ]);
-        $kontak = Kontak::first();
-        if (!$kontak) {
-            Kontak::create($request->all());
-        } else {
-            $kontak->update($request->all());
+        $request->validate([
+            'alamat' => 'nullable|string',
+            'telepon' => 'nullable|string|max:20',
+            'email' => 'nullable|email|max:100',
+            'link_maps' => 'nullable|string|max:500',
+        ]);
 
+        $kontak = Kontak::first();
+        
+        if ($kontak) {
+            $kontak->update($request->all());
+        } else {
+            Kontak::create($request->all());
         }
-        return back()->with(
-            'success',
-            'Data kontak berhasil diperbarui'
-        );
+
+        return redirect()->route('admin.kontak.index')->with('success', 'Data kontak berhasil diperbarui!');
     }
 }
