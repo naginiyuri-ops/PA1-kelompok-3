@@ -147,6 +147,12 @@
         border: 1px solid #ef9a9a;
     }
     
+    .badge-warning {
+        background: #fff3e0;
+        color: #e65100;
+        border: 1px solid #ffe0b2;
+    }
+    
     .btn-group {
         display: flex;
         gap: 8px;
@@ -397,11 +403,11 @@
                 <tr>
                     <td data-label="No">{{ $loop->iteration }}</td>
                     <td data-label="Gambar">
-                        @if($item->gambar)
-                            <img src="{{ asset('storage/' . $item->gambar) }}" class="table-img" 
-                                 onerror="this.src='{{ asset('image/meat/slide3.jpg') }}'" alt="{{ $item->nama }}">
+                        @if($item->gambar && file_exists(public_path($item->gambar)))
+                            <img src="{{ asset($item->gambar) }}" class="table-img" 
+                                 onerror="this.src='{{ asset('image/fasilitas/default.jpg') }}'" alt="{{ $item->nama }}">
                         @else
-                            <img src="{{ asset('image/meat/slide3.jpg') }}" class="table-img" alt="Default">
+                            <img src="{{ asset('image/fasilitas/default.jpg') }}" class="table-img" alt="Default">
                         @endif
                     </td>
                     <td data-label="Nama">
@@ -409,7 +415,9 @@
                     </td>
                     <td data-label="Lokasi">{{ $item->lokasi ?? 'Desa Meat' }}</td>
                     <td data-label="Kontak">{{ $item->kontak ?? '-' }}</td>
-                    <td data-label="Harga">{{ $item->harga ?? 'Gratis' }}</td>
+                    <td data-label="Harga">
+                        <span class="badge badge-warning">{{ $item->harga ?? 'Gratis' }}</span>
+                    </td>
                     <td data-label="Urutan" style="text-align: center;">{{ $item->urutan }}</td>
                     <td data-label="Status">
                         <span class="badge {{ $item->status ? 'badge-success' : 'badge-danger' }}">

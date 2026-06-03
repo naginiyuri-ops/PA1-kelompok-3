@@ -242,7 +242,7 @@
 <div class="card">
     <div class="card-header">
         <h5>
-            <i class="fas fa-building"></i>
+            <i class="fas fa-plus-circle"></i>
             Tambah Data Fasilitas
         </h5>
         <a href="{{ route('admin.fasilitas.index') }}" class="btn-cancel" style="padding: 6px 16px;">

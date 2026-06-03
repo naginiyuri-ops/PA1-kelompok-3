@@ -26,7 +26,7 @@ class FasilitasController extends Controller
 
     public function store(Request $request)
     {
-        // VALIDASI
+        // VALIDASI (SAMA PERSIS)
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
@@ -61,12 +61,22 @@ class FasilitasController extends Controller
             'status' => $request->has('status') ? 1 : 0
         ];
 
+        // ========== UBAH BAGIAN INI ==========
+        // UPLOAD GAMBAR KE public/image/fasilitas/
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
             $filename = time() . '_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('fasilitas', $filename, 'public');
-            $data['gambar'] = $path;
+            
+            // Buat folder jika belum ada
+            if (!file_exists(public_path('image/fasilitas'))) {
+                mkdir(public_path('image/fasilitas'), 0777, true);
+            }
+            
+            // Pindahkan file ke public/image/fasilitas/
+            $file->move(public_path('image/fasilitas'), $filename);
+            $data['gambar'] = 'image/fasilitas/' . $filename;
         }
+        // ========== END UBAH ==========
 
         Fasilitas::create($data);
         return redirect()->route('admin.fasilitas.index')->with('success', 'Fasilitas berhasil ditambahkan!');
@@ -115,24 +125,34 @@ class FasilitasController extends Controller
             'status' => $request->has('status') ? 1 : 0
         ];
 
-        // HAPUS GAMBAR LAMA
+        // ========== UBAH BAGIAN INI ==========
+        // HAPUS GAMBAR LAMA (dari public/image/fasilitas/)
         if ($request->has('hapus_gambar')) {
-            if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
-                Storage::disk('public')->delete($data->gambar);
+            if ($data->gambar && file_exists(public_path($data->gambar))) {
+                unlink(public_path($data->gambar));
             }
             $input['gambar'] = null;
         }
 
-        // UPLOAD GAMBAR BARU
+        // UPLOAD GAMBAR BARU (ke public/image/fasilitas/)
         if ($request->hasFile('gambar')) {
-            if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
-                Storage::disk('public')->delete($data->gambar);
+            // Hapus gambar lama jika ada
+            if ($data->gambar && file_exists(public_path($data->gambar))) {
+                unlink(public_path($data->gambar));
             }
+            
             $file = $request->file('gambar');
             $filename = time() . '_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('fasilitas', $filename, 'public');
-            $input['gambar'] = $path;
+            
+            // Buat folder jika belum ada
+            if (!file_exists(public_path('image/fasilitas'))) {
+                mkdir(public_path('image/fasilitas'), 0777, true);
+            }
+            
+            $file->move(public_path('image/fasilitas'), $filename);
+            $input['gambar'] = 'image/fasilitas/' . $filename;
         }
+        // ========== END UBAH ==========
 
         $data->update($input);
         return redirect()->route('admin.fasilitas.index')->with('success', 'Fasilitas berhasil diupdate!');
@@ -141,9 +161,14 @@ class FasilitasController extends Controller
     public function destroy($id)
     {
         $data = Fasilitas::findOrFail($id);
-        if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
-            Storage::disk('public')->delete($data->gambar);
+        
+        // ========== UBAH BAGIAN INI ==========
+        // Hapus file gambar dari public/image/fasilitas/
+        if ($data->gambar && file_exists(public_path($data->gambar))) {
+            unlink(public_path($data->gambar));
         }
+        // ========== END UBAH ==========
+        
         $data->delete();
         return redirect()->route('admin.fasilitas.index')->with('success', 'Fasilitas berhasil dihapus!');
     }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Penginapan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
@@ -61,12 +60,21 @@ class PenginapanController extends Controller
             'status' => $request->has('status') ? 1 : 0
         ];
 
+        // ========== UBAH: UPLOAD KE public/image/penginapan/ ==========
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
-            $filename = time() . '_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('penginapan', $filename, 'public');
-            $data['gambar'] = $path;
+            $filename = time() . '_penginapan_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
+            
+            // Buat folder jika belum ada
+            if (!file_exists(public_path('image/penginapan'))) {
+                mkdir(public_path('image/penginapan'), 0777, true);
+            }
+            
+            // Pindahkan file ke public/image/penginapan/
+            $file->move(public_path('image/penginapan'), $filename);
+            $data['gambar'] = 'image/penginapan/' . $filename;
         }
+        // ========== END UBAH ==========
 
         Penginapan::create($data);
         return redirect()->route('admin.penginapan.index')->with('success', 'Penginapan berhasil ditambahkan!');
@@ -115,22 +123,33 @@ class PenginapanController extends Controller
             'status' => $request->has('status') ? 1 : 0
         ];
 
+        // ========== UBAH: HAPUS GAMBAR LAMA DARI public/image/penginapan/ ==========
         if ($request->has('hapus_gambar')) {
-            if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
-                Storage::disk('public')->delete($data->gambar);
+            if ($data->gambar && file_exists(public_path($data->gambar))) {
+                unlink(public_path($data->gambar));
             }
             $input['gambar'] = null;
         }
 
+        // ========== UBAH: UPLOAD GAMBAR BARU KE public/image/penginapan/ ==========
         if ($request->hasFile('gambar')) {
-            if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
-                Storage::disk('public')->delete($data->gambar);
+            // Hapus gambar lama jika ada
+            if ($data->gambar && file_exists(public_path($data->gambar))) {
+                unlink(public_path($data->gambar));
             }
+            
             $file = $request->file('gambar');
-            $filename = time() . '_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('penginapan', $filename, 'public');
-            $input['gambar'] = $path;
+            $filename = time() . '_penginapan_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
+            
+            // Buat folder jika belum ada
+            if (!file_exists(public_path('image/penginapan'))) {
+                mkdir(public_path('image/penginapan'), 0777, true);
+            }
+            
+            $file->move(public_path('image/penginapan'), $filename);
+            $input['gambar'] = 'image/penginapan/' . $filename;
         }
+        // ========== END UBAH ==========
 
         $data->update($input);
         return redirect()->route('admin.penginapan.index')->with('success', 'Penginapan berhasil diupdate!');
@@ -139,9 +158,13 @@ class PenginapanController extends Controller
     public function destroy($id)
     {
         $data = Penginapan::findOrFail($id);
-        if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
-            Storage::disk('public')->delete($data->gambar);
+        
+        // ========== UBAH: HAPUS FILE DARI public/image/penginapan/ ==========
+        if ($data->gambar && file_exists(public_path($data->gambar))) {
+            unlink(public_path($data->gambar));
         }
+        // ========== END UBAH ==========
+        
         $data->delete();
         return redirect()->route('admin.penginapan.index')->with('success', 'Penginapan berhasil dihapus!');
     }

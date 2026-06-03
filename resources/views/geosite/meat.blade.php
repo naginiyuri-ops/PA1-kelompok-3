@@ -801,7 +801,7 @@
         transform: rotate(90deg);
     }
     
-    /* ==================== RESPONSIVE ==================== */
+    /* ==================== RESPONSIVE HP ==================== */
     @media (max-width: 992px) {
         .hero-title { font-size: 3rem; }
         .sejarah-item, .sejarah-item.reverse { 
@@ -918,6 +918,14 @@
             height: 35px;
             font-size: 1.5rem;
         }
+        /* Perbaikan touch untuk HP */
+        .card, .fasilitas-item, .sejarah-image {
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn-readmore {
+            padding: 8px 0;
+        }
     }
     
     @media (max-width: 480px) {
@@ -973,6 +981,33 @@
         .cta-btn {
             padding: 8px 24px;
             font-size: 0.65rem;
+        }
+        /* Optimasi touch area untuk HP */
+        .dot {
+            min-width: 8px;
+            min-height: 8px;
+        }
+        .slider-dots {
+            gap: 15px;
+        }
+    }
+    
+    /* Untuk layar sangat kecil (max 360px) */
+    @media (max-width: 360px) {
+        .hero-title {
+            font-size: 1.3rem;
+        }
+        .hero-subtitle {
+            font-size: 0.45rem;
+        }
+        .section-header h2 {
+            font-size: 1.1rem;
+        }
+        .card-img {
+            height: 160px;
+        }
+        .fasilitas-img {
+            height: 140px;
         }
     }
 </style>
@@ -1065,20 +1100,31 @@
         <div class="grid-umkm">
             @forelse($umkm as $index => $item)
             <div class="card" data-aos="fade-up" data-aos-delay="{{ min(($index % 5) * 100, 400) }}" onclick="openDetailModal('umkm', {{ $index }})">
-                @if($item->gambar)
-                    <img src="{{ asset('storage/' . $item->gambar) }}" 
-                         class="card-img" 
-                         alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openLightbox('{{ asset('storage/' . $item->gambar) }}', '{{ $item->nama }}', '{{ Str::limit($item->deskripsi ?? '', 100) }}')" 
-                         onerror="this.src='{{ asset('image/meat/slide1.jpg') }}'"
-                         loading="lazy">
-                @else
-                    <img src="{{ asset('image/meat/slide1.jpg') }}" 
-                         class="card-img" 
-                         alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openLightbox('{{ asset('image/meat/slide1.jpg') }}', '{{ $item->nama }}', 'UMKM Lokal Meat')"
-                         loading="lazy">
-                @endif
+                @php
+                    // Fungsi helper untuk mendapatkan URL gambar dari public/image/
+                    $imgSrc = asset('image/meat/slide1.jpg');
+                    if (!empty($item->gambar)) {
+                        if (str_starts_with($item->gambar, 'data:image')) {
+                            $imgSrc = $item->gambar;
+                        } elseif (str_starts_with($item->gambar, 'http')) {
+                            $imgSrc = $item->gambar;
+                        } elseif (str_starts_with($item->gambar, 'image/')) {
+                            $imgSrc = asset($item->gambar);
+                        } elseif (file_exists(public_path('image/umkm/' . $item->gambar))) {
+                            $imgSrc = asset('image/umkm/' . $item->gambar);
+                        } elseif (file_exists(public_path('image/umkm/' . basename($item->gambar)))) {
+                            $imgSrc = asset('image/umkm/' . basename($item->gambar));
+                        } else {
+                            $imgSrc = asset('storage/' . $item->gambar);
+                        }
+                    }
+                @endphp
+                <img src="{{ $imgSrc }}" 
+                     class="card-img" 
+                     alt="{{ $item->nama }}" 
+                     onclick="event.stopPropagation(); openLightbox('{{ $imgSrc }}', '{{ addslashes($item->nama) }}', '{{ addslashes(Str::limit($item->deskripsi ?? '', 100)) }}')" 
+                     onerror="this.src='{{ asset('image/meat/slide1.jpg') }}'"
+                     loading="lazy">
                 <div class="card-content">
                     <h3>{{ Str::limit($item->nama, 35) }}</h3>
                     <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 80) }}</p>
@@ -1112,20 +1158,30 @@
         <div class="grid-3">
             @forelse($penginapan ?? [] as $index => $item)
             <div class="card" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}" onclick="openDetailModal('penginapan', {{ $index }})">
-                @if($item->gambar)
-                    <img src="{{ asset('storage/' . $item->gambar) }}" 
-                         class="card-img" 
-                         alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openLightbox('{{ asset('storage/' . $item->gambar) }}', '{{ $item->nama }}', 'Penginapan di Desa Meat')" 
-                         onerror="this.src='{{ asset('image/meat/slide2.jpg') }}'"
-                         loading="lazy">
-                @else
-                    <img src="{{ asset('image/meat/slide2.jpg') }}" 
-                         class="card-img" 
-                         alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openLightbox('{{ asset('image/meat/slide2.jpg') }}', '{{ $item->nama }}', 'Penginapan di Desa Meat')"
-                         loading="lazy">
-                @endif
+                @php
+                    $imgSrc = asset('image/meat/slide2.jpg');
+                    if (!empty($item->gambar)) {
+                        if (str_starts_with($item->gambar, 'data:image')) {
+                            $imgSrc = $item->gambar;
+                        } elseif (str_starts_with($item->gambar, 'http')) {
+                            $imgSrc = $item->gambar;
+                        } elseif (str_starts_with($item->gambar, 'image/')) {
+                            $imgSrc = asset($item->gambar);
+                        } elseif (file_exists(public_path('image/penginapan/' . $item->gambar))) {
+                            $imgSrc = asset('image/penginapan/' . $item->gambar);
+                        } elseif (file_exists(public_path('image/penginapan/' . basename($item->gambar)))) {
+                            $imgSrc = asset('image/penginapan/' . basename($item->gambar));
+                        } else {
+                            $imgSrc = asset('storage/' . $item->gambar);
+                        }
+                    }
+                @endphp
+                <img src="{{ $imgSrc }}" 
+                     class="card-img" 
+                     alt="{{ $item->nama }}" 
+                     onclick="event.stopPropagation(); openLightbox('{{ $imgSrc }}', '{{ addslashes($item->nama) }}', 'Penginapan di Desa Meat')" 
+                     onerror="this.src='{{ asset('image/meat/slide2.jpg') }}'"
+                     loading="lazy">
                 <div class="card-content">
                     <h3>{{ Str::limit($item->nama, 35) }}</h3>
                     <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 80) }}</p>
@@ -1159,20 +1215,30 @@
         <div class="grid-2">
             @forelse($fasilitas ?? [] as $index => $item)
             <div class="fasilitas-item" data-aos="fade-up" data-aos-delay="{{ ($index % 2) * 50 }}" onclick="openDetailModal('fasilitas', {{ $index }})">
-                @if($item->gambar)
-                    <img src="{{ asset('storage/' . $item->gambar) }}" 
-                         class="fasilitas-img" 
-                         alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openLightbox('{{ asset('storage/' . $item->gambar) }}', '{{ $item->nama }}', 'Fasilitas di Desa Meat')" 
-                         onerror="this.src='{{ asset('image/meat/slide3.jpg') }}'"
-                         loading="lazy">
-                @else
-                    <img src="{{ asset('image/meat/slide3.jpg') }}" 
-                         class="fasilitas-img" 
-                         alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openLightbox('{{ asset('image/meat/slide3.jpg') }}', '{{ $item->nama }}', 'Fasilitas di Desa Meat')"
-                         loading="lazy">
-                @endif
+                @php
+                    $imgSrc = asset('image/meat/slide3.jpg');
+                    if (!empty($item->gambar)) {
+                        if (str_starts_with($item->gambar, 'data:image')) {
+                            $imgSrc = $item->gambar;
+                        } elseif (str_starts_with($item->gambar, 'http')) {
+                            $imgSrc = $item->gambar;
+                        } elseif (str_starts_with($item->gambar, 'image/')) {
+                            $imgSrc = asset($item->gambar);
+                        } elseif (file_exists(public_path('image/fasilitas/' . $item->gambar))) {
+                            $imgSrc = asset('image/fasilitas/' . $item->gambar);
+                        } elseif (file_exists(public_path('image/fasilitas/' . basename($item->gambar)))) {
+                            $imgSrc = asset('image/fasilitas/' . basename($item->gambar));
+                        } else {
+                            $imgSrc = asset('storage/' . $item->gambar);
+                        }
+                    }
+                @endphp
+                <img src="{{ $imgSrc }}" 
+                     class="fasilitas-img" 
+                     alt="{{ $item->nama }}" 
+                     onclick="event.stopPropagation(); openLightbox('{{ $imgSrc }}', '{{ addslashes($item->nama) }}', 'Fasilitas di Desa Meat')" 
+                     onerror="this.src='{{ asset('image/meat/slide3.jpg') }}'"
+                     loading="lazy">
                 <div class="fasilitas-content">
                     <h4>{{ Str::limit($item->nama, 30) }}</h4>
                     <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 60) }}</p>
@@ -1245,8 +1311,8 @@
     <div class="lightbox-container" onclick="event.stopPropagation()">
         <img id="lightboxImage" class="lightbox-image" src="" alt="">
         <div class="lightbox-caption">
-            <h3 id="lightboxTitle" style="color: var(--gold); margin-top: 15px;"></h3>
-            <p id="lightboxDesc" style="color: rgba(255,255,255,0.7);"></p>
+            <h3 id="lightboxTitle" style="color: var(--gold); margin-top: 15px; font-size: 1rem;"></h3>
+            <p id="lightboxDesc" style="color: rgba(255,255,255,0.7); font-size: 0.8rem; margin-top: 8px;"></p>
         </div>
     </div>
 </div>
@@ -1276,6 +1342,9 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 <script>
     // Data dari backend
@@ -1311,6 +1380,13 @@
     if (dots.length) {
         dots.forEach((dot, i) => {
             dot.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                showSlide(i);
+                startSlider();
+            });
+            // Touch support untuk HP
+            dot.addEventListener('touchstart', (e) => {
+                e.preventDefault();
                 clearInterval(slideInterval);
                 showSlide(i);
                 startSlider();
@@ -1355,6 +1431,22 @@
         }
     }
     
+    // Fungsi helper untuk mendapatkan URL gambar yang benar
+    function getImageUrl(item) {
+        if (!item.gambar) return null;
+        
+        if (item.gambar.startsWith('data:image')) {
+            return item.gambar;
+        }
+        if (item.gambar.startsWith('http')) {
+            return item.gambar;
+        }
+        if (item.gambar.startsWith('image/')) {
+            return '{{ asset("") }}' + item.gambar;
+        }
+        return null;
+    }
+    
     // ==================== DETAIL MODAL ====================
     function openDetailModal(type, index) {
         let item = null;
@@ -1374,11 +1466,21 @@
         if (!item) return;
         
         let imgSrc = '{{ asset("image/meat/slide1.jpg") }}';
+        
+        // Cek gambar dari berbagai lokasi
         if (item.gambar) {
             if (item.gambar.startsWith('data:image')) {
                 imgSrc = item.gambar;
             } else if (item.gambar.startsWith('http')) {
                 imgSrc = item.gambar;
+            } else if (item.gambar.startsWith('image/')) {
+                imgSrc = '{{ asset("") }}' + item.gambar;
+            } else if (type === 'umkm' && fileExists('image/umkm/' + item.gambar)) {
+                imgSrc = '{{ asset("image/umkm") }}/' + item.gambar;
+            } else if (type === 'penginapan' && fileExists('image/penginapan/' + item.gambar)) {
+                imgSrc = '{{ asset("image/penginapan") }}/' + item.gambar;
+            } else if (type === 'fasilitas' && fileExists('image/fasilitas/' + item.gambar)) {
+                imgSrc = '{{ asset("image/fasilitas") }}/' + item.gambar;
             } else {
                 imgSrc = '{{ asset("storage") }}/' + item.gambar;
             }
@@ -1411,11 +1513,23 @@
                 closeLightbox();
             }
         });
+        // Touch support untuk HP
+        lightboxOverlay.addEventListener('touchstart', function(e) {
+            if (e.target === this || e.target.classList.contains('lightbox-close')) {
+                closeLightbox();
+            }
+        });
     }
     
     const detailModal = document.getElementById('detailModal');
     if (detailModal) {
         detailModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDetailModal();
+            }
+        });
+        // Touch support untuk HP
+        detailModal.addEventListener('touchstart', function(e) {
             if (e.target === this) {
                 closeDetailModal();
             }
@@ -1428,15 +1542,26 @@
             closeDetailModal();
         }
     });
-</script>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
+    
+    // Helper function fileExists (tidak bisa di JS, hanya fallback)
+    function fileExists(path) {
+        // Ini hanya fallback, akan tetap menggunakan onerror di img
+        return true;
+    }
+    
+    // Inisialisasi AOS
     AOS.init({
         duration: 600,
         once: true,
         offset: 40,
         easing: 'ease-out-quad'
+    });
+    
+    // Perbaikan untuk touch event di HP agar tidak double fire
+    document.querySelectorAll('.card, .fasilitas-item, .sejarah-image').forEach(el => {
+        el.addEventListener('touchstart', function(e) {
+            // Biarkan event tetap berjalan, hanya prevent default jika perlu
+        }, { passive: true });
     });
 </script>
 
