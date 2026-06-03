@@ -492,7 +492,7 @@
         <div class="container">
             <div class="informasi-grid">
                 @forelse($informasi as $index => $item)
-                <div class="informasi-card" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}" onclick="showArticle({{ $index }})">
+                <div class="informasi-card" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}" data-id="{{ $item->id }}" data-index="{{ $index }}">
                     @php
                         $imgSrc = asset('image/default.jpg');
                         if (!empty($item->gambar)) {
@@ -500,6 +500,10 @@
                                 $imgSrc = $item->gambar;
                             } elseif (filter_var($item->gambar, FILTER_VALIDATE_URL)) {
                                 $imgSrc = $item->gambar;
+                            } elseif (str_starts_with($item->gambar, 'image/informasi/')) {
+                                $imgSrc = asset($item->gambar);
+                            } elseif (file_exists(public_path('image/informasi/' . $item->gambar))) {
+                                $imgSrc = asset('image/informasi/' . $item->gambar);
                             } else {
                                 $imgSrc = asset('storage/' . $item->gambar);
                             }
@@ -583,6 +587,29 @@
     // Data informasi dari server
     const informasiData = @json($informasi->items());
     
+    // Fungsi helper untuk mendapatkan URL gambar yang benar
+    function getImageUrl(item) {
+        if (!item.gambar) {
+            return '{{ asset("image/default.jpg") }}';
+        }
+        
+        if (item.gambar.startsWith('data:image')) {
+            return item.gambar;
+        }
+        
+        if (item.gambar.startsWith('http')) {
+            return item.gambar;
+        }
+        
+        if (item.gambar.startsWith('image/informasi/')) {
+            return '/' + item.gambar;
+        }
+        
+        // Cek apakah file ada di public/image/informasi/
+        // Untuk gambar yang disimpan dengan path relatif
+        return '/storage/' + item.gambar;
+    }
+    
     // DOM Elements
     const heroSection = document.getElementById('heroSection');
     const gridSection = document.getElementById('gridSection');
@@ -590,6 +617,20 @@
     
     // Variable untuk menyimpan posisi scroll
     let scrollPosition = 0;
+    
+    // Pasang event listener ke semua card
+    document.querySelectorAll('.informasi-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+            // Cegah jika yang diklik adalah tombol atau link di dalam card
+            if (e.target.closest('.btn-read') || e.target.closest('a')) {
+                return;
+            }
+            const index = parseInt(this.dataset.index);
+            if (!isNaN(index)) {
+                showArticle(index);
+            }
+        });
+    });
     
     // Function untuk menampilkan artikel
     function showArticle(index) {
@@ -599,25 +640,26 @@
         // Simpan posisi scroll
         scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
         
-        // Proses gambar
-        let imgSrc = '{{ asset("image/default.jpg") }}';
-        if (item.gambar) {
-            if (item.gambar.startsWith('data:image') || item.gambar.startsWith('http')) {
-                imgSrc = item.gambar;
-            } else {
-                imgSrc = '{{ asset("storage") }}/' + item.gambar;
-            }
+        // Proses gambar menggunakan fungsi helper
+        let imgSrc = getImageUrl(item);
+        
+        // Format tanggal dengan aman
+        let tanggalFormatted = '';
+        try {
+            tanggalFormatted = new Date(item.created_at).toLocaleDateString('id-ID', {
+                day: 'numeric', 
+                month: 'long', 
+                year: 'numeric'
+            });
+        } catch(e) {
+            tanggalFormatted = item.created_at || 'Tanggal tidak tersedia';
         }
         
-        // Format tanggal
-        const tanggalFormatted = new Date(item.created_at).toLocaleDateString('id-ID', {
-            day: 'numeric', 
-            month: 'long', 
-            year: 'numeric'
-        });
-        
         // Update konten modal
-        document.getElementById('modalImg').src = imgSrc;
+        const modalImgEl = document.getElementById('modalImg');
+        modalImgEl.src = imgSrc;
+        modalImgEl.style.opacity = '0';
+        
         document.getElementById('modalTitle').innerText = item.judul;
         document.getElementById('modalDate').innerText = tanggalFormatted;
         document.getElementById('modalViews').innerText = (item.views || 0).toLocaleString();
@@ -634,14 +676,27 @@
         // Scroll ke atas modal
         articleModal.scrollTop = 0;
         
-        // Update views
-        fetch('/api/informasi/' + item.id + '/view', {
+        // Update views via AJAX (tanpa reload)
+        fetch('/informasi/' + item.id + '/view', {
             method: 'POST',
             headers: { 
                 'X-CSRF-TOKEN': '{{ csrf_token() }}', 
                 'Content-Type': 'application/json' 
             }
-        }).catch(err => console.log('Error updating views:', err));
+        }).then(response => response.json())
+          .then(data => {
+              if (data.success && data.views) {
+                  document.getElementById('modalViews').innerText = data.views.toLocaleString();
+                  // Update views di data array
+                  item.views = data.views;
+              }
+          })
+          .catch(err => console.log('Error updating views:', err));
+        
+        // Setelah gambar load, tampilkan dengan animasi
+        modalImgEl.onload = function() {
+            modalImgEl.style.opacity = '1';
+        };
     }
     
     // Function untuk menutup artikel
@@ -684,9 +739,8 @@
     const modalImg = document.getElementById('modalImg');
     modalImg.style.opacity = '0';
     modalImg.style.transition = 'opacity 0.3s ease';
-    modalImg.addEventListener('load', function() {
-        this.style.opacity = '1';
-    });
+    
+    console.log('Halaman informasi siap, total data:', informasiData.length);
 </script>
 
 @endsection

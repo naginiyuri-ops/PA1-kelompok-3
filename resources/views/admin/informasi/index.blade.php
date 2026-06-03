@@ -6,8 +6,8 @@
 <style>
     .card-table {
         background: white;
-        border-radius: 16px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
         overflow: hidden;
     }
     
@@ -15,7 +15,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 16px 24px;
+        padding: 18px 24px;
         background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
         border-bottom: 1px solid #e2e8f0;
         flex-wrap: wrap;
@@ -34,13 +34,14 @@
     
     .card-header h5 i {
         color: #c6a43b;
+        font-size: 1.2rem;
     }
     
     .btn-primary {
         background: linear-gradient(135deg, #003366 0%, #1a4a7a 100%);
         color: white;
         padding: 8px 18px;
-        border-radius: 10px;
+        border-radius: 12px;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
@@ -54,7 +55,7 @@
     
     .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
+        box-shadow: 0 6px 16px rgba(0, 51, 102, 0.3);
         color: white;
     }
     
@@ -63,7 +64,7 @@
         color: #2e7d32;
         padding: 12px 20px;
         margin: 16px 20px;
-        border-radius: 10px;
+        border-radius: 12px;
         border-left: 4px solid #2e7d32;
         display: flex;
         align-items: center;
@@ -76,7 +77,7 @@
         color: #c62828;
         padding: 12px 20px;
         margin: 16px 20px;
-        border-radius: 10px;
+        border-radius: 12px;
         border-left: 4px solid #c62828;
         display: flex;
         align-items: center;
@@ -86,12 +87,13 @@
     
     .table-wrapper {
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
     
     table {
         width: 100%;
         border-collapse: collapse;
-        min-width: 500px;
+        min-width: 600px;
     }
     
     thead {
@@ -105,6 +107,7 @@
         font-size: 0.8rem;
         color: #003366;
         border-bottom: 2px solid #e2e8f0;
+        white-space: nowrap;
     }
     
     td {
@@ -123,12 +126,14 @@
         width: 50px;
         height: 50px;
         object-fit: cover;
-        border-radius: 10px;
+        border-radius: 12px;
+        background: #f1f5f9;
     }
     
     .badge {
         display: inline-flex;
         align-items: center;
+        gap: 5px;
         padding: 4px 12px;
         border-radius: 50px;
         font-size: 0.7rem;
@@ -271,6 +276,15 @@
             align-items: flex-start;
         }
         
+        .card-header h5 {
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            padding: 6px 14px;
+            font-size: 0.75rem;
+        }
+        
         th, td {
             padding: 10px 12px;
             font-size: 0.75rem;
@@ -309,7 +323,7 @@
             display: block;
             margin-bottom: 12px;
             border: 1px solid #e2e8f0;
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 12px;
             background: white;
         }
@@ -398,12 +412,16 @@
                             if (!empty($item->gambar)) {
                                 if (str_starts_with($item->gambar, 'data:image')) {
                                     $imgSrc = $item->gambar;
+                                } elseif (str_starts_with($item->gambar, 'image/informasi/')) {
+                                    $imgSrc = asset($item->gambar);
+                                } elseif (file_exists(public_path('image/informasi/' . $item->gambar))) {
+                                    $imgSrc = asset('image/informasi/' . $item->gambar);
                                 } else {
                                     $imgSrc = asset('storage/' . $item->gambar);
                                 }
                             }
                         @endphp
-                        <img src="{{ $imgSrc }}" class="table-img" alt="{{ $item->judul }}">
+                        <img src="{{ $imgSrc }}" class="table-img" alt="{{ $item->judul }}" onerror="this.src='{{ asset('image/default.jpg') }}'">
                     </td>
                     <td data-label="Judul">
                         <strong>{{ Str::limit($item->judul, 50) }}</strong>

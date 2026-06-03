@@ -25,11 +25,10 @@ class InformasiController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'konten' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'status' => 'nullable|boolean'
         ]);
 
-        // Cek apakah slug sudah ada
         $slug = Str::slug($request->judul);
         $originalSlug = $slug;
         $counter = 1;
@@ -50,14 +49,12 @@ class InformasiController extends Controller
 
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
-            $filename = time() . '_' . Str::slug($request->judul) . '.' . $file->getClientOriginalExtension();
+            $filename = time() . '_informasi_' . Str::slug($request->judul) . '.' . $file->getClientOriginalExtension();
             
-            // Pastikan folder image/informasi ada
             if (!file_exists(public_path('image/informasi'))) {
                 mkdir(public_path('image/informasi'), 0777, true);
             }
             
-            // Simpan ke public/image/informasi/
             $file->move(public_path('image/informasi'), $filename);
             $data['gambar'] = 'image/informasi/' . $filename;
         }
@@ -79,11 +76,10 @@ class InformasiController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'konten' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'status' => 'nullable|boolean'
         ]);
 
-        // Cek apakah slug sudah ada (kecuali untuk record saat ini)
         $slug = Str::slug($request->judul);
         $originalSlug = $slug;
         $counter = 1;
@@ -101,13 +97,12 @@ class InformasiController extends Controller
         ];
 
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama jika ada
             if ($informasi->gambar && file_exists(public_path($informasi->gambar))) {
                 unlink(public_path($informasi->gambar));
             }
             
             $file = $request->file('gambar');
-            $filename = time() . '_' . Str::slug($request->judul) . '.' . $file->getClientOriginalExtension();
+            $filename = time() . '_informasi_' . Str::slug($request->judul) . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('image/informasi'), $filename);
             $data['gambar'] = 'image/informasi/' . $filename;
         }
@@ -120,7 +115,6 @@ class InformasiController extends Controller
     {
         $informasi = Informasi::findOrFail($id);
         
-        // Hapus file gambar jika ada
         if ($informasi->gambar && file_exists(public_path($informasi->gambar))) {
             unlink(public_path($informasi->gambar));
         }

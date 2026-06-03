@@ -6,13 +6,13 @@
 <style>
     .card {
         background: white;
-        border-radius: 16px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
         overflow: hidden;
     }
     
     .card-header {
-        padding: 16px 24px;
+        padding: 18px 24px;
         background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
         border-bottom: 1px solid #e2e8f0;
     }
@@ -105,6 +105,26 @@
         cursor: pointer;
     }
     
+    .checkbox-delete {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 8px;
+    }
+    
+    .checkbox-delete input {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+    }
+    
+    .checkbox-delete label {
+        margin: 0;
+        font-weight: normal;
+        color: #dc2626;
+        cursor: pointer;
+    }
+    
     .btn-group {
         display: flex;
         gap: 12px;
@@ -161,6 +181,16 @@
         padding-left: 20px;
     }
     
+    .form-text {
+        font-size: 0.7rem;
+        color: #94a3b8;
+        margin-top: 5px;
+    }
+    
+    .form-text i {
+        margin-right: 4px;
+    }
+    
     @media (max-width: 768px) {
         .card-header {
             padding: 12px 18px;
@@ -207,25 +237,48 @@
             @method('PUT')
             
             <div class="mb-3">
-                <label>Judul Informasi</label>
+                <label>Judul Informasi <span class="text-danger">*</span></label>
                 <input type="text" name="judul" class="form-control" value="{{ old('judul', $informasi->judul) }}" required>
             </div>
             
             <div class="mb-3">
                 <label>Gambar</label>
                 @if($informasi->gambar)
+                    @php
+                        $imgSrc = asset('image/default.jpg');
+                        if (str_starts_with($informasi->gambar, 'image/informasi/')) {
+                            $imgSrc = asset($informasi->gambar);
+                        } elseif (file_exists(public_path('image/informasi/' . $informasi->gambar))) {
+                            $imgSrc = asset('image/informasi/' . $informasi->gambar);
+                        } else {
+                            $imgSrc = asset('storage/' . $informasi->gambar);
+                        }
+                    @endphp
                     <div class="current-image">
-                        <img src="{{ asset('storage/' . $informasi->gambar) }}" alt="Current image">
+                        <img src="{{ $imgSrc }}" alt="Current image">
                     </div>
+                    <div class="checkbox-delete">
+                        <input type="checkbox" name="hapus_gambar" id="hapus_gambar" value="1">
+                        <label for="hapus_gambar" class="text-danger">Hapus gambar ini</label>
+                    </div>
+                @else
+                    <div class="form-text">Tidak ada gambar</div>
                 @endif
+                
+                <label style="margin-top: 12px;">Ganti Gambar (Opsional)</label>
                 <input type="file" name="gambar" class="form-control mt-2" accept="image/*" id="inputGambar">
-                <small class="text-muted d-block mt-1">Kosongkan jika tidak ingin mengubah gambar</small>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i> Format: JPG, PNG, WEBP. Max: 5MB
+                </div>
                 <img id="previewImage" class="preview-image">
             </div>
             
             <div class="mb-3">
-                <label>Konten</label>
+                <label>Konten <span class="text-danger">*</span></label>
                 <textarea name="konten" class="form-control" rows="10" required>{{ old('konten', $informasi->konten) }}</textarea>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i> Gunakan HTML untuk formatting teks
+                </div>
             </div>
             
             <div class="checkbox-group">
