@@ -814,7 +814,7 @@
             <div class="hero-subtitle">Global Geopark</div>
             <h1 class="hero-title">BALIGE · MEAT · BATU BASIHA<br>LIANG SIPEGE</h1>
             <div class="hero-divider"></div>
-            <a href="#destinasi" class="hero-btn">Jelajahi Sekarang ya</a>
+            <a href="#destinasi" class="hero-btn">Jelajahi Sekarang</a>
         </div>
     </div>
     
