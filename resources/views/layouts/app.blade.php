@@ -17,7 +17,7 @@
         :root {
             --blue-dark: #003366;
             --blue-medium: #1a4a7a;
-            --gold: #c6a43b;
+            --gold: #e6e6e6;
             --white: #ffffff;
         }
 
@@ -360,7 +360,7 @@
         .footer-divider {
             width: 60px;
             height: 2px;
-            background: rgba(198, 164, 59, 0.5);
+            background: rgba(200, 196, 185, 0.5);
             margin: 0 auto 25px;
             border-radius: 2px;
         }
@@ -447,9 +447,9 @@
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
             <div class="logo-wrapper">
-                <img src="{{ asset('image/Logo/logobankindonesia.jpg') }}" alt="Bank Indonesia" class="logo-img" loading="lazy">
+                <img src="{{ asset('image/logo/logobankindonesia.jpg') }}" alt="Bank Indonesia" class="logo-img" loading="lazy">
                 <div class="logo-divider"></div>
-                <img src="{{ asset('image/Logo/del.jpg') }}" alt="Logo Del" class="logo-img" loading="lazy">
+                <img src="{{ asset('image/logo/del.jpg') }}" alt="Logo Del" class="logo-img" loading="lazy">
                 <div class="logo-divider"></div>
                 <a class="navbar-brand" href="{{ url('/') }}">Geo<span>Toba</span></a>
             </div>

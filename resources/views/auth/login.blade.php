@@ -163,20 +163,6 @@
             margin-bottom: 8px;
         }
 
-        /* Style Tambahan untuk Link Lupa Password */
-        .forgot-link {
-            font-size: 11px;
-            font-weight: 600;
-            color: #c6a43b;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .forgot-link:hover {
-            color: #003366;
-            text-decoration: underline;
-        }
-
         .field-inner {
             display: flex;
             align-items: center;
@@ -260,7 +246,32 @@
             font-size: 12px;
         }
 
-        /* Style Tambahan untuk Copyright Text */
+        /* ===== LUPA PASSWORD DI BAWAH ===== */
+        .forgot-bottom {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .forgot-bottom-link {
+            font-size: 12px;
+            font-weight: 600;
+            color: #020201;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .forgot-bottom-link:hover {
+            color: #003366;
+            text-decoration: underline;
+            transform: translateX(3px);
+        }
+
+        /* Copyright Text */
         .login-footer-text {
             text-align: center;
             margin-top: 20px;
@@ -283,11 +294,11 @@
             .right-panel { padding: 36px 32px; }
         }
         
-        /* GARIS PEMISAH ANTARA DUA PARAGRAF - SESUAI GAMBAR */
+        /* GARIS PEMISAH ANTARA DUA PARAGRAF */
         .divider-line {
             width: 60px;
             height: 3px;
-            background: #c6a43b;  /* Warna emas */
+            background: #c6a43b;
             margin: 20px 0;
             border-radius: 3px;
         }
@@ -310,11 +321,11 @@
             <div class="left-content">
                 <div class="logo-area">
                     <div class="logo-badge">
-                        <img src="{{ asset('image/Logo/logobankindonesia.jpg') }}" alt="Bank Indonesia">
+                        <img src="{{ asset('image/logo/logobankindonesia.jpg') }}" alt="Bank Indonesia">
                     </div>
                     <div class="logo-sep"></div>
                     <div class="logo-badge">
-                        <img src="{{ asset('image/Logo/del.jpg') }}" alt="Del">
+                        <img src="{{ asset('image/logo/del.jpg') }}" alt="Del">
                     </div>
                     <div class="logo-sep"></div>
                     <div class="logo-name">Geo<span>Toba</span></div>
@@ -363,10 +374,7 @@
                 </div>
 
                 <div class="field-group">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <label class="m-0">PASSWORD</label>
-                        <a href="{{ route('password.request') }}" class="forgot-link">Lupa Password?</a>
-                    </div>
+                    <label>PASSWORD</label>
                     <div class="field-inner">
                         <i class="fas fa-lock"></i>
                         <input type="password" name="password" placeholder="Masukkan password" required>
@@ -379,9 +387,17 @@
                 </button>
             </form>
 
+            <!-- ===== LUPA PASSWORD DI BAWAH (SEBELUM SECURE BADGE) ===== -->
+            <div class="forgot-bottom">
+                <a href="{{ route('password.request') }}" class="forgot-bottom-link">
+                    <i class="fas fa-question-circle"></i>
+                    Lupa Password?
+                </a>
+            </div>
+
             <div class="secure-badge">
                 <i class="fas fa-shield-alt"></i>
-                Koneksi aman & terenkripai SSL
+                Koneksi aman & terenkripsi SSL
             </div>
 
             <div class="login-footer-text">
