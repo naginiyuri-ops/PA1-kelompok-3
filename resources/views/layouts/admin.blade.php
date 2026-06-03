@@ -371,6 +371,7 @@
         <a href="{{ route('admin.penginapan.index') }}" class="{{ request()->routeIs('admin.penginapan.*') ? 'active' : '' }}">
             <i class="fas fa-hotel"></i> Penginapan
         </a>
+<<<<<<< HEAD
         <a href="{{ route('admin.kontak.index') }}" class="{{ request()->routeIs('admin.kontak.*') ? 'active' : '' }}">
             <i class="fas fa-address-book"></i> Kontak
         </a>
@@ -378,6 +379,11 @@
         <div class="menu-title">Pengaturan</div>
         <a href="{{ route('admin.create') }}" class="{{ request()->routeIs('admin.create') ? 'active' : '' }}">
             <i class="fas fa-user-plus"></i> Tambah Admin
+=======
+        <li>
+         <a href="{{ route('admin.kontak.index') }}">
+          <i class="fas fa-address-book"></i>Kontak
+>>>>>>> 384823c974c6615786cd9a2e042cad1e558fd3e6
         </a>
     </div>
 </div>
