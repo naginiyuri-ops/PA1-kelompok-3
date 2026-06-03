@@ -815,7 +815,7 @@
     <div class="hero-content">
         <div>
             <div class="hero-subtitle"></div>
-            <h1 class="hero-title">BALIGE · MEAT · BATU BAHISAN<br>LIANG SIPEGE</h1>
+            <h1 class="hero-title">BALIGE · MEAT · BATU BASIHA<br>LIANG SIPEGE</h1>
             <div class="hero-divider"></div>
             <a href="#destinasi" class="hero-btn">Jelajahi Sekarang</a>
         </div>
@@ -890,8 +890,6 @@
                     <a href="{{ url('/geosite/meat') }}" class="destinasi-link">Jelajahi Lebih Lanjut →</a>
                 </div>
             </div>
-            
-            <!-- BATU BAHISAN -->
             <div class="destinasi-item reverse" data-aos="fade-up" data-aos-delay="200">
                 <div class="destinasi-image" onclick="openLightbox('/image/meat/batubasiha1.png', 'Batu Bahisan', 'Situs batu bersejarah di kawasan Balige')">
                     <img src="/image/meat/batubasiha1.png" alt="Batu Bahisan">
