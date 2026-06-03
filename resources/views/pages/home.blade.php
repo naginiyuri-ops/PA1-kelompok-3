@@ -157,18 +157,23 @@
     }
     
     .hero-title {
-        font-size: 3.8rem;
+        font-family: 'Cinzel', serif !important;
+        font-size: 4rem;
         font-weight: 700;
-        font-family: 'Cormorant Garamond', serif;
-        line-height: 1.2;
+        line-height: 1.3;
         margin-bottom: 25px;
-        color: white;
-        text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+        text-align: center;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        color: #fff8df !important;
+        background: none !important;
+        -webkit-text-fill-color: #fff8df !important;
+        text-shadow: 0 2px 0 rgba(170, 135, 55, 0.65), 0 6px 12px rgba(0, 0, 0, 0.55), 0 14px 30px rgba(0, 0, 0, 0.55);
         animation: fadeInUp 0.8s ease 0.1s both;
     }
     
     .hero-divider {
-        width: 60px;
+        width: 80px;
         height: 2px;
         background: #c6a43b;
         margin: 0 auto 30px;
@@ -179,8 +184,8 @@
         display: inline-block;
         background: #c6a43b;
         color: #003366;
-        padding: 14px 42px;
-        font-size: 0.75rem;
+        padding: 12px 36px;
+        font-size: 0.7rem;
         letter-spacing: 0.25em;
         text-transform: uppercase;
         transition: all 0.4s ease;
@@ -684,11 +689,7 @@
         background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
         animation: rotate 20s linear infinite;
     }
-<<<<<<< HEAD
     
-=======
-     
->>>>>>> eec5a1d2016d21f0119dbba616bbd8d8a60e1e3c
     @keyframes rotate {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
@@ -772,17 +773,18 @@
     
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 992px) {
-        .hero-title { font-size: 2.8rem; }
+        .hero-title { font-size: 2.5rem; letter-spacing: 4px; }
         .destinasi-item, .destinasi-item.reverse { flex-direction: column; gap: 30px; }
         .about-grid { flex-direction: column; text-align: center; }
         .maps-container iframe { height: 350px; }
         .maps-info { flex-direction: column; text-align: center; }
         .maps-locations { justify-content: center; }
     }
+    
     @media (max-width: 768px) {
-        .hero-title { font-size: 2rem; }
-        .hero-subtitle { font-size: 0.6rem; letter-spacing: 0.2em; }
-        .hero-btn { padding: 10px 28px; font-size: 0.65rem; }
+        .hero-title { font-size: 1.8rem; letter-spacing: 3px; }
+        .hero-subtitle { font-size: 0.55rem; letter-spacing: 0.2em; }
+        .hero-btn { padding: 8px 24px; font-size: 0.6rem; }
         .section { padding: 60px 0; }
         .section-title h2 { font-size: 1.6rem; }
         .destinasi-content h3 { font-size: 1.6rem; }
@@ -794,8 +796,9 @@
         .lightbox-close { top: 10px; right: 15px; width: 35px; height: 35px; font-size: 1.5rem; }
         .lightbox-caption h3 { font-size: 1rem; }
     }
+    
     @media (max-width: 480px) {
-        .hero-title { font-size: 1.6rem; }
+        .hero-title { font-size: 1.4rem; letter-spacing: 2px; }
         .maps-container iframe { height: 220px; }
     }
 </style>
@@ -811,10 +814,14 @@
     
     <div class="hero-content">
         <div>
-            <div class="hero-subtitle">Global Geopark</div>
-            <h1 class="hero-title">BALIGE · MEAT · BATU BASIHA<br>LIANG SIPEGE</h1>
+            <div class="hero-subtitle"></div>
+            <h1 class="hero-title">BALIGE · MEAT · BATU BAHISAN<br>LIANG SIPEGE</h1>
             <div class="hero-divider"></div>
+<<<<<<< HEAD
             <a href="#destinasi" class="hero-btn">Jelajahi Sekarang </a>
+=======
+            <a href="#destinasi" class="hero-btn">Jelajahi Sekarang</a>
+>>>>>>> 7836544f4882782f88e1cd0bfc229ba859979507
         </div>
     </div>
     
@@ -855,10 +862,10 @@
             <div class="about-content" data-aos="fade-right">
                 <h3>Warisan Geologi Kelas Dunia</h3>
                 <p>Danau Toba, terbentuk dari letusan supervolcano 74.000 tahun lalu, adalah danau vulkanik terbesar di dunia. Diakui UNESCO sebagai Global Geopark pada tahun 2020.</p>
-                <p>Kawasan ini menyimpan nilai geologi luar biasa, keanekaragaman hayati, dan warisan budaya Batak yang autentik. Tiga geosite unggulan di Pulau Sibandang menanti Anda jelajahi.</p>
+                <p>Kawasan ini menyimpan nilai geologi luar biasa, keanekaragaman hayati, dan warisan budaya Batak yang autentik. Tiga geosite unggulan di kawasan Balige menanti Anda jelajahi.</p>
             </div>
-            <div class="about-image" data-aos="fade-left" onclick="openLightbox('/image/meat/slide1.jpg', 'Danau Toba', 'Pemandangan indah Danau Toba')">
-                <img src="/image/meat/slide1.jpg" alt="Danau Toba">
+            <div class="about-image" data-aos="fade-left" onclick="openLightbox('/image/meat/danau.jpg', 'Danau Toba', 'Pemandangan indah Danau Toba')">
+                <img src="/image/meat/danau.jpg" alt="Danau Toba">
             </div>
         </div>
     </div>
@@ -890,7 +897,7 @@
             
             <!-- BATU BAHISAN -->
             <div class="destinasi-item reverse" data-aos="fade-up" data-aos-delay="200">
-                <div class="destinasi-image" onclick="openLightbox('/image/meat/batubasiha1.png ', 'Batu Bahisan', 'Situs batu bersejarah di kawasan Balige')">
+                <div class="destinasi-image" onclick="openLightbox('/image/meat/batubasiha1.png', 'Batu Bahisan', 'Situs batu bersejarah di kawasan Balige')">
                     <img src="/image/meat/batubasiha1.png" alt="Batu Bahisan">
                 </div>
                 <div class="destinasi-content">
@@ -919,11 +926,11 @@
     </div>
 </section>
 
-<!-- ==================== PETA LOKASI 3 DESA ==================== -->
+<!-- ==================== PETA LOKASI ==================== -->
 <section class="section section-light">
     <div class="container">
         <div class="section-title" data-aos="fade-up">
-            <h2>Lokasi 3 Geosite</h2>
+            <h2>Lokasi Geosite</h2>
             <div class="divider"></div>
             <p>Meat, Batu Bahisan, dan Liang Sipege</p>
         </div>
@@ -938,22 +945,22 @@
 
             <div class="maps-info">
                 <div class="maps-locations">
-                    <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Meat+Village+Pulau+Sibandang', '_blank')">
+                    <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Meat+Village+Toba', '_blank')">
                         <i class="fas fa-location-dot"></i>
                         <span>Meat Village</span>
                     </div>
-                    <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Batu+Bahisan+Pulau+Sibandang', '_blank')">
+                    <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Batu+Bahisan+Balige', '_blank')">
                         <i class="fas fa-location-dot"></i>
                         <span>Batu Bahisan</span>
                     </div>
-                    <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Liang+Sipege+Pulau+Sibandang', '_blank')">
+                    <div class="maps-location-item" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Liang+Sipege+Balige', '_blank')">
                         <i class="fas fa-location-dot"></i>
                         <span>Liang Sipege</span>
                     </div>
                 </div>
                 <div class="maps-note">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>Klik salah satu lokasi disamping untuk melihat lokasi detail</span>
+                    <span>Klik salah satu lokasi untuk melihat detail</span>
                 </div>
             </div>
         </div>
@@ -967,6 +974,7 @@
             <h3>Mulai Petualangan Anda</h3>
             <div class="divider"></div>
             <p>Temukan keajaiban geologi dan kekayaan budaya Batak di Geopark Toba, warisan dunia yang diakui UNESCO.</p>
+            <a href="#destinasi" class="cta-btn">Jelajahi Sekarang</a>
         </div>
     </div>
 </section>
@@ -1029,6 +1037,8 @@
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-<script>AOS.init({ duration: 800, once: true, offset: 50 });</script>
+<script>
+    AOS.init({ duration: 800, once: true, offset: 50 });
+</script>
 
 @endsection

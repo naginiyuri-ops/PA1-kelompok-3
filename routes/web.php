@@ -89,7 +89,7 @@ Route::get('/kontak', [HomeController::class, 'kontak'])->name('kontak');
 
 // Geosite Routes
 Route::get('/geosite/meat', [GeositeController::class, 'meat'])->name('geosite.meat');
-Route::get('/geosite/batu-bahisan', [GeositeController::class, 'batuBahisan'])->name('geosite.batu-bahisan');
+Route::get('/geosite/batu-basiha', [GeositeController::class, 'batuBasiha'])->name('geosite.batu-basiha');
 Route::get('/geosite/liang-sipege', [GeositeController::class, 'liangSipege'])->name('geosite.liang-sipege');
 
 // ==================== AUTH ROUTES ====================

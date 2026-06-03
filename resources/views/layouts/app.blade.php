@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -21,24 +21,34 @@
             --white: #ffffff;
         }
 
-        /* ===== NAVBAR ===== */
+        body {
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVBAR - LEBIH BESAR ===== */
         .navbar {
             transition: all 0.4s ease;
-            padding: 0.5rem 0;
-            background: rgba(0, 51, 102, 0.92);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(198, 164, 59, 0.25);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 1rem 0;
+            background: rgba(0, 51, 102, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(198, 164, 59, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .navbar.scrolled {
             background: var(--white) !important;
-            padding: 0.3rem 0;
+            padding: 0.7rem 0;
             box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
         }
 
         .navbar.scrolled .nav-link,
-        .navbar.scrolled .navbar-brand { color: var(--blue-dark) !important; }
+        .navbar.scrolled .navbar-brand { 
+            color: var(--blue-dark) !important; 
+        }
+
+        .navbar.scrolled .logo-divider {
+            background: linear-gradient(145deg, rgba(0,51,102,0.3), rgba(0,51,102,0.1));
+        }
 
         .navbar.scrolled .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 51, 102, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
@@ -47,63 +57,60 @@
         .navbar .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 16px;
+            padding: 0 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
         }
 
-        /* ===== LOGO ===== */
+        /* ===== LOGO - LEBIH BESAR ===== */
         .logo-wrapper {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             flex-wrap: nowrap;
-            min-width: 0; /* allow shrink */
         }
 
         .logo-img {
-            height: 42px;
+            height: 55px;
             width: auto;
-            border-radius: 6px;
+            border-radius: 10px;
             object-fit: cover;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             flex-shrink: 0;
         }
 
         .logo-divider {
-            width: 1.5px;
-            height: 30px;
-            background: linear-gradient(145deg, rgba(255,255,255,0.5), rgba(255,255,255,0.1));
+            width: 2px;
+            height: 38px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.6), rgba(255,255,255,0.15));
             border-radius: 2px;
             flex-shrink: 0;
         }
 
-        .navbar.scrolled .logo-divider {
-            background: linear-gradient(145deg, rgba(0,51,102,0.3), rgba(0,51,102,0.1));
-        }
-
         .navbar-brand {
-            font-size: 1.35rem;
+            font-size: 1.6rem;
             font-weight: 800;
             color: white !important;
             margin: 0;
-            padding: 0 0 0 4px;
+            padding: 0 0 0 8px;
             white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            letter-spacing: 1px;
         }
 
-        .navbar-brand span { color: var(--gold); font-weight: 800; }
+        .navbar-brand span { 
+            color: var(--gold); 
+            font-weight: 800;
+        }
 
         /* ===== TOGGLER ===== */
         .navbar-toggler {
             border: none;
-            padding: 7px 9px;
-            background: rgba(255, 255, 255, 0.12);
-            border-radius: 10px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
             flex-shrink: 0;
         }
 
@@ -112,22 +119,25 @@
             outline: none;
         }
 
-        .navbar-toggler-icon { width: 22px; height: 22px; }
+        .navbar-toggler-icon { 
+            width: 24px; 
+            height: 24px; 
+        }
 
-        /* ===== NAV LINKS (desktop) ===== */
+        /* ===== NAV LINKS ===== */
         .nav-link {
             color: white !important;
-            font-weight: 500;
-            margin: 0 0.15rem;
+            font-weight: 600;
+            margin: 0 0.2rem;
             transition: all 0.25s ease;
-            font-size: 0.9rem;
-            padding: 0.45rem 0.9rem;
+            font-size: 1rem;
+            padding: 0.6rem 1.1rem;
             border-radius: 40px;
         }
 
         .nav-link:hover {
             color: var(--gold) !important;
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
         }
 
@@ -136,24 +146,24 @@
             background: rgba(198, 164, 59, 0.2);
         }
 
-        /* ===== DROPDOWN (desktop) ===== */
+        /* ===== DROPDOWN ===== */
         .dropdown-menu {
             background: rgba(0, 51, 102, 0.96);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 20px;
-            padding: 0.5rem 0;
-            margin-top: 0.6rem;
+            padding: 0.6rem 0;
+            margin-top: 0.7rem;
             box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3);
         }
 
         .dropdown-item {
             color: white;
-            padding: 8px 20px;
-            font-size: 0.8rem;
+            padding: 10px 24px;
+            font-size: 0.9rem;
             transition: all 0.25s ease;
             border-radius: 16px;
-            margin: 3px 8px;
+            margin: 4px 10px;
         }
 
         .dropdown-item:hover {
@@ -164,22 +174,20 @@
 
         .dropdown-header {
             color: var(--gold);
-            padding: 6px 20px;
-            font-size: 0.65rem;
+            padding: 8px 24px;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
-        /* ===== MOBILE BREAKPOINTS ===== */
-
-        /* Tablet / small desktop */
+        /* ===== MOBILE RESPONSIVE ===== */
         @media (max-width: 991px) {
             .navbar-collapse {
                 background: rgba(0, 51, 102, 0.98);
                 backdrop-filter: blur(20px);
-                border-radius: 16px;
-                padding: 10px 8px;
-                margin-top: 10px;
+                border-radius: 20px;
+                padding: 15px;
+                margin-top: 15px;
                 max-height: 80vh;
                 overflow-y: auto;
             }
@@ -190,79 +198,51 @@
             }
 
             .nav-link {
-                padding: 10px 14px !important;
-                margin: 2px 0;
-                border-radius: 10px;
+                padding: 12px 16px !important;
+                font-size: 1rem;
                 text-align: center;
-                font-size: 0.88rem;
             }
 
             .dropdown-menu {
-                background: rgba(0, 51, 102, 0.96);
+                background: rgba(0, 51, 102, 0.5);
                 border: none;
                 border-radius: 12px;
-                margin: 4px 0;
+                margin: 5px 0;
                 padding: 6px 0;
                 position: static !important;
                 transform: none !important;
                 width: 100%;
-                box-shadow: none;
-                backdrop-filter: none;
-            }
-
-            .navbar.scrolled .dropdown-menu {
-                background: rgba(245, 245, 245, 0.98);
             }
 
             .dropdown-item {
-                padding: 9px 16px;
                 text-align: center;
-                font-size: 0.82rem;
-                border-radius: 8px;
-                margin: 2px 6px;
-            }
-
-            .dropdown-header {
-                text-align: center;
-                font-size: 0.65rem;
+                padding: 10px 16px;
             }
         }
 
-        /* Handphone ukuran sedang (576px - 767px) */
-        @media (max-width: 767px) {
-            .navbar { padding: 0.45rem 0; }
+        @media (max-width: 768px) {
+            .navbar { padding: 0.8rem 0; }
+            .logo-img { height: 45px; }
+            .logo-divider { height: 32px; }
+            .navbar-brand { font-size: 1.3rem; }
+            .logo-wrapper { gap: 10px; }
+            .navbar .container { padding: 0 16px; }
+        }
 
-            .logo-img { height: 36px; }
+        @media (max-width: 576px) {
+            .navbar { padding: 0.6rem 0; }
+            .logo-img { height: 38px; }
             .logo-divider { height: 26px; }
-            .logo-wrapper { gap: 6px; }
-            .navbar-brand { font-size: 1.15rem; padding-left: 2px; }
-
-            .navbar .container { padding: 0 12px; }
+            .navbar-brand { font-size: 1.1rem; }
+            .logo-wrapper { gap: 8px; }
+            .navbar-toggler { padding: 6px 10px; }
+            .nav-link { font-size: 0.9rem; padding: 10px 14px !important; }
         }
 
-        /* Handphone kecil (< 576px) */
-        @media (max-width: 575px) {
-            .navbar { padding: 0.38rem 0; }
-
-            .logo-img { height: 30px; }
-            .logo-divider { height: 22px; width: 1px; }
-            .logo-wrapper { gap: 5px; }
-            .navbar-brand { font-size: 1rem; }
-            .navbar-toggler { padding: 5px 7px; }
-            .navbar-toggler-icon { width: 20px; height: 20px; }
-
-            .navbar .container { padding: 0 10px; }
-
-            .nav-link { font-size: 0.84rem; padding: 9px 12px !important; }
-            .dropdown-item { font-size: 0.79rem; }
-        }
-
-        /* HP sangat kecil (< 380px) */
-        @media (max-width: 380px) {
-            .logo-img { height: 26px; }
-            .logo-divider { display: none; }  /* sembunyikan satu divider jika terlalu sempit */
-            .logo-divider:first-of-type { display: block; }
-            .navbar-brand { font-size: 0.92rem; }
+        @media (max-width: 400px) {
+            .logo-img { height: 32px; }
+            .navbar-brand { font-size: 0.95rem; }
+            .logo-divider { display: none; }
         }
 
         /* ===== FOOTER ===== */
@@ -293,86 +273,67 @@
         .footer-menu {
             display: flex;
             justify-content: center;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
             gap: 40px;
             margin-bottom: 35px;
-            overflow-x: auto;
-            overflow-y: hidden;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-            padding-bottom: 8px;
         }
-
-        .footer-menu::-webkit-scrollbar { height: 4px; }
-        .footer-menu::-webkit-scrollbar-track { background: rgba(255,255,255,0.15); border-radius: 4px; }
-        .footer-menu::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
 
         .footer-menu a {
             color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
             font-size: 1rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
             transition: all 0.3s ease;
-            position: relative;
             padding: 8px 0;
-            white-space: nowrap;
+            position: relative;
         }
 
         .footer-menu a::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 50%;
+            bottom: -2px;
+            left: 0;
             width: 0;
-            height: 2.5px;
+            height: 2px;
             background: var(--gold);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        .footer-menu a:hover {
+            color: var(--gold);
+        }
+
+        .footer-menu a:hover::after {
+            width: 100%;
+        }
+
+        .footer-divider {
+            width: 60px;
+            height: 2px;
+            background: rgba(198, 164, 59, 0.5);
+            margin: 0 auto 25px;
             border-radius: 2px;
         }
 
-        .footer-menu a:hover { color: var(--gold); transform: translateY(-2px); }
-        .footer-menu a:hover::after { width: 100%; }
-
-        .footer-divider {
-            width: 70px;
-            height: 2.5px;
-            background: rgba(198, 164, 59, 0.6);
-            margin: 0 auto 28px;
-            border-radius: 3px;
+        .footer-copyright {
+            text-align: center;
         }
-
-        .footer-copyright { text-align: center; }
 
         .footer-copyright p {
             margin: 0;
             color: rgba(255, 255, 255, 0.55);
             font-size: 0.85rem;
-            letter-spacing: 0.8px;
-            font-weight: 400;
         }
 
         @media (max-width: 768px) {
-            .footer { padding: 40px 0 28px; margin-top: 60px; }
-            .footer-menu { gap: 28px; margin-bottom: 28px; }
-            .footer-menu a { font-size: 0.9rem; padding: 6px 0; }
-            .footer-divider { width: 55px; margin-bottom: 22px; }
-            .footer-copyright p { font-size: 0.78rem; }
+            .footer { padding: 35px 0 25px; margin-top: 60px; }
+            .footer-menu { gap: 25px; }
+            .footer-menu a { font-size: 0.85rem; }
         }
 
-        @media (max-width: 480px) {
-            .footer { padding: 32px 0 22px; margin-top: 50px; }
-            .footer-container { padding: 0 14px; }
-            .footer-menu { gap: 20px; }
-            .footer-menu a { font-size: 0.82rem; }
-            .footer-divider { width: 45px; margin-bottom: 18px; }
-            .footer-copyright p { font-size: 0.72rem; letter-spacing: 0.5px; }
-        }
-
-        @media (max-width: 380px) {
-            .footer-menu { justify-content: flex-start; gap: 16px; }
-            .footer-menu a { font-size: 0.78rem; }
+        @media (max-width: 576px) {
+            .footer-menu { gap: 18px; flex-wrap: wrap; }
+            .footer-menu a { font-size: 0.8rem; }
         }
 
         /* ===== BACK TO TOP ===== */
@@ -408,7 +369,7 @@
         .back-to-top.show { opacity: 1; visibility: visible; }
 
         @media (max-width: 576px) {
-            .back-to-top { bottom: 15px; right: 15px; width: 42px; height: 42px; }
+            .back-to-top { bottom: 15px; right: 15px; width: 40px; height: 40px; }
             .back-to-top i { font-size: 1rem; }
         }
 
@@ -421,13 +382,13 @@
 
         main {
             flex: 1;
-            padding-top: 70px;
+            padding-top: 85px;
             min-height: calc(100vh - 200px);
         }
 
-        @media (max-width: 991px) { main { padding-top: 63px; } }
-        @media (max-width: 575px) { main { padding-top: 56px; } }
-        @media (max-width: 380px) { main { padding-top: 52px; } }
+        @media (max-width: 991px) { main { padding-top: 78px; } }
+        @media (max-width: 768px) { main { padding-top: 72px; } }
+        @media (max-width: 576px) { main { padding-top: 65px; } }
     </style>
     @stack('styles')
 </head>
@@ -516,7 +477,6 @@
 
         const navbarCollapse = document.getElementById('navbarNav');
 
-        // Tutup navbar saat klik link biasa (bukan dropdown toggle) di mobile
         const regularLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle), .dropdown-item');
         regularLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -527,10 +487,8 @@
             });
         });
 
-        // Dropdown handler — mobile manual, desktop pakai Bootstrap API
         const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
         dropdownToggles.forEach(function(toggle) {
-            // Desktop: inisialisasi Bootstrap Dropdown manual (karena data-bs-toggle sudah dihapus)
             var bsDropdown = new bootstrap.Dropdown(toggle, { autoClose: true });
 
             toggle.addEventListener('click', function(e) {
@@ -538,15 +496,12 @@
                 e.stopPropagation();
 
                 if (window.innerWidth > 991) {
-                    // Desktop: pakai Bootstrap Dropdown toggle
                     bsDropdown.toggle();
                 } else {
-                    // Mobile: toggle class show manual
                     var menu = this.parentElement.querySelector('.dropdown-menu');
                     if (!menu) return;
                     var isOpen = menu.classList.contains('show');
 
-                    // Tutup semua dropdown lain
                     document.querySelectorAll('.navbar-nav .dropdown-menu.show').forEach(function(m) {
                         m.classList.remove('show');
                     });
@@ -556,7 +511,6 @@
             });
         });
 
-        // Klik di luar → tutup dropdown mobile
         document.addEventListener('click', function(e) {
             if (window.innerWidth <= 991 && !e.target.closest('.navbar')) {
                 document.querySelectorAll('.navbar-nav .dropdown-menu.show').forEach(function(m) {

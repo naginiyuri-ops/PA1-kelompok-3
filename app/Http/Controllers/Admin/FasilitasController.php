@@ -7,7 +7,7 @@ use App\Models\Fasilitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth; // ← Tambahkan ini
+use Illuminate\Support\Facades\Auth;
 
 class FasilitasController extends Controller
 {
@@ -26,22 +26,35 @@ class FasilitasController extends Controller
 
     public function store(Request $request)
     {
+        // VALIDASI
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'urutan' => 'required|integer|unique:fasilitas,urutan',
-            'harga' => 'nullable|string|max:255',
             'lokasi' => 'nullable|string|max:255',
-            'kontak' => 'nullable|string|max:255',
+            'kontak' => [
+                'nullable',
+                'string',
+                'max:255',
+                'regex:/^(-|[0-9]{12})$/',
+            ],
             'status' => 'nullable|boolean'
+        ], [
+            'kontak.regex' => 'Nomor kontak harus diisi "-" atau 12 digit angka (contoh: 081234567890)',
         ]);
 
+        // PROSES HARGA
+        $hargaValue = $request->harga;
+        if ($request->has('free_harga')) {
+            $hargaValue = 'Free';
+        }
+
         $data = [
-            'user_id' => Auth::id(), // ← TAMBAHKAN INI
+            'user_id' => Auth::id(),
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
-            'harga' => $request->harga,
+            'harga' => $hargaValue,
             'lokasi' => $request->lokasi,
             'kontak' => $request->kontak,
             'urutan' => $request->urutan,
@@ -74,24 +87,35 @@ class FasilitasController extends Controller
             'deskripsi' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'urutan' => 'required|integer|unique:fasilitas,urutan,' . $id,
-            'harga' => 'nullable|string|max:255',
             'lokasi' => 'nullable|string|max:255',
-            'kontak' => 'nullable|string|max:255',
+            'kontak' => [
+                'nullable',
+                'string',
+                'max:255',
+                'regex:/^(-|[0-9]{12})$/',
+            ],
             'status' => 'nullable|boolean'
+        ], [
+            'kontak.regex' => 'Nomor kontak harus diisi "-" atau 12 digit angka (contoh: 081234567890)',
         ]);
+
+        // PROSES HARGA
+        $hargaValue = $request->harga;
+        if ($request->has('free_harga')) {
+            $hargaValue = 'Free';
+        }
 
         $input = [
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
-            'harga' => $request->harga,
+            'harga' => $hargaValue,
             'lokasi' => $request->lokasi,
             'kontak' => $request->kontak,
             'urutan' => $request->urutan,
             'status' => $request->has('status') ? 1 : 0
         ];
 
-        // Jangan update user_id, biarkan tetap seperti semula
-
+        // HAPUS GAMBAR LAMA
         if ($request->has('hapus_gambar')) {
             if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
                 Storage::disk('public')->delete($data->gambar);
@@ -99,6 +123,7 @@ class FasilitasController extends Controller
             $input['gambar'] = null;
         }
 
+        // UPLOAD GAMBAR BARU
         if ($request->hasFile('gambar')) {
             if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
                 Storage::disk('public')->delete($data->gambar);
