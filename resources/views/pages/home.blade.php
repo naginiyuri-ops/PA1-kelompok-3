@@ -94,8 +94,21 @@
             transform: scale(1);
         }
     }
+    
+    /* New slide animation */
+    @keyframes kenburns {
+        0% { transform: scale(1) translate(0, 0); }
+        100% { transform: scale(1.1) translate(-2%, -2%); }
+    }
+    
+    @keyframes slideFade {
+        0% { opacity: 0; transform: scale(1.05); }
+        10% { opacity: 1; transform: scale(1); }
+        90% { opacity: 1; transform: scale(1); }
+        100% { opacity: 0; transform: scale(0.98); }
+    }
 
-    /* ==================== HERO VIDEO BACKGROUND ==================== */
+    /* ==================== HERO SLIDESHOW BACKGROUND ==================== */
     .hero-section {
         height: 100vh;
         position: relative;
@@ -103,27 +116,58 @@
         margin-top: 0;
     }
 
-    .hero-video-bg {
+    .hero-slideshow {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         z-index: 1;
-        overflow: hidden;
     }
-
-    .hero-video-bg video {
+    
+    .hero-slide {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        transform: translate(-50%, -50%);
-        object-fit: cover;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0;
+        animation: slideFade 16s ease-in-out infinite;
+        transform-origin: center;
     }
+    
+    /* Set background images for each slide */
+    .hero-slide-1 { background-image: url('/image/meat/slide2.jpg'); animation-delay: 0s; }
+    .hero-slide-2 { background-image: url('/image/meat/slide5.jpg'); animation-delay: 4s; }
+    .hero-slide-3 { background-image: url('/image/meat/meat-detail.jpg'); animation-delay: 8s; }
+    .hero-slide-4 { background-image: url('/image/meat/liang-sipege-hero.jpg'); animation-delay: 12s; }
+    .hero-slide-5 { background-image: url('/image/meat/Jabubatak.jpg'); animation-delay: 0s; opacity: 1; } /* Fallback */
+    
+    /* Override animation for better smoothness */
+    .hero-slide-1 { animation-name: slideFade; }
+    .hero-slide-2 { animation-name: slideFade; }
+    .hero-slide-3 { animation-name: slideFade; }
+    .hero-slide-4 { animation-name: slideFade; }
+    .hero-slide-5 { animation-name: slideFade; animation-delay: 0s; opacity: 0; }
+    
+    /* Ensure only one slide active at a time, fallback for browser compatibility */
+    @keyframes slideFade {
+        0% { opacity: 0; transform: scale(1.02); }
+        8% { opacity: 1; transform: scale(1); }
+        25% { opacity: 1; transform: scale(1); }
+        33% { opacity: 0; transform: scale(0.98); }
+        100% { opacity: 0; transform: scale(0.98); }
+    }
+    
+    /* Reassign animation durations for 5 slides */
+    .hero-slide-1 { animation: slideFade 20s ease-in-out infinite; animation-delay: 0s; }
+    .hero-slide-2 { animation: slideFade 20s ease-in-out infinite; animation-delay: 4s; }
+    .hero-slide-3 { animation: slideFade 20s ease-in-out infinite; animation-delay: 8s; }
+    .hero-slide-4 { animation: slideFade 20s ease-in-out infinite; animation-delay: 12s; }
+    .hero-slide-5 { animation: slideFade 20s ease-in-out infinite; animation-delay: 16s; }
 
     .hero-video-overlay {
         position: absolute;
@@ -803,12 +847,14 @@
     }
 </style>
 
-<!-- ==================== HERO VIDEO BACKGROUND ==================== -->
+<!-- ==================== HERO SLIDESHOW BACKGROUND ==================== -->
 <section class="hero-section" id="home">
-    <div class="hero-video-bg">
-        <video autoplay muted loop playsinline>
-            <source src="/image/meat/slide.mp4" type="video/mp4">
-        </video>
+    <div class="hero-slideshow">
+        <div class="hero-slide hero-slide-1"></div>
+        <div class="hero-slide hero-slide-2"></div>
+        <div class="hero-slide hero-slide-3"></div>
+        <div class="hero-slide hero-slide-4"></div>
+        <div class="hero-slide hero-slide-5"></div>
     </div>
     <div class="hero-video-overlay"></div>
     
@@ -817,7 +863,7 @@
             <div class="hero-subtitle"></div>
             <h1 class="hero-title">BALIGE · MEAT · BATU BASIHA<br>LIANG SIPEGE</h1>
             <div class="hero-divider"></div>
-            <a href="#destinasi" class="hero-btn">Jelajahi Sekarang </a>
+            <a href="#destinasi" class="hero-btn">Jelajahi Sekarang →</a>
         </div>
     </div>
     
@@ -891,8 +937,8 @@
                 </div>
             </div>
             <div class="destinasi-item reverse" data-aos="fade-up" data-aos-delay="200">
-                <div class="destinasi-image" onclick="openLightbox('/image/meat/batubasiha1.png', 'Batu Bahisan', 'Situs batu bersejarah di kawasan Balige')">
-                    <img src="/image/meat/batubasiha1.png" alt="Batu Bahisan">
+                <div class="destinasi-image" onclick="openLightbox('/image/meat/batubasiha1.png', 'Batu Basiha', 'Situs batu bersejarah di kawasan Balige')">
+                    <img src="/image/meat/batubasiha1.png" alt="Batu Basiha">
                 </div>
                 <div class="destinasi-content">
                     <div class="destinasi-number">02 — BATU BASIHA</div>
