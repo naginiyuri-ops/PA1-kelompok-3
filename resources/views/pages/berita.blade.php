@@ -22,7 +22,6 @@
         --bg-light: #f8fafc;
         --bg-gray: #f1f5f9;
         
-        /* Premium Shadows */
         --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
         --shadow-md: 0 10px 30px rgba(0,0,0,0.06);
         --shadow-xl: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
@@ -126,7 +125,6 @@
         gap: 35px;
     }
     
-    /* Card Berita Modern */
     .berita-card {
         background: var(--white);
         border-radius: var(--radius-lg);
@@ -144,7 +142,6 @@
         border-color: rgba(198, 164, 59, 0.15);
     }
     
-    /* Wrapper Gambar Interaktif */
     .card-image-wrapper {
         position: relative;
         height: 230px;
@@ -163,7 +160,6 @@
         transform: scale(1.06);
     }
     
-    /* Hover Overlay Efek Glass */
     .card-image-overlay {
         position: absolute;
         top: 0;
@@ -230,7 +226,6 @@
         z-index: 2;
     }
     
-    /* Konten Card */
     .card-content {
         padding: 26px;
         flex: 1;
@@ -387,7 +382,7 @@
     }
     
     .reader-content {
-        max-width: 740px; /* Lebar lebih ringkas & ideal membaca santai */
+        max-width: 740px;
         margin: 0 auto;
         padding: 50px 24px 80px;
         transform: translateY(20px);
@@ -418,9 +413,8 @@
         margin-bottom: 20px;
     }
     
-    /* Judul Modal - Diperkecil & Lebih Elegant */
     .reader-title {
-        font-size: 2.2rem; 
+        font-size: 2.2rem;
         font-weight: 700;
         font-family: 'Playfair Display', serif;
         color: var(--primary-dark);
@@ -461,11 +455,10 @@
         display: block;
     }
     
-    /* ==================== PROPORSIONAL TYPOGRAPHY ENGINE (Fills & Inputs) ==================== */
     .reader-body {
         font-family: 'Inter', sans-serif;
-        font-size: 1rem; /* Ukuran font dikecilkan dari 1.125rem agar pas & rapi */
-        line-height: 1.75; /* Spasi yang seimbang dengan ukuran huruf */
+        font-size: 1rem;
+        line-height: 1.75;
         color: var(--text-gray);
     }
     
@@ -475,7 +468,6 @@
         text-align: justify;
     }
     
-    /* Judul di dalam artikel dari Text Editor */
     .reader-body h1, .reader-body h2, .reader-body h3, .reader-body h4 {
         color: var(--primary-dark);
         font-family: 'Playfair Display', serif;
@@ -541,7 +533,6 @@
         font-weight: 600;
     }
     
-    /* ==================== FOOTER MODAL ==================== */
     .reader-footer {
         margin-top: 50px;
         padding-top: 35px;
@@ -592,7 +583,6 @@
         transform: translateY(-2px);
     }
     
-    /* Empty State */
     .empty-state {
         text-align: center;
         padding: 80px 24px;
@@ -616,7 +606,6 @@
         font-family: 'Playfair Display', serif;
     }
     
-    /* Pagination */
     .pagination {
         display: flex;
         justify-content: center;
@@ -624,7 +613,6 @@
         margin-top: 50px;
     }
     
-    /* ==================== RESPONSIVE ==================== */
     @media (max-width: 1024px) {
         .berita-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
         .hero-berita h1 { font-size: 2.6rem; }
@@ -644,7 +632,7 @@
     <div class="container">
         <div class="hero-badge">UPDATE TERBARU</div>
         <h1>Berita Terkini</h1>
-        <p>Informasi & Perkembangan Terbaru  Balige, Meat, Liang Sipege, Batu Basiha</p>
+        <p>Informasi & Perkembangan Terbaru Balige, Meat, Liang Sipege, Batu Basiha</p>
         <div class="hero-divider"></div>
     </div>
 </section>
@@ -662,6 +650,10 @@
                             $imgSrc = $item->gambar;
                         } elseif (filter_var($item->gambar, FILTER_VALIDATE_URL)) {
                             $imgSrc = $item->gambar;
+                        } elseif (str_starts_with($item->gambar, 'image/berita/')) {
+                            $imgSrc = asset($item->gambar);
+                        } elseif (file_exists(public_path('image/berita/' . $item->gambar))) {
+                            $imgSrc = asset('image/berita/' . $item->gambar);
                         } else {
                             $imgSrc = asset('storage/' . $item->gambar);
                         }
@@ -734,7 +726,6 @@
             <img id="modalImage" class="reader-image" src="" alt="">
         </div>
         
-        <!-- Target isi tulisan berita -->
         <div class="reader-body" id="modalContent"></div>
         
         <div class="reader-footer">
@@ -759,6 +750,10 @@
         if (item.gambar) {
             if (item.gambar.startsWith('data:image') || item.gambar.startsWith('http')) {
                 imgSrc = item.gambar;
+            } else if (item.gambar.startsWith('image/berita/')) {
+                imgSrc = '{{ asset("") }}' + item.gambar;
+            } else if (item.gambar) {
+                imgSrc = '{{ asset("image/berita/") }}' + item.gambar;
             } else {
                 imgSrc = '{{ asset("storage") }}/' + item.gambar;
             }

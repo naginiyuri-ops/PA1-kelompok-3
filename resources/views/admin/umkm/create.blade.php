@@ -222,12 +222,12 @@
             @csrf
             
             <div class="mb-3">
-                <label>Nama UMKM</label>
+                <label>Nama UMKM <span class="text-danger">*</span></label>
                 <input type="text" name="nama" class="form-control" value="{{ old('nama') }}" placeholder="Masukkan nama UMKM" required>
             </div>
             
             <div class="mb-3">
-                <label>Deskripsi</label>
+                <label>Deskripsi <span class="text-danger">*</span></label>
                 <textarea name="deskripsi" class="form-control" rows="5" placeholder="Masukkan deskripsi UMKM" required>{{ old('deskripsi') }}</textarea>
             </div>
             
@@ -242,7 +242,10 @@
                 <div class="col-half">
                     <div class="mb-3">
                         <label>Kontak</label>
-                        <input type="text" name="kontak" class="form-control" value="{{ old('kontak') }}" placeholder="Contoh: 081234567890">
+                        <input type="text" name="kontak" class="form-control" value="{{ old('kontak') }}" placeholder="Contoh: 081234567890 atau -">
+                        <div class="form-text">
+                            <i class="fas fa-info-circle"></i> Isi dengan "-" jika tidak ada, atau 12 digit angka
+                        </div>
                     </div>
                 </div>
             </div>
@@ -250,7 +253,7 @@
             <div class="row">
                 <div class="col-half">
                     <div class="mb-3">
-                        <label>Urutan</label>
+                        <label>Urutan <span class="text-danger">*</span></label>
                         <input type="number" name="urutan" class="form-control" value="{{ old('urutan', $nextUrutan ?? 1) }}" required>
                         <div class="form-text">
                             <i class="fas fa-info-circle"></i> Semakin kecil angka, semakin atas tampilannya

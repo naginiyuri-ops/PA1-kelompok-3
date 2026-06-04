@@ -17,7 +17,7 @@
         :root {
             --blue-dark: #003366;
             --blue-medium: #1a4a7a;
-            --gold: #c6a43b;
+            --gold: #e6e6e6;
             --white: #ffffff;
         }
 
@@ -25,7 +25,7 @@
             overflow-x: hidden;
         }
 
-        /* ===== NAVBAR - LEBIH BESAR ===== */
+        /* ===== NAVBAR ===== */
         .navbar {
             transition: all 0.4s ease;
             padding: 1rem 0;
@@ -35,23 +35,52 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .navbar.scrolled {
+        .navbar.scrolled-down {
             background: var(--white) !important;
             padding: 0.7rem 0;
             box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .navbar.scrolled .nav-link,
-        .navbar.scrolled .navbar-brand { 
+        .navbar.scrolled-down .nav-link,
+        .navbar.scrolled-down .navbar-brand { 
             color: var(--blue-dark) !important; 
         }
 
-        .navbar.scrolled .logo-divider {
+        .navbar.scrolled-down .logo-divider {
             background: linear-gradient(145deg, rgba(0,51,102,0.3), rgba(0,51,102,0.1));
         }
 
-        .navbar.scrolled .navbar-toggler-icon {
+        .navbar.scrolled-down .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 51, 102, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .navbar.scrolled-down .navbar-toggler {
+            background: rgba(0, 51, 102, 0.1);
+        }
+
+        .navbar.scrolled-up {
+            background: rgba(0, 51, 102, 0.95) !important;
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(198, 164, 59, 0.3);
+        }
+
+        .navbar.scrolled-up .nav-link,
+        .navbar.scrolled-up .navbar-brand { 
+            color: white !important; 
+        }
+
+        .navbar.scrolled-up .logo-divider {
+            background: linear-gradient(145deg, rgba(255,255,255,0.6), rgba(255,255,255,0.15));
+        }
+
+        .navbar.scrolled-up .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .navbar.scrolled-up .navbar-toggler {
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .navbar .container {
@@ -64,7 +93,7 @@
             width: 100%;
         }
 
-        /* ===== LOGO - LEBIH BESAR ===== */
+        /* ===== LOGO ===== */
         .logo-wrapper {
             display: flex;
             align-items: center;
@@ -88,6 +117,7 @@
             background: linear-gradient(145deg, rgba(255,255,255,0.6), rgba(255,255,255,0.15));
             border-radius: 2px;
             flex-shrink: 0;
+            transition: all 0.3s ease;
         }
 
         .navbar-brand {
@@ -98,6 +128,7 @@
             padding: 0 0 0 8px;
             white-space: nowrap;
             letter-spacing: 1px;
+            transition: all 0.3s ease;
         }
 
         .navbar-brand span { 
@@ -112,6 +143,7 @@
             background: rgba(255, 255, 255, 0.15);
             border-radius: 12px;
             flex-shrink: 0;
+            transition: all 0.3s ease;
         }
 
         .navbar-toggler:focus {
@@ -121,7 +153,8 @@
 
         .navbar-toggler-icon { 
             width: 24px; 
-            height: 24px; 
+            height: 24px;
+            transition: all 0.3s ease;
         }
 
         /* ===== NAV LINKS ===== */
@@ -155,6 +188,19 @@
             padding: 0.6rem 0;
             margin-top: 0.7rem;
             box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar.scrolled-down .dropdown-menu {
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(0, 51, 102, 0.1);
+        }
+
+        .navbar.scrolled-down .dropdown-item {
+            color: var(--blue-dark);
+        }
+
+        .navbar.scrolled-down .dropdown-header {
+            color: var(--gold);
         }
 
         .dropdown-item {
@@ -192,7 +238,7 @@
                 overflow-y: auto;
             }
 
-            .navbar.scrolled .navbar-collapse {
+            .navbar.scrolled-down .navbar-collapse {
                 background: rgba(255, 255, 255, 0.98);
                 box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             }
@@ -212,6 +258,10 @@
                 position: static !important;
                 transform: none !important;
                 width: 100%;
+            }
+
+            .navbar.scrolled-down .dropdown-menu {
+                background: rgba(255, 255, 255, 0.5);
             }
 
             .dropdown-item {
@@ -310,7 +360,7 @@
         .footer-divider {
             width: 60px;
             height: 2px;
-            background: rgba(198, 164, 59, 0.5);
+            background: rgba(200, 196, 185, 0.5);
             margin: 0 auto 25px;
             border-radius: 2px;
         }
@@ -356,6 +406,7 @@
             z-index: 1000;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             text-decoration: none;
+            border: none;
         }
 
         .back-to-top i { font-size: 1.2rem; }
@@ -396,9 +447,9 @@
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
             <div class="logo-wrapper">
-                <img src="{{ asset('image/Logo/logobankindonesia.jpg') }}" alt="Bank Indonesia" class="logo-img" loading="lazy">
+                <img src="{{ asset('image/logo/logobankindonesia.jpg') }}" alt="Bank Indonesia" class="logo-img" loading="lazy">
                 <div class="logo-divider"></div>
-                <img src="{{ asset('image/Logo/del.jpg') }}" alt="Logo Del" class="logo-img" loading="lazy">
+                <img src="{{ asset('image/logo/del.jpg') }}" alt="Logo Del" class="logo-img" loading="lazy">
                 <div class="logo-divider"></div>
                 <a class="navbar-brand" href="{{ url('/') }}">Geo<span>Toba</span></a>
             </div>
@@ -460,64 +511,131 @@
         AOS.init({ duration: 1000, once: true });
 
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) navbar.classList.add('scrolled');
-            else navbar.classList.remove('scrolled');
-        });
-
         const backToTop = document.getElementById('backToTop');
+        const navbarCollapse = document.getElementById('navbarNav');
+        
+        let lastScrollTop = 0;
+
+        // ==================== FUNGSI SCROLL DENGAN DETEKSI ARAH ====================
+        function handleScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // ===== AUTO TUTUP MENU MOBILE SAAT SCROLL =====
+            if (window.innerWidth <= 991 && navbarCollapse.classList.contains('show')) {
+                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                if (bsCollapse) bsCollapse.hide();
+            }
+            
+            navbar.classList.remove('scrolled-down', 'scrolled-up');
+            
+            if (scrollTop > 50) {
+                if (scrollTop > lastScrollTop) {
+                    navbar.classList.add('scrolled-down');
+                } else if (scrollTop < lastScrollTop) {
+                    navbar.classList.add('scrolled-up');
+                } else {
+                    navbar.classList.add('scrolled-down');
+                }
+            }
+            
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            
+            if (scrollTop > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        }
+        
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) backToTop.classList.add('show');
-            else backToTop.classList.remove('show');
+            requestAnimationFrame(handleScroll);
         });
 
+        // ==================== BACK TO TOP ====================
         backToTop.addEventListener('click', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        const navbarCollapse = document.getElementById('navbarNav');
-
+        // ==================== TUTUP MENU SAAT KLIK LINK (HP) ====================
         const regularLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle), .dropdown-item');
         regularLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 991) {
                     const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-                    if (bsCollapse) bsCollapse.hide();
+                    if (bsCollapse && navbarCollapse.classList.contains('show')) {
+                        bsCollapse.hide();
+                    }
                 }
             });
         });
 
+        // ==================== DROPDOWN ====================
         const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        
         dropdownToggles.forEach(function(toggle) {
-            var bsDropdown = new bootstrap.Dropdown(toggle, { autoClose: true });
-
+            let bsDropdown = null;
+            
             toggle.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-
+                
                 if (window.innerWidth > 991) {
+                    if (!bsDropdown) {
+                        bsDropdown = new bootstrap.Dropdown(toggle, { autoClose: true });
+                    }
                     bsDropdown.toggle();
                 } else {
-                    var menu = this.parentElement.querySelector('.dropdown-menu');
+                    const menu = this.parentElement.querySelector('.dropdown-menu');
                     if (!menu) return;
-                    var isOpen = menu.classList.contains('show');
-
+                    
+                    const isOpen = menu.classList.contains('show');
+                    
                     document.querySelectorAll('.navbar-nav .dropdown-menu.show').forEach(function(m) {
-                        m.classList.remove('show');
+                        if (m !== menu) {
+                            m.classList.remove('show');
+                        }
                     });
-
-                    if (!isOpen) menu.classList.add('show');
+                    
+                    if (!isOpen) {
+                        menu.classList.add('show');
+                    } else {
+                        menu.classList.remove('show');
+                    }
                 }
             });
         });
-
+        
+        // ==================== TUTUP DROPDOWN SAAT KLIK DI LUAR (MOBILE) ====================
         document.addEventListener('click', function(e) {
-            if (window.innerWidth <= 991 && !e.target.closest('.navbar')) {
-                document.querySelectorAll('.navbar-nav .dropdown-menu.show').forEach(function(m) {
-                    m.classList.remove('show');
-                });
+            if (window.innerWidth <= 991) {
+                if (!e.target.closest('.navbar')) {
+                    document.querySelectorAll('.navbar-nav .dropdown-menu.show').forEach(function(m) {
+                        m.classList.remove('show');
+                    });
+                }
             }
         });
+        
+        // ==================== RESET SAAT RESIZE WINDOW ====================
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                document.querySelectorAll('.dropdown-menu.show').forEach(function(menu) {
+                    menu.classList.remove('show');
+                });
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                navbar.classList.remove('scrolled-down', 'scrolled-up');
+                if (scrollTop > 50) {
+                    navbar.classList.add('scrolled-down');
+                }
+            }, 200);
+        });
+        
+        // ==================== INITIAL ====================
+        setTimeout(() => {
+            handleScroll();
+        }, 100);
     </script>
 
     @stack('scripts')

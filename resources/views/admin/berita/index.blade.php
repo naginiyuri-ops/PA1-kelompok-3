@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Kelola Berita')
+@section('title', 'Manajemen Berita')
 
 @section('content')
 <style>
@@ -72,22 +72,8 @@
         font-size: 0.85rem;
     }
     
-    .alert-error {
-        background: #ffebee;
-        color: #c62828;
-        padding: 12px 20px;
-        margin: 16px 20px;
-        border-radius: 12px;
-        border-left: 4px solid #c62828;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 0.85rem;
-    }
-    
     .table-wrapper {
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
     }
     
     table {
@@ -126,8 +112,7 @@
         width: 50px;
         height: 50px;
         object-fit: cover;
-        border-radius: 12px;
-        background: #f1f5f9;
+        border-radius: 10px;
     }
     
     .badge {
@@ -241,10 +226,6 @@
     .pagination .page-item.active .page-link {
         background: #003366;
         color: white;
-    }
-    
-    .pagination .page-item .page-link:hover {
-        background: #e2e8f0;
     }
     
     .stats-bar {
@@ -363,7 +344,7 @@
     <div class="card-header">
         <h5>
             <i class="fas fa-newspaper"></i>
-            Data Berita
+            Manajemen Berita
         </h5>
         <a href="{{ route('admin.berita.create') }}" class="btn-primary">
             <i class="fas fa-plus"></i> Tambah Berita
@@ -373,12 +354,6 @@
     @if(session('success'))
     <div class="alert-success">
         <i class="fas fa-check-circle"></i> {{ session('success') }}
-    </div>
-    @endif
-    
-    @if(session('error'))
-    <div class="alert-error">
-        <i class="fas fa-exclamation-triangle"></i> {{ session('error') }}
     </div>
     @endif
     
@@ -399,6 +374,8 @@
                     <th>Gambar</th>
                     <th>Judul</th>
                     <th>Penulis</th>
+                    <th>Tanggal</th>
+                    <th>Views</th>
                     <th>Status</th>
                     <th>Aksi</th>
                 </tr>
@@ -409,29 +386,23 @@
                     <td data-label="No">{{ $key + $berita->firstItem() }}</td>
                     <td data-label="Gambar">
                         @php
-                            $imgSrc = asset('image/default.jpg');
-                            if (!empty($item->gambar)) {
-                                if (str_starts_with($item->gambar, 'data:image')) {
-                                    $imgSrc = $item->gambar;
-                                } elseif (filter_var($item->gambar, FILTER_VALIDATE_URL)) {
-                                    $imgSrc = $item->gambar;
-                                } elseif (file_exists(public_path('storage/' . $item->gambar))) {
-                                    $imgSrc = asset('storage/' . $item->gambar);
+                            $imgUrl = asset('image/default.jpg');
+                            if ($item->gambar) {
+                                if (file_exists(public_path($item->gambar))) {
+                                    $imgUrl = asset($item->gambar);
+                                } elseif (file_exists(public_path('image/berita/' . $item->gambar))) {
+                                    $imgUrl = asset('image/berita/' . $item->gambar);
                                 }
                             }
                         @endphp
-                        @if(!empty($item->gambar) && $imgSrc != asset('image/default.jpg'))
-                            <img src="{{ $imgSrc }}" class="img-preview" alt="{{ $item->judul }}">
-                        @else
-                            <div style="width: 50px; height: 50px; background: #f1f5f9; border-radius: 12px;"></div>
-                        @endif
+                        <img src="{{ $imgUrl }}" class="img-preview" alt="{{ $item->judul }}" onerror="this.src='{{ asset('image/default.jpg') }}'">
                     </td>
                     <td data-label="Judul">
-                        <strong>{{ Str::limit($item->judul, 40) }}</strong>
+                        <strong>{{ Str::limit($item->judul, 50) }}</strong>
                     </td>
-                    <td data-label="Penulis">
-                        {{ $item->penulis ?? 'Admin' }}
-                    </td>
+                    <td data-label="Penulis">{{ $item->penulis ?? 'Admin' }}</td>
+                    <td data-label="Tanggal">{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') }}</td>
+                    <td data-label="Views">{{ number_format($item->views ?? 0) }}</td>
                     <td data-label="Status">
                         <span class="badge {{ $item->status ? 'badge-success' : 'badge-danger' }}">
                             {{ $item->status ? 'Aktif' : 'Tidak' }}
@@ -442,7 +413,7 @@
                             <a href="{{ route('admin.berita.edit', $item->id) }}" class="btn-edit">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
-                            <form action="{{ route('admin.berita.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus data ini?')" style="display: inline;">
+                            <form action="{{ route('admin.berita.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus berita ini?')" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn-delete">
@@ -454,7 +425,8 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6" class="empty-state">
+                    <td colspan="8" class="empty-state">
+                        <i class="fas fa-newspaper" style="font-size: 2rem; opacity: 0.5; display: block; margin-bottom: 10px;"></i>
                         📭 Belum ada data berita
                         <p style="margin-top: 10px; font-size: 0.8rem;">Klik tombol "Tambah Berita" untuk mulai menambahkan</p>
                     </td>

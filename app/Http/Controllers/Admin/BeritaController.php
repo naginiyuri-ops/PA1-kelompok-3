@@ -25,23 +25,33 @@ class BeritaController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'konten' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'penulis' => 'nullable|string|max:100',
             'status' => 'nullable|boolean'
         ]);
 
         $data = [
             'judul' => $request->judul,
-            'slug' => Str::slug($request->judul),
+            'slug' => Str::slug($request->judul) . '-' . time(),
             'konten' => $request->konten,
             'penulis' => $request->penulis ?? 'Admin',
             'status' => $request->has('status') ? 1 : 0,
             'views' => 0
         ];
 
+        // SIMPAN GAMBAR KE PUBLIC/IMAGE/BERITA (SEPERTI GALERI)
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
-            $data['gambar'] = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file));
+            $filename = time() . '_berita_' . Str::slug($request->judul) . '.' . $file->getClientOriginalExtension();
+            
+            // Buat folder jika belum ada
+            $destinationPath = public_path('image/berita');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+            
+            $file->move($destinationPath, $filename);
+            $data['gambar'] = 'image/berita/' . $filename;
         }
 
         Berita::create($data);
@@ -61,22 +71,35 @@ class BeritaController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'konten' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'penulis' => 'nullable|string|max:100',
             'status' => 'nullable|boolean'
         ]);
 
         $data = [
             'judul' => $request->judul,
-            'slug' => Str::slug($request->judul),
+            'slug' => Str::slug($request->judul) . '-' . time(),
             'konten' => $request->konten,
             'penulis' => $request->penulis ?? 'Admin',
             'status' => $request->has('status') ? 1 : 0
         ];
 
         if ($request->hasFile('gambar')) {
+            // Hapus gambar lama
+            if ($berita->gambar && file_exists(public_path($berita->gambar))) {
+                unlink(public_path($berita->gambar));
+            }
+            
             $file = $request->file('gambar');
-            $data['gambar'] = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file));
+            $filename = time() . '_berita_' . Str::slug($request->judul) . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('image/berita');
+            
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+            
+            $file->move($destinationPath, $filename);
+            $data['gambar'] = 'image/berita/' . $filename;
         }
 
         $berita->update($data);
@@ -86,7 +109,22 @@ class BeritaController extends Controller
     public function destroy($id)
     {
         $berita = Berita::findOrFail($id);
+        
+        // Hapus file gambar
+        if ($berita->gambar && file_exists(public_path($berita->gambar))) {
+            unlink(public_path($berita->gambar));
+        }
+        
         $berita->delete();
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil dihapus!');
+    }
+    
+    public function toggleStatus($id)
+    {
+        $berita = Berita::findOrFail($id);
+        $berita->status = !$berita->status;
+        $berita->save();
+        
+        return response()->json(['success' => true, 'status' => $berita->status]);
     }
 }

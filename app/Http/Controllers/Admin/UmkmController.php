@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Umkm;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class UmkmController extends Controller
@@ -25,7 +24,7 @@ class UmkmController extends Controller
 
     public function store(Request $request)
     {
-        // VALIDASI - KONTAK BISA "-" ATAU 12 DIGIT ANGKA
+        // VALIDASI
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
@@ -36,7 +35,7 @@ class UmkmController extends Controller
                 'nullable',
                 'string',
                 'max:255',
-                'regex:/^(-|[0-9]{12})$/', // BISA "-" ATAU 12 DIGIT ANGKA
+                'regex:/^(-|[0-9]{12})$/',
             ],
             'status' => 'nullable|boolean'
         ], [
@@ -53,24 +52,24 @@ class UmkmController extends Controller
             'gambar' => null
         ];
 
-        // PROSES UPLOAD GAMBAR
+        // ========== UBAH: UPLOAD KE public/image/umkm/ ==========
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
+            $filename = time() . '_umkm_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
             
-            if ($file->isValid()) {
-                $filename = time() . '_umkm_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
-                $path = $file->storeAs('umkm', $filename, 'public');
-                $data['gambar'] = $path;
+            // Buat folder jika belum ada
+            if (!file_exists(public_path('image/umkm'))) {
+                mkdir(public_path('image/umkm'), 0777, true);
             }
+            
+            // Pindahkan file ke public/image/umkm/
+            $file->move(public_path('image/umkm'), $filename);
+            $data['gambar'] = 'image/umkm/' . $filename;
         }
+        // ========== END UBAH ==========
 
-        $umkm = Umkm::create($data);
-        
-        if ($umkm) {
-            return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil ditambahkan!');
-        } else {
-            return redirect()->back()->with('error', 'Gagal menyimpan data!')->withInput();
-        }
+        Umkm::create($data);
+        return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil ditambahkan!');
     }
 
     public function edit($id)
@@ -83,7 +82,6 @@ class UmkmController extends Controller
     {
         $data = Umkm::findOrFail($id);
 
-        // VALIDASI - KONTAK BISA "-" ATAU 12 DIGIT ANGKA
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
@@ -94,7 +92,7 @@ class UmkmController extends Controller
                 'nullable',
                 'string',
                 'max:255',
-                'regex:/^(-|[0-9]{12})$/', // BISA "-" ATAU 12 DIGIT ANGKA
+                'regex:/^(-|[0-9]{12})$/',
             ],
             'status' => 'nullable|boolean'
         ], [
@@ -110,27 +108,33 @@ class UmkmController extends Controller
             'status' => $request->has('status') ? 1 : 0
         ];
 
-        // HAPUS GAMBAR LAMA
+        // ========== UBAH: HAPUS GAMBAR LAMA DARI public/image/umkm/ ==========
         if ($request->has('hapus_gambar')) {
-            if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
-                Storage::disk('public')->delete($data->gambar);
+            if ($data->gambar && file_exists(public_path($data->gambar))) {
+                unlink(public_path($data->gambar));
             }
             $input['gambar'] = null;
         }
 
-        // UPLOAD GAMBAR BARU
+        // ========== UBAH: UPLOAD GAMBAR BARU KE public/image/umkm/ ==========
         if ($request->hasFile('gambar')) {
-            if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
-                Storage::disk('public')->delete($data->gambar);
+            // Hapus gambar lama jika ada
+            if ($data->gambar && file_exists(public_path($data->gambar))) {
+                unlink(public_path($data->gambar));
             }
             
             $file = $request->file('gambar');
-            if ($file->isValid()) {
-                $filename = time() . '_umkm_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
-                $path = $file->storeAs('umkm', $filename, 'public');
-                $input['gambar'] = $path;
+            $filename = time() . '_umkm_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
+            
+            // Buat folder jika belum ada
+            if (!file_exists(public_path('image/umkm'))) {
+                mkdir(public_path('image/umkm'), 0777, true);
             }
+            
+            $file->move(public_path('image/umkm'), $filename);
+            $input['gambar'] = 'image/umkm/' . $filename;
         }
+        // ========== END UBAH ==========
 
         $data->update($input);
         return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil diupdate!');
@@ -140,9 +144,11 @@ class UmkmController extends Controller
     {
         $data = Umkm::findOrFail($id);
         
-        if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
-            Storage::disk('public')->delete($data->gambar);
+        // ========== UBAH: HAPUS FILE DARI public/image/umkm/ ==========
+        if ($data->gambar && file_exists(public_path($data->gambar))) {
+            unlink(public_path($data->gambar));
         }
+        // ========== END UBAH ==========
         
         $data->delete();
         return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil dihapus!');

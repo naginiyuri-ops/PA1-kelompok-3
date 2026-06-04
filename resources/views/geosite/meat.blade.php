@@ -800,181 +800,403 @@
         background: var(--gold);
         transform: rotate(90deg);
     }
-    
-    /* ==================== RESPONSIVE ==================== */
-    @media (max-width: 992px) {
-        .hero-title { font-size: 3rem; }
-        .sejarah-item, .sejarah-item.reverse { 
-            flex-direction: column; 
-            text-align: center; 
-        }
-        .sejarah-text h3::after { 
-            left: 50%; 
-            transform: translateX(-50%); 
-        }
-        .sejarah-text { 
-            text-align: center; 
-        }
-        .maps-section { 
-            grid-template-columns: 1fr; 
-        }
+    /* ==================== RESPONSIVE PREMIUM ==================== */
+
+@media (max-width: 992px) {
+
+    .hero-meat{
+        height:85vh;
     }
-    
-    @media (max-width: 768px) {
-        .hero-meat { 
-            height: 80vh; 
-            max-height: 600px;
-            min-height: 450px;
-        }
-        .hero-title { 
-            font-size: 2rem; 
-        }
-        .hero-subtitle { 
-            font-size: 0.55rem; 
-            letter-spacing: 0.15em; 
-        }
-        .hero-badge { 
-            font-size: 0.55rem; 
-            padding: 4px 12px; 
-            margin-bottom: 12px;
-        }
-        .hero-divider {
-            margin: 15px auto;
-            width: 40px;
-        }
-        .section { 
-            padding: 50px 0; 
-        }
-        .section-header h2 { 
-            font-size: 1.4rem; 
-        }
-        .sejarah-image img { 
-            height: 220px; 
-        }
-        .sejarah-text h3 {
-            font-size: 1.3rem;
-        }
-        .sejarah-text p {
-            font-size: 0.85rem;
-            text-align: center;
-        }
-        .grid-umkm, .grid-3, .grid-2 { 
-            grid-template-columns: 1fr; 
-            gap: 20px;
-        }
-        .fasilitas-item { 
-            flex-direction: column; 
-        }
-        .fasilitas-img { 
-            width: 100%; 
-            height: 160px; 
-        }
-        .fasilitas-content { 
-            padding: 16px; 
-            text-align: center; 
-        }
-        .fasilitas-price {
-            margin: 0 auto 8px;
-        }
-        .btn-readmore {
-            margin: 8px auto 0;
-        }
-        .maps-container iframe { 
-            height: 250px; 
-        }
-        .cta-section { 
-            padding: 40px 0; 
-        }
-        .cta-content h3 { 
-            font-size: 1.3rem; 
-        }
-        .detail-modal-header { 
-            height: 220px; 
-        }
-        .detail-modal-header .overlay h2 { 
-            font-size: 1.2rem; 
-        }
-        .detail-modal-body { 
-            padding: 20px; 
-        }
-        .detail-modal-container { 
-            margin: 60px auto 30px; 
-        }
-        .slider-dots {
-            bottom: 20px;
-            gap: 8px;
-        }
-        .dot {
-            width: 6px;
-            height: 6px;
-        }
-        .dot.active {
-            width: 20px;
-        }
-        .lightbox-close {
-            top: 10px;
-            right: 15px;
-            width: 35px;
-            height: 35px;
-            font-size: 1.5rem;
-        }
+
+    .hero-title{
+        font-size:3rem;
     }
-    
-    @media (max-width: 480px) {
-        .hero-title { 
-            font-size: 1.6rem; 
-        }
-        .hero-subtitle {
-            font-size: 0.5rem;
-            letter-spacing: 0.1em;
-        }
-        .hero-badge {
-            font-size: 0.5rem;
-            padding: 3px 10px;
-        }
-        .container { 
-            padding: 0 16px; 
-        }
-        .section-header h2 { 
-            font-size: 1.2rem; 
-        }
-        .sejarah-image img { 
-            height: 180px; 
-        }
-        .sejarah-text h3 {
-            font-size: 1.1rem;
-        }
-        .card-content h3 {
-            font-size: 1rem;
-        }
-        .rute-item {
-            padding: 14px;
-        }
-        .detail-modal-header { 
-            height: 180px; 
-        }
-        .detail-modal-header .overlay h2 { 
-            font-size: 1rem; 
-        }
-        .detail-info p {
-            font-size: 0.7rem;
-        }
-        .full-description {
-            font-size: 0.8rem;
-        }
-        .close-modal-btn {
-            width: 35px;
-            height: 35px;
-            font-size: 1rem;
-        }
-        .cta-content h3 {
-            font-size: 1.2rem;
-        }
-        .cta-btn {
-            padding: 8px 24px;
-            font-size: 0.65rem;
-        }
+
+    .hero-content{
+        bottom:12%;
     }
+
+    .sejarah-item,
+    .sejarah-item.reverse{
+        flex-direction:column;
+        text-align:center;
+        gap:25px;
+    }
+
+    .sejarah-text{
+        text-align:center;
+    }
+
+    .sejarah-text h3::after{
+        left:50%;
+        transform:translateX(-50%);
+    }
+
+    .maps-section{
+        grid-template-columns:1fr;
+    }
+
+    .detail-info{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+/* ==================== TABLET & HP ==================== */
+
+@media (max-width: 768px) {
+
+    html,
+    body{
+        overflow-x:hidden;
+    }
+
+    .container{
+        padding:0 18px;
+    }
+
+    .hero-meat{
+        height:70vh;
+        max-height:none;
+        min-height:420px;
+    }
+
+    .hero-content{
+        bottom:14%;
+        padding:0 15px;
+    }
+
+    .hero-title{
+        font-size:2.2rem;
+        line-height:1.2;
+        letter-spacing:1px;
+    }
+
+    .hero-subtitle{
+        font-size:.68rem;
+        letter-spacing:2px;
+        line-height:1.6;
+    }
+
+    .hero-badge{
+        font-size:.55rem;
+        padding:6px 14px;
+        margin-bottom:12px;
+    }
+
+    .hero-divider{
+        margin:15px auto;
+        width:45px;
+    }
+
+    .section{
+        padding:45px 0;
+    }
+
+    .section-header{
+        margin-bottom:30px;
+    }
+
+    .section-header h2{
+        font-size:1.6rem;
+    }
+
+    .section-header p{
+        font-size:.85rem;
+        line-height:1.7;
+    }
+
+    .sejarah-grid{
+        gap:35px;
+    }
+
+    .sejarah-image{
+        width:100%;
+        min-width:100%;
+    }
+
+    .sejarah-image img{
+        height:230px;
+        width:100%;
+    }
+
+    .sejarah-text h3{
+        font-size:1.3rem;
+    }
+
+    .sejarah-text p{
+        text-align:center;
+        font-size:.9rem;
+    }
+
+    .grid-umkm,
+    .grid-3,
+    .grid-2{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+
+    .card{
+        border-radius:18px;
+    }
+
+    .card-img{
+        height:220px;
+    }
+
+    .card-content{
+        padding:16px;
+    }
+
+    .card-content h3{
+        font-size:1rem;
+        line-height:1.4;
+    }
+
+    .card-content p{
+        font-size:.82rem;
+    }
+
+    .card-location,
+    .card-contact,
+    .card-price{
+        font-size:.75rem;
+    }
+
+    .fasilitas-item{
+        flex-direction:column;
+    }
+
+    .fasilitas-img{
+        width:100%;
+        height:180px;
+    }
+
+    .fasilitas-content{
+        text-align:center;
+        padding:16px;
+    }
+
+    .fasilitas-price{
+        margin:0 auto 10px;
+    }
+
+    .btn-readmore{
+        margin:10px auto 0;
+        min-height:42px;
+    }
+
+    .maps-container iframe{
+        height:280px;
+    }
+
+    .rute-item{
+        padding:16px;
+    }
+
+    .rute-item h4{
+        font-size:.95rem;
+    }
+
+    .rute-item p{
+        font-size:.82rem;
+    }
+
+    .detail-modal-container{
+        margin:20px auto;
+        padding:0 10px;
+    }
+
+    .detail-modal-wrapper{
+        border-radius:18px;
+    }
+
+    .detail-modal-header{
+        height:220px;
+    }
+
+    .detail-modal-header .overlay{
+        padding:20px;
+    }
+
+    .detail-modal-header .overlay h2{
+        font-size:1.25rem;
+    }
+
+    .detail-modal-body{
+        padding:18px;
+    }
+
+    .detail-info{
+        gap:10px;
+    }
+
+    .detail-info p{
+        width:100%;
+        font-size:.8rem;
+    }
+
+    .full-description{
+        font-size:.9rem;
+    }
+
+    .close-modal-btn{
+        width:42px;
+        height:42px;
+    }
+
+    .slider-dots{
+        bottom:15px;
+    }
+
+    .dot{
+        width:10px;
+        height:10px;
+    }
+
+    .dot.active{
+        width:28px;
+    }
+
+    .lightbox-close{
+        top:10px;
+        right:10px;
+    }
+
+    .cta-section{
+        padding:45px 0;
+    }
+
+    .cta-content h3{
+        font-size:1.4rem;
+    }
+
+    .cta-btn{
+        width:100%;
+        max-width:280px;
+        text-align:center;
+    }
+}
+
+/* ==================== HP KECIL ==================== */
+
+@media (max-width: 480px) {
+
+    .container{
+        padding:0 15px;
+    }
+
+    .hero-meat{
+        height:65vh;
+        min-height:380px;
+    }
+
+    .hero-title{
+        font-size:1.8rem;
+    }
+
+    .hero-subtitle{
+        font-size:.55rem;
+        letter-spacing:1px;
+    }
+
+    .hero-badge{
+        font-size:.5rem;
+    }
+
+    .section{
+        padding:40px 0;
+    }
+
+    .section-header h2{
+        font-size:1.35rem;
+    }
+
+    .section-header p{
+        font-size:.8rem;
+    }
+
+    .sejarah-image img{
+        height:190px;
+    }
+
+    .sejarah-text h3{
+        font-size:1.15rem;
+    }
+
+    .card-img{
+        height:190px;
+    }
+
+    .card-content{
+        padding:14px;
+    }
+
+    .fasilitas-img{
+        height:160px;
+    }
+
+    .maps-container iframe{
+        height:220px;
+    }
+
+    .detail-modal-header{
+        height:180px;
+    }
+
+    .detail-modal-header .overlay h2{
+        font-size:1.05rem;
+    }
+
+    .detail-modal-body{
+        padding:15px;
+    }
+
+    .detail-info p{
+        font-size:.75rem;
+    }
+
+    .full-description{
+        font-size:.85rem;
+    }
+
+    .cta-content h3{
+        font-size:1.2rem;
+    }
+}
+
+/* ==================== HP SANGAT KECIL ==================== */
+
+@media (max-width: 360px) {
+
+    .hero-title{
+        font-size:1.5rem;
+    }
+
+    .hero-subtitle{
+        font-size:.5rem;
+    }
+
+    .section-header h2{
+        font-size:1.15rem;
+    }
+
+    .card-img{
+        height:170px;
+    }
+
+    .sejarah-image img{
+        height:170px;
+    }
+
+    .fasilitas-img{
+        height:140px;
+    }
+
+    .detail-modal-header{
+        height:160px;
+    }
+}
 </style>
 
 <!-- ==================== HERO SLIDER ==================== -->
@@ -1065,20 +1287,31 @@
         <div class="grid-umkm">
             @forelse($umkm as $index => $item)
             <div class="card" data-aos="fade-up" data-aos-delay="{{ min(($index % 5) * 100, 400) }}" onclick="openDetailModal('umkm', {{ $index }})">
-                @if($item->gambar)
-                    <img src="{{ asset('storage/' . $item->gambar) }}" 
-                         class="card-img" 
-                         alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openLightbox('{{ asset('storage/' . $item->gambar) }}', '{{ $item->nama }}', '{{ Str::limit($item->deskripsi ?? '', 100) }}')" 
-                         onerror="this.src='{{ asset('image/meat/slide1.jpg') }}'"
-                         loading="lazy">
-                @else
-                    <img src="{{ asset('image/meat/slide1.jpg') }}" 
-                         class="card-img" 
-                         alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openLightbox('{{ asset('image/meat/slide1.jpg') }}', '{{ $item->nama }}', 'UMKM Lokal Meat')"
-                         loading="lazy">
-                @endif
+                @php
+                    // Fungsi helper untuk mendapatkan URL gambar dari public/image/
+                    $imgSrc = asset('image/meat/slide1.jpg');
+                    if (!empty($item->gambar)) {
+                        if (str_starts_with($item->gambar, 'data:image')) {
+                            $imgSrc = $item->gambar;
+                        } elseif (str_starts_with($item->gambar, 'http')) {
+                            $imgSrc = $item->gambar;
+                        } elseif (str_starts_with($item->gambar, 'image/')) {
+                            $imgSrc = asset($item->gambar);
+                        } elseif (file_exists(public_path('image/umkm/' . $item->gambar))) {
+                            $imgSrc = asset('image/umkm/' . $item->gambar);
+                        } elseif (file_exists(public_path('image/umkm/' . basename($item->gambar)))) {
+                            $imgSrc = asset('image/umkm/' . basename($item->gambar));
+                        } else {
+                            $imgSrc = asset('storage/' . $item->gambar);
+                        }
+                    }
+                @endphp
+                <img src="{{ $imgSrc }}" 
+                     class="card-img" 
+                     alt="{{ $item->nama }}" 
+                     onclick="event.stopPropagation(); openLightbox('{{ $imgSrc }}', '{{ addslashes($item->nama) }}', '{{ addslashes(Str::limit($item->deskripsi ?? '', 100)) }}')" 
+                     onerror="this.src='{{ asset('image/meat/slide1.jpg') }}'"
+                     loading="lazy">
                 <div class="card-content">
                     <h3>{{ Str::limit($item->nama, 35) }}</h3>
                     <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 80) }}</p>
@@ -1112,20 +1345,30 @@
         <div class="grid-3">
             @forelse($penginapan ?? [] as $index => $item)
             <div class="card" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}" onclick="openDetailModal('penginapan', {{ $index }})">
-                @if($item->gambar)
-                    <img src="{{ asset('storage/' . $item->gambar) }}" 
-                         class="card-img" 
-                         alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openLightbox('{{ asset('storage/' . $item->gambar) }}', '{{ $item->nama }}', 'Penginapan di Desa Meat')" 
-                         onerror="this.src='{{ asset('image/meat/slide2.jpg') }}'"
-                         loading="lazy">
-                @else
-                    <img src="{{ asset('image/meat/slide2.jpg') }}" 
-                         class="card-img" 
-                         alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openLightbox('{{ asset('image/meat/slide2.jpg') }}', '{{ $item->nama }}', 'Penginapan di Desa Meat')"
-                         loading="lazy">
-                @endif
+                @php
+                    $imgSrc = asset('image/meat/slide2.jpg');
+                    if (!empty($item->gambar)) {
+                        if (str_starts_with($item->gambar, 'data:image')) {
+                            $imgSrc = $item->gambar;
+                        } elseif (str_starts_with($item->gambar, 'http')) {
+                            $imgSrc = $item->gambar;
+                        } elseif (str_starts_with($item->gambar, 'image/')) {
+                            $imgSrc = asset($item->gambar);
+                        } elseif (file_exists(public_path('image/penginapan/' . $item->gambar))) {
+                            $imgSrc = asset('image/penginapan/' . $item->gambar);
+                        } elseif (file_exists(public_path('image/penginapan/' . basename($item->gambar)))) {
+                            $imgSrc = asset('image/penginapan/' . basename($item->gambar));
+                        } else {
+                            $imgSrc = asset('storage/' . $item->gambar);
+                        }
+                    }
+                @endphp
+                <img src="{{ $imgSrc }}" 
+                     class="card-img" 
+                     alt="{{ $item->nama }}" 
+                     onclick="event.stopPropagation(); openLightbox('{{ $imgSrc }}', '{{ addslashes($item->nama) }}', 'Penginapan di Desa Meat')" 
+                     onerror="this.src='{{ asset('image/meat/slide2.jpg') }}'"
+                     loading="lazy">
                 <div class="card-content">
                     <h3>{{ Str::limit($item->nama, 35) }}</h3>
                     <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 80) }}</p>
@@ -1159,20 +1402,30 @@
         <div class="grid-2">
             @forelse($fasilitas ?? [] as $index => $item)
             <div class="fasilitas-item" data-aos="fade-up" data-aos-delay="{{ ($index % 2) * 50 }}" onclick="openDetailModal('fasilitas', {{ $index }})">
-                @if($item->gambar)
-                    <img src="{{ asset('storage/' . $item->gambar) }}" 
-                         class="fasilitas-img" 
-                         alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openLightbox('{{ asset('storage/' . $item->gambar) }}', '{{ $item->nama }}', 'Fasilitas di Desa Meat')" 
-                         onerror="this.src='{{ asset('image/meat/slide3.jpg') }}'"
-                         loading="lazy">
-                @else
-                    <img src="{{ asset('image/meat/slide3.jpg') }}" 
-                         class="fasilitas-img" 
-                         alt="{{ $item->nama }}" 
-                         onclick="event.stopPropagation(); openLightbox('{{ asset('image/meat/slide3.jpg') }}', '{{ $item->nama }}', 'Fasilitas di Desa Meat')"
-                         loading="lazy">
-                @endif
+                @php
+                    $imgSrc = asset('image/meat/slide3.jpg');
+                    if (!empty($item->gambar)) {
+                        if (str_starts_with($item->gambar, 'data:image')) {
+                            $imgSrc = $item->gambar;
+                        } elseif (str_starts_with($item->gambar, 'http')) {
+                            $imgSrc = $item->gambar;
+                        } elseif (str_starts_with($item->gambar, 'image/')) {
+                            $imgSrc = asset($item->gambar);
+                        } elseif (file_exists(public_path('image/fasilitas/' . $item->gambar))) {
+                            $imgSrc = asset('image/fasilitas/' . $item->gambar);
+                        } elseif (file_exists(public_path('image/fasilitas/' . basename($item->gambar)))) {
+                            $imgSrc = asset('image/fasilitas/' . basename($item->gambar));
+                        } else {
+                            $imgSrc = asset('storage/' . $item->gambar);
+                        }
+                    }
+                @endphp
+                <img src="{{ $imgSrc }}" 
+                     class="fasilitas-img" 
+                     alt="{{ $item->nama }}" 
+                     onclick="event.stopPropagation(); openLightbox('{{ $imgSrc }}', '{{ addslashes($item->nama) }}', 'Fasilitas di Desa Meat')" 
+                     onerror="this.src='{{ asset('image/meat/slide3.jpg') }}'"
+                     loading="lazy">
                 <div class="fasilitas-content">
                     <h4>{{ Str::limit($item->nama, 30) }}</h4>
                     <p>{{ Str::limit($item->deskripsi ?? 'Belum ada deskripsi', 60) }}</p>
@@ -1245,8 +1498,8 @@
     <div class="lightbox-container" onclick="event.stopPropagation()">
         <img id="lightboxImage" class="lightbox-image" src="" alt="">
         <div class="lightbox-caption">
-            <h3 id="lightboxTitle" style="color: var(--gold); margin-top: 15px;"></h3>
-            <p id="lightboxDesc" style="color: rgba(255,255,255,0.7);"></p>
+            <h3 id="lightboxTitle" style="color: var(--gold); margin-top: 15px; font-size: 1rem;"></h3>
+            <p id="lightboxDesc" style="color: rgba(255,255,255,0.7); font-size: 0.8rem; margin-top: 8px;"></p>
         </div>
     </div>
 </div>
@@ -1276,6 +1529,9 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 <script>
     // Data dari backend
@@ -1311,6 +1567,13 @@
     if (dots.length) {
         dots.forEach((dot, i) => {
             dot.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                showSlide(i);
+                startSlider();
+            });
+            // Touch support untuk HP
+            dot.addEventListener('touchstart', (e) => {
+                e.preventDefault();
                 clearInterval(slideInterval);
                 showSlide(i);
                 startSlider();
@@ -1355,6 +1618,22 @@
         }
     }
     
+    // Fungsi helper untuk mendapatkan URL gambar yang benar
+    function getImageUrl(item) {
+        if (!item.gambar) return null;
+        
+        if (item.gambar.startsWith('data:image')) {
+            return item.gambar;
+        }
+        if (item.gambar.startsWith('http')) {
+            return item.gambar;
+        }
+        if (item.gambar.startsWith('image/')) {
+            return '{{ asset("") }}' + item.gambar;
+        }
+        return null;
+    }
+    
     // ==================== DETAIL MODAL ====================
     function openDetailModal(type, index) {
         let item = null;
@@ -1374,11 +1653,21 @@
         if (!item) return;
         
         let imgSrc = '{{ asset("image/meat/slide1.jpg") }}';
+        
+        // Cek gambar dari berbagai lokasi
         if (item.gambar) {
             if (item.gambar.startsWith('data:image')) {
                 imgSrc = item.gambar;
             } else if (item.gambar.startsWith('http')) {
                 imgSrc = item.gambar;
+            } else if (item.gambar.startsWith('image/')) {
+                imgSrc = '{{ asset("") }}' + item.gambar;
+            } else if (type === 'umkm' && fileExists('image/umkm/' + item.gambar)) {
+                imgSrc = '{{ asset("image/umkm") }}/' + item.gambar;
+            } else if (type === 'penginapan' && fileExists('image/penginapan/' + item.gambar)) {
+                imgSrc = '{{ asset("image/penginapan") }}/' + item.gambar;
+            } else if (type === 'fasilitas' && fileExists('image/fasilitas/' + item.gambar)) {
+                imgSrc = '{{ asset("image/fasilitas") }}/' + item.gambar;
             } else {
                 imgSrc = '{{ asset("storage") }}/' + item.gambar;
             }
@@ -1411,11 +1700,23 @@
                 closeLightbox();
             }
         });
+        // Touch support untuk HP
+        lightboxOverlay.addEventListener('touchstart', function(e) {
+            if (e.target === this || e.target.classList.contains('lightbox-close')) {
+                closeLightbox();
+            }
+        });
     }
     
     const detailModal = document.getElementById('detailModal');
     if (detailModal) {
         detailModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDetailModal();
+            }
+        });
+        // Touch support untuk HP
+        detailModal.addEventListener('touchstart', function(e) {
             if (e.target === this) {
                 closeDetailModal();
             }
@@ -1428,15 +1729,26 @@
             closeDetailModal();
         }
     });
-</script>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
+    
+    // Helper function fileExists (tidak bisa di JS, hanya fallback)
+    function fileExists(path) {
+        // Ini hanya fallback, akan tetap menggunakan onerror di img
+        return true;
+    }
+    
+    // Inisialisasi AOS
     AOS.init({
         duration: 600,
         once: true,
         offset: 40,
         easing: 'ease-out-quad'
+    });
+    
+    // Perbaikan untuk touch event di HP agar tidak double fire
+    document.querySelectorAll('.card, .fasilitas-item, .sejarah-image').forEach(el => {
+        el.addEventListener('touchstart', function(e) {
+            // Biarkan event tetap berjalan, hanya prevent default jika perlu
+        }, { passive: true });
     });
 </script>
 

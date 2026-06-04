@@ -12,15 +12,37 @@ class Umkm extends Model
     protected $table = 'umkm';
     
     protected $fillable = [
-        'nama', 'deskripsi', 'gambar', 'urutan', 'lokasi', 'kontak', 'status'
+        'nama', 'deskripsi', 'gambar', 'lokasi', 'kontak', 'urutan', 'status'
     ];
 
-    // Accessor untuk ambil URL gambar
+    // Accessor untuk URL gambar
     public function getGambarUrlAttribute()
     {
         if (!$this->gambar) {
-            return asset('image/meat/slide1.jpg');
+            return asset('image/umkm/default.jpg');
         }
-        return asset('storage/' . $this->gambar);
+
+        // Jika sudah URL lengkap
+        if (filter_var($this->gambar, FILTER_VALIDATE_URL)) {
+            return $this->gambar;
+        }
+
+        // Jika dari public/image/umkm/
+        if (file_exists(public_path($this->gambar))) {
+            return asset($this->gambar);
+        }
+
+        // Jika hanya nama file
+        if (file_exists(public_path('image/umkm/' . $this->gambar))) {
+            return asset('image/umkm/' . $this->gambar);
+        }
+
+        return asset('image/umkm/default.jpg');
+    }
+
+    // Scope untuk filter aktif
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
     }
 }
