@@ -868,7 +868,7 @@
     </div>
     
     <div class="scroll-indicator" onclick="document.getElementById('destinasi').scrollIntoView({behavior:'smooth'})">
-        <span>SCROLL</span>
+      
         <div class="line"></div>
     </div>
 </section>
