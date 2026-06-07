@@ -532,14 +532,8 @@
             </iframe>
         </div>
 
-        <div class="text-center my-5">
-            <i class="fas fa-map-marked-alt fa-3x text-primary mb-3"></i>
-            <p style="color: var(--gray); margin-bottom: 20px;">Klik tombol di bawah untuk melihat lokasi wisata pada Google Maps.</p>
-            <a href="{{ $kontak->link_maps ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.544029529995!2d99.0011203!3d2.3213969!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e1b14a5be37ed%3A0x22b416e0db744d4a!2sDesa%20Meat!5e0!3m2!1sid!2sid!4v1780156234277!5m2!1sid!2sid' }}"
-               target="_blank"
-               class="btn-maps">
-                <i class="fas fa-location-arrow"></i>
-                Buka Lokasi di Google Maps
+      
+               
             </a>
         </div>
     </div>

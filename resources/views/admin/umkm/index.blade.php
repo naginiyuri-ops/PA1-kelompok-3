@@ -377,8 +377,12 @@
                 <tr>
                     <td data-label="No">{{ $loop->iteration }}</td>
                     <td data-label="Gambar">
-                        <img src="{{ $item->gambar_url }}" class="table-img" 
-                             onerror="this.src='{{ asset('image/meat/slide1.jpg') }}'" alt="{{ $item->nama }}">
+                        @if($item->gambar && file_exists(public_path($item->gambar)))
+                            <img src="{{ asset($item->gambar) }}" class="table-img" 
+                                 onerror="this.src='{{ asset('image/umkm/default.jpg') }}'" alt="{{ $item->nama }}">
+                        @else
+                            <img src="{{ asset('image/umkm/default.jpg') }}" class="table-img" alt="Default">
+                        @endif
                     </td>
                     <td data-label="Nama">
                         <strong>{{ Str::limit($item->nama, 35) }}</strong>

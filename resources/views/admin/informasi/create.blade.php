@@ -6,13 +6,13 @@
 <style>
     .card {
         background: white;
-        border-radius: 16px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
         overflow: hidden;
     }
     
     .card-header {
-        padding: 16px 24px;
+        padding: 18px 24px;
         background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
         border-bottom: 1px solid #e2e8f0;
     }
@@ -148,6 +148,16 @@
         padding-left: 20px;
     }
     
+    .form-text {
+        font-size: 0.7rem;
+        color: #94a3b8;
+        margin-top: 5px;
+    }
+    
+    .form-text i {
+        margin-right: 4px;
+    }
+    
     @media (max-width: 768px) {
         .card-header {
             padding: 12px 18px;
@@ -187,24 +197,29 @@
             @csrf
             
             <div class="mb-3">
-                <label>Judul Informasi</label>
+                <label>Judul Informasi <span class="text-danger">*</span></label>
                 <input type="text" name="judul" class="form-control" value="{{ old('judul') }}" placeholder="Masukkan judul informasi" required>
             </div>
             
             <div class="mb-3">
                 <label>Gambar</label>
                 <input type="file" name="gambar" class="form-control" accept="image/*" id="inputGambar">
-                <small class="text-muted d-block mt-1">Format: JPG, PNG. Max: 2MB</small>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i> Format: JPG, PNG, WEBP. Max: 5MB
+                </div>
                 <img id="previewImage" class="preview-image">
             </div>
             
             <div class="mb-3">
-                <label>Konten</label>
+                <label>Konten <span class="text-danger">*</span></label>
                 <textarea name="konten" class="form-control" rows="10" placeholder="Masukkan konten informasi" required>{{ old('konten') }}</textarea>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i> Gunakan HTML untuk formatting teks
+                </div>
             </div>
             
             <div class="checkbox-group">
-                <input type="checkbox" name="status" value="1" id="status" checked>
+                <input type="checkbox" name="status" value="1" id="status" {{ old('status', 1) ? 'checked' : '' }}>
                 <label for="status">Aktifkan</label>
             </div>
             

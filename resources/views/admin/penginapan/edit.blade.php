@@ -357,9 +357,9 @@
                 <div class="col-third">
                     <div class="mb-3">
                         <label>Gambar Saat Ini</label>
-                        @if($data->gambar)
+                        @if($data->gambar && file_exists(public_path($data->gambar)))
                             <div class="current-image">
-                                <img src="{{ asset('storage/' . $data->gambar) }}" alt="Current image">
+                                <img src="{{ asset($data->gambar) }}" alt="Current image">
                             </div>
                             <div class="checkbox-delete">
                                 <input type="checkbox" name="hapus_gambar" id="hapus_gambar" value="1">
@@ -423,6 +423,9 @@
             } else {
                 hargaInput.disabled = false;
                 hargaInput.placeholder = 'Contoh: Rp250.000/malam, Free, 200000';
+                if (hargaInput.value === 'Free') {
+                    hargaInput.value = '';
+                }
             }
         });
     }

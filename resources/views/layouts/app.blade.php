@@ -17,7 +17,7 @@
         :root {
             --blue-dark: #003366;
             --blue-medium: #1a4a7a;
-            --gold: #c6a43b;
+            --gold: #e6e6e6;
             --white: #ffffff;
         }
 
@@ -25,7 +25,7 @@
             overflow-x: hidden;
         }
 
-        /* ===== NAVBAR - LEBIH BESAR ===== */
+        /* ===== NAVBAR ===== */
         .navbar {
             transition: all 0.4s ease;
             padding: 1rem 0;
@@ -35,23 +35,52 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .navbar.scrolled {
+        .navbar.scrolled-down {
             background: var(--white) !important;
             padding: 0.7rem 0;
             box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .navbar.scrolled .nav-link,
-        .navbar.scrolled .navbar-brand { 
+        .navbar.scrolled-down .nav-link,
+        .navbar.scrolled-down .navbar-brand { 
             color: var(--blue-dark) !important; 
         }
 
-        .navbar.scrolled .logo-divider {
+        .navbar.scrolled-down .logo-divider {
             background: linear-gradient(145deg, rgba(0,51,102,0.3), rgba(0,51,102,0.1));
         }
 
-        .navbar.scrolled .navbar-toggler-icon {
+        .navbar.scrolled-down .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 51, 102, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .navbar.scrolled-down .navbar-toggler {
+            background: rgba(0, 51, 102, 0.1);
+        }
+
+        .navbar.scrolled-up {
+            background: rgba(0, 51, 102, 0.95) !important;
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(198, 164, 59, 0.3);
+        }
+
+        .navbar.scrolled-up .nav-link,
+        .navbar.scrolled-up .navbar-brand { 
+            color: white !important; 
+        }
+
+        .navbar.scrolled-up .logo-divider {
+            background: linear-gradient(145deg, rgba(255,255,255,0.6), rgba(255,255,255,0.15));
+        }
+
+        .navbar.scrolled-up .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .navbar.scrolled-up .navbar-toggler {
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .navbar .container {
@@ -64,7 +93,7 @@
             width: 100%;
         }
 
-        /* ===== LOGO - LEBIH BESAR ===== */
+        /* ===== LOGO ===== */
         .logo-wrapper {
             display: flex;
             align-items: center;
@@ -88,6 +117,7 @@
             background: linear-gradient(145deg, rgba(255,255,255,0.6), rgba(255,255,255,0.15));
             border-radius: 2px;
             flex-shrink: 0;
+            transition: all 0.3s ease;
         }
 
         .navbar-brand {
@@ -98,6 +128,7 @@
             padding: 0 0 0 8px;
             white-space: nowrap;
             letter-spacing: 1px;
+            transition: all 0.3s ease;
         }
 
         .navbar-brand span { 
@@ -112,6 +143,7 @@
             background: rgba(255, 255, 255, 0.15);
             border-radius: 12px;
             flex-shrink: 0;
+            transition: all 0.3s ease;
         }
 
         .navbar-toggler:focus {
@@ -121,7 +153,8 @@
 
         .navbar-toggler-icon { 
             width: 24px; 
-            height: 24px; 
+            height: 24px;
+            transition: all 0.3s ease;
         }
 
         /* ===== NAV LINKS ===== */
@@ -155,6 +188,19 @@
             padding: 0.6rem 0;
             margin-top: 0.7rem;
             box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar.scrolled-down .dropdown-menu {
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(0, 51, 102, 0.1);
+        }
+
+        .navbar.scrolled-down .dropdown-item {
+            color: var(--blue-dark);
+        }
+
+        .navbar.scrolled-down .dropdown-header {
+            color: var(--gold);
         }
 
         .dropdown-item {
@@ -192,7 +238,7 @@
                 overflow-y: auto;
             }
 
-            .navbar.scrolled .navbar-collapse {
+            .navbar.scrolled-down .navbar-collapse {
                 background: rgba(255, 255, 255, 0.98);
                 box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             }
@@ -212,6 +258,10 @@
                 position: static !important;
                 transform: none !important;
                 width: 100%;
+            }
+
+            .navbar.scrolled-down .dropdown-menu {
+                background: rgba(255, 255, 255, 0.5);
             }
 
             .dropdown-item {
@@ -245,7 +295,7 @@
             .logo-divider { display: none; }
         }
 
-        /* ===== FOOTER ===== */
+        /* ===== FOOTER BARU - MODERN & MENARIK (TETAP DENGAN FUNGSI SAMA) ===== */
         .footer {
             background: linear-gradient(135deg, #003366 0%, #001f3f 100%);
             padding: 50px 0 35px;
@@ -270,53 +320,173 @@
             padding: 0 20px;
         }
 
-        .footer-menu {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+        /* Grid layout footer yang modern */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
-            margin-bottom: 35px;
+            margin-bottom: 45px;
         }
 
-        .footer-menu a {
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 600;
+        /* Bagian brand/info */
+        .footer-brand {
+            text-align: left;
+        }
+
+        .footer-brand .logo-footer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand .logo-footer-img {
+            height: 48px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        .footer-brand h4 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0;
+            background: linear-gradient(135deg, #fff 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-brand h4 span {
+            background: linear-gradient(135deg, var(--gold) 0%, #ffd966 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+
+        /* Social media icons */
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             transition: all 0.3s ease;
-            padding: 8px 0;
-            position: relative;
+            text-decoration: none;
         }
 
-        .footer-menu a::after {
+        .footer-social a:hover {
+            background: var(--gold);
+            transform: translateY(-3px);
+            color: var(--blue-dark);
+        }
+
+        /* Menu column styling */
+        .footer-col h5 {
+            color: var(--gold);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col h5::after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: -6px;
             left: 0;
-            width: 0;
+            width: 30px;
             height: 2px;
             background: var(--gold);
-            transition: width 0.3s ease;
-        }
-
-        .footer-menu a:hover {
-            color: var(--gold);
-        }
-
-        .footer-menu a:hover::after {
-            width: 100%;
-        }
-
-        .footer-divider {
-            width: 60px;
-            height: 2px;
-            background: rgba(198, 164, 59, 0.5);
-            margin: 0 auto 25px;
             border-radius: 2px;
         }
 
-        .footer-copyright {
-            text-align: center;
+        .footer-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-menu-links a {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-menu-links a i {
+            font-size: 0.75rem;
+            opacity: 0;
+            transform: translateX(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .footer-menu-links a:hover {
+            color: var(--gold);
+            transform: translateX(5px);
+        }
+
+        .footer-menu-links a:hover i {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Informasi kontak */
+        .footer-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-contact-info .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+        }
+
+        .footer-contact-info .contact-item i {
+            width: 28px;
+            height: 28px;
+            background: rgba(198, 164, 59, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 0.8rem;
+        }
+
+        /* Divider dan copyright */
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .footer-copyright p {
@@ -325,15 +495,41 @@
             font-size: 0.85rem;
         }
 
+        .footer-credit {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+        }
+
+        .footer-credit a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .footer-credit a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive footer */
         @media (max-width: 768px) {
             .footer { padding: 35px 0 25px; margin-top: 60px; }
-            .footer-menu { gap: 25px; }
-            .footer-menu a { font-size: 0.85rem; }
+            .footer-grid { gap: 30px; margin-bottom: 35px; }
+            .footer-brand { text-align: center; }
+            .footer-brand .logo-footer { justify-content: center; }
+            .footer-social { justify-content: center; }
+            .footer-col { text-align: center; }
+            .footer-col h5::after { left: 50%; transform: translateX(-50%); width: 40px; }
+            .footer-menu-links a { justify-content: center; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .footer-contact-info .contact-item { justify-content: center; }
         }
 
         @media (max-width: 576px) {
-            .footer-menu { gap: 18px; flex-wrap: wrap; }
-            .footer-menu a { font-size: 0.8rem; }
+            .footer { padding: 30px 0 20px; margin-top: 50px; }
+            .footer-container { padding: 0 16px; }
+            .footer-brand .logo-footer-img { height: 40px; }
+            .footer-brand h4 { font-size: 1.3rem; }
+            .footer-col h5 { font-size: 0.9rem; }
+            .footer-copyright p { font-size: 0.75rem; }
         }
 
         /* ===== BACK TO TOP ===== */
@@ -356,6 +552,7 @@
             z-index: 1000;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             text-decoration: none;
+            border: none;
         }
 
         .back-to-top i { font-size: 1.2rem; }
@@ -396,9 +593,9 @@
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
             <div class="logo-wrapper">
-                <img src="{{ asset('image/Logo/logobankindonesia.jpg') }}" alt="Bank Indonesia" class="logo-img" loading="lazy">
+                <img src="{{ asset('image/logo/logobankindonesia.jpg') }}" alt="Bank Indonesia" class="logo-img" loading="lazy">
                 <div class="logo-divider"></div>
-                <img src="{{ asset('image/Logo/del.jpg') }}" alt="Logo Del" class="logo-img" loading="lazy">
+                <img src="{{ asset('image/logo/del.jpg') }}" alt="Logo Del" class="logo-img" loading="lazy">
                 <div class="logo-divider"></div>
                 <a class="navbar-brand" href="{{ url('/') }}">Geo<span>Toba</span></a>
             </div>
@@ -432,19 +629,66 @@
 
     <main>@yield('content')</main>
 
+    <!-- FOOTER MODERN DENGAN SEMUA FUNGSI TETAP SAMA -->
     <footer class="footer">
         <div class="footer-container">
-            <div class="footer-menu">
-                <a href="{{ url('/') }}">Home</a>
-                <a href="{{ url('/informasi') }}">Informasi</a>
-                <a href="{{ url('/destinasi') }}">Destinasi</a>
-                <a href="{{ url('/galeri') }}">Galeri</a>
-                <a href="{{ url('/berita') }}">Berita</a>
-                <a href="{{ url('/kontak') }}">Kontak</a>
+            <div class="footer-grid">
+                <!-- Kolom Brand / Info -->
+                <div class="footer-brand">
+                    <div class="logo-footer">
+                        <img src="{{ asset('image/logo/logobankindonesia.jpg') }}" alt="Bank Indonesia" class="logo-footer-img" loading="lazy">
+                        <img src="{{ asset('image/logo/del.jpg') }}" alt="Logo Del" class="logo-footer-img" loading="lazy">
+                    </div>
+                    <h4>Geo<span>Toba</span></h4>
+                    <p>Menjelajahi keindahan Geopark Danau Toba, warisan geologi dunia yang memukau dengan pesona alam dan budayanya.</p>
+                    <div class="footer-social">
+                        
+                    </div>
+                </div>
+
+                <!-- Kolom Menu Cepat -->
+                <div class="footer-col">
+                    <h5>Menu Cepat</h5>
+                    <div class="footer-menu-links">
+                        <a href="{{ url('/') }}"><i class="fas fa-chevron-right"></i> Home</a>
+                        <a href="{{ url('/informasi') }}"><i class="fas fa-chevron-right"></i> Informasi</a>
+                        <a href="{{ url('/destinasi') }}"><i class="fas fa-chevron-right"></i> Destinasi</a>
+                        <a href="{{ url('/galeri') }}"><i class="fas fa-chevron-right"></i> Galeri</a>
+                        <a href="{{ url('/berita') }}"><i class="fas fa-chevron-right"></i> Berita</a>
+                        <a href="{{ url('/kontak') }}"><i class="fas fa-chevron-right"></i> Kontak</a>
+                    </div>
+                </div>
+
+                <!-- Kolom Kategori Destinasi -->
+                <div class="footer-col">
+                    <h5>Kategori</h5>
+                    <div class="footer-menu-links">
+                        <a href="{{ url('/destinasi/alam') }}"><i class="fas fa-chevron-right"></i> Destinasi Alam</a>
+                        <a href="{{ url('/destinasi/buatan') }}"><i class="fas fa-chevron-right"></i> Destinasi Buatan</a>
+                        <a href="{{ url('/destinasi/budaya') }}"><i class="fas fa-chevron-right"></i> Destinasi Budaya</a>
+                    </div>
+                </div>
+
+                <!-- Kolom Kontak -->
+                <div class="footer-col">
+                    <h5>Lokasoi</h5>
+                    <div class="footer-contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Kabupaten Toba Samosir, Sumatera Utara</span>
+        
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="footer-divider"></div>
-            <div class="footer-copyright">
-                <p>&copy; 2026 GeoToba - Geopark Danau Toba. Kelompok7.</p>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2026 GeoToba - Geopark Danau Toba. Kelompok7.</p>
+                </div>
+                <div class="footer-credit">
+                    <span>Developed by <a href="#">Kelompok 7</a></span>
+                </div>
             </div>
         </div>
     </footer>
@@ -460,64 +704,131 @@
         AOS.init({ duration: 1000, once: true });
 
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) navbar.classList.add('scrolled');
-            else navbar.classList.remove('scrolled');
-        });
-
         const backToTop = document.getElementById('backToTop');
+        const navbarCollapse = document.getElementById('navbarNav');
+        
+        let lastScrollTop = 0;
+
+        // ==================== FUNGSI SCROLL DENGAN DETEKSI ARAH ====================
+        function handleScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // ===== AUTO TUTUP MENU MOBILE SAAT SCROLL =====
+            if (window.innerWidth <= 991 && navbarCollapse.classList.contains('show')) {
+                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                if (bsCollapse) bsCollapse.hide();
+            }
+            
+            navbar.classList.remove('scrolled-down', 'scrolled-up');
+            
+            if (scrollTop > 50) {
+                if (scrollTop > lastScrollTop) {
+                    navbar.classList.add('scrolled-down');
+                } else if (scrollTop < lastScrollTop) {
+                    navbar.classList.add('scrolled-up');
+                } else {
+                    navbar.classList.add('scrolled-down');
+                }
+            }
+            
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            
+            if (scrollTop > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        }
+        
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) backToTop.classList.add('show');
-            else backToTop.classList.remove('show');
+            requestAnimationFrame(handleScroll);
         });
 
+        // ==================== BACK TO TOP ====================
         backToTop.addEventListener('click', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        const navbarCollapse = document.getElementById('navbarNav');
-
+        // ==================== TUTUP MENU SAAT KLIK LINK (HP) ====================
         const regularLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle), .dropdown-item');
         regularLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 991) {
                     const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-                    if (bsCollapse) bsCollapse.hide();
+                    if (bsCollapse && navbarCollapse.classList.contains('show')) {
+                        bsCollapse.hide();
+                    }
                 }
             });
         });
 
+        // ==================== DROPDOWN ====================
         const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        
         dropdownToggles.forEach(function(toggle) {
-            var bsDropdown = new bootstrap.Dropdown(toggle, { autoClose: true });
-
+            let bsDropdown = null;
+            
             toggle.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-
+                
                 if (window.innerWidth > 991) {
+                    if (!bsDropdown) {
+                        bsDropdown = new bootstrap.Dropdown(toggle, { autoClose: true });
+                    }
                     bsDropdown.toggle();
                 } else {
-                    var menu = this.parentElement.querySelector('.dropdown-menu');
+                    const menu = this.parentElement.querySelector('.dropdown-menu');
                     if (!menu) return;
-                    var isOpen = menu.classList.contains('show');
-
+                    
+                    const isOpen = menu.classList.contains('show');
+                    
                     document.querySelectorAll('.navbar-nav .dropdown-menu.show').forEach(function(m) {
-                        m.classList.remove('show');
+                        if (m !== menu) {
+                            m.classList.remove('show');
+                        }
                     });
-
-                    if (!isOpen) menu.classList.add('show');
+                    
+                    if (!isOpen) {
+                        menu.classList.add('show');
+                    } else {
+                        menu.classList.remove('show');
+                    }
                 }
             });
         });
-
+        
+        // ==================== TUTUP DROPDOWN SAAT KLIK DI LUAR (MOBILE) ====================
         document.addEventListener('click', function(e) {
-            if (window.innerWidth <= 991 && !e.target.closest('.navbar')) {
-                document.querySelectorAll('.navbar-nav .dropdown-menu.show').forEach(function(m) {
-                    m.classList.remove('show');
-                });
+            if (window.innerWidth <= 991) {
+                if (!e.target.closest('.navbar')) {
+                    document.querySelectorAll('.navbar-nav .dropdown-menu.show').forEach(function(m) {
+                        m.classList.remove('show');
+                    });
+                }
             }
         });
+        
+        // ==================== RESET SAAT RESIZE WINDOW ====================
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                document.querySelectorAll('.dropdown-menu.show').forEach(function(menu) {
+                    menu.classList.remove('show');
+                });
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                navbar.classList.remove('scrolled-down', 'scrolled-up');
+                if (scrollTop > 50) {
+                    navbar.classList.add('scrolled-down');
+                }
+            }, 200);
+        });
+        
+        // ==================== INITIAL ====================
+        setTimeout(() => {
+            handleScroll();
+        }, 100);
     </script>
 
     @stack('scripts')
