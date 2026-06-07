@@ -295,7 +295,7 @@
             .logo-divider { display: none; }
         }
 
-        /* ===== FOOTER ===== */
+        /* ===== FOOTER BARU - MODERN & MENARIK (TETAP DENGAN FUNGSI SAMA) ===== */
         .footer {
             background: linear-gradient(135deg, #003366 0%, #001f3f 100%);
             padding: 50px 0 35px;
@@ -320,53 +320,173 @@
             padding: 0 20px;
         }
 
-        .footer-menu {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+        /* Grid layout footer yang modern */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
-            margin-bottom: 35px;
+            margin-bottom: 45px;
         }
 
-        .footer-menu a {
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 600;
+        /* Bagian brand/info */
+        .footer-brand {
+            text-align: left;
+        }
+
+        .footer-brand .logo-footer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand .logo-footer-img {
+            height: 48px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        .footer-brand h4 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0;
+            background: linear-gradient(135deg, #fff 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-brand h4 span {
+            background: linear-gradient(135deg, var(--gold) 0%, #ffd966 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+
+        /* Social media icons */
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             transition: all 0.3s ease;
-            padding: 8px 0;
-            position: relative;
+            text-decoration: none;
         }
 
-        .footer-menu a::after {
+        .footer-social a:hover {
+            background: var(--gold);
+            transform: translateY(-3px);
+            color: var(--blue-dark);
+        }
+
+        /* Menu column styling */
+        .footer-col h5 {
+            color: var(--gold);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col h5::after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: -6px;
             left: 0;
-            width: 0;
+            width: 30px;
             height: 2px;
             background: var(--gold);
-            transition: width 0.3s ease;
-        }
-
-        .footer-menu a:hover {
-            color: var(--gold);
-        }
-
-        .footer-menu a:hover::after {
-            width: 100%;
-        }
-
-        .footer-divider {
-            width: 60px;
-            height: 2px;
-            background: rgba(200, 196, 185, 0.5);
-            margin: 0 auto 25px;
             border-radius: 2px;
         }
 
-        .footer-copyright {
-            text-align: center;
+        .footer-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-menu-links a {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-menu-links a i {
+            font-size: 0.75rem;
+            opacity: 0;
+            transform: translateX(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .footer-menu-links a:hover {
+            color: var(--gold);
+            transform: translateX(5px);
+        }
+
+        .footer-menu-links a:hover i {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Informasi kontak */
+        .footer-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-contact-info .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+        }
+
+        .footer-contact-info .contact-item i {
+            width: 28px;
+            height: 28px;
+            background: rgba(198, 164, 59, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 0.8rem;
+        }
+
+        /* Divider dan copyright */
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .footer-copyright p {
@@ -375,15 +495,41 @@
             font-size: 0.85rem;
         }
 
+        .footer-credit {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+        }
+
+        .footer-credit a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .footer-credit a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive footer */
         @media (max-width: 768px) {
             .footer { padding: 35px 0 25px; margin-top: 60px; }
-            .footer-menu { gap: 25px; }
-            .footer-menu a { font-size: 0.85rem; }
+            .footer-grid { gap: 30px; margin-bottom: 35px; }
+            .footer-brand { text-align: center; }
+            .footer-brand .logo-footer { justify-content: center; }
+            .footer-social { justify-content: center; }
+            .footer-col { text-align: center; }
+            .footer-col h5::after { left: 50%; transform: translateX(-50%); width: 40px; }
+            .footer-menu-links a { justify-content: center; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .footer-contact-info .contact-item { justify-content: center; }
         }
 
         @media (max-width: 576px) {
-            .footer-menu { gap: 18px; flex-wrap: wrap; }
-            .footer-menu a { font-size: 0.8rem; }
+            .footer { padding: 30px 0 20px; margin-top: 50px; }
+            .footer-container { padding: 0 16px; }
+            .footer-brand .logo-footer-img { height: 40px; }
+            .footer-brand h4 { font-size: 1.3rem; }
+            .footer-col h5 { font-size: 0.9rem; }
+            .footer-copyright p { font-size: 0.75rem; }
         }
 
         /* ===== BACK TO TOP ===== */
@@ -483,19 +629,66 @@
 
     <main>@yield('content')</main>
 
+    <!-- FOOTER MODERN DENGAN SEMUA FUNGSI TETAP SAMA -->
     <footer class="footer">
         <div class="footer-container">
-            <div class="footer-menu">
-                <a href="{{ url('/') }}">Home</a>
-                <a href="{{ url('/informasi') }}">Informasi</a>
-                <a href="{{ url('/destinasi') }}">Destinasi</a>
-                <a href="{{ url('/galeri') }}">Galeri</a>
-                <a href="{{ url('/berita') }}">Berita</a>
-                <a href="{{ url('/kontak') }}">Kontak</a>
+            <div class="footer-grid">
+                <!-- Kolom Brand / Info -->
+                <div class="footer-brand">
+                    <div class="logo-footer">
+                        <img src="{{ asset('image/logo/logobankindonesia.jpg') }}" alt="Bank Indonesia" class="logo-footer-img" loading="lazy">
+                        <img src="{{ asset('image/logo/del.jpg') }}" alt="Logo Del" class="logo-footer-img" loading="lazy">
+                    </div>
+                    <h4>Geo<span>Toba</span></h4>
+                    <p>Menjelajahi keindahan Geopark Danau Toba, warisan geologi dunia yang memukau dengan pesona alam dan budayanya.</p>
+                    <div class="footer-social">
+                        
+                    </div>
+                </div>
+
+                <!-- Kolom Menu Cepat -->
+                <div class="footer-col">
+                    <h5>Menu Cepat</h5>
+                    <div class="footer-menu-links">
+                        <a href="{{ url('/') }}"><i class="fas fa-chevron-right"></i> Home</a>
+                        <a href="{{ url('/informasi') }}"><i class="fas fa-chevron-right"></i> Informasi</a>
+                        <a href="{{ url('/destinasi') }}"><i class="fas fa-chevron-right"></i> Destinasi</a>
+                        <a href="{{ url('/galeri') }}"><i class="fas fa-chevron-right"></i> Galeri</a>
+                        <a href="{{ url('/berita') }}"><i class="fas fa-chevron-right"></i> Berita</a>
+                        <a href="{{ url('/kontak') }}"><i class="fas fa-chevron-right"></i> Kontak</a>
+                    </div>
+                </div>
+
+                <!-- Kolom Kategori Destinasi -->
+                <div class="footer-col">
+                    <h5>Kategori</h5>
+                    <div class="footer-menu-links">
+                        <a href="{{ url('/destinasi/alam') }}"><i class="fas fa-chevron-right"></i> Destinasi Alam</a>
+                        <a href="{{ url('/destinasi/buatan') }}"><i class="fas fa-chevron-right"></i> Destinasi Buatan</a>
+                        <a href="{{ url('/destinasi/budaya') }}"><i class="fas fa-chevron-right"></i> Destinasi Budaya</a>
+                    </div>
+                </div>
+
+                <!-- Kolom Kontak -->
+                <div class="footer-col">
+                    <h5>Lokasoi</h5>
+                    <div class="footer-contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Kabupaten Toba Samosir, Sumatera Utara</span>
+        
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="footer-divider"></div>
-            <div class="footer-copyright">
-                <p>&copy; 2026 GeoToba - Geopark Danau Toba. Kelompok7.</p>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2026 GeoToba - Geopark Danau Toba. Kelompok7.</p>
+                </div>
+                <div class="footer-credit">
+                    <span>Developed by <a href="#">Kelompok 7</a></span>
+                </div>
             </div>
         </div>
     </footer>
