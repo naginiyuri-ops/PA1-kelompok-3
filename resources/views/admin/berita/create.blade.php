@@ -102,7 +102,7 @@
         gap: 8px;
     }
     .card-header h5 i {
-        color: #c6a43b;
+        color: #c6753b;
     }
     .card-body {
         padding: 24px;
