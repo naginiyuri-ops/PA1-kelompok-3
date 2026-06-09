@@ -10,16 +10,17 @@ return new class extends Migration
     {
         Schema::create('umkm', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('kategori_id')->nullable()->constrained('kategoris')->nullOnDelete();
-            $table->string('nama', 255);
-            $table->text('deskripsi');
-            $table->longText('gambar')->nullable();
-            $table->string('lokasi', 255)->nullable();
-            $table->string('kontak', 255)->nullable();
-            $table->boolean('status')->default(true);
-            $table->integer('urutan')->default(0);
+            $table->string('nama_usaha');
+            $table->string('pemilik');
+            $table->text('alamat');
+            $table->string('no_telepon');
+            $table->text('deskripsi')->nullable();
+            $table->string('foto_utama')->nullable();
+            $table->enum('status', ['aktif', 'nonaktif'])->default('aktif');
             $table->timestamps();
+            
+            // HAPUS SEMUA BARIS YANG ADA FOREIGN KEY
+            // JANGAN ADA foreignId atau constraint
         });
     }
 
