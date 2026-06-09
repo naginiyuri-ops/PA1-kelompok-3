@@ -122,15 +122,6 @@ return new class extends Migration
             });
         }
         
-        // KONTAK ke Admin - RELASI LANGSUNG
-        if (Schema::hasTable('kontak') && Schema::hasColumn('kontak', 'admin_id')) {
-            Schema::table('kontak', function (Blueprint $table) {
-                $table->foreign('admin_id', 'fk_kontak_admin')
-                      ->references('id')->on('admin')
-                      ->onDelete('set null');
-            });
-        }
-        
         // Koleksi_fotos ke Galeri
         if (Schema::hasTable('koleksi_fotos') && Schema::hasColumn('koleksi_fotos', 'galeri_id')) {
             Schema::table('koleksi_fotos', function (Blueprint $table) {
