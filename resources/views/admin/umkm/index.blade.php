@@ -78,7 +78,7 @@
     table {
         width: 100%;
         border-collapse: collapse;
-        min-width: 700px;
+        min-width: 800px;
     }
     
     thead {
@@ -132,6 +132,12 @@
         background: #ffebee;
         color: #c62828;
         border: 1px solid #ef9a9a;
+    }
+    
+    .badge-warning {
+        background: #fff3e0;
+        color: #e65100;
+        border: 1px solid #ffe0b2;
     }
     
     .btn-group {
@@ -351,19 +357,18 @@
                     <td data-label="No">{{ $loop->iteration }}</td>
                     <td data-label="Gambar">
                         @if($item->foto_utama && file_exists(public_path($item->foto_utama)))
-                            <img src="{{ asset($item->foto_utama) }}" class="table-img" alt="{{ $item->nama_usaha }}">
+                            <img src="{{ asset($item->foto_utama) }}" class="table-img" 
+                                 onerror="this.src='{{ asset('image/umkm/default.jpg') }}'" alt="{{ $item->nama_usaha }}">
                         @else
-                            <div style="width: 50px; height: 50px; background: #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-store" style="color: #94a3b8;"></i>
-                            </div>
+                            <img src="{{ asset('image/umkm/default.jpg') }}" class="table-img" alt="Default">
                         @endif
                     </td>
                     <td data-label="Nama">
-                        <strong>{{ $item->nama_usaha ?? '-' }}</strong>
+                        <strong>{{ Str::limit($item->nama_usaha, 30) }}</strong>
                     </td>
-                    <td data-label="Lokasi">{{ $item->alamat ?? '-' }}</td>
+                    <td data-label="Lokasi">{{ $item->alamat ?? 'Desa Meat' }}</td>
                     <td data-label="Kontak">{{ $item->no_telepon ?? '-' }}</td>
-                    <td data-label="Urutan" style="text-align: center;">{{ $item->urutan ?? 0 }}</td>
+                    <td data-label="Urutan" style="text-align: center;">{{ $item->urutan }}</td>
                     <td data-label="Status">
                         <span class="badge {{ $item->status == 'aktif' ? 'badge-success' : 'badge-danger' }}">
                             {{ $item->status == 'aktif' ? 'Aktif' : 'Nonaktif' }}

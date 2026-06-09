@@ -183,6 +183,21 @@
         transform: translateY(-2px);
     }
     
+    .alert-danger {
+        background: #ffebee;
+        color: #c62828;
+        padding: 12px 16px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        border-left: 4px solid #c62828;
+        font-size: 0.85rem;
+    }
+    
+    .alert-danger ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+    
     .form-text {
         font-size: 0.7rem;
         color: #94a3b8;
@@ -298,7 +313,7 @@
                         <label style="margin-top: 12px;">Ganti Gambar</label>
                         <input type="file" name="gambar" class="form-control" accept="image/*" id="inputGambar">
                         <div class="form-text">
-                            <i class="fas fa-info-circle"></i> Format: JPG, PNG, WEBP. Max: 10MB
+                            <i class="fas fa-info-circle"></i> Format: JPG, PNG, WEBP. Max: 5MB
                         </div>
                         <img id="previewImage" class="preview-image">
                     </div>

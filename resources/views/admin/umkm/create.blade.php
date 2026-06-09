@@ -266,7 +266,7 @@
                         <label>Gambar</label>
                         <input type="file" name="gambar" class="form-control" accept="image/*" id="inputGambar">
                         <div class="form-text">
-                            <i class="fas fa-info-circle"></i> Format: JPG, PNG, WEBP. Max: 10MB
+                            <i class="fas fa-info-circle"></i> Format: JPG, PNG, WEBP. Max: 5MB
                         </div>
                         <img id="previewImage" class="preview-image">
                     </div>
