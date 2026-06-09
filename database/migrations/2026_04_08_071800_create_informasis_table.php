@@ -8,15 +8,15 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('informasi', function (Blueprint $table) {
+        Schema::create('informasis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable(); // sementara tanpa FK
-            $table->string('judul', 255);
-            $table->string('slug', 255)->unique();
+            $table->string('judul');
+            $table->string('slug')->unique();
             $table->longText('konten');
-            $table->longText('gambar')->nullable();
+            $table->string('gambar')->nullable();
             $table->integer('views')->default(0);
             $table->boolean('status')->default(true);
+            $table->integer('urutan')->default(0);
             $table->enum('geosite', ['meat', 'batu_bahisan', 'liang_sipege'])->nullable();
             $table->timestamps();
         });
@@ -24,6 +24,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('informasi');
+        Schema::dropIfExists('informasis');
     }
 };

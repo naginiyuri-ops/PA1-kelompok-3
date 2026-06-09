@@ -31,7 +31,7 @@ Route::get('/destinasi/buatan', [DestinasiController::class, 'buatan'])->name('d
 Route::get('/destinasi/budaya', [DestinasiController::class, 'budaya'])->name('destinasi.budaya');
 Route::get('/destinasi/{kategori}/{slug}', [DestinasiController::class, 'detail'])->name('destinasi.detail');
 
-// Informasi Publik
+// Informasi Publik - PAKAI TABEL 'informasis'
 Route::get('/informasi', [PublicInformasiController::class, 'index'])->name('informasi');
 
 // Galeri Publik
@@ -44,13 +44,13 @@ Route::get('/galeri/{slug}', function ($slug) {
     return view('pages.galeri-detail', compact('galeri'));
 })->name('galeri.detail');
 
-// Berita Publik
+// Berita Publik - PAKAI TABEL 'beritas'
 Route::get('/berita', function () {
     $berita = App\Models\Berita::where('status', true)->latest()->paginate(9);
     return view('pages.berita', compact('berita'));
 })->name('berita');
 
-// Detail Berita
+// Detail Berita - PAKAI TABEL 'beritas'
 Route::get('/berita/{slug}', function ($slug) {
     $berita = App\Models\Berita::where('slug', $slug)->where('status', true)->firstOrFail();
     $berita->increment('views');
@@ -73,6 +73,7 @@ Route::get('/geosite/batu-bahisan', [GeositeController::class, 'batuBahisan'])->
 Route::get('/geosite/liang-sipege', [GeositeController::class, 'liangSipege'])->name('geosite.liang-sipege');
 
 // ==================== API ROUTES ====================
+// API Informasi - PAKAI TABEL 'informasis'
 Route::post('/api/informasi/{id}/view', function ($id) {
     $informasi = App\Models\Informasi::find($id);
     if ($informasi) {
@@ -82,6 +83,7 @@ Route::post('/api/informasi/{id}/view', function ($id) {
     return response()->json(['success' => false], 404);
 });
 
+// API Berita - PAKAI TABEL 'beritas'
 Route::post('/api/berita/{id}/view', function ($id) {
     $berita = App\Models\Berita::find($id);
     if ($berita) {
@@ -109,18 +111,27 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/create-admin', [AdminController::class, 'create'])->name('admin.create');
     Route::post('/store-admin', [AdminController::class, 'store'])->name('admin.store');
 
-    // ========== DASHBOARD ==========
+    // ========== DASHBOARD - PAKAI TABEL YANG BENAR ==========
     Route::get('/', function () {
         $totalGaleri = DB::table('galeri')->count();
-        $totalBerita = DB::table('berita')->count();
-        $totalInformasi = DB::table('informasi')->count();
+        $totalBerita = DB::table('beritas')->count();      // Perbaiki: berita -> beritas
+        $totalInformasi = DB::table('informasis')->count(); // Perbaiki: informasi -> informasis
         $totalUmkm = DB::table('umkm')->count();
         $totalFasilitas = DB::table('fasilitas')->count();
         $totalPenginapan = DB::table('penginapan')->count();
         $totalViews = 0;
         $beritaTerbaru = App\Models\Berita::latest()->limit(5)->get();
         
-        return view('admin.dashboard', compact('totalGaleri', 'totalBerita', 'totalInformasi', 'totalUmkm', 'totalFasilitas', 'totalPenginapan', 'totalViews', 'beritaTerbaru'));
+        return view('admin.dashboard', compact(
+            'totalGaleri', 
+            'totalBerita', 
+            'totalInformasi', 
+            'totalUmkm', 
+            'totalFasilitas', 
+            'totalPenginapan', 
+            'totalViews', 
+            'beritaTerbaru'
+        ));
     })->name('admin.dashboard');
     
     // ========== RESOURCE ROUTES (CRUD) ==========

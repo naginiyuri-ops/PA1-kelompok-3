@@ -2,21 +2,25 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
-class UserSeeder extends Seeder
+class AdminSeeder extends Seeder
 {
     public function run()
     {
         // Cek apakah sudah ada, jika belum buat
-        User::firstOrCreate(
+        Admin::firstOrCreate(
             ['email' => 'admina246@gmail.com'],
             [
                 'name' => 'Admin GeoToba',
                 'password' => Hash::make('admin123'),
             ]
         );
+        
+        $this->command->info('Admin berhasil dibuat!');
+        $this->command->info('Email: admina246@gmail.com');
+        $this->command->info('Password: admin123');
     }
 }

@@ -8,41 +8,46 @@ use Illuminate\Database\Eloquent\Model;
 class Umkm extends Model
 {
     use HasFactory;
-
+    
     protected $table = 'umkm';
     
     protected $fillable = [
-        'nama', 'deskripsi', 'gambar', 'lokasi', 'kontak', 'urutan', 'status'
+        'nama_usaha',
+        'pemilik',
+        'alamat',
+        'no_telepon',
+        'deskripsi',
+        'foto_utama',
+        'status',
     ];
-
-    // Accessor untuk URL gambar
-    public function getGambarUrlAttribute()
+    
+    protected $casts = [
+        'status' => 'string',
+    ];
+    
+    // Accessor untuk URL foto
+    public function getFotoUtamaUrlAttribute()
     {
-        if (!$this->gambar) {
+        if (empty($this->foto_utama)) {
             return asset('image/umkm/default.jpg');
         }
-
-        // Jika sudah URL lengkap
-        if (filter_var($this->gambar, FILTER_VALIDATE_URL)) {
-            return $this->gambar;
+        
+        if (file_exists(public_path($this->foto_utama))) {
+            return asset($this->foto_utama);
         }
-
-        // Jika dari public/image/umkm/
-        if (file_exists(public_path($this->gambar))) {
-            return asset($this->gambar);
-        }
-
-        // Jika hanya nama file
-        if (file_exists(public_path('image/umkm/' . $this->gambar))) {
-            return asset('image/umkm/' . $this->gambar);
-        }
-
+        
         return asset('image/umkm/default.jpg');
     }
-
-    // Scope untuk filter aktif
+    
+    // Scope untuk filter status aktif
     public function scopeActive($query)
     {
-        return $query->where('status', 1);
+        return $query->where('status', 'aktif');
+    }
+    
+    // Scope untuk filter status nonaktif
+    public function scopeInactive($query)
+    {
+        return $query->where('status', 'nonaktif');
     }
 }

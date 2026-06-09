@@ -9,10 +9,18 @@ class Informasi extends Model
 {
     use HasFactory;
 
-    protected $table = 'informasi';
+    // PERBAIKAN: Ganti dari 'informasi' menjadi 'informasis'
+    protected $table = 'informasis';
     
     protected $fillable = [
-        'judul', 'slug', 'konten', 'gambar', 'status', 'urutan', 'views'
+        'judul', 
+        'slug', 
+        'konten', 
+        'gambar', 
+        'status', 
+        'urutan', 
+        'views',
+        'geosite'  // Tambahkan geosite jika ada
     ];
 
     // ACCESSOR UNTUK URL GAMBAR
@@ -43,5 +51,23 @@ class Informasi extends Model
         }
 
         return asset('image/default.jpg');
+    }
+
+    // SCOPES untuk filter
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
+    public function scopeByGeosite($query, $geosite)
+    {
+        return $query->where('geosite', $geosite);
+    }
+
+    // MUTATOR untuk slug otomatis
+    public function setJudulAttribute($value)
+    {
+        $this->attributes['judul'] = $value;
+        $this->attributes['slug'] = \Illuminate\Support\Str::slug($value);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Admin;  // Ganti User dengan Admin
 use App\Mail\ResetPasswordMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -57,12 +57,12 @@ class AuthController extends Controller
     public function sendResetLink(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users,email'
+            'email' => 'required|email|exists:admin,email'  // Ganti users dengan admin
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        $admin = Admin::where('email', $request->email)->first();  // Ganti User dengan Admin
         
-        if (!$user) {
+        if (!$admin) {
             return back()->withErrors(['email' => 'Email tidak ditemukan.']);
         }
 
@@ -118,7 +118,7 @@ class AuthController extends Controller
     public function resetPassword(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users',
+            'email' => 'required|email|exists:admin',  // Ganti users dengan admin
             'password' => 'required|min:6|confirmed',
             'token' => 'required'
         ]);
@@ -138,7 +138,7 @@ class AuthController extends Controller
             return back()->withErrors(['email' => 'Link reset password sudah kadaluarsa. Silakan request ulang.']);
         }
         
-        User::where('email', $request->email)->update([
+        Admin::where('email', $request->email)->update([  // Ganti User dengan Admin
             'password' => Hash::make($request->password)
         ]);
         

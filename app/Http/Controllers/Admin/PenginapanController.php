@@ -6,78 +6,60 @@ use App\Http\Controllers\Controller;
 use App\Models\Penginapan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth;
 
 class PenginapanController extends Controller
 {
     public function index()
     {
-        $data = Penginapan::orderBy('urutan')->paginate(10);
+        $data = Penginapan::latest()->paginate(10);
         return view('admin.penginapan.index', compact('data'));
     }
 
     public function create()
     {
-        $lastUrutan = Penginapan::max('urutan');
-        $nextUrutan = $lastUrutan ? $lastUrutan + 1 : 1;
-        return view('admin.penginapan.create', compact('nextUrutan'));
+        return view('admin.penginapan.create');
     }
 
     public function store(Request $request)
     {
-        // VALIDASI
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
-            'urutan' => 'required|integer|unique:penginapan,urutan',
+            'harga' => 'nullable|string|max:100',
             'lokasi' => 'nullable|string|max:255',
-            'kontak' => [
-                'nullable',
-                'string',
-                'max:255',
-                'regex:/^(-|[0-9]{12})$/',
-            ],
-            'status' => 'nullable|boolean'
-        ], [
-            'kontak.regex' => 'Nomor kontak harus diisi "-" atau 12 digit angka (contoh: 081234567890)',
+            'kontak' => 'nullable|string|max:100',
+            'urutan' => 'nullable|integer',
+            'status' => 'nullable|boolean',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
         ]);
 
-        // PROSES HARGA
-        $hargaValue = $request->harga;
-        if ($request->has('free_harga')) {
-            $hargaValue = 'Free';
-        }
-
         $data = [
-            'user_id' => Auth::id(),
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
-            'harga' => $hargaValue,
+            'harga' => $request->harga,
             'lokasi' => $request->lokasi,
             'kontak' => $request->kontak,
-            'urutan' => $request->urutan,
-            'status' => $request->has('status') ? 1 : 0
+            'urutan' => $request->urutan ?? 0,
+            'status' => $request->has('status') ? 1 : 0,
         ];
 
-        // ========== UBAH: UPLOAD KE public/image/penginapan/ ==========
         if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
-            $filename = time() . '_penginapan_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
+            $image = $request->file('gambar');
+            $filename = time() . '_' . Str::slug($request->nama) . '.' . $image->getClientOriginalExtension();
             
-            // Buat folder jika belum ada
-            if (!file_exists(public_path('image/penginapan'))) {
-                mkdir(public_path('image/penginapan'), 0777, true);
+            // Simpan ke public/image/penginapan/
+            $destinationPath = public_path('image/penginapan');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
             }
-            
-            // Pindahkan file ke public/image/penginapan/
-            $file->move(public_path('image/penginapan'), $filename);
+            $image->move($destinationPath, $filename);
             $data['gambar'] = 'image/penginapan/' . $filename;
         }
-        // ========== END UBAH ==========
 
         Penginapan::create($data);
-        return redirect()->route('admin.penginapan.index')->with('success', 'Penginapan berhasil ditambahkan!');
+
+        return redirect()->route('admin.penginapan.index')
+            ->with('success', 'Penginapan berhasil ditambahkan!');
     }
 
     public function edit($id)
@@ -88,84 +70,69 @@ class PenginapanController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data = Penginapan::findOrFail($id);
+        $penginapan = Penginapan::findOrFail($id);
 
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
-            'urutan' => 'required|integer|unique:penginapan,urutan,' . $id,
+            'harga' => 'nullable|string|max:100',
             'lokasi' => 'nullable|string|max:255',
-            'kontak' => [
-                'nullable',
-                'string',
-                'max:255',
-                'regex:/^(-|[0-9]{12})$/',
-            ],
-            'status' => 'nullable|boolean'
-        ], [
-            'kontak.regex' => 'Nomor kontak harus diisi "-" atau 12 digit angka (contoh: 081234567890)',
+            'kontak' => 'nullable|string|max:100',
+            'urutan' => 'nullable|integer',
+            'status' => 'nullable|boolean',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
         ]);
 
-        // PROSES HARGA
-        $hargaValue = $request->harga;
-        if ($request->has('free_harga')) {
-            $hargaValue = 'Free';
-        }
-
-        $input = [
+        $updateData = [
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
-            'harga' => $hargaValue,
+            'harga' => $request->harga,
             'lokasi' => $request->lokasi,
             'kontak' => $request->kontak,
-            'urutan' => $request->urutan,
-            'status' => $request->has('status') ? 1 : 0
+            'urutan' => $request->urutan ?? 0,
+            'status' => $request->has('status') ? 1 : 0,
         ];
 
-        // ========== UBAH: HAPUS GAMBAR LAMA DARI public/image/penginapan/ ==========
-        if ($request->has('hapus_gambar')) {
-            if ($data->gambar && file_exists(public_path($data->gambar))) {
-                unlink(public_path($data->gambar));
-            }
-            $input['gambar'] = null;
+        // Handle hapus gambar
+        if ($request->has('hapus_gambar') && $request->hapus_gambar == 1) {
+            $updateData['gambar'] = null;
         }
 
-        // ========== UBAH: UPLOAD GAMBAR BARU KE public/image/penginapan/ ==========
+        // Handle upload gambar baru
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama jika ada
-            if ($data->gambar && file_exists(public_path($data->gambar))) {
-                unlink(public_path($data->gambar));
+            $image = $request->file('gambar');
+            $filename = time() . '_' . Str::slug($request->nama) . '.' . $image->getClientOriginalExtension();
+            
+            // Simpan ke public/image/penginapan/
+            $destinationPath = public_path('image/penginapan');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
             }
-            
-            $file = $request->file('gambar');
-            $filename = time() . '_penginapan_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
-            
-            // Buat folder jika belum ada
-            if (!file_exists(public_path('image/penginapan'))) {
-                mkdir(public_path('image/penginapan'), 0777, true);
-            }
-            
-            $file->move(public_path('image/penginapan'), $filename);
-            $input['gambar'] = 'image/penginapan/' . $filename;
+            $image->move($destinationPath, $filename);
+            $updateData['gambar'] = 'image/penginapan/' . $filename;
         }
-        // ========== END UBAH ==========
 
-        $data->update($input);
-        return redirect()->route('admin.penginapan.index')->with('success', 'Penginapan berhasil diupdate!');
+        $penginapan->update($updateData);
+
+        return redirect()->route('admin.penginapan.index')
+            ->with('success', 'Penginapan berhasil diupdate!');
     }
 
     public function destroy($id)
     {
-        $data = Penginapan::findOrFail($id);
-        
-        // ========== UBAH: HAPUS FILE DARI public/image/penginapan/ ==========
-        if ($data->gambar && file_exists(public_path($data->gambar))) {
-            unlink(public_path($data->gambar));
-        }
-        // ========== END UBAH ==========
-        
-        $data->delete();
-        return redirect()->route('admin.penginapan.index')->with('success', 'Penginapan berhasil dihapus!');
+        $penginapan = Penginapan::findOrFail($id);
+        $penginapan->delete();
+
+        return redirect()->route('admin.penginapan.index')
+            ->with('success', 'Penginapan berhasil dihapus!');
+    }
+
+    public function toggleStatus($id)
+    {
+        $penginapan = Penginapan::findOrFail($id);
+        $penginapan->status = !$penginapan->status;
+        $penginapan->save();
+
+        return response()->json(['success' => true, 'status' => $penginapan->status]);
     }
 }

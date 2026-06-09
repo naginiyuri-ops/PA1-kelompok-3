@@ -9,53 +9,47 @@ use Illuminate\Support\Str;
 
 class UmkmController extends Controller
 {
+    // Halaman index (daftar UMKM)
     public function index()
     {
-        $data = Umkm::orderBy('urutan')->paginate(10);
+        $data = Umkm::latest()->paginate(10);
         return view('admin.umkm.index', compact('data'));
     }
 
+    // Halaman create (form tambah)
     public function create()
     {
-        $lastUrutan = Umkm::max('urutan');
-        $nextUrutan = $lastUrutan ? $lastUrutan + 1 : 1;
-        return view('admin.umkm.create', compact('nextUrutan'));
+        return view('admin.umkm.create');
     }
 
+    // Proses simpan data
     public function store(Request $request)
     {
-        // VALIDASI
+        // Validasi
         $request->validate([
-            'nama' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
-            'urutan' => 'required|integer|unique:umkm,urutan',
-            'lokasi' => 'nullable|string|max:255',
-            'kontak' => [
-                'nullable',
-                'string',
-                'max:255',
-                'regex:/^(-|[0-9]{12})$/',
-            ],
-            'status' => 'nullable|boolean'
-        ], [
-            'kontak.regex' => 'Nomor kontak harus diisi "-" atau 12 digit angka (contoh: 081234567890)',
+            'nama_usaha' => 'required|string|max:255',
+            'pemilik' => 'required|string|max:255',
+            'alamat' => 'required|string',
+            'no_telepon' => 'required|string|max:20',
+            'deskripsi' => 'nullable|string',
+            'status' => 'nullable|in:aktif,nonaktif',
+            'foto_utama' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
 
+        // Data yang akan disimpan
         $data = [
-            'nama' => $request->nama,
+            'nama_usaha' => $request->nama_usaha,
+            'pemilik' => $request->pemilik,
+            'alamat' => $request->alamat,
+            'no_telepon' => $request->no_telepon,
             'deskripsi' => $request->deskripsi,
-            'lokasi' => $request->lokasi,
-            'kontak' => $request->kontak,
-            'urutan' => $request->urutan,
-            'status' => $request->has('status') ? 1 : 0,
-            'gambar' => null
+            'status' => $request->status ?? 'aktif',
         ];
 
-        // ========== UBAH: UPLOAD KE public/image/umkm/ ==========
-        if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
-            $filename = time() . '_umkm_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
+        // Upload foto_utama
+        if ($request->hasFile('foto_utama')) {
+            $file = $request->file('foto_utama');
+            $filename = time() . '_umkm_' . Str::slug($request->nama_usaha) . '.' . $file->getClientOriginalExtension();
             
             // Buat folder jika belum ada
             if (!file_exists(public_path('image/umkm'))) {
@@ -64,67 +58,66 @@ class UmkmController extends Controller
             
             // Pindahkan file ke public/image/umkm/
             $file->move(public_path('image/umkm'), $filename);
-            $data['gambar'] = 'image/umkm/' . $filename;
+            $data['foto_utama'] = 'image/umkm/' . $filename;
         }
-        // ========== END UBAH ==========
 
+        // Simpan ke database
         Umkm::create($data);
-        return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil ditambahkan!');
+        
+        return redirect()->route('admin.umkm.index')
+            ->with('success', 'UMKM berhasil ditambahkan!');
     }
 
+    // Halaman edit
     public function edit($id)
     {
         $data = Umkm::findOrFail($id);
         return view('admin.umkm.edit', compact('data'));
     }
 
+    // Proses update data
     public function update(Request $request, $id)
     {
         $data = Umkm::findOrFail($id);
 
+        // Validasi
         $request->validate([
-            'nama' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
-            'urutan' => 'required|integer|unique:umkm,urutan,' . $id,
-            'lokasi' => 'nullable|string|max:255',
-            'kontak' => [
-                'nullable',
-                'string',
-                'max:255',
-                'regex:/^(-|[0-9]{12})$/',
-            ],
-            'status' => 'nullable|boolean'
-        ], [
-            'kontak.regex' => 'Nomor kontak harus diisi "-" atau 12 digit angka (contoh: 081234567890)',
+            'nama_usaha' => 'required|string|max:255',
+            'pemilik' => 'required|string|max:255',
+            'alamat' => 'required|string',
+            'no_telepon' => 'required|string|max:20',
+            'deskripsi' => 'nullable|string',
+            'status' => 'nullable|in:aktif,nonaktif',
+            'foto_utama' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
 
+        // Data yang akan diupdate
         $input = [
-            'nama' => $request->nama,
+            'nama_usaha' => $request->nama_usaha,
+            'pemilik' => $request->pemilik,
+            'alamat' => $request->alamat,
+            'no_telepon' => $request->no_telepon,
             'deskripsi' => $request->deskripsi,
-            'lokasi' => $request->lokasi,
-            'kontak' => $request->kontak,
-            'urutan' => $request->urutan,
-            'status' => $request->has('status') ? 1 : 0
+            'status' => $request->status ?? 'aktif',
         ];
 
-        // ========== UBAH: HAPUS GAMBAR LAMA DARI public/image/umkm/ ==========
-        if ($request->has('hapus_gambar')) {
-            if ($data->gambar && file_exists(public_path($data->gambar))) {
-                unlink(public_path($data->gambar));
+        // Hapus foto lama jika dicentang
+        if ($request->has('hapus_gambar') && $request->hapus_gambar == 1) {
+            if ($data->foto_utama && file_exists(public_path($data->foto_utama))) {
+                unlink(public_path($data->foto_utama));
             }
-            $input['gambar'] = null;
+            $input['foto_utama'] = null;
         }
 
-        // ========== UBAH: UPLOAD GAMBAR BARU KE public/image/umkm/ ==========
-        if ($request->hasFile('gambar')) {
-            // Hapus gambar lama jika ada
-            if ($data->gambar && file_exists(public_path($data->gambar))) {
-                unlink(public_path($data->gambar));
+        // Upload foto baru
+        if ($request->hasFile('foto_utama')) {
+            // Hapus foto lama jika ada
+            if ($data->foto_utama && file_exists(public_path($data->foto_utama))) {
+                unlink(public_path($data->foto_utama));
             }
             
-            $file = $request->file('gambar');
-            $filename = time() . '_umkm_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
+            $file = $request->file('foto_utama');
+            $filename = time() . '_umkm_' . Str::slug($request->nama_usaha) . '.' . $file->getClientOriginalExtension();
             
             // Buat folder jika belum ada
             if (!file_exists(public_path('image/umkm'))) {
@@ -132,25 +125,42 @@ class UmkmController extends Controller
             }
             
             $file->move(public_path('image/umkm'), $filename);
-            $input['gambar'] = 'image/umkm/' . $filename;
+            $input['foto_utama'] = 'image/umkm/' . $filename;
         }
-        // ========== END UBAH ==========
 
+        // Update ke database
         $data->update($input);
-        return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil diupdate!');
+        
+        return redirect()->route('admin.umkm.index')
+            ->with('success', 'UMKM berhasil diupdate!');
     }
 
+    // Proses hapus data
     public function destroy($id)
     {
         $data = Umkm::findOrFail($id);
         
-        // ========== UBAH: HAPUS FILE DARI public/image/umkm/ ==========
-        if ($data->gambar && file_exists(public_path($data->gambar))) {
-            unlink(public_path($data->gambar));
+        // Hapus file foto jika ada
+        if ($data->foto_utama && file_exists(public_path($data->foto_utama))) {
+            unlink(public_path($data->foto_utama));
         }
-        // ========== END UBAH ==========
         
         $data->delete();
-        return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil dihapus!');
+        
+        return redirect()->route('admin.umkm.index')
+            ->with('success', 'UMKM berhasil dihapus!');
+    }
+
+    // Toggle status (aktif/nonaktif)
+    public function toggleStatus($id)
+    {
+        $umkm = Umkm::findOrFail($id);
+        $umkm->status = $umkm->status == 'aktif' ? 'nonaktif' : 'aktif';
+        $umkm->save();
+
+        return response()->json([
+            'success' => true, 
+            'status' => $umkm->status
+        ]);
     }
 }

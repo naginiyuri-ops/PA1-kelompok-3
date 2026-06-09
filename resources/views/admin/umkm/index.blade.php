@@ -202,33 +202,6 @@
         justify-content: center;
     }
     
-    .pagination .pagination {
-        margin: 0;
-        gap: 5px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .pagination .page-item .page-link {
-        border-radius: 10px;
-        border: none;
-        padding: 6px 12px;
-        color: #003366;
-        font-weight: 500;
-        background: white;
-        transition: all 0.2s ease;
-        font-size: 0.8rem;
-    }
-    
-    .pagination .page-item.active .page-link {
-        background: #003366;
-        color: white;
-    }
-    
-    .pagination .page-item .page-link:hover {
-        background: #e2e8f0;
-    }
-    
     .stats-bar {
         display: flex;
         align-items: center;
@@ -359,7 +332,7 @@
     </div>
 
     <div class="table-wrapper">
-        <table>
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>No</th>
@@ -377,22 +350,23 @@
                 <tr>
                     <td data-label="No">{{ $loop->iteration }}</td>
                     <td data-label="Gambar">
-                        @if($item->gambar && file_exists(public_path($item->gambar)))
-                            <img src="{{ asset($item->gambar) }}" class="table-img" 
-                                 onerror="this.src='{{ asset('image/umkm/default.jpg') }}'" alt="{{ $item->nama }}">
+                        @if($item->foto_utama && file_exists(public_path($item->foto_utama)))
+                            <img src="{{ asset($item->foto_utama) }}" class="table-img" alt="{{ $item->nama_usaha }}">
                         @else
-                            <img src="{{ asset('image/umkm/default.jpg') }}" class="table-img" alt="Default">
+                            <div style="width: 50px; height: 50px; background: #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-store" style="color: #94a3b8;"></i>
+                            </div>
                         @endif
                     </td>
                     <td data-label="Nama">
-                        <strong>{{ Str::limit($item->nama, 35) }}</strong>
+                        <strong>{{ $item->nama_usaha ?? '-' }}</strong>
                     </td>
-                    <td data-label="Lokasi">{{ $item->lokasi ?? '-' }}</td>
-                    <td data-label="Kontak">{{ $item->kontak ?? '-' }}</td>
-                    <td data-label="Urutan" style="text-align: center;">{{ $item->urutan }}</td>
+                    <td data-label="Lokasi">{{ $item->alamat ?? '-' }}</td>
+                    <td data-label="Kontak">{{ $item->no_telepon ?? '-' }}</td>
+                    <td data-label="Urutan" style="text-align: center;">{{ $item->urutan ?? 0 }}</td>
                     <td data-label="Status">
-                        <span class="badge {{ $item->status ? 'badge-success' : 'badge-danger' }}">
-                            {{ $item->status ? 'Aktif' : 'Tidak' }}
+                        <span class="badge {{ $item->status == 'aktif' ? 'badge-success' : 'badge-danger' }}">
+                            {{ $item->status == 'aktif' ? 'Aktif' : 'Nonaktif' }}
                         </span>
                     </td>
                     <td data-label="Aksi">

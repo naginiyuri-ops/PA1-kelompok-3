@@ -10,10 +10,6 @@ return new class extends Migration
     {
         Schema::create('galeri', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable(); // sementara tanpa FK
-            $table->string('galleriable_type')->nullable();
-            $table->unsignedBigInteger('galleriable_id')->nullable();
-            $table->index(['galleriable_type', 'galleriable_id']);
             $table->string('judul');
             $table->string('slug')->unique();
             $table->text('deskripsi');

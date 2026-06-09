@@ -10,13 +10,11 @@ return new class extends Migration
     {
         Schema::create('fasilitas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('informasi_id')->nullable()->constrained('informasi')->nullOnDelete();
-            $table->string('nama', 255);
+            $table->string('nama');
             $table->text('deskripsi');
             $table->string('kontak')->nullable();
             $table->string('lokasi')->nullable();
-            $table->longText('gambar')->nullable();
+            $table->string('gambar')->nullable();
             $table->string('harga')->nullable();
             $table->boolean('status')->default(true);
             $table->integer('urutan')->default(0);
