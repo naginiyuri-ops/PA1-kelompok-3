@@ -633,38 +633,34 @@
                         </a>
                     </li>
 
-                    <!-- TENTANG GEOSITE -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/#tentang') }}">
-                            <i class="fas fa-info-circle d-md-none me-2"></i> Tentang Geosite
-                        </a>
-                    </li>
+                  
 
-                    <!-- DESTINASI (DROPDOWN) -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ request()->routeIs('destinasi*') ? 'active' : '' }}" href="#" id="destinasiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <!-- DESTINASI (LANGSUNG TANPA DROPDOWN) -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('destinasi*') ? 'active' : '' }}" href="{{ url('/destinasi') }}">
                             <i class="fas fa-map-marked-alt d-md-none me-2"></i> Destinasi
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="destinasiDropdown">
-                            <li><h6 class="dropdown-header"><i class="fas fa-tag me-1"></i> KATEGORI</h6></li>
-                            <li><a class="dropdown-item" href="{{ url('/destinasi/alam') }}"><i class="fas fa-mountain"></i> Wisata Alam</a></li>
-                            <li><a class="dropdown-item" href="{{ url('/destinasi/budaya') }}"><i class="fas fa-theater-masks"></i> Wisata Budaya</a></li>
-                            <li><a class="dropdown-item" href="{{ url('/destinasi/buatan') }}"><i class="fas fa-city"></i> Wisata Buatan</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ url('/destinasi') }}"><i class="fas fa-th-list"></i> Semua Destinasi</a></li>
-                        </ul>
                     </li>
 
-                    <!-- DIVERSITY (DROPDOWN) -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ request()->routeIs('geodiversitas*') || request()->routeIs('biodiversitas*') || request()->routeIs('cultural-diversity*') ? 'active' : '' }}" href="#" id="diversityDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-globe-asia d-md-none me-2"></i> Diversity
+                    <!-- GEODIVERSITY -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('geodiversitas*') ? 'active' : '' }}" href="{{ route('geodiversitas') }}">
+                            <i class="fas fa-gem d-md-none me-2"></i> Geodiversity
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="diversityDropdown">
-                            <li><a class="dropdown-item" href="{{ route('geodiversitas') }}"><i class="fas fa-gem"></i> Geodiversity</a></li>
-                            <li><a class="dropdown-item" href="{{ route('biodiversitas') }}"><i class="fas fa-leaf"></i> Biodiversity</a></li>
-                            <li><a class="dropdown-item" href="{{ route('cultural-diversity') }}"><i class="fas fa-people-arrows"></i> Cultural Diversity</a></li>
-                        </ul>
+                    </li>
+
+                    <!-- BIODIVERSITY -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('biodiversitas*') ? 'active' : '' }}" href="{{ route('biodiversitas') }}">
+                            <i class="fas fa-leaf d-md-none me-2"></i> Biodiversity
+                        </a>
+                    </li>
+
+                    <!-- CULTURAL DIVERSITY -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('cultural-diversity*') ? 'active' : '' }}" href="{{ route('cultural-diversity') }}">
+                            <i class="fas fa-people-arrows d-md-none me-2"></i> Cultural Diversity
+                        </a>
                     </li>
 
                     <!-- BERITA / EVENT -->
@@ -677,7 +673,7 @@
                     <!-- FASILITAS (DROPDOWN) -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle {{ request()->routeIs('umkm*') || request()->routeIs('penginapan*') || request()->routeIs('fasilitas*') ? 'active' : '' }}" href="#" id="fasilitasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-building d-md-none me-2"></i> Fasilitas
+                            <i class="fas fa-building d-md-none me-2"></i> Fasilitas&Umkm
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="fasilitasDropdown">
                             <li><a class="dropdown-item" href="{{ url('/umkm') }}"><i class="fas fa-store"></i> UMKM</a></li>
@@ -723,7 +719,7 @@
                     <h5>Tautan Cepat</h5>
                     <div class="footer-menu">
                         <a href="{{ url('/') }}"><i class="fas fa-chevron-right"></i> Home</a>
-                        <a href="{{ url('/#tentang') }}"><i class="fas fa-chevron-right"></i> Tentang Geosite</a>
+                        
                         <a href="{{ url('/destinasi') }}"><i class="fas fa-chevron-right"></i> Destinasi</a>
                         <a href="{{ url('/berita') }}"><i class="fas fa-chevron-right"></i> Berita / Event</a>
                         <a href="{{ url('/galeri') }}"><i class="fas fa-chevron-right"></i> Galeri</a>

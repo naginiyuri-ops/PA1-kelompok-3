@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $item->nama . ' - Biodiversitas')
+@section('title', $item->nama . ' - Geodiversitas')
 
 @section('content')
 
@@ -25,6 +25,19 @@
         margin-top: 10px;
     }
     .detail-hero .meta i { color: #c6a43b; margin-right: 4px; }
+    .detail-hero .back-link {
+        color: rgba(255,255,255,0.6);
+        text-decoration: none;
+        font-size: 0.85rem;
+        display: inline-block;
+        margin-bottom: 15px;
+        transition: all 0.3s ease;
+    }
+    .detail-hero .back-link:hover {
+        color: white;
+        transform: translateX(-5px);
+    }
+
     .detail-content { padding: 50px 0; background: #f8fafc; }
     .detail-content .main-img {
         width: 100%;
@@ -46,18 +59,21 @@
         color: #94a3b8;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+        margin-bottom: 4px;
     }
     .detail-content .info-box .value {
         font-size: 0.95rem;
         color: #1e293b;
-        margin-bottom: 12px;
+        margin-bottom: 14px;
     }
+    .detail-content .info-box .value:last-child { margin-bottom: 0; }
     .detail-content .deskripsi {
         font-size: 1rem;
         line-height: 1.8;
         color: #475569;
         margin-top: 20px;
     }
+    .detail-content .deskripsi p { margin-bottom: 15px; }
     .btn-back {
         display: inline-block;
         background: #f1f5f9;
@@ -72,16 +88,28 @@
     }
     .btn-back:hover { background: #e2e8f0; transform: translateY(-2px); }
 
-    .badge-status {
+    .badge-tipe {
         display: inline-block;
         padding: 4px 14px;
         border-radius: 20px;
         font-size: 0.7rem;
         font-weight: 600;
     }
-    .badge-flora { background: #dcfce7; color: #166534; }
-    .badge-fauna { background: #fef3c7; color: #92400e; }
-    .badge-ekosistem { background: #dbeafe; color: #1e40af; }
+    .badge-batuan { background: #e8f5e9; color: #2e7d32; }
+    .badge-mineral { background: #fff3e0; color: #e65100; }
+    .badge-fosil { background: #f3e5f5; color: #7b1fa2; }
+    .badge-formasi { background: #e3f2fd; color: #1565c0; }
+    .badge-other { background: #f1f5f9; color: #475569; }
+
+    .badge-status {
+        display: inline-block;
+        padding: 2px 12px;
+        border-radius: 20px;
+        background: #dcfce7;
+        color: #166534;
+        font-weight: 600;
+        font-size: 0.75rem;
+    }
 
     .rekomendasi-grid {
         display: grid;
@@ -97,7 +125,10 @@
         cursor: pointer;
         transition: all 0.3s ease;
     }
-    .rekomendasi-item:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+    .rekomendasi-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
     .rekomendasi-item img {
         width: 100%;
         height: 140px;
@@ -116,25 +147,28 @@
         .detail-hero h1 { font-size: 1.5rem; }
         .detail-content .main-img { max-height: 250px; }
         .rekomendasi-grid { grid-template-columns: repeat(2, 1fr); }
+        .detail-content .info-box { padding: 18px; }
     }
     @media (max-width: 480px) {
         .rekomendasi-grid { grid-template-columns: 1fr; }
+        .detail-hero .meta { gap: 10px; font-size: 0.75rem; }
+        .detail-content .deskripsi { font-size: 0.9rem; }
     }
 </style>
 
 <!-- HERO -->
 <section class="detail-hero">
     <div class="container">
-        <a href="{{ route('biodiversitas') }}" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem;">
-            <i class="fas fa-arrow-left"></i> Kembali ke Biodiversitas
+        <a href="{{ route('geodiversitas') }}" class="back-link">
+            <i class="fas fa-arrow-left"></i> Kembali ke Geodiversitas
         </a>
         <h1>{{ $item->nama }}</h1>
         <div class="meta">
-            <span><i class="fas fa-tag"></i> {{ ucfirst($item->kategori) }}</span>
+            <span><i class="fas fa-tag"></i> <span class="badge-tipe badge-{{ $item->tipe_geologi ?? 'other' }}" style="background:transparent; color:white; padding:0;">{{ ucfirst($item->tipe_geologi ?? 'Lainnya') }}</span></span>
             <span><i class="fas fa-map-marker-alt"></i> {{ $item->lokasi ?? 'Danau Toba' }}</span>
             <span><i class="fas fa-eye"></i> {{ number_format($item->views ?? 0) }} dibaca</span>
-            @if($item->status_keberadaan)
-            <span><i class="fas fa-shield-alt"></i> {{ $item->status_keberadaan }}</span>
+            @if($item->usia_geologi)
+            <span><i class="fas fa-clock"></i> {{ $item->usia_geologi }}</span>
             @endif
         </div>
     </div>
@@ -146,11 +180,17 @@
         <div class="row">
             <div class="col-lg-8">
                 @php
-                    $imgSrc = $item->gambar ? asset($item->gambar) : asset('image/default.jpg');
-                    if (!empty($item->gambar) && file_exists(public_path($item->gambar))) {
-                        $imgSrc = asset($item->gambar);
-                    } elseif (!empty($item->gambar) && file_exists(public_path('image/biodiversitas/' . $item->gambar))) {
-                        $imgSrc = asset('image/biodiversitas/' . $item->gambar);
+                    $imgSrc = asset('image/default.jpg');
+                    if (!empty($item->gambar)) {
+                        if (str_starts_with($item->gambar, 'http')) {
+                            $imgSrc = $item->gambar;
+                        } elseif (str_starts_with($item->gambar, 'image/')) {
+                            $imgSrc = asset($item->gambar);
+                        } elseif (file_exists(public_path('image/geodiversitas/' . $item->gambar))) {
+                            $imgSrc = asset('image/geodiversitas/' . $item->gambar);
+                        } else {
+                            $imgSrc = asset('storage/' . $item->gambar);
+                        }
                     }
                 @endphp
                 <img src="{{ $imgSrc }}" alt="{{ $item->nama }}" class="main-img" onerror="this.src='{{ asset('image/default.jpg') }}'">
@@ -158,49 +198,69 @@
             </div>
             <div class="col-lg-4">
                 <div class="info-box">
-                    <div class="label">Kategori</div>
+                    <div class="label">Tipe Geologi</div>
                     <div class="value">
-                        <span class="badge-status badge-{{ $item->kategori }}">
-                            {{ ucfirst($item->kategori) }}
+                        <span class="badge-tipe badge-{{ $item->tipe_geologi ?? 'other' }}">
+                            {{ ucfirst($item->tipe_geologi ?? 'Lainnya') }}
                         </span>
                     </div>
 
                     <div class="label">Lokasi</div>
                     <div class="value">{{ $item->lokasi ?? 'Danau Toba' }}</div>
 
-                    @if($item->status_keberadaan)
-                    <div class="label">Status Keberadaan</div>
-                    <div class="value">{{ $item->status_keberadaan }}</div>
+                    @if($item->usia_geologi)
+                    <div class="label">Usia Geologi</div>
+                    <div class="value">{{ $item->usia_geologi }}</div>
                     @endif
 
                     <div class="label">Status</div>
                     <div class="value">
-                        <span style="display:inline-block; padding:2px 12px; border-radius:20px; background:#dcfce7; color:#166534; font-weight:600; font-size:0.75rem;">
+                        <span class="badge-status">
                             {{ $item->status ? 'Aktif' : 'Nonaktif' }}
                         </span>
                     </div>
+
+                    <div class="label">Views</div>
+                    <div class="value">{{ number_format($item->views ?? 0) }} kali dibaca</div>
+
+                    <div class="label">Dibuat</div>
+                    <div class="value">{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y') }}</div>
                 </div>
-                <a href="{{ route('biodiversitas') }}" class="btn-back">
+                <a href="{{ route('geodiversitas') }}" class="btn-back">
                     <i class="fas fa-arrow-left"></i> Kembali
                 </a>
             </div>
         </div>
 
         @if(isset($rekomendasi) && $rekomendasi->count() > 0)
-        <div style="margin-top:50px;">
-            <h3 style="font-family:'Playfair Display', serif; color:#003366;">Rekomendasi Lainnya</h3>
+        <div style="margin-top:50px; padding-top:30px; border-top:1px solid #e2e8f0;">
+            <h3 style="font-family:'Playfair Display', serif; color:#003366; font-size:1.5rem;">
+                🔍 Rekomendasi Lainnya
+            </h3>
+            <p style="color:#94a3b8; font-size:0.85rem; margin-bottom:20px;">
+                Temukan lebih banyak keanekaragaman geologi di Geopark Danau Toba
+            </p>
             <div class="rekomendasi-grid">
                 @foreach($rekomendasi as $rec)
-                <div class="rekomendasi-item" onclick="window.location.href='{{ route('biodiversitas.detail', $rec->slug) }}'">
+                <div class="rekomendasi-item" onclick="window.location.href='{{ route('geodiversitas.detail', $rec->slug) }}'">
                     @php
-                        $recImg = $rec->gambar ? asset($rec->gambar) : asset('image/default.jpg');
-                        if (!empty($rec->gambar) && file_exists(public_path($rec->gambar))) {
-                            $recImg = asset($rec->gambar);
+                        $recImg = asset('image/default.jpg');
+                        if (!empty($rec->gambar)) {
+                            if (str_starts_with($rec->gambar, 'http')) {
+                                $recImg = $rec->gambar;
+                            } elseif (str_starts_with($rec->gambar, 'image/')) {
+                                $recImg = asset($rec->gambar);
+                            } elseif (file_exists(public_path('image/geodiversitas/' . $rec->gambar))) {
+                                $recImg = asset('image/geodiversitas/' . $rec->gambar);
+                            }
                         }
                     @endphp
                     <img src="{{ $recImg }}" alt="{{ $rec->nama }}" onerror="this.src='{{ asset('image/default.jpg') }}'">
                     <div class="caption">
-                        <h4>{{ Str::limit($rec->nama, 25) }}</h4>
+                        <h4>{{ Str::limit($rec->nama, 30) }}</h4>
+                        <p style="font-size:0.65rem; color:#94a3b8; margin:0;">
+                            {{ ucfirst($rec->tipe_geologi ?? 'Lainnya') }}
+                        </p>
                     </div>
                 </div>
                 @endforeach

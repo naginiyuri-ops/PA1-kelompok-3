@@ -1008,7 +1008,7 @@
     <div class="container">
         <div class="section-header" data-aos="fade-up">
             <span class="badge">Berita</span>
-            <h2>📰 Berita Terkini</h2>
+            <h2> Berita Terkini</h2>
             <div class="divider"></div>
             <p>Informasi dan perkembangan terbaru seputar Geopark Danau Toba</p>
         </div>

@@ -9,10 +9,35 @@ use Illuminate\Support\Str;
 
 class BiodiversitasController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data = Biodiversitas::latest()->paginate(10);
-        return view('admin.biodiversitas.index', compact('data'));
+        $query = Biodiversitas::query();
+
+        // Search
+        if ($request->filled('search')) {
+            $query->where(function($q) use ($request) {
+                $q->where('nama', 'LIKE', '%' . $request->search . '%')
+                  ->orWhere('deskripsi', 'LIKE', '%' . $request->search . '%')
+                  ->orWhere('lokasi', 'LIKE', '%' . $request->search . '%')
+                  ->orWhere('status_keberadaan', 'LIKE', '%' . $request->search . '%');
+            });
+        }
+
+        // Filter kategori
+        if ($request->filled('kategori')) {
+            $query->where('kategori', $request->kategori);
+        }
+
+        // Filter status
+        if ($request->filled('status')) {
+            $query->where('status', $request->status == 'active' ? 1 : 0);
+        }
+
+        $data = $query->latest()->paginate(10)->withQueryString();
+
+        $kategoriOptions = ['flora', 'fauna', 'ekosistem'];
+
+        return view('admin.biodiversitas.index', compact('data', 'kategoriOptions'));
     }
 
     public function create()
