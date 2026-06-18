@@ -17,12 +17,19 @@ use App\Http\Controllers\GeositeController;
 use App\Http\Controllers\InformasiController as PublicInformasiController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Admin\SejarahWisataController;
+use App\Http\Controllers\SearchController;
 
 // ========================================
 // ========== FRONTEND ROUTES ==========
 // ========================================
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// ========================================
+// ========== GLOBAL SEARCH ==========
+// ========================================
+// Endpoint pencarian global yang diakses via AJAX dari header
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 // Language Route
 Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
@@ -70,6 +77,8 @@ Route::get('/berita/{slug}', function ($slug) {
 // ========================================
 // ========== FASILITAS ==========
 // ========================================
+
+Route::get('/fasilitas-utama', [App\Http\Controllers\FasilitasUtamaController::class, 'index'])->name('fasilitas.index');
 
 // UMKM
 Route::get('/umkm', function () {

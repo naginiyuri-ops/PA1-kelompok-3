@@ -97,7 +97,8 @@
     .hero-content {
         position: absolute;
         z-index: 10;
-        bottom: 20%;
+        top: 50%;
+        transform: translateY(-50%);
         left: 0;
         right: 0;
         text-align: center;
@@ -774,11 +775,6 @@
         <h1 class="hero-title">Balige · Meat <br><span>Batu Basiha · Liang Sipege</span></h1>
         <div class="hero-divider"></div>
         <a href="#destinasi" class="hero-btn">Jelajahi Sekarang →</a>
-    </div>
-    
-    <div class="scroll-indicator" onclick="document.getElementById('destinasi').scrollIntoView({behavior:'smooth'})">
-        <span>SCROLL</span>
-        <div class="line"></div>
     </div>
 </section>
 

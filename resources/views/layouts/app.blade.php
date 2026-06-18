@@ -33,9 +33,10 @@
             --radius: 16px;
         }
 
-        body {
+        html, body {
             overflow-x: hidden;
             background: var(--gray-light);
+            max-width: 100%;
         }
 
         /* ========================================
@@ -602,6 +603,331 @@
             flex-direction: column;
             min-height: 100vh;
         }
+
+        /* ========================================
+                   GLOBAL SEARCH BAR
+                ======================================== */
+        .search-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            margin-right: 16px;
+        }
+
+        .search-input-container {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 6px 14px;
+            transition: all 0.35s ease;
+            width: 200px;
+        }
+
+        .search-input-container:focus-within {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(198, 164, 59, 0.15);
+            width: 260px;
+        }
+
+        /* Ubah tampilan search saat navbar scrolled */
+        .navbar.scrolled-down .search-input-container {
+            background: rgba(0, 51, 102, 0.06);
+            border-color: rgba(0, 51, 102, 0.2);
+        }
+
+        .navbar.scrolled-down .search-input-container:focus-within {
+            background: rgba(0, 51, 102, 0.1);
+            border-color: var(--blue-dark);
+            box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.12);
+        }
+
+        .search-icon {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+            margin-right: 8px;
+            flex-shrink: 0;
+            transition: color 0.3s ease;
+        }
+
+        .navbar.scrolled-down .search-icon {
+            color: var(--blue-dark);
+        }
+
+        .search-input-container:focus-within .search-icon {
+            color: var(--gold);
+        }
+
+        .navbar.scrolled-down .search-input-container:focus-within .search-icon {
+            color: var(--blue-dark);
+        }
+
+        #globalSearchInput {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 0.82rem;
+            font-weight: 500;
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .navbar.scrolled-down #globalSearchInput {
+            color: var(--blue-dark);
+        }
+
+        #globalSearchInput::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+        }
+
+        .navbar.scrolled-down #globalSearchInput::placeholder {
+            color: rgba(0, 51, 102, 0.4);
+        }
+
+        /* Tombol clear (x) untuk menghapus teks pencarian */
+        .search-clear-btn {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            padding: 0;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+            line-height: 1;
+            display: none;
+            transition: color 0.2s ease;
+        }
+
+        .search-clear-btn:hover { color: white; }
+
+        .navbar.scrolled-down .search-clear-btn {
+            color: rgba(0, 51, 102, 0.4);
+        }
+
+        .navbar.scrolled-down .search-clear-btn:hover {
+            color: var(--blue-dark);
+        }
+
+        /* Dropdown hasil pencarian — floating di bawah input */
+        #searchResultsDropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            right: 0;
+            min-width: 360px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+            border: 1px solid rgba(0, 51, 102, 0.08);
+            overflow: hidden;
+            z-index: 9999;
+            display: none;
+            animation: dropdownFadeIn 0.2s ease;
+        }
+
+        @keyframes dropdownFadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .search-results-header {
+            padding: 10px 16px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold);
+            background: rgba(0, 51, 102, 0.03);
+            border-bottom: 1px solid rgba(0, 51, 102, 0.06);
+        }
+
+        /* Setiap item hasil pencarian */
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: background 0.2s ease;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .search-result-item:last-child { border-bottom: none; }
+
+        .search-result-item:hover {
+            background: rgba(0, 51, 102, 0.04);
+        }
+
+        /* Thumbnail gambar di hasil pencarian */
+        .search-result-thumb {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: #f1f5f9;
+        }
+
+        /* Ikon placeholder jika tidak ada gambar */
+        .search-result-icon-placeholder {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(0,51,102,0.1), rgba(198,164,59,0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--blue-dark);
+            font-size: 1rem;
+        }
+
+        .search-result-info { flex: 1; overflow: hidden; }
+
+        .search-result-name {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .search-result-sub {
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-top: 1px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Badge tipe data (UMKM, Berita, dll.) */
+        .search-result-badge {
+            font-size: 0.62rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 20px;
+            background: rgba(0, 51, 102, 0.08);
+            color: var(--blue-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+        }
+
+        /* Pesan jika tidak ada hasil */
+        .search-empty-state {
+            padding: 28px 16px;
+            text-align: center;
+        }
+
+        .search-empty-state i {
+            font-size: 2rem;
+            color: #cbd5e1;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .search-empty-state p {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        /* Spinner loading */
+        .search-loading {
+            padding: 20px 16px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        .search-loading i {
+            animation: spin 1s linear infinite;
+            margin-right: 6px;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        /* Responsif: Penataan ulang header menjadi 2 baris (Stacked) di mobile */
+        @media (max-width: 576px) {
+            .navbar > .container {
+                flex-wrap: wrap !important;
+                justify-content: center !important; /* Memaksa rata tengah secara keseluruhan */
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+            
+            /* Baris 1: Logo & Judul */
+            .logo-wrapper {
+                width: 100%;
+                justify-content: center !important;
+                margin-bottom: 16px;
+            }
+            .logo-img {
+                height: 45px !important; 
+            }
+            .navbar-brand {
+                font-size: 1.5rem !important; 
+            }
+            .logo-divider {
+                height: 32px !important;
+            }
+
+            /* Baris 2: Search Bar & Tombol Tiga Garis */
+            .search-wrapper {
+                margin-left: 0 !important; /* Memastikan tidak ada sisa margin auto yang mendorong ke kanan */
+                margin-right: 12px !important;
+                display: flex;
+                width: 220px !important;
+            }
+            .search-input-container {
+                width: 100%; 
+                padding: 8px 16px; 
+            }
+            .search-input-container:focus-within {
+                width: 100%; 
+            }
+            #globalSearchInput {
+                font-size: 0.85rem;
+            }
+            .navbar-toggler {
+                margin-left: 0 !important; 
+                margin-right: 0 !important; /* Mencegah tombol bergeser */
+            }
+            
+            /* Dropdown hasil pencarian mobile */
+            #searchResultsDropdown {
+                min-width: 280px;
+                width: 100%;
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%); 
+                top: calc(100% + 8px); 
+            }
+        }
+
+        @media (max-width: 992px) {
+            .search-input-container {
+                width: 160px;
+            }
+            .search-input-container:focus-within {
+                width: 200px;
+            }
+            #searchResultsDropdown {
+                min-width: 280px;
+                right: auto;
+            }
+        }
     </style>
     @stack('styles')
 </head>
@@ -620,11 +946,40 @@
                 <span class="navbar-brand">Geo<span>Toba</span></span>
             </a>
 
+            <!-- ========================================
+            SEARCH BAR GLOBAL
+            Ditempatkan setelah logo dan sebelum tombol toggle mobile
+            ======================================== -->
+            <div class="search-wrapper" id="searchWrapper">
+                <div class="search-input-container">
+                    <!-- Ikon kaca pembesar -->
+                    <i class="fas fa-search search-icon"></i>
+
+                    <!-- Input utama pencarian -->
+                    <input
+                        type="text"
+                        id="globalSearchInput"
+                        placeholder="Cari sesuatu..."
+                        autocomplete="off"
+                        aria-label="Pencarian Global"
+                        maxlength="100"
+                    >
+
+                    <!-- Tombol clear (x) untuk menghapus input, tersembunyi saat kosong -->
+                    <button class="search-clear-btn" id="searchClearBtn" aria-label="Hapus pencarian">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- Kontainer hasil pencarian — muncul secara floating di bawah input -->
+                <div id="searchResultsDropdown"></div>
+            </div>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="collapse navbar-collapse flex-lg-grow-0" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <!-- HOME -->
                     <li class="nav-item">
@@ -670,17 +1025,11 @@
                         </a>
                     </li>
 
-                    <!-- FASILITAS (DROPDOWN) -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ request()->routeIs('umkm*') || request()->routeIs('penginapan*') || request()->routeIs('fasilitas*') ? 'active' : '' }}" href="#" id="fasilitasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-building d-md-none me-2"></i> Fasilitas&Umkm
+                    <!-- FASILITAS (LANGSUNG TANPA DROPDOWN) -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('fasilitas.index') ? 'active' : '' }}" href="{{ url('/fasilitas-utama') }}">
+                            <i class="fas fa-building d-md-none me-2"></i> Fasilitas
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="fasilitasDropdown">
-                            <li><a class="dropdown-item" href="{{ url('/umkm') }}"><i class="fas fa-store"></i> UMKM</a></li>
-                            <li><a class="dropdown-item" href="{{ url('/penginapan') }}"><i class="fas fa-hotel"></i> Penginapan</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ url('/fasilitas') }}"><i class="fas fa-th-list"></i> Semua Fasilitas</a></li>
-                        </ul>
                     </li>
                 </ul>
             </div>
@@ -886,6 +1235,205 @@
         setTimeout(function() {
             handleScroll();
         }, 100);
+    </script>
+
+    <!-- ========================================
+    LIVE SEARCH JAVASCRIPT
+    Logika pencarian langsung dengan debounce 300ms
+    ======================================== -->
+    <script>
+    (function () {
+        // Referensi elemen-elemen DOM yang dibutuhkan
+        const searchInput    = document.getElementById('globalSearchInput');
+        const searchDropdown = document.getElementById('searchResultsDropdown');
+        const searchClearBtn = document.getElementById('searchClearBtn');
+        const searchWrapper  = document.getElementById('searchWrapper');
+
+        // URL endpoint pencarian yang didaftarkan di web.php
+        const SEARCH_URL     = '{{ route("search") }}';
+
+        // Variabel untuk menyimpan timer debounce
+        let debounceTimer = null;
+
+        // =====================================================
+        // FUNGSI: Tampilkan state loading di dalam dropdown
+        // =====================================================
+        function showLoading() {
+            searchDropdown.style.display = 'block';
+            searchDropdown.innerHTML = `
+                <div class="search-loading">
+                    <i class="fas fa-circle-notch"></i> Mencari...
+                </div>
+            `;
+        }
+
+        // =====================================================
+        // FUNGSI: Tampilkan pesan ketika tidak ada hasil
+        // =====================================================
+        function showEmptyState(query) {
+            searchDropdown.innerHTML = `
+                <div class="search-empty-state">
+                    <i class="fas fa-search-minus"></i>
+                    <p>Tidak ada hasil untuk <strong>"${escapeHtml(query)}"</strong></p>
+                </div>
+            `;
+        }
+
+        // =====================================================
+        // FUNGSI: Sembunyikan dan kosongkan dropdown
+        // =====================================================
+        function hideDropdown() {
+            searchDropdown.style.display = 'none';
+            searchDropdown.innerHTML = '';
+        }
+
+        // =====================================================
+        // FUNGSI: Escape karakter HTML untuk keamanan (anti XSS)
+        // =====================================================
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.appendChild(document.createTextNode(text));
+            return div.innerHTML;
+        }
+
+        // =====================================================
+        // FUNGSI: Render hasil pencarian ke dalam dropdown
+        // =====================================================
+        function renderResults(results) {
+            // Jika array kosong, tampilkan empty state
+            if (!results || results.length === 0) {
+                showEmptyState(searchInput.value);
+                return;
+            }
+
+            // Header judul dropdown
+            let html = `<div class="search-results-header"><i class="fas fa-bolt me-1"></i> Hasil Pencarian (${results.length})</div>`;
+
+            // Iterasi setiap item hasil dan buat elemen HTML-nya
+            results.forEach(function (item) {
+                // Buat thumbnail: gunakan gambar jika ada, jika tidak pakai ikon placeholder
+                const thumbHtml = item.gambar_url
+                    ? `<img src="${escapeHtml(item.gambar_url)}" alt="${escapeHtml(item.nama)}" class="search-result-thumb" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                       <div class="search-result-icon-placeholder" style="display:none;"><i class="fas ${escapeHtml(item.icon)}"></i></div>`
+                    : `<div class="search-result-icon-placeholder"><i class="fas ${escapeHtml(item.icon)}"></i></div>`;
+
+                html += `
+                    <a href="${escapeHtml(item.url)}" class="search-result-item">
+                        ${thumbHtml}
+                        <div class="search-result-info">
+                            <div class="search-result-name">${escapeHtml(item.nama)}</div>
+                            <div class="search-result-sub">${escapeHtml(item.sub || '')}</div>
+                        </div>
+                        <span class="search-result-badge">${escapeHtml(item.type)}</span>
+                    </a>
+                `;
+            });
+
+            // Masukkan semua HTML ke dalam dropdown dan tampilkan
+            searchDropdown.innerHTML = html;
+            searchDropdown.style.display = 'block';
+        }
+
+        // =====================================================
+        // FUNGSI UTAMA: Kirim request AJAX ke endpoint /search
+        // =====================================================
+        function performSearch(query) {
+            showLoading();
+
+            // Gunakan Fetch API untuk mengirim GET request ke server
+            fetch(`${SEARCH_URL}?q=${encodeURIComponent(query)}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(function (response) {
+                // Jika server mengembalikan error HTTP, lempar error
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(function (data) {
+                // Render data yang diterima dari server ke dalam dropdown
+                renderResults(data);
+            })
+            .catch(function (error) {
+                // Tampilkan pesan error jika terjadi kegagalan koneksi
+                searchDropdown.innerHTML = `
+                    <div class="search-empty-state">
+                        <i class="fas fa-exclamation-triangle" style="color: #f59e0b;"></i>
+                        <p>Terjadi kesalahan. Silakan coba lagi.</p>
+                    </div>
+                `;
+                searchDropdown.style.display = 'block';
+                console.error('Search error:', error);
+            });
+        }
+
+        // =====================================================
+        // EVENT LISTENER: Saat pengguna mengetik di input
+        // =====================================================
+        searchInput.addEventListener('input', function () {
+            const query = this.value.trim();
+
+            // Tampilkan atau sembunyikan tombol clear
+            searchClearBtn.style.display = query.length > 0 ? 'block' : 'none';
+
+            // Jika input dikosongkan, sembunyikan dropdown dan hentikan
+            if (query.length === 0) {
+                hideDropdown();
+                clearTimeout(debounceTimer);
+                return;
+            }
+
+            // Jika input kurang dari 3 karakter, jangan kirim request
+            if (query.length < 3) {
+                hideDropdown();
+                clearTimeout(debounceTimer);
+                return;
+            }
+
+            // DEBOUNCE: Reset timer setiap kali pengguna mengetik.
+            // Request baru hanya dikirim 300ms setelah pengguna berhenti mengetik.
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(function () {
+                performSearch(query);
+            }, 300);
+        });
+
+        // =====================================================
+        // EVENT LISTENER: Tombol clear (x) ditekan
+        // =====================================================
+        searchClearBtn.addEventListener('click', function () {
+            searchInput.value = '';
+            searchClearBtn.style.display = 'none';
+            hideDropdown();
+            searchInput.focus(); // Kembalikan fokus ke input
+        });
+
+        // =====================================================
+        // EVENT LISTENER: Tutup dropdown jika klik di luar area search
+        // =====================================================
+        document.addEventListener('click', function (event) {
+            // Jika klik terjadi di luar elemen searchWrapper, tutup dropdown
+            if (searchWrapper && !searchWrapper.contains(event.target)) {
+                hideDropdown();
+            }
+        });
+
+        // =====================================================
+        // EVENT LISTENER: Tekan Escape untuk menutup dropdown
+        // =====================================================
+        searchInput.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                hideDropdown();
+                searchInput.blur(); // Lepas fokus dari input
+            }
+        });
+
+    })(); // Fungsi ini langsung dijalankan (IIFE) agar tidak mencemari scope global
     </script>
 
     @stack('scripts')
