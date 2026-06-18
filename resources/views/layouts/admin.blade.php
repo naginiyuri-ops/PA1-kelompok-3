@@ -351,6 +351,9 @@
         </a>
         
         <div class="menu-title">Konten</div>
+        <a href="{{ route('admin.sejarah-wisata.index') }}" class="{{ request()->routeIs('admin.sejarah-wisata.*') ? 'active' : '' }}">
+            <i class="fas fa-history"></i> Sejarah Wisata
+        </a>
         <a href="{{ route('admin.galeri.index') }}" class="{{ request()->routeIs('admin.galeri.*') ? 'active' : '' }}">
             <i class="fas fa-images"></i> Galeri
         </a>
@@ -359,6 +362,17 @@
         </a>
         <a href="{{ route('admin.informasi.index') }}" class="{{ request()->routeIs('admin.informasi.*') ? 'active' : '' }}">
             <i class="fas fa-info-circle"></i> Informasi
+        </a>
+        
+        <div class="menu-title">Keanekaragaman</div>
+        <a href="{{ route('admin.biodiversitas.index') }}" class="{{ request()->routeIs('admin.biodiversitas.*') ? 'active' : '' }}">
+            <i class="fas fa-leaf"></i> Biodiversitas
+        </a>
+        <a href="{{ route('admin.geodiversitas.index') }}" class="{{ request()->routeIs('admin.geodiversitas.*') ? 'active' : '' }}">
+            <i class="fas fa-mountain"></i> Geodiversitas
+        </a>
+        <a href="{{ route('admin.cultural-diversity.index') }}" class="{{ request()->routeIs('admin.cultural-diversity.*') ? 'active' : '' }}">
+            <i class="fas fa-theater-masks"></i> Cultural Diversity
         </a>
         
         <div class="menu-title">Desa Meat</div>
@@ -371,9 +385,13 @@
         <a href="{{ route('admin.penginapan.index') }}" class="{{ request()->routeIs('admin.penginapan.*') ? 'active' : '' }}">
             <i class="fas fa-hotel"></i> Penginapan
         </a>
-        <li>
-         <a href="{{ route('admin.kontak.index') }}">
-          <i class="fas fa-address-book"></i>Kontak
+        
+        <div class="menu-title">Pengaturan</div>
+        <a href="{{ route('admin.kontak.index') }}" class="{{ request()->routeIs('admin.kontak.*') ? 'active' : '' }}">
+            <i class="fas fa-address-book"></i> Kontak
+        </a>
+        <a href="{{ route('admin.create') }}" class="{{ request()->routeIs('admin.create') ? 'active' : '' }}">
+            <i class="fas fa-user-plus"></i> Tambah Admin
         </a>
     </div>
 </div>

@@ -229,6 +229,10 @@
         <div class="stat-label">Total Informasi</div>
     </div>
     <div class="stat-card">
+        <div class="stat-number">{{ $totalSejarah ?? 0 }}</div>
+        <div class="stat-label">Total Sejarah Wisata</div>
+    </div>
+    <div class="stat-card">
         <div class="stat-number">{{ $totalUmkm ?? 0 }}</div>
         <div class="stat-label">Lapak UMKM</div>
     </div>
@@ -239,6 +243,69 @@
     <div class="stat-card">
         <div class="stat-number">{{ $totalPenginapan ?? 0 }}</div>
         <div class="stat-label">Penginapan</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number">{{ $totalBiodiversitas ?? 0 }}</div>
+        <div class="stat-label">Biodiversitas</div>
+    </div>
+</div>
+
+<!-- SEJARAH WISATA TERBARU -->
+<div class="card-table">
+    <div class="card-header">
+        <h5><i class="fas fa-history"></i> Sejarah Wisata Terbaru</h5>
+        <a href="{{ route('admin.sejarah-wisata.create') }}" class="btn-primary-sm">+ Tambah</a>
+    </div>
+    <div style="overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50px;">No</th>
+                    <th>Judul</th>
+                    <th>Geosite</th>
+                    <th>Kategori</th>
+                    <th>Status</th>
+                    <th style="width: 120px; text-align: center;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php $sejarahList = App\Models\SejarahWisata::latest()->limit(5)->get(); @endphp
+                @forelse($sejarahList as $key => $item)
+                <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td style="font-weight: 600; color: #003366;">{{ Str::limit($item->judul, 30) }}</td>
+                    <td>
+                        <span class="badge-status" style="background: #e3f2fd; color: #1565c0;">
+                            {{ $item->geosite_label }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge-status" style="background: #f3e5f5; color: #7b1fa2;">
+                            {{ $item->kategori_label }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge-status {{ $item->status ? 'badge-active' : 'badge-inactive' }}">
+                            {{ $item->status ? 'Aktif' : 'Tidak' }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="btn-group-action" style="justify-content: center;">
+                            <a href="{{ route('admin.sejarah-wisata.show', $item->id) }}" class="btn-action-edit" style="background: #e8f5e9; color: #2e7d32;">Lihat</a>
+                            <a href="{{ route('admin.sejarah-wisata.edit', $item->id) }}" class="btn-action-edit">Edit</a>
+                            <form action="{{ route('admin.sejarah-wisata.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus data ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-action-delete">Hapus</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                @empty
+                <tr><td colspan="6" class="empty-state">📭 Belum ada data Sejarah Wisata</td></tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
 </div>
 
@@ -389,6 +456,7 @@
 
 <div class="quick-actions-bar">
     <span><i class="fas fa-bolt"></i> Pintasan:</span>
+    <a href="{{ route('admin.sejarah-wisata.create') }}" class="btn-primary-sm"><i class="fas fa-plus"></i> Sejarah</a>
     <a href="{{ route('admin.galeri.create') }}" class="btn-primary-sm"><i class="fas fa-plus"></i> Galeri</a>
     <a href="{{ route('admin.berita.create') }}" class="btn-primary-sm"><i class="fas fa-plus"></i> Berita</a>
     <a href="{{ route('admin.informasi.create') }}" class="btn-primary-sm"><i class="fas fa-plus"></i> Info</a>

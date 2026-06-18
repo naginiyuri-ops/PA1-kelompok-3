@@ -26,10 +26,11 @@ class GaleriController extends Controller
             'judul' => 'required|string|max:255',
             'kategori' => 'required|string|max:100',
             'deskripsi' => 'nullable|string',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:10240',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,webp|max:10240',
             'lokasi' => 'nullable|string|max:255',
             'tanggal_foto' => 'nullable|date',
-            'status' => 'nullable|boolean'
+            'status' => 'nullable|boolean',
+            'is_unggulan' => 'nullable|boolean'  // <-- tambahan
         ]);
 
         $data = [
@@ -40,6 +41,7 @@ class GaleriController extends Controller
             'lokasi' => $request->lokasi,
             'tanggal_foto' => $request->tanggal_foto,
             'status' => $request->has('status') ? 1 : 0,
+            'is_unggulan' => $request->has('is_unggulan') ? 1 : 0,
             'views' => 0
         ];
 
@@ -47,10 +49,12 @@ class GaleriController extends Controller
             $file = $request->file('gambar');
             $filename = time() . '_' . Str::slug($request->judul) . '.' . $file->getClientOriginalExtension();
             
-            // Pindahkan ke folder public/image/galeri/
-            $file->move(public_path('image/galeri'), $filename);
+            $destinationPath = public_path('image/galeri');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
             
-            // Simpan path ke database
+            $file->move($destinationPath, $filename);
             $data['gambar'] = 'image/galeri/' . $filename;
         }
 
@@ -73,10 +77,11 @@ class GaleriController extends Controller
             'judul' => 'required|string|max:255',
             'kategori' => 'required|string|max:100',
             'deskripsi' => 'nullable|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
             'lokasi' => 'nullable|string|max:255',
             'tanggal_foto' => 'nullable|date',
-            'status' => 'nullable|boolean'
+            'status' => 'nullable|boolean',
+            'is_unggulan' => 'nullable|boolean'  // <-- tambahan
         ]);
 
         $data = [
@@ -86,11 +91,18 @@ class GaleriController extends Controller
             'deskripsi' => $request->deskripsi,
             'lokasi' => $request->lokasi,
             'tanggal_foto' => $request->tanggal_foto,
-            'status' => $request->has('status') ? 1 : 0
+            'status' => $request->has('status') ? 1 : 0,
+            'is_unggulan' => $request->has('is_unggulan') ? 1 : 0
         ];
 
+        if ($request->has('hapus_gambar') && $request->hapus_gambar == 1) {
+            if ($galeri->gambar && file_exists(public_path($galeri->gambar))) {
+                unlink(public_path($galeri->gambar));
+            }
+            $data['gambar'] = null;
+        }
+
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama jika ada
             if ($galeri->gambar && file_exists(public_path($galeri->gambar))) {
                 unlink(public_path($galeri->gambar));
             }
@@ -110,7 +122,6 @@ class GaleriController extends Controller
     {
         $galeri = Galeri::findOrFail($id);
         
-        // Hapus file gambar
         if ($galeri->gambar && file_exists(public_path($galeri->gambar))) {
             unlink(public_path($galeri->gambar));
         }
@@ -126,5 +137,14 @@ class GaleriController extends Controller
         $galeri->save();
         
         return response()->json(['success' => true, 'status' => $galeri->status]);
+    }
+    
+    public function toggleUnggulan($id)  // <-- tambahan method
+    {
+        $galeri = Galeri::findOrFail($id);
+        $galeri->is_unggulan = !$galeri->is_unggulan;
+        $galeri->save();
+        
+        return response()->json(['success' => true, 'is_unggulan' => $galeri->is_unggulan]);
     }
 }
