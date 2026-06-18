@@ -121,8 +121,9 @@
     
     .berita-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(280px, 380px));
         gap: 35px;
+        justify-content: center;
     }
     
     .berita-card {
