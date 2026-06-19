@@ -288,8 +288,9 @@
         <div class="filter-buttons">
             <button class="filter-btn active" data-filter="all">SEMUA</button>
             <button class="filter-btn" data-filter="meat">MEAT</button>
-            <button class="filter-btn" data-filter="batu bahisan">BATU BASIHA</button>
-            <button class="filter-btn" data-filter="liang sipege">LIANG SIPEGE</button>
+            <button class="filter-btn" data-filter="batu-bahisan">BATU BAHISAN</button>
+            <button class="filter-btn" data-filter="liang-sipege">LIANG SIPEGE</button>
+            <button class="filter-btn" data-filter="balige">BALIGE</button>
         </div>
         
         <div class="stack-container" id="galleryContainer">
@@ -313,10 +314,12 @@
                         // GAMBAR DEFAULT BERDASARKAN KATEGORI
                         if (str_contains($kategoriLower, 'meat')) {
                             $imgSrc = asset('image/meat/slide1.jpg');
-                        } elseif (str_contains($kategoriLower, 'batu')) {
+                        } else if (str_contains($kategoriLower, 'batu') || str_contains($kategoriLower, 'bahisan')) {
                             $imgSrc = asset('image/meat/batu-detail.jpg');
-                        } elseif (str_contains($kategoriLower, 'liang')) {
+                        } else if (str_contains($kategoriLower, 'liang') || str_contains($kategoriLower, 'sipege')) {
                             $imgSrc = asset('image/meat/liang-detail.jpg');
+                        } else if (str_contains($kategoriLower, 'balige')) {
+                            $imgSrc = asset('image/default.jpg');
                         }
                     }
                     
@@ -324,10 +327,12 @@
                     $filterCat = 'other';
                     if (str_contains($kategoriLower, 'meat')) {
                         $filterCat = 'meat';
-                    } elseif (str_contains($kategoriLower, 'batu')) {
-                        $filterCat = 'batu bahisan';
-                    } elseif (str_contains($kategoriLower, 'liang')) {
-                        $filterCat = 'liang sipege';
+                    } else if (str_contains($kategoriLower, 'batu') || str_contains($kategoriLower, 'bahisan')) {
+                        $filterCat = 'batu-bahisan';
+                    } else if (str_contains($kategoriLower, 'liang') || str_contains($kategoriLower, 'sipege')) {
+                        $filterCat = 'liang-sipege';
+                    } else if (str_contains($kategoriLower, 'balige')) {
+                        $filterCat = 'balige';
                     }
                     
                     $judul = addslashes($item->judul ?? 'Galeri');

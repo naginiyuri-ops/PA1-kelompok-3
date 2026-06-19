@@ -60,6 +60,7 @@
                         <option value="Meat" {{ old('kategori') == 'Meat' ? 'selected' : '' }}>Meat</option>
                         <option value="Batu Bahisan" {{ old('kategori') == 'Batu Bahisan' ? 'selected' : '' }}>Batu Bahisan</option>
                         <option value="Liang Sipege" {{ old('kategori') == 'Liang Sipege' ? 'selected' : '' }}>Liang Sipege</option>
+                        <option value="Balige" {{ old('kategori') == 'Balige' ? 'selected' : '' }}>Balige</option>
                     </select>
                 </div>
 

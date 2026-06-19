@@ -320,11 +320,11 @@
     .destinasi-item {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 50px;
+        gap: 70px;
         align-items: center;
-        padding: 30px 0;
-        border-bottom: 1px solid rgba(0,0,0,0.05);
-        transition: all 0.3s ease;
+        padding: 60px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        transition: all 0.4s ease;
     }
     .destinasi-item:last-child { border-bottom: none; }
     
@@ -362,23 +362,23 @@
     }
     .destinasi-image img {
         width: 100%;
-        height: 280px;
+        height: 400px;
         object-fit: cover;
         display: block;
-        transition: transform 0.5s ease;
+        transition: transform 0.7s ease;
     }
-    .destinasi-image:hover img { transform: scale(1.05); }
+    .destinasi-image:hover img { transform: scale(1.06); }
     
     /* Badge nomor urut yang lebih menarik */
     .destinasi-number {
         display: inline-block;
         font-family: 'Playfair Display', serif;
-        font-size: 3.5rem;
+        font-size: 5rem;
         font-weight: 800;
-        color: rgba(198, 164, 59, 0.12);
+        color: rgba(198, 164, 59, 0.14);
         line-height: 1;
-        margin-bottom: 5px;
-        transition: all 0.3s ease;
+        margin-bottom: 8px;
+        transition: all 0.4s ease;
     }
     
     .destinasi-item:hover .destinasi-number {
@@ -388,10 +388,11 @@
     
     .destinasi-content h3 {
         font-family: 'Playfair Display', serif;
-        font-size: 1.8rem;
+        font-size: 2.4rem;
         font-weight: 700;
         color: var(--primary);
-        margin-bottom: 8px;
+        margin-bottom: 12px;
+        line-height: 1.2;
         transition: color 0.3s ease;
     }
     
@@ -400,10 +401,10 @@
     }
     
     .destinasi-content .location {
-        font-size: 0.75rem;
+        font-size: 0.85rem;
         color: var(--text-light);
         letter-spacing: 0.5px;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
         display: flex;
         align-items: center;
         gap: 6px;
@@ -411,21 +412,31 @@
     .destinasi-content .location i { color: var(--gold); }
     .destinasi-content p {
         color: var(--text-gray);
-        line-height: 1.7;
-        font-size: 0.9rem;
-        margin-bottom: 18px;
+        line-height: 1.85;
+        font-size: 1rem;
+        margin-bottom: 28px;
     }
     .destinasi-link {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
         color: var(--gold-dark);
-        font-weight: 600;
-        font-size: 0.8rem;
+        font-weight: 700;
+        font-size: 0.9rem;
         text-decoration: none;
+        padding: 12px 28px;
+        border: 2px solid var(--gold);
+        border-radius: 50px;
         transition: all 0.3s ease;
+        letter-spacing: 0.5px;
     }
-    .destinasi-link:hover { gap: 12px; color: var(--primary); }
+    .destinasi-link:hover {
+        background: var(--gold);
+        color: var(--primary-dark);
+        gap: 14px;
+        box-shadow: 0 8px 25px rgba(198,164,59,0.35);
+        transform: translateY(-2px);
+    }
     
     /* Tambahan efek garis dekoratif pada setiap item */
     .destinasi-item::after {

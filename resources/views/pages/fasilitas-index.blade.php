@@ -81,10 +81,9 @@
         border-radius: 3px;
     }
     
-    /* // Menggunakan grid 2 kolom agar kotak UMKM dan Penginapan tampil sejajar dan proporsional */
     .category-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        display: flex;
+        justify-content: center;
         gap: 35px;
         max-width: 900px;
         margin: 0 auto;
@@ -99,6 +98,8 @@
         text-decoration: none;
         display: block;
         position: relative;
+        width: 100%;
+        max-width: 420px;
     }
     
     .category-card:hover {
@@ -181,17 +182,7 @@
         </div>
         
         <div class="category-grid">
-            <!-- // Routing langsung menuju halaman index UMKM yang ada di web.php -->
-            <a href="{{ url('/umkm') }}" class="category-card">
-                <div class="card-img-wrapper">
-                    <!-- Menggunakan foto UMKM yang tersedia secara default atau gambar dummy yang relevan jika belum ada -->
-                    <img src="https://images.unsplash.com/photo-1556740714-a8395b3bf30f?q=80&w=2070&auto=format&fit=crop" alt="UMKM">
-                </div>
-                <div class="card-content">
-                    <h3>UMKM</h3>
-                    <p>Temukan berbagai kerajinan khas dan produk lokal karya masyarakat sekitar.</p>
-                </div>
-            </a>
+            
             
             <!-- // Routing langsung menuju halaman index Penginapan yang ada di web.php -->
             <a href="{{ url('/penginapan') }}" class="category-card">

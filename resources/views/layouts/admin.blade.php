@@ -387,8 +387,8 @@
         
         <div class="menu-title">Fasilitas</div>
         <a href="{{ route('admin.umkm.index') }}" class="{{ request()->routeIs('admin.umkm.*') ? 'active' : '' }}">
-            UMKM
-        </a>
+           Sovenir&UMKM
+</a>
 
         <a href="{{ route('admin.penginapan.index') }}" class="{{ request()->routeIs('admin.penginapan.*') ? 'active' : '' }}">
             Penginapan

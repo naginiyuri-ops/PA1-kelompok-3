@@ -61,6 +61,7 @@
                         <option value="Meat" {{ $galeri->kategori == 'Meat' ? 'selected' : '' }}>Meat</option>
                         <option value="Batu Bahisan" {{ $galeri->kategori == 'Batu Bahisan' ? 'selected' : '' }}>Batu Bahisan</option>
                         <option value="Liang Sipege" {{ $galeri->kategori == 'Liang Sipege' ? 'selected' : '' }}>Liang Sipege</option>
+                        <option value="Balige" {{ $galeri->kategori == 'Balige' ? 'selected' : '' }}>Balige</option>
                     </select>
                 </div>
 

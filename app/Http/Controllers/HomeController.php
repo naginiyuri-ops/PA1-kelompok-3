@@ -9,6 +9,7 @@ use App\Models\Umkm;
 use App\Models\Fasilitas;
 use App\Models\Penginapan;
 use App\Models\Kontak;
+use App\Models\Destination;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,6 +22,13 @@ class HomeController extends Controller
         $umkm = Umkm::where('status', 'aktif')->latest()->limit(4)->get();
         $penginapan = Penginapan::where('status', true)->latest()->limit(4)->get();
         $fasilitas = Fasilitas::where('status', true)->latest()->limit(4)->get();
+        
+        // Destinasi Unggulan
+        $featuredDestinations = Destination::where('status', true)
+            ->where('is_featured', true)
+            ->orderBy('created_at', 'desc')
+            ->limit(6)
+            ->get();
         
         // Data kontak
         $kontak = Kontak::first();
@@ -38,6 +46,7 @@ class HomeController extends Controller
             'penginapan', 
             'fasilitas',
             'kontak',
+            'featuredDestinations',
             'totalGaleri',
             'totalBerita',
             'totalUmkm',
