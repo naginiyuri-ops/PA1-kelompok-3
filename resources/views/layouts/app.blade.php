@@ -1026,70 +1026,70 @@
 
             <div class="collapse navbar-collapse flex-lg-grow-0" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-lg-center">
-                    <!-- HOME -->
+                    <!-- 1. BERANDA -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ url('/') }}">
                             Beranda
                         </a>
                     </li>
 
-                    <!-- TENTANG GEOSITE -->
+                    <!-- 2. TENTANG GEOSITE -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('tentang-geosite') ? 'active' : '' }}" href="{{ route('tentang-geosite') }}">
                             Tentang Geosite
                         </a>
                     </li>
 
-                    <!-- DESTINASI -->
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('destinasi*') ? 'active' : '' }}" href="{{ url('/destinasi') }}">
-                            Destinasi
-                        </a>
-                    </li>
-
-                    <!-- GEODIVERSITY -->
+                    <!-- 3. GEODIVERSITY -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('geodiversitas*') ? 'active' : '' }}" href="{{ route('geodiversitas') }}">
                             Geodiversity
                         </a>
                     </li>
 
-                    <!-- BIODIVERSITY -->
+                    <!-- 4. BIODIVERSITY -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('biodiversitas*') ? 'active' : '' }}" href="{{ route('biodiversitas') }}">
                             Biodiversity
                         </a>
                     </li>
 
-                    <!-- CULTURAL DIVERSITY -->
+                    <!-- 5. CULTURAL -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('cultural-diversity*') ? 'active' : '' }}" href="{{ route('cultural-diversity') }}">
-                            Cultural Diversity
+                            Cultural
                         </a>
                     </li>
 
-                    <!-- BERITA / EVENT -->
+                    <!-- 6. DESTINASI WISATA -->
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('berita*') ? 'active' : '' }}" href="{{ url('/berita') }}">
-                            Berita / Event
+                        <a class="nav-link {{ request()->routeIs('destinasi*') ? 'active' : '' }}" href="{{ url('/destinasi') }}">
+                            Destinasi Wisata
                         </a>
                     </li>
 
-                    <!-- FASILITAS -->
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('fasilitas*') ? 'active' : '' }}" href="{{ url('/fasilitas') }}">
-                            <i class="fas fa-building me-1 d-lg-none"></i>Fasilitas
-                        </a>
-                    </li>
+                    <!-- 7. SOVENIR & UMKM -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('umkm.index') ? 'active' : '' }}" href="{{ route('umkm.index') }}">
                             <i class="fas fa-store me-1 d-lg-none"></i>Sovenir & UMKM
                         </a>
                     </li>
 
-                    <!-- ========================================
-                    SEARCH BAR - DI SEBELAH FASILITAS (POJOK KANAN)
-                    ======================================== -->
+                    <!-- 8. FASILITAS -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('fasilitas*') ? 'active' : '' }}" href="{{ url('/fasilitas') }}">
+                            <i class="fas fa-building me-1 d-lg-none"></i>Fasilitas
+                        </a>
+                    </li>
+
+                    <!-- 9. BERITA & INFORMASI -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('berita*') ? 'active' : '' }}" href="{{ url('/berita') }}">
+                            Berita & Informasi
+                        </a>
+                    </li>
+
+                    <!-- 10. FITUR PENCARIAN -->
                     <li class="nav-item search-wrapper" id="searchWrapper">
                         <form id="globalSearchForm" action="{{ route('search.results') }}" method="GET" style="display:contents;" onsubmit="handleSearchSubmit(event)">
                             <div class="search-input-container">
