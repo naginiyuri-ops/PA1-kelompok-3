@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $item->nama . ' - Geosite Danau Toba')
+@section('title', $destination->title . ' - Geosite Danau Toba')
 
 @section('content')
 
@@ -154,17 +154,17 @@
 
 {{-- ── HERO GAMBAR UTAMA ── --}}
 <div class="detail-hero">
-    <img src="{{ $item->gambar_url }}"
-         alt="{{ $item->nama }}"
+    <img src="{{ $destination->image_url }}"
+         alt="{{ $destination->title }}"
          onerror="this.src='{{ asset('image/default.jpg') }}'">
     <div class="detail-hero-overlay">
         <div class="detail-hero-content">
             <div class="detail-hero-badge">
-                🏨
-                Penginapan
+                @if($category === 'alam') 🌿 @elseif($category === 'buatan') 🏛️ @else 🎭 @endif
+                {{ ucfirst($category) }}
             </div>
             {{-- Judul DITAMPILKAN PENUH tanpa pemotongan --}}
-            <h1>{{ $item->nama }}</h1>
+            <h1>{{ $destination->title }}</h1>
         </div>
     </div>
 </div>
@@ -178,7 +178,7 @@
             <div class="detail-main">
                 <h2><i class="fas fa-info-circle" style="color:var(--gold);margin-right:10px;"></i>Tentang Destinasi Ini</h2>
                 {{-- Deskripsi PENUH — sesuai instruksi: DILARANG menggunakan Str::limit() --}}
-                <div class="deskripsi">{{ $item->deskripsi }}</div>
+                <div class="deskripsi">{{ $destination->description }}</div>
             </div>
 
             {{-- Kolom kanan: Sidebar informasi --}}
@@ -191,7 +191,7 @@
                         <i class="fas fa-tag"></i>
                         <div>
                             <div class="info-label">Kategori</div>
-                            <div class="info-text">Penginapan</div>
+                            <div class="info-text">{{ ucfirst($category) }}</div>
                         </div>
                     </div>
                     <div class="info-row">
@@ -205,7 +205,7 @@
                         <i class="fas fa-calendar-alt"></i>
                         <div>
                             <div class="info-label">Terakhir Diperbarui</div>
-                            <div class="info-text">{{ $item->updated_at->format('d M Y') }}</div>
+                            <div class="info-text">{{ $destination->updated_at->format('d M Y') }}</div>
                         </div>
                     </div>
                 </div>
@@ -213,9 +213,9 @@
                 {{-- Tombol kembali ke daftar --}}
                 <div class="sidebar-card">
                     <h4><i class="fas fa-list"></i> Navigasi</h4>
-                    <a href="{{ route('fasilitas.penginapan') }}" class="btn-back">
+                    <a href="{{ route('destinasi.' . $category) }}" class="btn-back">
                         <i class="fas fa-arrow-left"></i>
-                        Kembali ke Daftar Penginapan
+                        Kembali ke Daftar {{ ucfirst($category) }}
                     </a>
                 </div>
 
@@ -228,11 +228,11 @@
             <h3>Destinasi <span>Lainnya</span></h3>
             <div class="related-grid">
                 @foreach($related as $item)
-                <a href="{{ route('fasilitas.penginapan.detail', $item->id) }}" class="related-card">
-                    <img src="{{ $item->gambar_url }}" alt="{{ $item->nama }}" loading="lazy"
+                <a href="{{ route('destinasi.detail', [$category, $item->id]) }}" class="related-card">
+                    <img src="{{ $item->image_url }}" alt="{{ $item->title }}" loading="lazy"
                          onerror="this.src='{{ asset('image/default.jpg') }}'">
                     <div class="related-content">
-                        <div class="related-title">{{ $item->nama }}</div>
+                        <div class="related-title">{{ $item->title }}</div>
                         <div class="related-link">Lihat Detail <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </a>

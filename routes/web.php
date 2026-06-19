@@ -9,7 +9,9 @@ use App\Http\Controllers\Admin\UmkmController;
 use App\Http\Controllers\Admin\FasilitasController;
 use App\Http\Controllers\Admin\PenginapanController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminDestinationController;
 use App\Http\Controllers\DestinasiController;
+use App\Http\Controllers\PublicDestinationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\KontakController;
 use App\Http\Controllers\GaleriController as PublicGaleriController;
@@ -46,13 +48,18 @@ Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.
 Route::get('/tentang-geosite', [TentangGeositeController::class, 'index'])->name('tentang-geosite');
 
 // ========================================
-// ========== DESTINASI ROUTES ==========
+// ========== DESTINASI DINAMIS (DB) ==========
+// Halaman publik untuk data destinasi yang diinput via CRUD admin
+// (Menggantikan halaman hardcoded sebelumnya)
 // ========================================
-Route::get('/destinasi', [DestinasiController::class, 'index'])->name('destinasi');
-Route::get('/destinasi/alam', [DestinasiController::class, 'alam'])->name('destinasi.alam');
-Route::get('/destinasi/buatan', [DestinasiController::class, 'buatan'])->name('destinasi.buatan');
-Route::get('/destinasi/budaya', [DestinasiController::class, 'budaya'])->name('destinasi.budaya');
-Route::get('/destinasi/{kategori}/{slug}', [DestinasiController::class, 'detail'])->name('destinasi.detail');
+Route::get('/destinasi/alam', [PublicDestinationController::class, 'alam'])->name('destinasi.alam');
+Route::get('/destinasi/buatan', [PublicDestinationController::class, 'buatan'])->name('destinasi.buatan');
+Route::get('/destinasi/budaya', [PublicDestinationController::class, 'budaya'])->name('destinasi.budaya');
+Route::get('/destinasi/{category}/{id}', [PublicDestinationController::class, 'show'])->name('destinasi.detail');
+// Redirect '/destinasi' ke alam sebagai default jika diakses
+Route::get('/destinasi', function () {
+    return redirect()->route('destinasi.alam');
+})->name('destinasi');
 
 // ========================================
 // ========== DIVERSITY ROUTES ==========
@@ -238,4 +245,34 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     // ========== KONTAK WEB ==========
     Route::get('/kontak', [KontakController::class, 'index'])->name('admin.kontak.index');
     Route::put('/kontak', [KontakController::class, 'update'])->name('admin.kontak.update');
+
+    // ========================================
+    // ========== DESTINATION CRUD ==========
+    // Menggunakan satu controller (AdminDestinationController) dengan parameter
+    // $category agar kode DRY — tiga tampilan dari satu controller.
+    // ========================================
+
+    // --- DESTINASI ALAM ---
+    Route::get('destination/alam',                  [AdminDestinationController::class, 'index'])->defaults('category', 'alam')->name('admin.destination.alam.index');
+    Route::get('destination/alam/create',           [AdminDestinationController::class, 'create'])->defaults('category', 'alam')->name('admin.destination.alam.create');
+    Route::post('destination/alam',                 [AdminDestinationController::class, 'store'])->defaults('category', 'alam')->name('admin.destination.alam.store');
+    Route::get('destination/alam/{id}/edit',        [AdminDestinationController::class, 'edit'])->defaults('category', 'alam')->name('admin.destination.alam.edit');
+    Route::put('destination/alam/{id}',             [AdminDestinationController::class, 'update'])->defaults('category', 'alam')->name('admin.destination.alam.update');
+    Route::delete('destination/alam/{id}',          [AdminDestinationController::class, 'destroy'])->defaults('category', 'alam')->name('admin.destination.alam.destroy');
+
+    // --- DESTINASI BUATAN ---
+    Route::get('destination/buatan',                [AdminDestinationController::class, 'index'])->defaults('category', 'buatan')->name('admin.destination.buatan.index');
+    Route::get('destination/buatan/create',         [AdminDestinationController::class, 'create'])->defaults('category', 'buatan')->name('admin.destination.buatan.create');
+    Route::post('destination/buatan',               [AdminDestinationController::class, 'store'])->defaults('category', 'buatan')->name('admin.destination.buatan.store');
+    Route::get('destination/buatan/{id}/edit',      [AdminDestinationController::class, 'edit'])->defaults('category', 'buatan')->name('admin.destination.buatan.edit');
+    Route::put('destination/buatan/{id}',           [AdminDestinationController::class, 'update'])->defaults('category', 'buatan')->name('admin.destination.buatan.update');
+    Route::delete('destination/buatan/{id}',        [AdminDestinationController::class, 'destroy'])->defaults('category', 'buatan')->name('admin.destination.buatan.destroy');
+
+    // --- DESTINASI BUDAYA ---
+    Route::get('destination/budaya',                [AdminDestinationController::class, 'index'])->defaults('category', 'budaya')->name('admin.destination.budaya.index');
+    Route::get('destination/budaya/create',         [AdminDestinationController::class, 'create'])->defaults('category', 'budaya')->name('admin.destination.budaya.create');
+    Route::post('destination/budaya',               [AdminDestinationController::class, 'store'])->defaults('category', 'budaya')->name('admin.destination.budaya.store');
+    Route::get('destination/budaya/{id}/edit',      [AdminDestinationController::class, 'edit'])->defaults('category', 'budaya')->name('admin.destination.budaya.edit');
+    Route::put('destination/budaya/{id}',           [AdminDestinationController::class, 'update'])->defaults('category', 'budaya')->name('admin.destination.budaya.update');
+    Route::delete('destination/budaya/{id}',        [AdminDestinationController::class, 'destroy'])->defaults('category', 'budaya')->name('admin.destination.budaya.destroy');
 });
