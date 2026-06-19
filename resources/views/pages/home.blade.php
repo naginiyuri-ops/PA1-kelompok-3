@@ -316,7 +316,7 @@
         display: block;
     }
 
-    /* ==================== DESTINASI UNGGULAN (SELANG-SELING) ==================== */
+    /* ==================== DESTINASI (SELANG-SELING) ==================== */
     .destinasi-item {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -369,6 +369,7 @@
     }
     .destinasi-image:hover img { transform: scale(1.05); }
     
+    /* Badge nomor urut yang lebih menarik */
     .destinasi-number {
         display: inline-block;
         font-family: 'Playfair Display', serif;
@@ -426,9 +427,7 @@
     }
     .destinasi-link:hover { gap: 12px; color: var(--primary); }
     
-    .destinasi-item {
-        position: relative;
-    }
+    /* Tambahan efek garis dekoratif pada setiap item */
     .destinasi-item::after {
         content: '';
         position: absolute;
@@ -440,6 +439,9 @@
     }
     .destinasi-item:last-child::after {
         display: none;
+    }
+    .destinasi-item {
+        position: relative;
     }
 
     /* ==================== GALERI UNGGULAN (SCROLL) ==================== */
@@ -849,55 +851,45 @@
             <p>Temukan keindahan destinasi terbaik di kawasan Geosite Danau Toba</p>
         </div>
 
-        @php
-            $destinasiList = [
-                [
-                    'nama' => 'Balige',
-                    'lokasi' => 'Kabupaten Toba',
-                    'deskripsi' => 'Pusat peradaban Batak Toba dengan sejarah panjang dan budaya yang kaya, gerbang menuju Danau Toba.',
-                    'gambar' => asset('image/meat/balige.jpg'),
-                    'link' => url('/geosite/balige')
-                ],
-                [
-                    'nama' => 'Meat',
-                    'lokasi' => 'Kecamatan Tampahan',
-                    'deskripsi' => 'Desa wisata adat Batak di tepi Danau Toba, dijuluki "New Zealand van Toba" karena keindahan alamnya.',
-                    'gambar' => asset('image/meat/meat-detail.jpg'),
-                    'link' => url('/geosite/meat')
-                ],
-                [
-                    'nama' => 'Batu Basiha',
-                    'lokasi' => 'Desa Aek Bolon Jae',
-                    'deskripsi' => 'Situs batu bersejarah dari letusan Gunung Toba 74.000 tahun lalu, diakui UNESCO Global Geopark.',
-                    'gambar' => asset('image/meat/batubasiha1.png'),
-                    'link' => url('/geosite/batu-bahisan')
-                ],
-                [
-                    'nama' => 'Liang Sipege',
-                    'lokasi' => 'Desa Simarmar Pea Talun',
-                    'deskripsi' => 'Gua alam dengan nilai spiritual tinggi, habitat kelelawar alami, dan legenda leluhur Batak.',
-                    'gambar' => asset('image/meat/liang-sipege-hero.jpg'),
-                    'link' => url('/geosite/liang-sipege')
-                ]
-            ];
-        @endphp
-
+        @if(!empty($featuredDestinations) && $featuredDestinations->count())
         <div class="destinasi-list">
-            @foreach($destinasiList as $index => $item)
-            <div class="destinasi-item" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
-                <div class="destinasi-image" onclick="openLightbox('{{ $item['gambar'] }}', '{{ $item['nama'] }}', '{{ $item['lokasi'] }}')">
-                    <img src="{{ $item['gambar'] }}" alt="{{ $item['nama'] }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+            @foreach($featuredDestinations as $item)
+            @php
+                $imgSrc = asset('image/default.jpg');
+                if (!empty($item->image_url)) {
+                    if (str_starts_with($item->image_url, 'http')) {
+                        $imgSrc = $item->image_url;
+                    } elseif (str_starts_with($item->image_url, 'image/')) {
+                        $imgSrc = asset($item->image_url);
+                    } elseif (file_exists(public_path($item->image_url))) {
+                        $imgSrc = asset($item->image_url);
+                    } elseif (file_exists(public_path('image/destinasi/' . $item->image_url))) {
+                        $imgSrc = asset('image/destinasi/' . $item->image_url);
+                    } else {
+                        $imgSrc = asset('storage/' . $item->image_url);
+                    }
+                }
+            @endphp
+            <div class="destinasi-item" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+                <div class="destinasi-image" onclick="openLightbox('{{ $imgSrc }}', '{{ addslashes($item->title) }}', '{{ addslashes($item->location ?? 'Lokasi belum diisi') }}')">
+                    <img src="{{ $imgSrc }}" alt="{{ $item->title }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
                 </div>
                 <div class="destinasi-content">
-                    <div class="destinasi-number">{{ sprintf('%02d', $index + 1) }}</div>
-                    <h3>{{ $item['nama'] }}</h3>
-                    <div class="location"><i class="fas fa-map-marker-alt"></i> {{ $item['lokasi'] }}</div>
-                    <p>{{ $item['deskripsi'] }}</p>
-                    <a href="{{ $item['link'] }}" class="destinasi-link">Jelajahi →</a>
+                    <div class="destinasi-number">{{ sprintf('%02d', $loop->iteration) }}</div>
+                    <h3>{{ $item->title }}</h3>
+                    <div class="location"><i class="fas fa-map-marker-alt"></i> {{ $item->location ?? 'Lokasi belum diisi' }}</div>
+                    <p>{{ Str::limit(strip_tags($item->short_description ?: $item->description), 120) }}</p>
+                    <a href="{{ route('destinasi.detail', ['category' => $item->category, 'id' => $item->id]) }}" class="destinasi-link">Lihat Detail →</a>
                 </div>
             </div>
             @endforeach
         </div>
+        @else
+        <div style="text-align:center; padding:50px; color:#94a3b8;">
+            <i class="fas fa-map-marker-alt" style="font-size:3rem; opacity:0.25; display:block; margin-bottom:16px;"></i>
+            Belum ada destinasi unggulan. Tandai destinasi di panel admin agar muncul di sini.
+        </div>
+        @endif
     </div>
 </section>
 
@@ -993,12 +985,50 @@
     </div>
 </section>
 
+<!-- ==================== TAUTAN CEPAT ==================== -->
+<section class="section section-white">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="badge">Navigasi</span>
+            <h2>🔗 Tautan Cepat</h2>
+            <div class="divider"></div>
+            <p>Jelajahi berbagai informasi menarik di GeoToba</p>
+        </div>
+        <div class="quick-grid">
+            <a href="{{ url('/destinasi') }}" class="quick-item" data-aos="zoom-in">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Destinasi</span>
+            </a>
+            <a href="{{ route('biodiversitas') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="50">
+                <i class="fas fa-leaf"></i>
+                <span>Biodiversitas</span>
+            </a>
+            <a href="{{ route('geodiversitas') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fas fa-gem"></i>
+                <span>Geodiversitas</span>
+            </a>
+            <a href="{{ route('cultural-diversity') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="150">
+                <i class="fas fa-people-arrows"></i>
+                <span>Cultural Diversity</span>
+            </a>
+            <a href="{{ url('/berita') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fas fa-newspaper"></i>
+                <span>Berita / Event</span>
+            </a>
+            <a href="{{ url('/galeri') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="250">
+                <i class="fas fa-images"></i>
+                <span>Galeri</span>
+            </a>
+        </div>
+    </div>
+</section>
+
 <!-- ==================== BERITA TERKINI ==================== -->
 <section class="section section-light">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
             <span class="badge">Berita</span>
-            <h2>Berita Terkini</h2>
+            <h2> Berita Terkini</h2>
             <div class="divider"></div>
             <p>Informasi dan perkembangan terbaru seputar Geopark Danau Toba</p>
         </div>
@@ -1051,44 +1081,6 @@
     </div>
 </section>
 
-<!-- ==================== TAUTAN CEPAT ==================== -->
-<section class="section section-white">
-    <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="badge">Navigasi</span>
-            <h2>🔗 Tautan Cepat</h2>
-            <div class="divider"></div>
-            <p>Jelajahi berbagai informasi menarik di GeoToba</p>
-        </div>
-        <div class="quick-grid">
-            <a href="{{ url('/destinasi') }}" class="quick-item" data-aos="zoom-in">
-                <i class="fas fa-map-marked-alt"></i>
-                <span>Destinasi</span>
-            </a>
-            <a href="{{ route('biodiversitas') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="50">
-                <i class="fas fa-leaf"></i>
-                <span>Biodiversitas</span>
-            </a>
-            <a href="{{ route('geodiversitas') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="100">
-                <i class="fas fa-gem"></i>
-                <span>Geodiversitas</span>
-            </a>
-            <a href="{{ route('cultural-diversity') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="150">
-                <i class="fas fa-people-arrows"></i>
-                <span>Cultural Diversity</span>
-            </a>
-            <a href="{{ url('/berita') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="200">
-                <i class="fas fa-newspaper"></i>
-                <span>Berita / Event</span>
-            </a>
-            <a href="{{ url('/galeri') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="250">
-                <i class="fas fa-images"></i>
-                <span>Galeri</span>
-            </a>
-        </div>
-    </div>
-</section>
-
 <!-- ==================== CTA ==================== -->
 <section class="cta-section">
     <div class="container">
@@ -1096,6 +1088,7 @@
             <h3>Mulai Petualangan Anda</h3>
             <div class="divider"></div>
             <p>Temukan keajaiban geologi dan kekayaan budaya Batak di Geopark Toba, warisan dunia yang diakui UNESCO.</p>
+            <a href="#destinasi" class="cta-btn">Jelajahi Sekarang</a>
         </div>
     </div>
 </section>

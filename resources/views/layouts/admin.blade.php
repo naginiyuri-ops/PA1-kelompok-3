@@ -351,6 +351,7 @@
         </a>
         
         <div class="menu-title">Konten</div>
+
         <a href="{{ route('admin.galeri.index') }}" class="{{ request()->routeIs('admin.galeri.*') ? 'active' : '' }}">
             Galeri
         </a>
@@ -387,10 +388,7 @@
         <div class="menu-title">Fasilitas</div>
         <a href="{{ route('admin.umkm.index') }}" class="{{ request()->routeIs('admin.umkm.*') ? 'active' : '' }}">
             UMKM
-<<<<<<< HEAD
         </a>
-=======
->>>>>>> 2bb75f309a46379f136c443fd563ae965cbf7584
 
         <a href="{{ route('admin.penginapan.index') }}" class="{{ request()->routeIs('admin.penginapan.*') ? 'active' : '' }}">
             Penginapan
