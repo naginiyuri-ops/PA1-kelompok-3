@@ -633,7 +633,6 @@
             width: 260px;
         }
 
-        /* Ubah tampilan search saat navbar scrolled */
         .navbar.scrolled-down .search-input-container {
             background: rgba(0, 51, 102, 0.06);
             border-color: rgba(0, 51, 102, 0.2);
@@ -689,7 +688,6 @@
             color: rgba(0, 51, 102, 0.4);
         }
 
-        /* Tombol clear (x) untuk menghapus teks pencarian */
         .search-clear-btn {
             background: none;
             border: none;
@@ -713,7 +711,6 @@
             color: var(--blue-dark);
         }
 
-        /* Dropdown hasil pencarian — floating di bawah input */
         #searchResultsDropdown {
             position: absolute;
             top: calc(100% + 10px);
@@ -746,7 +743,6 @@
             border-bottom: 1px solid rgba(0, 51, 102, 0.06);
         }
 
-        /* Setiap item hasil pencarian */
         .search-result-item {
             display: flex;
             align-items: center;
@@ -764,7 +760,6 @@
             background: rgba(0, 51, 102, 0.04);
         }
 
-        /* Thumbnail gambar di hasil pencarian */
         .search-result-thumb {
             width: 44px;
             height: 44px;
@@ -774,7 +769,6 @@
             background: #f1f5f9;
         }
 
-        /* Ikon placeholder jika tidak ada gambar */
         .search-result-icon-placeholder {
             width: 44px;
             height: 44px;
@@ -808,7 +802,6 @@
             text-overflow: ellipsis;
         }
 
-        /* Badge tipe data (UMKM, Berita, dll.) */
         .search-result-badge {
             font-size: 0.62rem;
             font-weight: 700;
@@ -821,7 +814,6 @@
             flex-shrink: 0;
         }
 
-        /* Pesan jika tidak ada hasil */
         .search-empty-state {
             padding: 28px 16px;
             text-align: center;
@@ -840,7 +832,6 @@
             margin: 0;
         }
 
-        /* Spinner loading */
         .search-loading {
             padding: 20px 16px;
             text-align: center;
@@ -858,16 +849,14 @@
             to   { transform: rotate(360deg); }
         }
 
-        /* Responsif: Penataan ulang header menjadi 2 baris (Stacked) di mobile */
         @media (max-width: 576px) {
             .navbar > .container {
                 flex-wrap: wrap !important;
-                justify-content: center !important; /* Memaksa rata tengah secara keseluruhan */
+                justify-content: center !important;
                 padding-top: 12px;
                 padding-bottom: 12px;
             }
             
-            /* Baris 1: Logo & Judul */
             .logo-wrapper {
                 width: 100%;
                 justify-content: center !important;
@@ -883,9 +872,8 @@
                 height: 32px !important;
             }
 
-            /* Baris 2: Search Bar & Tombol Tiga Garis */
             .search-wrapper {
-                margin-left: 0 !important; /* Memastikan tidak ada sisa margin auto yang mendorong ke kanan */
+                margin-left: 0 !important;
                 margin-right: 12px !important;
                 display: flex;
                 width: 220px !important;
@@ -902,10 +890,9 @@
             }
             .navbar-toggler {
                 margin-left: 0 !important; 
-                margin-right: 0 !important; /* Mencegah tombol bergeser */
+                margin-right: 0 !important;
             }
             
-            /* Dropdown hasil pencarian mobile */
             #searchResultsDropdown {
                 min-width: 280px;
                 width: 100%;
@@ -948,14 +935,10 @@
 
             <!-- ========================================
             SEARCH BAR GLOBAL
-            Ditempatkan setelah logo dan sebelum tombol toggle mobile
             ======================================== -->
             <div class="search-wrapper" id="searchWrapper">
                 <div class="search-input-container">
-                    <!-- Ikon kaca pembesar -->
                     <i class="fas fa-search search-icon"></i>
-
-                    <!-- Input utama pencarian -->
                     <input
                         type="text"
                         id="globalSearchInput"
@@ -964,14 +947,10 @@
                         aria-label="Pencarian Global"
                         maxlength="100"
                     >
-
-                    <!-- Tombol clear (x) untuk menghapus input, tersembunyi saat kosong -->
                     <button class="search-clear-btn" id="searchClearBtn" aria-label="Hapus pencarian">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
-
-                <!-- Kontainer hasil pencarian — muncul secara floating di bawah input -->
                 <div id="searchResultsDropdown"></div>
             </div>
 
@@ -988,9 +967,14 @@
                         </a>
                     </li>
 
-                  
+                    <!-- TENTANG GEOSITE -->
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('tentang-geosite') ? 'active' : '' }}" href="{{ route('tentang-geosite') }}">
+                            <i class="fas fa-info-circle d-md-none me-2"></i> Tentang Geosite
+                        </a>
+                    </li>
 
-                    <!-- DESTINASI (LANGSUNG TANPA DROPDOWN) -->
+                    <!-- DESTINASI -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('destinasi*') ? 'active' : '' }}" href="{{ url('/destinasi') }}">
                             <i class="fas fa-map-marked-alt d-md-none me-2"></i> Destinasi
@@ -1025,9 +1009,9 @@
                         </a>
                     </li>
 
-                    <!-- FASILITAS (LANGSUNG TANPA DROPDOWN) -->
+                    <!-- FASILITAS -->
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('fasilitas.index') ? 'active' : '' }}" href="{{ url('/fasilitas-utama') }}">
+                        <a class="nav-link {{ request()->routeIs('fasilitas*') ? 'active' : '' }}" href="{{ url('/fasilitas') }}">
                             <i class="fas fa-building d-md-none me-2"></i> Fasilitas
                         </a>
                     </li>
@@ -1068,7 +1052,7 @@
                     <h5>Tautan Cepat</h5>
                     <div class="footer-menu">
                         <a href="{{ url('/') }}"><i class="fas fa-chevron-right"></i> Home</a>
-                        
+                        <a href="{{ route('tentang-geosite') }}"><i class="fas fa-chevron-right"></i> Tentang Geosite</a>
                         <a href="{{ url('/destinasi') }}"><i class="fas fa-chevron-right"></i> Destinasi</a>
                         <a href="{{ url('/berita') }}"><i class="fas fa-chevron-right"></i> Berita / Event</a>
                         <a href="{{ url('/galeri') }}"><i class="fas fa-chevron-right"></i> Galeri</a>
@@ -1152,7 +1136,6 @@
 
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 
-            // Back to top
             if (scrollTop > 300) {
                 backToTop.classList.add('show');
             } else {
@@ -1172,16 +1155,14 @@
         });
 
         // ========================================
-        // DROPDOWN FIX - PASTIKAN BOOTSTRAP DROPDOWN BISA BERFUNGSI
+        // DROPDOWN FIX
         // ========================================
         document.addEventListener('DOMContentLoaded', function() {
-            // Inisialisasi ulang semua dropdown
             var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
             var dropdownList = dropdownElementList.map(function(dropdownToggleEl) {
                 return new bootstrap.Dropdown(dropdownToggleEl);
             });
 
-            // Untuk mobile: tutup dropdown saat klik di luar
             document.addEventListener('click', function(e) {
                 var isDropdown = e.target.closest('.dropdown');
                 if (!isDropdown) {
@@ -1239,25 +1220,18 @@
 
     <!-- ========================================
     LIVE SEARCH JAVASCRIPT
-    Logika pencarian langsung dengan debounce 300ms
     ======================================== -->
     <script>
     (function () {
-        // Referensi elemen-elemen DOM yang dibutuhkan
         const searchInput    = document.getElementById('globalSearchInput');
         const searchDropdown = document.getElementById('searchResultsDropdown');
         const searchClearBtn = document.getElementById('searchClearBtn');
         const searchWrapper  = document.getElementById('searchWrapper');
 
-        // URL endpoint pencarian yang didaftarkan di web.php
         const SEARCH_URL     = '{{ route("search") }}';
 
-        // Variabel untuk menyimpan timer debounce
         let debounceTimer = null;
 
-        // =====================================================
-        // FUNGSI: Tampilkan state loading di dalam dropdown
-        // =====================================================
         function showLoading() {
             searchDropdown.style.display = 'block';
             searchDropdown.innerHTML = `
@@ -1267,9 +1241,6 @@
             `;
         }
 
-        // =====================================================
-        // FUNGSI: Tampilkan pesan ketika tidak ada hasil
-        // =====================================================
         function showEmptyState(query) {
             searchDropdown.innerHTML = `
                 <div class="search-empty-state">
@@ -1279,39 +1250,26 @@
             `;
         }
 
-        // =====================================================
-        // FUNGSI: Sembunyikan dan kosongkan dropdown
-        // =====================================================
         function hideDropdown() {
             searchDropdown.style.display = 'none';
             searchDropdown.innerHTML = '';
         }
 
-        // =====================================================
-        // FUNGSI: Escape karakter HTML untuk keamanan (anti XSS)
-        // =====================================================
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.appendChild(document.createTextNode(text));
             return div.innerHTML;
         }
 
-        // =====================================================
-        // FUNGSI: Render hasil pencarian ke dalam dropdown
-        // =====================================================
         function renderResults(results) {
-            // Jika array kosong, tampilkan empty state
             if (!results || results.length === 0) {
                 showEmptyState(searchInput.value);
                 return;
             }
 
-            // Header judul dropdown
             let html = `<div class="search-results-header"><i class="fas fa-bolt me-1"></i> Hasil Pencarian (${results.length})</div>`;
 
-            // Iterasi setiap item hasil dan buat elemen HTML-nya
             results.forEach(function (item) {
-                // Buat thumbnail: gunakan gambar jika ada, jika tidak pakai ikon placeholder
                 const thumbHtml = item.gambar_url
                     ? `<img src="${escapeHtml(item.gambar_url)}" alt="${escapeHtml(item.nama)}" class="search-result-thumb" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                        <div class="search-result-icon-placeholder" style="display:none;"><i class="fas ${escapeHtml(item.icon)}"></i></div>`
@@ -1329,18 +1287,13 @@
                 `;
             });
 
-            // Masukkan semua HTML ke dalam dropdown dan tampilkan
             searchDropdown.innerHTML = html;
             searchDropdown.style.display = 'block';
         }
 
-        // =====================================================
-        // FUNGSI UTAMA: Kirim request AJAX ke endpoint /search
-        // =====================================================
         function performSearch(query) {
             showLoading();
 
-            // Gunakan Fetch API untuk mengirim GET request ke server
             fetch(`${SEARCH_URL}?q=${encodeURIComponent(query)}`, {
                 method: 'GET',
                 headers: {
@@ -1349,18 +1302,15 @@
                 }
             })
             .then(function (response) {
-                // Jika server mengembalikan error HTTP, lempar error
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 return response.json();
             })
             .then(function (data) {
-                // Render data yang diterima dari server ke dalam dropdown
                 renderResults(data);
             })
             .catch(function (error) {
-                // Tampilkan pesan error jika terjadi kegagalan koneksi
                 searchDropdown.innerHTML = `
                     <div class="search-empty-state">
                         <i class="fas fa-exclamation-triangle" style="color: #f59e0b;"></i>
@@ -1372,68 +1322,50 @@
             });
         }
 
-        // =====================================================
-        // EVENT LISTENER: Saat pengguna mengetik di input
-        // =====================================================
         searchInput.addEventListener('input', function () {
             const query = this.value.trim();
 
-            // Tampilkan atau sembunyikan tombol clear
             searchClearBtn.style.display = query.length > 0 ? 'block' : 'none';
 
-            // Jika input dikosongkan, sembunyikan dropdown dan hentikan
             if (query.length === 0) {
                 hideDropdown();
                 clearTimeout(debounceTimer);
                 return;
             }
 
-            // Jika input kurang dari 3 karakter, jangan kirim request
             if (query.length < 3) {
                 hideDropdown();
                 clearTimeout(debounceTimer);
                 return;
             }
 
-            // DEBOUNCE: Reset timer setiap kali pengguna mengetik.
-            // Request baru hanya dikirim 300ms setelah pengguna berhenti mengetik.
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(function () {
                 performSearch(query);
             }, 300);
         });
 
-        // =====================================================
-        // EVENT LISTENER: Tombol clear (x) ditekan
-        // =====================================================
         searchClearBtn.addEventListener('click', function () {
             searchInput.value = '';
             searchClearBtn.style.display = 'none';
             hideDropdown();
-            searchInput.focus(); // Kembalikan fokus ke input
+            searchInput.focus();
         });
 
-        // =====================================================
-        // EVENT LISTENER: Tutup dropdown jika klik di luar area search
-        // =====================================================
         document.addEventListener('click', function (event) {
-            // Jika klik terjadi di luar elemen searchWrapper, tutup dropdown
             if (searchWrapper && !searchWrapper.contains(event.target)) {
                 hideDropdown();
             }
         });
 
-        // =====================================================
-        // EVENT LISTENER: Tekan Escape untuk menutup dropdown
-        // =====================================================
         searchInput.addEventListener('keydown', function (event) {
             if (event.key === 'Escape') {
                 hideDropdown();
-                searchInput.blur(); // Lepas fokus dari input
+                searchInput.blur();
             }
         });
 
-    })(); // Fungsi ini langsung dijalankan (IIFE) agar tidak mencemari scope global
+    })();
     </script>
 
     @stack('scripts')

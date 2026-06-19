@@ -18,9 +18,15 @@ use App\Http\Controllers\InformasiController as PublicInformasiController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Admin\SejarahWisataController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TentangGeositeController;
+use App\Http\Controllers\BiodiversitasController;
+use App\Http\Controllers\GeodiversitasController;
+use App\Http\Controllers\CulturalDiversityController;
+use App\Http\Controllers\FasilitasUtamaController;
+use Illuminate\Support\Facades\DB;
 
 // ========================================
-// ========== FRONTEND ROUTES ==========
+// ========== FRONTEND ROUTES (PUBLIC) ==========
 // ========================================
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -28,11 +34,15 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // ========================================
 // ========== GLOBAL SEARCH ==========
 // ========================================
-// Endpoint pencarian global yang diakses via AJAX dari header
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 // Language Route
 Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
+
+// ========================================
+// ========== TENTANG GEOSITE (PUBLIC) ==========
+// ========================================
+Route::get('/tentang-geosite', [TentangGeositeController::class, 'index'])->name('tentang-geosite');
 
 // ========================================
 // ========== DESTINASI ROUTES ==========
@@ -48,17 +58,17 @@ Route::get('/destinasi/{kategori}/{slug}', [DestinasiController::class, 'detail'
 // ========================================
 
 // BIODIVERSITAS
-Route::get('/biodiversitas', [App\Http\Controllers\BiodiversitasController::class, 'index'])->name('biodiversitas');
-Route::get('/biodiversitas/{slug}', [App\Http\Controllers\BiodiversitasController::class, 'show'])->name('biodiversitas.detail');
-Route::get('/biodiversitas/kategori/{kategori}', [App\Http\Controllers\BiodiversitasController::class, 'kategori'])->name('biodiversitas.kategori');
+Route::get('/biodiversitas', [BiodiversitasController::class, 'index'])->name('biodiversitas');
+Route::get('/biodiversitas/{slug}', [BiodiversitasController::class, 'show'])->name('biodiversitas.detail');
+Route::get('/biodiversitas/kategori/{kategori}', [BiodiversitasController::class, 'kategori'])->name('biodiversitas.kategori');
 
 // GEODIVERSITAS
-Route::get('/geodiversitas', [App\Http\Controllers\GeodiversitasController::class, 'index'])->name('geodiversitas');
-Route::get('/geodiversitas/{slug}', [App\Http\Controllers\GeodiversitasController::class, 'show'])->name('geodiversitas.detail');
+Route::get('/geodiversitas', [GeodiversitasController::class, 'index'])->name('geodiversitas');
+Route::get('/geodiversitas/{slug}', [GeodiversitasController::class, 'show'])->name('geodiversitas.detail');
 
 // CULTURAL DIVERSITY
-Route::get('/cultural-diversity', [App\Http\Controllers\CulturalDiversityController::class, 'index'])->name('cultural-diversity');
-Route::get('/cultural-diversity/{slug}', [App\Http\Controllers\CulturalDiversityController::class, 'show'])->name('cultural-diversity.detail');
+Route::get('/cultural-diversity', [CulturalDiversityController::class, 'index'])->name('cultural-diversity');
+Route::get('/cultural-diversity/{slug}', [CulturalDiversityController::class, 'show'])->name('cultural-diversity.detail');
 
 // ========================================
 // ========== BERITA ==========
@@ -78,35 +88,16 @@ Route::get('/berita/{slug}', function ($slug) {
 // ========== FASILITAS ==========
 // ========================================
 
-Route::get('/fasilitas-utama', [App\Http\Controllers\FasilitasUtamaController::class, 'index'])->name('fasilitas.index');
+// FASILITAS UTAMA (halaman dengan 2 card: UMKM & Penginapan)
+Route::get('/fasilitas', [FasilitasUtamaController::class, 'index'])->name('fasilitas');
 
 // UMKM
-Route::get('/umkm', function () {
-    $data = App\Models\Umkm::where('status', 'aktif')->latest()->paginate(12);
-    return view('pages.umkm', compact('data'));
-})->name('umkm');
-
-Route::get('/umkm/{id}', function ($id) {
-    $item = App\Models\Umkm::findOrFail($id);
-    return view('pages.umkm-detail', compact('item'));
-})->name('umkm.detail');
+Route::get('/fasilitas/umkm', [FasilitasUtamaController::class, 'umkm'])->name('fasilitas.umkm');
+Route::get('/fasilitas/umkm/{id}', [FasilitasUtamaController::class, 'umkmDetail'])->name('fasilitas.umkm.detail');
 
 // PENGINAPAN
-Route::get('/penginapan', function () {
-    $data = App\Models\Penginapan::where('status', true)->latest()->paginate(12);
-    return view('pages.penginapan', compact('data'));
-})->name('penginapan');
-
-Route::get('/penginapan/{id}', function ($id) {
-    $item = App\Models\Penginapan::findOrFail($id);
-    return view('pages.penginapan-detail', compact('item'));
-})->name('penginapan.detail');
-
-// SEMUA FASILITAS
-Route::get('/fasilitas', function () {
-    $fasilitas = App\Models\Fasilitas::where('status', true)->latest()->paginate(12);
-    return view('pages.fasilitas', compact('fasilitas'));
-})->name('fasilitas');
+Route::get('/fasilitas/penginapan', [FasilitasUtamaController::class, 'penginapan'])->name('fasilitas.penginapan');
+Route::get('/fasilitas/penginapan/{id}', [FasilitasUtamaController::class, 'penginapanDetail'])->name('fasilitas.penginapan.detail');
 
 // ========================================
 // ========== GALERI ==========
@@ -173,7 +164,7 @@ Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])-
 Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
 
 // ========================================
-// ========== ADMIN ROUTES ==========
+// ========== ADMIN ROUTES (PROTECTED) ==========
 // ========================================
 Route::prefix('admin')->middleware(['auth'])->group(function () {
 
@@ -186,19 +177,23 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         $totalGaleri = DB::table('galeri')->count();
         $totalBerita = DB::table('beritas')->count();
         $totalInformasi = DB::table('informasis')->count();
+        $totalSejarah = DB::table('sejarah_wisata')->count();
         $totalUmkm = DB::table('umkm')->count();
         $totalFasilitas = DB::table('fasilitas')->count();
         $totalPenginapan = DB::table('penginapan')->count();
+        $totalBiodiversitas = DB::table('biodiversitas')->count();
         $totalViews = 0;
         $beritaTerbaru = App\Models\Berita::latest()->limit(5)->get();
         
         return view('admin.dashboard', compact(
             'totalGaleri', 
             'totalBerita', 
-            'totalInformasi', 
+            'totalInformasi',
+            'totalSejarah',
             'totalUmkm', 
             'totalFasilitas', 
-            'totalPenginapan', 
+            'totalPenginapan',
+            'totalBiodiversitas',
             'totalViews', 
             'beritaTerbaru'
         ));
@@ -236,10 +231,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('berita/toggle-status/{id}', [BeritaController::class, 'toggleStatus'])->name('admin.berita.toggle-status');
     Route::post('informasi/toggle-status/{id}', [InformasiController::class, 'toggleStatus'])->name('admin.informasi.toggle-status');
 
+    // ========== GALERI UNGGULAN ==========
+    Route::post('galeri/toggle-unggulan/{id}', [GaleriController::class, 'toggleUnggulan'])->name('admin.galeri.toggle-unggulan');
+
     // ========== KONTAK WEB ==========
     Route::get('/kontak', [KontakController::class, 'index'])->name('admin.kontak.index');
     Route::put('/kontak', [KontakController::class, 'update'])->name('admin.kontak.update');
-    
-    // ========== GALERI UNGGULAN ==========
-    Route::post('galeri/toggle-unggulan/{id}', [GaleriController::class, 'toggleUnggulan'])->name('admin.galeri.toggle-unggulan');
 });
