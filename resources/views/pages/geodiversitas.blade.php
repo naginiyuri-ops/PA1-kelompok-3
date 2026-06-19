@@ -32,9 +32,10 @@
 
     .grid-geodiversitas {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(280px, 380px));
         gap: 30px;
         padding: 60px 0;
+        justify-content: center;
     }
     .card-geodiversitas {
         background: white;

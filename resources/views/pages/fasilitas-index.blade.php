@@ -1,0 +1,209 @@
+@extends('layouts.app')
+
+@section('title', 'Fasilitas Utama - Geosite Danau Toba')
+
+@section('content')
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+    
+    .fasilitas-hero {
+        height: 50vh;
+        min-height: 400px;
+        background: linear-gradient(135deg, rgba(0,51,102,0.8), rgba(0,51,102,0.6)), url('{{ asset("image/meat/meat-hero.jpg") }}');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        margin-top: 76px;
+        position: relative;
+    }
+    
+    .fasilitas-hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        font-family: 'Cormorant Garamond', serif;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        animation: fadeInUp 0.8s ease;
+    }
+    
+    .fasilitas-hero p {
+        font-size: 1rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        opacity: 0.9;
+        animation: fadeInUp 0.8s ease 0.1s both;
+    }
+    
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .category-section {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    
+    .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    
+    .section-header .subtitle {
+        display: inline-block;
+        font-size: 0.75rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: #c6a43b;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+    
+    .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #003366;
+        font-family: 'Cormorant Garamond', serif;
+    }
+    
+    .section-header .divider {
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #c6a43b, #e8c45a);
+        margin: 0 auto 20px;
+        border-radius: 3px;
+    }
+    
+    /* // Menggunakan grid 2 kolom agar kotak UMKM dan Penginapan tampil sejajar dan proporsional */
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 35px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    
+    .category-card {
+        background: white;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        text-decoration: none;
+        display: block;
+        position: relative;
+    }
+    
+    .category-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    }
+    
+    .card-img-wrapper {
+        height: 250px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .card-img-wrapper::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 100%);
+    }
+    
+    .card-img-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s ease;
+    }
+    
+    .category-card:hover .card-img-wrapper img {
+        transform: scale(1.1);
+    }
+    
+    .card-content {
+        padding: 30px;
+        text-align: center;
+        background: white;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .card-content h3 {
+        color: #003366;
+        font-weight: 700;
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+    }
+    
+    .card-content p {
+        color: #64748b;
+        font-size: 0.95rem;
+        margin-bottom: 0;
+        line-height: 1.6;
+    }
+    
+    @media (max-width: 768px) {
+        .category-grid {
+            grid-template-columns: 1fr;
+        }
+        .fasilitas-hero h1 {
+            font-size: 2.5rem;
+        }
+    }
+</style>
+
+<div class="fasilitas-hero">
+    <div>
+        <h1>Fasilitas & Layanan</h1>
+        <p>Jelajahi kenyamanan dan produk lokal terbaik kami</p>
+    </div>
+</div>
+
+<div class="category-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="subtitle">Eksplorasi</span>
+            <h2>Pilih Kategori Fasilitas</h2>
+            <div class="divider"></div>
+        </div>
+        
+        <div class="category-grid">
+            <!-- // Routing langsung menuju halaman index UMKM yang ada di web.php -->
+            <a href="{{ url('/umkm') }}" class="category-card">
+                <div class="card-img-wrapper">
+                    <!-- Menggunakan foto UMKM yang tersedia secara default atau gambar dummy yang relevan jika belum ada -->
+                    <img src="https://images.unsplash.com/photo-1556740714-a8395b3bf30f?q=80&w=2070&auto=format&fit=crop" alt="UMKM">
+                </div>
+                <div class="card-content">
+                    <h3>UMKM</h3>
+                    <p>Temukan berbagai kerajinan khas dan produk lokal karya masyarakat sekitar.</p>
+                </div>
+            </a>
+            
+            <!-- // Routing langsung menuju halaman index Penginapan yang ada di web.php -->
+            <a href="{{ url('/penginapan') }}" class="category-card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop" alt="Penginapan">
+                </div>
+                <div class="card-content">
+                    <h3>Penginapan</h3>
+                    <p>Pesan tempat istirahat yang nyaman dengan pemandangan alam memukau.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+@endsection
