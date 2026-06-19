@@ -17,7 +17,7 @@
         font-size: 2.8rem;
         font-weight: 700;
     }
-    .hero-diversity h1 span { color: #c6a43b; }
+
     .hero-diversity p { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
     .hero-divider { width: 50px; height: 2px; background: #c6a43b; margin: 15px auto; }
 
@@ -116,7 +116,7 @@
 <!-- HERO -->
 <section class="hero-diversity">
     <div class="container">
-        <h1><span>Cultural Diversity</span></h1>
+        <h1>Cultural Diversity</h1>
         <div class="hero-divider"></div>
         <p>Keanekaragaman Budaya Batak di Geopark Danau Toba</p>
     </div>

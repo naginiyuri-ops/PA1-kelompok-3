@@ -17,7 +17,7 @@
         font-weight: 700;
         font-family: 'Playfair Display', serif;
     }
-        
+
     .hero-geodiversitas p {
         color: rgba(255,255,255,0.8);
         font-size: 0.9rem;
@@ -141,7 +141,7 @@
 <!-- HERO -->
 <div class="hero-geodiversitas">
     <div class="container">
-        <h1>⛰️ <span>Geodiversitas</span></h1>
+        <h1>Geodiversitas</h1>
         <div class="hero-divider"></div>
         <p>Keanekaragaman Geologi di Geopark Danau Toba</p>
     </div>

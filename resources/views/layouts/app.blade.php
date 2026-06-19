@@ -131,7 +131,7 @@
         .nav-link {
             color: white !important;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             padding: 0.6rem 1rem;
             border-radius: 40px;
             transition: all 0.3s ease;
