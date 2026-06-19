@@ -107,6 +107,7 @@
     }
     
     .hero-badge {
+        font-family: 'Playfair Display', serif;
         display: inline-block;
         background: rgba(198, 164, 59, 0.15);
         border: 1px solid rgba(198, 164, 59, 0.3);
@@ -132,6 +133,7 @@
     
     .hero-title span {
         color: var(--gold);
+        font-family: 'Playfair Display', serif;
     }
     
     .hero-divider {
@@ -142,6 +144,7 @@
     }
     
     .hero-btn {
+        font-family: 'Playfair Display', serif;
         display: inline-block;
         background: var(--gold);
         color: var(--primary);

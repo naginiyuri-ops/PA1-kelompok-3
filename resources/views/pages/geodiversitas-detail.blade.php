@@ -72,6 +72,7 @@
         line-height: 1.8;
         color: #475569;
         margin-top: 20px;
+        text-align: justify;
     }
     .detail-content .deskripsi p { margin-bottom: 15px; }
     .btn-back {

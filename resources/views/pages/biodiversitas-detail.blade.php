@@ -57,6 +57,7 @@
         line-height: 1.8;
         color: #475569;
         margin-top: 20px;
+        text-align: justify;
     }
     .btn-back {
         display: inline-block;

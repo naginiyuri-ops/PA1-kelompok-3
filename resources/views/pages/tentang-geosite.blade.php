@@ -177,6 +177,7 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        text-align: justify;
     }
     .geosite-card .content .btn-detail {
         display: inline-block;
@@ -201,6 +202,7 @@
         line-height: 1.8;
         font-size: 0.95rem;
         margin-bottom: 15px;
+        text-align: justify;
     }
     .profile-text ul {
         list-style: none;

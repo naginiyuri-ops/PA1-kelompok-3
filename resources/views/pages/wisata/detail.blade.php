@@ -248,6 +248,7 @@
         color: var(--text-gray);
         line-height: 1.8;
         white-space: pre-line;
+        text-align: justify;
     }
 
     /* ── Action Button ── */

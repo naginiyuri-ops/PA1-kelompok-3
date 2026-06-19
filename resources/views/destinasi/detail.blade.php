@@ -295,6 +295,7 @@
         color: #555;
         line-height: 1.8;
         margin-top: 20px;
+        text-align: justify;
     }
     
     .back-button {

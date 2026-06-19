@@ -63,7 +63,7 @@
     }
     .detail-main .deskripsi {
         font-size: 0.95rem; color: var(--text-gray);
-        line-height: 1.85; white-space: pre-line;
+        line-height: 1.85; white-space: pre-line; text-align: justify;
     }
     .detail-sidebar { display: flex; flex-direction: column; gap: 20px; }
     .sidebar-card {
