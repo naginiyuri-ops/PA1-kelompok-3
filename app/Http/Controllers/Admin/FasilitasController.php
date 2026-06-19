@@ -15,15 +15,26 @@ class FasilitasController extends Controller
         return view('admin.fasilitas.index', compact('data'));
     }
 
-    public function create()
+   public function create()
     {
-        return view('admin.fasilitas.create');
+    $jenisList = [
+        'akomodasi',
+        'kuliner',
+        'pusat informasi',
+        'toilet',
+        'parkir',
+        'akses jalan',
+        'pemandu lokal'
+    ];
+
+    return view('admin.fasilitas.create', compact('jenisList'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'nama' => 'required|string|max:255',
+            'jenis' => 'required|string|max:100',
             'deskripsi' => 'required|string',
             'harga' => 'nullable|string|max:100',
             'lokasi' => 'nullable|string|max:255',
@@ -35,6 +46,7 @@ class FasilitasController extends Controller
 
         $data = [
             'nama' => $request->nama,
+            'jenis' => $request->jenis,
             'deskripsi' => $request->deskripsi,
             'harga' => $request->harga,
             'lokasi' => $request->lokasi,
@@ -64,8 +76,19 @@ class FasilitasController extends Controller
 
     public function edit($id)
     {
-        $data = Fasilitas::findOrFail($id);
-        return view('admin.fasilitas.edit', compact('data'));
+    $data = Fasilitas::findOrFail($id);
+
+    $jenisList = [
+        'akomodasi',
+        'kuliner',
+        'pusat informasi',
+        'toilet',
+        'parkir',
+        'akses jalan',
+        'pemandu lokal'
+    ];
+
+    return view('admin.fasilitas.edit', compact('data', 'jenisList'));
     }
 
     public function update(Request $request, $id)
@@ -74,6 +97,7 @@ class FasilitasController extends Controller
 
         $request->validate([
             'nama' => 'required|string|max:255',
+            'jenis' => 'required|string|max:100',
             'deskripsi' => 'required|string',
             'harga' => 'nullable|string|max:100',
             'lokasi' => 'nullable|string|max:255',
@@ -85,6 +109,7 @@ class FasilitasController extends Controller
 
         $updateData = [
             'nama' => $request->nama,
+            'jenis' => $request->jenis,
             'deskripsi' => $request->deskripsi,
             'harga' => $request->harga,
             'lokasi' => $request->lokasi,
