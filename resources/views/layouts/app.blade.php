@@ -85,8 +85,8 @@
 
         /* CONTAINER */
         .navbar .container {
-            max-width: 1400px;
-            padding: 0 24px;
+            max-width: 1800px; /* Diperbesar agar jarak kosong berkurang */
+            padding: 0 12px; /* Padding dikurangi setengahnya dari 24px menjadi 12px */
             height: 100%;
             display: flex;
             align-items: center;
@@ -122,7 +122,7 @@
         }
 
         .navbar-brand {
-            font-size: 1.25rem;
+            font-size: 1.45rem; /* Ukuran teks logo diperbesar */
             font-weight: 800;
             color: white !important;
             margin: 0;
@@ -158,8 +158,8 @@
         .nav-link {
             color: rgba(255, 255, 255, 0.88) !important;
             font-weight: 600;
-            font-size: 0.72rem;
-            padding: 5px 8px !important;
+            font-size: 0.9rem; /* Ukuran teks diperbesar dari 0.72rem */
+            padding: 5px 10px !important; /* Padding sedikit diperbesar agar proporsional */
             border-radius: 7px;
             transition: all 0.25s ease;
             white-space: nowrap;
@@ -265,7 +265,7 @@
             border: none;
             outline: none;
             color: white;
-            font-size: 0.75rem;
+            font-size: 0.9rem; /* Ukuran teks search diperbesar */
             font-weight: 500;
             width: 100%;
             font-family: 'Inter', sans-serif;
@@ -276,7 +276,7 @@
 
         #globalSearchInput::placeholder {
             color: rgba(255, 255, 255, 0.42);
-            font-size: 0.7rem;
+            font-size: 0.85rem; /* Ukuran teks placeholder diperbesar */
         }
 
         .navbar.scrolled-down #globalSearchInput::placeholder {
