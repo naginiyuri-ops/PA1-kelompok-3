@@ -476,7 +476,8 @@
                 gap: 2px;
                 justify-content: flex-start;
                 flex: none;
-                align-items: stretch;
+                align-items: center;
+                text-align: center;
             }
 
             .nav-item { width: 100%; }
@@ -945,37 +946,37 @@
                            href="{{ url('/berita') }}">Berita & Informasi</a>
                     </li>
 
-                    {{-- SEARCH — item ke-10 --}}
-                    <li class="nav-item search-wrapper" id="searchWrapper">
-                        <form id="globalSearchForm"
-                              action="{{ route('search.results') }}"
-                              method="GET"
-                              style="display:contents;"
-                              onsubmit="handleSearchSubmit(event)">
-                            <div class="search-input-container">
-                                <button type="submit" class="search-icon-btn" aria-label="Cari">
-                                    <i class="fas fa-search search-icon"></i>
-                                </button>
-                                <input
-                                    type="text"
-                                    id="globalSearchInput"
-                                    name="q"
-                                    placeholder="Cari..."
-                                    autocomplete="off"
-                                    aria-label="Pencarian Global"
-                                    maxlength="100"
-                                    value="{{ request('q') }}"
-                                >
-                                <button class="search-clear-btn" id="searchClearBtn"
-                                        type="button" aria-label="Hapus pencarian">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </form>
-                        <div id="searchResultsDropdown"></div>
-                    </li>
-
+                    {{-- SEARCH — di luar navbar-nav --}}
                 </ul>
+
+                <div class="search-wrapper" id="searchWrapper">
+                    <form id="globalSearchForm"
+                          action="{{ route('search.results') }}"
+                          method="GET"
+                          style="display:contents;"
+                          onsubmit="handleSearchSubmit(event)">
+                        <div class="search-input-container">
+                            <button type="submit" class="search-icon-btn" aria-label="Cari">
+                                <i class="fas fa-search search-icon"></i>
+                            </button>
+                            <input
+                                type="text"
+                                id="globalSearchInput"
+                                name="q"
+                                placeholder="Cari..."
+                                autocomplete="off"
+                                aria-label="Pencarian Global"
+                                maxlength="100"
+                                value="{{ request('q') }}"
+                            >
+                            <button class="search-clear-btn" id="searchClearBtn"
+                                    type="button" aria-label="Hapus pencarian">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <div id="searchResultsDropdown"></div>
+                </div>
             </div>
         </div>
     </nav>
