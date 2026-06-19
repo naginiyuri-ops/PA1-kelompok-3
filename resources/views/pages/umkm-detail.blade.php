@@ -1,415 +1,230 @@
 @extends('layouts.app')
 
-@section('title', ($item->nama_usaha ?? 'Detail UMKM') . ' - UMKM Geosite Toba')
+@section('title', $item->nama_usaha . ' - UMKM Geosite Danau Toba')
 
 @section('content')
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap');
-
     :root {
-        --primary: #003366;
-        --primary-light: #1a4a7a;
+        --primary:      #003366;
+        --primary-light:#1a4a7a;
         --primary-dark: #001f3f;
-        --gold: #c6a43b;
-        --gold-light: #f1d26b;
-        --gold-dark: #967a28;
-        --text-dark: #0f172a;
-        --text-gray: #334155;
-        --text-light: #64748b;
-        --white: #ffffff;
-        --bg-light: #f8fafc;
-        --bg-gray: #f1f5f9;
-        --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
-        --shadow-md: 0 10px 30px rgba(0,0,0,0.06);
-        --shadow-xl: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
+        --gold:         #c6a43b;
+        --gold-light:   #f1d26b;
+        --gold-dark:    #967a28;
+        --text-dark:    #0f172a;
+        --text-gray:    #334155;
+        --text-light:   #64748b;
+        --white:        #ffffff;
+        --bg-light:     #f8fafc;
+        --shadow-xl:    0 25px 50px -12px rgba(15,23,42,0.15);
     }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-light); }
 
-    body {
-        font-family: 'Inter', sans-serif;
-        color: var(--text-dark);
-        background-color: var(--bg-light);
-        -webkit-font-smoothing: antialiased;
-    }
-
-    /* ==================== HERO ==================== */
     .detail-hero {
-        background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
-        padding: 120px 0 50px;
-        margin-top: 60px;
-        color: white;
-        position: relative;
-        overflow: hidden;
+        position: relative; margin-top: 60px;
+        height: 480px; overflow: hidden;
     }
-
-    .detail-hero::before {
-        content: '';
-        position: absolute;
-        top: -50%; left: -50%;
-        width: 200%; height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
-        animation: slowRotate 40s linear infinite;
+    .detail-hero img { width: 100%; height: 100%; object-fit: cover; }
+    .detail-hero-overlay {
+        position: absolute; inset: 0;
+        background: linear-gradient(to bottom, rgba(0,31,63,0.15) 0%, rgba(0,31,63,0.75) 100%);
+        display: flex; align-items: flex-end; padding: 40px;
     }
-
-    @keyframes slowRotate {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
+    .detail-hero-content { color: white; max-width: 800px; }
+    .detail-hero-badge {
+        display: inline-block; background: var(--gold); color: var(--primary-dark);
+        padding: 5px 16px; border-radius: 30px; font-size: 0.72rem;
+        font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px;
     }
-
-    .detail-hero .container { position: relative; z-index: 2; }
-
-    .breadcrumb-link {
-        color: rgba(255,255,255,0.65);
-        text-decoration: none;
-        font-size: 0.85rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-        transition: color 0.2s ease;
-        margin-bottom: 20px;
-    }
-    .breadcrumb-link:hover { color: var(--gold-light); }
-
-    .detail-hero h1 {
+    .detail-hero-content h1 {
+        font-size: 2.5rem; font-weight: 700;
         font-family: 'Playfair Display', serif;
-        font-size: 2.4rem;
-        font-weight: 700;
-        margin-bottom: 16px;
-        line-height: 1.3;
+        line-height: 1.25; text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
-    .hero-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        margin-top: 16px;
-    }
-
-    .hero-meta-item {
-        font-size: 0.85rem;
-        color: rgba(255,255,255,0.78);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .hero-meta-item i { color: var(--gold); }
-
-    .hero-divider {
-        width: 50px; height: 3px;
-        background: var(--gold);
-        margin: 20px 0 0;
-        border-radius: 4px;
-    }
-
-    /* ==================== DETAIL CONTENT ==================== */
-    .detail-content {
-        padding: 60px 0;
-        background: var(--bg-light);
-    }
-
-    .container {
-        max-width: 1240px;
-        margin: 0 auto;
-        padding: 0 24px;
-    }
-
-    .content-grid {
+    .detail-body { padding: 60px 0 90px; }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+    .detail-layout {
         display: grid;
-        grid-template-columns: 1fr 360px;
-        gap: 40px;
-        align-items: start;
+        grid-template-columns: 1fr 320px;
+        gap: 40px; align-items: start;
     }
-
-    /* Main image */
-    .main-img-wrapper {
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: var(--shadow-xl);
-        margin-bottom: 32px;
-        aspect-ratio: 16/9;
-    }
-
-    .main-img-wrapper img {
-        width: 100%; height: 100%;
-        object-fit: cover;
-        transition: transform 0.6s ease;
-    }
-
-    .main-img-wrapper:hover img { transform: scale(1.03); }
-
-    /* Deskripsi */
-    .deskripsi-box {
-        background: var(--white);
-        border-radius: 18px;
-        padding: 36px;
-        box-shadow: var(--shadow-md);
+    .detail-main {
+        background: var(--white); border-radius: 20px;
+        padding: 36px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         border: 1px solid rgba(15,23,42,0.04);
     }
-
-    .deskripsi-box h3 {
+    .detail-main h2 {
+        font-size: 1.6rem; font-weight: 700;
         font-family: 'Playfair Display', serif;
-        font-size: 1.3rem;
-        color: var(--primary);
-        margin-bottom: 16px;
-        padding-bottom: 12px;
-        border-bottom: 2px solid rgba(198,164,59,0.2);
+        color: var(--primary-dark); margin-bottom: 20px;
+        padding-bottom: 16px; border-bottom: 2px solid #f1f5f9;
     }
-
-    .deskripsi-text {
-        font-size: 0.96rem;
-        line-height: 1.9;
-        color: var(--text-gray);
+    .detail-main .deskripsi {
+        font-size: 0.95rem; color: var(--text-gray);
+        line-height: 1.85; white-space: pre-line;
     }
-
-    /* Info sidebar */
-    .info-sidebar {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .info-card {
-        background: var(--white);
-        border-radius: 18px;
-        padding: 28px;
-        box-shadow: var(--shadow-md);
+    .detail-sidebar { display: flex; flex-direction: column; gap: 20px; }
+    .sidebar-card {
+        background: var(--white); border-radius: 18px;
+        padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         border: 1px solid rgba(15,23,42,0.04);
     }
-
-    .info-card h4 {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.1rem;
-        color: var(--primary);
-        margin-bottom: 20px;
-        padding-bottom: 12px;
-        border-bottom: 2px solid rgba(198,164,59,0.2);
+    .sidebar-card h4 {
+        font-size: 0.85rem; font-weight: 700;
+        color: var(--primary); margin-bottom: 16px;
+        padding-bottom: 12px; border-bottom: 1px solid #f1f5f9;
+        display: flex; align-items: center; gap: 8px;
+        text-transform: uppercase; letter-spacing: 0.5px;
     }
-
+    .sidebar-card h4 i { color: var(--gold); }
     .info-row {
-        margin-bottom: 16px;
+        display: flex; gap: 12px; align-items: flex-start;
+        margin-bottom: 12px; padding-bottom: 12px;
+        border-bottom: 1px solid #f8fafc;
     }
-
-    .info-label {
-        font-size: 0.68rem;
-        font-weight: 700;
-        color: var(--text-light);
-        text-transform: uppercase;
-        letter-spacing: 0.8px;
-        margin-bottom: 4px;
-    }
-
-    .info-value {
-        font-size: 0.94rem;
-        color: var(--text-dark);
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .info-value i { color: var(--gold); font-size: 0.85rem; }
-
-    .badge-aktif {
-        display: inline-block;
-        padding: 4px 14px;
-        border-radius: 20px;
-        background: #dcfce7;
-        color: #166534;
-        font-weight: 700;
-        font-size: 0.75rem;
-    }
-
-    .badge-nonaktif {
-        display: inline-block;
-        padding: 4px 14px;
-        border-radius: 20px;
-        background: #fee2e2;
-        color: #991b1b;
-        font-weight: 700;
-        font-size: 0.75rem;
-    }
-
-    /* Contact button */
-    .contact-btn {
-        display: block;
-        text-align: center;
-        background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-        color: var(--primary-dark);
-        padding: 14px 24px;
-        border-radius: 12px;
-        font-weight: 700;
-        font-size: 0.9rem;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(198,164,59,0.25);
-        margin-top: 8px;
-    }
-
-    .contact-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(198,164,59,0.35);
-        color: var(--primary-dark);
-    }
-
+    .info-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .info-row i { color: var(--gold); width: 18px; flex-shrink: 0; margin-top: 2px; font-size: 0.85rem; }
+    .info-row .info-text { font-size: 0.85rem; color: var(--text-gray); }
+    .info-row .info-label { font-size: 0.72rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; }
     .btn-back {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: var(--bg-gray);
-        color: var(--text-gray);
-        padding: 12px 24px;
-        border-radius: 12px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.88rem;
-        transition: all 0.3s ease;
-        width: 100%;
-        justify-content: center;
+        display: inline-flex; align-items: center; gap: 8px;
+        background: var(--primary); color: white;
+        padding: 12px 24px; border-radius: 12px;
+        text-decoration: none; font-weight: 700;
+        font-size: 0.88rem; transition: all 0.3s ease;
+        width: 100%; justify-content: center;
+    }
+    .btn-back:hover { background: var(--primary-light); transform: translateY(-2px); color: white; }
+
+    .related-section { margin-top: 60px; }
+    .related-section h3 {
+        font-size: 1.4rem; font-weight: 700;
+        font-family: 'Playfair Display', serif;
+        color: var(--primary-dark); margin-bottom: 28px;
+    }
+    .related-section h3 span { color: var(--gold); }
+    .related-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 24px;
+    }
+    .related-card {
+        background: var(--white); border-radius: 16px; overflow: hidden;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+        transition: all 0.3s ease; text-decoration: none; color: inherit;
+        display: flex; flex-direction: column;
+        border: 1px solid rgba(15,23,42,0.04);
+    }
+    .related-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
+    .related-card img { width: 100%; height: 160px; object-fit: cover; }
+    .related-card .related-content { padding: 16px; }
+    .related-card .related-title {
+        font-size: 0.95rem; font-weight: 700;
+        color: var(--primary-dark); margin-bottom: 6px;
+        font-family: 'Playfair Display', serif;
+        display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2;
+        -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .related-card .related-link {
+        font-size: 0.75rem; color: var(--gold-dark);
+        font-weight: 600; display: flex; align-items: center; gap: 5px;
     }
 
-    .btn-back:hover {
-        background: #e2e8f0;
-        transform: translateY(-2px);
-        color: var(--primary);
-    }
-
-    /* ==================== RESPONSIVE ==================== */
-    @media (max-width: 992px) {
-        .content-grid { grid-template-columns: 1fr; }
-        .info-sidebar { order: -1; }
-        .detail-hero h1 { font-size: 1.9rem; }
-    }
-
-    @media (max-width: 576px) {
-        .detail-hero { padding: 110px 0 40px; }
-        .detail-hero h1 { font-size: 1.5rem; }
-        .deskripsi-box { padding: 24px; }
-        .info-card { padding: 22px; }
-        .detail-content { padding: 40px 0; }
-    }
+    @media (max-width: 992px) { .detail-layout { grid-template-columns: 1fr; } .detail-hero { height: 380px; } .detail-hero-content h1 { font-size: 2rem; } }
+    @media (max-width: 768px) { .detail-hero { height: 300px; } .detail-hero-overlay { padding: 24px; } .detail-hero-content h1 { font-size: 1.6rem; } .detail-body { padding: 40px 0 70px; } .detail-main { padding: 24px; } }
+    @media (max-width: 576px) { .detail-hero { height: 250px; } .detail-hero-content h1 { font-size: 1.3rem; } }
 </style>
 
-<!-- HERO -->
-<section class="detail-hero">
-    <div class="container">
-        <a href="{{ route('umkm') }}" class="breadcrumb-link">
-            <i class="fas fa-arrow-left"></i> Kembali ke UMKM
-        </a>
-        <h1>{{ $item->nama_usaha }}</h1>
-        <div class="hero-meta">
-            @if($item->alamat)
-                <div class="hero-meta-item">
-                    <i class="fas fa-map-marker-alt"></i> {{ $item->alamat }}
-                </div>
-            @endif
-            @if($item->no_telepon)
-                <div class="hero-meta-item">
-                    <i class="fas fa-phone-alt"></i> {{ $item->no_telepon }}
-                </div>
-            @endif
-            @if($item->harga)
-                <div class="hero-meta-item">
-                    <i class="fas fa-tag"></i> {{ $item->harga }}
-                </div>
-            @endif
+{{-- HERO GAMBAR --}}
+<div class="detail-hero">
+    <img src="{{ $item->foto_utama ? asset($item->foto_utama) : asset('image/default.jpg') }}"
+         alt="{{ $item->nama_usaha }}"
+         onerror="this.src='{{ asset('image/default.jpg') }}'">
+    <div class="detail-hero-overlay">
+        <div class="detail-hero-content">
+            <div class="detail-hero-badge">🏪 UMKM</div>
+            <h1>{{ $item->nama_usaha }}</h1>
         </div>
-        <div class="hero-divider"></div>
     </div>
-</section>
+</div>
 
-<!-- CONTENT -->
-<section class="detail-content">
+{{-- KONTEN UTAMA --}}
+<section class="detail-body">
     <div class="container">
-        <div class="content-grid">
-            <!-- MAIN LEFT COLUMN -->
-            <div>
-                @php
-                    $imgSrc = asset('image/default.jpg');
-                    if (!empty($item->foto_utama)) {
-                        if (file_exists(public_path($item->foto_utama))) {
-                            $imgSrc = asset($item->foto_utama);
-                        } elseif (file_exists(public_path('image/umkm/' . $item->foto_utama))) {
-                            $imgSrc = asset('image/umkm/' . $item->foto_utama);
-                        } else {
-                            $imgSrc = asset($item->foto_utama);
-                        }
-                    }
-                @endphp
-                <div class="main-img-wrapper">
-                    <img src="{{ $imgSrc }}" alt="{{ $item->nama_usaha }}"
-                         onerror="this.src='{{ asset('image/default.jpg') }}'">
-                </div>
+        <div class="detail-layout">
 
-                <div class="deskripsi-box">
-                    <h3><i class="fas fa-info-circle" style="color:var(--gold); margin-right:8px;"></i>Tentang UMKM Ini</h3>
-                    <div class="deskripsi-text">
-                        {!! $item->deskripsi ?? '<p style="color:#94a3b8;">Deskripsi belum tersedia.</p>' !!}
-                    </div>
-                </div>
+            {{-- Kolom kiri: Deskripsi --}}
+            <div class="detail-main">
+                <h2><i class="fas fa-store" style="color:var(--gold);margin-right:10px;"></i>Tentang UMKM Ini</h2>
+                <div class="deskripsi">{{ $item->deskripsi ?? 'Deskripsi belum tersedia.' }}</div>
             </div>
 
-            <!-- SIDEBAR RIGHT COLUMN -->
-            <div class="info-sidebar">
-                <div class="info-card">
-                    <h4><i class="fas fa-store" style="color:var(--gold); margin-right:8px;"></i>Informasi Usaha</h4>
-
+            {{-- Kolom kanan: Sidebar info --}}
+            <div class="detail-sidebar">
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-info-circle"></i> Informasi</h4>
                     <div class="info-row">
-                        <div class="info-label">Nama Usaha</div>
-                        <div class="info-value">{{ $item->nama_usaha }}</div>
+                        <i class="fas fa-user"></i>
+                        <div>
+                            <div class="info-label">Pemilik</div>
+                            <div class="info-text">{{ $item->pemilik ?? '-' }}</div>
+                        </div>
                     </div>
-
-                    @if($item->alamat)
-                        <div class="info-row">
-                            <div class="info-label">Alamat</div>
-                            <div class="info-value">
-                                <i class="fas fa-map-marker-alt"></i> {{ $item->alamat }}
-                            </div>
-                        </div>
-                    @endif
-
-                    @if($item->no_telepon)
-                        <div class="info-row">
-                            <div class="info-label">No. Telepon</div>
-                            <div class="info-value">
-                                <i class="fas fa-phone-alt"></i> {{ $item->no_telepon }}
-                            </div>
-                        </div>
-                    @endif
-
-                    @if($item->harga)
-                        <div class="info-row">
-                            <div class="info-label">Kisaran Harga</div>
-                            <div class="info-value">
-                                <i class="fas fa-tag"></i> {{ $item->harga }}
-                            </div>
-                        </div>
-                    @endif
-
                     <div class="info-row">
-                        <div class="info-label">Status</div>
-                        <div class="info-value">
-                            @if($item->status === 'aktif')
-                                <span class="badge-aktif">Aktif</span>
-                            @else
-                                <span class="badge-nonaktif">Nonaktif</span>
-                            @endif
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <div class="info-label">Alamat</div>
+                            <div class="info-text">{{ $item->alamat ?? 'Geosite Danau Toba, Sumatera Utara' }}</div>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <div class="info-label">No. Telepon</div>
+                            <div class="info-text">{{ $item->no_telepon ?? '-' }}</div>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div>
+                            <div class="info-label">Terakhir Diperbarui</div>
+                            <div class="info-text">{{ $item->updated_at->format('d M Y') }}</div>
                         </div>
                     </div>
                 </div>
 
-                @if($item->no_telepon)
-                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $item->no_telepon) }}"
-                       target="_blank" class="contact-btn">
-                        <i class="fab fa-whatsapp" style="font-size:1.1rem;"></i> Hubungi via WhatsApp
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-list"></i> Navigasi</h4>
+                    <a href="{{ route('fasilitas.umkm') }}" class="btn-back">
+                        <i class="fas fa-arrow-left"></i>
+                        Kembali ke Daftar UMKM
                     </a>
-                @endif
-
-                <a href="{{ route('umkm') }}" class="btn-back">
-                    <i class="fas fa-arrow-left"></i> Kembali ke Daftar UMKM
-                </a>
+                </div>
             </div>
         </div>
+
+        {{-- UMKM Lainnya --}}
+        @if($related->count() > 0)
+        <div class="related-section">
+            <h3>UMKM <span>Lainnya</span></h3>
+            <div class="related-grid">
+                @foreach($related as $rel)
+                <a href="{{ route('fasilitas.umkm.detail', $rel->id) }}" class="related-card">
+                    <img src="{{ $rel->foto_utama ? asset($rel->foto_utama) : asset('image/default.jpg') }}"
+                         alt="{{ $rel->nama_usaha }}" loading="lazy"
+                         onerror="this.src='{{ asset('image/default.jpg') }}'">
+                    <div class="related-content">
+                        <div class="related-title">{{ $rel->nama_usaha }}</div>
+                        <div class="related-link">Lihat Detail <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </a>
+                @endforeach
+            </div>
+        </div>
+        @endif
+
     </div>
 </section>
 

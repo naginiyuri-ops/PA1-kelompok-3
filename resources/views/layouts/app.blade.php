@@ -937,20 +937,29 @@
             SEARCH BAR GLOBAL
             ======================================== -->
             <div class="search-wrapper" id="searchWrapper">
-                <div class="search-input-container">
-                    <i class="fas fa-search search-icon"></i>
-                    <input
-                        type="text"
-                        id="globalSearchInput"
-                        placeholder="Cari sesuatu..."
-                        autocomplete="off"
-                        aria-label="Pencarian Global"
-                        maxlength="100"
-                    >
-                    <button class="search-clear-btn" id="searchClearBtn" aria-label="Hapus pencarian">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
+                {{-- Form GET agar menekan Enter / klik ikon akan menuju halaman hasil pencarian --}}
+                <form id="globalSearchForm" action="{{ route('search.results') }}" method="GET"
+                      style="display:contents;" onsubmit="handleSearchSubmit(event)">
+                    <div class="search-input-container">
+                        {{-- Tombol ikon kaca pembesar diklik = submit form --}}
+                        <button type="submit" class="search-icon-btn" aria-label="Cari" style="background:none;border:none;padding:0;cursor:pointer;display:flex;align-items:center;">
+                            <i class="fas fa-search search-icon"></i>
+                        </button>
+                        <input
+                            type="text"
+                            id="globalSearchInput"
+                            name="q"
+                            placeholder="Cari sesuatu..."
+                            autocomplete="off"
+                            aria-label="Pencarian Global"
+                            maxlength="100"
+                            value="{{ request('q') }}"
+                        >
+                        <button class="search-clear-btn" id="searchClearBtn" type="button" aria-label="Hapus pencarian">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </form>
                 <div id="searchResultsDropdown"></div>
             </div>
 
@@ -1366,6 +1375,20 @@
         });
 
     })();
+
+    // ========================================
+    // FUNGSI SUBMIT FORM PENCARIAN
+    // Validasi: tidak submit jika query < 1 karakter
+    // ========================================
+    function handleSearchSubmit(event) {
+        const input = document.getElementById('globalSearchInput');
+        const query = input ? input.value.trim() : '';
+        if (query.length < 1) {
+            event.preventDefault(); // Cegah submit jika input kosong
+            input.focus();
+        }
+        // Jika valid, biarkan form submit secara normal ke /search-results?q=...
+    }
     </script>
 
     @stack('scripts')
