@@ -225,14 +225,6 @@
         <div class="stat-label">Total Berita</div>
     </div>
     <div class="stat-card">
-        <div class="stat-number">{{ $totalInformasi ?? 0 }}</div>
-        <div class="stat-label">Total Informasi</div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-number">{{ $totalSejarah ?? 0 }}</div>
-        <div class="stat-label">Total Sejarah Wisata</div>
-    </div>
-    <div class="stat-card">
         <div class="stat-number">{{ $totalUmkm ?? 0 }}</div>
         <div class="stat-label">Lapak UMKM</div>
     </div>
@@ -250,12 +242,20 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 
 
 <div class="quick-actions-bar">
     <span><i class="fas fa-bolt"></i> Pintasan:</span>
 
     <a href="{{ route('admin.create') }}" class="btn-primary-sm" style="background-color: #475569;"><i class="fas fa-user-plus"></i> Admin Baru</a>
+=======
+<div class="quick-actions-bar">
+    <span><i class="fas fa-bolt"></i> Pintasan:</span>
+    <a href="{{ route('admin.create') }}" class="btn-primary-sm" style="background-color: #475569;">
+        <i class="fas fa-user-plus"></i> Admin Baru
+    </a>
+>>>>>>> 2bb75f309a46379f136c443fd563ae965cbf7584
 </div>
 
 @endsection

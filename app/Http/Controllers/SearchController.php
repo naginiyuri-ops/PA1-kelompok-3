@@ -2,446 +2,317 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Berita;
+use App\Models\Galeri;
 use App\Models\Umkm;
 use App\Models\Penginapan;
+use App\Models\Fasilitas;
 use App\Models\Biodiversitas;
 use App\Models\Geodiversitas;
 use App\Models\CulturalDiversity;
+use App\Models\SejarahWisata;
+use App\Models\Destinasi;
+use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
     /**
-     * Endpoint pencarian global.
-     * Menerima parameter GET ?q=... dan mencari ke seluruh tabel utama.
-     * Mengembalikan respons JSON yang berisi kumpulan hasil dari semua tabel.
+     * Live search - mengembalikan JSON untuk dropdown
      */
     public function search(Request $request)
     {
-        // Ambil dan bersihkan kata kunci dari request
-        $query = trim($request->get('q', ''));
+        $query = $request->get('q');
 
-        // Jika query kurang dari 3 karakter, kembalikan array kosong
-        // (validasi ini juga ada di frontend, tapi perlu double-check di backend)
-        if (mb_strlen($query) < 3) {
+        if (empty($query) || strlen($query) < 2) {
             return response()->json([]);
         }
 
-        $results = collect();
+        $results = [];
 
-        // ============================================================
-        // 1. CARI DI TABEL BERITA
-        // Hanya cari berita yang berstatus aktif (status = 1)
-        // ============================================================
-        $berita = Berita::where('status', 1)
-            ->where('judul', 'LIKE', "%{$query}%")
-            ->select('id', 'judul', 'slug', 'gambar', 'penulis')
-            ->limit(4)
-            ->get()
-            ->map(function ($item) {
-                return [
-                    'type'        => 'Berita',        // Label kategori hasil
-                    'icon'        => 'fa-newspaper',   // Ikon FontAwesome
-                    'nama'        => $item->judul,     // Nama yang ditampilkan
-                    'sub'         => $item->penulis ?? 'Redaksi', // Info tambahan
-                    'url'         => url('/berita/' . $item->slug), // URL tujuan klik
-                    'gambar_url'  => $item->gambar_url,
-                ];
-            });
-
-        // ============================================================
-        // 2. CARI DI TABEL UMKM
-        // Hanya tampilkan UMKM dengan status aktif
-        // ============================================================
-        $umkm = Umkm::where('status', 'aktif')
-            ->where('nama_usaha', 'LIKE', "%{$query}%")
-            ->select('id', 'nama_usaha', 'pemilik', 'alamat', 'foto_utama')
-            ->limit(4)
-            ->get()
-            ->map(function ($item) {
-                // Resolusi URL gambar UMKM mengikuti logika yang sama dengan HomeController
-                $gambarUrl = null;
-                if (!empty($item->foto_utama)) {
-                    if (str_starts_with($item->foto_utama, 'image/') || str_starts_with($item->foto_utama, 'storage/')) {
-                        $gambarUrl = asset($item->foto_utama);
-                    } elseif (file_exists(public_path('image/umkm/' . $item->foto_utama))) {
-                        $gambarUrl = asset('image/umkm/' . $item->foto_utama);
-                    } else {
-                        $gambarUrl = asset($item->foto_utama);
-                    }
-                }
-
-                return [
-                    'type'        => 'UMKM',
-                    'icon'        => 'fa-store',
-                    'nama'        => $item->nama_usaha,
-                    'sub'         => $item->alamat ?? 'Desa Meat',
-                    'url'         => url('/umkm/' . $item->id),
-                    'gambar_url'  => $gambarUrl,
-                ];
-            });
-
-        // ============================================================
-        // 3. CARI DI TABEL PENGINAPAN
-        // Cari berdasarkan nama atau lokasi, hanya yang aktif (status = 1)
-        // ============================================================
-        $penginapan = Penginapan::where('status', 1)
-            ->where(function ($q) use ($query) {
-                $q->where('nama', 'LIKE', "%{$query}%")
-                  ->orWhere('lokasi', 'LIKE', "%{$query}%");
+        // Search Berita
+        $berita = Berita::where('status', true)
+            ->where(function($q) use ($query) {
+                $q->where('judul', 'LIKE', "%{$query}%")
+                  ->orWhere('konten', 'LIKE', "%{$query}%");
             })
-            ->select('id', 'nama', 'lokasi', 'harga', 'gambar')
-            ->limit(4)
-            ->get()
-            ->map(function ($item) {
-                return [
-                    'type'        => 'Penginapan',
-                    'icon'        => 'fa-hotel',
-                    'nama'        => $item->nama,
-                    'sub'         => $item->lokasi ?? '-',
-                    'url'         => url('/penginapan/' . $item->id),
-                    'gambar_url'  => $item->gambar_url, // Menggunakan accessor yang sudah ada di model
-                ];
-            });
+            ->limit(3)
+            ->get();
 
-        // ============================================================
-        // 4. CARI DI TABEL BIODIVERSITAS
-        // Hanya tampilkan yang berstatus aktif (status = true)
-        // ============================================================
-        $biodiversitas = Biodiversitas::where('status', true)
-            ->where(function ($q) use ($query) {
-                $q->where('nama', 'LIKE', "%{$query}%")
-                  ->orWhere('lokasi', 'LIKE', "%{$query}%");
-            })
-            ->select('id', 'nama', 'slug', 'kategori', 'lokasi', 'gambar')
-            ->limit(4)
-            ->get()
-            ->map(function ($item) {
-                return [
-                    'type'        => 'Biodiversitas',
-                    'icon'        => 'fa-leaf',
-                    'nama'        => $item->nama,
-                    'sub'         => $item->kategori ?? $item->lokasi,
-                    'url'         => url('/biodiversitas/' . $item->slug),
-                    'gambar_url'  => $item->gambar_url,
-                ];
-            });
-
-        // ============================================================
-        // 5. CARI DI TABEL GEODIVERSITAS
-        // Hanya tampilkan yang berstatus aktif (status = true)
-        // ============================================================
-        $geodiversitas = Geodiversitas::where('status', true)
-            ->where(function ($q) use ($query) {
-                $q->where('nama', 'LIKE', "%{$query}%")
-                  ->orWhere('lokasi', 'LIKE', "%{$query}%");
-            })
-            ->select('id', 'nama', 'slug', 'tipe_geologi', 'lokasi', 'gambar')
-            ->limit(4)
-            ->get()
-            ->map(function ($item) {
-                return [
-                    'type'        => 'Geodiversitas',
-                    'icon'        => 'fa-gem',
-                    'nama'        => $item->nama,
-                    'sub'         => $item->tipe_geologi ?? $item->lokasi,
-                    'url'         => url('/geodiversitas/' . $item->slug),
-                    'gambar_url'  => $item->gambar_url,
-                ];
-            });
-
-        // ============================================================
-        // 6. CARI DI TABEL CULTURAL DIVERSITY
-        // Hanya tampilkan yang berstatus aktif (status = true)
-        // ============================================================
-        $cultural = CulturalDiversity::where('status', true)
-            ->where(function ($q) use ($query) {
-                $q->where('nama', 'LIKE', "%{$query}%")
-                  ->orWhere('lokasi', 'LIKE', "%{$query}%");
-            })
-            ->select('id', 'nama', 'slug', 'kategori', 'lokasi', 'gambar')
-            ->limit(4)
-            ->get()
-            ->map(function ($item) {
-                return [
-                    'type'        => 'Budaya',
-                    'icon'        => 'fa-people-arrows',
-                    'nama'        => $item->nama,
-                    'sub'         => $item->kategori ?? $item->lokasi,
-                    'url'         => url('/cultural-diversity/' . $item->slug),
-                    'gambar_url'  => $item->gambar_url,
-                ];
-            });
-
-        // ============================================================
-        // 7. CARI DI DATA DESTINASI (HARDCODED)
-        // Data Destinasi berada secara hardcoded di DestinasiController
-        // ============================================================
-        $hardcodedDestinasi = [
-            ['nama' => 'Pantai Meat', 'kategori' => 'alam', 'slug' => 'desa-wisata-meat', 'lokasi' => 'Kec. Tampahan, Kab. Toba Samosir', 'foto' => 'image/meat/meat-detail.jpg'],
-            ['nama' => 'Batu Basiha', 'kategori' => 'alam', 'slug' => 'geosite-batu-basiha', 'lokasi' => 'Desa Aek Bolon, Balige', 'foto' => 'image/meat/batubasiha1.png'],
-            ['nama' => 'Gua Liang Sipege', 'kategori' => 'alam', 'slug' => 'liang-sipege', 'lokasi' => 'Desa Simarmar Pea Talun Hutagaol', 'foto' => 'image/meat/liang-sipege-hero.jpg'],
-            ['nama' => 'Sentra Tenun Ulos', 'kategori' => 'budaya', 'slug' => 'sentra-tenun-ulos', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'foto' => 'image/meat/ulos.jpg'],
-            ['nama' => 'Rumah Adat Batak', 'kategori' => 'budaya', 'slug' => 'rumah-adat-batak', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'foto' => 'image/meat/jabubatak.jpg'],
-            ['nama' => 'Spot Pantai Meat', 'kategori' => 'buatan', 'slug' => 'spot-pantai-meat', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'foto' => 'image/meat/meat.jpeg'],
-            ['nama' => 'Homestay Meat', 'kategori' => 'buatan', 'slug' => 'homestay-meat', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'foto' => 'image/meat/meat1.jpeg'],
-            ['nama' => 'Jalur Trekking Sawah', 'kategori' => 'buatan', 'slug' => 'jalur-trekking-sawah', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'foto' => 'image/destinasi/buatan3.jpg'],
-        ];
-
-        $destinasiResults = collect($hardcodedDestinasi)->filter(function ($item) use ($query) {
-            return stripos($item['nama'], $query) !== false || stripos($item['lokasi'], $query) !== false;
-        })->take(4)->map(function ($item) {
-            return [
-                'type'        => 'Destinasi',
-                'icon'        => 'fa-map-marked-alt',
-                'nama'        => $item['nama'],
-                'sub'         => $item['lokasi'],
-                'url'         => url('/destinasi/' . $item['kategori'] . '/' . $item['slug']),
-                'gambar_url'  => asset($item['foto']),
+        foreach ($berita as $item) {
+            $results[] = [
+                'nama' => $item->judul,
+                'sub' => 'Berita',
+                'url' => route('berita.detail', $item->slug),
+                'gambar_url' => $item->gambar_url ?? null,
+                'icon' => 'fa-newspaper',
+                'type' => 'Berita'
             ];
-        });
+        }
 
-        // ============================================================
-        // GABUNGKAN SEMUA HASIL DARI SEMUA TABEL
-        // Menggunakan merge() dari Laravel Collection agar rapi dan efisien
-        // ============================================================
-        $results = $results
-            ->merge($destinasiResults)
-            ->merge($berita)
-            ->merge($umkm)
-            ->merge($penginapan)
-            ->merge($biodiversitas)
-            ->merge($geodiversitas)
-            ->merge($cultural);
+        // Search Galeri
+        $galeri = Galeri::where('status', true)
+            ->where(function($q) use ($query) {
+                $q->where('judul', 'LIKE', "%{$query}%")
+                  ->orWhere('deskripsi', 'LIKE', "%{$query}%");
+            })
+            ->limit(3)
+            ->get();
 
-        // Kembalikan hasil sebagai respons JSON
-        return response()->json($results->values()->all());
+        foreach ($galeri as $item) {
+            $results[] = [
+                'nama' => $item->judul,
+                'sub' => 'Galeri',
+                'url' => route('galeri.detail', $item->slug),
+                'gambar_url' => $item->gambar_url ?? null,
+                'icon' => 'fa-images',
+                'type' => 'Galeri'
+            ];
+        }
+
+        // Search UMKM
+        $umkm = Umkm::where('status', 'aktif')
+            ->where(function($q) use ($query) {
+                $q->where('nama_usaha', 'LIKE', "%{$query}%")
+                  ->orWhere('deskripsi', 'LIKE', "%{$query}%");
+            })
+            ->limit(3)
+            ->get();
+
+        foreach ($umkm as $item) {
+            $results[] = [
+                'nama' => $item->nama_usaha,
+                'sub' => 'UMKM',
+                'url' => route('fasilitas.umkm.detail', $item->id),
+                'gambar_url' => $item->foto_utama ? asset($item->foto_utama) : null,
+                'icon' => 'fa-store',
+                'type' => 'UMKM'
+            ];
+        }
+
+        // Search Penginapan
+        $penginapan = Penginapan::where('status', true)
+            ->where(function($q) use ($query) {
+                $q->where('nama', 'LIKE', "%{$query}%")
+                  ->orWhere('deskripsi', 'LIKE', "%{$query}%");
+            })
+            ->limit(3)
+            ->get();
+
+        foreach ($penginapan as $item) {
+            $results[] = [
+                'nama' => $item->nama,
+                'sub' => 'Penginapan',
+                'url' => route('fasilitas.penginapan.detail', $item->id),
+                'gambar_url' => $item->gambar_url ?? null,
+                'icon' => 'fa-hotel',
+                'type' => 'Penginapan'
+            ];
+        }
+
+        // Search Biodiversitas
+        $biodiversitas = Biodiversitas::where('status', true)
+            ->where(function($q) use ($query) {
+                $q->where('nama', 'LIKE', "%{$query}%")
+                  ->orWhere('deskripsi', 'LIKE', "%{$query}%");
+            })
+            ->limit(2)
+            ->get();
+
+        foreach ($biodiversitas as $item) {
+            $results[] = [
+                'nama' => $item->nama,
+                'sub' => 'Biodiversitas',
+                'url' => route('biodiversitas.detail', $item->slug),
+                'gambar_url' => $item->gambar_url ?? null,
+                'icon' => 'fa-leaf',
+                'type' => 'Biodiversitas'
+            ];
+        }
+
+        // Search Geodiversitas
+        $geodiversitas = Geodiversitas::where('status', true)
+            ->where(function($q) use ($query) {
+                $q->where('nama', 'LIKE', "%{$query}%")
+                  ->orWhere('deskripsi', 'LIKE', "%{$query}%");
+            })
+            ->limit(2)
+            ->get();
+
+        foreach ($geodiversitas as $item) {
+            $results[] = [
+                'nama' => $item->nama,
+                'sub' => 'Geodiversitas',
+                'url' => route('geodiversitas.detail', $item->slug),
+                'gambar_url' => $item->gambar_url ?? null,
+                'icon' => 'fa-gem',
+                'type' => 'Geodiversitas'
+            ];
+        }
+
+        // Search Cultural Diversity
+        $cultural = CulturalDiversity::where('status', true)
+            ->where(function($q) use ($query) {
+                $q->where('nama', 'LIKE', "%{$query}%")
+                  ->orWhere('deskripsi', 'LIKE', "%{$query}%");
+            })
+            ->limit(2)
+            ->get();
+
+        foreach ($cultural as $item) {
+            $results[] = [
+                'nama' => $item->nama,
+                'sub' => 'Cultural Diversity',
+                'url' => route('cultural-diversity.detail', $item->slug),
+                'gambar_url' => $item->gambar_url ?? null,
+                'icon' => 'fa-people-arrows',
+                'type' => 'Cultural Diversity'
+            ];
+        }
+
+        // Search Sejarah Wisata
+        $sejarah = SejarahWisata::where('status', true)
+            ->where(function($q) use ($query) {
+                $q->where('judul', 'LIKE', "%{$query}%")
+                  ->orWhere('konten', 'LIKE', "%{$query}%");
+            })
+            ->limit(2)
+            ->get();
+
+        foreach ($sejarah as $item) {
+            $results[] = [
+                'nama' => $item->judul,
+                'sub' => 'Sejarah Wisata',
+                'url' => route('sejarah.detail', $item->slug),
+                'gambar_url' => $item->gambar_url ?? null,
+                'icon' => 'fa-history',
+                'type' => 'Sejarah'
+            ];
+        }
+
+        return response()->json($results);
     }
 
     /**
-     * Halaman Hasil Pencarian Penuh.
-     * Dipanggil ketika pengguna menekan Enter atau mengklik ikon pencarian.
-     * Menerima parameter GET ?q=... dan mengembalikan Blade View khusus.
+     * Halaman hasil pencarian
      */
     public function searchResults(Request $request)
     {
-        // Ambil dan bersihkan kata kunci dari request
-        $query = trim($request->get('q', ''));
+        $query = $request->get('q');
 
-        // Inisialisasi collection kosong untuk menampung semua hasil
-        $results = collect();
-
-        // Jika query kosong, langsung kembalikan tampilan dengan hasil kosong
-        if (mb_strlen($query) < 1) {
-            return view('pages.search-results', [
-                'query'   => $query,
-                'results' => $results,
-            ]);
+        if (empty($query) || strlen($query) < 2) {
+            return redirect()->back()->with('error', 'Masukkan kata kunci pencarian minimal 2 karakter.');
         }
 
-        // ============================================================
-        // 1. CARI DI TABEL BERITA
-        // ============================================================
-        $berita = \App\Models\Berita::where('status', 1)
-            ->where(function ($q) use ($query) {
+        // Kumpulkan hasil dari semua model
+        $results = [];
+
+        // Berita
+        $berita = Berita::where('status', true)
+            ->where(function($q) use ($query) {
                 $q->where('judul', 'LIKE', "%{$query}%")
-                  ->orWhere('konten', 'LIKE', "%{$query}%")
-                  ->orWhere('penulis', 'LIKE', "%{$query}%");
+                  ->orWhere('konten', 'LIKE', "%{$query}%");
             })
-            ->select('id', 'judul', 'slug', 'gambar', 'penulis', 'created_at', 'konten')
-            ->latest()
-            ->get()
-            ->map(function ($item) {
-                return [
-                    'type'        => 'Berita',
-                    'icon'        => 'fa-newspaper',
-                    'nama'        => $item->judul,
-                    'sub'         => $item->penulis ?? 'Redaksi',
-                    'deskripsi'   => $item->konten,
-                    'url'         => url('/berita/' . $item->slug),
-                    'gambar_url'  => $item->gambar_url,
-                    'tanggal'     => $item->created_at ? $item->created_at->format('d M Y') : null,
-                ];
-            });
+            ->get();
+        foreach ($berita as $item) {
+            $item->type = 'Berita';
+            $item->url = route('berita.detail', $item->slug);
+            $results[] = $item;
+        }
 
-        // ============================================================
-        // 2. CARI DI TABEL UMKM
-        // ============================================================
-        $umkm = \App\Models\Umkm::where('status', 'aktif')
-            ->where(function ($q) use ($query) {
+        // Galeri
+        $galeri = Galeri::where('status', true)
+            ->where(function($q) use ($query) {
+                $q->where('judul', 'LIKE', "%{$query}%")
+                  ->orWhere('deskripsi', 'LIKE', "%{$query}%");
+            })
+            ->get();
+        foreach ($galeri as $item) {
+            $item->type = 'Galeri';
+            $item->url = route('galeri.detail', $item->slug);
+            $results[] = $item;
+        }
+
+        // UMKM
+        $umkm = Umkm::where('status', 'aktif')
+            ->where(function($q) use ($query) {
                 $q->where('nama_usaha', 'LIKE', "%{$query}%")
-                  ->orWhere('deskripsi', 'LIKE', "%{$query}%")
-                  ->orWhere('alamat', 'LIKE', "%{$query}%");
-            })
-            ->select('id', 'nama_usaha', 'pemilik', 'alamat', 'foto_utama', 'deskripsi', 'no_telepon')
-            ->get()
-            ->map(function ($item) {
-                // Resolusi URL gambar UMKM
-                $gambarUrl = null;
-                if (!empty($item->foto_utama)) {
-                    if (str_starts_with($item->foto_utama, 'image/') || str_starts_with($item->foto_utama, 'storage/')) {
-                        $gambarUrl = asset($item->foto_utama);
-                    } elseif (file_exists(public_path('image/umkm/' . $item->foto_utama))) {
-                        $gambarUrl = asset('image/umkm/' . $item->foto_utama);
-                    } else {
-                        $gambarUrl = asset($item->foto_utama);
-                    }
-                }
-                return [
-                    'type'        => 'UMKM',
-                    'icon'        => 'fa-store',
-                    'nama'        => $item->nama_usaha,
-                    'sub'         => $item->alamat ?? 'Desa Meat',
-                    'deskripsi'   => $item->deskripsi,
-                    'kontak'      => $item->no_telepon,
-                    'url'         => url('/fasilitas/umkm/' . $item->id),
-                    'gambar_url'  => $gambarUrl,
-                ];
-            });
-
-        // ============================================================
-        // 3. CARI DI TABEL PENGINAPAN
-        // ============================================================
-        $penginapan = \App\Models\Penginapan::where('status', 1)
-            ->where(function ($q) use ($query) {
-                $q->where('nama', 'LIKE', "%{$query}%")
-                  ->orWhere('lokasi', 'LIKE', "%{$query}%")
                   ->orWhere('deskripsi', 'LIKE', "%{$query}%");
             })
-            ->select('id', 'nama', 'lokasi', 'harga', 'gambar', 'deskripsi', 'kontak')
-            ->get()
-            ->map(function ($item) {
-                return [
-                    'type'       => 'Penginapan',
-                    'icon'       => 'fa-hotel',
-                    'nama'       => $item->nama,
-                    'sub'        => $item->lokasi ?? '-',
-                    'deskripsi'  => $item->deskripsi,
-                    'harga'      => $item->harga,
-                    'kontak'     => $item->kontak,
-                    'url'        => url('/fasilitas/penginapan/' . $item->id),
-                    'gambar_url' => $item->gambar_url,
-                ];
-            });
+            ->get();
+        foreach ($umkm as $item) {
+            $item->type = 'UMKM';
+            $item->url = route('fasilitas.umkm.detail', $item->id);
+            $results[] = $item;
+        }
 
-        // ============================================================
-        // 4. CARI DI TABEL BIODIVERSITAS
-        // ============================================================
-        $biodiversitas = \App\Models\Biodiversitas::where('status', true)
-            ->where(function ($q) use ($query) {
+        // Penginapan
+        $penginapan = Penginapan::where('status', true)
+            ->where(function($q) use ($query) {
                 $q->where('nama', 'LIKE', "%{$query}%")
-                  ->orWhere('lokasi', 'LIKE', "%{$query}%")
                   ->orWhere('deskripsi', 'LIKE', "%{$query}%");
             })
-            ->select('id', 'nama', 'slug', 'kategori', 'lokasi', 'gambar', 'deskripsi')
-            ->get()
-            ->map(function ($item) {
-                return [
-                    'type'       => 'Biodiversitas',
-                    'icon'       => 'fa-leaf',
-                    'nama'       => $item->nama,
-                    'sub'        => $item->kategori ?? $item->lokasi,
-                    'deskripsi'  => $item->deskripsi,
-                    'url'        => url('/biodiversitas/' . $item->slug),
-                    'gambar_url' => $item->gambar_url,
-                ];
-            });
+            ->get();
+        foreach ($penginapan as $item) {
+            $item->type = 'Penginapan';
+            $item->url = route('fasilitas.penginapan.detail', $item->id);
+            $results[] = $item;
+        }
 
-        // ============================================================
-        // 5. CARI DI TABEL GEODIVERSITAS
-        // ============================================================
-        $geodiversitas = \App\Models\Geodiversitas::where('status', true)
-            ->where(function ($q) use ($query) {
+        // Biodiversitas
+        $biodiversitas = Biodiversitas::where('status', true)
+            ->where(function($q) use ($query) {
                 $q->where('nama', 'LIKE', "%{$query}%")
-                  ->orWhere('lokasi', 'LIKE', "%{$query}%")
                   ->orWhere('deskripsi', 'LIKE', "%{$query}%");
             })
-            ->select('id', 'nama', 'slug', 'tipe_geologi', 'lokasi', 'gambar', 'deskripsi')
-            ->get()
-            ->map(function ($item) {
-                return [
-                    'type'       => 'Geodiversitas',
-                    'icon'       => 'fa-gem',
-                    'nama'       => $item->nama,
-                    'sub'        => $item->tipe_geologi ?? $item->lokasi,
-                    'deskripsi'  => $item->deskripsi,
-                    'url'        => url('/geodiversitas/' . $item->slug),
-                    'gambar_url' => $item->gambar_url,
-                ];
-            });
+            ->get();
+        foreach ($biodiversitas as $item) {
+            $item->type = 'Biodiversitas';
+            $item->url = route('biodiversitas.detail', $item->slug);
+            $results[] = $item;
+        }
 
-        // ============================================================
-        // 6. CARI DI TABEL CULTURAL DIVERSITY
-        // ============================================================
-        $cultural = \App\Models\CulturalDiversity::where('status', true)
-            ->where(function ($q) use ($query) {
+        // Geodiversitas
+        $geodiversitas = Geodiversitas::where('status', true)
+            ->where(function($q) use ($query) {
                 $q->where('nama', 'LIKE', "%{$query}%")
-                  ->orWhere('lokasi', 'LIKE', "%{$query}%")
                   ->orWhere('deskripsi', 'LIKE', "%{$query}%");
             })
-            ->select('id', 'nama', 'slug', 'kategori', 'lokasi', 'gambar', 'deskripsi')
-            ->get()
-            ->map(function ($item) {
-                return [
-                    'type'       => 'Budaya',
-                    'icon'       => 'fa-people-arrows',
-                    'nama'       => $item->nama,
-                    'sub'        => $item->kategori ?? $item->lokasi,
-                    'deskripsi'  => $item->deskripsi,
-                    'url'        => url('/cultural-diversity/' . $item->slug),
-                    'gambar_url' => $item->gambar_url,
-                ];
-            });
+            ->get();
+        foreach ($geodiversitas as $item) {
+            $item->type = 'Geodiversitas';
+            $item->url = route('geodiversitas.detail', $item->slug);
+            $results[] = $item;
+        }
 
-        // ============================================================
-        // 7. CARI DI DATA DESTINASI (HARDCODED)
-        // ============================================================
-        $hardcodedDestinasi = [
-            ['nama' => 'Pantai Meat',          'kategori' => 'alam',    'slug' => 'desa-wisata-meat',    'lokasi' => 'Kec. Tampahan, Kab. Toba Samosir', 'foto' => 'image/meat/meat-detail.jpg',         'deskripsi' => 'Pantai Meat adalah destinasi wisata alam yang indah di tepi Danau Toba.'],
-            ['nama' => 'Batu Basiha',          'kategori' => 'alam',    'slug' => 'geosite-batu-basiha', 'lokasi' => 'Desa Aek Bolon, Balige',           'foto' => 'image/meat/batubasiha1.png',         'deskripsi' => 'Formasi batuan unik dengan nilai geologi dan budaya yang tinggi.'],
-            ['nama' => 'Gua Liang Sipege',     'kategori' => 'alam',    'slug' => 'liang-sipege',         'lokasi' => 'Desa Simarmar Pea Talun Hutagaol','foto' => 'image/meat/liang-sipege-hero.jpg',   'deskripsi' => 'Gua alam eksotis dengan stalaktit dan stalakmit yang memukau.'],
-            ['nama' => 'Sentra Tenun Ulos',    'kategori' => 'budaya',  'slug' => 'sentra-tenun-ulos',    'lokasi' => 'Desa Meat, Kec. Tampahan',          'foto' => 'image/meat/ulos.jpg',                'deskripsi' => 'Pusat kerajinan tenun ulos khas Batak yang terkenal.'],
-            ['nama' => 'Rumah Adat Batak',     'kategori' => 'budaya',  'slug' => 'rumah-adat-batak',     'lokasi' => 'Desa Meat, Kec. Tampahan',          'foto' => 'image/meat/jabubatak.jpg',           'deskripsi' => 'Rumah adat Batak tradisional yang masih terjaga keasliannya.'],
-            ['nama' => 'Spot Pantai Meat',     'kategori' => 'buatan',  'slug' => 'spot-pantai-meat',     'lokasi' => 'Desa Meat, Kec. Tampahan',          'foto' => 'image/meat/meat.jpeg',               'deskripsi' => 'Spot foto terbaik dengan pemandangan Danau Toba yang memukau.'],
-            ['nama' => 'Homestay Meat',        'kategori' => 'buatan',  'slug' => 'homestay-meat',         'lokasi' => 'Desa Meat, Kec. Tampahan',          'foto' => 'image/meat/meat1.jpeg',              'deskripsi' => 'Penginapan homestay dengan nuansa lokal yang hangat dan nyaman.'],
-            ['nama' => 'Jalur Trekking Sawah', 'kategori' => 'buatan',  'slug' => 'jalur-trekking-sawah', 'lokasi' => 'Desa Meat, Kec. Tampahan',          'foto' => 'image/destinasi/buatan3.jpg',        'deskripsi' => 'Jalur trekking melewati hamparan sawah hijau yang menakjubkan.'],
-        ];
-
-        $destinasiResults = collect($hardcodedDestinasi)
-            ->filter(function ($item) use ($query) {
-                return stripos($item['nama'], $query) !== false
-                    || stripos($item['lokasi'], $query) !== false
-                    || stripos($item['deskripsi'], $query) !== false;
+        // Cultural Diversity
+        $cultural = CulturalDiversity::where('status', true)
+            ->where(function($q) use ($query) {
+                $q->where('nama', 'LIKE', "%{$query}%")
+                  ->orWhere('deskripsi', 'LIKE', "%{$query}%");
             })
-            ->map(function ($item) {
-                return [
-                    'type'       => 'Destinasi',
-                    'icon'       => 'fa-map-marked-alt',
-                    'nama'       => $item['nama'],
-                    'sub'        => $item['lokasi'],
-                    'deskripsi'  => $item['deskripsi'],
-                    'url'        => url('/destinasi/' . $item['kategori'] . '/' . $item['slug']),
-                    'gambar_url' => asset($item['foto']),
-                ];
-            });
+            ->get();
+        foreach ($cultural as $item) {
+            $item->type = 'Cultural Diversity';
+            $item->url = route('cultural-diversity.detail', $item->slug);
+            $results[] = $item;
+        }
 
-        // ============================================================
-        // GABUNGKAN SEMUA HASIL
-        // ============================================================
-        $results = collect()
-            ->merge($destinasiResults)
-            ->merge($berita)
-            ->merge($umkm)
-            ->merge($penginapan)
-            ->merge($biodiversitas)
-            ->merge($geodiversitas)
-            ->merge($cultural);
+        // Sejarah Wisata
+        $sejarah = SejarahWisata::where('status', true)
+            ->where(function($q) use ($query) {
+                $q->where('judul', 'LIKE', "%{$query}%")
+                  ->orWhere('konten', 'LIKE', "%{$query}%");
+            })
+            ->get();
+        foreach ($sejarah as $item) {
+            $item->type = 'Sejarah Wisata';
+            $item->url = route('sejarah.detail', $item->slug);
+            $results[] = $item;
+        }
 
-        // Kembalikan sebagai Blade View (bukan JSON)
-        return view('pages.search-results', [
-            'query'   => $query,
-            'results' => $results->values(),
-        ]);
+        // Urutkan berdasarkan created_at terbaru
+        $results = collect($results)->sortByDesc('created_at');
+
+        return view('pages.search-results', compact('query', 'results'));
     }
 }
