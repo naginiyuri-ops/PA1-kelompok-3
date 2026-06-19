@@ -605,14 +605,14 @@
         }
 
         /* ========================================
-                   GLOBAL SEARCH BAR
+                   GLOBAL SEARCH BAR - DI SEBELAH FASILITAS
                 ======================================== */
         .search-wrapper {
             position: relative;
             display: flex;
             align-items: center;
-            margin-left: auto;
-            margin-right: 16px;
+            margin-left: 12px;
+            flex-shrink: 0;
         }
 
         .search-input-container {
@@ -621,16 +621,16 @@
             background: rgba(255, 255, 255, 0.12);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 50px;
-            padding: 6px 14px;
+            padding: 5px 12px;
             transition: all 0.35s ease;
-            width: 200px;
+            width: 170px;
         }
 
         .search-input-container:focus-within {
             background: rgba(255, 255, 255, 0.2);
             border-color: var(--gold);
             box-shadow: 0 0 0 3px rgba(198, 164, 59, 0.15);
-            width: 260px;
+            width: 210px;
         }
 
         .navbar.scrolled-down .search-input-container {
@@ -644,24 +644,32 @@
             box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.12);
         }
 
-        .search-icon {
+        .search-icon-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
             color: rgba(255, 255, 255, 0.7);
-            font-size: 0.8rem;
-            margin-right: 8px;
-            flex-shrink: 0;
             transition: color 0.3s ease;
         }
 
-        .navbar.scrolled-down .search-icon {
-            color: var(--blue-dark);
-        }
-
-        .search-input-container:focus-within .search-icon {
+        .search-icon-btn:hover {
             color: var(--gold);
         }
 
-        .navbar.scrolled-down .search-input-container:focus-within .search-icon {
+        .navbar.scrolled-down .search-icon-btn {
+            color: rgba(0, 51, 102, 0.5);
+        }
+
+        .navbar.scrolled-down .search-icon-btn:hover {
             color: var(--blue-dark);
+        }
+
+        .search-icon {
+            font-size: 0.75rem;
+            flex-shrink: 0;
         }
 
         #globalSearchInput {
@@ -669,10 +677,11 @@
             border: none;
             outline: none;
             color: white;
-            font-size: 0.82rem;
+            font-size: 0.78rem;
             font-weight: 500;
             width: 100%;
             font-family: 'Inter', sans-serif;
+            padding: 3px 6px;
         }
 
         .navbar.scrolled-down #globalSearchInput {
@@ -681,7 +690,7 @@
 
         #globalSearchInput::placeholder {
             color: rgba(255, 255, 255, 0.5);
-            font-size: 0.8rem;
+            font-size: 0.7rem;
         }
 
         .navbar.scrolled-down #globalSearchInput::placeholder {
@@ -693,8 +702,8 @@
             border: none;
             color: rgba(255, 255, 255, 0.5);
             cursor: pointer;
-            padding: 0;
-            font-size: 0.7rem;
+            padding: 0 4px;
+            font-size: 0.65rem;
             flex-shrink: 0;
             line-height: 1;
             display: none;
@@ -714,7 +723,6 @@
         #searchResultsDropdown {
             position: absolute;
             top: calc(100% + 10px);
-            left: 0;
             right: 0;
             min-width: 360px;
             background: white;
@@ -849,70 +857,149 @@
             to   { transform: rotate(360deg); }
         }
 
-        @media (max-width: 576px) {
-            .navbar > .container {
-                flex-wrap: wrap !important;
-                justify-content: center !important;
-                padding-top: 12px;
-                padding-bottom: 12px;
-            }
-            
-            .logo-wrapper {
-                width: 100%;
-                justify-content: center !important;
-                margin-bottom: 16px;
-            }
-            .logo-img {
-                height: 45px !important; 
-            }
-            .navbar-brand {
-                font-size: 1.5rem !important; 
-            }
-            .logo-divider {
-                height: 32px !important;
-            }
-
+        /* Responsive Search */
+        @media (max-width: 992px) {
             .search-wrapper {
-                margin-left: 0 !important;
-                margin-right: 12px !important;
-                display: flex;
-                width: 220px !important;
+                margin-left: 8px;
             }
             .search-input-container {
-                width: 100%; 
-                padding: 8px 16px; 
+                width: 130px;
             }
             .search-input-container:focus-within {
-                width: 100%; 
+                width: 170px;
             }
-            #globalSearchInput {
-                font-size: 0.85rem;
-            }
-            .navbar-toggler {
-                margin-left: 0 !important; 
-                margin-right: 0 !important;
-            }
-            
             #searchResultsDropdown {
-                min-width: 280px;
-                width: 100%;
-                right: auto;
-                left: 50%;
-                transform: translateX(-50%); 
-                top: calc(100% + 8px); 
+                min-width: 300px;
+                right: 0;
+                left: auto;
             }
         }
 
-        @media (max-width: 992px) {
+        @media (max-width: 768px) {
+            .search-wrapper {
+                margin-left: 0;
+                margin-right: 6px;
+            }
             .search-input-container {
-                width: 160px;
+                width: 110px;
+                padding: 4px 10px;
             }
             .search-input-container:focus-within {
-                width: 200px;
+                width: 150px;
+            }
+            #globalSearchInput {
+                font-size: 0.7rem;
+            }
+            #globalSearchInput::placeholder {
+                font-size: 0.65rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar > .container {
+                flex-wrap: wrap !important;
+                justify-content: space-between !important;
+                padding-top: 8px;
+                padding-bottom: 8px;
+            }
+            
+            .logo-wrapper {
+                justify-content: flex-start !important;
+                margin-bottom: 0;
+                flex: 1;
+            }
+            .logo-img {
+                height: 32px !important; 
+            }
+            .navbar-brand {
+                font-size: 1rem !important; 
+            }
+            .logo-divider {
+                height: 22px !important;
+            }
+
+            /* Search bar di pojok kanan, di samping tombol toggle */
+            .search-wrapper {
+                margin-left: auto;
+                margin-right: 4px;
+                flex-shrink: 1;
+                max-width: 120px;
+            }
+            .search-input-container {
+                width: 100%;
+                padding: 3px 8px;
+                border-radius: 30px;
+            }
+            .search-input-container:focus-within {
+                width: 100%;
+            }
+            #globalSearchInput {
+                font-size: 0.65rem;
+                padding: 2px 4px;
+            }
+            #globalSearchInput::placeholder {
+                font-size: 0.6rem;
+            }
+            .search-icon {
+                font-size: 0.65rem;
+            }
+            .search-icon-btn {
+                padding: 0 2px;
+            }
+            .navbar-toggler {
+                margin-left: 2px !important;
+                padding: 4px 6px;
+            }
+            .navbar-toggler-icon {
+                width: 20px;
+                height: 20px;
+            }
+            
+            #searchResultsDropdown {
+                min-width: 240px;
+                width: 90vw;
+                max-width: 300px;
+                right: -10px;
+                left: auto;
+                top: calc(100% + 6px);
+            }
+            .search-result-item {
+                padding: 8px 12px;
+                gap: 8px;
+            }
+            .search-result-thumb {
+                width: 36px;
+                height: 36px;
+            }
+            .search-result-name {
+                font-size: 0.8rem;
+            }
+            .search-result-sub {
+                font-size: 0.65rem;
+            }
+            .search-result-badge {
+                font-size: 0.55rem;
+                padding: 1px 6px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .search-wrapper {
+                max-width: 90px;
+            }
+            .search-input-container {
+                padding: 2px 6px;
+            }
+            #globalSearchInput {
+                font-size: 0.6rem;
+            }
+            #globalSearchInput::placeholder {
+                font-size: 0.55rem;
             }
             #searchResultsDropdown {
-                min-width: 280px;
-                right: auto;
+                min-width: 200px;
+                max-width: 240px;
+                right: -5px;
             }
         }
     </style>
@@ -933,46 +1020,16 @@
                 <span class="navbar-brand">Geo<span>Toba</span></span>
             </a>
 
-            <!-- ========================================
-            SEARCH BAR GLOBAL
-            ======================================== -->
-            <div class="search-wrapper" id="searchWrapper">
-                {{-- Form GET agar menekan Enter / klik ikon akan menuju halaman hasil pencarian --}}
-                <form id="globalSearchForm" action="{{ route('search.results') }}" method="GET"
-                      style="display:contents;" onsubmit="handleSearchSubmit(event)">
-                    <div class="search-input-container">
-                        {{-- Tombol ikon kaca pembesar diklik = submit form --}}
-                        <button type="submit" class="search-icon-btn" aria-label="Cari" style="background:none;border:none;padding:0;cursor:pointer;display:flex;align-items:center;">
-                            <i class="fas fa-search search-icon"></i>
-                        </button>
-                        <input
-                            type="text"
-                            id="globalSearchInput"
-                            name="q"
-                            placeholder="Cari sesuatu..."
-                            autocomplete="off"
-                            aria-label="Pencarian Global"
-                            maxlength="100"
-                            value="{{ request('q') }}"
-                        >
-                        <button class="search-clear-btn" id="searchClearBtn" type="button" aria-label="Hapus pencarian">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </form>
-                <div id="searchResultsDropdown"></div>
-            </div>
-
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse flex-lg-grow-0" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
                     <!-- HOME -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ url('/') }}">
-                            Home
+                            Beranda
                         </a>
                     </li>
 
@@ -1024,6 +1081,33 @@
                             Fasilitas
                         </a>
                     </li>
+
+                    <!-- ========================================
+                    SEARCH BAR - DI SEBELAH FASILITAS (POJOK KANAN)
+                    ======================================== -->
+                    <li class="nav-item search-wrapper" id="searchWrapper">
+                        <form id="globalSearchForm" action="{{ route('search.results') }}" method="GET" style="display:contents;" onsubmit="handleSearchSubmit(event)">
+                            <div class="search-input-container">
+                                <button type="submit" class="search-icon-btn" aria-label="Cari">
+                                    <i class="fas fa-search search-icon"></i>
+                                </button>
+                                <input
+                                    type="text"
+                                    id="globalSearchInput"
+                                    name="q"
+                                    placeholder="Cari..."
+                                    autocomplete="off"
+                                    aria-label="Pencarian Global"
+                                    maxlength="100"
+                                    value="{{ request('q') }}"
+                                >
+                                <button class="search-clear-btn" id="searchClearBtn" type="button" aria-label="Hapus pencarian">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </form>
+                        <div id="searchResultsDropdown"></div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -1060,7 +1144,7 @@
                 <div class="footer-col">
                     <h5>Tautan Cepat</h5>
                     <div class="footer-menu">
-                        <a href="{{ url('/') }}"><i class="fas fa-chevron-right"></i> Home</a>
+                        <a href="{{ url('/') }}"><i class="fas fa-chevron-right"></i> Beranda</a>
                         <a href="{{ route('tentang-geosite') }}"><i class="fas fa-chevron-right"></i> Tentang Geosite</a>
                         <a href="{{ url('/destinasi') }}"><i class="fas fa-chevron-right"></i> Destinasi</a>
                         <a href="{{ url('/berita') }}"><i class="fas fa-chevron-right"></i> Berita / Event</a>
@@ -1378,16 +1462,14 @@
 
     // ========================================
     // FUNGSI SUBMIT FORM PENCARIAN
-    // Validasi: tidak submit jika query < 1 karakter
     // ========================================
     function handleSearchSubmit(event) {
         const input = document.getElementById('globalSearchInput');
         const query = input ? input.value.trim() : '';
         if (query.length < 1) {
-            event.preventDefault(); // Cegah submit jika input kosong
+            event.preventDefault();
             input.focus();
         }
-        // Jika valid, biarkan form submit secara normal ke /search-results?q=...
     }
     </script>
 
