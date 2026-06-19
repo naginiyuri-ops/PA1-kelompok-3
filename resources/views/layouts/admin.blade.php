@@ -351,15 +351,24 @@
         </a>
         
         <div class="menu-title">Konten</div>
+        <a href="{{ route('admin.sejarah-wisata.index') }}" class="{{ request()->routeIs('admin.sejarah-wisata.*') ? 'active' : '' }}">
+            Sejarah Wisata
+        </a>
         <a href="{{ route('admin.galeri.index') }}" class="{{ request()->routeIs('admin.galeri.*') ? 'active' : '' }}">
             Galeri
         </a>
         <a href="{{ route('admin.berita.index') }}" class="{{ request()->routeIs('admin.berita.*') ? 'active' : '' }}">
             Berita
         </a>
+        <a href="{{ route('admin.informasi.index') }}" class="{{ request()->routeIs('admin.informasi.*') ? 'active' : '' }}">
+            Informasi
+        </a>
 
         {{-- ========== GROUP DESTINASI ========== --}}
+        {{-- Label grup "Destinasi" — hanya sebagai header visual, tidak bisa diklik --}}
         <div class="menu-title">Destinasi</div>
+
+        {{-- Ketiga link di bawah ini adalah CRUD terpisah untuk setiap sub-kategori --}}
         <a href="{{ route('admin.destination.alam.index') }}"
            class="{{ request()->routeIs('admin.destination.alam.*') ? 'active' : '' }}">
             Destinasi Alam
@@ -384,15 +393,21 @@
             Cultural Diversity
         </a>
         
-        <div class="menu-title">Fasilitas</div>
+        <div class="menu-title">Desa Meat</div>
         <a href="{{ route('admin.umkm.index') }}" class="{{ request()->routeIs('admin.umkm.*') ? 'active' : '' }}">
             UMKM
-
+        </a>
+        <a href="{{ route('admin.fasilitas.index') }}" class="{{ request()->routeIs('admin.fasilitas.*') ? 'active' : '' }}">
+            Fasilitas
+        </a>
         <a href="{{ route('admin.penginapan.index') }}" class="{{ request()->routeIs('admin.penginapan.*') ? 'active' : '' }}">
             Penginapan
         </a>
         
         <div class="menu-title">Pengaturan</div>
+        <a href="{{ route('admin.kontak.index') }}" class="{{ request()->routeIs('admin.kontak.*') ? 'active' : '' }}">
+            Kontak
+        </a>
         <a href="{{ route('admin.create') }}" class="{{ request()->routeIs('admin.create') ? 'active' : '' }}">
             Tambah Admin
         </a>

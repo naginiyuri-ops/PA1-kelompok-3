@@ -316,7 +316,7 @@
         display: block;
     }
 
-    /* ==================== DESTINASI UNGGULAN (SELANG-SELING) ==================== */
+    /* ==================== DESTINASI (SELANG-SELING) ==================== */
     .destinasi-item {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -324,29 +324,10 @@
         align-items: center;
         padding: 30px 0;
         border-bottom: 1px solid rgba(0,0,0,0.05);
-        transition: all 0.3s ease;
     }
     .destinasi-item:last-child { border-bottom: none; }
-    
-    /* Layout selang-seling: ganjil gambar di kiri, genap gambar di kanan */
-    .destinasi-item:nth-child(odd) .destinasi-image {
-        order: 1;
-    }
-    .destinasi-item:nth-child(odd) .destinasi-content {
-        order: 2;
-    }
-    
-    .destinasi-item:nth-child(even) .destinasi-image {
-        order: 2;
-    }
-    .destinasi-item:nth-child(even) .destinasi-content {
-        order: 1;
-    }
-    
-    /* Efek hover untuk item */
-    .destinasi-item:hover {
-        transform: translateY(-5px);
-    }
+    .destinasi-item.reverse { direction: rtl; }
+    .destinasi-item.reverse > * { direction: ltr; }
     
     .destinasi-image {
         border-radius: var(--radius);
@@ -372,32 +353,19 @@
     .destinasi-number {
         display: inline-block;
         font-family: 'Playfair Display', serif;
-        font-size: 3.5rem;
+        font-size: 3rem;
         font-weight: 800;
-        color: rgba(198, 164, 59, 0.12);
+        color: rgba(198, 164, 59, 0.15);
         line-height: 1;
         margin-bottom: 5px;
-        transition: all 0.3s ease;
     }
-    
-    .destinasi-item:hover .destinasi-number {
-        color: rgba(198, 164, 59, 0.25);
-        transform: scale(1.05);
-    }
-    
     .destinasi-content h3 {
         font-family: 'Playfair Display', serif;
         font-size: 1.8rem;
         font-weight: 700;
         color: var(--primary);
         margin-bottom: 8px;
-        transition: color 0.3s ease;
     }
-    
-    .destinasi-item:hover .destinasi-content h3 {
-        color: var(--gold-dark);
-    }
-    
     .destinasi-content .location {
         font-size: 0.75rem;
         color: var(--text-light);
@@ -425,22 +393,6 @@
         transition: all 0.3s ease;
     }
     .destinasi-link:hover { gap: 12px; color: var(--primary); }
-    
-    .destinasi-item {
-        position: relative;
-    }
-    .destinasi-item::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background: linear-gradient(to right, transparent, rgba(198,164,59,0.2), transparent);
-    }
-    .destinasi-item:last-child::after {
-        display: none;
-    }
 
     /* ==================== GALERI UNGGULAN (SCROLL) ==================== */
     .galeri-scroll-wrapper {
@@ -722,7 +674,6 @@
         max-width: 90%;
         max-height: 90%;
         text-align: center;
-        position: relative;
     }
     .lightbox-image {
         max-width: 100%;
@@ -760,7 +711,6 @@
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease;
-        z-index: 20001;
     }
     .lightbox-close:hover {
         background: var(--gold);
@@ -772,12 +722,7 @@
         .hero-title { font-size: 3rem; }
         .tentang-grid { grid-template-columns: 1fr; gap: 30px; }
         .destinasi-item { grid-template-columns: 1fr; gap: 25px; }
-        .destinasi-item:nth-child(odd) .destinasi-image,
-        .destinasi-item:nth-child(odd) .destinasi-content,
-        .destinasi-item:nth-child(even) .destinasi-image,
-        .destinasi-item:nth-child(even) .destinasi-content {
-            order: unset;
-        }
+        .destinasi-item.reverse { direction: ltr; }
         .stats-grid { grid-template-columns: repeat(2, 1fr); }
         .quick-grid { grid-template-columns: repeat(3, 1fr); }
         .berita-grid { grid-template-columns: repeat(2, 1fr); }
@@ -798,8 +743,6 @@
         .destinasi-image img { height: 220px; }
         .lightbox-close { top: 10px; right: 15px; width: 38px; height: 38px; font-size: 1.5rem; }
         .cta-content h3 { font-size: 1.6rem; }
-        .destinasi-item { padding: 20px 0; }
-        .destinasi-content h3 { font-size: 1.4rem; }
     }
 
     @media (max-width: 480px) {
@@ -814,9 +757,8 @@
         .galeri-card { flex: 0 0 200px; }
         .galeri-card img { height: 150px; }
         .galeri-card .caption { padding: 12px 14px; }
-        .destinasi-content h3 { font-size: 1.2rem; }
+        .destinasi-content h3 { font-size: 1.4rem; }
         .cta-btn { padding: 12px 28px; font-size: 0.6rem; }
-        .destinasi-number { font-size: 2.5rem; }
     }
 </style>
 
@@ -839,65 +781,37 @@
     </div>
 </section>
 
-<!-- ==================== DESTINASI UNGGULAN (SELANG-SELING) ==================== -->
+<!-- ==================== DESTINASI UNGGULAN ==================== -->
 <section id="destinasi" class="section section-white">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
             <span class="badge">Destinasi Unggulan</span>
             <h2>Destinasi Unggulan</h2>
-            <div class="divider"></div>
-            <p>Temukan keindahan destinasi terbaik di kawasan Geosite Danau Toba</p>
         </div>
 
-        @php
-            $destinasiList = [
-                [
-                    'nama' => 'Balige',
-                    'lokasi' => 'Kabupaten Toba',
-                    'deskripsi' => 'Pusat peradaban Batak Toba dengan sejarah panjang dan budaya yang kaya, gerbang menuju Danau Toba.',
-                    'gambar' => asset('image/meat/balige.jpg'),
-                    'link' => url('/geosite/balige')
-                ],
-                [
-                    'nama' => 'Meat',
-                    'lokasi' => 'Kecamatan Tampahan',
-                    'deskripsi' => 'Desa wisata adat Batak di tepi Danau Toba, dijuluki "New Zealand van Toba" karena keindahan alamnya.',
-                    'gambar' => asset('image/meat/meat-detail.jpg'),
-                    'link' => url('/geosite/meat')
-                ],
-                [
-                    'nama' => 'Batu Basiha',
-                    'lokasi' => 'Desa Aek Bolon Jae',
-                    'deskripsi' => 'Situs batu bersejarah dari letusan Gunung Toba 74.000 tahun lalu, diakui UNESCO Global Geopark.',
-                    'gambar' => asset('image/meat/batubasiha1.png'),
-                    'link' => url('/geosite/batu-bahisan')
-                ],
-                [
-                    'nama' => 'Liang Sipege',
-                    'lokasi' => 'Desa Simarmar Pea Talun',
-                    'deskripsi' => 'Gua alam dengan nilai spiritual tinggi, habitat kelelawar alami, dan legenda leluhur Batak.',
-                    'gambar' => asset('image/meat/liang-sipege-hero.jpg'),
-                    'link' => url('/geosite/liang-sipege')
-                ]
-            ];
-        @endphp
-
+        @if(!empty($featuredDestinations) && $featuredDestinations->count())
         <div class="destinasi-list">
-            @foreach($destinasiList as $index => $item)
-            <div class="destinasi-item" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
-                <div class="destinasi-image" onclick="openLightbox('{{ $item['gambar'] }}', '{{ $item['nama'] }}', '{{ $item['lokasi'] }}')">
-                    <img src="{{ $item['gambar'] }}" alt="{{ $item['nama'] }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+            @foreach($featuredDestinations as $item)
+            <div class="destinasi-item" data-aos="fade-up" data-aos-delay="{{ $loop->index * 120 }}">
+                <div class="destinasi-image">
+                    <img src="{{ $item->image_url }}" alt="{{ $item->title }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
                 </div>
                 <div class="destinasi-content">
-                    <div class="destinasi-number">{{ sprintf('%02d', $index + 1) }}</div>
-                    <h3>{{ $item['nama'] }}</h3>
-                    <div class="location"><i class="fas fa-map-marker-alt"></i> {{ $item['lokasi'] }}</div>
-                    <p>{{ $item['deskripsi'] }}</p>
-                    <a href="{{ $item['link'] }}" class="destinasi-link">Jelajahi →</a>
+                    <div class="destinasi-number">{{ sprintf('%02d', $loop->iteration) }}</div>
+                    <h3>{{ $item->title }}</h3>
+                    <div class="location"><i class="fas fa-map-marker-alt"></i> {{ $item->location ?? 'Lokasi belum diisi' }}</div>
+                    <p>{{ Str::limit(strip_tags($item->short_description ?: $item->description), 120) }}</p>
+                    <a href="{{ route('destinasi.detail', ['category' => $item->category, 'id' => $item->id]) }}" class="destinasi-link">Lihat Detail →</a>
                 </div>
             </div>
             @endforeach
         </div>
+        @else
+        <div style="text-align:center; padding:50px; color:#94a3b8;">
+            <i class="fas fa-map-marker-alt" style="font-size:3rem; opacity:0.25; display:block; margin-bottom:16px;"></i>
+            Belum ada destinasi unggulan. Tandai destinasi di panel admin agar muncul di sini.
+        </div>
+        @endif
     </div>
 </section>
 
@@ -924,6 +838,9 @@
         </div>
     </div>
 </section>
+
+
+
 
 <!-- ==================== GALERI UNGGULAN (SCROLL) ==================== -->
 <section class="section section-light">
@@ -993,12 +910,50 @@
     </div>
 </section>
 
+<!-- ==================== TAUTAN CEPAT ==================== -->
+<section class="section section-white">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="badge">Navigasi</span>
+            <h2>🔗 Tautan Cepat</h2>
+            <div class="divider"></div>
+            <p>Jelajahi berbagai informasi menarik di GeoToba</p>
+        </div>
+        <div class="quick-grid">
+            <a href="{{ url('/destinasi') }}" class="quick-item" data-aos="zoom-in">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Destinasi</span>
+            </a>
+            <a href="{{ route('biodiversitas') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="50">
+                <i class="fas fa-leaf"></i>
+                <span>Biodiversitas</span>
+            </a>
+            <a href="{{ route('geodiversitas') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fas fa-gem"></i>
+                <span>Geodiversitas</span>
+            </a>
+            <a href="{{ route('cultural-diversity') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="150">
+                <i class="fas fa-people-arrows"></i>
+                <span>Cultural Diversity</span>
+            </a>
+            <a href="{{ url('/berita') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fas fa-newspaper"></i>
+                <span>Berita / Event</span>
+            </a>
+            <a href="{{ url('/galeri') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="250">
+                <i class="fas fa-images"></i>
+                <span>Galeri</span>
+            </a>
+        </div>
+    </div>
+</section>
+
 <!-- ==================== BERITA TERKINI ==================== -->
 <section class="section section-light">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
             <span class="badge">Berita</span>
-            <h2>Berita Terkini</h2>
+            <h2> Berita Terkini</h2>
             <div class="divider"></div>
             <p>Informasi dan perkembangan terbaru seputar Geopark Danau Toba</p>
         </div>
@@ -1051,44 +1006,6 @@
     </div>
 </section>
 
-<!-- ==================== TAUTAN CEPAT ==================== -->
-<section class="section section-white">
-    <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="badge">Navigasi</span>
-            <h2>🔗 Tautan Cepat</h2>
-            <div class="divider"></div>
-            <p>Jelajahi berbagai informasi menarik di GeoToba</p>
-        </div>
-        <div class="quick-grid">
-            <a href="{{ url('/destinasi') }}" class="quick-item" data-aos="zoom-in">
-                <i class="fas fa-map-marked-alt"></i>
-                <span>Destinasi</span>
-            </a>
-            <a href="{{ route('biodiversitas') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="50">
-                <i class="fas fa-leaf"></i>
-                <span>Biodiversitas</span>
-            </a>
-            <a href="{{ route('geodiversitas') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="100">
-                <i class="fas fa-gem"></i>
-                <span>Geodiversitas</span>
-            </a>
-            <a href="{{ route('cultural-diversity') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="150">
-                <i class="fas fa-people-arrows"></i>
-                <span>Cultural Diversity</span>
-            </a>
-            <a href="{{ url('/berita') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="200">
-                <i class="fas fa-newspaper"></i>
-                <span>Berita / Event</span>
-            </a>
-            <a href="{{ url('/galeri') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="250">
-                <i class="fas fa-images"></i>
-                <span>Galeri</span>
-            </a>
-        </div>
-    </div>
-</section>
-
 <!-- ==================== CTA ==================== -->
 <section class="cta-section">
     <div class="container">
@@ -1096,6 +1013,7 @@
             <h3>Mulai Petualangan Anda</h3>
             <div class="divider"></div>
             <p>Temukan keajaiban geologi dan kekayaan budaya Batak di Geopark Toba, warisan dunia yang diakui UNESCO.</p>
+            <a href="#destinasi" class="cta-btn">Jelajahi Sekarang</a>
         </div>
     </div>
 </section>
@@ -1111,9 +1029,6 @@
         </div>
     </div>
 </div>
-
-<!-- ==================== FONT AWESOME ==================== -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <!-- ==================== SCRIPTS ==================== -->
 <script>
@@ -1163,6 +1078,13 @@
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
+    });
+
+    // ==================== AOS ====================
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof AOS !== 'undefined') {
+            AOS.init({ duration: 800, once: true, offset: 50, easing: 'ease-out-quad' });
+        }
     });
 </script>
 

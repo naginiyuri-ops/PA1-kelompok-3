@@ -554,6 +554,62 @@
     </div>
 </section>
 
+<!-- ==================== GEOSITE LIST ==================== -->
+<section class="section section-white">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="badge">Destinasi</span>
+            <h2>Geosite Unggulan</h2>
+            <div class="divider"></div>
+            <p>Empat geosite terbaik di kawasan Balige, Caldera Toba</p>
+        </div>
+        <div class="geosite-grid">
+            <!-- Balige -->
+            <div class="geosite-card" data-aos="fade-up" onclick="window.location.href='{{ url('/geosite/balige') }}'">
+                <img src="{{ asset('image/meat/balige.jpg') }}" alt="Balige" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                <div class="content">
+                    <h3>Balige</h3>
+                    <div class="lokasi"><i class="fas fa-map-marker-alt"></i> Kabupaten Toba</div>
+                    <p>Pusat peradaban Batak Toba dengan sejarah panjang dan budaya yang kaya</p>
+                    <a href="{{ url('/geosite/balige') }}" class="btn-detail">Jelajahi →</a>
+                </div>
+            </div>
+
+            <!-- Meat -->
+            <div class="geosite-card" data-aos="fade-up" data-aos-delay="100" onclick="window.location.href='{{ url('/geosite/meat') }}'">
+                <img src="{{ asset('image/meat/meat-detail.jpg') }}" alt="Meat" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                <div class="content">
+                    <h3>Meat</h3>
+                    <div class="lokasi"><i class="fas fa-map-marker-alt"></i> Kecamatan Tampahan</div>
+                    <p>Desa wisata adat Batak di tepi Danau Toba, dijuluki "New Zealand van Toba"</p>
+                    <a href="{{ url('/geosite/meat') }}" class="btn-detail">Jelajahi →</a>
+                </div>
+            </div>
+
+            <!-- Batu Basiha -->
+            <div class="geosite-card" data-aos="fade-up" data-aos-delay="200" onclick="window.location.href='{{ url('/geosite/batu-bahisan') }}'">
+                <img src="{{ asset('image/meat/batubasiha1.png') }}" alt="Batu Basiha" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                <div class="content">
+                    <h3>Batu Basiha</h3>
+                    <div class="lokasi"><i class="fas fa-map-marker-alt"></i> Desa Aek Bolon Jae</div>
+                    <p>Situs batu bersejarah dari letusan Gunung Toba 74.000 tahun lalu</p>
+                    <a href="{{ url('/geosite/batu-bahisan') }}" class="btn-detail">Jelajahi →</a>
+                </div>
+            </div>
+
+            <!-- Liang Sipege -->
+            <div class="geosite-card" data-aos="fade-up" data-aos-delay="300" onclick="window.location.href='{{ url('/geosite/liang-sipege') }}'">
+                <img src="{{ asset('image/meat/liang-sipege-hero.jpg') }}" alt="Liang Sipege" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                <div class="content">
+                    <h3>Liang Sipege</h3>
+                    <div class="lokasi"><i class="fas fa-map-marker-alt"></i> Desa Simarmar Pea Talun</div>
+                    <p>Gua alam dengan nilai spiritual tinggi dan habitat kelelawar alami</p>
+                    <a href="{{ url('/geosite/liang-sipege') }}" class="btn-detail">Jelajahi →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- ==================== PROFIL WILAYAH ==================== -->
 <section class="section section-light" id="profil">

@@ -225,6 +225,14 @@
         <div class="stat-label">Total Berita</div>
     </div>
     <div class="stat-card">
+        <div class="stat-number">{{ $totalInformasi ?? 0 }}</div>
+        <div class="stat-label">Total Informasi</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number">{{ $totalSejarah ?? 0 }}</div>
+        <div class="stat-label">Total Sejarah Wisata</div>
+    </div>
+    <div class="stat-card">
         <div class="stat-number">{{ $totalUmkm ?? 0 }}</div>
         <div class="stat-label">Lapak UMKM</div>
     </div>
@@ -242,11 +250,217 @@
     </div>
 </div>
 
+<!-- SEJARAH WISATA TERBARU -->
+<div class="card-table">
+    <div class="card-header">
+        <h5><i class="fas fa-history"></i> Sejarah Wisata Terbaru</h5>
+        <a href="{{ route('admin.sejarah-wisata.create') }}" class="btn-primary-sm">+ Tambah</a>
+    </div>
+    <div style="overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50px;">No</th>
+                    <th>Judul</th>
+                    <th>Geosite</th>
+                    <th>Kategori</th>
+                    <th>Status</th>
+                    <th style="width: 120px; text-align: center;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php $sejarahList = App\Models\SejarahWisata::latest()->limit(5)->get(); @endphp
+                @forelse($sejarahList as $key => $item)
+                <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td style="font-weight: 600; color: #003366;">{{ Str::limit($item->judul, 30) }}</td>
+                    <td>
+                        <span class="badge-status" style="background: #e3f2fd; color: #1565c0;">
+                            {{ $item->geosite_label }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge-status" style="background: #f3e5f5; color: #7b1fa2;">
+                            {{ $item->kategori_label }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge-status {{ $item->status ? 'badge-active' : 'badge-inactive' }}">
+                            {{ $item->status ? 'Aktif' : 'Tidak' }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="btn-group-action" style="justify-content: center;">
+                            <a href="{{ route('admin.sejarah-wisata.show', $item->id) }}" class="btn-action-edit" style="background: #e8f5e9; color: #2e7d32;">Lihat</a>
+                            <a href="{{ route('admin.sejarah-wisata.edit', $item->id) }}" class="btn-action-edit">Edit</a>
+                            <form action="{{ route('admin.sejarah-wisata.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus data ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-action-delete">Hapus</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                @empty
+                <tr><td colspan="6" class="empty-state">📭 Belum ada data Sejarah Wisata</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card-table">
+    <div class="card-header">
+        <h5><i class="fas fa-store"></i> UMKM Terbaru</h5>
+        <a href="{{ route('admin.umkm.create') }}" class="btn-primary-sm">+ UMKM</a>
+    </div>
+    <div style="overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50px;">No</th>
+                    <th>Nama Lapak</th>
+                    <th>Lokasi</th>
+                    <th>Kontak</th>
+                    <th>Status</th>
+                    <th style="width: 120px; text-align: center;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php $umkmList = App\Models\Umkm::latest()->limit(5)->get(); @endphp
+                @forelse($umkmList as $key => $item)
+                <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td style="font-weight: 600; color: #003366;">{{ $item->nama }}</td>
+                    <td>{{ $item->lokasi ?? '-' }}</td>
+                    <td>{{ $item->kontak ?? '-' }}</td>
+                    <td>
+                        <span class="badge-status {{ $item->status ? 'badge-active' : 'badge-inactive' }}">
+                            {{ $item->status ? 'Aktif' : 'Tidak' }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="btn-group-action" style="justify-content: center;">
+                            <a href="{{ route('admin.umkm.edit', $item->id) }}" class="btn-action-edit">Edit</a>
+                            <form action="{{ route('admin.umkm.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus UMKM {{ $item->nama }}?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-action-delete">Hapus</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                @empty
+                <tr><td colspan="6" class="empty-state">📭 Belum ada data UMKM baru</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card-table">
+    <div class="card-header">
+        <h5><i class="fas fa-tools"></i> Fasilitas Terbaru</h5>
+        <a href="{{ route('admin.fasilitas.create') }}" class="btn-primary-sm">+ Fasilitas</a>
+    </div>
+    <div style="overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50px;">No</th>
+                    <th>Nama Fasilitas</th>
+                    <th>Harga / Tarif</th>
+                    <th>Status</th>
+                    <th style="width: 120px; text-align: center;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php $fasilitasList = App\Models\Fasilitas::latest()->limit(5)->get(); @endphp
+                @forelse($fasilitasList as $key => $item)
+                <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td style="font-weight: 600; color: #003366;">{{ $item->nama }}</td>
+                    <td>{{ $item->harga ?? 'Gratis' }}</td>
+                    <td>
+                        <span class="badge-status {{ $item->status ? 'badge-active' : 'badge-inactive' }}">
+                            {{ $item->status ? 'Aktif' : 'Tidak' }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="btn-group-action" style="justify-content: center;">
+                            <a href="{{ route('admin.fasilitas.edit', $item->id) }}" class="btn-action-edit">Edit</a>
+                            <form action="{{ route('admin.fasilitas.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus fasilitas {{ $item->nama }}?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-action-delete">Hapus</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                @empty
+                <tr><td colspan="5" class="empty-state">📭 Belum ada data Fasilitas baru</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card-table">
+    <div class="card-header">
+        <h5><i class="fas fa-hotel"></i> Penginapan Terbaru</h5>
+        <a href="{{ route('admin.penginapan.create') }}" class="btn-primary-sm">+ Penginapan</a>
+    </div>
+    <div style="overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50px;">No</th>
+                    <th>Nama Penginapan</th>
+                    <th>Harga / Malam</th>
+                    <th>Kontak Pemilik</th>
+                    <th>Status</th>
+                    <th style="width: 120px; text-align: center;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php $penginapanList = App\Models\Penginapan::latest()->limit(5)->get(); @endphp
+                @forelse($penginapanList as $key => $item)
+                <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td style="font-weight: 600; color: #003366;">{{ $item->nama }}</td>
+                    <td>{{ $item->harga ?? '-' }}</td>
+                    <td>{{ $item->kontak ?? '-' }}</td>
+                    <td>
+                        <span class="badge-status {{ $item->status ? 'badge-active' : 'badge-inactive' }}">
+                            {{ $item->status ? 'Aktif' : 'Tidak' }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="btn-group-action" style="justify-content: center;">
+                            <a href="{{ route('admin.penginapan.edit', $item->id) }}" class="btn-action-edit">Edit</a>
+                            <form action="{{ route('admin.penginapan.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus penginapan {{ $item->nama }}?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-action-delete">Hapus</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                @empty
+                <tr><td colspan="6" class="empty-state">📭 Belum ada data Penginapan baru</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <div class="quick-actions-bar">
     <span><i class="fas fa-bolt"></i> Pintasan:</span>
-    <a href="{{ route('admin.create') }}" class="btn-primary-sm" style="background-color: #475569;">
-        <i class="fas fa-user-plus"></i> Admin Baru
-    </a>
+    <a href="{{ route('admin.sejarah-wisata.create') }}" class="btn-primary-sm"><i class="fas fa-plus"></i> Sejarah</a>
+    <a href="{{ route('admin.galeri.create') }}" class="btn-primary-sm"><i class="fas fa-plus"></i> Galeri</a>
+    <a href="{{ route('admin.berita.create') }}" class="btn-primary-sm"><i class="fas fa-plus"></i> Berita</a>
+    <a href="{{ route('admin.informasi.create') }}" class="btn-primary-sm"><i class="fas fa-plus"></i> Info</a>
+    <a href="{{ route('admin.create') }}" class="btn-primary-sm" style="background-color: #475569;"><i class="fas fa-user-plus"></i> Admin Baru</a>
 </div>
 
 @endsection
