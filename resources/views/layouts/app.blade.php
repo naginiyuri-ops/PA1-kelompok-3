@@ -1029,7 +1029,7 @@
                     <!-- HOME -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ url('/') }}">
-                            Home
+                            Beranda
                         </a>
                     </li>
 
@@ -1144,7 +1144,7 @@
                 <div class="footer-col">
                     <h5>Tautan Cepat</h5>
                     <div class="footer-menu">
-                        <a href="{{ url('/') }}"><i class="fas fa-chevron-right"></i> Home</a>
+                        <a href="{{ url('/') }}"><i class="fas fa-chevron-right"></i> Beranda</a>
                         <a href="{{ route('tentang-geosite') }}"><i class="fas fa-chevron-right"></i> Tentang Geosite</a>
                         <a href="{{ url('/destinasi') }}"><i class="fas fa-chevron-right"></i> Destinasi</a>
                         <a href="{{ url('/berita') }}"><i class="fas fa-chevron-right"></i> Berita / Event</a>
