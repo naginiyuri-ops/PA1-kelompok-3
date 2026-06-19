@@ -363,7 +363,25 @@
         <a href="{{ route('admin.informasi.index') }}" class="{{ request()->routeIs('admin.informasi.*') ? 'active' : '' }}">
             <i class="fas fa-info-circle"></i> Informasi
         </a>
-        
+
+        {{-- ========== GROUP DESTINASI ========== --}}
+        {{-- Label grup "Destinasi" — hanya sebagai header visual, tidak bisa diklik --}}
+        <div class="menu-title">Destinasi</div>
+
+        {{-- Ketiga link di bawah ini adalah CRUD terpisah untuk setiap sub-kategori --}}
+        <a href="{{ route('admin.destination.alam.index') }}"
+           class="{{ request()->routeIs('admin.destination.alam.*') ? 'active' : '' }}">
+            <i class="fas fa-tree"></i> Destinasi Alam
+        </a>
+        <a href="{{ route('admin.destination.buatan.index') }}"
+           class="{{ request()->routeIs('admin.destination.buatan.*') ? 'active' : '' }}">
+            <i class="fas fa-building"></i> Destinasi Buatan
+        </a>
+        <a href="{{ route('admin.destination.budaya.index') }}"
+           class="{{ request()->routeIs('admin.destination.budaya.*') ? 'active' : '' }}">
+            <i class="fas fa-landmark"></i> Destinasi Budaya
+        </a>
+
         <div class="menu-title">Keanekaragaman</div>
         <a href="{{ route('admin.biodiversitas.index') }}" class="{{ request()->routeIs('admin.biodiversitas.*') ? 'active' : '' }}">
             <i class="fas fa-leaf"></i> Biodiversitas
