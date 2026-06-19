@@ -31,10 +31,11 @@ use Illuminate\Support\Facades\DB;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// ========================================
-// ========== GLOBAL SEARCH ==========
-// ========================================
+// ========== GLOBAL SEARCH (LIVE – mengembalikan JSON) ==========
 Route::get('/search', [SearchController::class, 'search'])->name('search');
+
+// ========== HALAMAN HASIL PENCARIAN (GET – mengembalikan View Blade) ==========
+Route::get('/search-results', [SearchController::class, 'searchResults'])->name('search.results');
 
 // Language Route
 Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
