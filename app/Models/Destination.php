@@ -27,6 +27,7 @@ class Destination extends Model
         'description',
         'image_path',
         'status',
+        'is_featured',
         'location',
         'operational_hours',
         'ticket_price',
@@ -34,16 +35,13 @@ class Destination extends Model
         'short_description',
         'hero_image_path',
     ];
-
+    
     /** Casting tipe data otomatis */
     protected $casts = [
         'status' => 'boolean',
+        'is_featured' => 'boolean',
     ];
 
-    /**
-     * Scope untuk memfilter hanya data aktif.
-     * Penggunaan: Destination::active()->get()
-     */
     public function scopeActive($query)
     {
         return $query->where('status', true);

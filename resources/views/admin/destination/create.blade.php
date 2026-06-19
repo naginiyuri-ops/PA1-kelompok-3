@@ -211,6 +211,21 @@
                 </div>
             </div>
 
+            {{-- Toggle destinasi unggulan --}}
+            <div style="display:flex; align-items:center; gap:10px; margin:0 0 22px 0; padding:14px 18px; background:#fff7ed; border-radius:12px; border:1px solid #f5d0a9;">
+                <input type="checkbox" name="is_featured" value="1" id="is_featured"
+                       {{ old('is_featured') ? 'checked' : '' }}
+                       style="width:18px; height:18px; cursor:pointer; accent-color:#f59e0b;">
+                <div>
+                    <label for="is_featured" style="margin:0; cursor:pointer; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                        Tandai sebagai Destinasi Unggulan
+                    </label>
+                    <div style="font-size:0.72rem; color:#92400e; margin-top:2px;">
+                        Ditampilkan di halaman utama sebagai destinasi rekomendasi.
+                    </div>
+                </div>
+            </div>
+
             {{-- Tombol aksi --}}
             <div style="display:flex; gap:12px; margin-top:28px; padding-top:20px; border-top:1px solid #f1f5f9;">
                 <button type="submit"

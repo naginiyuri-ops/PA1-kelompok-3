@@ -9,8 +9,8 @@ class Informasi extends Model
 {
     use HasFactory;
 
-    // PERBAIKAN: Ganti dari 'informasi' menjadi 'informasis'
-    protected $table = 'informasi';
+    // Gunakan tabel yang sesuai dengan migrasi
+    protected $table = 'informasis';
     
     protected $fillable = [
         'judul', 
