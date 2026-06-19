@@ -242,11 +242,20 @@
     </div>
 </div>
 
+<<<<<<< HEAD
+
+
+<div class="quick-actions-bar">
+    <span><i class="fas fa-bolt"></i> Pintasan:</span>
+
+    <a href="{{ route('admin.create') }}" class="btn-primary-sm" style="background-color: #475569;"><i class="fas fa-user-plus"></i> Admin Baru</a>
+=======
 <div class="quick-actions-bar">
     <span><i class="fas fa-bolt"></i> Pintasan:</span>
     <a href="{{ route('admin.create') }}" class="btn-primary-sm" style="background-color: #475569;">
         <i class="fas fa-user-plus"></i> Admin Baru
     </a>
+>>>>>>> 2bb75f309a46379f136c443fd563ae965cbf7584
 </div>
 
 @endsection
