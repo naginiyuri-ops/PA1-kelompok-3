@@ -31,6 +31,7 @@ class PenginapanController extends Controller
             'urutan' => 'nullable|integer',
             'status' => 'nullable|boolean',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'gambar_tambahan' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
         ]);
 
         $data = [
@@ -54,6 +55,18 @@ class PenginapanController extends Controller
             }
             $image->move($destinationPath, $filename);
             $data['gambar'] = 'image/penginapan/' . $filename;
+        }
+
+        if ($request->hasFile('gambar_tambahan')) {
+            $image2 = $request->file('gambar_tambahan');
+            $filename2 = time() . '_2_' . Str::slug($request->nama) . '.' . $image2->getClientOriginalExtension();
+            
+            $destinationPath = public_path('image/penginapan');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+            $image2->move($destinationPath, $filename2);
+            $data['gambar_tambahan'] = 'image/penginapan/' . $filename2;
         }
 
         Penginapan::create($data);
@@ -81,6 +94,7 @@ class PenginapanController extends Controller
             'urutan' => 'nullable|integer',
             'status' => 'nullable|boolean',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'gambar_tambahan' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
         ]);
 
         $updateData = [
@@ -98,6 +112,11 @@ class PenginapanController extends Controller
             $updateData['gambar'] = null;
         }
 
+        // Handle hapus gambar tambahan
+        if ($request->has('hapus_gambar_tambahan') && $request->hapus_gambar_tambahan == 1) {
+            $updateData['gambar_tambahan'] = null;
+        }
+
         // Handle upload gambar baru
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
@@ -110,6 +129,19 @@ class PenginapanController extends Controller
             }
             $image->move($destinationPath, $filename);
             $updateData['gambar'] = 'image/penginapan/' . $filename;
+        }
+
+        // Handle upload gambar tambahan baru
+        if ($request->hasFile('gambar_tambahan')) {
+            $image2 = $request->file('gambar_tambahan');
+            $filename2 = time() . '_2_' . Str::slug($request->nama) . '.' . $image2->getClientOriginalExtension();
+            
+            $destinationPath = public_path('image/penginapan');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+            $image2->move($destinationPath, $filename2);
+            $updateData['gambar_tambahan'] = 'image/penginapan/' . $filename2;
         }
 
         $penginapan->update($updateData);

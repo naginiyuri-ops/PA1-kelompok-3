@@ -322,12 +322,23 @@
                 
                 <div class="col-third">
                     <div class="mb-3">
-                        <label>Gambar</label>
+                        <label>Gambar Utama</label>
                         <input type="file" name="gambar" class="form-control" accept="image/*" id="inputGambar">
                         <div class="form-text">
                             <i class="fas fa-info-circle"></i> Format: JPG, PNG, WEBP. Max: 5MB
                         </div>
                         <img id="previewImage" class="preview-image">
+                    </div>
+                </div>
+                
+                <div class="col-third">
+                    <div class="mb-3">
+                        <label>Gambar Tambahan (Opsional)</label>
+                        <input type="file" name="gambar_tambahan" class="form-control" accept="image/*" id="inputGambarTambahan">
+                        <div class="form-text">
+                            <i class="fas fa-info-circle"></i> Format: JPG, PNG, WEBP. Max: 5MB
+                        </div>
+                        <img id="previewGambarTambahan" class="preview-image">
                     </div>
                 </div>
             </div>
@@ -346,10 +357,27 @@
 </div>
 
 <script>
-    // Preview gambar
+    // Preview gambar utama
     document.getElementById('inputGambar').addEventListener('change', function(e) {
         const file = e.target.files[0];
         const previewImage = document.getElementById('previewImage');
+        
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                previewImage.src = event.target.result;
+                previewImage.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        } else {
+            previewImage.style.display = 'none';
+        }
+    });
+
+    // Preview gambar tambahan
+    document.getElementById('inputGambarTambahan').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const previewImage = document.getElementById('previewGambarTambahan');
         
         if (file) {
             const reader = new FileReader();

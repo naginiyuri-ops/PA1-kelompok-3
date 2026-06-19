@@ -54,6 +54,18 @@ class UmkmController extends Controller
             $data['foto_utama'] = 'image/umkm/' . $filename;
         }
 
+        if ($request->hasFile('foto_tambahan')) {
+            $image2 = $request->file('foto_tambahan');
+            $filename2 = time() . '_2_' . Str::slug($request->nama) . '.' . $image2->getClientOriginalExtension();
+            
+            $destinationPath = public_path('image/umkm');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+            $image2->move($destinationPath, $filename2);
+            $data['foto_tambahan'] = 'image/umkm/' . $filename2;
+        }
+
         Umkm::create($data);
 
         return redirect()->route('admin.umkm.index')
@@ -68,6 +80,7 @@ class UmkmController extends Controller
         $data->lokasi = $data->alamat;
         $data->kontak = $data->no_telepon;
         $data->gambar = $data->foto_utama;
+        // foto_tambahan dibiarkan bernama foto_tambahan
         return view('admin.umkm.edit', compact('data'));
     }
 
@@ -83,6 +96,7 @@ class UmkmController extends Controller
             'urutan' => 'nullable|integer',
             'status' => 'nullable|boolean',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'foto_tambahan' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
         ]);
 
         $updateData = [
@@ -95,9 +109,14 @@ class UmkmController extends Controller
             'status' => $request->has('status') ? 'aktif' : 'nonaktif',
         ];
 
-        // Handle hapus gambar
+        // Handle hapus gambar utama
         if ($request->has('hapus_gambar') && $request->hapus_gambar == 1) {
             $updateData['foto_utama'] = null;
+        }
+
+        // Handle hapus foto tambahan
+        if ($request->has('hapus_foto_tambahan') && $request->hapus_foto_tambahan == 1) {
+            $updateData['foto_tambahan'] = null;
         }
 
         // Handle upload gambar baru
@@ -111,6 +130,19 @@ class UmkmController extends Controller
             }
             $image->move($destinationPath, $filename);
             $updateData['foto_utama'] = 'image/umkm/' . $filename;
+        }
+
+        // Handle upload foto tambahan baru
+        if ($request->hasFile('foto_tambahan')) {
+            $image2 = $request->file('foto_tambahan');
+            $filename2 = time() . '_2_' . Str::slug($request->nama) . '.' . $image2->getClientOriginalExtension();
+            
+            $destinationPath = public_path('image/umkm');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+            $image2->move($destinationPath, $filename2);
+            $updateData['foto_tambahan'] = 'image/umkm/' . $filename2;
         }
 
         $umkm->update($updateData);

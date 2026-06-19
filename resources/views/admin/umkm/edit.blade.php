@@ -320,6 +320,32 @@
                 </div>
             </div>
             
+            <div class="row">
+                <div class="col-half">
+                    <div class="mb-3">
+                        <label>Foto Tambahan Saat Ini</label>
+                        @if($data->foto_tambahan && file_exists(public_path($data->foto_tambahan)))
+                            <div class="current-image">
+                                <img src="{{ asset($data->foto_tambahan) }}" alt="Foto Tambahan">
+                            </div>
+                            <div class="checkbox-delete">
+                                <input type="checkbox" name="hapus_foto_tambahan" id="hapus_foto_tambahan" value="1">
+                                <label for="hapus_foto_tambahan" class="text-danger">Hapus foto tambahan</label>
+                            </div>
+                        @else
+                            <div class="form-text">Tidak ada foto tambahan</div>
+                        @endif
+                        
+                        <label style="margin-top: 12px;">Pilih Foto Tambahan (Opsional)</label>
+                        <input type="file" name="foto_tambahan" class="form-control" accept="image/*" id="inputFotoTambahan">
+                        <div class="form-text">
+                            <i class="fas fa-info-circle"></i> Format: JPG, PNG, WEBP. Max: 5MB
+                        </div>
+                        <img id="previewFotoTambahan" class="preview-image">
+                    </div>
+                </div>
+            </div>
+            
             <div class="checkbox-group">
                 <input type="checkbox" name="status" value="1" id="status" {{ old('status', $data->status) ? 'checked' : '' }}>
                 <label for="status">Aktifkan UMKM</label>
@@ -337,6 +363,22 @@
     document.getElementById('inputGambar').addEventListener('change', function(e) {
         const file = e.target.files[0];
         const previewImage = document.getElementById('previewImage');
+        
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                previewImage.src = event.target.result;
+                previewImage.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        } else {
+            previewImage.style.display = 'none';
+        }
+    });
+
+    document.getElementById('inputFotoTambahan').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const previewImage = document.getElementById('previewFotoTambahan');
         
         if (file) {
             const reader = new FileReader();

@@ -157,6 +157,11 @@
 
             {{-- Kolom kiri: Deskripsi --}}
             <div class="detail-main">
+                @if($item->gambar_tambahan && file_exists(public_path($item->gambar_tambahan)))
+                    <div style="margin-bottom: 30px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                        <img src="{{ asset($item->gambar_tambahan) }}" alt="Gambar Tambahan {{ $item->nama }}" style="width: 100%; height: auto; display: block; object-fit: cover; max-height: 500px;">
+                    </div>
+                @endif
                 <h2><i class="fas fa-bed" style="color:var(--gold);margin-right:10px;"></i>Tentang Penginapan Ini</h2>
                 <div class="deskripsi">{{ $item->deskripsi ?? 'Deskripsi belum tersedia.' }}</div>
             </div>

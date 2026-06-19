@@ -256,19 +256,34 @@
                         <label>Urutan <span class="text-danger">*</span></label>
                         <input type="number" name="urutan" class="form-control" value="{{ old('urutan', $nextUrutan ?? 1) }}" required>
                         <div class="form-text">
-                            <i class="fas fa-info-circle"></i> Semakin kecil angka, semakin atas tampilannya
+            <div class="mb-3">
+                <label>Urutan <span class="text-danger">*</span></label>
+                <input type="number" name="urutan" class="form-control" value="{{ old('urutan', $nextUrutan ?? 1) }}" required>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i> Semakin kecil angka, semakin atas tampilannya
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-half">
+                    <div class="mb-3">
+                        <label>Gambar Utama</label>
+                        <input type="file" name="gambar" class="form-control" accept="image/*" id="inputGambar">
+                        <div class="form-text">
+                            <i class="fas fa-info-circle"></i> Format: JPG, PNG, WEBP. Max: 5MB
                         </div>
+                        <img src="" class="preview-image" id="previewImage">
                     </div>
                 </div>
                 
                 <div class="col-half">
                     <div class="mb-3">
-                        <label>Gambar</label>
-                        <input type="file" name="gambar" class="form-control" accept="image/*" id="inputGambar">
+                        <label>Foto Tambahan (Opsional)</label>
+                        <input type="file" name="foto_tambahan" class="form-control" accept="image/*" id="inputFotoTambahan">
                         <div class="form-text">
                             <i class="fas fa-info-circle"></i> Format: JPG, PNG, WEBP. Max: 5MB
                         </div>
-                        <img id="previewImage" class="preview-image">
+                        <img src="" class="preview-image" id="previewFotoTambahan">
                     </div>
                 </div>
             </div>
@@ -290,6 +305,22 @@
     document.getElementById('inputGambar').addEventListener('change', function(e) {
         const file = e.target.files[0];
         const previewImage = document.getElementById('previewImage');
+        
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                previewImage.src = event.target.result;
+                previewImage.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        } else {
+            previewImage.style.display = 'none';
+        }
+    });
+
+    document.getElementById('inputFotoTambahan').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const previewImage = document.getElementById('previewFotoTambahan');
         
         if (file) {
             const reader = new FileReader();

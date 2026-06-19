@@ -12,7 +12,7 @@ class Penginapan extends Model
     protected $table = 'penginapan';
     
     protected $fillable = [
-        'user_id', 'nama', 'deskripsi', 'gambar', 'harga', 
+        'user_id', 'nama', 'deskripsi', 'gambar', 'gambar_tambahan', 'harga', 
         'lokasi', 'kontak', 'urutan', 'status'
     ];
 

@@ -157,6 +157,11 @@
 
             {{-- Kolom kiri: Deskripsi --}}
             <div class="detail-main">
+                @if($item->foto_tambahan && file_exists(public_path($item->foto_tambahan)))
+                    <div style="margin-bottom: 30px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                        <img src="{{ asset($item->foto_tambahan) }}" alt="Foto Tambahan {{ $item->nama_usaha }}" style="width: 100%; height: auto; display: block; object-fit: cover; max-height: 500px;">
+                    </div>
+                @endif
                 <h2><i class="fas fa-store" style="color:var(--gold);margin-right:10px;"></i>Tentang UMKM Ini</h2>
                 <div class="deskripsi">{{ $item->deskripsi ?? 'Deskripsi belum tersedia.' }}</div>
             </div>

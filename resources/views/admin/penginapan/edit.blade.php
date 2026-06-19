@@ -356,7 +356,7 @@
                 
                 <div class="col-third">
                     <div class="mb-3">
-                        <label>Gambar Saat Ini</label>
+                        <label>Gambar Utama Saat Ini</label>
                         @if($data->gambar && file_exists(public_path($data->gambar)))
                             <div class="current-image">
                                 <img src="{{ asset($data->gambar) }}" alt="Current image">
@@ -369,12 +369,36 @@
                             <div class="form-text">Tidak ada gambar</div>
                         @endif
                         
-                        <label style="margin-top: 12px;">Ganti Gambar</label>
+                        <label style="margin-top: 12px;">Ganti Gambar Utama</label>
                         <input type="file" name="gambar" class="form-control" accept="image/*" id="inputGambar">
                         <div class="form-text">
                             <i class="fas fa-info-circle"></i> Format: JPG, PNG, WEBP. Max: 5MB
                         </div>
                         <img id="previewImage" class="preview-image">
+                    </div>
+                </div>
+                
+                <div class="col-third">
+                    <div class="mb-3">
+                        <label>Gambar Tambahan Saat Ini</label>
+                        @if($data->gambar_tambahan && file_exists(public_path($data->gambar_tambahan)))
+                            <div class="current-image">
+                                <img src="{{ asset($data->gambar_tambahan) }}" alt="Gambar Tambahan">
+                            </div>
+                            <div class="checkbox-delete">
+                                <input type="checkbox" name="hapus_gambar_tambahan" id="hapus_gambar_tambahan" value="1">
+                                <label for="hapus_gambar_tambahan" class="text-danger">Hapus gambar tambahan</label>
+                            </div>
+                        @else
+                            <div class="form-text">Tidak ada gambar tambahan</div>
+                        @endif
+                        
+                        <label style="margin-top: 12px;">Pilih Gambar Tambahan (Opsional)</label>
+                        <input type="file" name="gambar_tambahan" class="form-control" accept="image/*" id="inputGambarTambahan">
+                        <div class="form-text">
+                            <i class="fas fa-info-circle"></i> Format: JPG, PNG, WEBP. Max: 5MB
+                        </div>
+                        <img id="previewGambarTambahan" class="preview-image">
                     </div>
                 </div>
             </div>
@@ -393,10 +417,27 @@
 </div>
 
 <script>
-    // Preview gambar
+    // Preview gambar utama
     document.getElementById('inputGambar').addEventListener('change', function(e) {
         const file = e.target.files[0];
         const previewImage = document.getElementById('previewImage');
+        
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                previewImage.src = event.target.result;
+                previewImage.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        } else {
+            previewImage.style.display = 'none';
+        }
+    });
+
+    // Preview gambar tambahan
+    document.getElementById('inputGambarTambahan').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const previewImage = document.getElementById('previewGambarTambahan');
         
         if (file) {
             const reader = new FileReader();

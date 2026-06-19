@@ -18,6 +18,7 @@ class Umkm extends Model
         'no_telepon',
         'deskripsi',
         'foto_utama',
+        'foto_tambahan',
         'status',
         'urutan',
     ];
