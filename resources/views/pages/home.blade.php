@@ -781,6 +781,40 @@
     </div>
 </section>
 
+<!-- ==================== DESTINASI UNGGULAN ==================== -->
+<section id="destinasi" class="section section-white">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="badge">Destinasi Unggulan</span>
+            <h2>Destinasi Unggulan</h2>
+        </div>
+
+        @if(!empty($featuredDestinations) && $featuredDestinations->count())
+        <div class="destinasi-list">
+            @foreach($featuredDestinations as $item)
+            <div class="destinasi-item" data-aos="fade-up" data-aos-delay="{{ $loop->index * 120 }}">
+                <div class="destinasi-image">
+                    <img src="{{ $item->image_url }}" alt="{{ $item->title }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                </div>
+                <div class="destinasi-content">
+                    <div class="destinasi-number">{{ sprintf('%02d', $loop->iteration) }}</div>
+                    <h3>{{ $item->title }}</h3>
+                    <div class="location"><i class="fas fa-map-marker-alt"></i> {{ $item->location ?? 'Lokasi belum diisi' }}</div>
+                    <p>{{ Str::limit(strip_tags($item->short_description ?: $item->description), 120) }}</p>
+                    <a href="{{ route('destinasi.detail', ['category' => $item->category, 'id' => $item->id]) }}" class="destinasi-link">Lihat Detail →</a>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        @else
+        <div style="text-align:center; padding:50px; color:#94a3b8;">
+            <i class="fas fa-map-marker-alt" style="font-size:3rem; opacity:0.25; display:block; margin-bottom:16px;"></i>
+            Belum ada destinasi unggulan. Tandai destinasi di panel admin agar muncul di sini.
+        </div>
+        @endif
+    </div>
+</section>
+
 <!-- ==================== STATS ==================== -->
 <section class="section section-white">
     <div class="container">
@@ -813,7 +847,7 @@
     <div class="container">
         <div class="section-header" data-aos="fade-up">
             <span class="badge">Galeri</span>
-            <h2>📸 Galeri Unggulan</h2>
+            <h2>Galeri Unggulan</h2>
             <div class="divider"></div>
             <p>Koleksi foto terbaik dari Geopark Danau Toba</p>
         </div>
@@ -848,7 +882,6 @@
                     <div class="caption">
                         <h4>{{ Str::limit($item->judul, 30) }}</h4>
                         <p>{{ $item->kategori ?? 'Galeri' }} · {{ $item->lokasi ?? 'Danau Toba' }}</p>
-                        <span class="badge-unggulan">⭐ Unggulan</span>
                     </div>
                 </div>
                 @empty

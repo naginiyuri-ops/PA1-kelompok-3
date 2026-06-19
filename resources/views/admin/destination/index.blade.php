@@ -57,6 +57,7 @@
                     <th style="padding:14px 16px; text-align:left; font-weight:700; font-size:0.8rem; color:#003366; border-bottom:2px solid #e2e8f0;">Judul</th>
                     <th style="padding:14px 16px; text-align:left; font-weight:700; font-size:0.8rem; color:#003366; border-bottom:2px solid #e2e8f0;">Deskripsi</th>
                     <th style="padding:14px 16px; text-align:left; font-weight:700; font-size:0.8rem; color:#003366; border-bottom:2px solid #e2e8f0;">Status</th>
+                    <th style="padding:14px 16px; text-align:left; font-weight:700; font-size:0.8rem; color:#003366; border-bottom:2px solid #e2e8f0;">Unggulan</th>
                     <th style="padding:14px 16px; text-align:left; font-weight:700; font-size:0.8rem; color:#003366; border-bottom:2px solid #e2e8f0;">Aksi</th>
                 </tr>
             </thead>
@@ -93,6 +94,17 @@
                                 : 'background:#ffebee; color:#c62828; border:1px solid #ef9a9a;' }}">
                             <i class="fas fa-circle" style="font-size:0.4rem;"></i>
                             {{ $item->status ? 'Aktif' : 'Nonaktif' }}
+                        </span>
+                    </td>
+
+                    {{-- Badge unggulan --}}
+                    <td style="padding:14px 16px; vertical-align:middle;">
+                        <span style="display:inline-flex; align-items:center; gap:5px; padding:4px 12px; border-radius:50px; font-size:0.7rem; font-weight:600;
+                            {{ $item->is_featured
+                                ? 'background:#ffefc2; color:#b45309; border:1px solid #fcd34d;'
+                                : 'background:#f8fafc; color:#64748b; border:1px solid #e2e8f0;' }}">
+                            <i class="fas fa-star" style="font-size:0.4rem;"></i>
+                            {{ $item->is_featured ? 'Unggulan' : 'Biasa' }}
                         </span>
                     </td>
 

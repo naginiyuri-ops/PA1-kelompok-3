@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Galeri;
 use App\Models\KoleksiFoto;
 use App\Models\Kontak;
+use App\Models\Destination;
 use App\Models\Umkm;
 use App\Models\Penginapan;
 use App\Models\Fasilitas;
@@ -64,8 +65,15 @@ class HomeController extends Controller
             ->orderBy('created_at', 'desc')
             ->take(6)
             ->get();
+
+        // Destinasi unggulan dari database
+        $featuredDestinations = Destination::active()
+            ->where('is_featured', true)
+            ->latest()
+            ->take(4)
+            ->get();
         
-        return view('pages.home', compact('slide1', 'slide2', 'slide3', 'slide4', 'slide5', 'aboutImage', 'destinasi', 'galeri'));
+        return view('pages.home', compact('slide1', 'slide2', 'slide3', 'slide4', 'slide5', 'aboutImage', 'destinasi', 'galeri', 'featuredDestinations'));
     }
     
     public function kontak()

@@ -3,309 +3,158 @@
 @section('title', 'Edit Galeri')
 
 @section('content')
-<style>
-    .card {
-        background: white;
-        border-radius: 16px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        overflow: hidden;
-    }
-    
-    .card-header {
-        padding: 16px 24px;
-        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        border-bottom: 1px solid #e2e8f0;
-    }
-    
-    .card-header h5 {
-        margin: 0;
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #003366;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    
-    .card-header h5 i {
-        color: #c6a43b;
-    }
-    
-    .card-body {
-        padding: 24px;
-    }
-    
-    .mb-3 {
-        margin-bottom: 20px;
-    }
-    
-    label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 600;
-        font-size: 0.85rem;
-        color: #1e293b;
-    }
-    
-    .form-control {
-        width: 100%;
-        padding: 10px 14px;
-        font-size: 0.85rem;
-        border: 1.5px solid #e2e8f0;
-        border-radius: 10px;
-        transition: all 0.3s ease;
-    }
-    
-    .form-control:focus {
-        outline: none;
-        border-color: #003366;
-        box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
-    }
-    
-    textarea.form-control {
-        resize: vertical;
-        min-height: 100px;
-    }
-    
-    .row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
-    
-    .col-half {
-        flex: 1;
-        min-width: 200px;
-    }
-    
-    .current-image {
-        margin-top: 8px;
-    }
-    
-    .current-image img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 10px;
-        border: 2px solid #c6a43b;
-        padding: 2px;
-    }
-    
-    .preview-image {
-        margin-top: 10px;
-        max-width: 120px;
-        border-radius: 10px;
-        display: none;
-    }
-    
-    .checkbox-group {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin: 20px 0;
-    }
-    
-    .checkbox-group input {
-        width: 18px;
-        height: 18px;
-        cursor: pointer;
-    }
-    
-    .checkbox-group label {
-        margin: 0;
-        cursor: pointer;
-    }
-    
-    .checkbox-group small {
-        display: block;
-        font-weight: normal;
-        color: #94a3b8;
-        font-size: 0.7rem;
-        margin-left: 28px;
-        margin-top: -5px;
-    }
-    
-    .btn-group {
-        display: flex;
-        gap: 12px;
-        margin-top: 24px;
-    }
-    
-    .btn-update {
-        background: linear-gradient(135deg, #003366 0%, #1a4a7a 100%);
-        color: white;
-        padding: 10px 24px;
-        border-radius: 10px;
-        font-weight: 600;
-        font-size: 0.85rem;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    
-    .btn-update:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
-    }
-    
-    .btn-cancel {
-        background: #f1f5f9;
-        color: #475569;
-        padding: 10px 24px;
-        border-radius: 10px;
-        font-weight: 600;
-        font-size: 0.85rem;
-        border: none;
-        cursor: pointer;
-        text-decoration: none;
-        display: inline-block;
-        transition: all 0.3s ease;
-    }
-    
-    .btn-cancel:hover {
-        background: #e2e8f0;
-        transform: translateY(-2px);
-    }
-    
-    .alert-danger {
-        background: #ffebee;
-        color: #c62828;
-        padding: 12px 16px;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        border-left: 4px solid #c62828;
-        font-size: 0.85rem;
-    }
-    
-    .alert-danger ul {
-        margin: 0;
-        padding-left: 20px;
-    }
-    
-    .form-text {
-        font-size: 0.7rem;
-        color: #94a3b8;
-        margin-top: 5px;
-    }
-    
-    .form-text i {
-        margin-right: 4px;
-    }
-    
-    @media (max-width: 768px) {
-        .card-header {
-            padding: 12px 18px;
-        }
-        
-        .card-body {
-            padding: 18px;
-        }
-        
-        .row {
-            flex-direction: column;
-            gap: 0;
-        }
-        
-        .btn-update, .btn-cancel {
-            padding: 8px 18px;
-            font-size: 0.8rem;
-        }
-    }
-</style>
+<div style="background:white; border-radius:20px; box-shadow:0 8px 30px rgba(0,0,0,0.08); overflow:hidden;">
 
-<div class="card">
-    <div class="card-header">
-        <h5>
-            <i class="fas fa-edit"></i>
+    {{-- ── HEADER ── --}}
+    <div style="padding:18px 24px; background:linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-bottom:1px solid #e2e8f0; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+        <h5 style="margin:0; font-size:1.1rem; font-weight:700; color:#003366; display:flex; align-items:center; gap:8px;">
+            <i class="fas fa-pencil-alt" style="color:#c6a43b;"></i>
             Edit Galeri
         </h5>
+        <a href="{{ route('admin.galeri.index') }}"
+           style="background:#f1f5f9; color:#475569; padding:7px 16px; border-radius:10px; font-size:0.82rem; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </a>
     </div>
-    
-    <div class="card-body">
+
+    <div style="padding:28px;">
+
+        {{-- ── TAMPILKAN SEMUA PESAN ERROR ── --}}
         @if($errors->any())
-            <div class="alert-danger">
-                <ul class="mb-0">
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+        <div style="background:#ffebee; color:#c62828; padding:14px 18px; border-radius:12px; margin-bottom:24px; border-left:4px solid #c62828;">
+            <strong style="font-size:0.85rem; display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                <i class="fas fa-exclamation-triangle"></i> Terdapat kesalahan:
+            </strong>
+            <ul style="margin:0; padding-left:20px; font-size:0.83rem;">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
         @endif
 
+        {{-- ── FORM EDIT DATA ── --}}
         <form action="{{ route('admin.galeri.update', $galeri->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            
-            <div class="row">
-                <div class="col-half">
-                    <div class="mb-3">
-                        <label>Judul</label>
-                        <input type="text" name="judul" class="form-control" value="{{ old('judul', $galeri->judul) }}" required>
-                    </div>
-                </div>
-                
-                <div class="col-half">
-                    <div class="mb-3">
-                        <label>Kategori</label>
-                        <select name="kategori" class="form-control" required>
-                            <option value="">-- Pilih Kategori --</option>
-                           
-                            <option value="Meat" {{ $galeri->kategori == 'Meat' ? 'selected' : '' }}>Meat</option>
-                            <option value="Batu Bahisan" {{ $galeri->kategori == 'Batu Bahisan' ? 'selected' : '' }}>Batu Bahisan</option>
-                            <option value="Liang Sipege" {{ $galeri->kategori == 'Liang Sipege' ? 'selected' : '' }}>Liang Sipege</option>
-                        </select>
-                    </div>
-                </div>
+
+            {{-- Judul --}}
+            <div style="margin-bottom:22px;">
+                <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                    Judul <span style="color:#dc2626;">*</span>
+                </label>
+                <input type="text" name="judul" value="{{ old('judul', $galeri->judul) }}" placeholder="Contoh: Pemandangan Danau Toba di Pagi Hari..."
+                       style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s;"
+                       onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'" required>
             </div>
-            
-            <div class="mb-3">
-                <label>Deskripsi</label>
-                <textarea name="deskripsi" class="form-control" rows="4" required>{{ old('deskripsi', $galeri->deskripsi) }}</textarea>
-            </div>
-            
-            <div class="row">
-                <div class="col-half">
-                    <div class="mb-3">
-                        <label>Gambar</label>
-                        @if($galeri->gambar)
-                            <div class="current-image">
-                                <img src="data:image/jpeg;base64,{{ base64_encode($galeri->gambar) }}" alt="Current image">
-                            </div>
-                        @endif
-                        <input type="file" name="gambar" class="form-control mt-2" accept="image/*" id="inputGambar">
-                        <div class="form-text">
-                            <i class="fas fa-info-circle"></i> Format: JPG, PNG. Max: 2MB
-                        </div>
-                        <img id="previewImage" class="preview-image">
-                    </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                {{-- Kategori --}}
+                <div style="margin-bottom:22px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                        Kategori <span style="color:#dc2626;">*</span>
+                    </label>
+                    <select name="kategori"
+                            style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s; background:white;"
+                            onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'" required>
+                        <option value="">-- Pilih Kategori --</option>
+                        <option value="Meat" {{ $galeri->kategori == 'Meat' ? 'selected' : '' }}>Meat</option>
+                        <option value="Batu Bahisan" {{ $galeri->kategori == 'Batu Bahisan' ? 'selected' : '' }}>Batu Bahisan</option>
+                        <option value="Liang Sipege" {{ $galeri->kategori == 'Liang Sipege' ? 'selected' : '' }}>Liang Sipege</option>
+                    </select>
                 </div>
-                
-                <div class="col-half">
-                    <div class="mb-3">
-                        <label>Lokasi</label>
-                        <input type="text" name="lokasi" class="form-control" placeholder="Contoh: Desa Sibandang, Pulau Samosir" value="{{ old('lokasi', $galeri->lokasi) }}">
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label>Tanggal Foto</label>
-                        <input type="date" name="tanggal_foto" class="form-control" value="{{ old('tanggal_foto', $galeri->tanggal_foto) }}">
-                    </div>
+
+                {{-- Lokasi --}}
+                <div style="margin-bottom:22px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                        Lokasi
+                    </label>
+                    <input type="text" name="lokasi" value="{{ old('lokasi', $galeri->lokasi) }}" placeholder="Contoh: Pulau Samosir, Danau Toba"
+                           style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s;"
+                           onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'">
                 </div>
             </div>
-            
-            <div class="checkbox-group">
-                <input type="checkbox" name="status" value="1" id="status" {{ $galeri->status ? 'checked' : '' }}>
-                <label for="status">Aktifkan</label>
+
+            {{-- Deskripsi --}}
+            <div style="margin-bottom:22px;">
+                <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                    Deskripsi <span style="color:#dc2626;">*</span>
+                </label>
+                <textarea name="deskripsi" placeholder="Jelaskan tentang foto ini..." rows="4"
+                          style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s; resize:vertical;"
+                          onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'" required>{{ old('deskripsi', $galeri->deskripsi) }}</textarea>
             </div>
-            <div class="form-text" style="margin-top: -10px; margin-bottom: 20px; margin-left: 28px;">
-                Jika diaktifkan, galeri akan ditampilkan di halaman publik
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                {{-- Gambar --}}
+                <div style="margin-bottom:22px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                        Gambar
+                    </label>
+                    @if($galeri->gambar && file_exists(public_path($galeri->gambar)))
+                    <div style="margin-bottom:10px;">
+                        <img src="{{ asset($galeri->gambar) }}" alt="Current image" style="max-width:120px; height:auto; border-radius:10px; border:2px solid #c6a43b; padding:2px;">
+                    </div>
+                    @endif
+                    <input type="file" name="gambar" id="inputGambar" accept="image/*"
+                           style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; cursor:pointer;"
+                           onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'">
+                    <div style="font-size:0.75rem; color:#94a3b8; margin-top:6px;">
+                        <i class="fas fa-info-circle"></i> Format: JPG, PNG, WebP. Maks: 10MB
+                    </div>
+                    <img id="previewImage" style="margin-top:12px; max-width:120px; border-radius:10px; display:none;">
+                </div>
+
+                {{-- Tanggal Foto --}}
+                <div style="margin-bottom:22px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                        Tanggal Foto
+                    </label>
+                    <input type="date" name="tanggal_foto" value="{{ old('tanggal_foto', $galeri->tanggal_foto) }}"
+                           style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s;"
+                           onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'">
+                </div>
             </div>
-            
-            <div class="btn-group">
-                <button type="submit" class="btn-update">Simpan</button>
-                <a href="{{ route('admin.galeri.index') }}" class="btn-cancel">Batal</a>
+
+            {{-- Toggle status aktif --}}
+            <div style="display:flex; align-items:center; gap:10px; margin:22px 0; padding:14px 18px; background:#f8fafc; border-radius:12px; border:1px solid #e2e8f0;">
+                <input type="checkbox" name="status" value="1" id="status" {{ $galeri->status ? 'checked' : '' }}
+                       style="width:18px; height:18px; cursor:pointer; accent-color:#003366;">
+                <div>
+                    <label for="status" style="margin:0; cursor:pointer; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                        Aktifkan Galeri
+                    </label>
+                    <div style="font-size:0.72rem; color:#94a3b8; margin-top:2px;">
+                        Jika dicentang, galeri akan ditampilkan di halaman publik.
+                    </div>
+                </div>
+            </div>
+
+            {{-- Toggle unggulan --}}
+            <div style="display:flex; align-items:center; gap:10px; margin:0 0 22px 0; padding:14px 18px; background:#fff7ed; border-radius:12px; border:1px solid #f5d0a9;">
+                <input type="checkbox" name="is_unggulan" value="1" id="is_unggulan" {{ old('is_unggulan', $galeri->is_unggulan) ? 'checked' : '' }}
+                       style="width:18px; height:18px; cursor:pointer; accent-color:#f59e0b;">
+                <div>
+                    <label for="is_unggulan" style="margin:0; cursor:pointer; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                        Tandai sebagai Galeri Unggulan
+                    </label>
+                    <div style="font-size:0.72rem; color:#92400e; margin-top:2px;">
+                        Ditampilkan di bagian Galeri Unggulan di halaman utama.
+                    </div>
+                </div>
+            </div>
+
+            {{-- Tombol aksi --}}
+            <div style="display:flex; gap:12px; margin-top:24px; padding-top:24px; border-top:1px solid #e2e8f0;">
+                <button type="submit" style="background:linear-gradient(135deg, #003366 0%, #1a4a7a 100%); color:white; padding:10px 24px; border-radius:12px; font-weight:600; font-size:0.85rem; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:8px; transition:all 0.2s;">
+                    <i class="fas fa-check"></i> Simpan
+                </button>
+                <a href="{{ route('admin.galeri.index') }}" style="background:#f1f5f9; color:#475569; padding:10px 24px; border-radius:12px; font-weight:600; font-size:0.85rem; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:all 0.2s;">
+                    <i class="fas fa-times"></i> Batal
+                </a>
             </div>
         </form>
+
     </div>
 </div>
 
@@ -313,7 +162,6 @@
     document.getElementById('inputGambar').addEventListener('change', function(e) {
         const file = e.target.files[0];
         const previewImage = document.getElementById('previewImage');
-        
         if (file) {
             const reader = new FileReader();
             reader.onload = function(event) {
