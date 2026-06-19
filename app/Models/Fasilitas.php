@@ -12,14 +12,15 @@ class Fasilitas extends Model
     protected $table = 'fasilitas';
     
     protected $fillable = [
-        'nama',
-        'deskripsi',
-        'harga',
-        'lokasi',
-        'kontak',
-        'urutan',
-        'status',
-        'gambar',
+    'nama',
+    'jenis',
+    'deskripsi',
+    'harga',
+    'lokasi',
+    'kontak',
+    'urutan',
+    'status',
+    'gambar',
     ];
     
     protected $casts = [
