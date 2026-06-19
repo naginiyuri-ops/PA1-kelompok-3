@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Process Model and Notation (BPMN) - Geosite Project</title>
+    <style>
+        :root {
+            --primary: #003366;
+            --primary-light: #00509e;
+            --secondary: #c6a43b;
+            --secondary-light: #e0c265;
+            --bg-color: #f8fafc;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --success: #10b981;
+            --danger: #ef4444;
+            --radius: 12px;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .bpmn-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            padding: 35px;
+            margin-bottom: 30px;
+            border-top: 5px solid var(--primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .bpmn-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .bpmn-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .bpmn-number {
+            background: var(--secondary);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .bpmn-title h2 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .steps-container {
+            position: relative;
+        }
+
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 15px;
+            width: 2px;
+            background: var(--border-color);
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-marker {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--primary);
+            flex-shrink: 0;
+            margin-right: 20px;
+            box-shadow: 0 0 0 4px var(--white);
+        }
+
+        .step-content {
+            background: #f1f5f9;
+            padding: 15px 20px;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        .step-content p {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        /* Kondisi Khusus (If/Else) */
+        .condition {
+            margin-top: 10px;
+            padding-left: 15px;
+            border-left: 3px solid var(--secondary);
+        }
+
+        .condition p {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .condition-success {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .condition-danger {
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        /* Sub Proses untuk CRUD */
+        .sub-process {
+            margin-top: 25px;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .sub-process-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .sub-process .steps-container::before {
+            left: 12px;
+        }
+        
+        .sub-process .step-marker {
+            width: 26px;
+            height: 26px;
+            font-size: 0.75rem;
+            margin-right: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .bpmn-card {
+                padding: 20px;
+            }
+            .step {
+                flex-direction: column;
+            }
+            .step-marker {
+                margin-bottom: 10px;
+            }
+            .steps-container::before {
+                display: none;
+            }
+        }
+    </style>
+    <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Dokumentasi BPMN</h1>
+            <p>Rincian Business Process Model and Notation (BPMN) dalam bentuk tekstual interaktif untuk sistem informasi Geosite Balige, Meat, Batu Basiha, dan Liang Sipege.</p>
+        </header>
+
+        <!-- 1. Proses Login Admin -->
+        <div class="bpmn-card">
+            <div class="bpmn-title">
+                <div class="bpmn-number">1</div>
+                <h2>Proses Login Admin</h2>
+            </div>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-marker">1</div>
+                    <div class="step-content"><p>Admin membuka halaman <strong>/login</strong> pada browser.</p></div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">2</div>
+                    <div class="step-content"><p>Admin mengisi form autentikasi (username/email dan password).</p></div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">3</div>
+                    <div class="step-content">
+                        <p>Sistem menerima request dan memvalidasi kecocokan data dengan database.</p>
+                        <div class="condition">
+                            <p><span class="condition-danger">Jika gagal:</span> Sistem menampilkan pesan error dan mengembalikan admin ke form login.</p>
+                            <p><span class="condition-success">Jika berhasil:</span> Sistem membuat session autentikasi yang valid.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">4</div>
+                    <div class="step-content"><p>Admin diarahkan secara otomatis ke halaman Dashboard Admin.</p></div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">5</div>
+                    <div class="step-content"><p>Admin menyelesaikan pekerjaan dan mengklik tombol "Logout".</p></div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">6</div>
+                    <div class="step-content"><p>Sistem menghancurkan session aktif dan mengarahkan kembali ke halaman Login.</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Proses Lupa Password Admin -->
+        <div class="bpmn-card">
+            <div class="bpmn-title">
+                <div class="bpmn-number">2</div>
+                <h2>Proses Lupa & Reset Password Admin</h2>
+            </div>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-marker">1</div>
+                    <div class="step-content"><p>Admin membuka halaman <strong>/forgot-password</strong>.</p></div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">2</div>
+                    <div class="step-content"><p>Admin mengisi form dengan alamat email yang terdaftar.</p></div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">3</div>
+                    <div class="step-content">
+                        <p>Sistem memverifikasi keberadaan email di dalam database.</p>
+                        <div class="condition">
+                            <p><span class="condition-danger">Jika tidak ditemukan:</span> Sistem menampilkan pesan error peringatan.</p>
+                            <p><span class="condition-success">Jika ditemukan:</span> Sistem men-generate token reset password yang unik.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">4</div>
+                    <div class="step-content"><p>Sistem mengirimkan email berisi tautan (link) reset password ke email admin.</p></div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">5</div>
+                    <div class="step-content"><p>Admin membuka email, mengklik tautan, dan diarahkan ke halaman <strong>/reset-password/{token}</strong>.</p></div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">6</div>
+                    <div class="step-content"><p>Admin memasukkan password baru dan melakukan konfirmasi password.</p></div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">7</div>
+                    <div class="step-content">
+                        <p>Sistem memvalidasi kecocokan token dan format password.</p>
+                        <div class="condition">
+                            <p><span class="condition-danger">Jika token kedaluwarsa/salah:</span> Sistem menolak dan menampilkan pesan error.</p>
+                            <p><span class="condition-success">Jika valid:</span> Sistem memperbarui data password di database (di-hash ulang).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">8</div>
+                    <div class="step-content"><p>Admin diarahkan kembali ke halaman Login untuk masuk menggunakan password baru.</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Proses CRUD Destinasi -->
+        <div class="bpmn-card">
+            <div class="bpmn-title">
+                <div class="bpmn-number">3</div>
+                <h2>Proses Manajemen (CRUD) Destinasi Wisata</h2>
+            </div>
+            
+            <div class="sub-process">
+                <div class="sub-process-title">A. Tambah Destinasi</div>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-marker">1</div>
+                        <div class="step-content"><p>Admin membuka menu "Destinasi" (Alam/Buatan/Budaya) lalu mengklik "Tambah".</p></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-marker">2</div>
+                        <div class="step-content"><p>Admin melengkapi form: Judul, Deskripsi, Lokasi, Jam Operasional, Harga, Tags, Gambar, dan Status.</p></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-marker">3</div>
+                        <div class="step-content">
+                            <p>Sistem memvalidasi kelengkapan form dan aturan file (maksimal 5MB).</p>
+                            <div class="condition">
+                                <p><span class="condition-danger">Jika gagal:</span> Proses dibatalkan, pesan error ditampilkan.</p>
+                                <p><span class="condition-success">Jika berhasil:</span> File gambar diunggah ke storage `public/image/destinations/{kategori}/`.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-marker">4</div>
+                        <div class="step-content"><p>Sistem menyimpan record ke tabel `destinations` dan mengarahkan admin ke daftar destinasi dengan notifikasi sukses.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-process">
+                <div class="sub-process-title">B. Edit Destinasi</div>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-marker">1</div>
+                        <div class="step-content"><p>Admin mengklik tombol "Edit" pada baris data destinasi terpilih.</p></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-marker">2</div>
+                        <div class="step-content"><p>Sistem memuat data lama dari database ke dalam form.</p></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-marker">3</div>
+                        <div class="step-content"><p>Admin melakukan penyesuaian data (teks atau penggantian gambar) lalu mengklik "Perbarui".</p></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-marker">4</div>
+                        <div class="step-content">
+                            <p>Sistem memvalidasi input perubahan.</p>
+                            <div class="condition">
+                                <p><span class="condition-success">Jika gambar diubah:</span> Gambar lama dihapus dari storage, gambar baru diunggah.</p>
+                                <p><span class="condition-success">Jika gambar tidak diubah:</span> Path gambar lama dipertahankan.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-marker">5</div>
+                        <div class="step-content"><p>Sistem melakukan UPDATE pada tabel `destinations` dan kembali ke halaman daftar.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-process">
+                <div class="sub-process-title">C. Hapus Destinasi</div>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-marker">1</div>
+                        <div class="step-content"><p>Admin mengklik tombol "Hapus" pada data tertentu.</p></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-marker">2</div>
+                        <div class="step-content"><p>Sistem memunculkan popup konfirmasi untuk mencegah penghapusan tidak disengaja.</p></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-marker">3</div>
+                        <div class="step-content"><p>Admin menyetujui konfirmasi penghapusan.</p></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-marker">4</div>
+                        <div class="step-content"><p>Sistem mencari file gambar fisik di storage dan menghapusnya.</p></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-marker">5</div>
+                        <div class="step-content"><p>Sistem menjalankan DELETE pada record di tabel `destinations`.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Proses Manajemen Master Data -->
+        <div class="bpmn-card">
+            <div class="bpmn-title">
+                <div class="bpmn-number">4</div>
+                <h2>Proses Manajemen Master Data (Berita, UMKM, Penginapan, Biodiversitas, dll)</h2>
+            </div>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-marker">1</div>
+                    <div class="step-content"><p>Admin membuka menu modul yang bersangkutan (misal: Berita atau UMKM).</p></div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">2</div>
+                    <div class="step-content"><p>Admin melakukan aksi Tambah, Edit, atau Hapus dengan mengisi atribut sesuai tabel.</p></div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">3</div>
+                    <div class="step-content">
+                        <p>Sistem melakukan fungsi standar (Generate Slug otomatis dari judul, Validasi Input, Manajemen File Upload foto).</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">4</div>
+                    <div class="step-content">
+                        <p>Admin mengatur "Toggle Status" (Aktif/Nonaktif) pada daftar data.</p>
+                        <div class="condition">
+                            <p><span class="condition-success">Jika Aktif:</span> Data akan dirender pada antarmuka publik secara real-time.</p>
+                            <p><span class="condition-danger">Jika Nonaktif:</span> Data disembunyikan dari halaman publik namun aman di database.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Proses Akses Pengguna Publik & Search -->
+        <div class="bpmn-card">
+            <div class="bpmn-title">
+                <div class="bpmn-number">5</div>
+                <h2>Proses Interaksi Pengguna (Frontend & Pencarian)</h2>
+            </div>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-marker">1</div>
+                    <div class="step-content"><p>Pengguna mengakses Homepage dan bernavigasi ke halaman detail (Destinasi, Berita, Fasilitas).</p></div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">2</div>
+                    <div class="step-content"><p>Sistem merender antarmuka dinamis hanya untuk konten dengan status <strong>Aktif</strong>.</p></div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">3</div>
+                    <div class="step-content">
+                        <p>Pengguna melihat detail suatu Berita atau Informasi dan mengklik halamannya.</p>
+                        <div class="condition">
+                            <p><span class="condition-success">View Counter:</span> Sistem secara latar belakang memanggil API POST untuk mencatat inkrementasi `views + 1`.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">4</div>
+                    <div class="step-content"><p>Pengguna mencari sesuatu via Search Bar Global (menginput kata kunci).</p></div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">5</div>
+                    <div class="step-content">
+                        <p>Sistem mengirim request AJAX secara <i>real-time</i> (Live Search) ke API backend (<strong>/search</strong>).</p>
+                        <p>Sistem menyaring basis data pada multi-tabel (Destinasi, Berita, UMKM, Penginapan, Biodiversitas, dll).</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">6</div>
+                    <div class="step-content">
+                        <p>Sistem memunculkan daftar rekomendasi instan (<i>dropdown suggestion</i>).</p>
+                        <div class="condition">
+                            <p><span class="condition-success">Jika hasil di-klik / Enter:</span> Pengguna akan diarahkan ke laman `/search-results?q=keyword` untuk penelusuran lebih mendalam dan spesifik (Paginasi tersedia).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Proses Manajemen Pengaturan Kontak Web -->
+        <div class="bpmn-card">
+            <div class="bpmn-title">
+                <div class="bpmn-number">6</div>
+                <h2>Proses Pengaturan Informasi Kontak Web</h2>
+            </div>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-marker">1</div>
+                    <div class="step-content"><p>Admin membuka menu "Pengaturan Kontak" dari navigasi sidebar.</p></div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">2</div>
+                    <div class="step-content"><p>Admin memasukkan data pembaruan kontak lembaga (Alamat operasional, Nomor Telepon, Email, URL akun sosial media, dan kode embed iFrame Google Maps).</p></div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">3</div>
+                    <div class="step-content"><p>Admin menekan tombol simpan perubahan.</p></div>
+                </div>
+                <div class="step">
+                    <div class="step-marker">4</div>
+                    <div class="step-content">
+                        <p>Sistem memperbarui baris data khusus di tabel <code>kontak</code> (struktur single-record).</p>
+                        <p>Pembaruan langsung terefleksi secara global pada halaman publik <code>/kontak</code>, Footer, dan panel tautan cepat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
