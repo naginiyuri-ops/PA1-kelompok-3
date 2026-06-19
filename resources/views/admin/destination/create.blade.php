@@ -52,6 +52,71 @@
                        required>
             </div>
 
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                {{-- Lokasi --}}
+                <div style="margin-bottom:22px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                        Lokasi
+                    </label>
+                    <input type="text" name="location"
+                           value="{{ old('location') }}"
+                           placeholder="Contoh: Kec. Tampahan, Kab. Toba Samosir"
+                           style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s;"
+                           onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'">
+                </div>
+
+                {{-- Jam Operasional --}}
+                <div style="margin-bottom:22px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                        Jam Operasional
+                    </label>
+                    <input type="text" name="operational_hours"
+                           value="{{ old('operational_hours') }}"
+                           placeholder="Contoh: 24 Jam atau 08:00 - 18:00"
+                           style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s;"
+                           onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'">
+                </div>
+
+                {{-- Harga Tiket --}}
+                <div style="margin-bottom:22px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                        Harga Tiket
+                    </label>
+                    <input type="text" name="ticket_price"
+                           value="{{ old('ticket_price') }}"
+                           placeholder="Contoh: Rp 5.000 per orang"
+                           style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s;"
+                           onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'">
+                </div>
+
+                {{-- Tags --}}
+                <div style="margin-bottom:22px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                        Tags
+                    </label>
+                    <input type="text" name="tags"
+                           value="{{ old('tags') }}"
+                           placeholder="Contoh: Sawah Terasering, Panorama, Spot Foto"
+                           style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s;"
+                           onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'">
+                    <small style="font-size:0.72rem; color:#94a3b8; margin-top:5px; display:block;">
+                        Pisahkan dengan koma.
+                    </small>
+                </div>
+            </div>
+
+            {{-- Deskripsi Singkat --}}
+            <div style="margin-bottom:22px;">
+                <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                    Deskripsi Singkat
+                </label>
+                <textarea name="short_description" rows="3"
+                          placeholder="Tulis ringkasan destinasi yang akan muncul di bawah lokasi..."
+                          style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; resize:vertical; outline:none; line-height:1.7; transition:border-color 0.2s;"
+                          onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'">{{ old('short_description') }}</textarea>
+            </div>
+
+
             {{-- Deskripsi --}}
             <div style="margin-bottom:22px;">
                 <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
@@ -67,21 +132,39 @@
                 </small>
             </div>
 
-            {{-- Upload gambar dengan preview --}}
-            <div style="margin-bottom:22px;">
-                <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
-                    Gambar <span style="font-size:0.75rem; color:#94a3b8; font-weight:400;">(opsional)</span>
-                </label>
-                <input type="file" name="image" id="inputGambar"
-                       accept="image/jpeg,image/png,image/webp"
-                       style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.85rem;">
-                <small style="font-size:0.72rem; color:#94a3b8; margin-top:5px; display:block;">
-                    Format: JPG, PNG, WEBP. Ukuran maksimal: 5MB.
-                </small>
-                {{-- Area preview gambar — tampil saat file dipilih --}}
-                <div id="previewWrapper" style="display:none; margin-top:12px;">
-                    <img id="previewImage"
-                         style="max-width:200px; max-height:150px; object-fit:cover; border-radius:10px; border:2px solid #e2e8f0;">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                {{-- Upload gambar dengan preview --}}
+                <div style="margin-bottom:22px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                        Gambar Utama / Card <span style="font-size:0.75rem; color:#94a3b8; font-weight:400;">(opsional)</span>
+                    </label>
+                    <input type="file" name="image" id="inputGambar"
+                           accept="image/jpeg,image/png,image/webp"
+                           style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.85rem;">
+                    <small style="font-size:0.72rem; color:#94a3b8; margin-top:5px; display:block;">
+                        Gambar yang muncul di samping konten.
+                    </small>
+                    <div id="previewWrapper" style="display:none; margin-top:12px;">
+                        <img id="previewImage"
+                             style="max-width:200px; max-height:150px; object-fit:cover; border-radius:10px; border:2px solid #e2e8f0;">
+                    </div>
+                </div>
+
+                {{-- Upload gambar hero dengan preview --}}
+                <div style="margin-bottom:22px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                        Gambar Hero Header <span style="font-size:0.75rem; color:#94a3b8; font-weight:400;">(opsional)</span>
+                    </label>
+                    <input type="file" name="hero_image" id="inputHeroGambar"
+                           accept="image/jpeg,image/png,image/webp"
+                           style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.85rem;">
+                    <small style="font-size:0.72rem; color:#94a3b8; margin-top:5px; display:block;">
+                        Gambar latar lebar di bagian paling atas halaman.
+                    </small>
+                    <div id="previewHeroWrapper" style="display:none; margin-top:12px;">
+                        <img id="previewHeroImage"
+                             style="max-width:100%; max-height:150px; object-fit:cover; border-radius:10px; border:2px solid #e2e8f0;">
+                    </div>
                 </div>
             </div>
 
@@ -121,6 +204,23 @@
         const file    = e.target.files[0];
         const preview = document.getElementById('previewImage');
         const wrapper = document.getElementById('previewWrapper');
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                preview.src       = event.target.result;
+                wrapper.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            wrapper.style.display = 'none';
+        }
+    });
+
+    document.getElementById('inputHeroGambar').addEventListener('change', function (e) {
+        const file    = e.target.files[0];
+        const preview = document.getElementById('previewHeroImage');
+        const wrapper = document.getElementById('previewHeroWrapper');
 
         if (file) {
             const reader = new FileReader();

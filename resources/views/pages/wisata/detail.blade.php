@@ -16,232 +16,363 @@
         --text-gray:    #334155;
         --text-light:   #64748b;
         --white:        #ffffff;
-        --bg-light:     #f8fafc;
-        --shadow-xl:    0 25px 50px -12px rgba(15,23,42,0.15);
+        --bg-main:      #f4f7f6; /* Latar belakang abu muda seperti gambar */
+        --shadow-sm:    0 4px 6px rgba(0,0,0,0.05);
+        --shadow-md:    0 10px 20px rgba(0,0,0,0.05);
     }
-    body { font-family: 'Inter', sans-serif; background: var(--bg-light); }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-main); }
 
-    /* ── Hero gambar utama ── */
-    .detail-hero {
-        position: relative; margin-top: 60px;
-        height: 480px; overflow: hidden;
+    /* ── Hero ── */
+    .hero-section {
+        position: relative;
+        height: 400px;
+        margin-top: 60px; /* Offset for navbar */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
     }
-    .detail-hero img {
-        width: 100%; height: 100%; object-fit: cover;
+    .hero-bg {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        object-fit: cover;
+        z-index: 0;
     }
-    .detail-hero-overlay {
-        position: absolute; inset: 0;
-        background: linear-gradient(to bottom, rgba(0,31,63,0.15) 0%, rgba(0,31,63,0.75) 100%);
-        display: flex; align-items: flex-end;
+    .hero-overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+    }
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: white;
+    }
+    .hero-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    .hero-subtitle {
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        color: var(--gold-light);
+        text-transform: uppercase;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+
+    /* ── Breadcrumb ── */
+    .breadcrumb-bar {
+        background: var(--white);
+        padding: 15px 0;
+        border-bottom: 1px solid #eaeaea;
+        font-size: 0.85rem;
+        color: var(--text-light);
+    }
+    .breadcrumb-bar a {
+        color: var(--text-gray);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    .breadcrumb-bar a:hover {
+        color: var(--primary);
+    }
+    .breadcrumb-bar span {
+        margin: 0 8px;
+        color: #ccc;
+    }
+    .breadcrumb-current {
+        color: var(--gold-dark);
+        font-weight: 600;
+    }
+
+    /* ── Container Utama ── */
+    .main-container {
+        max-width: 1000px; /* Lebar lebih kecil agar proporsional seperti gambar */
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    /* ── Card Top (Foto & Info Singkat) ── */
+    .top-card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        background: var(--white);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+        margin-bottom: 30px;
+    }
+    .top-card-left {
+        position: relative;
+    }
+    .top-card-left img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        min-height: 400px;
+    }
+    .photo-badge {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(0, 31, 63, 0.8);
+        color: white;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        backdrop-filter: blur(4px);
+    }
+
+    .top-card-right {
         padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
-    .detail-hero-content { color: white; max-width: 800px; }
-    .detail-hero-badge {
-        display: inline-block; background: var(--gold); color: var(--primary-dark);
-        padding: 5px 16px; border-radius: 30px; font-size: 0.72rem;
-        font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-        margin-bottom: 14px;
+    .cat-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--gold-light);
+        color: var(--primary-dark);
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+        width: fit-content;
     }
-    .detail-hero-content h1 {
-        font-size: 2.5rem; font-weight: 700;
+    .top-card-right h2 {
         font-family: 'Playfair Display', serif;
-        line-height: 1.25; text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 10px;
+    }
+    .location-text {
+        font-size: 0.9rem;
+        color: var(--gold-dark);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 20px;
+        font-weight: 500;
+    }
+    .short-desc {
+        font-size: 0.95rem;
+        color: var(--text-gray);
+        line-height: 1.6;
+        margin-bottom: 30px;
     }
 
-    /* ── Layout konten utama: 2 kolom (konten + sidebar) ── */
-    .detail-body { padding: 60px 0 90px; }
-    .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
-    .detail-layout {
-        display: grid;
-        grid-template-columns: 1fr 320px;
-        gap: 40px; align-items: start;
+    /* Kotak Info Jam & Harga */
+    .info-boxes {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    .info-box {
+        flex: 1;
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .info-box i {
+        color: var(--gold);
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    .info-box span {
+        font-size: 0.7rem;
+        color: var(--text-light);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
+    .info-box strong {
+        font-size: 0.95rem;
+        color: var(--primary-dark);
+        font-weight: 700;
     }
 
-    /* ── Konten teks utama ── */
-    .detail-main {
-        background: var(--white); border-radius: 20px;
-        padding: 36px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        border: 1px solid rgba(15,23,42,0.04);
+    /* Tags */
+    .tags-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
     }
-    .detail-main h2 {
-        font-size: 1.6rem; font-weight: 700;
-        font-family: 'Playfair Display', serif;
-        color: var(--primary-dark); margin-bottom: 20px;
-        padding-bottom: 16px; border-bottom: 2px solid #f1f5f9;
-    }
-    /* Deskripsi DITAMPILKAN PENUH — tidak ada Str::limit() */
-    .detail-main .deskripsi {
-        font-size: 0.95rem; color: var(--text-gray);
-        line-height: 1.85; white-space: pre-line;
+    .tag-item {
+        background: #f1f5f9;
+        color: var(--text-gray);
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
     }
 
-    /* ── Sidebar info ── */
-    .detail-sidebar { display: flex; flex-direction: column; gap: 20px; }
-    .sidebar-card {
-        background: var(--white); border-radius: 18px;
-        padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        border: 1px solid rgba(15,23,42,0.04);
+    /* ── Card Bottom (Deskripsi Lengkap) ── */
+    .desc-card {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: var(--shadow-md);
+        margin-bottom: 40px;
     }
-    .sidebar-card h4 {
-        font-size: 0.85rem; font-weight: 700;
-        color: var(--primary); margin-bottom: 16px;
-        padding-bottom: 12px; border-bottom: 1px solid #f1f5f9;
-        display: flex; align-items: center; gap: 8px;
-        text-transform: uppercase; letter-spacing: 0.5px;
+    .desc-card h3 {
+        font-size: 1.4rem;
+        color: var(--primary-dark);
+        font-weight: 700;
+        margin-bottom: 20px;
     }
-    .sidebar-card h4 i { color: var(--gold); }
-    .info-row {
-        display: flex; gap: 12px; align-items: flex-start;
-        margin-bottom: 12px; padding-bottom: 12px;
-        border-bottom: 1px solid #f8fafc;
+    .desc-card p {
+        font-size: 0.95rem;
+        color: var(--text-gray);
+        line-height: 1.8;
+        white-space: pre-line;
     }
-    .info-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-    .info-row i { color: var(--gold); width: 18px; flex-shrink: 0; margin-top: 2px; font-size: 0.85rem; }
-    .info-row .info-text { font-size: 0.85rem; color: var(--text-gray); }
-    .info-row .info-label { font-size: 0.72rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; }
 
-    /* Tombol kembali */
-    .btn-back {
-        display: inline-flex; align-items: center; gap: 8px;
-        background: var(--primary); color: white;
-        padding: 12px 24px; border-radius: 12px;
-        text-decoration: none; font-weight: 700;
-        font-size: 0.88rem; transition: all 0.3s ease;
-        width: 100%; justify-content: center;
+    /* ── Action Button ── */
+    .action-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 60px;
     }
-    .btn-back:hover { background: var(--primary-light); transform: translateY(-2px); color: white; }
-
-    /* ── Rekomendasi destinasi lain ── */
-    .related-section { margin-top: 60px; }
-    .related-section h3 {
-        font-size: 1.4rem; font-weight: 700;
-        font-family: 'Playfair Display', serif;
-        color: var(--primary-dark); margin-bottom: 28px;
+    .btn-return {
+        background: var(--primary-dark);
+        color: white;
+        padding: 14px 32px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(0,31,63,0.3);
     }
-    .related-section h3 span { color: var(--gold); }
-    .related-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 24px;
-    }
-    .related-card {
-        background: var(--white); border-radius: 16px; overflow: hidden;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.05);
-        transition: all 0.3s ease; text-decoration: none; color: inherit;
-        display: flex; flex-direction: column;
-        border: 1px solid rgba(15,23,42,0.04);
-    }
-    .related-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
-    .related-card img { width: 100%; height: 160px; object-fit: cover; }
-    .related-card .related-content { padding: 16px; }
-    .related-card .related-title {
-        font-size: 0.95rem; font-weight: 700;
-        color: var(--primary-dark); margin-bottom: 6px;
-        font-family: 'Playfair Display', serif;
-        display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2;
-        -webkit-box-orient: vertical; overflow: hidden;
-    }
-    .related-card .related-link {
-        font-size: 0.75rem; color: var(--gold-dark);
-        font-weight: 600; display: flex; align-items: center; gap: 5px;
+    .btn-return:hover {
+        background: var(--primary);
+        transform: translateY(-2px);
+        color: white;
     }
 
     /* ── Responsif ── */
-    @media (max-width: 992px) { .detail-layout { grid-template-columns: 1fr; } .detail-hero { height: 380px; } .detail-hero-content h1 { font-size: 2rem; } }
-    @media (max-width: 768px) { .detail-hero { height: 300px; } .detail-hero-overlay { padding: 24px; } .detail-hero-content h1 { font-size: 1.6rem; } .detail-body { padding: 40px 0 70px; } .detail-main { padding: 24px; } }
-    @media (max-width: 576px) { .detail-hero { height: 250px; } .detail-hero-content h1 { font-size: 1.3rem; } }
+    @media (max-width: 768px) {
+        .top-card { grid-template-columns: 1fr; }
+        .top-card-left img { min-height: 250px; height: 250px; }
+        .top-card-right { padding: 30px 20px; }
+        .hero-title { font-size: 2.2rem; }
+        .desc-card { padding: 30px 20px; }
+    }
 </style>
 
-{{-- ── HERO GAMBAR UTAMA ── --}}
-<div class="detail-hero">
-    <img src="{{ $destination->image_url }}"
-         alt="{{ $destination->title }}"
-         onerror="this.src='{{ asset('image/default.jpg') }}'">
-    <div class="detail-hero-overlay">
-        <div class="detail-hero-content">
-            <div class="detail-hero-badge">
-                @if($category === 'alam') 🌿 @elseif($category === 'buatan') 🏛️ @else 🎭 @endif
-                {{ ucfirst($category) }}
-            </div>
-            {{-- Judul DITAMPILKAN PENUH tanpa pemotongan --}}
-            <h1>{{ $destination->title }}</h1>
-        </div>
+{{-- ── HERO SECTION ── --}}
+<section class="hero-section">
+    <img src="{{ $destination->hero_image_url }}" alt="Hero {{ $destination->title }}" class="hero-bg" onerror="this.src='{{ asset('image/default.jpg') }}'">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1 class="hero-title">{{ $destination->title }}</h1>
+        <div class="hero-subtitle">Destinasi {{ ucfirst($category) }} - Geosite Danau Toba</div>
+    </div>
+</section>
+
+{{-- ── BREADCRUMB ── --}}
+<div class="breadcrumb-bar">
+    <div class="container" style="max-width:1000px; padding:0 20px; margin:0 auto;">
+        <a href="{{ url('/') }}">Beranda</a> <span>></span>
+        <a href="#">Destinasi</a> <span>></span>
+        <a href="{{ route('destinasi.' . $category) }}">{{ ucfirst($category) }}</a> <span>></span>
+        <span class="breadcrumb-current">{{ $destination->title }}</span>
     </div>
 </div>
 
 {{-- ── KONTEN UTAMA ── --}}
-<section class="detail-body">
-    <div class="container">
-        <div class="detail-layout">
-
-            {{-- Kolom kiri: Deskripsi lengkap --}}
-            <div class="detail-main">
-                <h2><i class="fas fa-info-circle" style="color:var(--gold);margin-right:10px;"></i>Tentang Destinasi Ini</h2>
-                {{-- Deskripsi PENUH — sesuai instruksi: DILARANG menggunakan Str::limit() --}}
-                <div class="deskripsi">{{ $destination->description }}</div>
-            </div>
-
-            {{-- Kolom kanan: Sidebar informasi --}}
-            <div class="detail-sidebar">
-
-                {{-- Card info singkat --}}
-                <div class="sidebar-card">
-                    <h4><i class="fas fa-info-circle"></i> Informasi</h4>
-                    <div class="info-row">
-                        <i class="fas fa-tag"></i>
-                        <div>
-                            <div class="info-label">Kategori</div>
-                            <div class="info-text">{{ ucfirst($category) }}</div>
-                        </div>
-                    </div>
-                    <div class="info-row">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <div class="info-label">Lokasi</div>
-                            <div class="info-text">Geosite Danau Toba, Sumatera Utara</div>
-                        </div>
-                    </div>
-                    <div class="info-row">
-                        <i class="fas fa-calendar-alt"></i>
-                        <div>
-                            <div class="info-label">Terakhir Diperbarui</div>
-                            <div class="info-text">{{ $destination->updated_at->format('d M Y') }}</div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Tombol kembali ke daftar --}}
-                <div class="sidebar-card">
-                    <h4><i class="fas fa-list"></i> Navigasi</h4>
-                    <a href="{{ route('destinasi.' . $category) }}" class="btn-back">
-                        <i class="fas fa-arrow-left"></i>
-                        Kembali ke Daftar {{ ucfirst($category) }}
-                    </a>
-                </div>
-
+<main class="main-container">
+    
+    {{-- Card Atas: Foto & Info Singkat --}}
+    <div class="top-card">
+        <div class="top-card-left">
+            <img src="{{ $destination->image_url }}" alt="{{ $destination->title }}" onerror="this.src='{{ asset('image/default.jpg') }}'">
+            <div class="photo-badge">
+                <i class="fas fa-camera"></i> 1 Foto
             </div>
         </div>
-
-        {{-- ── DESTINASI TERKAIT (REKOMENDASI) ── --}}
-        @if($related->count() > 0)
-        <div class="related-section">
-            <h3>Destinasi <span>Lainnya</span></h3>
-            <div class="related-grid">
-                @foreach($related as $item)
-                <a href="{{ route('destinasi.detail', [$category, $item->id]) }}" class="related-card">
-                    <img src="{{ $item->image_url }}" alt="{{ $item->title }}" loading="lazy"
-                         onerror="this.src='{{ asset('image/default.jpg') }}'">
-                    <div class="related-content">
-                        <div class="related-title">{{ $item->title }}</div>
-                        <div class="related-link">Lihat Detail <i class="fas fa-arrow-right"></i></div>
-                    </div>
-                </a>
-                @endforeach
+        <div class="top-card-right">
+            <div class="cat-badge">
+                @if($category === 'alam') 🌿 @elseif($category === 'buatan') 🏛️ @else 🎭 @endif
+                {{ ucfirst($category) }}
+            </div>
+            
+            <h2>{{ $destination->title }}</h2>
+            
+            <div class="location-text">
+                <i class="fas fa-map-marker-alt"></i>
+                {{ $destination->location ?? 'Geosite Danau Toba, Sumatera Utara' }}
+            </div>
+            
+            <div class="short-desc">
+                {{ $destination->short_description ?? Str::limit(strip_tags($destination->description), 150) }}
+            </div>
+            
+            <div class="info-boxes">
+                <div class="info-box">
+                    <i class="fas fa-clock"></i>
+                    <span>Jam Operasional</span>
+                    <strong>{{ $destination->operational_hours ?? '-' }}</strong>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>Harga Tiket</span>
+                    <strong>{{ $destination->ticket_price ?? 'Gratis' }}</strong>
+                </div>
+            </div>
+            
+            <div class="tags-container">
+                @if($destination->tags_array && count($destination->tags_array) > 0)
+                    @foreach($destination->tags_array as $tag)
+                        <span class="tag-item">#{{ $tag }}</span>
+                    @endforeach
+                @else
+                    <span class="tag-item">#{{ ucfirst($category) }}</span>
+                    <span class="tag-item">#DanauToba</span>
+                @endif
             </div>
         </div>
-        @endif
-
     </div>
-</section>
+
+    {{-- Card Bawah: Deskripsi Lengkap --}}
+    <div class="desc-card">
+        <h3>Deskripsi Lengkap</h3>
+        <p>{{ $destination->description }}</p>
+    </div>
+
+    {{-- Tombol Kembali --}}
+    <div class="action-container">
+        <a href="{{ route('destinasi.' . $category) }}" class="btn-return">
+            <i class="fas fa-arrow-left"></i> Kembali ke Destinasi {{ ucfirst($category) }}
+        </a>
+    </div>
+
+</main>
 
 @endsection

@@ -115,27 +115,40 @@ class AdminDestinationController extends Controller
 
         // Validasi input dari form
         $request->validate([
-            'title'       => 'required|string|max:255',
-            'description' => 'required|string',
-            'image'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
-            'status'      => 'nullable|boolean',
+            'title'             => 'required|string|max:255',
+            'description'       => 'required|string',
+            'image'             => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'status'            => 'nullable|boolean',
+            'location'          => 'nullable|string|max:255',
+            'operational_hours' => 'nullable|string|max:255',
+            'ticket_price'      => 'nullable|string|max:255',
+            'tags'              => 'nullable|string',
+            'short_description' => 'nullable|string',
+            'hero_image'        => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ], [
             // Pesan error dalam Bahasa Indonesia
             'title.required'       => 'Judul destinasi wajib diisi.',
             'description.required' => 'Deskripsi destinasi wajib diisi.',
             'image.image'          => 'File yang diunggah harus berupa gambar.',
             'image.max'            => 'Ukuran gambar maksimal 5MB.',
+            'hero_image.image'     => 'File hero harus berupa gambar.',
+            'hero_image.max'       => 'Ukuran gambar hero maksimal 5MB.',
         ]);
 
         // Siapkan data yang akan disimpan
         $dataToSave = [
-            'category'    => $category,
-            'title'       => $request->title,
-            'description' => $request->description,
-            'status'      => $request->has('status') ? 1 : 0,
+            'category'          => $category,
+            'title'             => $request->title,
+            'description'       => $request->description,
+            'status'            => $request->has('status') ? 1 : 0,
+            'location'          => $request->location,
+            'operational_hours' => $request->operational_hours,
+            'ticket_price'      => $request->ticket_price,
+            'tags'              => $request->tags,
+            'short_description' => $request->short_description,
         ];
 
-        // Proses upload gambar jika ada file yang dikirim
+        // Proses upload gambar utama jika ada file yang dikirim
         if ($request->hasFile('image')) {
             $file     = $request->file('image');
             $filename = time() . '_dest_' . Str::slug($request->title) . '.' . $file->getClientOriginalExtension();
@@ -151,6 +164,20 @@ class AdminDestinationController extends Controller
 
             // Simpan path relatif terhadap folder public/ ke database
             $dataToSave['image_path'] = 'image/destinations/' . $category . '/' . $filename;
+        }
+
+        // Proses upload hero image
+        if ($request->hasFile('hero_image')) {
+            $heroFile     = $request->file('hero_image');
+            $heroFilename = time() . '_hero_' . Str::slug($request->title) . '.' . $heroFile->getClientOriginalExtension();
+
+            $destinationPath = public_path('image/destinations/' . $category);
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+
+            $heroFile->move($destinationPath, $heroFilename);
+            $dataToSave['hero_image_path'] = 'image/destinations/' . $category . '/' . $heroFilename;
         }
 
         // Simpan ke database
@@ -188,21 +215,33 @@ class AdminDestinationController extends Controller
 
         // Validasi input
         $request->validate([
-            'title'       => 'required|string|max:255',
-            'description' => 'required|string',
-            'image'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
-            'status'      => 'nullable|boolean',
+            'title'             => 'required|string|max:255',
+            'description'       => 'required|string',
+            'image'             => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'status'            => 'nullable|boolean',
+            'location'          => 'nullable|string|max:255',
+            'operational_hours' => 'nullable|string|max:255',
+            'ticket_price'      => 'nullable|string|max:255',
+            'tags'              => 'nullable|string',
+            'short_description' => 'nullable|string',
+            'hero_image'        => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ], [
             'title.required'       => 'Judul destinasi wajib diisi.',
             'description.required' => 'Deskripsi destinasi wajib diisi.',
             'image.max'            => 'Ukuran gambar maksimal 5MB.',
+            'hero_image.max'       => 'Ukuran gambar hero maksimal 5MB.',
         ]);
 
         // Data yang akan diperbarui
         $dataToUpdate = [
-            'title'       => $request->title,
-            'description' => $request->description,
-            'status'      => $request->has('status') ? 1 : 0,
+            'title'             => $request->title,
+            'description'       => $request->description,
+            'status'            => $request->has('status') ? 1 : 0,
+            'location'          => $request->location,
+            'operational_hours' => $request->operational_hours,
+            'ticket_price'      => $request->ticket_price,
+            'tags'              => $request->tags,
+            'short_description' => $request->short_description,
         ];
 
         // Logika hapus gambar lama jika pengguna mencentang opsi hapus gambar
@@ -213,7 +252,19 @@ class AdminDestinationController extends Controller
             $dataToUpdate['image_path'] = null;
         }
 
+        if ($request->has('hapus_hero_gambar') && $request->hapus_hero_gambar == 1) {
+            if ($destination->hero_image_path && file_exists(public_path($destination->hero_image_path))) {
+                unlink(public_path($destination->hero_image_path));
+            }
+            $dataToUpdate['hero_image_path'] = null;
+        }
+
         // Proses upload gambar baru jika ada
+        $destinationPath = public_path('image/destinations/' . $category);
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0777, true);
+        }
+
         if ($request->hasFile('image')) {
             // Hapus gambar lama terlebih dahulu untuk menghemat ruang penyimpanan
             if ($destination->image_path && file_exists(public_path($destination->image_path))) {
@@ -223,13 +274,20 @@ class AdminDestinationController extends Controller
             $file     = $request->file('image');
             $filename = time() . '_dest_' . Str::slug($request->title) . '.' . $file->getClientOriginalExtension();
 
-            $destinationPath = public_path('image/destinations/' . $category);
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0777, true);
-            }
-
             $file->move($destinationPath, $filename);
             $dataToUpdate['image_path'] = 'image/destinations/' . $category . '/' . $filename;
+        }
+
+        if ($request->hasFile('hero_image')) {
+            if ($destination->hero_image_path && file_exists(public_path($destination->hero_image_path))) {
+                unlink(public_path($destination->hero_image_path));
+            }
+
+            $heroFile     = $request->file('hero_image');
+            $heroFilename = time() . '_hero_' . Str::slug($request->title) . '.' . $heroFile->getClientOriginalExtension();
+
+            $heroFile->move($destinationPath, $heroFilename);
+            $dataToUpdate['hero_image_path'] = 'image/destinations/' . $category . '/' . $heroFilename;
         }
 
         $destination->update($dataToUpdate);
@@ -252,6 +310,10 @@ class AdminDestinationController extends Controller
         // Hapus file gambar dari filesystem sebelum menghapus record dari DB
         if ($destination->image_path && file_exists(public_path($destination->image_path))) {
             unlink(public_path($destination->image_path));
+        }
+        
+        if ($destination->hero_image_path && file_exists(public_path($destination->hero_image_path))) {
+            unlink(public_path($destination->hero_image_path));
         }
 
         $destination->delete();

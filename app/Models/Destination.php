@@ -22,11 +22,17 @@ class Destination extends Model
      * Penting: 'category' selalu wajib diisi saat create/update.
      */
     protected $fillable = [
-        'category',     // Nilai enum: 'alam' | 'buatan' | 'budaya'
-        'title',        // Judul destinasi
-        'description',  // Deskripsi lengkap
-        'image_path',   // Path gambar relatif terhadap public/
-        'status',       // Boolean: true = aktif, false = nonaktif
+        'category',
+        'title',
+        'description',
+        'image_path',
+        'status',
+        'location',
+        'operational_hours',
+        'ticket_price',
+        'tags',
+        'short_description',
+        'hero_image_path',
     ];
 
     /** Casting tipe data otomatis */
@@ -65,10 +71,33 @@ class Destination extends Model
     }
 
     /**
+     * Accessor: mendapatkan URL gambar hero lengkap.
+     * Mengembalikan URL asset jika hero_image_path ada, jika tidak fallback ke image_path atau default.
+     */
+    public function getHeroImageUrlAttribute(): string
+    {
+        if ($this->hero_image_path && file_exists(public_path($this->hero_image_path))) {
+            return asset($this->hero_image_path);
+        }
+        return $this->image_url;
+    }
+
+    /**
      * Accessor: mendapatkan label kategori yang sudah diformat dengan huruf kapital.
      */
     public function getCategoryLabelAttribute(): string
     {
         return ucfirst($this->category);
+    }
+
+    /**
+     * Accessor: mendapatkan tags dalam bentuk array.
+     */
+    public function getTagsArrayAttribute(): array
+    {
+        if (!$this->tags) {
+            return [];
+        }
+        return array_map('trim', explode(',', $this->tags));
     }
 }

@@ -53,6 +53,70 @@
                        required>
             </div>
 
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                {{-- Lokasi --}}
+                <div style="margin-bottom:22px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                        Lokasi
+                    </label>
+                    <input type="text" name="location"
+                           value="{{ old('location', $destination->location) }}"
+                           placeholder="Contoh: Kec. Tampahan, Kab. Toba Samosir"
+                           style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s;"
+                           onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'">
+                </div>
+
+                {{-- Jam Operasional --}}
+                <div style="margin-bottom:22px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                        Jam Operasional
+                    </label>
+                    <input type="text" name="operational_hours"
+                           value="{{ old('operational_hours', $destination->operational_hours) }}"
+                           placeholder="Contoh: 24 Jam atau 08:00 - 18:00"
+                           style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s;"
+                           onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'">
+                </div>
+
+                {{-- Harga Tiket --}}
+                <div style="margin-bottom:22px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                        Harga Tiket
+                    </label>
+                    <input type="text" name="ticket_price"
+                           value="{{ old('ticket_price', $destination->ticket_price) }}"
+                           placeholder="Contoh: Rp 5.000 per orang"
+                           style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s;"
+                           onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'">
+                </div>
+
+                {{-- Tags --}}
+                <div style="margin-bottom:22px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                        Tags
+                    </label>
+                    <input type="text" name="tags"
+                           value="{{ old('tags', $destination->tags) }}"
+                           placeholder="Contoh: Sawah Terasering, Panorama, Spot Foto"
+                           style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s;"
+                           onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'">
+                    <small style="font-size:0.72rem; color:#94a3b8; margin-top:5px; display:block;">
+                        Pisahkan dengan koma.
+                    </small>
+                </div>
+            </div>
+
+            {{-- Deskripsi Singkat --}}
+            <div style="margin-bottom:22px;">
+                <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
+                    Deskripsi Singkat
+                </label>
+                <textarea name="short_description" rows="3"
+                          placeholder="Tulis ringkasan destinasi yang akan muncul di bawah lokasi..."
+                          style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; resize:vertical; outline:none; line-height:1.7; transition:border-color 0.2s;"
+                          onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'">{{ old('short_description', $destination->short_description) }}</textarea>
+            </div>
+
             {{-- Deskripsi --}}
             <div style="margin-bottom:22px;">
                 <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
@@ -64,41 +128,81 @@
                           required>{{ old('description', $destination->description) }}</textarea>
             </div>
 
-            {{-- Gambar saat ini + opsi ganti/hapus --}}
-            <div style="margin-bottom:22px;">
-                <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">Gambar</label>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                {{-- Gambar saat ini + opsi ganti/hapus --}}
+                <div style="margin-bottom:22px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">Gambar Utama / Card</label>
 
-                @if($destination->image_path)
-                {{-- Tampilkan gambar yang sudah ada --}}
-                <div style="margin-bottom:14px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-                    <img src="{{ $destination->image_url }}" alt="{{ $destination->title }}"
-                         style="width:100px; height:80px; object-fit:cover; border-radius:10px; border:2px solid #e2e8f0;"
-                         onerror="this.src='{{ asset('image/default.jpg') }}'">
-                    <div>
-                        <div style="font-size:0.78rem; color:#64748b; margin-bottom:6px;">Gambar saat ini</div>
-                        {{-- Opsi hapus gambar tanpa mengunggah yang baru --}}
-                        <label style="display:flex; align-items:center; gap:6px; cursor:pointer; font-size:0.8rem; color:#dc2626;">
-                            <input type="checkbox" name="hapus_gambar" value="1" id="hapusGambar"
-                                   style="width:14px; height:14px; accent-color:#dc2626;">
-                            Hapus gambar ini
-                        </label>
+                    @if($destination->image_path)
+                    {{-- Tampilkan gambar yang sudah ada --}}
+                    <div style="margin-bottom:14px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+                        <img src="{{ $destination->image_url }}" alt="{{ $destination->title }}"
+                             style="width:100px; height:80px; object-fit:cover; border-radius:10px; border:2px solid #e2e8f0;"
+                             onerror="this.src='{{ asset('image/default.jpg') }}'">
+                        <div>
+                            <div style="font-size:0.78rem; color:#64748b; margin-bottom:6px;">Gambar saat ini</div>
+                            {{-- Opsi hapus gambar tanpa mengunggah yang baru --}}
+                            <label style="display:flex; align-items:center; gap:6px; cursor:pointer; font-size:0.8rem; color:#dc2626;">
+                                <input type="checkbox" name="hapus_gambar" value="1" id="hapusGambar"
+                                       style="width:14px; height:14px; accent-color:#dc2626;">
+                                Hapus gambar ini
+                            </label>
+                        </div>
+                    </div>
+                    @endif
+
+                    {{-- Input file untuk mengganti gambar --}}
+                    <input type="file" name="image" id="inputGambar"
+                           accept="image/jpeg,image/png,image/webp"
+                           style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.85rem;">
+                    <small style="font-size:0.72rem; color:#94a3b8; margin-top:5px; display:block;">
+                        Biarkan kosong jika tidak ingin mengganti gambar. Format: JPG, PNG, WEBP. Max: 5MB.
+                    </small>
+
+                    {{-- Preview gambar baru --}}
+                    <div id="previewWrapper" style="display:none; margin-top:12px;">
+                        <img id="previewImage"
+                             style="max-width:200px; max-height:150px; object-fit:cover; border-radius:10px; border:2px solid #e2e8f0;">
+                        <div style="font-size:0.72rem; color:#94a3b8; margin-top:5px;">Preview gambar baru</div>
                     </div>
                 </div>
-                @endif
 
-                {{-- Input file untuk mengganti gambar --}}
-                <input type="file" name="image" id="inputGambar"
-                       accept="image/jpeg,image/png,image/webp"
-                       style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.85rem;">
-                <small style="font-size:0.72rem; color:#94a3b8; margin-top:5px; display:block;">
-                    Biarkan kosong jika tidak ingin mengganti gambar. Format: JPG, PNG, WEBP. Max: 5MB.
-                </small>
+                {{-- Hero Gambar --}}
+                <div style="margin-bottom:22px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">Gambar Hero Header</label>
 
-                {{-- Preview gambar baru --}}
-                <div id="previewWrapper" style="display:none; margin-top:12px;">
-                    <img id="previewImage"
-                         style="max-width:200px; max-height:150px; object-fit:cover; border-radius:10px; border:2px solid #e2e8f0;">
-                    <div style="font-size:0.72rem; color:#94a3b8; margin-top:5px;">Preview gambar baru</div>
+                    @if($destination->hero_image_path)
+                    {{-- Tampilkan gambar yang sudah ada --}}
+                    <div style="margin-bottom:14px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+                        <img src="{{ $destination->hero_image_url }}" alt="{{ $destination->title }}"
+                             style="width:100px; height:80px; object-fit:cover; border-radius:10px; border:2px solid #e2e8f0;"
+                             onerror="this.src='{{ asset('image/default.jpg') }}'">
+                        <div>
+                            <div style="font-size:0.78rem; color:#64748b; margin-bottom:6px;">Gambar hero saat ini</div>
+                            {{-- Opsi hapus gambar tanpa mengunggah yang baru --}}
+                            <label style="display:flex; align-items:center; gap:6px; cursor:pointer; font-size:0.8rem; color:#dc2626;">
+                                <input type="checkbox" name="hapus_hero_gambar" value="1" id="hapusHeroGambar"
+                                       style="width:14px; height:14px; accent-color:#dc2626;">
+                                Hapus hero ini
+                            </label>
+                        </div>
+                    </div>
+                    @endif
+
+                    {{-- Input file untuk mengganti gambar --}}
+                    <input type="file" name="hero_image" id="inputHeroGambar"
+                           accept="image/jpeg,image/png,image/webp"
+                           style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.85rem;">
+                    <small style="font-size:0.72rem; color:#94a3b8; margin-top:5px; display:block;">
+                        Biarkan kosong jika tidak ingin mengganti.
+                    </small>
+
+                    {{-- Preview gambar baru --}}
+                    <div id="previewHeroWrapper" style="display:none; margin-top:12px;">
+                        <img id="previewHeroImage"
+                             style="max-width:100%; max-height:150px; object-fit:cover; border-radius:10px; border:2px solid #e2e8f0;">
+                        <div style="font-size:0.72rem; color:#94a3b8; margin-top:5px;">Preview hero baru</div>
+                    </div>
                 </div>
             </div>
 
@@ -139,6 +243,11 @@
     const previewWrapper= document.getElementById('previewWrapper');
     const hapusGambar   = document.getElementById('hapusGambar');
 
+    const inputHeroGambar   = document.getElementById('inputHeroGambar');
+    const previewHeroImage  = document.getElementById('previewHeroImage');
+    const previewHeroWrapper= document.getElementById('previewHeroWrapper');
+    const hapusHeroGambar   = document.getElementById('hapusHeroGambar');
+
     if (inputGambar) {
         inputGambar.addEventListener('change', function (e) {
             const file = e.target.files[0];
@@ -149,10 +258,43 @@
                     previewWrapper.style.display = 'block';
                 };
                 reader.readAsDataURL(file);
-                // Jika memilih gambar baru, unchecked hapus_gambar otomatis
-                if (hapusGambar) hapusGambar.checked = false;
+                if (hapusGambar) {
+                    hapusGambar.checked = false;
+                    hapusGambar.disabled = true;
+                    hapusGambar.parentElement.style.opacity = '0.5';
+                }
             } else {
                 previewWrapper.style.display = 'none';
+                if (hapusGambar) {
+                    hapusGambar.disabled = false;
+                    hapusGambar.parentElement.style.opacity = '1';
+                }
+            }
+        });
+    }
+
+    if (inputHeroGambar) {
+        inputHeroGambar.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    previewHeroImage.src = event.target.result;
+                    previewHeroWrapper.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+
+                if (hapusHeroGambar) {
+                    hapusHeroGambar.checked = false;
+                    hapusHeroGambar.disabled = true;
+                    hapusHeroGambar.parentElement.style.opacity = '0.5';
+                }
+            } else {
+                previewHeroWrapper.style.display = 'none';
+                if (hapusHeroGambar) {
+                    hapusHeroGambar.disabled = false;
+                    hapusHeroGambar.parentElement.style.opacity = '1';
+                }
             }
         });
     }
