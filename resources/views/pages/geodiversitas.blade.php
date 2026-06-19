@@ -17,11 +17,12 @@
         font-weight: 700;
         font-family: 'Playfair Display', serif;
     }
-    .hero-geodiversitas h1 span { color: #c6a43b; }
+        
     .hero-geodiversitas p {
         color: rgba(255,255,255,0.8);
         font-size: 0.9rem;
     }
+
     .hero-divider {
         width: 50px;
         height: 2px;
