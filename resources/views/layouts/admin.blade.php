@@ -347,21 +347,21 @@
     <div class="sidebar-menu">
         <div class="menu-title">Menu</div>
         <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-            <i class="fas fa-chart-pie"></i> Dashboard
+            Dashboard
         </a>
         
         <div class="menu-title">Konten</div>
         <a href="{{ route('admin.sejarah-wisata.index') }}" class="{{ request()->routeIs('admin.sejarah-wisata.*') ? 'active' : '' }}">
-            <i class="fas fa-history"></i> Sejarah Wisata
+            Sejarah Wisata
         </a>
         <a href="{{ route('admin.galeri.index') }}" class="{{ request()->routeIs('admin.galeri.*') ? 'active' : '' }}">
-            <i class="fas fa-images"></i> Galeri
+            Galeri
         </a>
         <a href="{{ route('admin.berita.index') }}" class="{{ request()->routeIs('admin.berita.*') ? 'active' : '' }}">
-            <i class="fas fa-newspaper"></i> Berita
+            Berita
         </a>
         <a href="{{ route('admin.informasi.index') }}" class="{{ request()->routeIs('admin.informasi.*') ? 'active' : '' }}">
-            <i class="fas fa-info-circle"></i> Informasi
+            Informasi
         </a>
 
         {{-- ========== GROUP DESTINASI ========== --}}
@@ -371,45 +371,45 @@
         {{-- Ketiga link di bawah ini adalah CRUD terpisah untuk setiap sub-kategori --}}
         <a href="{{ route('admin.destination.alam.index') }}"
            class="{{ request()->routeIs('admin.destination.alam.*') ? 'active' : '' }}">
-            <i class="fas fa-tree"></i> Destinasi Alam
+            Destinasi Alam
         </a>
         <a href="{{ route('admin.destination.buatan.index') }}"
            class="{{ request()->routeIs('admin.destination.buatan.*') ? 'active' : '' }}">
-            <i class="fas fa-building"></i> Destinasi Buatan
+            Destinasi Buatan
         </a>
         <a href="{{ route('admin.destination.budaya.index') }}"
            class="{{ request()->routeIs('admin.destination.budaya.*') ? 'active' : '' }}">
-            <i class="fas fa-landmark"></i> Destinasi Budaya
+            Destinasi Budaya
         </a>
 
         <div class="menu-title">Keanekaragaman</div>
         <a href="{{ route('admin.biodiversitas.index') }}" class="{{ request()->routeIs('admin.biodiversitas.*') ? 'active' : '' }}">
-            <i class="fas fa-leaf"></i> Biodiversitas
+            Biodiversitas
         </a>
         <a href="{{ route('admin.geodiversitas.index') }}" class="{{ request()->routeIs('admin.geodiversitas.*') ? 'active' : '' }}">
-            <i class="fas fa-mountain"></i> Geodiversitas
+            Geodiversitas
         </a>
         <a href="{{ route('admin.cultural-diversity.index') }}" class="{{ request()->routeIs('admin.cultural-diversity.*') ? 'active' : '' }}">
-            <i class="fas fa-theater-masks"></i> Cultural Diversity
+            Cultural Diversity
         </a>
         
         <div class="menu-title">Desa Meat</div>
         <a href="{{ route('admin.umkm.index') }}" class="{{ request()->routeIs('admin.umkm.*') ? 'active' : '' }}">
-            <i class="fas fa-store"></i> UMKM
+            UMKM
         </a>
         <a href="{{ route('admin.fasilitas.index') }}" class="{{ request()->routeIs('admin.fasilitas.*') ? 'active' : '' }}">
-            <i class="fas fa-tools"></i> Fasilitas
+            Fasilitas
         </a>
         <a href="{{ route('admin.penginapan.index') }}" class="{{ request()->routeIs('admin.penginapan.*') ? 'active' : '' }}">
-            <i class="fas fa-hotel"></i> Penginapan
+            Penginapan
         </a>
         
         <div class="menu-title">Pengaturan</div>
         <a href="{{ route('admin.kontak.index') }}" class="{{ request()->routeIs('admin.kontak.*') ? 'active' : '' }}">
-            <i class="fas fa-address-book"></i> Kontak
+            Kontak
         </a>
         <a href="{{ route('admin.create') }}" class="{{ request()->routeIs('admin.create') ? 'active' : '' }}">
-            <i class="fas fa-user-plus"></i> Tambah Admin
+            Tambah Admin
         </a>
     </div>
 </div>

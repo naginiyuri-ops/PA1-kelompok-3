@@ -319,7 +319,6 @@
         </div>
         <div class="top-card-right">
             <div class="cat-badge">
-                @if($category === 'alam') 🌿 @elseif($category === 'buatan') 🏛️ @else 🎭 @endif
                 {{ ucfirst($category) }}
             </div>
             

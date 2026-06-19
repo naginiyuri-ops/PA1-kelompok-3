@@ -192,7 +192,7 @@ class AdminDestinationController extends Controller
     // EDIT: Form edit data yang sudah ada
     // ==============================================================
 
-    public function edit(string $category, int $id)
+    public function edit($id, string $category)
     {
         $config      = $this->validateKategori($category);
 
@@ -206,7 +206,7 @@ class AdminDestinationController extends Controller
     // UPDATE: Perbarui data yang sudah ada
     // ==============================================================
 
-    public function update(Request $request, string $category, int $id)
+    public function update(Request $request, $id, string $category)
     {
         $this->validateKategori($category);
 
@@ -301,7 +301,7 @@ class AdminDestinationController extends Controller
     // DESTROY: Hapus data beserta gambarnya
     // ==============================================================
 
-    public function destroy(string $category, int $id)
+    public function destroy($id, string $category)
     {
         $this->validateKategori($category);
 

@@ -80,7 +80,7 @@
 </style>
 
 <div class="hero-biodiversitas">
-    <h1>🌿 Biodiversitas</h1>
+    <h1>Biodiversitas</h1>
     <p>Keanekaragaman Hayati di Geopark Danau Toba</p>
 </div>
 

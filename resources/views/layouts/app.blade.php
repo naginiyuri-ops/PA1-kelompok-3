@@ -972,56 +972,56 @@
                     <!-- HOME -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ url('/') }}">
-                            <i class="fas fa-home d-md-none me-2"></i> Home
+                            Home
                         </a>
                     </li>
 
                     <!-- TENTANG GEOSITE -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('tentang-geosite') ? 'active' : '' }}" href="{{ route('tentang-geosite') }}">
-                            <i class="fas fa-info-circle d-md-none me-2"></i> Tentang Geosite
+                            Tentang Geosite
                         </a>
                     </li>
 
                     <!-- DESTINASI -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('destinasi*') ? 'active' : '' }}" href="{{ url('/destinasi') }}">
-                            <i class="fas fa-map-marked-alt d-md-none me-2"></i> Destinasi
+                            Destinasi
                         </a>
                     </li>
 
                     <!-- GEODIVERSITY -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('geodiversitas*') ? 'active' : '' }}" href="{{ route('geodiversitas') }}">
-                            <i class="fas fa-gem d-md-none me-2"></i> Geodiversity
+                            Geodiversity
                         </a>
                     </li>
 
                     <!-- BIODIVERSITY -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('biodiversitas*') ? 'active' : '' }}" href="{{ route('biodiversitas') }}">
-                            <i class="fas fa-leaf d-md-none me-2"></i> Biodiversity
+                            Biodiversity
                         </a>
                     </li>
 
                     <!-- CULTURAL DIVERSITY -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('cultural-diversity*') ? 'active' : '' }}" href="{{ route('cultural-diversity') }}">
-                            <i class="fas fa-people-arrows d-md-none me-2"></i> Cultural Diversity
+                            Cultural Diversity
                         </a>
                     </li>
 
                     <!-- BERITA / EVENT -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('berita*') ? 'active' : '' }}" href="{{ url('/berita') }}">
-                            <i class="fas fa-newspaper d-md-none me-2"></i> Berita / Event
+                            Berita / Event
                         </a>
                     </li>
 
                     <!-- FASILITAS -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('fasilitas*') ? 'active' : '' }}" href="{{ url('/fasilitas') }}">
-                            <i class="fas fa-building d-md-none me-2"></i> Fasilitas
+                            Fasilitas
                         </a>
                     </li>
                 </ul>
