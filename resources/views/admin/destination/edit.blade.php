@@ -71,17 +71,54 @@
                     <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
                         Jam Operasional
                     </label>
-                    <input type="text" name="operational_hours"
-                           value="{{ old('operational_hours', $destination->operational_hours) }}"
-                           placeholder="Contoh: 24 Jam atau 08:00 - 18:00"
-                           style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s;"
-                           onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'">
+                    {{-- Input tersembunyi yang menampung nilai gabungan jam buka & tutup --}}
+                    <input type="hidden" name="operational_hours" id="operational_hours_edit"
+                           value="{{ old('operational_hours', $destination->operational_hours) }}">
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <div style="flex:1;">
+                            <label style="display:block; margin-bottom:5px; font-size:0.78rem; color:#64748b;">Jam Buka</label>
+                            <input type="time" id="jam_buka_edit"
+                                   style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s;"
+                                   onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'">
+                        </div>
+                        <span style="color:#64748b; font-weight:600; padding-top:20px;">—</span>
+                        <div style="flex:1;">
+                            <label style="display:block; margin-bottom:5px; font-size:0.78rem; color:#64748b;">Jam Tutup</label>
+                            <input type="time" id="jam_tutup_edit"
+                                   style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s;"
+                                   onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'">
+                        </div>
+                    </div>
+                    <p style="font-size:0.75rem; color:#94a3b8; margin-top:6px;">Pilih jam buka dan jam tutup menggunakan time picker di atas.</p>
                 </div>
+                <script>
+                    (function() {
+                        // Pre-fill dari nilai yang sudah tersimpan (format: "HH:MM - HH:MM")
+                        var saved = document.getElementById('operational_hours_edit').value || '';
+                        if (saved.indexOf(' - ') !== -1) {
+                            var parts = saved.split(' - ');
+                            document.getElementById('jam_buka_edit').value  = parts[0] ? parts[0].trim() : '';
+                            document.getElementById('jam_tutup_edit').value = parts[1] ? parts[1].trim() : '';
+                        }
 
-                {{-- Harga Tiket --}}
+                        function updateOpHours() {
+                            var buka  = document.getElementById('jam_buka_edit').value;
+                            var tutup = document.getElementById('jam_tutup_edit').value;
+                            var result = '';
+                            if (buka && tutup) result = buka + ' - ' + tutup;
+                            else if (buka)    result = buka + ' - ';
+                            else if (tutup)   result = ' - ' + tutup;
+                            document.getElementById('operational_hours_edit').value = result;
+                        }
+                        document.getElementById('jam_buka_edit').addEventListener('change', updateOpHours);
+                        document.getElementById('jam_tutup_edit').addEventListener('change', updateOpHours);
+                    })();
+                </script>
+
+                {{-- Harga --}}
                 <div style="margin-bottom:22px;">
                     <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">
-                        Harga Tiket
+                        Harga
                     </label>
                     <input type="text" name="ticket_price"
                            value="{{ old('ticket_price', $destination->ticket_price) }}"

@@ -453,7 +453,7 @@
                     </div>
                     <div class="info-card-item">
                         <i class="fas fa-ticket-alt"></i>
-                        <div class="label">Harga Tiket</div>
+                        <div class="label">Harga</div>
                         <div class="value">{{ $destinasi->harga_tiket }}</div>
                     </div>
                 </div>

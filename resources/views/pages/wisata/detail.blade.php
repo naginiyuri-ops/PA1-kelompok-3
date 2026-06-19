@@ -342,7 +342,7 @@
                 </div>
                 <div class="info-box">
                     <i class="fas fa-ticket-alt"></i>
-                    <span>Harga Tiket</span>
+                    <span>Harga</span>
                     <strong>{{ $destination->ticket_price ?? 'Gratis' }}</strong>
                 </div>
             </div>
