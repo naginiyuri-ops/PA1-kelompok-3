@@ -1078,7 +1078,12 @@
                     <!-- FASILITAS -->
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('fasilitas*') ? 'active' : '' }}" href="{{ url('/fasilitas') }}">
-                            Fasilitas
+                            <i class="fas fa-building me-1 d-lg-none"></i>Fasilitas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('umkm.index') ? 'active' : '' }}" href="{{ route('umkm.index') }}">
+                            <i class="fas fa-store me-1 d-lg-none"></i>Sovenir & UMKM
                         </a>
                     </li>
 

@@ -92,11 +92,14 @@ Route::get('/berita/{slug}', function ($slug) {
 // ========================================
 
 // Halaman Utama Fasilitas (2 card: UMKM & Penginapan)
-Route::get('/fasilitas', [FasilitasUtamaController::class, 'index'])->name('fasilitas');
+Route::get('/fasilitas', [FasilitasUtamaController::class, 'index'])->name('fasilitas.index');
 
 // UMKM
 Route::get('/fasilitas/umkm', [FasilitasUtamaController::class, 'umkm'])->name('fasilitas.umkm');
 Route::get('/fasilitas/umkm/{id}', [FasilitasUtamaController::class, 'umkmDetail'])->name('fasilitas.umkm.detail');
+
+// SOVENIR & UMKM (BARU)
+Route::get('/sovenir-umkm', [FasilitasUtamaController::class, 'umkmIndex'])->name('umkm.index');
 
 // PENGINAPAN
 Route::get('/fasilitas/penginapan', [FasilitasUtamaController::class, 'penginapan'])->name('fasilitas.penginapan');

@@ -24,6 +24,14 @@ class FasilitasUtamaController extends Controller
         return view('pages.umkm', compact('umkm'));
     }
 
+    public function umkmIndex()
+    {
+        $umkm = \App\Models\Umkm::where('status', 'aktif')
+                    ->orderBy('urutan', 'asc')
+                    ->paginate(10);
+        return view('pages.umkm-index', compact('umkm'));
+    }
+
     public function umkmDetail($id)
     {
         $item = \App\Models\Umkm::findOrFail($id);
