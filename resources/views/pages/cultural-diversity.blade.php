@@ -116,7 +116,7 @@
 <!-- HERO -->
 <section class="hero-diversity">
     <div class="container">
-        <h1>🎭 <span>Cultural Diversity</span></h1>
+        <h1><span>Cultural Diversity</span></h1>
         <div class="hero-divider"></div>
         <p>Keanekaragaman Budaya Batak di Geopark Danau Toba</p>
     </div>

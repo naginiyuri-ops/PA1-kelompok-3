@@ -182,7 +182,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', function () {
         $totalGaleri = DB::table('galeri')->count();
         $totalBerita = DB::table('beritas')->count();
-        $totalInformasi = DB::table('informasis')->count();
+        $totalInformasi = DB::table('informasi')->count();
         $totalSejarah = DB::table('sejarah_wisata')->count();
         $totalUmkm = DB::table('umkm')->count();
         $totalFasilitas = DB::table('fasilitas')->count();
