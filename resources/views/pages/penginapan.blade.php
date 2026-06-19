@@ -1,7 +1,6 @@
-{{-- Halaman Destinasi Alam — konten dirender langsung oleh PublicDestinationController::alam() --}}
 @extends('layouts.app')
 
-@section('title', 'Penginapan' . ' - Geosite Danau Toba')
+@section('title', 'Penginapan - Geosite Danau Toba')
 
 @section('content')
 
@@ -120,8 +119,8 @@
 
 <div class="hero-dest">
     <div class="container">
-        <div class="hero-badge">Wisata Geosite</div>
-        <h1><i class="fas fa-bed"></i> <span>{{ 'Penginapan' }}</span></h1>
+        <div class="hero-badge">Fasilitas Geosite</div>
+        <h1><i class="fas fa-bed"></i> <span>Penginapan</span></h1>
         <div class="hero-divider"></div>
         <p>Daftar fasilitas penginapan terbaik dan ternyaman di area Geosite Danau Toba.</p>
     </div>
@@ -133,14 +132,15 @@
             @forelse($penginapan as $item)
             <a href="{{ route('fasilitas.penginapan.detail', $item->id) }}" class="dest-card">
                 <div class="card-img-wrapper">
-                    <img src="{{ $item->gambar_url }}" alt="{{ $item->nama }}" loading="lazy"
+                    <img src="{{ $item->gambar_url }}"
+                         alt="{{ $item->nama }}" loading="lazy"
                          onerror="this.src='{{ asset('image/default.jpg') }}'">
                     <div class="card-img-overlay"><i class="fas fa-arrow-right"></i></div>
-                    <span class="card-badge">{{ 'Penginapan' }}</span>
+                    <span class="card-badge">Penginapan</span>
                 </div>
                 <div class="card-content">
                     <div class="card-title">{{ $item->nama }}</div>
-                    <div class="card-excerpt">{{ strip_tags($item->description) }}</div>
+                    <div class="card-excerpt">{{ strip_tags($item->deskripsi ?? '-') }}</div>
                     <div class="card-footer">
                         <span class="read-more">Lihat Detail <i class="fas fa-arrow-right"></i></span>
                     </div>
@@ -148,8 +148,8 @@
             </a>
             @empty
             <div class="empty-state">
-                <i class="fas fa-tree"></i>
-                <p>Belum ada data {{ 'Penginapan' }} yang tersedia.</p>
+                <i class="fas fa-bed"></i>
+                <p>Belum ada data Penginapan yang tersedia.</p>
                 <p style="font-size:0.8rem; margin-top:8px;">Silakan tambahkan melalui panel admin.</p>
             </div>
             @endforelse

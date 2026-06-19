@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $item->nama_usaha . ' - Geosite Danau Toba')
+@section('title', $item->nama_usaha . ' - UMKM Geosite Danau Toba')
 
 @section('content')
 
@@ -21,26 +21,21 @@
     }
     body { font-family: 'Inter', sans-serif; background: var(--bg-light); }
 
-    /* ── Hero gambar utama ── */
     .detail-hero {
         position: relative; margin-top: 60px;
         height: 480px; overflow: hidden;
     }
-    .detail-hero img {
-        width: 100%; height: 100%; object-fit: cover;
-    }
+    .detail-hero img { width: 100%; height: 100%; object-fit: cover; }
     .detail-hero-overlay {
         position: absolute; inset: 0;
         background: linear-gradient(to bottom, rgba(0,31,63,0.15) 0%, rgba(0,31,63,0.75) 100%);
-        display: flex; align-items: flex-end;
-        padding: 40px;
+        display: flex; align-items: flex-end; padding: 40px;
     }
     .detail-hero-content { color: white; max-width: 800px; }
     .detail-hero-badge {
         display: inline-block; background: var(--gold); color: var(--primary-dark);
         padding: 5px 16px; border-radius: 30px; font-size: 0.72rem;
-        font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-        margin-bottom: 14px;
+        font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px;
     }
     .detail-hero-content h1 {
         font-size: 2.5rem; font-weight: 700;
@@ -48,7 +43,6 @@
         line-height: 1.25; text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
-    /* ── Layout konten utama: 2 kolom (konten + sidebar) ── */
     .detail-body { padding: 60px 0 90px; }
     .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
     .detail-layout {
@@ -56,8 +50,6 @@
         grid-template-columns: 1fr 320px;
         gap: 40px; align-items: start;
     }
-
-    /* ── Konten teks utama ── */
     .detail-main {
         background: var(--white); border-radius: 20px;
         padding: 36px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);
@@ -69,13 +61,10 @@
         color: var(--primary-dark); margin-bottom: 20px;
         padding-bottom: 16px; border-bottom: 2px solid #f1f5f9;
     }
-    /* Deskripsi DITAMPILKAN PENUH — tidak ada Str::limit() */
     .detail-main .deskripsi {
         font-size: 0.95rem; color: var(--text-gray);
         line-height: 1.85; white-space: pre-line;
     }
-
-    /* ── Sidebar info ── */
     .detail-sidebar { display: flex; flex-direction: column; gap: 20px; }
     .sidebar-card {
         background: var(--white); border-radius: 18px;
@@ -99,8 +88,6 @@
     .info-row i { color: var(--gold); width: 18px; flex-shrink: 0; margin-top: 2px; font-size: 0.85rem; }
     .info-row .info-text { font-size: 0.85rem; color: var(--text-gray); }
     .info-row .info-label { font-size: 0.72rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; }
-
-    /* Tombol kembali */
     .btn-back {
         display: inline-flex; align-items: center; gap: 8px;
         background: var(--primary); color: white;
@@ -111,7 +98,6 @@
     }
     .btn-back:hover { background: var(--primary-light); transform: translateY(-2px); color: white; }
 
-    /* ── Rekomendasi destinasi lain ── */
     .related-section { margin-top: 60px; }
     .related-section h3 {
         font-size: 1.4rem; font-weight: 700;
@@ -146,59 +132,58 @@
         font-weight: 600; display: flex; align-items: center; gap: 5px;
     }
 
-    /* ── Responsif ── */
     @media (max-width: 992px) { .detail-layout { grid-template-columns: 1fr; } .detail-hero { height: 380px; } .detail-hero-content h1 { font-size: 2rem; } }
     @media (max-width: 768px) { .detail-hero { height: 300px; } .detail-hero-overlay { padding: 24px; } .detail-hero-content h1 { font-size: 1.6rem; } .detail-body { padding: 40px 0 70px; } .detail-main { padding: 24px; } }
     @media (max-width: 576px) { .detail-hero { height: 250px; } .detail-hero-content h1 { font-size: 1.3rem; } }
 </style>
 
-{{-- ── HERO GAMBAR UTAMA ── --}}
+{{-- HERO GAMBAR --}}
 <div class="detail-hero">
-    <img src="{{ asset($item->foto_utama ?? 'image/default.jpg') }}"
+    <img src="{{ $item->foto_utama ? asset($item->foto_utama) : asset('image/default.jpg') }}"
          alt="{{ $item->nama_usaha }}"
          onerror="this.src='{{ asset('image/default.jpg') }}'">
     <div class="detail-hero-overlay">
         <div class="detail-hero-content">
-            <div class="detail-hero-badge">
-                🏪
-                UMKM
-            </div>
-            {{-- Judul DITAMPILKAN PENUH tanpa pemotongan --}}
+            <div class="detail-hero-badge">🏪 UMKM</div>
             <h1>{{ $item->nama_usaha }}</h1>
         </div>
     </div>
 </div>
 
-{{-- ── KONTEN UTAMA ── --}}
+{{-- KONTEN UTAMA --}}
 <section class="detail-body">
     <div class="container">
         <div class="detail-layout">
 
-            {{-- Kolom kiri: Deskripsi lengkap --}}
+            {{-- Kolom kiri: Deskripsi --}}
             <div class="detail-main">
-                <h2><i class="fas fa-info-circle" style="color:var(--gold);margin-right:10px;"></i>Tentang Destinasi Ini</h2>
-                {{-- Deskripsi PENUH — sesuai instruksi: DILARANG menggunakan Str::limit() --}}
-                <div class="deskripsi">{{ $item->deskripsi }}</div>
+                <h2><i class="fas fa-store" style="color:var(--gold);margin-right:10px;"></i>Tentang UMKM Ini</h2>
+                <div class="deskripsi">{{ $item->deskripsi ?? 'Deskripsi belum tersedia.' }}</div>
             </div>
 
-            {{-- Kolom kanan: Sidebar informasi --}}
+            {{-- Kolom kanan: Sidebar info --}}
             <div class="detail-sidebar">
-
-                {{-- Card info singkat --}}
                 <div class="sidebar-card">
                     <h4><i class="fas fa-info-circle"></i> Informasi</h4>
                     <div class="info-row">
-                        <i class="fas fa-tag"></i>
+                        <i class="fas fa-user"></i>
                         <div>
-                            <div class="info-label">Kategori</div>
-                            <div class="info-text">UMKM</div>
+                            <div class="info-label">Pemilik</div>
+                            <div class="info-text">{{ $item->pemilik ?? '-' }}</div>
                         </div>
                     </div>
                     <div class="info-row">
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
-                            <div class="info-label">Lokasi</div>
-                            <div class="info-text">Geosite Danau Toba, Sumatera Utara</div>
+                            <div class="info-label">Alamat</div>
+                            <div class="info-text">{{ $item->alamat ?? 'Geosite Danau Toba, Sumatera Utara' }}</div>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <div class="info-label">No. Telepon</div>
+                            <div class="info-text">{{ $item->no_telepon ?? '-' }}</div>
                         </div>
                     </div>
                     <div class="info-row">
@@ -210,7 +195,6 @@
                     </div>
                 </div>
 
-                {{-- Tombol kembali ke daftar --}}
                 <div class="sidebar-card">
                     <h4><i class="fas fa-list"></i> Navigasi</h4>
                     <a href="{{ route('fasilitas.umkm') }}" class="btn-back">
@@ -218,21 +202,21 @@
                         Kembali ke Daftar UMKM
                     </a>
                 </div>
-
             </div>
         </div>
 
-        {{-- ── DESTINASI TERKAIT (REKOMENDASI) ── --}}
+        {{-- UMKM Lainnya --}}
         @if($related->count() > 0)
         <div class="related-section">
-            <h3>Destinasi <span>Lainnya</span></h3>
+            <h3>UMKM <span>Lainnya</span></h3>
             <div class="related-grid">
-                @foreach($related as $item)
-                <a href="{{ route('fasilitas.umkm.detail', $item->id) }}" class="related-card">
-                    <img src="{{ asset($item->foto_utama ?? 'image/default.jpg') }}" alt="{{ $item->nama_usaha }}" loading="lazy"
+                @foreach($related as $rel)
+                <a href="{{ route('fasilitas.umkm.detail', $rel->id) }}" class="related-card">
+                    <img src="{{ $rel->foto_utama ? asset($rel->foto_utama) : asset('image/default.jpg') }}"
+                         alt="{{ $rel->nama_usaha }}" loading="lazy"
                          onerror="this.src='{{ asset('image/default.jpg') }}'">
                     <div class="related-content">
-                        <div class="related-title">{{ $item->nama_usaha }}</div>
+                        <div class="related-title">{{ $rel->nama_usaha }}</div>
                         <div class="related-link">Lihat Detail <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </a>

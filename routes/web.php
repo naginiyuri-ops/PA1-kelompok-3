@@ -56,10 +56,8 @@ Route::get('/destinasi/alam', [PublicDestinationController::class, 'alam'])->nam
 Route::get('/destinasi/buatan', [PublicDestinationController::class, 'buatan'])->name('destinasi.buatan');
 Route::get('/destinasi/budaya', [PublicDestinationController::class, 'budaya'])->name('destinasi.budaya');
 Route::get('/destinasi/{category}/{id}', [PublicDestinationController::class, 'show'])->name('destinasi.detail');
-// Redirect '/destinasi' ke alam sebagai default jika diakses
-Route::get('/destinasi', function () {
-    return redirect()->route('destinasi.alam');
-})->name('destinasi');
+// Halaman utama Destinasi (Hub)
+Route::get('/destinasi', [\App\Http\Controllers\DestinasiController::class, 'index'])->name('destinasi');
 
 // ========================================
 // ========== DIVERSITY ROUTES ==========

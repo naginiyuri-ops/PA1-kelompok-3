@@ -1,7 +1,6 @@
-{{-- Halaman Destinasi Alam — konten dirender langsung oleh PublicDestinationController::alam() --}}
 @extends('layouts.app')
 
-@section('title', 'UMKM' . ' - Geosite Danau Toba')
+@section('title', 'UMKM - Geosite Danau Toba')
 
 @section('content')
 
@@ -120,8 +119,8 @@
 
 <div class="hero-dest">
     <div class="container">
-        <div class="hero-badge">Wisata Geosite</div>
-        <h1><i class="fas fa-store"></i> <span>{{ 'UMKM' }}</span></h1>
+        <div class="hero-badge">Fasilitas Geosite</div>
+        <h1><i class="fas fa-store"></i> <span>UMKM</span></h1>
         <div class="hero-divider"></div>
         <p>Daftar Produk dan Usaha Mikro Kecil Menengah Lokal di Sekitar Geosite Danau Toba.</p>
     </div>
@@ -133,14 +132,15 @@
             @forelse($umkm as $item)
             <a href="{{ route('fasilitas.umkm.detail', $item->id) }}" class="dest-card">
                 <div class="card-img-wrapper">
-                    <img src="{{ asset($item->foto_utama ?? 'image/default.jpg') }}" alt="{{ $item->nama_usaha }}" loading="lazy"
+                    <img src="{{ $item->foto_utama ? asset($item->foto_utama) : asset('image/default.jpg') }}"
+                         alt="{{ $item->nama_usaha }}" loading="lazy"
                          onerror="this.src='{{ asset('image/default.jpg') }}'">
                     <div class="card-img-overlay"><i class="fas fa-arrow-right"></i></div>
-                    <span class="card-badge">{{ 'UMKM' }}</span>
+                    <span class="card-badge">UMKM</span>
                 </div>
                 <div class="card-content">
                     <div class="card-title">{{ $item->nama_usaha }}</div>
-                    <div class="card-excerpt">{{ strip_tags($item->description) }}</div>
+                    <div class="card-excerpt">{{ strip_tags($item->deskripsi ?? '-') }}</div>
                     <div class="card-footer">
                         <span class="read-more">Lihat Detail <i class="fas fa-arrow-right"></i></span>
                     </div>
@@ -148,8 +148,8 @@
             </a>
             @empty
             <div class="empty-state">
-                <i class="fas fa-tree"></i>
-                <p>Belum ada data {{ 'UMKM' }} yang tersedia.</p>
+                <i class="fas fa-store"></i>
+                <p>Belum ada data UMKM yang tersedia.</p>
                 <p style="font-size:0.8rem; margin-top:8px;">Silakan tambahkan melalui panel admin.</p>
             </div>
             @endforelse
