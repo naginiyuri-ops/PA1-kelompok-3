@@ -49,15 +49,12 @@ Route::get('/tentang-geosite', [TentangGeositeController::class, 'index'])->name
 
 // ========================================
 // ========== DESTINASI DINAMIS (DB) ==========
-// Halaman publik untuk data destinasi yang diinput via CRUD admin
-// (Menggantikan halaman hardcoded sebelumnya)
 // ========================================
 Route::get('/destinasi/alam', [PublicDestinationController::class, 'alam'])->name('destinasi.alam');
 Route::get('/destinasi/buatan', [PublicDestinationController::class, 'buatan'])->name('destinasi.buatan');
 Route::get('/destinasi/budaya', [PublicDestinationController::class, 'budaya'])->name('destinasi.budaya');
 Route::get('/destinasi/{category}/{id}', [PublicDestinationController::class, 'show'])->name('destinasi.detail');
-// Halaman utama Destinasi (Hub)
-Route::get('/destinasi', [\App\Http\Controllers\DestinasiController::class, 'index'])->name('destinasi');
+Route::get('/destinasi', [DestinasiController::class, 'index'])->name('destinasi');
 
 // ========================================
 // ========== DIVERSITY ROUTES ==========
@@ -182,8 +179,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', function () {
         $totalGaleri = DB::table('galeri')->count();
         $totalBerita = DB::table('beritas')->count();
-        $totalInformasi = DB::table('informasi')->count();
-        $totalSejarah = DB::table('sejarah_wisata')->count();
+        // HAPUS $totalInformasi karena tabel 'informasi' tidak ada / sudah dihapus
+        // $totalInformasi = DB::table('informasi')->count();
+        // HAPUS $totalSejarah karena sudah dihapus dari sidebar
+        // $totalSejarah = DB::table('sejarah_wisata')->count();
         $totalUmkm = DB::table('umkm')->count();
         $totalFasilitas = DB::table('fasilitas')->count();
         $totalPenginapan = DB::table('penginapan')->count();
@@ -194,8 +193,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         return view('admin.dashboard', compact(
             'totalGaleri', 
             'totalBerita', 
-            'totalInformasi',
-            'totalSejarah',
+            // 'totalInformasi', // HAPUS
+            // 'totalSejarah',   // HAPUS
             'totalUmkm', 
             'totalFasilitas', 
             'totalPenginapan',
@@ -219,7 +218,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('cultural-diversity', App\Http\Controllers\Admin\CulturalDiversityController::class)->names('admin.cultural-diversity');
     Route::post('cultural-diversity/toggle-status/{id}', [App\Http\Controllers\Admin\CulturalDiversityController::class, 'toggleStatus'])->name('admin.cultural-diversity.toggle-status');
 
-    // ========== SEJARAH WISATA (CRUD) ==========
+    // ========== SEJARAH WISATA (CRUD) - DIHAPUS DARI SIDEBAR TAPI ROUTE TETAP ADA ==========
     Route::resource('sejarah-wisata', SejarahWisataController::class)->names('admin.sejarah-wisata');
     Route::post('sejarah-wisata/toggle-status/{id}', [SejarahWisataController::class, 'toggleStatus'])->name('admin.sejarah-wisata.toggle-status');
     Route::get('sejarah-wisata/filter/{geosite}', [SejarahWisataController::class, 'filter'])->name('admin.sejarah-wisata.filter');
@@ -227,6 +226,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     // ========== RESOURCE ROUTES (CRUD) ==========
     Route::resource('galeri', GaleriController::class)->names('admin.galeri');
     Route::resource('berita', BeritaController::class)->names('admin.berita');
+    // INFORMASI - DIHAPUS DARI SIDEBAR TAPI ROUTE TETAP ADA
     Route::resource('informasi', InformasiController::class)->names('admin.informasi');
     Route::resource('umkm', UmkmController::class)->names('admin.umkm');
     Route::resource('fasilitas', FasilitasController::class)->names('admin.fasilitas');
@@ -246,8 +246,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     // ========================================
     // ========== DESTINATION CRUD ==========
-    // Menggunakan satu controller (AdminDestinationController) dengan parameter
-    // $category agar kode DRY — tiga tampilan dari satu controller.
     // ========================================
 
     // --- DESTINASI ALAM ---
