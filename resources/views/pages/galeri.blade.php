@@ -277,8 +277,8 @@
 
 <div class="gallery-hero">
     <div class="gallery-hero-content">
-        <h1>GALERI</h1>
-        <p>Koleksi Foto Terbaik</p>
+        <h1>{{ __('app.gallery.title') }}</h1>
+        <p>{{ __('app.gallery.subtitle') }}</p>
     </div>
 </div>
 
@@ -286,7 +286,7 @@
     <div class="container">
         
         <div class="filter-buttons">
-            <button class="filter-btn active" data-filter="all">SEMUA</button>
+            <button class="filter-btn active" data-filter="all">{{ __('app.gallery.all') }}</button>
             <button class="filter-btn" data-filter="meat">MEAT</button>
             <button class="filter-btn" data-filter="batu-bahisan">BATU BAHISAN</button>
             <button class="filter-btn" data-filter="liang-sipege">LIANG SIPEGE</button>
@@ -335,9 +335,9 @@
                         $filterCat = 'balige';
                     }
                     
-                    $judul = addslashes($item->judul_trans ?? 'Galeri');
-                    $deskripsi = addslashes($item->deskripsi_trans ?? 'Tidak ada deskripsi');
-                    $kategoriModal = addslashes(strtoupper($item->kategori ?? 'GALERI'));
+                    $judul = addslashes($item->judul_trans ?? (app()->getLocale() == 'en' ? 'Gallery' : 'Galeri'));
+                    $deskripsi = addslashes($item->deskripsi_trans ?? (app()->getLocale() == 'en' ? 'No description' : 'Tidak ada deskripsi'));
+                    $kategoriModal = addslashes(strtoupper($item->kategori ?? (app()->getLocale() == 'en' ? 'GALLERY' : 'GALERI')));
                     $lokasi = addslashes($item->lokasi ?? 'Danau Toba');
                 @endphp
                 
@@ -346,7 +346,7 @@
                     <div class="slip-image">
                         <img src="{{ $imgSrc }}" alt="{{ $item->judul_trans }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
                         <div class="slip-overlay">
-                            <span class="slip-category">{{ strtoupper($item->kategori ?? 'GALERI') }}</span>
+                            <span class="slip-category">{{ strtoupper($item->kategori ?? (app()->getLocale() == 'en' ? 'GALLERY' : 'GALERI')) }}</span>
                         </div>
                     </div>
                     <div class="slip-info">
@@ -360,7 +360,7 @@
             @empty
                 <div class="empty-gallery">
                     <i class="fas fa-images"></i>
-                    <p>Belum ada foto galeri</p>
+                    <p>{{ __('app.gallery.no_data') }}</p>
                 </div>
             @endforelse
         </div>
@@ -438,7 +438,7 @@
         document.getElementById('mImg').src = src;
         document.getElementById('mTitle').innerText = title;
         document.getElementById('mTag').innerText = tag;
-        document.getElementById('mDesc').innerHTML = desc || 'Tidak ada deskripsi.';
+        document.getElementById('mDesc').innerHTML = desc || '{{ app()->getLocale() == "en" ? "No description." : "Tidak ada deskripsi." }}';
         document.getElementById('mLocation').innerHTML = location || 'Danau Toba';
         document.getElementById('pModal').style.display = 'flex';
         document.body.style.overflow = 'hidden';

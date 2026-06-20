@@ -1,6 +1,6 @@
-﻿@extends('layouts.app')
+@extends('layouts.app')
 
-@section('title', 'Hasil Pencarian: ' . ($query ?: 'Semua') . ' - Geosite Danau Toba')
+@section('title', (app()->getLocale() == 'en' ? 'Search Results: ' : 'Hasil Pencarian: ') . ($query ?: (app()->getLocale() == 'en' ? 'All' : 'Semua')) . ' - Geosite Danau Toba')
 
 @section('content')
 
@@ -506,23 +506,23 @@
 <div class="hero-search">
     <div class="container">
         {{-- Badge kecil di atas judul --}}
-        <div class="hero-badge">Hasil Pencarian</div>
+        <div class="hero-badge">{{ app()->getLocale() == 'en' ? 'Search Results' : 'Hasil Pencarian' }}</div>
 
         {{-- Judul utama menampilkan kata kunci --}}
         <h1>
             @if($query)
-                Menampilkan hasil untuk: <span class="keyword">"{{ $query }}"</span>
+                {{ app()->getLocale() == 'en' ? 'Showing results for:' : 'Menampilkan hasil untuk:' }} <span class="keyword">"{{ $query }}"</span>
             @else
-                Cari Sesuatu
+                {{ app()->getLocale() == 'en' ? 'Search Something' : 'Cari Sesuatu' }}
             @endif
         </h1>
 
         {{-- Informasi jumlah hasil --}}
         <p>
             @if($query)
-                {{ $results->count() }} hasil ditemukan di seluruh konten
+                {{ $results->count() }} {{ app()->getLocale() == 'en' ? 'results found across all content' : 'hasil ditemukan di seluruh konten' }}
             @else
-                Masukkan kata kunci untuk mulai mencari
+                {{ app()->getLocale() == 'en' ? 'Enter a keyword to start searching' : 'Masukkan kata kunci untuk mulai mencari' }}
             @endif
         </p>
 
@@ -536,12 +536,12 @@
                         type="text"
                         name="q"
                         value="{{ $query }}"
-                        placeholder="Cari destinasi, berita, UMKM..."
+                        placeholder="{{ app()->getLocale() == 'en' ? 'Search destinations, news, MSMEs...' : 'Cari destinasi, berita, UMKM...' }}"
                         autocomplete="off"
                         autofocus
                     >
                     <button type="submit">
-                        <i class="fas fa-search me-1"></i> Cari
+                        <i class="fas fa-search me-1"></i> {{ app()->getLocale() == 'en' ? 'Search' : 'Cari' }}
                     </button>
                 </div>
             </form>
@@ -558,8 +558,8 @@
         {{-- ΓöÇΓöÇ META: Jumlah hasil + Filter tab per tipe ΓöÇΓöÇ --}}
         <div class="results-meta">
             <div class="results-count">
-                Ditemukan <strong>{{ $results->count() }}</strong> hasil
-                untuk kata kunci <strong>"{{ $query }}"</strong>
+                {{ app()->getLocale() == 'en' ? 'Found' : 'Ditemukan' }} <strong>{{ $results->count() }}</strong> {{ app()->getLocale() == 'en' ? 'results' : 'hasil' }}
+                {{ app()->getLocale() == 'en' ? 'for keyword' : 'untuk kata kunci' }} <strong>"{{ $query }}"</strong>
             </div>
 
             {{-- Hitung jumlah per tipe untuk menampilkan filter tab --}}
@@ -571,7 +571,7 @@
                 {{-- Tab "Semua" selalu muncul pertama --}}
                 <a href="{{ route('search.results', ['q' => $query]) }}"
                    class="filter-tab {{ !request('type') ? 'active' : '' }}">
-                    <i class="fas fa-th-large"></i> Semua
+                    <i class="fas fa-th-large"></i> {{ app()->getLocale() == 'en' ? 'All' : 'Semua' }}
                     <span class="count-badge">{{ $results->count() }}</span>
                 </a>
                 {{-- Tab per tipe konten yang ditemukan --}}
@@ -699,7 +699,7 @@
                     {{-- Footer kartu: tombol "Lihat Detail" --}}
                     <div class="card-footer">
                         <span class="read-more">
-                            Lihat Detail <i class="fas fa-arrow-right"></i>
+                            {{ __('app.common.read_more') }} <i class="fas fa-arrow-right"></i>
                         </span>
                     </div>
                 </div>
@@ -716,14 +716,14 @@
                 <div class="empty-state-icon">
                     <i class="fas fa-search-minus"></i>
                 </div>
-                <h3>Maaf, Data Tidak Ditemukan</h3>
+                <h3>{{ app()->getLocale() == 'en' ? 'Sorry, No Data Found' : 'Maaf, Data Tidak Ditemukan' }}</h3>
                 <p>
-                    Tidak ada konten yang cocok dengan kata kunci
+                    {{ app()->getLocale() == 'en' ? 'No content matches the keyword' : 'Tidak ada konten yang cocok dengan kata kunci' }}
                     <strong>"{{ $query }}"</strong>.
-                    Coba gunakan kata kunci yang berbeda atau lebih umum.
+                    {{ app()->getLocale() == 'en' ? 'Try using a different or more general keyword.' : 'Coba gunakan kata kunci yang berbeda atau lebih umum.' }}
                 </p>
                 <a href="{{ url('/') }}" class="btn-home">
-                    <i class="fas fa-home"></i> Kembali ke Beranda
+                    <i class="fas fa-home"></i> {{ app()->getLocale() == 'en' ? 'Back to Home' : 'Kembali ke Beranda' }}
                 </a>
             </div>
         </div>
@@ -736,13 +736,13 @@
                 <div class="empty-state-icon">
                     <i class="fas fa-search"></i>
                 </div>
-                <h3>Mulai Pencarian Anda</h3>
+                <h3>{{ app()->getLocale() == 'en' ? 'Start Your Search' : 'Mulai Pencarian Anda' }}</h3>
                 <p>
-                    Ketikkan kata kunci di kolom pencarian di atas untuk menemukan
-                    destinasi, berita, UMKM, penginapan, dan konten lainnya.
+                    {{ app()->getLocale() == 'en' ? 'Type a keyword in the search bar above to find' : 'Ketikkan kata kunci di kolom pencarian di atas untuk menemukan' }}
+                    {{ app()->getLocale() == 'en' ? 'destinations, news, MSMEs, accommodations, and other content.' : 'destinasi, berita, UMKM, penginapan, dan konten lainnya.' }}
                 </p>
                 <a href="{{ url('/') }}" class="btn-home">
-                    <i class="fas fa-home"></i> Kembali ke Beranda
+                    <i class="fas fa-home"></i> {{ app()->getLocale() == 'en' ? 'Back to Home' : 'Kembali ke Beranda' }}
                 </a>
             </div>
         </div>

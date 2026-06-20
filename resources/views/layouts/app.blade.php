@@ -1064,7 +1064,7 @@
                         <img src="{{ asset('image/logo/del.jpg') }}" alt="Logo Del" class="logo-footer-img" loading="lazy">
                     </div>
                     <h4>Geo<span>Toba</span></h4>
-                    <p>Menjelajahi keindahan Geopark Danau Toba, warisan geologi dunia yang memukau dengan pesona alam, budaya, dan keanekaragaman hayatinya.</p>
+                    <p>{{ __('app.footer.tagline') }}</p>
                     <div class="footer-social">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -1075,29 +1075,29 @@
 
                 <!-- Quick Links -->
                 <div class="footer-col">
-                    <h5>Tautan Cepat</h5>
+                    <h5>{{ __('app.footer.quick_links') }}</h5>
                     <div class="footer-menu">
-                        <a href="{{ url('/') }}"><i class="fas fa-chevron-right"></i> Beranda</a>
-                        <a href="{{ route('tentang-geosite') }}"><i class="fas fa-chevron-right"></i> Tentang Geosite</a>
-                        <a href="{{ url('/destinasi') }}"><i class="fas fa-chevron-right"></i> Destinasi</a>
-                        <a href="{{ url('/berita') }}"><i class="fas fa-chevron-right"></i> Berita / Event</a>
-                        <a href="{{ url('/galeri') }}"><i class="fas fa-chevron-right"></i> Galeri</a>
+                        <a href="{{ url('/') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.home') }}</a>
+                        <a href="{{ route('tentang-geosite') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.about_geosite') }}</a>
+                        <a href="{{ url('/destinasi') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.destination') }}</a>
+                        <a href="{{ url('/berita') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.news') }}</a>
+                        <a href="{{ url('/galeri') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.gallery') }}</a>
                     </div>
                 </div>
 
                 <!-- Diversity -->
                 <div class="footer-col">
-                    <h5>Keanekaragaman</h5>
+                    <h5>{{ __('app.footer.diversity') }}</h5>
                     <div class="footer-menu">
-                        <a href="{{ route('geodiversitas') }}"><i class="fas fa-chevron-right"></i> Geodiversity</a>
-                        <a href="{{ route('biodiversitas') }}"><i class="fas fa-chevron-right"></i> Biodiversity</a>
-                        <a href="{{ route('cultural-diversity') }}"><i class="fas fa-chevron-right"></i> Cultural Diversity</a>
+                        <a href="{{ route('geodiversitas') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.geodiversity') }}</a>
+                        <a href="{{ route('biodiversitas') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.biodiversity') }}</a>
+                        <a href="{{ route('cultural-diversity') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.cultural') }}</a>
                     </div>
                 </div>
 
                 <!-- Contact -->
                 <div class="footer-col">
-                    <h5>Kontak</h5>
+                    <h5>{{ __('app.footer.contact') }}</h5>
                     <div class="footer-contact">
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
@@ -1119,10 +1119,10 @@
             <!-- Bottom -->
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    <p>&copy; {{ date('Y') }} GeoToba - Geopark Danau Toba. All rights reserved.</p>
+                    <p>&copy; {{ date('Y') }} GeoToba - Geopark Danau Toba. {{ __('app.footer.copyright') }}</p>
                 </div>
                 <div class="footer-credit">
-                    <span>Developed by <a href="#">Kelompok 7</a></span>
+                    <span>{{ __('app.footer.designed_by') }} <a href="#">Kelompok 7</a></span>
                 </div>
             </div>
         </div>
@@ -1245,7 +1245,7 @@
             searchDropdown.style.display = 'block';
             searchDropdown.innerHTML = `
                 <div class="search-loading">
-                    <i class="fas fa-circle-notch"></i> Mencari...
+                    <i class="fas fa-circle-notch"></i> ${@json(__('app.nav.searching'))}
                 </div>
             `;
         }
@@ -1254,7 +1254,7 @@
             searchDropdown.innerHTML = `
                 <div class="search-empty-state">
                     <i class="fas fa-search-minus"></i>
-                    <p>Tidak ada hasil untuk <strong>"${escapeHtml(query)}"</strong></p>
+                    <p>${@json(__('app.nav.search_no_result'))} <strong>"${escapeHtml(query)}"</strong></p>
                 </div>
             `;
         }
@@ -1276,7 +1276,7 @@
                 return;
             }
 
-            let html = `<div class="search-results-header"><i class="fas fa-bolt me-1"></i> Hasil Pencarian (${results.length})</div>`;
+            let html = `<div class="search-results-header"><i class="fas fa-bolt me-1"></i> ${@json(__('app.nav.search_results'))} (${results.length})</div>`;
 
             results.forEach(function (item) {
                 const thumbHtml = item.gambar_url
@@ -1322,7 +1322,7 @@
                 searchDropdown.innerHTML = `
                     <div class="search-empty-state">
                         <i class="fas fa-exclamation-triangle" style="color: #f59e0b;"></i>
-                        <p>Terjadi kesalahan. Silakan coba lagi.</p>
+                        <p>${@json(__('app.common.no_data'))}</p>
                     </div>
                 `;
                 searchDropdown.style.display = 'block';

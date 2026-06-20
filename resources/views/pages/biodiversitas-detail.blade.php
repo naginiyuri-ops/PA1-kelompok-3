@@ -127,13 +127,13 @@
 <section class="detail-hero">
     <div class="container">
         <a href="{{ route('biodiversitas') }}" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem;">
-            <i class="fas fa-arrow-left"></i> Kembali ke Biodiversitas
+            <i class="fas fa-arrow-left"></i> {{ __('app.biodiversity.back') }}
         </a>
         <h1>{{ $item->nama_trans }}</h1>
         <div class="meta">
             <span><i class="fas fa-tag"></i> {{ ucfirst($item->kategori) }}</span>
             <span><i class="fas fa-map-marker-alt"></i> {{ $item->lokasi ?? 'Danau Toba' }}</span>
-            <span><i class="fas fa-eye"></i> {{ number_format($item->views ?? 0) }} dibaca</span>
+            <span><i class="fas fa-eye"></i> {{ number_format($item->views ?? 0) }} {{ __('app.common.views_count') }}</span>
             @if($item->status_keberadaan)
             <span><i class="fas fa-shield-alt"></i> {{ $item->status_keberadaan }}</span>
             @endif
@@ -159,37 +159,37 @@
             </div>
             <div class="col-lg-4">
                 <div class="info-box">
-                    <div class="label">Kategori</div>
+                    <div class="label">{{ __('app.biodiversity.category') }}</div>
                     <div class="value">
                         <span class="badge-status badge-{{ $item->kategori }}">
                             {{ ucfirst($item->kategori) }}
                         </span>
                     </div>
 
-                    <div class="label">Lokasi</div>
+                    <div class="label">{{ __('app.biodiversity.location') }}</div>
                     <div class="value">{{ $item->lokasi ?? 'Danau Toba' }}</div>
 
                     @if($item->status_keberadaan)
-                    <div class="label">Status Keberadaan</div>
+                    <div class="label">{{ __('app.biodiversity.existence_status') }}</div>
                     <div class="value">{{ $item->status_keberadaan }}</div>
                     @endif
 
-                    <div class="label">Status</div>
+                    <div class="label">{{ __('app.common.status') }}</div>
                     <div class="value">
                         <span style="display:inline-block; padding:2px 12px; border-radius:20px; background:#dcfce7; color:#166534; font-weight:600; font-size:0.75rem;">
-                            {{ $item->status ? 'Aktif' : 'Nonaktif' }}
+                            {{ $item->status ? __('app.common.active') : __('app.common.inactive') }}
                         </span>
                     </div>
                 </div>
                 <a href="{{ route('biodiversitas') }}" class="btn-back">
-                    <i class="fas fa-arrow-left"></i> Kembali
+                    <i class="fas fa-arrow-left"></i> {{ __('app.common.back') }}
                 </a>
             </div>
         </div>
 
         @if(isset($rekomendasi) && $rekomendasi->count() > 0)
         <div style="margin-top:50px;">
-            <h3 style="font-family:'Playfair Display', serif; color:#003366;">Rekomendasi Lainnya</h3>
+            <h3 style="font-family:'Playfair Display', serif; color:#003366;">{{ __('app.biodiversity.other_recommendations') }}</h3>
             <div class="rekomendasi-grid">
                 @foreach($rekomendasi as $rec)
                 <div class="rekomendasi-item" onclick="window.location.href='{{ route('biodiversitas.detail', $rec->slug) }}'">

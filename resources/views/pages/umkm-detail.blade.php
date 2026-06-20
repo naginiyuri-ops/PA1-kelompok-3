@@ -267,7 +267,7 @@
          onerror="this.src='{{ asset('image/default.jpg') }}'">
     <div class="detail-hero-overlay">
         <div class="detail-hero-content">
-            <div class="detail-hero-badge">🏪 Sovenir & UMKM</div>
+            <div class="detail-hero-badge">🏪 {{ __('app.umkm.title') }}</div>
             <h1>{{ $item->nama_usaha_trans }}</h1>
             <div class="detail-hero-meta">
                 @if($item->pemilik)
@@ -300,9 +300,9 @@
                 <div class="detail-main-body">
                     <h2>
                         <div class="icon-wrap"><i class="fas fa-store"></i></div>
-                        Tentang UMKM Ini
+                        {{ __('app.umkm.about_title') }}
                     </h2>
-                    <div class="deskripsi">{{ $item->deskripsi_trans ?? 'Deskripsi belum tersedia.' }}</div>
+                    <div class="deskripsi">{{ $item->deskripsi_trans ?? (app()->getLocale() == 'en' ? 'Description not available.' : 'Deskripsi belum tersedia.') }}</div>
                 </div>
             </div>
 
@@ -311,34 +311,34 @@
                 <div class="sidebar-card">
                     <div class="sidebar-card-header">
                         <i class="fas fa-info-circle"></i>
-                        <h4>Informasi Lengkap</h4>
+                        <h4>{{ app()->getLocale() == 'en' ? 'Complete Information' : 'Informasi Lengkap' }}</h4>
                     </div>
                     <div class="sidebar-card-body">
                         <div class="info-row">
                             <div class="icon"><i class="fas fa-user"></i></div>
                             <div class="info-text-wrap">
-                                <div class="info-label">Pemilik</div>
+                                <div class="info-label">{{ __('app.umkm.owner') }}</div>
                                 <div class="info-text">{{ $item->pemilik ?? '-' }}</div>
                             </div>
                         </div>
                         <div class="info-row">
                             <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
                             <div class="info-text-wrap">
-                                <div class="info-label">Alamat</div>
+                                <div class="info-label">{{ __('app.umkm.address') }}</div>
                                 <div class="info-text">{{ $item->alamat ?? 'Geosite Danau Toba, Sumatera Utara' }}</div>
                             </div>
                         </div>
                         <div class="info-row">
                             <div class="icon"><i class="fas fa-phone"></i></div>
                             <div class="info-text-wrap">
-                                <div class="info-label">No. Telepon</div>
+                                <div class="info-label">{{ __('app.umkm.phone') }}</div>
                                 <div class="info-text">{{ $item->no_telepon ?? '-' }}</div>
                             </div>
                         </div>
                         <div class="info-row">
                             <div class="icon"><i class="fas fa-calendar-alt"></i></div>
                             <div class="info-text-wrap">
-                                <div class="info-label">Terakhir Diperbarui</div>
+                                <div class="info-label">{{ app()->getLocale() == 'en' ? 'Last Updated' : 'Terakhir Diperbarui' }}</div>
                                 <div class="info-text">{{ $item->updated_at->format('d M Y') }}</div>
                             </div>
                         </div>
@@ -348,12 +348,12 @@
                 <div class="sidebar-card">
                     <div class="sidebar-card-header">
                         <i class="fas fa-compass"></i>
-                        <h4>Navigasi</h4>
+                        <h4>{{ app()->getLocale() == 'en' ? 'Navigation' : 'Navigasi' }}</h4>
                     </div>
                     <div class="sidebar-card-body">
                         <a href="{{ route('fasilitas.umkm') }}" class="btn-back">
                             <i class="fas fa-arrow-left"></i>
-                            Kembali ke Daftar UMKM
+                            {{ __('app.umkm.back') }}
                         </a>
                     </div>
                 </div>
@@ -364,7 +364,7 @@
         @if($related->count() > 0)
         <div class="related-section">
             <div class="related-section-header">
-                <h3>UMKM <span>Lainnya</span></h3>
+                <h3>{{ app()->getLocale() == 'en' ? 'Other' : 'UMKM' }} <span>{{ app()->getLocale() == 'en' ? 'MSMEs' : 'Lainnya' }}</span></h3>
                 <div class="divider-line"></div>
             </div>
             <div class="related-grid">
@@ -377,7 +377,7 @@
                     </div>
                     <div class="related-content">
                         <div class="related-title">{{ $rel->nama_usaha_trans }}</div>
-                        <div class="related-link">Lihat Detail <i class="fas fa-arrow-right"></i></div>
+                        <div class="related-link">{{ __('app.common.read_more') }} <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </a>
                 @endforeach

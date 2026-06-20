@@ -80,8 +80,8 @@
 </style>
 
 <div class="hero-biodiversitas">
-    <h1>Biodiversitas</h1>
-    <p>Keanekaragaman Hayati di Geopark Danau Toba</p>
+    <h1>{{ __('app.biodiversity.title') }}</h1>
+    <p>{{ __('app.biodiversity.subtitle') }}</p>
 </div>
 
 <div class="container">
@@ -108,7 +108,7 @@
         @empty
         <div style="grid-column: span 3; text-align:center; padding:60px;">
             <i class="fas fa-leaf" style="font-size:3rem; color:#c6a43b; opacity:0.3;"></i>
-            <p style="margin-top:16px; color:#94a3b8;">Belum ada data Biodiversitas</p>
+            <p style="margin-top:16px; color:#94a3b8;">{{ __('app.common.no_data') }}</p>
         </div>
         @endforelse
     </div>

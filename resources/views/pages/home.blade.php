@@ -845,10 +845,10 @@
     <div class="hero-overlay"></div>
     
     <div class="hero-content">
-        <div class="hero-badge">UNESCO Global Geopark</div>
-        <h1 class="hero-title">Balige · Meat <br><span>Batu Basiha · Liang Sipege</span></h1>
+        <div class="hero-badge">{{ __('app.home.hero_badge') }}</div>
+        <h1 class="hero-title">{!! __('app.home.hero_locations') !!}</h1>
         <div class="hero-divider"></div>
-        <a href="#destinasi" class="hero-btn">{{ __('app.home.explore_btn') ?? 'Jelajahi Sekarang' }} →</a>
+        <a href="#destinasi" class="hero-btn">{{ __('app.home.explore_btn') }} →</a>
     </div>
 </section>
 
@@ -856,10 +856,10 @@
 <section id="destinasi" class="section section-white">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <span class="badge">{{ __('app.home.featured_dest') ?? 'Destinasi Unggulan' }}</span>
-            <h2>{{ __('app.home.featured_dest') ?? 'Destinasi Unggulan' }}</h2>
+            <span class="badge">{{ __('app.home.featured_dest') }}</span>
+            <h2>{{ __('app.home.featured_dest') }}</h2>
             <div class="divider"></div>
-            <p>{{ __('app.home.featured_desc') ?? 'Temukan keindahan destinasi terbaik di kawasan Geosite Danau Toba' }}</p>
+            <p>{{ __('app.home.featured_desc') }}</p>
         </div>
 
         @if(!empty($featuredDestinations) && $featuredDestinations->count())
@@ -890,7 +890,7 @@
                     <h3>{{ $item->title }}</h3>
                     <div class="location"><i class="fas fa-map-marker-alt"></i> {{ $item->location ?? 'Lokasi belum diisi' }}</div>
                     <p>{{ Str::limit(strip_tags($item->short_description ?: $item->description), 120) }}</p>
-                    <a href="{{ route('destinasi.detail', ['category' => $item->category, 'id' => $item->id]) }}" class="destinasi-link">{{ app()->getLocale() == 'en' ? 'View Details' : 'Lihat Detail' }} →</a>
+                    <a href="{{ route('destinasi.detail', ['category' => $item->category, 'id' => $item->id]) }}" class="destinasi-link">{{ __('app.common.read_more') }} →</a>
                 </div>
             </div>
             @endforeach
@@ -898,7 +898,7 @@
         @else
         <div style="text-align:center; padding:50px; color:#94a3b8;">
             <i class="fas fa-map-marker-alt" style="font-size:3rem; opacity:0.25; display:block; margin-bottom:16px;"></i>
-            Belum ada destinasi unggulan. Tandai destinasi di panel admin agar muncul di sini.
+            {{ __('app.home.no_featured_dest') }}
         </div>
         @endif
     </div>
@@ -910,19 +910,19 @@
         <div class="stats-grid">
             <div class="stat-item" data-aos="zoom-in">
                 <div class="stat-number">16</div>
-                <div class="stat-label">{{ __('app.home.geosite_count') ?? 'Geosites' }}</div>
+                <div class="stat-label">{{ __('app.home.geosite_count') }}</div>
             </div>
             <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
                 <div class="stat-number">74.000</div>
-                <div class="stat-label">{{ app()->getLocale() == 'en' ? 'Years of History' : 'Tahun Sejarah' }}</div>
+                <div class="stat-label">{{ __('app.home.history_years') }}</div>
             </div>
             <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
                 <div class="stat-number">15</div>
-                <div class="stat-label">{{ app()->getLocale() == 'en' ? 'Cultural Heritage' : 'Warisan Budaya' }}</div>
+                <div class="stat-label">{{ __('app.home.cultural_heritage') }}</div>
             </div>
             <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
                 <div class="stat-number">20+</div>
-                <div class="stat-label">{{ __('app.nav.souvenir_umkm') ?? 'UMKM Lokal' }}</div>
+                <div class="stat-label">{{ __('app.nav.souvenir_umkm') }}</div>
             </div>
         </div>
     </div>
@@ -932,10 +932,10 @@
 <section class="section section-light">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <span class="badge">{{ __('app.nav.gallery') ?? 'Galeri' }}</span>
-            <h2>{{ __('app.nav.gallery') ?? 'Galeri Unggulan' }}</h2>
+            <span class="badge">{{ __('app.nav.gallery') }}</span>
+            <h2>{{ __('app.nav.gallery') }}</h2>
             <div class="divider"></div>
-            <p>{{ app()->getLocale() == 'en' ? 'Best photo collection of Lake Toba Geopark' : 'Koleksi foto terbaik dari Geopark Danau Toba' }}</p>
+            <p>{{ __('app.home.gallery_desc') }}</p>
         </div>
         
         <div class="galeri-scroll-wrapper">
@@ -973,7 +973,7 @@
                 @empty
                 <div style="padding:50px; text-align:center; color:#94a3b8; width:100%;">
                     <i class="fas fa-images" style="font-size:3rem; opacity:0.2; display:block; margin-bottom:15px;"></i>
-                    <p>Belum ada galeri unggulan. <br>Tambahkan di panel admin.</p>
+                    <p>{!! __('app.home.no_featured_gallery') !!}</p>
                 </div>
                 @endforelse
             </div>
@@ -990,7 +990,7 @@
         
         <div style="text-align:center; margin-top:25px;">
             <a href="{{ url('/galeri') }}" class="hero-btn" style="display:inline-block; padding:10px 30px; font-size:0.7rem; background:transparent; border:2px solid var(--gold); color:var(--gold-dark);">
-                {{ __('app.home.see_all') ?? 'Lihat Semua' }} {{ __('app.nav.gallery') ?? 'Galeri' }} →
+                {{ __('app.common.see_all') }} {{ __('app.nav.gallery') }} →
             </a>
         </div>
     </div>
@@ -1001,10 +1001,10 @@
 <section class="section section-light">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <span class="badge">{{ __('app.nav.news') ?? 'Berita' }}</span>
-            <h2>{{ __('app.home.news_title') ?? 'Berita Terkini' }}</h2>
+            <span class="badge">{{ __('app.nav.news') }}</span>
+            <h2>{{ __('app.home.news_title') }}</h2>
             <div class="divider"></div>
-            <p>{{ __('app.home.news_subtitle') ?? 'Informasi dan perkembangan terbaru seputar Geopark Danau Toba' }}</p>
+            <p>{{ __('app.home.news_subtitle') }}</p>
         </div>
         
         <div class="berita-grid">
@@ -1036,20 +1036,20 @@
                     </div>
                     <h3>{{ Str::limit($item->judul_trans, 45) }}</h3>
                     <p>{{ Str::limit(strip_tags($item->konten_trans), 80) }}</p>
-                    <a href="{{ url('/berita/' . $item->slug) }}" class="btn-read">{{ __('app.home.read_more') ?? 'Baca Selengkapnya' }} →</a>
+                    <a href="{{ url('/berita/' . $item->slug) }}" class="btn-read">{{ __('app.common.read_more') }} →</a>
                 </div>
             </div>
             @empty
             <div style="text-align:center; padding:50px; color:#94a3b8; grid-column:span 3;">
                 <i class="fas fa-newspaper" style="font-size:2.5rem; opacity:0.3; display:block; margin-bottom:10px;"></i>
-                <p>Belum ada berita terbaru</p>
+                <p>{{ __('app.news.no_data') }}</p>
             </div>
             @endforelse
         </div>
         
         <div style="text-align:center; margin-top:30px;">
             <a href="{{ url('/berita') }}" class="hero-btn" style="display:inline-block; padding:10px 30px; font-size:0.7rem; background:transparent; border:2px solid var(--gold); color:var(--gold-dark);">
-                Lihat Semua Berita →
+                {{ __('app.common.see_all') }} {{ __('app.nav.news') }} →
             </a>
         </div>
     </div>
@@ -1059,10 +1059,10 @@
 <section class="section section-white">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <span class="badge">Official Website</span>
-            <h2>Kaldera Toba Geopark</h2>
+            <span class="badge">{{ __('app.home.official_website') }}</span>
+            <h2>{{ __('app.home.kaldera_toba') }}</h2>
             <div class="divider"></div>
-            <p>Jelajahi informasi resmi dan lengkap tentang keajaiban Geopark Kaldera Toba.</p>
+            <p>{{ __('app.home.kaldera_desc') }}</p>
         </div>
         <div style="text-align:center; margin-top:40px;" data-aos="zoom-in">
             <a href="https://calderatobageopark.org/" target="_blank" rel="noopener noreferrer" style="
@@ -1080,7 +1080,7 @@
                 transition: all 0.3s ease;
             " onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 35px rgba(0,51,102,0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,51,102,0.25)'">
                 <i class="fas fa-globe-asia" style="font-size:1.3rem;"></i>
-                Kunjungi calderatobageopark.org
+                {{ __('app.home.visit_kaldera') }}
                 <i class="fas fa-external-link-alt" style="font-size:0.9rem; margin-left:5px;"></i>
             </a>
         </div>
@@ -1092,9 +1092,9 @@
 <section class="cta-section">
     <div class="container">
         <div class="cta-content" data-aos="fade-up">
-            <h3>{{ app()->getLocale() == 'en' ? 'Start Your Adventure' : 'Mulai Petualangan Anda' }}</h3>
+            <h3>{{ __('app.home.start_adventure') }}</h3>
             <div class="divider"></div>
-            <p>{{ app()->getLocale() == 'en' ? 'Discover the geological wonders and rich Batak culture in Toba Geopark, a UNESCO recognized world heritage.' : 'Temukan keajaiban geologi dan kekayaan budaya Batak di Geopark Toba, warisan dunia yang diakui UNESCO.' }}</p>
+            <p>{{ __('app.home.adventure_desc') }}</p>
         </div>
     </div>
 </section>

@@ -119,10 +119,10 @@
 
 <div class="hero-dest">
     <div class="container">
-        <div class="hero-badge">Fasilitas Geosite</div>
-        <h1><i class="fas fa-bed"></i> <span>Penginapan</span></h1>
+        <div class="hero-badge">{{ __('app.facility.title') }}</div>
+        <h1><i class="fas fa-bed"></i> <span>{{ __('app.facility.accommodation') }}</span></h1>
         <div class="hero-divider"></div>
-        <p>Daftar fasilitas penginapan terbaik dan ternyaman di area Geosite Danau Toba.</p>
+        <p>{{ app()->getLocale() == 'en' ? 'List of the best and most comfortable accommodation facilities in Lake Toba Geosite area.' : 'Daftar fasilitas penginapan terbaik dan ternyaman di area Geosite Danau Toba.' }}</p>
     </div>
 </div>
 
@@ -136,21 +136,21 @@
                          alt="{{ $item->nama_trans }}" loading="lazy"
                          onerror="this.src='{{ asset('image/default.jpg') }}'">
                     <div class="card-img-overlay"><i class="fas fa-arrow-right"></i></div>
-                    <span class="card-badge">Penginapan</span>
+                    <span class="card-badge">{{ __('app.facility.accommodation') }}</span>
                 </div>
                 <div class="card-content">
                     <div class="card-title">{{ $item->nama_trans }}</div>
                     <div class="card-excerpt">{{ strip_tags($item->deskripsi_trans ?? '-') }}</div>
                     <div class="card-footer">
-                        <span class="read-more">Lihat Detail <i class="fas fa-arrow-right"></i></span>
+                        <span class="read-more">{{ __('app.common.read_more') }} <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             </a>
             @empty
             <div class="empty-state">
                 <i class="fas fa-bed"></i>
-                <p>Belum ada data Penginapan yang tersedia.</p>
-                <p style="font-size:0.8rem; margin-top:8px;">Silakan tambahkan melalui panel admin.</p>
+                <p>{{ __('app.common.no_data') }}</p>
+                <p style="font-size:0.8rem; margin-top:8px;">{{ app()->getLocale() == 'en' ? 'Please add data via admin panel.' : 'Silakan tambahkan melalui panel admin.' }}</p>
             </div>
             @endforelse
         </div>

@@ -142,9 +142,9 @@
 <!-- HERO -->
 <div class="hero-geodiversitas">
     <div class="container">
-        <h1>Geodiversitas</h1>
+        <h1>{{ __('app.geodiversity.title') }}</h1>
         <div class="hero-divider"></div>
-        <p>Keanekaragaman Geologi di Geopark Danau Toba</p>
+        <p>{{ __('app.geodiversity.subtitle') }}</p>
     </div>
 </div>
 
@@ -176,14 +176,14 @@
                     <h3>{{ Str::limit($item->nama_trans, 40) }}</h3>
                     <div class="lokasi"><i class="fas fa-map-marker-alt"></i> {{ $item->lokasi ?? 'Danau Toba' }}</div>
                     <p>{{ Str::limit(strip_tags($item->deskripsi_trans), 100) }}</p>
-                    <a href="{{ route('geodiversitas.detail', $item->slug) }}" class="btn-detail">Baca Selengkapnya →</a>
+                    <a href="{{ route('geodiversitas.detail', $item->slug) }}" class="btn-detail">{{ __('app.common.read_more') }} →</a>
                 </div>
             </div>
             @empty
             <div class="empty-state">
                 <i class="fas fa-gem"></i>
-                <p>Belum ada data Geodiversitas</p>
-                <p style="font-size:0.8rem; margin-top:8px;">Silakan tambahkan melalui panel admin.</p>
+                <p>{{ __('app.common.no_data') }}</p>
+                <p style="font-size:0.8rem; margin-top:8px;">{{ app()->getLocale() == 'en' ? 'Please add data via admin panel.' : 'Silakan tambahkan melalui panel admin.' }}</p>
             </div>
             @endforelse
         </div>

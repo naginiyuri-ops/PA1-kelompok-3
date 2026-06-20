@@ -172,13 +172,13 @@
 <section class="detail-hero">
     <div class="container">
         <a href="{{ route('cultural-diversity') }}" class="back-link">
-            <i class="fas fa-arrow-left"></i> Kembali ke Cultural Diversity
+            <i class="fas fa-arrow-left"></i> {{ __('app.cultural.back') }}
         </a>
         <h1>{{ $item->nama_trans }}</h1>
         <div class="meta">
             <span><i class="fas fa-tag"></i> {{ ucfirst($item->kategori) }}</span>
             <span><i class="fas fa-map-marker-alt"></i> {{ $item->lokasi ?? 'Danau Toba' }}</span>
-            <span><i class="fas fa-eye"></i> {{ number_format($item->views ?? 0) }} dibaca</span>
+            <span><i class="fas fa-eye"></i> {{ number_format($item->views ?? 0) }} {{ __('app.common.views_count') }}</span>
         </div>
     </div>
 </section>
@@ -209,7 +209,7 @@
                     <video controls>
                         <source src="{{ $item->video_url }}" type="video/mp4">
                         <source src="{{ $item->video_url }}" type="video/webm">
-                        Browser Anda tidak mendukung video.
+                        {{ app()->getLocale() == 'en' ? 'Your browser does not support the video tag.' : 'Browser Anda tidak mendukung video.' }}
                     </video>
                 </div>
                 @endif
@@ -218,40 +218,40 @@
             </div>
             <div class="col-lg-4">
                 <div class="info-box">
-                    <div class="label">Kategori</div>
+                    <div class="label">{{ __('app.cultural.category') }}</div>
                     <div class="value">
                         <span class="badge-kategori badge-{{ $item->kategori }}">
                             {{ ucfirst($item->kategori) }}
                         </span>
                     </div>
 
-                    <div class="label">Lokasi</div>
+                    <div class="label">{{ __('app.cultural.location') }}</div>
                     <div class="value">{{ $item->lokasi ?? 'Danau Toba' }}</div>
 
                     @if($item->video_url)
                     <div class="label">Video</div>
                     <div class="value">
                         <a href="{{ $item->video_url }}" target="_blank" style="color:#c6a43b; text-decoration:none;">
-                            <i class="fas fa-play-circle"></i> Putar Video
+                            <i class="fas fa-play-circle"></i> {{ app()->getLocale() == 'en' ? 'Play Video' : 'Putar Video' }}
                         </a>
                     </div>
                     @endif
 
-                    <div class="label">Status</div>
+                    <div class="label">{{ __('app.common.status') }}</div>
                     <div class="value">
                         <span class="badge-status">
-                            {{ $item->status ? 'Aktif' : 'Nonaktif' }}
+                            {{ $item->status ? __('app.common.active') : __('app.common.inactive') }}
                         </span>
                     </div>
 
-                    <div class="label">Views</div>
-                    <div class="value">{{ number_format($item->views ?? 0) }} kali dibaca</div>
+                    <div class="label">{{ ucfirst(__('app.common.views')) }}</div>
+                    <div class="value">{{ number_format($item->views ?? 0) }} {{ __('app.common.views_count') }}</div>
 
-                    <div class="label">Dibuat</div>
+                    <div class="label">{{ app()->getLocale() == 'en' ? 'Created At' : 'Dibuat' }}</div>
                     <div class="value">{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y') }}</div>
                 </div>
                 <a href="{{ route('cultural-diversity') }}" class="btn-back">
-                    <i class="fas fa-arrow-left"></i> Kembali
+                    <i class="fas fa-arrow-left"></i> {{ __('app.common.back') }}
                 </a>
             </div>
         </div>
@@ -259,10 +259,10 @@
         @if(isset($rekomendasi) && $rekomendasi->count() > 0)
         <div style="margin-top:50px; padding-top:30px; border-top:1px solid #e2e8f0;">
             <h3 style="font-family:'Playfair Display', serif; color:#003366; font-size:1.5rem;">
-                🔍 Rekomendasi Lainnya
+                🔍 {{ __('app.biodiversity.other_recommendations') }}
             </h3>
             <p style="color:#94a3b8; font-size:0.85rem; margin-bottom:20px;">
-                Temukan lebih banyak kekayaan budaya Batak di Geopark Danau Toba
+                {{ app()->getLocale() == 'en' ? 'Discover more Batak cultural richness in Lake Toba Geopark' : 'Temukan lebih banyak kekayaan budaya Batak di Geopark Danau Toba' }}
             </p>
             <div class="rekomendasi-grid">
                 @foreach($rekomendasi as $rec)

@@ -161,13 +161,13 @@
 <section class="detail-hero">
     <div class="container">
         <a href="{{ route('geodiversitas') }}" class="back-link">
-            <i class="fas fa-arrow-left"></i> Kembali ke Geodiversitas
+            <i class="fas fa-arrow-left"></i> {{ __('app.geodiversity.back') }}
         </a>
         <h1>{{ $item->nama_trans }}</h1>
         <div class="meta">
             <span><i class="fas fa-tag"></i> <span class="badge-tipe badge-{{ $item->tipe_geologi ?? 'other' }}" style="background:transparent; color:white; padding:0;">{{ ucfirst($item->tipe_geologi ?? 'Lainnya') }}</span></span>
             <span><i class="fas fa-map-marker-alt"></i> {{ $item->lokasi ?? 'Danau Toba' }}</span>
-            <span><i class="fas fa-eye"></i> {{ number_format($item->views ?? 0) }} dibaca</span>
+            <span><i class="fas fa-eye"></i> {{ number_format($item->views ?? 0) }} {{ __('app.common.views_count') }}</span>
             @if($item->usia_geologi)
             <span><i class="fas fa-clock"></i> {{ $item->usia_geologi }}</span>
             @endif
@@ -199,36 +199,36 @@
             </div>
             <div class="col-lg-4">
                 <div class="info-box">
-                    <div class="label">Tipe Geologi</div>
+                    <div class="label">{{ __('app.geodiversity.geology_type') }}</div>
                     <div class="value">
                         <span class="badge-tipe badge-{{ $item->tipe_geologi ?? 'other' }}">
                             {{ ucfirst($item->tipe_geologi ?? 'Lainnya') }}
                         </span>
                     </div>
 
-                    <div class="label">Lokasi</div>
+                    <div class="label">{{ __('app.geodiversity.location') }}</div>
                     <div class="value">{{ $item->lokasi ?? 'Danau Toba' }}</div>
 
                     @if($item->usia_geologi)
-                    <div class="label">Usia Geologi</div>
+                    <div class="label">{{ __('app.geodiversity.geology_age') }}</div>
                     <div class="value">{{ $item->usia_geologi }}</div>
                     @endif
 
-                    <div class="label">Status</div>
+                    <div class="label">{{ __('app.common.status') }}</div>
                     <div class="value">
                         <span class="badge-status">
-                            {{ $item->status ? 'Aktif' : 'Nonaktif' }}
+                            {{ $item->status ? __('app.common.active') : __('app.common.inactive') }}
                         </span>
                     </div>
 
-                    <div class="label">Views</div>
-                    <div class="value">{{ number_format($item->views ?? 0) }} kali dibaca</div>
+                    <div class="label">{{ ucfirst(__('app.common.views')) }}</div>
+                    <div class="value">{{ number_format($item->views ?? 0) }} {{ __('app.common.views_count') }}</div>
 
-                    <div class="label">Dibuat</div>
+                    <div class="label">{{ app()->getLocale() == 'en' ? 'Created At' : 'Dibuat' }}</div>
                     <div class="value">{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y') }}</div>
                 </div>
                 <a href="{{ route('geodiversitas') }}" class="btn-back">
-                    <i class="fas fa-arrow-left"></i> Kembali
+                    <i class="fas fa-arrow-left"></i> {{ __('app.common.back') }}
                 </a>
             </div>
         </div>
@@ -236,10 +236,10 @@
         @if(isset($rekomendasi) && $rekomendasi->count() > 0)
         <div style="margin-top:50px; padding-top:30px; border-top:1px solid #e2e8f0;">
             <h3 style="font-family:'Playfair Display', serif; color:#003366; font-size:1.5rem;">
-                🔍 Rekomendasi Lainnya
+                🔍 {{ __('app.biodiversity.other_recommendations') }}
             </h3>
             <p style="color:#94a3b8; font-size:0.85rem; margin-bottom:20px;">
-                Temukan lebih banyak keanekaragaman geologi di Geopark Danau Toba
+                {{ app()->getLocale() == 'en' ? 'Discover more geological diversity in Lake Toba Geopark' : 'Temukan lebih banyak keanekaragaman geologi di Geopark Danau Toba' }}
             </p>
             <div class="rekomendasi-grid">
                 @foreach($rekomendasi as $rec)

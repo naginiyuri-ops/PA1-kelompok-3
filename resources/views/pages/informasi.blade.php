@@ -480,9 +480,9 @@
     <!-- HERO SECTION -->
     <div class="hero-informasi" id="heroSection">
         <div class="container">
-            <div class="hero-badge">PUSAT INFORMASI</div>
-            <h1>Informasi & Wawasan</h1>
-            <p>Jelajahi wawasan ilmiah, warisan budaya, dan keanekaragaman geologi Geosite Danau Toba.</p>
+            <div class="hero-badge">{{ app()->getLocale() == 'en' ? 'INFORMATION CENTER' : 'PUSAT INFORMASI' }}</div>
+            <h1>{{ app()->getLocale() == 'en' ? 'Information & Insights' : 'Informasi & Wawasan' }}</h1>
+            <p>{{ app()->getLocale() == 'en' ? 'Explore scientific insights, cultural heritage, and geological diversity of Lake Toba Geosite.' : 'Jelajahi wawasan ilmiah, warisan budaya, dan keanekaragaman geologi Geosite Danau Toba.' }}</p>
             <div class="hero-divider"></div>
         </div>
     </div>
@@ -515,7 +515,7 @@
                         <div class="card-overlay">
                             <i class="fas fa-book-open"></i>
                         </div>
-                        <span class="card-category-badge">INFORMASI</span>
+                        <span class="card-category-badge">{{ app()->getLocale() == 'en' ? 'INFORMATION' : 'INFORMASI' }}</span>
                         <span class="card-date-badge">
                             <i class="far fa-calendar-alt"></i>
                             {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') }}
@@ -526,15 +526,15 @@
                         <h3>{{ Str::limit($item->judul_trans, 55) }}</h3>
                         <p>{{ Str::limit(strip_tags($item->konten_trans), 120) }}</p>
                         <div class="btn-read">
-                            Baca Selengkapnya <i class="fas fa-arrow-right"></i>
+                            {{ __('app.common.read_more') }} <i class="fas fa-arrow-right"></i>
                         </div>
                     </div>
                 </div>
                 @empty
                 <div class="empty-state">
                     <i class="far fa-newspaper"></i>
-                    <h3>Belum Ada Informasi</h3>
-                    <p>Silakan tambahkan informasi terbaru melalui panel admin.</p>
+                    <h3>{{ app()->getLocale() == 'en' ? 'No Information Yet' : 'Belum Ada Informasi' }}</h3>
+                    <p>{{ app()->getLocale() == 'en' ? 'Please add the latest information via the admin panel.' : 'Silakan tambahkan informasi terbaru melalui panel admin.' }}</p>
                 </div>
                 @endforelse
             </div>
@@ -553,7 +553,7 @@
     <div class="article-container-box">
         <div class="btn-back-container">
             <button class="btn-back" onclick="closeArticle()">
-                <i class="fas fa-arrow-left"></i> Kembali ke Informasi
+                <i class="fas fa-arrow-left"></i> {{ app()->getLocale() == 'en' ? 'Back to Information' : 'Kembali ke Informasi' }}
             </button>
         </div>
 
@@ -562,7 +562,7 @@
             <div class="article-content-padding">
                 <div class="article-meta">
                     <span><i class="far fa-calendar-alt"></i> <span id="modalDate"></span></span>
-                    <span><i class="far fa-eye"></i> <span id="modalViews"></span> Pembaca</span>
+                    <span><i class="far fa-eye"></i> <span id="modalViews"></span> {{ app()->getLocale() == 'en' ? 'Readers' : 'Pembaca' }}</span>
                 </div>
                 <h1 class="article-main-title" id="modalTitle"></h1>
                 <div class="article-body-text" id="modalContent"></div>

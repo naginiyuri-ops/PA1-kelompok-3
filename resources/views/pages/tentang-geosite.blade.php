@@ -548,9 +548,9 @@
 <section class="hero-tentang">
     <div class="container">
         <div class="badge">UNESCO Global Geopark</div>
-        <h1>Tentang <span>Geosite</span></h1>
+        <h1>{{ app()->getLocale() == 'en' ? 'About' : 'Tentang' }} <span>Geosite</span></h1>
         <div class="hero-divider"></div>
-        <p>Mengenal lebih dalam tentang Geopark Danau Toba, warisan geologi dunia yang diakui UNESCO</p>
+        <p>{{ app()->getLocale() == 'en' ? 'Learn more about Geopark Danau Toba, the world geological heritage recognized by UNESCO' : 'Mengenal lebih dalam tentang Geopark Danau Toba, warisan geologi dunia yang diakui UNESCO' }}</p>
     </div>
 </section>
 
@@ -559,20 +559,20 @@
 <section class="section section-light" id="profil">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <span class="badge">Profil</span>
-            <h2>Profil Wilayah</h2>
+            <span class="badge">{{ app()->getLocale() == 'en' ? 'Profile' : 'Profil' }}</span>
+            <h2>{{ app()->getLocale() == 'en' ? 'Regional Profile' : 'Profil Wilayah' }}</h2>
             <div class="divider"></div>
-            <p>Mengenal lebih dekat kawasan Geopark Danau Toba</p>
+            <p>{{ app()->getLocale() == 'en' ? 'Getting to know the Geopark Danau Toba area more closely' : 'Mengenal lebih dekat kawasan Geopark Danau Toba' }}</p>
         </div>
         <div class="profile-grid">
             <div class="profile-text" data-aos="fade-right">
-                <p><strong>Geopark Danau Toba</strong> terletak di Provinsi Sumatera Utara, mencakup 7 kabupaten/kota di sekitar Danau Toba. Kawasan ini diakui sebagai <strong>UNESCO Global Geopark</strong> pada tanggal 7 Juli 2020.</p>
-                <p>Dengan luas area sekitar 1.930 km², Geopark Danau Toba memiliki keunikan geologi berupa kaldera danau vulkanik terbesar di dunia yang terbentuk dari letusan supervolcano 74.000 tahun lalu.</p>
+                <p><strong>Geopark Danau Toba</strong> {{ app()->getLocale() == 'en' ? 'is located in North Sumatra Province, covering 7 regencies/cities around Lake Toba. This area was recognized as a' : 'terletak di Provinsi Sumatera Utara, mencakup 7 kabupaten/kota di sekitar Danau Toba. Kawasan ini diakui sebagai' }} <strong>UNESCO Global Geopark</strong> {{ app()->getLocale() == 'en' ? 'on July 7, 2020.' : 'pada tanggal 7 Juli 2020.' }}</p>
+                <p>{{ app()->getLocale() == 'en' ? 'With an area of approximately 1,930 km2, Geopark Danau Toba has a unique geological feature in the form of the world largest volcanic lake caldera, formed from a supervolcano eruption 74,000 years ago.' : 'Dengan luas area sekitar 1.930 km2, Geopark Danau Toba memiliki keunikan geologi berupa kaldera danau vulkanik terbesar di dunia yang terbentuk dari letusan supervolcano 74.000 tahun lalu.' }}</p>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> <strong>Luas Wilayah:</strong> ± 1.930 km²</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Geosite:</strong> 16 titik geosite</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>{{ app()->getLocale() == 'en' ? 'Area:' : 'Luas Wilayah:' }}</strong> ± 1.930 km²</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Geosite:</strong> {{ app()->getLocale() == 'en' ? '16 geosite points' : '16 titik geosite' }}</li>
                     <li><i class="fas fa-check-circle"></i> <strong>Status:</strong> UNESCO Global Geopark (2020)</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Kabupaten:</strong> Toba, Samosir, Tapanuli Utara, Humbang Hasundutan, Dairi, Karo, Simalungun</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>{{ app()->getLocale() == 'en' ? 'Regencies:' : 'Kabupaten:' }}</strong> Toba, Samosir, Tapanuli Utara, Humbang Hasundutan, Dairi, Karo, Simalungun</li>
                 </ul>
             </div>
             <div class="profile-image" data-aos="fade-left" onclick="window.open('{{ asset('image/meat/danau.jpg') }}', '_blank')">
@@ -586,29 +586,29 @@
 <section class="section section-white">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <span class="badge">Visi & Misi</span>
-            <h2>Visi & Misi Geopark</h2>
+            <span class="badge">{{ app()->getLocale() == 'en' ? 'Vision & Mission' : 'Visi & Misi' }}</span>
+            <h2>{{ app()->getLocale() == 'en' ? 'Vision & Mission of Geopark' : 'Visi & Misi Geopark' }}</h2>
             <div class="divider"></div>
-            <p>Komitmen pengelolaan Geopark Danau Toba untuk masa depan</p>
+            <p>{{ app()->getLocale() == 'en' ? 'Commitment to managing Geopark Danau Toba for the future' : 'Komitmen pengelolaan Geopark Danau Toba untuk masa depan' }}</p>
         </div>
         <div class="visi-misi-grid">
             <!-- VISI -->
             <div class="visi-misi-card" data-aos="fade-up">
                 <span class="icon"><i class="fas fa-eye"></i></span>
-                <h3>Visi</h3>
-                <p>Menjadikan Geopark Danau Toba sebagai destinasi geowisata kelas dunia yang berkelanjutan, melestarikan warisan geologi, budaya, dan keanekaragaman hayati untuk kesejahteraan masyarakat.</p>
+                <h3>{{ app()->getLocale() == 'en' ? 'Vision' : 'Visi' }}</h3>
+                <p>{{ app()->getLocale() == 'en' ? 'Making Geopark Danau Toba a sustainable world-class geotourism destination, preserving geological, cultural, and biodiversity heritage for community welfare.' : 'Menjadikan Geopark Danau Toba sebagai destinasi geowisata kelas dunia yang berkelanjutan, melestarikan warisan geologi, budaya, dan keanekaragaman hayati untuk kesejahteraan masyarakat.' }}</p>
             </div>
 
             <!-- MISI -->
             <div class="visi-misi-card" data-aos="fade-up" data-aos-delay="100">
                 <span class="icon"><i class="fas fa-bullseye"></i></span>
-                <h3>Misi</h3>
+                <h3>{{ app()->getLocale() == 'en' ? 'Mission' : 'Misi' }}</h3>
                 <ul>
-                    <li><i class="fas fa-chevron-right"></i> Melestarikan dan mengelola warisan geologi secara berkelanjutan</li>
-                    <li><i class="fas fa-chevron-right"></i> Mengembangkan potensi wisata berbasis edukasi dan konservasi</li>
-                    <li><i class="fas fa-chevron-right"></i> Memberdayakan masyarakat lokal melalui ekonomi kreatif</li>
-                    <li><i class="fas fa-chevron-right"></i> Meningkatkan kesadaran akan pentingnya geopark</li>
-                    <li><i class="fas fa-chevron-right"></i> Membangun kemitraan global untuk pengembangan geopark</li>
+                    <li><i class="fas fa-chevron-right"></i> {{ app()->getLocale() == 'en' ? 'Preserve and sustainably manage geological heritage' : 'Melestarikan dan mengelola warisan geologi secara berkelanjutan' }}</li>
+                    <li><i class="fas fa-chevron-right"></i> {{ app()->getLocale() == 'en' ? 'Develop tourism potential based on education and conservation' : 'Mengembangkan potensi wisata berbasis edukasi dan konservasi' }}</li>
+                    <li><i class="fas fa-chevron-right"></i> {{ app()->getLocale() == 'en' ? 'Empower local communities through the creative economy' : 'Memberdayakan masyarakat lokal melalui ekonomi kreatif' }}</li>
+                    <li><i class="fas fa-chevron-right"></i> {{ app()->getLocale() == 'en' ? 'Increase awareness of the importance of geoparks' : 'Meningkatkan kesadaran akan pentingnya geopark' }}</li>
+                    <li><i class="fas fa-chevron-right"></i> {{ app()->getLocale() == 'en' ? 'Build global partnerships for geopark development' : 'Membangun kemitraan global untuk pengembangan geopark' }}</li>
                 </ul>
             </div>
         </div>
@@ -619,31 +619,31 @@
 <section class="section section-light">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <span class="badge">Nilai</span>
-            <h2>Nilai Geosite</h2>
+            <span class="badge">{{ app()->getLocale() == 'en' ? 'Values' : 'Nilai' }}</span>
+            <h2>{{ app()->getLocale() == 'en' ? 'Geosite Values' : 'Nilai Geosite' }}</h2>
             <div class="divider"></div>
-            <p>Empat pilar nilai utama Geopark Danau Toba</p>
+            <p>{{ app()->getLocale() == 'en' ? 'Four main value pillars of Geopark Danau Toba' : 'Empat pilar nilai utama Geopark Danau Toba' }}</p>
         </div>
         <div class="nilai-grid">
             <div class="nilai-card" data-aos="zoom-in">
                 <span class="icon"><i class="fas fa-mountain"></i></span>
-                <h4>Nilai Geologi</h4>
-                <p>Keunikan formasi batuan, struktur geologi, dan proses vulkanik yang membentuk Danau Toba</p>
+                <h4>{{ app()->getLocale() == 'en' ? 'Geological Value' : 'Nilai Geologi' }}</h4>
+                <p>{{ app()->getLocale() == 'en' ? 'Unique rock formations, geological structures, and volcanic processes that formed Lake Toba' : 'Keunikan formasi batuan, struktur geologi, dan proses vulkanik yang membentuk Danau Toba' }}</p>
             </div>
             <div class="nilai-card" data-aos="zoom-in" data-aos-delay="100">
                 <span class="icon"><i class="fas fa-leaf"></i></span>
-                <h4>Nilai Ekologi</h4>
-                <p>Keanekaragaman hayati yang tinggi, ekosistem danau, hutan, dan satwa endemik</p>
+                <h4>{{ app()->getLocale() == 'en' ? 'Ecological Value' : 'Nilai Ekologi' }}</h4>
+                <p>{{ app()->getLocale() == 'en' ? 'High biodiversity, lake ecosystems, forests, and endemic wildlife' : 'Keanekaragaman hayati yang tinggi, ekosistem danau, hutan, dan satwa endemik' }}</p>
             </div>
             <div class="nilai-card" data-aos="zoom-in" data-aos-delay="200">
                 <span class="icon"><i class="fas fa-people-arrows"></i></span>
-                <h4>Nilai Budaya</h4>
-                <p>Warisan budaya Batak yang kaya, tradisi, seni, dan kearifan lokal yang masih hidup</p>
+                <h4>{{ app()->getLocale() == 'en' ? 'Cultural Value' : 'Nilai Budaya' }}</h4>
+                <p>{{ app()->getLocale() == 'en' ? 'Rich Batak cultural heritage, traditions, arts, and living local wisdom' : 'Warisan budaya Batak yang kaya, tradisi, seni, dan kearifan lokal yang masih hidup' }}</p>
             </div>
             <div class="nilai-card" data-aos="zoom-in" data-aos-delay="300">
                 <span class="icon"><i class="fas fa-gem"></i></span>
-                <h4>Nilai Ilmiah</h4>
-                <p>Laboratorium alam untuk penelitian geologi, arkeologi, dan ilmu kebumian</p>
+                <h4>{{ app()->getLocale() == 'en' ? 'Scientific Value' : 'Nilai Ilmiah' }}</h4>
+                <p>{{ app()->getLocale() == 'en' ? 'A natural laboratory for geological, archaeological, and earth science research' : 'Laboratorium alam untuk penelitian geologi, arkeologi, dan ilmu kebumian' }}</p>
             </div>
         </div>
     </div>
@@ -653,10 +653,10 @@
 <section class="section section-white">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <span class="badge">Pengelola</span>
-            <h2>Pengelola Geosite</h2>
+            <span class="badge">{{ app()->getLocale() == 'en' ? 'Management' : 'Pengelola' }}</span>
+            <h2>{{ app()->getLocale() == 'en' ? 'Geosite Managers' : 'Pengelola Geosite' }}</h2>
             <div class="divider"></div>
-            <p>Tim pengelola yang berdedikasi untuk Geopark Danau Toba</p>
+            <p>{{ app()->getLocale() == 'en' ? 'A dedicated management team for Geopark Danau Toba' : 'Tim pengelola yang berdedikasi untuk Geopark Danau Toba' }}</p>
         </div>
         <div class="pengelola-grid">
             @foreach($pengelolas as $index => $pengelola)
@@ -688,10 +688,10 @@
 <section class="section section-light">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <span class="badge">Lokasi</span>
-            <h2>Peta Lokasi Geosite</h2>
+            <span class="badge">{{ app()->getLocale() == 'en' ? 'Location' : 'Lokasi' }}</span>
+            <h2>{{ app()->getLocale() == 'en' ? 'Geosite Location Map' : 'Peta Lokasi Geosite' }}</h2>
             <div class="divider"></div>
-            <p>Lokasi strategis di kawasan Balige, mudah diakses dari berbagai titik</p>
+            <p>{{ app()->getLocale() == 'en' ? 'Strategic location in the Balige area, easily accessible from various points' : 'Lokasi strategis di kawasan Balige, mudah diakses dari berbagai titik' }}</p>
         </div>
         <div class="maps-container" data-aos="zoom-in">
             <iframe

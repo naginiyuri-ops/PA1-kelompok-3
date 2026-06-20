@@ -486,8 +486,8 @@
 <!-- HERO SECTION - SAMA STYLENYA DENGAN GALERI -->
 <div class="hero-kontak">
     <div>
-        <h1>HUBUNGI KAMI</h1>
-        <p>Senang mendengar dari Anda</p>
+        <h1>{{ app()->getLocale() == 'en' ? 'CONTACT US' : 'HUBUNGI KAMI' }}</h1>
+        <p>{{ app()->getLocale() == 'en' ? 'Glad to hear from you' : 'Senang mendengar dari Anda' }}</p>
     </div>
 </div>
 
@@ -499,7 +499,7 @@
                 <div class="contact-icon">
                     <i class="fas fa-map-marker-alt"></i>
                 </div>
-                <h3>Alamat</h3>
+                <h3>{{ __('app.umkm.address') }}</h3>
                 <p>{{ $kontak->alamat ?? 'Desa Meat, Kabupaten Toba, Sumatera Utara' }}</p>
             </div>
 
@@ -507,7 +507,7 @@
                 <div class="contact-icon">
                     <i class="fas fa-phone-alt"></i>
                 </div>
-                <h3>Telepon</h3>
+                <h3>{{ __('app.umkm.phone') }}</h3>
                 <p>{{ $kontak->telepon ?? '0622-123456' }}</p>
             </div>
 
@@ -545,34 +545,34 @@
         <div class="info-grid">
             <!-- DESTINASI -->
             <div class="info-card">
-                <h3 class="info-title">Destinasi Unggulan</h3>
+                <h3 class="info-title">{{ app()->getLocale() == 'en' ? 'Top Destinations' : 'Destinasi Unggulan' }}</h3>
                 <div class="dest-list">
                     <div class="dest-item" onclick="window.location.href='{{ url('/geosite/meat') }}'">
                         <div class="dest-icon"><i class="fas fa-umbrella-beach"></i></div>
                         <div class="dest-info">
                             <h4>Meat Village</h4>
-                            <p>Desa wisata budaya di tepi Danau Toba</p>
+                            <p>{{ app()->getLocale() == 'en' ? 'Cultural tourism village on the shores of Lake Toba' : 'Desa wisata budaya di tepi Danau Toba' }}</p>
                         </div>
                     </div>
                     <div class="dest-item" onclick="window.location.href='{{ url('/geosite/batu-bahisan') }}'">
                         <div class="dest-icon"><i class="fas fa-mountain"></i></div>
                         <div class="dest-info">
                             <h4>Batu Bahisan</h4>
-                            <p>Situs batu bersejarah dengan pemandangan indah</p>
+                            <p>{{ app()->getLocale() == 'en' ? 'Historic stone site with beautiful views' : 'Situs batu bersejarah dengan pemandangan indah' }}</p>
                         </div>
                     </div>
                     <div class="dest-item" onclick="window.location.href='{{ url('/geosite/liang-sipege') }}'">
                         <div class="dest-icon"><i class="fas fa-cave"></i></div>
                         <div class="dest-info">
                             <h4>Liang Sipege</h4>
-                            <p>Gua alami dengan stalaktit dan stalakmit</p>
+                            <p>{{ app()->getLocale() == 'en' ? 'Natural cave with stalactites and stalagmites' : 'Gua alami dengan stalaktit dan stalakmit' }}</p>
                         </div>
                     </div>
                     <div class="dest-item" onclick="window.location.href='{{ url('/galeri') }}'">
                         <div class="dest-icon"><i class="fas fa-camera"></i></div>
                         <div class="dest-info">
-                            <h4>Galeri Foto</h4>
-                            <p>Koleksi foto terbaik Geopark Danau Toba</p>
+                            <h4>{{ __('app.gallery.title') }}</h4>
+                            <p>{{ __('app.gallery.subtitle') }}</p>
                         </div>
                     </div>
                 </div>
@@ -580,7 +580,7 @@
 
             <!-- SOSIAL & JAM OPERASIONAL -->
             <div class="info-card">
-                <h3 class="info-title">Ikuti Kami</h3>
+                <h3 class="info-title">{{ app()->getLocale() == 'en' ? 'Follow Us' : 'Ikuti Kami' }}</h3>
                 <div class="social-section">
                     <div class="social-icons">
                         <a href="https://www.facebook.com/dispartoba"><i class="fab fa-facebook-f"></i></a>
@@ -590,9 +590,9 @@
                 </div>
 
                 <div class="hours-box">
-                    <h4><i class="far fa-clock"></i> Jam Operasional</h4>
-                    <p>Senin - Jumat: 08:00 - 17:00 WIB</p>
-                    <p>Sabtu - Minggu: 08:00 - 18:00 WIB</p>
+                    <h4><i class="far fa-clock"></i> {{ app()->getLocale() == 'en' ? 'Operational Hours' : 'Jam Operasional' }}</h4>
+                    <p>{{ app()->getLocale() == 'en' ? 'Monday - Friday: 08:00 - 17:00 WIB' : 'Senin - Jumat: 08:00 - 17:00 WIB' }}</p>
+                    <p>{{ app()->getLocale() == 'en' ? 'Saturday - Sunday: 08:00 - 18:00 WIB' : 'Sabtu - Minggu: 08:00 - 18:00 WIB' }}</p>
                     <div class="hours-divider"></div>
                     <p><i class="fas fa-map-marker-alt"></i> Desa Meat, Kabupaten Toba</p>
                 </div>

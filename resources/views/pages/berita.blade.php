@@ -631,9 +631,9 @@
 <!-- ==================== HERO SECTION ==================== -->
 <section class="hero-berita">
     <div class="container">
-        <div class="hero-badge">UPDATE TERBARU</div>
-        <h1>Berita & Informasi    Terkini</h1>
-        <p>Informasi & Perkembangan Terbaru Balige, Meat, Liang Sipege, Batu Basiha</p>
+        <div class="hero-badge">{{ __('app.news.badge') }}</div>
+        <h1>{{ __('app.news.title') }}</h1>
+        <p>{{ __('app.news.hero_desc') }}</p>
         <div class="hero-divider"></div>
     </div>
 </section>
@@ -666,7 +666,7 @@
                     <div class="card-image-overlay">
                         <i class="fas fa-book-open"></i>
                     </div>
-                    <span class="card-category">BERITA</span>
+                    <span class="card-category">{{ __('app.news.category') }}</span>
                     <span class="card-date">
                         <i class="far fa-calendar-alt"></i>
                         {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') }}
@@ -678,10 +678,10 @@
                     <p class="card-excerpt">{{ Str::limit(strip_tags($item->konten_trans), 110) }}</p>
                     <div class="card-footer">
                         <span class="card-views" id="views-{{ $item->id }}">
-                            <i class="far fa-eye"></i> {{ number_format($item->views ?? 0) }} dibaca
+                            <i class="far fa-eye"></i> {{ number_format($item->views ?? 0) }} {{ __('app.common.views_count') }}
                         </span>
                         <a href="javascript:void(0)" class="read-more" onclick="openBerita({{ $item->id }})">
-                            Baca Selengkapnya <i class="fas fa-arrow-right"></i>
+                            {{ __('app.common.read_more') }} <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
@@ -689,8 +689,8 @@
             @empty
             <div class="empty-state">
                 <i class="far fa-newspaper"></i>
-                <h3>Belum Ada Berita</h3>
-                <p>Silakan tambahkan berita terbaru melalui panel admin.</p>
+                <h3>{{ __('app.news.no_data') }}</h3>
+                <p>{{ __('app.news.no_data_desc') }}</p>
             </div>
             @endforelse
         </div>
@@ -718,7 +718,7 @@
     
     <div class="reader-content">
         <div class="reader-header">
-            <span class="reader-category" id="modalCategory">BERITA</span>
+            <span class="reader-category" id="modalCategory">{{ __('app.news.category') }}</span>
             <h1 class="reader-title" id="modalTitle"></h1>
             <div class="reader-meta" id="modalMeta"></div>
         </div>
@@ -731,10 +731,10 @@
         
         <div class="reader-footer">
             <button class="btn-back-reader" onclick="closeBerita()">
-                <i class="fas fa-arrow-left"></i> Kembali
+                <i class="fas fa-arrow-left"></i> {{ __('app.common.back') }}
             </button>
             <button class="btn-share-reader" onclick="bagikanBerita()">
-                <i class="fas fa-share-alt"></i> Bagikan Artikel
+                <i class="fas fa-share-alt"></i> {{ __('app.common.share_article') }}
             </button>
         </div>
     </div>
@@ -773,7 +773,7 @@
         document.getElementById('modalMeta').innerHTML = `
             <span><i class="far fa-calendar"></i> ${tanggalFormatted}</span>
             <span><i class="far fa-user"></i> ${item.penulis || 'Admin GeoToba'}</span>
-            <span><i class="far fa-eye"></i> <span id="modalViews">${(item.views || 0).toLocaleString()}</span> dibaca</span>
+            <span><i class="far fa-eye"></i> <span id="modalViews">${(item.views || 0).toLocaleString()}</span> ${@json(__('app.common.views_count'))}</span>
         `;
         
         const modal = document.getElementById('readerModal');
@@ -797,7 +797,7 @@
             if (data.success) {
                 const viewsSpan = document.getElementById('views-' + id);
                 if (viewsSpan) {
-                    viewsSpan.innerHTML = `<i class="far fa-eye"></i> ${data.views.toLocaleString()} dibaca`;
+                    viewsSpan.innerHTML = `<i class="far fa-eye"></i> ${data.views.toLocaleString()} ${@json(__('app.common.views_count'))}`;
                 }
                 const modalViews = document.getElementById('modalViews');
                 if (modalViews) {

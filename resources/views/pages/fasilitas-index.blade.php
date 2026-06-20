@@ -168,16 +168,16 @@
 
 <div class="fasilitas-hero">
     <div>
-        <h1>Fasilitas & Layanan</h1>
-        <p>Jelajahi kenyamanan dan produk lokal terbaik kami</p>
+        <h1>{{ __('app.facility.title') }}</h1>
+        <p>{{ __('app.facility.subtitle') }}</p>
     </div>
 </div>
 
 <div class="category-section">
     <div class="container">
         <div class="section-header">
-            <span class="subtitle">Eksplorasi</span>
-            <h2>Pilih Kategori Fasilitas</h2>
+            <span class="subtitle">{{ app()->getLocale() == 'en' ? 'Explore' : 'Eksplorasi' }}</span>
+            <h2>{{ app()->getLocale() == 'en' ? 'Choose Facility Category' : 'Pilih Kategori Fasilitas' }}</h2>
             <div class="divider"></div>
         </div>
         
@@ -190,8 +190,8 @@
                     <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop" alt="Penginapan">
                 </div>
                 <div class="card-content">
-                    <h3>Penginapan</h3>
-                    <p>Pesan tempat istirahat yang nyaman dengan pemandangan alam memukau.</p>
+                    <h3>{{ __('app.facility.accommodation') }}</h3>
+                    <p>{{ app()->getLocale() == 'en' ? 'Book a comfortable resting place with stunning natural views.' : 'Pesan tempat istirahat yang nyaman dengan pemandangan alam memukau.' }}</p>
                 </div>
             </a>
         </div>

@@ -144,7 +144,7 @@
          onerror="this.src='{{ asset('image/default.jpg') }}'">
     <div class="detail-hero-overlay">
         <div class="detail-hero-content">
-            <div class="detail-hero-badge">🏨 Penginapan</div>
+            <div class="detail-hero-badge">🏨 {{ __('app.facility.accommodation') }}</div>
             <h1>{{ $item->nama_trans }}</h1>
         </div>
     </div>
@@ -162,26 +162,26 @@
                         <img src="{{ asset($item->gambar_tambahan) }}" alt="Gambar Tambahan {{ $item->nama_trans }}" style="width: 100%; height: auto; display: block; object-fit: cover; max-height: 500px;">
                     </div>
                 @endif
-                <h2><i class="fas fa-bed" style="color:var(--gold);margin-right:10px;"></i>Tentang Penginapan Ini</h2>
-                <div class="deskripsi">{{ $item->deskripsi_trans ?? 'Deskripsi belum tersedia.' }}</div>
+                <h2><i class="fas fa-bed" style="color:var(--gold);margin-right:10px;"></i>{{ app()->getLocale() == 'en' ? 'About this Accommodation' : 'Tentang Penginapan Ini' }}</h2>
+                <div class="deskripsi">{{ $item->deskripsi_trans ?? (app()->getLocale() == 'en' ? 'Description not available.' : 'Deskripsi belum tersedia.') }}</div>
             </div>
 
             {{-- Kolom kanan: Sidebar info --}}
             <div class="detail-sidebar">
                 <div class="sidebar-card">
-                    <h4><i class="fas fa-info-circle"></i> Informasi</h4>
+                    <h4><i class="fas fa-info-circle"></i> {{ app()->getLocale() == 'en' ? 'Information' : 'Informasi' }}</h4>
                     <div class="info-row">
                         <i class="fas fa-tag"></i>
                         <div>
-                            <div class="info-label">Kategori</div>
-                            <div class="info-text">Penginapan</div>
+                            <div class="info-label">{{ __('app.cultural.category') }}</div>
+                            <div class="info-text">{{ __('app.facility.accommodation') }}</div>
                         </div>
                     </div>
                     @if($item->lokasi)
                     <div class="info-row">
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
-                            <div class="info-label">Lokasi</div>
+                            <div class="info-label">{{ __('app.cultural.location') }}</div>
                             <div class="info-text">{{ $item->lokasi }}</div>
                         </div>
                     </div>
@@ -190,7 +190,7 @@
                     <div class="info-row">
                         <i class="fas fa-phone"></i>
                         <div>
-                            <div class="info-label">Kontak</div>
+                            <div class="info-label">{{ app()->getLocale() == 'en' ? 'Contact' : 'Kontak' }}</div>
                             <div class="info-text">{{ $item->kontak }}</div>
                         </div>
                     </div>
@@ -199,7 +199,7 @@
                     <div class="info-row">
                         <i class="fas fa-money-bill-wave"></i>
                         <div>
-                            <div class="info-label">Harga</div>
+                            <div class="info-label">{{ app()->getLocale() == 'en' ? 'Price' : 'Harga' }}</div>
                             <div class="info-text">Rp {{ number_format($item->harga, 0, ',', '.') }}</div>
                         </div>
                     </div>
@@ -207,17 +207,17 @@
                     <div class="info-row">
                         <i class="fas fa-calendar-alt"></i>
                         <div>
-                            <div class="info-label">Terakhir Diperbarui</div>
+                            <div class="info-label">{{ app()->getLocale() == 'en' ? 'Last Updated' : 'Terakhir Diperbarui' }}</div>
                             <div class="info-text">{{ $item->updated_at->format('d M Y') }}</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="sidebar-card">
-                    <h4><i class="fas fa-list"></i> Navigasi</h4>
+                    <h4><i class="fas fa-list"></i> {{ app()->getLocale() == 'en' ? 'Navigation' : 'Navigasi' }}</h4>
                     <a href="{{ route('fasilitas.penginapan') }}" class="btn-back">
                         <i class="fas fa-arrow-left"></i>
-                        Kembali ke Daftar Penginapan
+                        {{ app()->getLocale() == 'en' ? 'Back to Accommodation List' : 'Kembali ke Daftar Penginapan' }}
                     </a>
                 </div>
             </div>
@@ -226,7 +226,7 @@
         {{-- Penginapan Lainnya --}}
         @if($related->count() > 0)
         <div class="related-section">
-            <h3>Penginapan <span>Lainnya</span></h3>
+            <h3>{{ app()->getLocale() == 'en' ? 'Other' : 'Penginapan' }} <span>{{ app()->getLocale() == 'en' ? 'Accommodations' : 'Lainnya' }}</span></h3>
             <div class="related-grid">
                 @foreach($related as $rel)
                 <a href="{{ route('fasilitas.penginapan.detail', $rel->id) }}" class="related-card">
@@ -235,7 +235,7 @@
                          onerror="this.src='{{ asset('image/default.jpg') }}'">
                     <div class="related-content">
                         <div class="related-title">{{ $rel->nama_trans }}</div>
-                        <div class="related-link">Lihat Detail <i class="fas fa-arrow-right"></i></div>
+                        <div class="related-link">{{ __('app.common.read_more') }} <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </a>
                 @endforeach

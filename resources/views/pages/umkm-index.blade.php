@@ -294,9 +294,9 @@
 
 <div class="hero-berita">
     <div class="container">
-        <div class="hero-badge">Sovenir & UMKM</div>
-        <h1>Jelajahi Sovenir & UMKM</h1>
-        <p>Produk Lokal Unggulan di Kawasan Geosite</p>
+        <div class="hero-badge">{{ __('app.umkm.title') }}</div>
+        <h1>{{ app()->getLocale() == 'en' ? 'Explore Souvenirs & MSMEs' : 'Jelajahi Sovenir & UMKM' }}</h1>
+        <p>{{ __('app.umkm.subtitle') }}</p>
         <div class="hero-divider"></div>
     </div>
 </div>
@@ -319,7 +319,7 @@
                     <p class="card-excerpt">{{ Str::limit(strip_tags($item->deskripsi_trans ?? '-'), 110) }}</p>
                     <div class="card-footer">
                         <span class="read-more">
-                            Lihat Detail <i class="fas fa-arrow-right"></i>
+                            {{ __('app.common.read_more') }} <i class="fas fa-arrow-right"></i>
                         </span>
                     </div>
                 </div>
@@ -327,7 +327,7 @@
             @empty
             <div class="empty-state">
                 <i class="fas fa-store"></i>
-                <p>Belum ada data Sovenir & UMKM yang tersedia.</p>
+                <p>{{ __('app.umkm.no_data') }}</p>
             </div>
             @endforelse
         </div>
