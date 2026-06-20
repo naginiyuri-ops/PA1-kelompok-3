@@ -34,7 +34,17 @@
                 <textarea name="konten" class="form-control" rows="10" required>{{ old('konten') }}</textarea>
                 <small class="text-muted">Gunakan HTML untuk formatting teks</small>
             </div>
-            
+
+            {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
+            @include('admin.partials.translation-fields', [
+                'labelId'   => 'Judul Berita',
+                'nameId'    => 'judul_en',
+                'labelDesc' => 'Konten',
+                'nameDesc'  => 'konten_en',
+                'rowsDesc'  => 8,
+            ])
+
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-3">

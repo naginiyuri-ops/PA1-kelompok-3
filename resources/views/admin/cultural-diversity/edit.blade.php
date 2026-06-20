@@ -46,6 +46,17 @@
                 <textarea name="deskripsi" class="form-control" rows="6" style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; resize:vertical;" required>{{ old('deskripsi', $data->deskripsi) }}</textarea>
             </div>
 
+            {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
+            @include('admin.partials.translation-fields', [
+                'labelId'   => 'Nama',
+                'nameId'    => 'nama_en',
+                'valueId'   => $data->nama_en,
+                'labelDesc' => 'Deskripsi',
+                'nameDesc'  => 'deskripsi_en',
+                'valueDesc' => $data->deskripsi_en,
+                'rowsDesc'  => 6,
+            ])
+
             <div style="display:flex; flex-wrap:wrap; gap:20px;">
                 <div style="flex:1; min-width:200px;">
                     <div style="margin-bottom:20px;">

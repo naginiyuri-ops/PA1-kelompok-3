@@ -868,6 +868,111 @@
         @media (max-width: 991px) { main { padding-top: 60px; } }
         @media (max-width: 576px) { main { padding-top: 54px; } }
 
+        /* ========================================
+           WIDGET FLOATING BAHASA (Language Switcher)
+           Posisi: fixed pojok kanan bawah
+           Meniru desain calderatobageopark.org
+        ======================================== */
+        .lang-switcher-widget {
+            position: fixed;
+            bottom: 80px;             /* Di atas tombol back-to-top */
+            right: 25px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            background: rgba(0, 36, 78, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(198, 164, 59, 0.45);
+            border-radius: 50px;      /* Pill / kapsul */
+            padding: 5px 6px;
+            gap: 2px;
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.35),
+                0 0 0 1px rgba(198, 164, 59, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .lang-switcher-widget:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 12px 40px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(198, 164, 59, 0.3);
+        }
+
+        .lang-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1px;
+            padding: 7px 12px;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            min-width: 46px;
+        }
+
+        .lang-flag {
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        .lang-code {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.65);
+            text-transform: uppercase;
+            transition: color 0.25s ease;
+        }
+
+        /* Tombol aktif (bahasa saat ini) */
+        .lang-btn--active {
+            background: linear-gradient(135deg, var(--gold) 0%, #e8c84f 100%);
+            box-shadow: 0 3px 10px rgba(198, 164, 59, 0.4);
+        }
+
+        .lang-btn--active .lang-code {
+            color: var(--blue-dark);
+        }
+
+        /* Hover pada tombol tidak aktif */
+        .lang-btn:not(.lang-btn--active):hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .lang-btn:not(.lang-btn--active):hover .lang-code {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Divider vertikal di antara dua tombol */
+        .lang-divider {
+            width: 1px;
+            height: 28px;
+            background: rgba(198, 164, 59, 0.3);
+            flex-shrink: 0;
+            margin: 0 2px;
+        }
+
+        /* Responsif Mobile */
+        @media (max-width: 768px) {
+            .lang-switcher-widget {
+                bottom: 70px;
+                right: 15px;
+                padding: 4px 5px;
+            }
+
+            .lang-btn {
+                padding: 6px 10px;
+                min-width: 40px;
+            }
+
+            .lang-flag { font-size: 1rem; }
+            .lang-code { font-size: 0.55rem; }
+        }
+
     </style>
 
     @stack('styles')
@@ -903,47 +1008,47 @@
 
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
-                           href="{{ url('/') }}">Beranda</a>
+                           href="{{ url('/') }}">{{ __('app.nav.home') }}</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('tentang-geosite') ? 'active' : '' }}"
-                           href="{{ route('tentang-geosite') }}">Tentang Geosite</a>
+                           href="{{ route('tentang-geosite') }}">{{ __('app.nav.about_geosite') }}</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('geodiversitas*') ? 'active' : '' }}"
-                           href="{{ route('geodiversitas') }}">Geodiversity</a>
+                           href="{{ route('geodiversitas') }}">{{ __('app.nav.geodiversity') }}</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('biodiversitas*') ? 'active' : '' }}"
-                           href="{{ route('biodiversitas') }}">Biodiversity</a>
+                           href="{{ route('biodiversitas') }}">{{ __('app.nav.biodiversity') }}</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('cultural-diversity*') ? 'active' : '' }}"
-                           href="{{ route('cultural-diversity') }}">Cultural</a>
+                           href="{{ route('cultural-diversity') }}">{{ __('app.nav.cultural') }}</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('destinasi*') ? 'active' : '' }}"
-                           href="{{ url('/destinasi') }}">Destinasi Wisata</a>
+                           href="{{ url('/destinasi') }}">{{ __('app.nav.destination') }}</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('umkm.index') ? 'active' : '' }}"
-                           href="{{ route('umkm.index') }}">Sovenir & UMKM</a>
+                           href="{{ route('umkm.index') }}">{{ __('app.nav.souvenir_umkm') }}</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('fasilitas*') ? 'active' : '' }}"
-                           href="{{ url('/fasilitas') }}">Fasilitas</a>
+                           href="{{ url('/fasilitas') }}">{{ __('app.nav.facilities') }}</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('berita*') ? 'active' : '' }}"
-                           href="{{ url('/berita') }}">Berita & Informasi</a>
+                           href="{{ url('/berita') }}">{{ __('app.nav.news') }}</a>
                     </li>
 
                     {{-- SEARCH — di luar navbar-nav --}}
@@ -963,7 +1068,7 @@
                                 type="text"
                                 id="globalSearchInput"
                                 name="q"
-                                placeholder="Cari..."
+                                placeholder="{{ __('app.nav.search_placeholder') }}"
                                 autocomplete="off"
                                 aria-label="Pencarian Global"
                                 maxlength="100"
@@ -1067,6 +1172,34 @@
     <!-- BACK TO TOP -->
     <div class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
+    </div>
+
+    {{-- ========================================
+         WIDGET FLOATING GANTI BAHASA
+         Meniru desain calderatobageopark.org:
+         posisi fixed di pojok kanan bawah.
+    ======================================== --}}
+    <div class="lang-switcher-widget" id="langSwitcherWidget" aria-label="{{ __('app.lang.current') }}">
+        {{-- Tombol Bahasa Indonesia --}}
+        <a href="{{ route('lang.switch', 'id') }}"
+           class="lang-btn {{ app()->getLocale() === 'id' ? 'lang-btn--active' : '' }}"
+           title="{{ __('app.lang.switch_to_id') }}"
+           aria-label="Ganti ke Bahasa Indonesia">
+            <span class="lang-flag">🇮🇩</span>
+            <span class="lang-code">ID</span>
+        </a>
+
+        {{-- Divider --}}
+        <div class="lang-divider"></div>
+
+        {{-- Tombol Bahasa Inggris --}}
+        <a href="{{ route('lang.switch', 'en') }}"
+           class="lang-btn {{ app()->getLocale() === 'en' ? 'lang-btn--active' : '' }}"
+           title="{{ __('app.lang.switch_to_en') }}"
+           aria-label="Switch to English">
+            <span class="lang-flag">🇬🇧</span>
+            <span class="lang-code">EN</span>
+        </a>
     </div>
 
     <!-- ========================================

@@ -280,7 +280,19 @@
                     <i class="fas fa-info-circle"></i> Gunakan HTML untuk formatting teks
                 </div>
             </div>
-            
+
+            {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
+            @include('admin.partials.translation-fields', [
+                'labelId'   => 'Judul',
+                'nameId'    => 'judul_en',
+                'valueId'   => $informasi->judul_en,
+                'labelDesc' => 'Konten',
+                'nameDesc'  => 'konten_en',
+                'valueDesc' => $informasi->konten_en,
+                'rowsDesc'  => 8,
+            ])
+
+
             <div class="checkbox-group">
                 <input type="checkbox" name="status" value="1" id="status" {{ $informasi->status ? 'checked' : '' }}>
                 <label for="status">Aktifkan</label>

@@ -11,17 +11,57 @@ class Biodiversitas extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama', 'slug', 'kategori', 'deskripsi', 'lokasi', 
-        'gambar', 'status_keberadaan', 'status', 'views'
+        'nama',
+        'nama_en',              // [BARU] Nama biodiversitas versi Inggris
+        'slug',
+        'kategori',
+        'deskripsi',
+        'deskripsi_en',         // [BARU] Deskripsi biodiversitas versi Inggris
+        'lokasi',
+        'gambar',
+        'status_keberadaan',
+        'status',
+        'views',
     ];
 
     protected $casts = [
-        'status' => 'boolean'
+        'status' => 'boolean',
     ];
 
-    public function getGambarUrlAttribute()
+    // =========================================================================
+    // ACCESSORS DINAMIS (otomatis memilih bahasa yang aktif)
+    // =========================================================================
+
+    /**
+     * Mengembalikan nama sesuai locale aktif.
+     * Fallback ke Bahasa Indonesia jika versi Inggris kosong.
+     */
+    public function getNamaTransAttribute(): string
     {
-        if (!$this->gambar) {
+        if (app()->getLocale() === 'en' && ! empty($this->nama_en)) {
+            return $this->nama_en;
+        }
+        return $this->nama ?? '';
+    }
+
+    /**
+     * Mengembalikan deskripsi sesuai locale aktif.
+     */
+    public function getDeskripsiTransAttribute(): string
+    {
+        if (app()->getLocale() === 'en' && ! empty($this->deskripsi_en)) {
+            return $this->deskripsi_en;
+        }
+        return $this->deskripsi ?? '';
+    }
+
+    // =========================================================================
+    // ACCESSOR GAMBAR
+    // =========================================================================
+
+    public function getGambarUrlAttribute(): string
+    {
+        if (! $this->gambar) {
             return asset('image/default.jpg');
         }
         if (filter_var($this->gambar, FILTER_VALIDATE_URL)) {
@@ -33,11 +73,19 @@ class Biodiversitas extends Model
         return asset('image/default.jpg');
     }
 
+    // =========================================================================
+    // MUTATORS
+    // =========================================================================
+
     public function setNamaAttribute($value)
     {
         $this->attributes['nama'] = $value;
         $this->attributes['slug'] = Str::slug($value) . '-' . time();
     }
+
+    // =========================================================================
+    // SCOPES
+    // =========================================================================
 
     public function scopeActive($query)
     {

@@ -307,7 +307,19 @@
                 <label>Deskripsi <span class="text-danger">*</span></label>
                 <textarea name="deskripsi" class="form-control" rows="5" required>{{ old('deskripsi', $data->deskripsi) }}</textarea>
             </div>
-            
+
+            {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
+            @include('admin.partials.translation-fields', [
+                'labelId'   => 'Nama Penginapan',
+                'nameId'    => 'nama_en',
+                'valueId'   => $data->nama_en,
+                'labelDesc' => 'Deskripsi',
+                'nameDesc'  => 'deskripsi_en',
+                'valueDesc' => $data->deskripsi_en,
+                'rowsDesc'  => 5,
+            ])
+
+
             <div class="row">
                 <div class="col-third">
                     <div class="mb-3">

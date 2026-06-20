@@ -9,51 +9,77 @@ class Informasi extends Model
 {
     use HasFactory;
 
-    // Gunakan tabel yang sesuai dengan migrasi
     protected $table = 'informasis';
     
     protected $fillable = [
-        'judul', 
-        'slug', 
-        'konten', 
-        'gambar', 
-        'status', 
-        'urutan', 
+        'judul',
+        'judul_en',     // [BARU] Judul informasi versi Inggris
+        'slug',
+        'konten',
+        'konten_en',    // [BARU] Konten informasi versi Inggris
+        'gambar',
+        'status',
+        'urutan',
         'views',
-        'geosite'  // Tambahkan geosite jika ada
+        'geosite',
     ];
 
-    // ACCESSOR UNTUK URL GAMBAR
-    public function getGambarUrlAttribute()
+    // =========================================================================
+    // ACCESSORS DINAMIS (otomatis memilih bahasa yang aktif)
+    // =========================================================================
+
+    /**
+     * Mengembalikan judul sesuai locale aktif.
+     * Fallback ke Bahasa Indonesia jika versi Inggris kosong.
+     */
+    public function getJudulTransAttribute(): string
     {
-        if (!$this->gambar) {
+        if (app()->getLocale() === 'en' && ! empty($this->judul_en)) {
+            return $this->judul_en;
+        }
+        return $this->judul ?? '';
+    }
+
+    /**
+     * Mengembalikan konten sesuai locale aktif.
+     */
+    public function getKontenTransAttribute(): string
+    {
+        if (app()->getLocale() === 'en' && ! empty($this->konten_en)) {
+            return $this->konten_en;
+        }
+        return $this->konten ?? '';
+    }
+
+    // =========================================================================
+    // ACCESSOR GAMBAR
+    // =========================================================================
+
+    /** Accessor untuk URL gambar */
+    public function getGambarUrlAttribute(): string
+    {
+        if (! $this->gambar) {
             return asset('image/default.jpg');
         }
-
-        // Jika sudah URL lengkap
         if (filter_var($this->gambar, FILTER_VALIDATE_URL)) {
             return $this->gambar;
         }
-
-        // Jika path dari image/informasi/
         if (file_exists(public_path($this->gambar))) {
             return asset($this->gambar);
         }
-
-        // Jika hanya nama file
         if (file_exists(public_path('image/informasi/' . $this->gambar))) {
             return asset('image/informasi/' . $this->gambar);
         }
-
-        // Jika dari storage (data lama)
         if (file_exists(public_path('storage/' . $this->gambar))) {
             return asset('storage/' . $this->gambar);
         }
-
         return asset('image/default.jpg');
     }
 
-    // SCOPES untuk filter
+    // =========================================================================
+    // SCOPES
+    // =========================================================================
+
     public function scopeActive($query)
     {
         return $query->where('status', 1);
@@ -64,7 +90,11 @@ class Informasi extends Model
         return $query->where('geosite', $geosite);
     }
 
-    // MUTATOR untuk slug otomatis
+    // =========================================================================
+    // MUTATORS
+    // =========================================================================
+
+    /** Auto-generate slug dari judul */
     public function setJudulAttribute($value)
     {
         $this->attributes['judul'] = $value;
