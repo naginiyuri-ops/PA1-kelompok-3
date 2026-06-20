@@ -23,6 +23,9 @@ return new class extends Migration
             'cultural_diversities'
         ];
 
+
+        
+
         foreach ($tables as $tableName) {
             if (Schema::hasTable($tableName)) {
                 if (!Schema::hasColumn($tableName, 'admin_id')) {
