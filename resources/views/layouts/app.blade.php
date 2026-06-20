@@ -822,7 +822,7 @@
         ======================================== */
         .back-to-top {
             position: fixed;
-            bottom: 25px;
+            bottom: 80px;
             right: 25px;
             width: 46px;
             height: 46px;
@@ -853,7 +853,7 @@
         .back-to-top.show { opacity: 1; visibility: visible; }
 
         @media (max-width: 768px) {
-            .back-to-top { bottom: 15px; right: 15px; width: 40px; height: 40px; }
+            .back-to-top { bottom: 70px; right: 15px; width: 40px; height: 40px; }
         }
 
         /* ========================================
@@ -875,7 +875,7 @@
         ======================================== */
         .lang-switcher-widget {
             position: fixed;
-            bottom: 80px;             /* Di atas tombol back-to-top */
+            bottom: 25px;             /* Di bawah tombol back-to-top */
             right: 25px;
             z-index: 9999;
             display: flex;
@@ -902,28 +902,21 @@
 
         .lang-btn {
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 1px;
-            padding: 7px 12px;
+            padding: 8px 14px;
             border-radius: 40px;
             text-decoration: none;
             transition: all 0.25s ease;
             cursor: pointer;
-            min-width: 46px;
-        }
-
-        .lang-flag {
-            font-size: 1.1rem;
-            line-height: 1;
+            min-width: 48px;
         }
 
         .lang-code {
-            font-size: 0.6rem;
+            font-size: 0.85rem;
             font-weight: 700;
-            letter-spacing: 1px;
-            color: rgba(255, 255, 255, 0.65);
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.75);
             text-transform: uppercase;
             transition: color 0.25s ease;
         }
@@ -959,18 +952,17 @@
         /* Responsif Mobile */
         @media (max-width: 768px) {
             .lang-switcher-widget {
-                bottom: 70px;
+                bottom: 15px;
                 right: 15px;
                 padding: 4px 5px;
             }
 
             .lang-btn {
-                padding: 6px 10px;
-                min-width: 40px;
+                padding: 6px 12px;
+                min-width: 44px;
             }
 
-            .lang-flag { font-size: 1rem; }
-            .lang-code { font-size: 0.55rem; }
+            .lang-code { font-size: 0.75rem; }
         }
 
     </style>
@@ -1185,7 +1177,6 @@
            class="lang-btn {{ app()->getLocale() === 'id' ? 'lang-btn--active' : '' }}"
            title="{{ __('app.lang.switch_to_id') }}"
            aria-label="Ganti ke Bahasa Indonesia">
-            <span class="lang-flag">🇮🇩</span>
             <span class="lang-code">ID</span>
         </a>
 
@@ -1197,7 +1188,6 @@
            class="lang-btn {{ app()->getLocale() === 'en' ? 'lang-btn--active' : '' }}"
            title="{{ __('app.lang.switch_to_en') }}"
            aria-label="Switch to English">
-            <span class="lang-flag">🇬🇧</span>
             <span class="lang-code">EN</span>
         </a>
     </div>
