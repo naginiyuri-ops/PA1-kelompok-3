@@ -848,7 +848,7 @@
         <div class="hero-badge">UNESCO Global Geopark</div>
         <h1 class="hero-title">Balige · Meat <br><span>Batu Basiha · Liang Sipege</span></h1>
         <div class="hero-divider"></div>
-        <a href="#destinasi" class="hero-btn">Jelajahi Sekarang →</a>
+        <a href="#destinasi" class="hero-btn">{{ __('app.home.explore_btn') ?? 'Jelajahi Sekarang' }} →</a>
     </div>
 </section>
 
@@ -856,10 +856,10 @@
 <section id="destinasi" class="section section-white">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <span class="badge">Destinasi Unggulan</span>
-            <h2>Destinasi Unggulan</h2>
+            <span class="badge">{{ __('app.home.featured_dest') ?? 'Destinasi Unggulan' }}</span>
+            <h2>{{ __('app.home.featured_dest') ?? 'Destinasi Unggulan' }}</h2>
             <div class="divider"></div>
-            <p>Temukan keindahan destinasi terbaik di kawasan Geosite Danau Toba</p>
+            <p>{{ __('app.home.featured_desc') ?? 'Temukan keindahan destinasi terbaik di kawasan Geosite Danau Toba' }}</p>
         </div>
 
         @if(!empty($featuredDestinations) && $featuredDestinations->count())
@@ -890,7 +890,7 @@
                     <h3>{{ $item->title }}</h3>
                     <div class="location"><i class="fas fa-map-marker-alt"></i> {{ $item->location ?? 'Lokasi belum diisi' }}</div>
                     <p>{{ Str::limit(strip_tags($item->short_description ?: $item->description), 120) }}</p>
-                    <a href="{{ route('destinasi.detail', ['category' => $item->category, 'id' => $item->id]) }}" class="destinasi-link">Lihat Detail →</a>
+                    <a href="{{ route('destinasi.detail', ['category' => $item->category, 'id' => $item->id]) }}" class="destinasi-link">{{ app()->getLocale() == 'en' ? 'View Details' : 'Lihat Detail' }} →</a>
                 </div>
             </div>
             @endforeach
@@ -910,19 +910,19 @@
         <div class="stats-grid">
             <div class="stat-item" data-aos="zoom-in">
                 <div class="stat-number">16</div>
-                <div class="stat-label">Geosites</div>
+                <div class="stat-label">{{ __('app.home.geosite_count') ?? 'Geosites' }}</div>
             </div>
             <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
                 <div class="stat-number">74.000</div>
-                <div class="stat-label">Tahun Sejarah</div>
+                <div class="stat-label">{{ app()->getLocale() == 'en' ? 'Years of History' : 'Tahun Sejarah' }}</div>
             </div>
             <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
                 <div class="stat-number">15</div>
-                <div class="stat-label">Warisan Budaya</div>
+                <div class="stat-label">{{ app()->getLocale() == 'en' ? 'Cultural Heritage' : 'Warisan Budaya' }}</div>
             </div>
             <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
                 <div class="stat-number">20+</div>
-                <div class="stat-label">UMKM Lokal</div>
+                <div class="stat-label">{{ __('app.nav.souvenir_umkm') ?? 'UMKM Lokal' }}</div>
             </div>
         </div>
     </div>
@@ -932,10 +932,10 @@
 <section class="section section-light">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <span class="badge">Galeri</span>
-            <h2>Galeri Unggulan</h2>
+            <span class="badge">{{ __('app.nav.gallery') ?? 'Galeri' }}</span>
+            <h2>{{ __('app.nav.gallery') ?? 'Galeri Unggulan' }}</h2>
             <div class="divider"></div>
-            <p>Koleksi foto terbaik dari Geopark Danau Toba</p>
+            <p>{{ app()->getLocale() == 'en' ? 'Best photo collection of Lake Toba Geopark' : 'Koleksi foto terbaik dari Geopark Danau Toba' }}</p>
         </div>
         
         <div class="galeri-scroll-wrapper">
@@ -990,7 +990,7 @@
         
         <div style="text-align:center; margin-top:25px;">
             <a href="{{ url('/galeri') }}" class="hero-btn" style="display:inline-block; padding:10px 30px; font-size:0.7rem; background:transparent; border:2px solid var(--gold); color:var(--gold-dark);">
-                Lihat Semua Galeri →
+                {{ __('app.home.see_all') ?? 'Lihat Semua' }} {{ __('app.nav.gallery') ?? 'Galeri' }} →
             </a>
         </div>
     </div>
@@ -1001,10 +1001,10 @@
 <section class="section section-light">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <span class="badge">Berita</span>
-            <h2> Berita Terkini</h2>
+            <span class="badge">{{ __('app.nav.news') ?? 'Berita' }}</span>
+            <h2>{{ __('app.home.news_title') ?? 'Berita Terkini' }}</h2>
             <div class="divider"></div>
-            <p>Informasi dan perkembangan terbaru seputar Geopark Danau Toba</p>
+            <p>{{ __('app.home.news_subtitle') ?? 'Informasi dan perkembangan terbaru seputar Geopark Danau Toba' }}</p>
         </div>
         
         <div class="berita-grid">
@@ -1036,7 +1036,7 @@
                     </div>
                     <h3>{{ Str::limit($item->judul_trans, 45) }}</h3>
                     <p>{{ Str::limit(strip_tags($item->konten_trans), 80) }}</p>
-                    <a href="{{ url('/berita/' . $item->slug) }}" class="btn-read">Baca Selengkapnya →</a>
+                    <a href="{{ url('/berita/' . $item->slug) }}" class="btn-read">{{ __('app.home.read_more') ?? 'Baca Selengkapnya' }} →</a>
                 </div>
             </div>
             @empty
@@ -1055,39 +1055,33 @@
     </div>
 </section>
 
-<!-- ==================== TAUTAN CEPAT ==================== -->
+<!-- ==================== CALDERA TOBA GEOPARK LINK ==================== -->
 <section class="section section-white">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <span class="badge">Navigasi</span>
-            <h2>🔗 Tautan Cepat</h2>
+            <span class="badge">Official Website</span>
+            <h2>Kaldera Toba Geopark</h2>
             <div class="divider"></div>
-            <p>Jelajahi berbagai informasi menarik di GeoToba</p>
+            <p>Jelajahi informasi resmi dan lengkap tentang keajaiban Geopark Kaldera Toba.</p>
         </div>
-        <div class="quick-grid">
-            <a href="{{ url('/destinasi') }}" class="quick-item" data-aos="zoom-in">
-                <i class="fas fa-map-marked-alt"></i>
-                <span>Destinasi</span>
-            </a>
-            <a href="{{ route('biodiversitas') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="50">
-                <i class="fas fa-leaf"></i>
-                <span>Biodiversitas</span>
-            </a>
-            <a href="{{ route('geodiversitas') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="100">
-                <i class="fas fa-gem"></i>
-                <span>Geodiversitas</span>
-            </a>
-            <a href="{{ route('cultural-diversity') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="150">
-                <i class="fas fa-people-arrows"></i>
-                <span>Cultural Diversity</span>
-            </a>
-            <a href="{{ url('/berita') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="200">
-                <i class="fas fa-newspaper"></i>
-                <span>Berita / Event</span>
-            </a>
-            <a href="{{ url('/galeri') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="250">
-                <i class="fas fa-images"></i>
-                <span>Galeri</span>
+        <div style="text-align:center; margin-top:40px;" data-aos="zoom-in">
+            <a href="https://calderatobageopark.org/" target="_blank" rel="noopener noreferrer" style="
+                display: inline-flex;
+                align-items: center;
+                gap: 15px;
+                background: linear-gradient(135deg, var(--primary), var(--primary-light));
+                color: white;
+                padding: 16px 36px;
+                border-radius: 50px;
+                font-size: 1.1rem;
+                font-weight: 700;
+                text-decoration: none;
+                box-shadow: 0 10px 30px rgba(0,51,102,0.25);
+                transition: all 0.3s ease;
+            " onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 35px rgba(0,51,102,0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,51,102,0.25)'">
+                <i class="fas fa-globe-asia" style="font-size:1.3rem;"></i>
+                Kunjungi calderatobageopark.org
+                <i class="fas fa-external-link-alt" style="font-size:0.9rem; margin-left:5px;"></i>
             </a>
         </div>
     </div>
@@ -1098,9 +1092,9 @@
 <section class="cta-section">
     <div class="container">
         <div class="cta-content" data-aos="fade-up">
-            <h3>Mulai Petualangan Anda</h3>
+            <h3>{{ app()->getLocale() == 'en' ? 'Start Your Adventure' : 'Mulai Petualangan Anda' }}</h3>
             <div class="divider"></div>
-            <p>Temukan keajaiban geologi dan kekayaan budaya Batak di Geopark Toba, warisan dunia yang diakui UNESCO.</p>
+            <p>{{ app()->getLocale() == 'en' ? 'Discover the geological wonders and rich Batak culture in Toba Geopark, a UNESCO recognized world heritage.' : 'Temukan keajaiban geologi dan kekayaan budaya Batak di Geopark Toba, warisan dunia yang diakui UNESCO.' }}</p>
         </div>
     </div>
 </section>

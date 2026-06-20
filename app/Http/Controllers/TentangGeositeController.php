@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SejarahWisata;
+use App\Models\PengelolaGeosite;
 
 class TentangGeositeController extends Controller
 {
@@ -17,6 +18,9 @@ class TentangGeositeController extends Controller
             'liang-sipege' => SejarahWisata::where('geosite', 'liang-sipege')->where('status', true)->limit(3)->get(),
         ];
 
-        return view('pages.tentang-geosite', compact('geositeList'));
+        // Ambil data pengelola
+        $pengelolas = PengelolaGeosite::orderBy('urutan', 'asc')->get();
+
+        return view('pages.tentang-geosite', compact('geositeList', 'pengelolas'));
     }
 }

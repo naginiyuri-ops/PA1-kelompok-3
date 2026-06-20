@@ -659,24 +659,27 @@
             <p>Tim pengelola yang berdedikasi untuk Geopark Danau Toba</p>
         </div>
         <div class="pengelola-grid">
-            <div class="pengelola-card" data-aos="fade-up">
-                <div class="avatar">KP</div>
-                <h4>Kepala Pengelola</h4>
-                <div class="jabatan">Koordinator Geopark</div>
-                <p>Bertanggung jawab atas koordinasi dan pengembangan geopark secara keseluruhan</p>
-            </div>
-            <div class="pengelola-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="avatar">BP</div>
-                <h4>Badan Pengelola</h4>
-                <div class="jabatan">Tim Manajemen</div>
-                <p>Mengelola operasional, konservasi, dan pengembangan wisata geopark</p>
-            </div>
-            <div class="pengelola-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="avatar">DP</div>
-                <h4>Dinas Pariwisata</h4>
-                <div class="jabatan">Pengembangan Wisata</div>
-                <p>Memfasilitasi promosi dan pengembangan destinasi wisata geopark</p>
-            </div>
+            @foreach($pengelolas as $index => $pengelola)
+                <div class="pengelola-card" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
+                    @if($pengelola->image)
+                        <div class="avatar" style="overflow:hidden; padding:0; background:none; border: 2px solid var(--primary);">
+                            <img src="{{ asset('storage/' . $pengelola->image) }}" alt="{{ $pengelola->nama }}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                        </div>
+                    @else
+                        @php
+                            $words = explode(' ', $pengelola->nama);
+                            $initials = '';
+                            foreach(array_slice($words, 0, 2) as $w) {
+                                $initials .= strtoupper(substr($w, 0, 1));
+                            }
+                        @endphp
+                        <div class="avatar">{{ $initials }}</div>
+                    @endif
+                    <h4>{{ $pengelola->nama }}</h4>
+                    <div class="jabatan">{{ $pengelola->jabatan }}</div>
+                    <p>{{ $pengelola->deskripsi }}</p>
+                </div>
+            @endforeach
         </div>
     </div>
 </section>

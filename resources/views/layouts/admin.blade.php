@@ -358,6 +358,9 @@
         <a href="{{ route('admin.berita.index') }}" class="{{ request()->routeIs('admin.berita.*') ? 'active' : '' }}">
             Berita
         </a>
+        <a href="{{ route('admin.pengelola-geosite.index') }}" class="{{ request()->routeIs('admin.pengelola-geosite.*') ? 'active' : '' }}">
+            Pengelola Geosite
+        </a>
 
         {{-- ========== GROUP DESTINASI ========== --}}
         <div class="menu-title">Destinasi</div>

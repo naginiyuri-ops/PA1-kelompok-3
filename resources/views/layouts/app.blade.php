@@ -870,98 +870,66 @@
 
         /* ========================================
            WIDGET FLOATING BAHASA (Language Switcher)
-           Posisi: fixed pojok kanan bawah
-           Meniru desain calderatobageopark.org
+           Tampilan pill ID | EN
         ======================================== */
         .lang-switcher-widget {
             position: fixed;
-            bottom: 25px;             /* Di bawah tombol back-to-top */
-            right: 25px;
+            bottom: 28px;
+            right: 28px;
             z-index: 9999;
             display: flex;
             align-items: center;
-            background: rgba(0, 36, 78, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(198, 164, 59, 0.45);
-            border-radius: 50px;      /* Pill / kapsul */
+            background: #003366;
+            border-radius: 50px;
             padding: 5px 6px;
             gap: 2px;
-            box-shadow:
-                0 8px 32px rgba(0, 0, 0, 0.35),
-                0 0 0 1px rgba(198, 164, 59, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
+            transition: box-shadow 0.3s ease;
         }
 
         .lang-switcher-widget:hover {
-            transform: translateY(-3px);
-            box-shadow:
-                0 12px 40px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(198, 164, 59, 0.3);
+            box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
         }
 
         .lang-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 8px 14px;
+            padding: 7px 16px;
             border-radius: 40px;
             text-decoration: none;
             transition: all 0.25s ease;
             cursor: pointer;
-            min-width: 48px;
+            min-width: 46px;
         }
 
         .lang-code {
-            font-size: 0.85rem;
-            font-weight: 700;
+            font-size: 0.82rem;
+            font-weight: 800;
             letter-spacing: 0.5px;
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(255, 255, 255, 0.55);
             text-transform: uppercase;
-            transition: color 0.25s ease;
         }
 
-        /* Tombol aktif (bahasa saat ini) */
         .lang-btn--active {
-            background: linear-gradient(135deg, var(--gold) 0%, #e8c84f 100%);
-            box-shadow: 0 3px 10px rgba(198, 164, 59, 0.4);
+            background: #c6a43b;
         }
 
         .lang-btn--active .lang-code {
-            color: var(--blue-dark);
+            color: #003366;
         }
 
-        /* Hover pada tombol tidak aktif */
         .lang-btn:not(.lang-btn--active):hover {
             background: rgba(255, 255, 255, 0.1);
         }
 
         .lang-btn:not(.lang-btn--active):hover .lang-code {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.85);
         }
 
-        /* Divider vertikal di antara dua tombol */
-        .lang-divider {
-            width: 1px;
-            height: 28px;
-            background: rgba(198, 164, 59, 0.3);
-            flex-shrink: 0;
-            margin: 0 2px;
-        }
-
-        /* Responsif Mobile */
         @media (max-width: 768px) {
-            .lang-switcher-widget {
-                bottom: 15px;
-                right: 15px;
-                padding: 4px 5px;
-            }
-
-            .lang-btn {
-                padding: 6px 12px;
-                min-width: 44px;
-            }
-
+            .lang-switcher-widget { bottom: 16px; right: 16px; }
+            .lang-btn { padding: 6px 12px; min-width: 40px; }
             .lang-code { font-size: 0.75rem; }
         }
 
@@ -1043,7 +1011,6 @@
                            href="{{ url('/berita') }}">{{ __('app.nav.news') }}</a>
                     </li>
 
-                    {{-- SEARCH — di luar navbar-nav --}}
                 </ul>
 
                 <div class="search-wrapper" id="searchWrapper">
@@ -1167,26 +1134,21 @@
     </div>
 
     {{-- ========================================
-         WIDGET FLOATING GANTI BAHASA
-         Meniru desain calderatobageopark.org:
-         posisi fixed di pojok kanan bawah.
+         WIDGET FLOATING GANTI BAHASA — pill ID | EN
     ======================================== --}}
-    <div class="lang-switcher-widget" id="langSwitcherWidget" aria-label="{{ __('app.lang.current') }}">
+    <div class="lang-switcher-widget" id="langSwitcherWidget">
         {{-- Tombol Bahasa Indonesia --}}
         <a href="{{ route('lang.switch', 'id') }}"
            class="lang-btn {{ app()->getLocale() === 'id' ? 'lang-btn--active' : '' }}"
-           title="{{ __('app.lang.switch_to_id') }}"
+           title="Bahasa Indonesia"
            aria-label="Ganti ke Bahasa Indonesia">
             <span class="lang-code">ID</span>
         </a>
 
-        {{-- Divider --}}
-        <div class="lang-divider"></div>
-
         {{-- Tombol Bahasa Inggris --}}
         <a href="{{ route('lang.switch', 'en') }}"
            class="lang-btn {{ app()->getLocale() === 'en' ? 'lang-btn--active' : '' }}"
-           title="{{ __('app.lang.switch_to_en') }}"
+           title="English"
            aria-label="Switch to English">
             <span class="lang-code">EN</span>
         </a>

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\FasilitasController;
 use App\Http\Controllers\Admin\PenginapanController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminDestinationController;
+use App\Http\Controllers\Admin\PengelolaGeositeController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\PublicDestinationController;
 use App\Http\Controllers\HomeController;
@@ -225,6 +226,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('umkm', UmkmController::class)->names('admin.umkm');
     Route::resource('fasilitas', FasilitasController::class)->names('admin.fasilitas');
     Route::resource('penginapan', PenginapanController::class)->names('admin.penginapan');
+    Route::resource('pengelola-geosite', PengelolaGeositeController::class)->names('admin.pengelola-geosite');
 
     // ========== TOGGLE STATUS ==========
     Route::post('galeri/toggle-status/{id}', [GaleriController::class, 'toggleStatus'])->name('admin.galeri.toggle-status');
