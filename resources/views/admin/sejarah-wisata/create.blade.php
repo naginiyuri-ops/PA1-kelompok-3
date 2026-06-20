@@ -52,7 +52,7 @@
 
             <div class="mb-3">
                 <label>Judul <span class="text-danger">*</span></label>
-                <input type="text" name="judul" class="form-control" value="{{ old('judul') }}" placeholder="Masukkan judul" required>
+                <input type="text" name="judul" id="sejarah_create_judul" class="form-control" value="{{ old('judul') }}" placeholder="Masukkan judul" required>
             </div>
 
             <div class="row">
@@ -85,17 +85,19 @@
 
             <div class="mb-3">
                 <label>Konten <span class="text-danger">*</span></label>
-                <textarea name="konten" class="form-control" rows="8" required>{{ old('konten') }}</textarea>
+                <textarea name="konten" id="sejarah_create_konten" class="form-control" rows="8" required>{{ old('konten') }}</textarea>
                 <div class="form-text"><i class="fas fa-info-circle"></i> Gunakan HTML untuk formatting teks</div>
             </div>
 
             {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
             @include('admin.partials.translation-fields', [
-                'labelId'   => 'Judul',
-                'nameId'    => 'judul_en',
-                'labelDesc' => 'Konten',
-                'nameDesc'  => 'konten_en',
-                'rowsDesc'  => 8,
+                'labelId'        => 'Judul',
+                'nameId'         => 'judul_en',
+                'labelDesc'      => 'Konten',
+                'nameDesc'       => 'konten_en',
+                'rowsDesc'       => 8,
+                'sourceJudulId'  => 'sejarah_create_judul',
+                'sourceKontenId' => 'sejarah_create_konten',
             ])
 
             <div class="row">

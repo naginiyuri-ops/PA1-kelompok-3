@@ -25,7 +25,7 @@
             
             <div style="margin-bottom:20px;">
                 <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">Nama <span style="color:#dc2626;">*</span></label>
-                <input type="text" name="nama" class="form-control" value="{{ old('nama') }}" style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px;" required>
+                <input type="text" name="nama" id="bio_create_nama" class="form-control" value="{{ old('nama') }}" style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px;" required>
             </div>
 
             <div style="margin-bottom:20px;">
@@ -40,16 +40,18 @@
 
             <div style="margin-bottom:20px;">
                 <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">Deskripsi <span style="color:#dc2626;">*</span></label>
-                <textarea name="deskripsi" class="form-control" rows="6" style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; resize:vertical;" required>{{ old('deskripsi') }}</textarea>
+                <textarea name="deskripsi" id="bio_create_deskripsi" class="form-control" rows="6" style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; resize:vertical;" required>{{ old('deskripsi') }}</textarea>
             </div>
 
             {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
             @include('admin.partials.translation-fields', [
-                'labelId'   => 'Nama',
-                'nameId'    => 'nama_en',
-                'labelDesc' => 'Deskripsi',
-                'nameDesc'  => 'deskripsi_en',
-                'rowsDesc'  => 6,
+                'labelId'      => 'Nama',
+                'nameId'       => 'nama_en',
+                'labelDesc'    => 'Deskripsi',
+                'nameDesc'     => 'deskripsi_en',
+                'rowsDesc'     => 6,
+                'sourceJudulId' => 'bio_create_nama',
+                'sourceKontenId' => 'bio_create_deskripsi',
             ])
 
             <div style="display:flex; flex-wrap:wrap; gap:20px;">

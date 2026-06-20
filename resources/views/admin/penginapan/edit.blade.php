@@ -300,23 +300,25 @@
             
             <div class="mb-3">
                 <label>Nama Penginapan <span class="text-danger">*</span></label>
-                <input type="text" name="nama" class="form-control" value="{{ old('nama', $data->nama) }}" required>
+                <input type="text" name="nama" id="penginapan_edit_nama" class="form-control" value="{{ old('nama', $data->nama) }}" required>
             </div>
             
             <div class="mb-3">
                 <label>Deskripsi <span class="text-danger">*</span></label>
-                <textarea name="deskripsi" class="form-control" rows="5" required>{{ old('deskripsi', $data->deskripsi) }}</textarea>
+                <textarea name="deskripsi" id="penginapan_edit_deskripsi" class="form-control" rows="5" required>{{ old('deskripsi', $data->deskripsi) }}</textarea>
             </div>
 
             {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
             @include('admin.partials.translation-fields', [
-                'labelId'   => 'Nama Penginapan',
-                'nameId'    => 'nama_en',
-                'valueId'   => $data->nama_en,
-                'labelDesc' => 'Deskripsi',
-                'nameDesc'  => 'deskripsi_en',
-                'valueDesc' => $data->deskripsi_en,
-                'rowsDesc'  => 5,
+                'labelId'        => 'Nama Penginapan',
+                'nameId'         => 'nama_en',
+                'valueId'        => $data->nama_en,
+                'labelDesc'      => 'Deskripsi',
+                'nameDesc'       => 'deskripsi_en',
+                'valueDesc'      => $data->deskripsi_en,
+                'rowsDesc'       => 5,
+                'sourceJudulId'  => 'penginapan_edit_nama',
+                'sourceKontenId' => 'penginapan_edit_deskripsi',
             ])
 
 

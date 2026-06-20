@@ -46,8 +46,10 @@ class FasilitasController extends Controller
 
         $data = [
             'nama' => $request->nama,
+            'nama_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
             'jenis' => $request->jenis,
             'deskripsi' => $request->deskripsi,
+            'deskripsi_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->deskripsi),
             'harga' => $request->harga,
             'lokasi' => $request->lokasi,
             'kontak' => $request->kontak,
@@ -109,8 +111,10 @@ class FasilitasController extends Controller
 
         $updateData = [
             'nama' => $request->nama,
+            'nama_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
             'jenis' => $request->jenis,
             'deskripsi' => $request->deskripsi,
+            'deskripsi_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->deskripsi),
             'harga' => $request->harga,
             'lokasi' => $request->lokasi,
             'kontak' => $request->kontak,

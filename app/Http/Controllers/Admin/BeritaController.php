@@ -32,8 +32,10 @@ class BeritaController extends Controller
 
         $data = [
             'judul' => $request->judul,
+            'judul_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->judul),
             'slug' => Str::slug($request->judul) . '-' . time(),
             'konten' => $request->konten,
+            'konten_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->konten),
             'penulis' => $request->penulis ?? 'Admin',
             'status' => $request->has('status') ? 1 : 0,
             'views' => 0
@@ -78,8 +80,10 @@ class BeritaController extends Controller
 
         $data = [
             'judul' => $request->judul,
+            'judul_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->judul),
             'slug' => Str::slug($request->judul) . '-' . time(),
             'konten' => $request->konten,
+            'konten_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->konten),
             'penulis' => $request->penulis ?? 'Admin',
             'status' => $request->has('status') ? 1 : 0
         ];

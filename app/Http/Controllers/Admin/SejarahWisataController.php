@@ -35,10 +35,12 @@ class SejarahWisataController extends Controller
 
         $data = [
             'judul' => $request->judul,
+            'judul_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->judul),
             'slug' => Str::slug($request->judul) . '-' . time(),
             'geosite' => $request->geosite,
             'kategori' => $request->kategori,
             'konten' => $request->konten,
+            'konten_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->konten),
             'lokasi' => $request->lokasi,
             'penulis' => $request->penulis ?? 'Admin',
             'status' => $request->has('status') ? 1 : 0,
@@ -90,10 +92,12 @@ class SejarahWisataController extends Controller
 
         $data = [
             'judul' => $request->judul,
+            'judul_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->judul),
             'slug' => Str::slug($request->judul) . '-' . time(),
             'geosite' => $request->geosite,
             'kategori' => $request->kategori,
             'konten' => $request->konten,
+            'konten_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->konten),
             'lokasi' => $request->lokasi,
             'penulis' => $request->penulis ?? 'Admin',
             'status' => $request->has('status') ? 1 : 0

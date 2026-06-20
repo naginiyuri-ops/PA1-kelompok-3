@@ -59,9 +59,11 @@ class BiodiversitasController extends Controller
 
         $data = [
             'nama' => $request->nama,
+            'nama_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
             'slug' => Str::slug($request->nama) . '-' . time(),
             'kategori' => $request->kategori,
             'deskripsi' => $request->deskripsi,
+            'deskripsi_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->deskripsi),
             'lokasi' => $request->lokasi,
             'status_keberadaan' => $request->status_keberadaan,
             'status' => $request->has('status') ? 1 : 0,
@@ -106,9 +108,11 @@ class BiodiversitasController extends Controller
 
         $data = [
             'nama' => $request->nama,
+            'nama_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
             'slug' => Str::slug($request->nama) . '-' . time(),
             'kategori' => $request->kategori,
             'deskripsi' => $request->deskripsi,
+            'deskripsi_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->deskripsi),
             'lokasi' => $request->lokasi,
             'status_keberadaan' => $request->status_keberadaan,
             'status' => $request->has('status') ? 1 : 0

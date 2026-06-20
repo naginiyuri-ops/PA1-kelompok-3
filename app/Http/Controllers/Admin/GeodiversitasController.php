@@ -59,9 +59,11 @@ class GeodiversitasController extends Controller
 
         $data = [
             'nama' => $request->nama,
+            'nama_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
             'slug' => Str::slug($request->nama) . '-' . time(),
             'tipe_geologi' => $request->tipe_geologi,
             'deskripsi' => $request->deskripsi,
+            'deskripsi_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->deskripsi),
             'lokasi' => $request->lokasi,
             'usia_geologi' => $request->usia_geologi,
             'status' => $request->has('status') ? 1 : 0,
@@ -106,9 +108,11 @@ class GeodiversitasController extends Controller
 
         $data = [
             'nama' => $request->nama,
+            'nama_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
             'slug' => Str::slug($request->nama) . '-' . time(),
             'tipe_geologi' => $request->tipe_geologi,
             'deskripsi' => $request->deskripsi,
+            'deskripsi_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->deskripsi),
             'lokasi' => $request->lokasi,
             'usia_geologi' => $request->usia_geologi,
             'status' => $request->has('status') ? 1 : 0

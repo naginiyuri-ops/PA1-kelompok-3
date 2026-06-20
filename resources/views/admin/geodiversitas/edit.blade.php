@@ -26,7 +26,7 @@
             
             <div style="margin-bottom:20px;">
                 <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">Nama <span style="color:#dc2626;">*</span></label>
-                <input type="text" name="nama" class="form-control" value="{{ old('nama', $data->nama) }}" style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px;" required>
+                <input type="text" name="nama" id="geo_edit_nama" class="form-control" value="{{ old('nama', $data->nama) }}" style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px;" required>
             </div>
 
             <div style="margin-bottom:20px;">
@@ -42,18 +42,20 @@
 
             <div style="margin-bottom:20px;">
                 <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">Deskripsi <span style="color:#dc2626;">*</span></label>
-                <textarea name="deskripsi" class="form-control" rows="6" style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; resize:vertical;" required>{{ old('deskripsi', $data->deskripsi) }}</textarea>
+                <textarea name="deskripsi" id="geo_edit_deskripsi" class="form-control" rows="6" style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; resize:vertical;" required>{{ old('deskripsi', $data->deskripsi) }}</textarea>
             </div>
 
             {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
             @include('admin.partials.translation-fields', [
-                'labelId'   => 'Nama',
-                'nameId'    => 'nama_en',
-                'valueId'   => $data->nama_en,
-                'labelDesc' => 'Deskripsi',
-                'nameDesc'  => 'deskripsi_en',
-                'valueDesc' => $data->deskripsi_en,
-                'rowsDesc'  => 6,
+                'labelId'        => 'Nama',
+                'nameId'         => 'nama_en',
+                'valueId'        => $data->nama_en,
+                'labelDesc'      => 'Deskripsi',
+                'nameDesc'       => 'deskripsi_en',
+                'valueDesc'      => $data->deskripsi_en,
+                'rowsDesc'       => 6,
+                'sourceJudulId'  => 'geo_edit_nama',
+                'sourceKontenId' => 'geo_edit_deskripsi',
             ])
 
             <div style="display:flex; flex-wrap:wrap; gap:20px;">

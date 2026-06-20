@@ -34,10 +34,12 @@ class UmkmController extends Controller
 
         $data = [
             'nama_usaha' => $request->nama,
+            'nama_usaha_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
             'pemilik' => $request->pemilik ?? 'Admin',
             'alamat' => $request->lokasi ?? 'Desa Meat',
             'no_telepon' => $request->kontak ?? '-',
             'deskripsi' => $request->deskripsi,
+            'deskripsi_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->deskripsi),
             'urutan' => $request->urutan ?? 0,
             'status' => $request->has('status') ? 'aktif' : 'nonaktif',
         ];
@@ -101,10 +103,12 @@ class UmkmController extends Controller
 
         $updateData = [
             'nama_usaha' => $request->nama,
+            'nama_usaha_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
             'pemilik' => $request->pemilik ?? 'Admin',
             'alamat' => $request->lokasi ?? 'Desa Meat',
             'no_telepon' => $request->kontak ?? '-',
             'deskripsi' => $request->deskripsi,
+            'deskripsi_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->deskripsi),
             'urutan' => $request->urutan ?? 0,
             'status' => $request->has('status') ? 'aktif' : 'nonaktif',
         ];

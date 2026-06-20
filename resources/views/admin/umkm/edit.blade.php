@@ -257,25 +257,27 @@
             
             <div class="mb-3">
                 <label>Nama UMKM <span class="text-danger">*</span></label>
-                <input type="text" name="nama_usaha" class="form-control" value="{{ old('nama_usaha', $data->nama_usaha) }}" required>
+                <input type="text" name="nama_usaha" id="umkm_edit_nama" class="form-control" value="{{ old('nama_usaha', $data->nama_usaha) }}" required>
             </div>
             
             <div class="mb-3">
                 <label>Deskripsi <span class="text-danger">*</span></label>
-                <textarea name="deskripsi" class="form-control" rows="5" required>{{ old('deskripsi', $data->deskripsi) }}</textarea>
+                <textarea name="deskripsi" id="umkm_edit_deskripsi" class="form-control" rows="5" required>{{ old('deskripsi', $data->deskripsi) }}</textarea>
             </div>
 
             {{-- ====================================
                  BLOK TERJEMAHAN BAHASA INGGRIS
             ===================================== --}}
             @include('admin.partials.translation-fields', [
-                'labelId'   => 'Nama UMKM',
-                'nameId'    => 'nama_usaha_en',
-                'valueId'   => $data->nama_usaha_en,
-                'labelDesc' => 'Deskripsi',
-                'nameDesc'  => 'deskripsi_en',
-                'valueDesc' => $data->deskripsi_en,
-                'rowsDesc'  => 5,
+                'labelId'        => 'Nama UMKM',
+                'nameId'         => 'nama_usaha_en',
+                'valueId'        => $data->nama_usaha_en,
+                'labelDesc'      => 'Deskripsi',
+                'nameDesc'       => 'deskripsi_en',
+                'valueDesc'      => $data->deskripsi_en,
+                'rowsDesc'       => 5,
+                'sourceJudulId'  => 'umkm_edit_nama',
+                'sourceKontenId' => 'umkm_edit_deskripsi',
             ])
 
             

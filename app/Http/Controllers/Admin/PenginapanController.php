@@ -36,7 +36,9 @@ class PenginapanController extends Controller
 
         $data = [
             'nama' => $request->nama,
+            'nama_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
             'deskripsi' => $request->deskripsi,
+            'deskripsi_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->deskripsi),
             'harga' => $request->harga,
             'lokasi' => $request->lokasi,
             'kontak' => $request->kontak,
@@ -99,7 +101,9 @@ class PenginapanController extends Controller
 
         $updateData = [
             'nama' => $request->nama,
+            'nama_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
             'deskripsi' => $request->deskripsi,
+            'deskripsi_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->deskripsi),
             'harga' => $request->harga,
             'lokasi' => $request->lokasi,
             'kontak' => $request->kontak,

@@ -140,7 +140,9 @@ class AdminDestinationController extends Controller
         $dataToSave = [
             'category'          => $category,
             'title'             => $request->title,
+            'title_en'          => \App\Helpers\TranslateHelper::translateToEnglish($request->title),
             'description'       => $request->description,
+            'description_en'    => \App\Helpers\TranslateHelper::translateToEnglish($request->description),
             'status'            => $request->has('status') ? 1 : 0,
             'is_featured'       => $request->has('is_featured') ? 1 : 0,
             'location'          => $request->location,
@@ -148,6 +150,7 @@ class AdminDestinationController extends Controller
             'ticket_price'      => $request->ticket_price,
             'tags'              => $request->tags,
             'short_description' => $request->short_description,
+            'short_description_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->short_description),
         ];
 
         // Proses upload gambar utama jika ada file yang dikirim
@@ -238,7 +241,9 @@ class AdminDestinationController extends Controller
         // Data yang akan diperbarui
         $dataToUpdate = [
             'title'             => $request->title,
+            'title_en'          => \App\Helpers\TranslateHelper::translateToEnglish($request->title),
             'description'       => $request->description,
+            'description_en'    => \App\Helpers\TranslateHelper::translateToEnglish($request->description),
             'status'            => $request->has('status') ? 1 : 0,
             'is_featured'       => $request->has('is_featured') ? 1 : 0,
             'location'          => $request->location,
@@ -246,6 +251,7 @@ class AdminDestinationController extends Controller
             'ticket_price'      => $request->ticket_price,
             'tags'              => $request->tags,
             'short_description' => $request->short_description,
+            'short_description_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->short_description),
         ];
 
         // Logika hapus gambar lama jika pengguna mencentang opsi hapus gambar

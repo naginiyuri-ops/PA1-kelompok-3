@@ -58,7 +58,7 @@
 
             <div class="mb-3">
                 <label>Judul <span class="text-danger">*</span></label>
-                <input type="text" name="judul" class="form-control" value="{{ old('judul', $data->judul) }}" required>
+                <input type="text" name="judul" id="sejarah_edit_judul" class="form-control" value="{{ old('judul', $data->judul) }}" required>
             </div>
 
             <div class="row">
@@ -91,19 +91,21 @@
 
             <div class="mb-3">
                 <label>Konten <span class="text-danger">*</span></label>
-                <textarea name="konten" class="form-control" rows="8" required>{{ old('konten', $data->konten) }}</textarea>
+                <textarea name="konten" id="sejarah_edit_konten" class="form-control" rows="8" required>{{ old('konten', $data->konten) }}</textarea>
                 <div class="form-text"><i class="fas fa-info-circle"></i> Gunakan HTML untuk formatting teks</div>
             </div>
 
             {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
             @include('admin.partials.translation-fields', [
-                'labelId'   => 'Judul',
-                'nameId'    => 'judul_en',
-                'valueId'   => $data->judul_en,
-                'labelDesc' => 'Konten',
-                'nameDesc'  => 'konten_en',
-                'valueDesc' => $data->konten_en,
-                'rowsDesc'  => 8,
+                'labelId'        => 'Judul',
+                'nameId'         => 'judul_en',
+                'valueId'        => $data->judul_en,
+                'labelDesc'      => 'Konten',
+                'nameDesc'       => 'konten_en',
+                'valueDesc'      => $data->konten_en,
+                'rowsDesc'       => 8,
+                'sourceJudulId'  => 'sejarah_edit_judul',
+                'sourceKontenId' => 'sejarah_edit_konten',
             ])
 
             <div class="row">

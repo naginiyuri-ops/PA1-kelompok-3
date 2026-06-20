@@ -59,9 +59,11 @@ class CulturalDiversityController extends Controller
 
         $data = [
             'nama' => $request->nama,
+            'nama_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
             'slug' => Str::slug($request->nama) . '-' . time(),
             'kategori' => $request->kategori,
             'deskripsi' => $request->deskripsi,
+            'deskripsi_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->deskripsi),
             'lokasi' => $request->lokasi,
             'video_url' => $request->video_url,
             'status' => $request->has('status') ? 1 : 0,
@@ -106,9 +108,11 @@ class CulturalDiversityController extends Controller
 
         $data = [
             'nama' => $request->nama,
+            'nama_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
             'slug' => Str::slug($request->nama) . '-' . time(),
             'kategori' => $request->kategori,
             'deskripsi' => $request->deskripsi,
+            'deskripsi_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->deskripsi),
             'lokasi' => $request->lokasi,
             'video_url' => $request->video_url,
             'status' => $request->has('status') ? 1 : 0

@@ -28,7 +28,37 @@ use App\Http\Controllers\CulturalDiversityController;
 use App\Http\Controllers\FasilitasUtamaController;
 use Illuminate\Support\Facades\DB;
 
-Route::middleware([\App\Http\Middleware\LanguageMiddleware::class])->group(function () {
+// ========================================
+// ========== TRANSLATE PROXY (Admin) ==========
+// ========================================
+Route::post('/admin/translate', function (\Illuminate\Http\Request $request) {
+    $text = $request->input('text', '');
+    if (strlen(trim($text)) < 2) {
+        return response()->json(['result' => '']);
+    }
+    // Strip HTML tags before translating
+    $plain = strip_tags($text);
+    $plain = preg_replace('/\s+/', ' ', trim($plain));
+
+    try {
+        $response = \Illuminate\Support\Facades\Http::timeout(10)
+            ->get('https://api.mymemory.translated.net/get', [
+                'q'        => $plain,
+                'langpair' => 'id|en',
+            ]);
+
+        if ($response->successful()) {
+            $data = $response->json();
+            if (isset($data['responseStatus']) && $data['responseStatus'] === 200) {
+                return response()->json(['result' => $data['responseData']['translatedText']]);
+            }
+        }
+    } catch (\Exception $e) {}
+
+    return response()->json(['result' => '', 'error' => 'Translation failed'], 200);
+})->middleware(['web', 'auth'])->name('admin.translate');
+
+
 
 // ========================================
 // ========== FRONTEND ROUTES (PUBLIC) ==========
@@ -256,6 +286,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('destination/budaya/{id}/edit', [AdminDestinationController::class, 'edit'])->defaults('category', 'budaya')->name('admin.destination.budaya.edit');
     Route::put('destination/budaya/{id}',      [AdminDestinationController::class, 'update'])->defaults('category', 'budaya')->name('admin.destination.budaya.update');
     Route::delete('destination/budaya/{id}',   [AdminDestinationController::class, 'destroy'])->defaults('category', 'budaya')->name('admin.destination.budaya.destroy');
-});Route::get('/debug-lang', function() { return 'Locale: ' . app()->getLocale() . ' Session: ' . session('locale'); });
-
 });
+
+Route::get('/debug-lang', function() { return 'Locale: ' . app()->getLocale() . ' Session: ' . session('locale'); });
+
+

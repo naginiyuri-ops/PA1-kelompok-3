@@ -266,21 +266,23 @@
             
             <div class="mb-3">
                 <label>Nama Penginapan <span class="text-danger">*</span></label>
-                <input type="text" name="nama" class="form-control" value="{{ old('nama') }}" placeholder="Masukkan nama penginapan" required>
+                <input type="text" name="nama" id="penginapan_create_nama" class="form-control" value="{{ old('nama') }}" placeholder="Masukkan nama penginapan" required>
             </div>
             
             <div class="mb-3">
                 <label>Deskripsi <span class="text-danger">*</span></label>
-                <textarea name="deskripsi" class="form-control" rows="5" placeholder="Masukkan deskripsi penginapan" required>{{ old('deskripsi') }}</textarea>
+                <textarea name="deskripsi" id="penginapan_create_deskripsi" class="form-control" rows="5" placeholder="Masukkan deskripsi penginapan" required>{{ old('deskripsi') }}</textarea>
             </div>
 
             {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
             @include('admin.partials.translation-fields', [
-                'labelId'   => 'Nama Penginapan',
-                'nameId'    => 'nama_en',
-                'labelDesc' => 'Deskripsi',
-                'nameDesc'  => 'deskripsi_en',
-                'rowsDesc'  => 5,
+                'labelId'        => 'Nama Penginapan',
+                'nameId'         => 'nama_en',
+                'labelDesc'      => 'Deskripsi',
+                'nameDesc'       => 'deskripsi_en',
+                'rowsDesc'       => 5,
+                'sourceJudulId'  => 'penginapan_create_nama',
+                'sourceKontenId' => 'penginapan_create_deskripsi',
             ])
 
 
