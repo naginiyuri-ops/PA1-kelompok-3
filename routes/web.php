@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\GaleriController;
 use App\Http\Controllers\Admin\BeritaController;
-use App\Http\Controllers\Admin\InformasiController;
+
 use App\Http\Controllers\Admin\UmkmController;
 use App\Http\Controllers\Admin\FasilitasController;
 use App\Http\Controllers\Admin\PenginapanController;
@@ -17,7 +17,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\KontakController;
 use App\Http\Controllers\GaleriController as PublicGaleriController;
 use App\Http\Controllers\GeositeController;
-use App\Http\Controllers\InformasiController as PublicInformasiController;
+
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Admin\SejarahWisataController;
 use App\Http\Controllers\SearchController;
@@ -118,18 +118,7 @@ Route::get('/galeri/{slug}', function ($slug) {
     return view('pages.galeri-detail', compact('galeri'));
 })->name('galeri.detail');
 
-// ========================================
-// ========== INFORMASI ==========
-// ========================================
-Route::get('/informasi', [PublicInformasiController::class, 'index'])->name('informasi');
-Route::post('/informasi/{id}/view', function ($id) {
-    $informasi = App\Models\Informasi::find($id);
-    if ($informasi) {
-        $informasi->increment('views');
-        return response()->json(['success' => true, 'views' => $informasi->views]);
-    }
-    return response()->json(['success' => false], 404);
-});
+
 
 // ========================================
 // ========== KONTAK ==========
@@ -222,7 +211,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     // ========== RESOURCE CRUD ==========
     Route::resource('galeri', GaleriController::class)->names('admin.galeri');
     Route::resource('berita', BeritaController::class)->names('admin.berita');
-    Route::resource('informasi', InformasiController::class)->names('admin.informasi');
+
     Route::resource('umkm', UmkmController::class)->names('admin.umkm');
     Route::resource('fasilitas', FasilitasController::class)->names('admin.fasilitas');
     Route::resource('penginapan', PenginapanController::class)->names('admin.penginapan');
@@ -231,7 +220,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     // ========== TOGGLE STATUS ==========
     Route::post('galeri/toggle-status/{id}', [GaleriController::class, 'toggleStatus'])->name('admin.galeri.toggle-status');
     Route::post('berita/toggle-status/{id}', [BeritaController::class, 'toggleStatus'])->name('admin.berita.toggle-status');
-    Route::post('informasi/toggle-status/{id}', [InformasiController::class, 'toggleStatus'])->name('admin.informasi.toggle-status');
+
 
     // ========== GALERI UNGGULAN ==========
     Route::post('galeri/toggle-unggulan/{id}', [GaleriController::class, 'toggleUnggulan'])->name('admin.galeri.toggle-unggulan');

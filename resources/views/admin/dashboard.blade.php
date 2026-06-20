@@ -224,10 +224,7 @@
         <div class="stat-number">{{ $totalBerita ?? 0 }}</div>
         <div class="stat-label">Total Berita</div>
     </div>
-    <div class="stat-card">
-        <div class="stat-number">{{ $totalInformasi ?? 0 }}</div>
-        <div class="stat-label">Total Informasi</div>
-    </div>
+
     <div class="stat-card">
         <div class="stat-number">{{ $totalSejarah ?? 0 }}</div>
         <div class="stat-label">Total Sejarah Wisata</div>
