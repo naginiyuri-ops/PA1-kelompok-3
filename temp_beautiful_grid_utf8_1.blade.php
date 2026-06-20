@@ -621,7 +621,7 @@
                         {{-- Gambar utama: jika gagal dimuat, sembunyikan dan tampilkan placeholder di sampingnya --}}
                         <img
                             src="{{ $item['gambar_url'] }}"
-                            alt="{{ $item['nama'] }}"
+                            alt="{{ $item->nama_usaha_trans ?? $item->nama_wisata_trans ?? $item->judul_trans ?? $item->nama_trans ?? $item->nama_usaha ?? $item->nama_wisata ?? $item->judul ?? $item->nama }}"
                             loading="lazy"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                         >
@@ -660,7 +660,7 @@
                 {{-- ΓöÇΓöÇ BAGIAN KONTEN TEKS ΓöÇΓöÇ --}}
                 <div class="card-content">
                     {{-- Judul item --}}
-                    <div class="card-title">{{ $item['nama'] }}</div>
+                    <div class="card-title">{{ $item->nama_usaha_trans ?? $item->nama_wisata_trans ?? $item->judul_trans ?? $item->nama_trans ?? $item->nama_usaha ?? $item->nama_wisata ?? $item->judul ?? $item->nama }}</div>
 
                     {{-- Deskripsi singkat (ambil teks bersih tanpa tag HTML) --}}
                     @if(!empty($item['deskripsi']))
