@@ -632,7 +632,7 @@
 <section class="hero-berita">
     <div class="container">
         <div class="hero-badge">UPDATE TERBARU</div>
-        <h1>Berita Terkini</h1>
+        <h1>Berita & Informasi    Terkini</h1>
         <p>Informasi & Perkembangan Terbaru Balige, Meat, Liang Sipege, Batu Basiha</p>
         <div class="hero-divider"></div>
     </div>
