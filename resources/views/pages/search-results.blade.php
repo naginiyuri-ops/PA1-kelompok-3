@@ -152,11 +152,11 @@
                 <div class="info">
                     <div class="title">
                         @if($item->type == 'UMKM')
-                            {{ $item->nama_usaha ?? $item->judul ?? $item->nama }}
+                            {{ $item->nama_usaha_trans ?? $item->judul_trans ?? $item->nama_trans }}
                         @elseif($item->type == 'Berita' || $item->type == 'Sejarah Wisata')
-                            {{ $item->judul }}
+                            {{ $item->judul_trans }}
                         @else
-                            {{ $item->nama ?? $item->judul }}
+                            {{ $item->nama_trans ?? $item->judul_trans }}
                         @endif
                     </div>
                     <div class="sub">

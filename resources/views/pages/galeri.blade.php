@@ -335,8 +335,8 @@
                         $filterCat = 'balige';
                     }
                     
-                    $judul = addslashes($item->judul ?? 'Galeri');
-                    $deskripsi = addslashes($item->deskripsi ?? 'Tidak ada deskripsi');
+                    $judul = addslashes($item->judul_trans ?? 'Galeri');
+                    $deskripsi = addslashes($item->deskripsi_trans ?? 'Tidak ada deskripsi');
                     $kategoriModal = addslashes(strtoupper($item->kategori ?? 'GALERI'));
                     $lokasi = addslashes($item->lokasi ?? 'Danau Toba');
                 @endphp
@@ -344,13 +344,13 @@
                 <div class="slip-card" data-category="{{ $filterCat }}"
                      onclick="openPhoto('{{ $imgSrc }}', '{{ $judul }}', '{{ $deskripsi }}', '{{ $kategoriModal }}', '{{ $lokasi }}')">
                     <div class="slip-image">
-                        <img src="{{ $imgSrc }}" alt="{{ $item->judul }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                        <img src="{{ $imgSrc }}" alt="{{ $item->judul_trans }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
                         <div class="slip-overlay">
                             <span class="slip-category">{{ strtoupper($item->kategori ?? 'GALERI') }}</span>
                         </div>
                     </div>
                     <div class="slip-info">
-                        <div class="slip-title">{{ Str::limit($item->judul, 30) }}</div>
+                        <div class="slip-title">{{ Str::limit($item->judul_trans, 30) }}</div>
                         <div class="slip-location">
                             <i class="fas fa-map-marker-alt"></i>
                             <span>{{ $item->lokasi ?? 'Danau Toba' }}</span>

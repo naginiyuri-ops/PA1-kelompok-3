@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $destinasi->nama . ' - Geosite Danau Toba')
+@section('title', $destinasi->nama_trans . ' - Geosite Danau Toba')
 
 @section('content')
 
@@ -403,7 +403,7 @@
 <div class="hero-detail" style="background-image: url('{{ asset($destinasi->gambar_hero) }}')">
     <div class="hero-overlay"></div>
     <div class="hero-text">
-        <h1>{{ $destinasi->nama }}</h1>
+        <h1>{{ $destinasi->nama_trans }}</h1>
         <p>Destinasi {{ ucfirst($destinasi->kategori) }} - Geosite Danau Toba</p>
     </div>
 </div>
@@ -414,7 +414,7 @@
             <li><a href="{{ url('/') }}">Beranda</a></li>
             <li><a href="{{ url('/destinasi') }}">Destinasi</a></li>
             <li><a href="{{ url('/destinasi/' . $destinasi->kategori) }}">{{ ucfirst($destinasi->kategori) }}</a></li>
-            <li class="active">{{ $destinasi->nama }}</li>
+            <li class="active">{{ $destinasi->nama_trans }}</li>
         </ul>
     </div>
 </div>
@@ -426,7 +426,7 @@
             <!-- Gallery Side - 1 FOTO -->
             <div class="gallery-side" data-aos="fade-right" data-aos-duration="800">
                 <div class="gallery-main" id="mainImage">
-                    <img src="{{ asset($destinasi->gambar) }}" alt="{{ $destinasi->nama }}" id="mainImg">
+                    <img src="{{ asset($destinasi->gambar) }}" alt="{{ $destinasi->nama_trans }}" id="mainImg">
                     <div class="gallery-badge">
                         <i class="fas fa-image"></i> 1 Foto
                     </div>
@@ -438,12 +438,12 @@
                 <span class="info-category">
                     <i class="fas fa-tag"></i> {{ ucfirst($destinasi->kategori) }}
                 </span>
-                <h2>{{ $destinasi->nama }}</h2>
+                <h2>{{ $destinasi->nama_trans }}</h2>
                 <div class="info-location">
                     <i class="fas fa-map-marker-alt"></i>
                     <span>{{ $destinasi->lokasi }}</span>
                 </div>
-                <p class="info-description">{{ $destinasi->deskripsi }}</p>
+                <p class="info-description">{{ $destinasi->deskripsi_trans }}</p>
                 
                 <div class="info-cards">
                     <div class="info-card-item">

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $item->nama . ' - Geodiversitas')
+@section('title', $item->nama_trans . ' - Geodiversitas')
 
 @section('content')
 
@@ -163,7 +163,7 @@
         <a href="{{ route('geodiversitas') }}" class="back-link">
             <i class="fas fa-arrow-left"></i> Kembali ke Geodiversitas
         </a>
-        <h1>{{ $item->nama }}</h1>
+        <h1>{{ $item->nama_trans }}</h1>
         <div class="meta">
             <span><i class="fas fa-tag"></i> <span class="badge-tipe badge-{{ $item->tipe_geologi ?? 'other' }}" style="background:transparent; color:white; padding:0;">{{ ucfirst($item->tipe_geologi ?? 'Lainnya') }}</span></span>
             <span><i class="fas fa-map-marker-alt"></i> {{ $item->lokasi ?? 'Danau Toba' }}</span>
@@ -194,8 +194,8 @@
                         }
                     }
                 @endphp
-                <img src="{{ $imgSrc }}" alt="{{ $item->nama }}" class="main-img" onerror="this.src='{{ asset('image/default.jpg') }}'">
-                <div class="deskripsi">{!! $item->deskripsi !!}</div>
+                <img src="{{ $imgSrc }}" alt="{{ $item->nama_trans }}" class="main-img" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                <div class="deskripsi">{!! $item->deskripsi_trans !!}</div>
             </div>
             <div class="col-lg-4">
                 <div class="info-box">
@@ -256,9 +256,9 @@
                             }
                         }
                     @endphp
-                    <img src="{{ $recImg }}" alt="{{ $rec->nama }}" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                    <img src="{{ $recImg }}" alt="{{ $rec->nama_trans }}" onerror="this.src='{{ asset('image/default.jpg') }}'">
                     <div class="caption">
-                        <h4>{{ Str::limit($rec->nama, 30) }}</h4>
+                        <h4>{{ Str::limit($rec->nama_trans, 30) }}</h4>
                         <p style="font-size:0.65rem; color:#94a3b8; margin:0;">
                             {{ ucfirst($rec->tipe_geologi ?? 'Lainnya') }}
                         </p>

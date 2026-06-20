@@ -30,6 +30,12 @@ class LanguageMiddleware
             $locale = config('app.locale', 'id');
         }
 
+        \Illuminate\Support\Facades\Log::info("LanguageMiddleware executed. Session locale: " . Session::get('locale') . " | Final locale set: " . $locale);
+        if (request()->has('debug-middleware')) {
+            dd('LanguageMiddleware is running! Locale: ' . $locale);
+        }
+
+
         // Terapkan locale ke aplikasi untuk request ini
         App::setLocale($locale);
 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $item->nama_usaha . ' - UMKM Geosite Danau Toba')
+@section('title', $item->nama_usaha_trans . ' - UMKM Geosite Danau Toba')
 
 @section('content')
 
@@ -263,12 +263,12 @@
 {{-- HERO GAMBAR --}}
 <div class="detail-hero">
     <img src="{{ $item->foto_utama ? asset($item->foto_utama) : asset('image/default.jpg') }}"
-         alt="{{ $item->nama_usaha }}"
+         alt="{{ $item->nama_usaha_trans }}"
          onerror="this.src='{{ asset('image/default.jpg') }}'">
     <div class="detail-hero-overlay">
         <div class="detail-hero-content">
             <div class="detail-hero-badge">🏪 Sovenir & UMKM</div>
-            <h1>{{ $item->nama_usaha }}</h1>
+            <h1>{{ $item->nama_usaha_trans }}</h1>
             <div class="detail-hero-meta">
                 @if($item->pemilik)
                     <span><i class="fas fa-user"></i> {{ $item->pemilik }}</span>
@@ -293,7 +293,7 @@
             <div class="detail-main">
                 @if($item->foto_tambahan && file_exists(public_path($item->foto_tambahan)))
                     <img src="{{ asset($item->foto_tambahan) }}"
-                         alt="Foto {{ $item->nama_usaha }}"
+                         alt="Foto {{ $item->nama_usaha_trans }}"
                          class="detail-main-foto"
                          onerror="this.style.display='none'">
                 @endif
@@ -302,7 +302,7 @@
                         <div class="icon-wrap"><i class="fas fa-store"></i></div>
                         Tentang UMKM Ini
                     </h2>
-                    <div class="deskripsi">{{ $item->deskripsi ?? 'Deskripsi belum tersedia.' }}</div>
+                    <div class="deskripsi">{{ $item->deskripsi_trans ?? 'Deskripsi belum tersedia.' }}</div>
                 </div>
             </div>
 
@@ -372,11 +372,11 @@
                 <a href="{{ route('fasilitas.umkm.detail', $rel->id) }}" class="related-card">
                     <div class="related-card-img-wrap">
                         <img src="{{ $rel->foto_utama ? asset($rel->foto_utama) : asset('image/default.jpg') }}"
-                             alt="{{ $rel->nama_usaha }}" loading="lazy"
+                             alt="{{ $rel->nama_usaha_trans }}" loading="lazy"
                              onerror="this.src='{{ asset('image/default.jpg') }}'">
                     </div>
                     <div class="related-content">
-                        <div class="related-title">{{ $rel->nama_usaha }}</div>
+                        <div class="related-title">{{ $rel->nama_usaha_trans }}</div>
                         <div class="related-link">Lihat Detail <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </a>

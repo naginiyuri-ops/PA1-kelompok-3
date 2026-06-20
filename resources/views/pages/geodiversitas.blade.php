@@ -168,14 +168,14 @@
                         }
                     }
                 @endphp
-                <img src="{{ $imgSrc }}" alt="{{ $item->nama }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                <img src="{{ $imgSrc }}" alt="{{ $item->nama_trans }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
                 <div class="content">
                     <span class="badge-tipe badge-{{ $item->tipe_geologi ?? 'other' }}">
                         {{ ucfirst($item->tipe_geologi ?? 'Lainnya') }}
                     </span>
-                    <h3>{{ Str::limit($item->nama, 40) }}</h3>
+                    <h3>{{ Str::limit($item->nama_trans, 40) }}</h3>
                     <div class="lokasi"><i class="fas fa-map-marker-alt"></i> {{ $item->lokasi ?? 'Danau Toba' }}</div>
-                    <p>{{ Str::limit(strip_tags($item->deskripsi), 100) }}</p>
+                    <p>{{ Str::limit(strip_tags($item->deskripsi_trans), 100) }}</p>
                     <a href="{{ route('geodiversitas.detail', $item->slug) }}" class="btn-detail">Baca Selengkapnya →</a>
                 </div>
             </div>

@@ -963,10 +963,10 @@
                         }
                     }
                 @endphp
-                <div class="galeri-card" onclick="openLightbox('{{ $imgSrc }}', '{{ addslashes($item->judul) }}', '{{ addslashes($item->kategori ?? 'Galeri') }} · {{ $item->lokasi ?? 'Danau Toba' }}')">
-                    <img src="{{ $imgSrc }}" alt="{{ $item->judul }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                <div class="galeri-card" onclick="openLightbox('{{ $imgSrc }}', '{{ addslashes($item->judul_trans) }}', '{{ addslashes($item->kategori ?? 'Galeri') }} · {{ $item->lokasi ?? 'Danau Toba' }}')">
+                    <img src="{{ $imgSrc }}" alt="{{ $item->judul_trans }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
                     <div class="caption">
-                        <h4>{{ Str::limit($item->judul, 30) }}</h4>
+                        <h4>{{ Str::limit($item->judul_trans, 30) }}</h4>
                         <p>{{ $item->kategori ?? 'Galeri' }} · {{ $item->lokasi ?? 'Danau Toba' }}</p>
                     </div>
                 </div>
@@ -1065,14 +1065,14 @@
                 }
             @endphp
             <div class="berita-card" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}" onclick="window.location.href='{{ url('/berita/' . $item->slug) }}'">
-                <img src="{{ $imgSrc }}" alt="{{ $item->judul }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                <img src="{{ $imgSrc }}" alt="{{ $item->judul_trans }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
                 <div class="content">
                     <div class="date">
                         <i class="far fa-calendar-alt"></i>
                         {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') }}
                     </div>
-                    <h3>{{ Str::limit($item->judul, 45) }}</h3>
-                    <p>{{ Str::limit(strip_tags($item->konten), 80) }}</p>
+                    <h3>{{ Str::limit($item->judul_trans, 45) }}</h3>
+                    <p>{{ Str::limit(strip_tags($item->konten_trans), 80) }}</p>
                     <a href="{{ url('/berita/' . $item->slug) }}" class="btn-read">Baca Selengkapnya →</a>
                 </div>
             </div>

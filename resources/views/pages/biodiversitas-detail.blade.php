@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $item->nama . ' - Biodiversitas')
+@section('title', $item->nama_trans . ' - Biodiversitas')
 
 @section('content')
 
@@ -129,7 +129,7 @@
         <a href="{{ route('biodiversitas') }}" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem;">
             <i class="fas fa-arrow-left"></i> Kembali ke Biodiversitas
         </a>
-        <h1>{{ $item->nama }}</h1>
+        <h1>{{ $item->nama_trans }}</h1>
         <div class="meta">
             <span><i class="fas fa-tag"></i> {{ ucfirst($item->kategori) }}</span>
             <span><i class="fas fa-map-marker-alt"></i> {{ $item->lokasi ?? 'Danau Toba' }}</span>
@@ -154,8 +154,8 @@
                         $imgSrc = asset('image/biodiversitas/' . $item->gambar);
                     }
                 @endphp
-                <img src="{{ $imgSrc }}" alt="{{ $item->nama }}" class="main-img" onerror="this.src='{{ asset('image/default.jpg') }}'">
-                <div class="deskripsi">{!! $item->deskripsi !!}</div>
+                <img src="{{ $imgSrc }}" alt="{{ $item->nama_trans }}" class="main-img" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                <div class="deskripsi">{!! $item->deskripsi_trans !!}</div>
             </div>
             <div class="col-lg-4">
                 <div class="info-box">
@@ -199,9 +199,9 @@
                             $recImg = asset($rec->gambar);
                         }
                     @endphp
-                    <img src="{{ $recImg }}" alt="{{ $rec->nama }}" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                    <img src="{{ $recImg }}" alt="{{ $rec->nama_trans }}" onerror="this.src='{{ asset('image/default.jpg') }}'">
                     <div class="caption">
-                        <h4>{{ Str::limit($rec->nama, 25) }}</h4>
+                        <h4>{{ Str::limit($rec->nama_trans, 25) }}</h4>
                     </div>
                 </div>
                 @endforeach

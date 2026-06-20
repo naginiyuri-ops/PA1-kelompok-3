@@ -289,15 +289,15 @@
             @forelse($destinasi as $index => $item)
             <a href="{{ url('/destinasi/' . $kategori . '/' . $item->slug) }}" class="dest-card" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}">
                 <div class="card-image">
-                    <img src="{{ asset($item->gambar) }}" alt="{{ $item->nama }}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=No+Image'">
+                    <img src="{{ asset($item->gambar) }}" alt="{{ $item->nama_trans }}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=No+Image'">
                     <div class="card-badge">{{ strtoupper($kategori) }}</div>
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">{{ $item->nama }}</h3>
+                    <h3 class="card-title">{{ $item->nama_trans }}</h3>
                     <div class="card-location">
                         <i class="fas fa-map-marker-alt"></i> {{ $item->lokasi }}
                     </div>
-                    <p class="card-desc">{{ Str::limit($item->deskripsi, 100) }}</p>
+                    <p class="card-desc">{{ Str::limit($item->deskripsi_trans, 100) }}</p>
                     <div class="card-tags">
                         @foreach(array_slice($item->tags, 0, 3) as $tag)
                         <span>#{{ $tag }}</span>

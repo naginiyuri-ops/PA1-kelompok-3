@@ -133,14 +133,14 @@
             <a href="{{ route('fasilitas.penginapan.detail', $item->id) }}" class="dest-card">
                 <div class="card-img-wrapper">
                     <img src="{{ $item->gambar_url }}"
-                         alt="{{ $item->nama }}" loading="lazy"
+                         alt="{{ $item->nama_trans }}" loading="lazy"
                          onerror="this.src='{{ asset('image/default.jpg') }}'">
                     <div class="card-img-overlay"><i class="fas fa-arrow-right"></i></div>
                     <span class="card-badge">Penginapan</span>
                 </div>
                 <div class="card-content">
-                    <div class="card-title">{{ $item->nama }}</div>
-                    <div class="card-excerpt">{{ strip_tags($item->deskripsi ?? '-') }}</div>
+                    <div class="card-title">{{ $item->nama_trans }}</div>
+                    <div class="card-excerpt">{{ strip_tags($item->deskripsi_trans ?? '-') }}</div>
                     <div class="card-footer">
                         <span class="read-more">Lihat Detail <i class="fas fa-arrow-right"></i></span>
                     </div>

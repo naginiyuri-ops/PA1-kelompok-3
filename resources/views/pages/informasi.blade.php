@@ -511,7 +511,7 @@
                     @endphp
 
                     <div class="informasi-card-img">
-                        <img src="{{ $imgSrc }}" alt="{{ $item->judul }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                        <img src="{{ $imgSrc }}" alt="{{ $item->judul_trans }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
                         <div class="card-overlay">
                             <i class="fas fa-book-open"></i>
                         </div>
@@ -523,8 +523,8 @@
                     </div>
                     
                     <div class="informasi-card-body">
-                        <h3>{{ Str::limit($item->judul, 55) }}</h3>
-                        <p>{{ Str::limit(strip_tags($item->konten), 120) }}</p>
+                        <h3>{{ Str::limit($item->judul_trans, 55) }}</h3>
+                        <p>{{ Str::limit(strip_tags($item->konten_trans), 120) }}</p>
                         <div class="btn-read">
                             Baca Selengkapnya <i class="fas fa-arrow-right"></i>
                         </div>

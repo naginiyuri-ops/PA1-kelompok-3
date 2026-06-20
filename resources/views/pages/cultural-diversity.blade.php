@@ -131,14 +131,14 @@
                 @php
                     $imgSrc = $item->gambar ? asset($item->gambar) : asset('image/default.jpg');
                 @endphp
-                <img src="{{ $imgSrc }}" alt="{{ $item->nama }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                <img src="{{ $imgSrc }}" alt="{{ $item->nama_trans }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
                 <div class="content">
                     <span class="badge-kategori badge-{{ $item->kategori }}">
                         {{ ucfirst($item->kategori) }}
                     </span>
-                    <h3>{{ Str::limit($item->nama, 40) }}</h3>
+                    <h3>{{ Str::limit($item->nama_trans, 40) }}</h3>
                     <div class="lokasi"><i class="fas fa-map-marker-alt"></i> {{ $item->lokasi ?? 'Danau Toba' }}</div>
-                    <p>{{ Str::limit(strip_tags($item->deskripsi), 100) }}</p>
+                    <p>{{ Str::limit(strip_tags($item->deskripsi_trans), 100) }}</p>
                     <a href="{{ route('cultural-diversity.detail', $item->slug) }}" class="btn-detail">Baca Selengkapnya →</a>
                 </div>
             </div>

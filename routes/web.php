@@ -27,6 +27,8 @@ use App\Http\Controllers\CulturalDiversityController;
 use App\Http\Controllers\FasilitasUtamaController;
 use Illuminate\Support\Facades\DB;
 
+Route::middleware([\App\Http\Middleware\LanguageMiddleware::class])->group(function () {
+
 // ========================================
 // ========== FRONTEND ROUTES (PUBLIC) ==========
 // ========================================
@@ -263,4 +265,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('destination/budaya/{id}/edit', [AdminDestinationController::class, 'edit'])->defaults('category', 'budaya')->name('admin.destination.budaya.edit');
     Route::put('destination/budaya/{id}',      [AdminDestinationController::class, 'update'])->defaults('category', 'budaya')->name('admin.destination.budaya.update');
     Route::delete('destination/budaya/{id}',   [AdminDestinationController::class, 'destroy'])->defaults('category', 'budaya')->name('admin.destination.budaya.destroy');
+});Route::get('/debug-lang', function() { return 'Locale: ' . app()->getLocale() . ' Session: ' . session('locale'); });
+
 });

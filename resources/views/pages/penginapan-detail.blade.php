@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $item->nama . ' - Penginapan Geosite Danau Toba')
+@section('title', $item->nama_trans . ' - Penginapan Geosite Danau Toba')
 
 @section('content')
 
@@ -140,12 +140,12 @@
 {{-- HERO GAMBAR --}}
 <div class="detail-hero">
     <img src="{{ $item->gambar_url }}"
-         alt="{{ $item->nama }}"
+         alt="{{ $item->nama_trans }}"
          onerror="this.src='{{ asset('image/default.jpg') }}'">
     <div class="detail-hero-overlay">
         <div class="detail-hero-content">
             <div class="detail-hero-badge">🏨 Penginapan</div>
-            <h1>{{ $item->nama }}</h1>
+            <h1>{{ $item->nama_trans }}</h1>
         </div>
     </div>
 </div>
@@ -159,11 +159,11 @@
             <div class="detail-main">
                 @if($item->gambar_tambahan && file_exists(public_path($item->gambar_tambahan)))
                     <div style="margin-bottom: 30px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                        <img src="{{ asset($item->gambar_tambahan) }}" alt="Gambar Tambahan {{ $item->nama }}" style="width: 100%; height: auto; display: block; object-fit: cover; max-height: 500px;">
+                        <img src="{{ asset($item->gambar_tambahan) }}" alt="Gambar Tambahan {{ $item->nama_trans }}" style="width: 100%; height: auto; display: block; object-fit: cover; max-height: 500px;">
                     </div>
                 @endif
                 <h2><i class="fas fa-bed" style="color:var(--gold);margin-right:10px;"></i>Tentang Penginapan Ini</h2>
-                <div class="deskripsi">{{ $item->deskripsi ?? 'Deskripsi belum tersedia.' }}</div>
+                <div class="deskripsi">{{ $item->deskripsi_trans ?? 'Deskripsi belum tersedia.' }}</div>
             </div>
 
             {{-- Kolom kanan: Sidebar info --}}
@@ -231,10 +231,10 @@
                 @foreach($related as $rel)
                 <a href="{{ route('fasilitas.penginapan.detail', $rel->id) }}" class="related-card">
                     <img src="{{ $rel->gambar_url }}"
-                         alt="{{ $rel->nama }}" loading="lazy"
+                         alt="{{ $rel->nama_trans }}" loading="lazy"
                          onerror="this.src='{{ asset('image/default.jpg') }}'">
                     <div class="related-content">
-                        <div class="related-title">{{ $rel->nama }}</div>
+                        <div class="related-title">{{ $rel->nama_trans }}</div>
                         <div class="related-link">Lihat Detail <i class="fas fa-arrow-right"></i></div>
                     </div>
                 </a>

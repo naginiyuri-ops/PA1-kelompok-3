@@ -91,13 +91,13 @@
             @php
                 $imgSrc = $item->gambar ? asset($item->gambar) : asset('image/default.jpg');
             @endphp
-            <img src="{{ $imgSrc }}" alt="{{ $item->nama }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+            <img src="{{ $imgSrc }}" alt="{{ $item->nama_trans }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
             <div class="content">
                 <span class="badge-kategori badge-{{ $item->kategori }}">
                     {{ ucfirst($item->kategori) }}
                 </span>
-                <h3>{{ Str::limit($item->nama, 40) }}</h3>
-                <p>{{ Str::limit(strip_tags($item->deskripsi), 100) }}</p>
+                <h3>{{ Str::limit($item->nama_trans, 40) }}</h3>
+                <p>{{ Str::limit(strip_tags($item->deskripsi_trans), 100) }}</p>
                 @if($item->lokasi)
                     <p style="font-size:0.7rem; color:#94a3b8; margin-top:6px;">
                         <i class="fas fa-map-marker-alt"></i> {{ $item->lokasi }}

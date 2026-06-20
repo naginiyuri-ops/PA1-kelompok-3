@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $item->nama . ' - Cultural Diversity')
+@section('title', $item->nama_trans . ' - Cultural Diversity')
 
 @section('content')
 
@@ -174,7 +174,7 @@
         <a href="{{ route('cultural-diversity') }}" class="back-link">
             <i class="fas fa-arrow-left"></i> Kembali ke Cultural Diversity
         </a>
-        <h1>{{ $item->nama }}</h1>
+        <h1>{{ $item->nama_trans }}</h1>
         <div class="meta">
             <span><i class="fas fa-tag"></i> {{ ucfirst($item->kategori) }}</span>
             <span><i class="fas fa-map-marker-alt"></i> {{ $item->lokasi ?? 'Danau Toba' }}</span>
@@ -202,7 +202,7 @@
                         }
                     }
                 @endphp
-                <img src="{{ $imgSrc }}" alt="{{ $item->nama }}" class="main-img" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                <img src="{{ $imgSrc }}" alt="{{ $item->nama_trans }}" class="main-img" onerror="this.src='{{ asset('image/default.jpg') }}'">
                 
                 @if($item->video_url)
                 <div class="video-container">
@@ -214,7 +214,7 @@
                 </div>
                 @endif
 
-                <div class="deskripsi">{!! $item->deskripsi !!}</div>
+                <div class="deskripsi">{!! $item->deskripsi_trans !!}</div>
             </div>
             <div class="col-lg-4">
                 <div class="info-box">
@@ -279,9 +279,9 @@
                             }
                         }
                     @endphp
-                    <img src="{{ $recImg }}" alt="{{ $rec->nama }}" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                    <img src="{{ $recImg }}" alt="{{ $rec->nama_trans }}" onerror="this.src='{{ asset('image/default.jpg') }}'">
                     <div class="caption">
-                        <h4>{{ Str::limit($rec->nama, 30) }}</h4>
+                        <h4>{{ Str::limit($rec->nama_trans, 30) }}</h4>
                         <p style="font-size:0.65rem; color:#94a3b8; margin:0;">
                             {{ ucfirst($rec->kategori) }}
                         </p>

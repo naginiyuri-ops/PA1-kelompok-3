@@ -662,7 +662,7 @@
                 @endphp
                 
                 <div class="card-image-wrapper" onclick="openBerita({{ $item->id }})">
-                    <img src="{{ $imgSrc }}" alt="{{ $item->judul }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                    <img src="{{ $imgSrc }}" alt="{{ $item->judul_trans }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
                     <div class="card-image-overlay">
                         <i class="fas fa-book-open"></i>
                     </div>
@@ -674,8 +674,8 @@
                 </div>
                 
                 <div class="card-content">
-                    <h3 class="card-title" onclick="openBerita({{ $item->id }})">{{ $item->judul }}</h3>
-                    <p class="card-excerpt">{{ Str::limit(strip_tags($item->konten), 110) }}</p>
+                    <h3 class="card-title" onclick="openBerita({{ $item->id }})">{{ $item->judul_trans }}</h3>
+                    <p class="card-excerpt">{{ Str::limit(strip_tags($item->konten_trans), 110) }}</p>
                     <div class="card-footer">
                         <span class="card-views" id="views-{{ $item->id }}">
                             <i class="far fa-eye"></i> {{ number_format($item->views ?? 0) }} dibaca
