@@ -996,43 +996,6 @@
     </div>
 </section>
 
-<!-- ==================== TAUTAN CEPAT ==================== -->
-<section class="section section-white">
-    <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="badge">Navigasi</span>
-            <h2>🔗 Tautan Cepat</h2>
-            <div class="divider"></div>
-            <p>Jelajahi berbagai informasi menarik di GeoToba</p>
-        </div>
-        <div class="quick-grid">
-            <a href="{{ url('/destinasi') }}" class="quick-item" data-aos="zoom-in">
-                <i class="fas fa-map-marked-alt"></i>
-                <span>Destinasi</span>
-            </a>
-            <a href="{{ route('biodiversitas') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="50">
-                <i class="fas fa-leaf"></i>
-                <span>Biodiversitas</span>
-            </a>
-            <a href="{{ route('geodiversitas') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="100">
-                <i class="fas fa-gem"></i>
-                <span>Geodiversitas</span>
-            </a>
-            <a href="{{ route('cultural-diversity') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="150">
-                <i class="fas fa-people-arrows"></i>
-                <span>Cultural Diversity</span>
-            </a>
-            <a href="{{ url('/berita') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="200">
-                <i class="fas fa-newspaper"></i>
-                <span>Berita / Event</span>
-            </a>
-            <a href="{{ url('/galeri') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="250">
-                <i class="fas fa-images"></i>
-                <span>Galeri</span>
-            </a>
-        </div>
-    </div>
-</section>
 
 <!-- ==================== BERITA TERKINI ==================== -->
 <section class="section section-light">
@@ -1092,6 +1055,45 @@
     </div>
 </section>
 
+<!-- ==================== TAUTAN CEPAT ==================== -->
+<section class="section section-white">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="badge">Navigasi</span>
+            <h2>🔗 Tautan Cepat</h2>
+            <div class="divider"></div>
+            <p>Jelajahi berbagai informasi menarik di GeoToba</p>
+        </div>
+        <div class="quick-grid">
+            <a href="{{ url('/destinasi') }}" class="quick-item" data-aos="zoom-in">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Destinasi</span>
+            </a>
+            <a href="{{ route('biodiversitas') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="50">
+                <i class="fas fa-leaf"></i>
+                <span>Biodiversitas</span>
+            </a>
+            <a href="{{ route('geodiversitas') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fas fa-gem"></i>
+                <span>Geodiversitas</span>
+            </a>
+            <a href="{{ route('cultural-diversity') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="150">
+                <i class="fas fa-people-arrows"></i>
+                <span>Cultural Diversity</span>
+            </a>
+            <a href="{{ url('/berita') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fas fa-newspaper"></i>
+                <span>Berita / Event</span>
+            </a>
+            <a href="{{ url('/galeri') }}" class="quick-item" data-aos="zoom-in" data-aos-delay="250">
+                <i class="fas fa-images"></i>
+                <span>Galeri</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+
 <!-- ==================== CTA ==================== -->
 <section class="cta-section">
     <div class="container">
@@ -1099,7 +1101,6 @@
             <h3>Mulai Petualangan Anda</h3>
             <div class="divider"></div>
             <p>Temukan keajaiban geologi dan kekayaan budaya Batak di Geopark Toba, warisan dunia yang diakui UNESCO.</p>
-            <a href="#destinasi" class="cta-btn">Jelajahi Sekarang</a>
         </div>
     </div>
 </section>
