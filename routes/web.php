@@ -58,6 +58,7 @@ Route::post('/admin/translate', function (\Illuminate\Http\Request $request) {
     return response()->json(['result' => '', 'error' => 'Translation failed'], 200);
 })->middleware(['web', 'auth'])->name('admin.translate');
 
+Route::middleware([\App\Http\Middleware\LanguageMiddleware::class])->group(function () {
 
 
 // ========================================
@@ -290,4 +291,4 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 Route::get('/debug-lang', function() { return 'Locale: ' . app()->getLocale() . ' Session: ' . session('locale'); });
 
-
+}); // <-- Close LanguageMiddleware group

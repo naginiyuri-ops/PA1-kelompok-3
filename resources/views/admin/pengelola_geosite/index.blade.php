@@ -221,6 +221,48 @@
         th, td { padding: 10px 12px; font-size: 0.75rem; }
         .btn-edit, .btn-delete { padding: 4px 10px; font-size: 0.65rem; }
     }
+
+    /* Lightbox Styles */
+    .lightbox-modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        padding-top: 80px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.85);
+        backdrop-filter: blur(5px);
+    }
+    .lightbox-content {
+        margin: auto;
+        display: block;
+        max-width: 90%;
+        max-height: 80vh;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+        animation: zoomIn 0.3s ease;
+        object-fit: contain;
+    }
+    .lightbox-close {
+        position: absolute;
+        top: 25px;
+        right: 40px;
+        color: #f1f1f1;
+        font-size: 45px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .lightbox-close:hover {
+        color: #c6a43b;
+    }
+    @keyframes zoomIn {
+        from {transform:scale(0.8); opacity: 0;} 
+        to {transform:scale(1); opacity: 1;}
+    }
 </style>
 
 <div class="card-table">
@@ -274,6 +316,8 @@
                             @if($item->image)
                                 <img src="{{ asset('storage/' . $item->image) }}"
                                      alt="{{ $item->nama }}"
+                                     style="cursor: pointer;"
+                                     onclick="openLightbox('{{ asset('storage/' . $item->image) }}')"
                                      onerror="this.style.display='none'; this.parentElement.innerHTML='{{ $initials }}'">
                             @else
                                 {{ $initials }}
@@ -320,4 +364,21 @@
         </table>
     </div>
 </div>
+
+<!-- Lightbox Modal -->
+<div id="imageLightbox" class="lightbox-modal" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img class="lightbox-content" id="lightboxImage">
+</div>
+
+<script>
+    function openLightbox(imgSrc) {
+        document.getElementById('imageLightbox').style.display = "block";
+        document.getElementById('lightboxImage').src = imgSrc;
+    }
+    
+    function closeLightbox() {
+        document.getElementById('imageLightbox').style.display = "none";
+    }
+</script>
 @endsection

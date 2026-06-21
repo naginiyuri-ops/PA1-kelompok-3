@@ -542,6 +542,48 @@
         .maps-container iframe { height: 220px; }
         .maps-info .location-list a { font-size: 0.65rem; padding: 4px 12px; }
     }
+
+    /* ==================== LIGHTBOX ==================== */
+    .lightbox-modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        padding-top: 80px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.85);
+        backdrop-filter: blur(5px);
+    }
+    .lightbox-content {
+        margin: auto;
+        display: block;
+        max-width: 90%;
+        max-height: 80vh;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+        animation: zoomIn 0.3s ease;
+        object-fit: contain;
+    }
+    .lightbox-close {
+        position: absolute;
+        top: 25px;
+        right: 40px;
+        color: #f1f1f1;
+        font-size: 45px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .lightbox-close:hover {
+        color: var(--gold);
+    }
+    @keyframes zoomIn {
+        from {transform:scale(0.8); opacity: 0;} 
+        to {transform:scale(1); opacity: 1;}
+    }
 </style>
 
 <!-- ==================== HERO ==================== -->
@@ -575,7 +617,7 @@
                     <li><i class="fas fa-check-circle"></i> <strong>{{ app()->getLocale() == 'en' ? 'Regencies:' : 'Kabupaten:' }}</strong> Toba, Samosir, Tapanuli Utara, Humbang Hasundutan, Dairi, Karo, Simalungun</li>
                 </ul>
             </div>
-            <div class="profile-image" data-aos="fade-left" onclick="window.open('{{ asset('image/meat/danau.jpg') }}', '_blank')">
+            <div class="profile-image" data-aos="fade-left" onclick="openLightbox('{{ asset('image/meat/danau.jpg') }}')">
                 <img src="{{ asset('image/meat/danau.jpg') }}" alt="Danau Toba" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
             </div>
         </div>
@@ -662,7 +704,7 @@
             @foreach($pengelolas as $index => $pengelola)
                 <div class="pengelola-card" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
                     @if($pengelola->image)
-                        <div class="avatar" style="overflow:hidden; padding:0; background:none; border: 2px solid var(--primary);">
+                        <div class="avatar" style="overflow:hidden; padding:0; background:none; border: 2px solid var(--primary); cursor:pointer;" onclick="openLightbox('{{ asset('storage/' . $pengelola->image) }}')">
                             <img src="{{ asset('storage/' . $pengelola->image) }}" alt="{{ $pengelola->nama }}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
                         </div>
                     @else
@@ -738,9 +780,25 @@
     </div>
 </section>
 
+<!-- ==================== LIGHTBOX MODAL ==================== -->
+<div id="imageLightbox" class="lightbox-modal" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img class="lightbox-content" id="lightboxImage">
+</div>
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init({ duration: 600, once: true, offset: 40, easing: 'ease-out-quad' });
+
+    // Fungsi Lightbox
+    function openLightbox(imgSrc) {
+        document.getElementById('imageLightbox').style.display = "block";
+        document.getElementById('lightboxImage').src = imgSrc;
+    }
+    
+    function closeLightbox() {
+        document.getElementById('imageLightbox').style.display = "none";
+    }
 </script>
 
 @endsection
