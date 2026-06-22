@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class FasilitasUtamaController extends Controller
+class PublicFasilitasUtamaController extends Controller
 {
     /* 
      * Fungsi ini bertugas memanggil tampilan indeks fasilitas.
@@ -62,3 +62,4 @@ class FasilitasUtamaController extends Controller
         return view('pages.penginapan-detail', compact('item', 'related'));
     }
 }
+

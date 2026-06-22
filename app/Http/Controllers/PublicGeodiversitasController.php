@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Geodiversitas;
 use Illuminate\Http\Request;
 
-class GeodiversitasController extends Controller
+class PublicGeodiversitasController extends Controller
 {
     public function index()
     {

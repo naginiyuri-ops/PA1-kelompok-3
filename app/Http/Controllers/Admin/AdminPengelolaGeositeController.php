@@ -7,7 +7,7 @@ use App\Models\PengelolaGeosite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class PengelolaGeositeController extends Controller
+class AdminPengelolaGeositeController extends Controller
 {
     public function index()
     {
@@ -88,3 +88,4 @@ class PengelolaGeositeController extends Controller
             ->with('success', 'Data pengelola berhasil dihapus.');
     }
 }
+

@@ -10,7 +10,7 @@ use App\Models\Umkm;
 use App\Models\Fasilitas;
 use App\Models\Penginapan;
 
-class DashboardController extends Controller
+class AdminDashboardController extends Controller
 {
     public function index()
     {

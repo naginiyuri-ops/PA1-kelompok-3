@@ -7,7 +7,7 @@ use App\Models\SejarahWisata;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class SejarahWisataController extends Controller
+class AdminSejarahWisataController extends Controller
 {
     public function index()
     {

@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\CulturalDiversity;
+use App\Models\Geodiversitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class CulturalDiversityController extends Controller
+class AdminGeodiversitasController extends Controller
 {
     public function index(Request $request)
     {
-        $query = CulturalDiversity::query();
+        $query = Geodiversitas::query();
 
         // Search
         if ($request->filled('search')) {
@@ -19,13 +19,13 @@ class CulturalDiversityController extends Controller
                 $q->where('nama', 'LIKE', '%' . $request->search . '%')
                   ->orWhere('deskripsi', 'LIKE', '%' . $request->search . '%')
                   ->orWhere('lokasi', 'LIKE', '%' . $request->search . '%')
-                  ->orWhere('kategori', 'LIKE', '%' . $request->search . '%');
+                  ->orWhere('tipe_geologi', 'LIKE', '%' . $request->search . '%');
             });
         }
 
-        // Filter kategori
-        if ($request->filled('kategori')) {
-            $query->where('kategori', $request->kategori);
+        // Filter tipe geologi
+        if ($request->filled('tipe_geologi')) {
+            $query->where('tipe_geologi', $request->tipe_geologi);
         }
 
         // Filter status
@@ -35,25 +35,25 @@ class CulturalDiversityController extends Controller
 
         $data = $query->latest()->paginate(10)->withQueryString();
 
-        $kategoriOptions = ['tarian', 'musik', 'upacara', 'kerajinan', 'kuliner'];
+        $tipeOptions = ['batuan', 'mineral', 'fosil', 'formasi'];
 
-        return view('admin.cultural-diversity.index', compact('data', 'kategoriOptions'));
+        return view('admin.geodiversitas.index', compact('data', 'tipeOptions'));
     }
 
     public function create()
     {
-        return view('admin.cultural-diversity.create');
+        return view('admin.geodiversitas.create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'nama' => 'required|string|max:255',
-            'kategori' => 'required|in:tarian,musik,upacara,kerajinan,kuliner',
+            'tipe_geologi' => 'required|in:batuan,mineral,fosil,formasi',
             'deskripsi' => 'required|string',
             'lokasi' => 'nullable|string|max:255',
+            'usia_geologi' => 'nullable|string|max:100',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
-            'video_url' => 'nullable|string|max:500',
             'status' => 'nullable|boolean'
         ]);
 
@@ -61,48 +61,48 @@ class CulturalDiversityController extends Controller
             'nama' => $request->nama,
             'nama_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
             'slug' => Str::slug($request->nama) . '-' . time(),
-            'kategori' => $request->kategori,
+            'tipe_geologi' => $request->tipe_geologi,
             'deskripsi' => $request->deskripsi,
             'deskripsi_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->deskripsi),
             'lokasi' => $request->lokasi,
-            'video_url' => $request->video_url,
+            'usia_geologi' => $request->usia_geologi,
             'status' => $request->has('status') ? 1 : 0,
             'views' => 0
         ];
 
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
-            $filename = time() . '_cultural_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
-            $destinationPath = public_path('image/cultural-diversity');
+            $filename = time() . '_geodiversitas_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('image/geodiversitas');
             if (!file_exists($destinationPath)) {
                 mkdir($destinationPath, 0777, true);
             }
             $file->move($destinationPath, $filename);
-            $data['gambar'] = 'image/cultural-diversity/' . $filename;
+            $data['gambar'] = 'image/geodiversitas/' . $filename;
         }
 
-        CulturalDiversity::create($data);
-        return redirect()->route('admin.cultural-diversity.index')
-            ->with('success', 'Data Cultural Diversity berhasil ditambahkan!');
+        Geodiversitas::create($data);
+        return redirect()->route('admin.geodiversitas.index')
+            ->with('success', 'Data Geodiversitas berhasil ditambahkan!');
     }
 
     public function edit($id)
     {
-        $data = CulturalDiversity::findOrFail($id);
-        return view('admin.cultural-diversity.edit', compact('data'));
+        $data = Geodiversitas::findOrFail($id);
+        return view('admin.geodiversitas.edit', compact('data'));
     }
 
     public function update(Request $request, $id)
     {
-        $cultural = CulturalDiversity::findOrFail($id);
+        $geodiversitas = Geodiversitas::findOrFail($id);
 
         $request->validate([
             'nama' => 'required|string|max:255',
-            'kategori' => 'required|in:tarian,musik,upacara,kerajinan,kuliner',
+            'tipe_geologi' => 'required|in:batuan,mineral,fosil,formasi',
             'deskripsi' => 'required|string',
             'lokasi' => 'nullable|string|max:255',
+            'usia_geologi' => 'nullable|string|max:100',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
-            'video_url' => 'nullable|string|max:500',
             'status' => 'nullable|boolean'
         ]);
 
@@ -110,56 +110,56 @@ class CulturalDiversityController extends Controller
             'nama' => $request->nama,
             'nama_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
             'slug' => Str::slug($request->nama) . '-' . time(),
-            'kategori' => $request->kategori,
+            'tipe_geologi' => $request->tipe_geologi,
             'deskripsi' => $request->deskripsi,
             'deskripsi_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->deskripsi),
             'lokasi' => $request->lokasi,
-            'video_url' => $request->video_url,
+            'usia_geologi' => $request->usia_geologi,
             'status' => $request->has('status') ? 1 : 0
         ];
 
         if ($request->has('hapus_gambar') && $request->hapus_gambar == 1) {
-            if ($cultural->gambar && file_exists(public_path($cultural->gambar))) {
-                unlink(public_path($cultural->gambar));
+            if ($geodiversitas->gambar && file_exists(public_path($geodiversitas->gambar))) {
+                unlink(public_path($geodiversitas->gambar));
             }
             $data['gambar'] = null;
         }
 
         if ($request->hasFile('gambar')) {
-            if ($cultural->gambar && file_exists(public_path($cultural->gambar))) {
-                unlink(public_path($cultural->gambar));
+            if ($geodiversitas->gambar && file_exists(public_path($geodiversitas->gambar))) {
+                unlink(public_path($geodiversitas->gambar));
             }
             $file = $request->file('gambar');
-            $filename = time() . '_cultural_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
-            $destinationPath = public_path('image/cultural-diversity');
+            $filename = time() . '_geodiversitas_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('image/geodiversitas');
             if (!file_exists($destinationPath)) {
                 mkdir($destinationPath, 0777, true);
             }
             $file->move($destinationPath, $filename);
-            $data['gambar'] = 'image/cultural-diversity/' . $filename;
+            $data['gambar'] = 'image/geodiversitas/' . $filename;
         }
 
-        $cultural->update($data);
-        return redirect()->route('admin.cultural-diversity.index')
-            ->with('success', 'Data Cultural Diversity berhasil diupdate!');
+        $geodiversitas->update($data);
+        return redirect()->route('admin.geodiversitas.index')
+            ->with('success', 'Data Geodiversitas berhasil diupdate!');
     }
 
     public function destroy($id)
     {
-        $cultural = CulturalDiversity::findOrFail($id);
-        if ($cultural->gambar && file_exists(public_path($cultural->gambar))) {
-            unlink(public_path($cultural->gambar));
+        $geodiversitas = Geodiversitas::findOrFail($id);
+        if ($geodiversitas->gambar && file_exists(public_path($geodiversitas->gambar))) {
+            unlink(public_path($geodiversitas->gambar));
         }
-        $cultural->delete();
-        return redirect()->route('admin.cultural-diversity.index')
-            ->with('success', 'Data Cultural Diversity berhasil dihapus!');
+        $geodiversitas->delete();
+        return redirect()->route('admin.geodiversitas.index')
+            ->with('success', 'Data Geodiversitas berhasil dihapus!');
     }
 
     public function toggleStatus($id)
     {
-        $cultural = CulturalDiversity::findOrFail($id);
-        $cultural->status = !$cultural->status;
-        $cultural->save();
-        return response()->json(['success' => true, 'status' => $cultural->status]);
+        $geodiversitas = Geodiversitas::findOrFail($id);
+        $geodiversitas->status = !$geodiversitas->status;
+        $geodiversitas->save();
+        return response()->json(['success' => true, 'status' => $geodiversitas->status]);
     }
 }

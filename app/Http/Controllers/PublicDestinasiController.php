@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DestinasiController extends Controller
+class PublicDestinasiController extends Controller
 {
     // Halaman utama destinasi
     public function index()

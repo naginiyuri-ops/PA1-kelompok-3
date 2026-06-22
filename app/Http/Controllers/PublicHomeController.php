@@ -12,7 +12,7 @@ use App\Models\Kontak;
 use App\Models\Destination;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class PublicHomeController extends Controller
 {
     public function index()
     {

@@ -7,7 +7,7 @@ use App\Models\Umkm;
 use App\Models\Fasilitas;
 use App\Models\Penginapan;
 
-class GeositeController extends Controller
+class PublicGeositeController extends Controller
 {
     /**
      * Display Meat geosite page

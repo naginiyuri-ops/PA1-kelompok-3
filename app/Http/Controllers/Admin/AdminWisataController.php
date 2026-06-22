@@ -7,7 +7,7 @@ use App\Models\Wisata;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class WisataController extends Controller
+class AdminWisataController extends Controller
 {
     public function index()
     {

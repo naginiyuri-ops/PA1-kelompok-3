@@ -7,7 +7,7 @@ use App\Models\Umkm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class UmkmController extends Controller
+class AdminUmkmController extends Controller
 {
     public function index()
     {

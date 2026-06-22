@@ -2,30 +2,30 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Admin\GaleriController;
-use App\Http\Controllers\Admin\BeritaController;
+use App\Http\Controllers\Admin\AdminGaleriController;
+use App\Http\Controllers\Admin\AdminBeritaController;
 
-use App\Http\Controllers\Admin\UmkmController;
-use App\Http\Controllers\Admin\FasilitasController;
-use App\Http\Controllers\Admin\PenginapanController;
+use App\Http\Controllers\Admin\AdminUmkmController;
+use App\Http\Controllers\Admin\AdminFasilitasController;
+use App\Http\Controllers\Admin\AdminPenginapanController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminDestinationController;
-use App\Http\Controllers\Admin\PengelolaGeositeController;
-use App\Http\Controllers\DestinasiController;
+use App\Http\Controllers\Admin\AdminPengelolaGeositeController;
+use App\Http\Controllers\PublicDestinasiController;
 use App\Http\Controllers\PublicDestinationController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Admin\KontakController;
-use App\Http\Controllers\GaleriController as PublicGaleriController;
-use App\Http\Controllers\GeositeController;
+use App\Http\Controllers\PublicHomeController;
+use App\Http\Controllers\Admin\AdminKontakController;
+use App\Http\Controllers\PublicGaleriController;
+use App\Http\Controllers\PublicGeositeController;
 
 use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\Admin\SejarahWisataController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\TentangGeositeController;
-use App\Http\Controllers\BiodiversitasController;
-use App\Http\Controllers\GeodiversitasController;
-use App\Http\Controllers\CulturalDiversityController;
-use App\Http\Controllers\FasilitasUtamaController;
+use App\Http\Controllers\Admin\AdminSejarahWisataController;
+use App\Http\Controllers\PublicSearchController;
+use App\Http\Controllers\PublicTentangGeositeController;
+use App\Http\Controllers\PublicBiodiversitasController;
+use App\Http\Controllers\PublicGeodiversitasController;
+use App\Http\Controllers\PublicCulturalDiversityController;
+use App\Http\Controllers\PublicFasilitasUtamaController;
 use Illuminate\Support\Facades\DB;
 
 // ========================================
@@ -65,13 +65,13 @@ Route::middleware([\App\Http\Middleware\LanguageMiddleware::class])->group(funct
 // ========== FRONTEND ROUTES (PUBLIC) ==========
 // ========================================
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [PublicHomeController::class, 'index'])->name('home');
 
 // ========================================
 // ========== GLOBAL SEARCH ==========
 // ========================================
-Route::get('/search', [SearchController::class, 'search'])->name('search');
-Route::get('/search-results', [SearchController::class, 'searchResults'])->name('search.results');
+Route::get('/search', [PublicSearchController::class, 'search'])->name('search');
+Route::get('/search-results', [PublicSearchController::class, 'searchResults'])->name('search.results');
 
 // Language Route
 Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
@@ -79,12 +79,12 @@ Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.
 // ========================================
 // ========== TENTANG GEOSITE ==========
 // ========================================
-Route::get('/tentang-geosite', [TentangGeositeController::class, 'index'])->name('tentang-geosite');
+Route::get('/tentang-geosite', [PublicTentangGeositeController::class, 'index'])->name('tentang-geosite');
 
 // ========================================
 // ========== DESTINASI (PUBLIC) ==========
 // ========================================
-Route::get('/destinasi', [DestinasiController::class, 'index'])->name('destinasi');
+Route::get('/destinasi', [PublicDestinasiController::class, 'index'])->name('destinasi');
 Route::get('/destinasi/alam', [PublicDestinationController::class, 'alam'])->name('destinasi.alam');
 Route::get('/destinasi/buatan', [PublicDestinationController::class, 'buatan'])->name('destinasi.buatan');
 Route::get('/destinasi/budaya', [PublicDestinationController::class, 'budaya'])->name('destinasi.budaya');
@@ -95,17 +95,17 @@ Route::get('/destinasi/{category}/{id}', [PublicDestinationController::class, 's
 // ========================================
 
 // BIODIVERSITAS
-Route::get('/biodiversitas', [BiodiversitasController::class, 'index'])->name('biodiversitas');
-Route::get('/biodiversitas/{slug}', [BiodiversitasController::class, 'show'])->name('biodiversitas.detail');
-Route::get('/biodiversitas/kategori/{kategori}', [BiodiversitasController::class, 'kategori'])->name('biodiversitas.kategori');
+Route::get('/biodiversitas', [PublicBiodiversitasController::class, 'index'])->name('biodiversitas');
+Route::get('/biodiversitas/{slug}', [PublicBiodiversitasController::class, 'show'])->name('biodiversitas.detail');
+Route::get('/biodiversitas/kategori/{kategori}', [PublicBiodiversitasController::class, 'kategori'])->name('biodiversitas.kategori');
 
 // GEODIVERSITAS
-Route::get('/geodiversitas', [GeodiversitasController::class, 'index'])->name('geodiversitas');
-Route::get('/geodiversitas/{slug}', [GeodiversitasController::class, 'show'])->name('geodiversitas.detail');
+Route::get('/geodiversitas', [PublicGeodiversitasController::class, 'index'])->name('geodiversitas');
+Route::get('/geodiversitas/{slug}', [PublicGeodiversitasController::class, 'show'])->name('geodiversitas.detail');
 
 // CULTURAL DIVERSITY
-Route::get('/cultural-diversity', [CulturalDiversityController::class, 'index'])->name('cultural-diversity');
-Route::get('/cultural-diversity/{slug}', [CulturalDiversityController::class, 'show'])->name('cultural-diversity.detail');
+Route::get('/cultural-diversity', [PublicCulturalDiversityController::class, 'index'])->name('cultural-diversity');
+Route::get('/cultural-diversity/{slug}', [PublicCulturalDiversityController::class, 'show'])->name('cultural-diversity.detail');
 
 // ========================================
 // ========== BERITA ==========
@@ -126,18 +126,18 @@ Route::get('/berita/{slug}', function ($slug) {
 // ========================================
 
 // Halaman Utama Fasilitas (2 card: UMKM & Penginapan)
-Route::get('/fasilitas', [FasilitasUtamaController::class, 'index'])->name('fasilitas.index');
+Route::get('/fasilitas', [PublicFasilitasUtamaController::class, 'index'])->name('fasilitas.index');
 
 // UMKM
-Route::get('/fasilitas/umkm', [FasilitasUtamaController::class, 'umkm'])->name('fasilitas.umkm');
-Route::get('/fasilitas/umkm/{id}', [FasilitasUtamaController::class, 'umkmDetail'])->name('fasilitas.umkm.detail');
+Route::get('/fasilitas/umkm', [PublicFasilitasUtamaController::class, 'umkm'])->name('fasilitas.umkm');
+Route::get('/fasilitas/umkm/{id}', [PublicFasilitasUtamaController::class, 'umkmDetail'])->name('fasilitas.umkm.detail');
 
 // SOVENIR & UMKM (BARU)
-Route::get('/sovenir-umkm', [FasilitasUtamaController::class, 'umkmIndex'])->name('umkm.index');
+Route::get('/sovenir-umkm', [PublicFasilitasUtamaController::class, 'umkmIndex'])->name('umkm.index');
 
 // PENGINAPAN
-Route::get('/fasilitas/penginapan', [FasilitasUtamaController::class, 'penginapan'])->name('fasilitas.penginapan');
-Route::get('/fasilitas/penginapan/{id}', [FasilitasUtamaController::class, 'penginapanDetail'])->name('fasilitas.penginapan.detail');
+Route::get('/fasilitas/penginapan', [PublicFasilitasUtamaController::class, 'penginapan'])->name('fasilitas.penginapan');
+Route::get('/fasilitas/penginapan/{id}', [PublicFasilitasUtamaController::class, 'penginapanDetail'])->name('fasilitas.penginapan.detail');
 
 // ========================================
 // ========== GALERI ==========
@@ -154,19 +154,19 @@ Route::get('/galeri/{slug}', function ($slug) {
 // ========================================
 // ========== KONTAK ==========
 // ========================================
-Route::get('/kontak', [HomeController::class, 'kontak'])->name('kontak');
+Route::get('/kontak', [PublicHomeController::class, 'kontak'])->name('kontak');
 
 // ========================================
 // ========== GEOSITE ==========
 // ========================================
-Route::get('/geosite/balige', [GeositeController::class, 'balige'])->name('geosite.balige');
-Route::get('/geosite/meat', [GeositeController::class, 'meat'])->name('geosite.meat');
-Route::get('/geosite/batu-basiha', [GeositeController::class, 'batuBasiha'])->name('geosite.batu-basiha');
-Route::get('/geosite/batu-bahisan', [GeositeController::class, 'batuBahisan'])->name('geosite.batu-bahisan');
-Route::get('/geosite/liang-sipege', [GeositeController::class, 'liangSipege'])->name('geosite.liang-sipege');
+Route::get('/geosite/balige', [PublicGeositeController::class, 'balige'])->name('geosite.balige');
+Route::get('/geosite/meat', [PublicGeositeController::class, 'meat'])->name('geosite.meat');
+Route::get('/geosite/batu-basiha', [PublicGeositeController::class, 'batuBasiha'])->name('geosite.batu-basiha');
+Route::get('/geosite/batu-bahisan', [PublicGeositeController::class, 'batuBahisan'])->name('geosite.batu-bahisan');
+Route::get('/geosite/liang-sipege', [PublicGeositeController::class, 'liangSipege'])->name('geosite.liang-sipege');
 
 // Detail artikel sejarah
-Route::get('/sejarah/{slug}', [GeositeController::class, 'detail'])->name('sejarah.detail');
+Route::get('/sejarah/{slug}', [PublicGeositeController::class, 'detail'])->name('sejarah.detail');
 
 // ========================================
 // ========== API ROUTES ==========
@@ -225,40 +225,40 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     })->name('admin.dashboard');
 
     // ========== DIVERSITY CRUD ==========
-    Route::resource('biodiversitas', App\Http\Controllers\Admin\BiodiversitasController::class)->names('admin.biodiversitas');
-    Route::post('biodiversitas/toggle-status/{id}', [App\Http\Controllers\Admin\BiodiversitasController::class, 'toggleStatus'])->name('admin.biodiversitas.toggle-status');
+    Route::resource('biodiversitas', App\Http\Controllers\Admin\AdminBiodiversitasController::class)->names('admin.biodiversitas');
+    Route::post('biodiversitas/toggle-status/{id}', [App\Http\Controllers\Admin\AdminBiodiversitasController::class, 'toggleStatus'])->name('admin.biodiversitas.toggle-status');
 
-    Route::resource('geodiversitas', App\Http\Controllers\Admin\GeodiversitasController::class)->names('admin.geodiversitas');
-    Route::post('geodiversitas/toggle-status/{id}', [App\Http\Controllers\Admin\GeodiversitasController::class, 'toggleStatus'])->name('admin.geodiversitas.toggle-status');
+    Route::resource('geodiversitas', App\Http\Controllers\Admin\AdminGeodiversitasController::class)->names('admin.geodiversitas');
+    Route::post('geodiversitas/toggle-status/{id}', [App\Http\Controllers\Admin\AdminGeodiversitasController::class, 'toggleStatus'])->name('admin.geodiversitas.toggle-status');
 
-    Route::resource('cultural-diversity', App\Http\Controllers\Admin\CulturalDiversityController::class)->names('admin.cultural-diversity');
-    Route::post('cultural-diversity/toggle-status/{id}', [App\Http\Controllers\Admin\CulturalDiversityController::class, 'toggleStatus'])->name('admin.cultural-diversity.toggle-status');
+    Route::resource('cultural-diversity', App\Http\Controllers\Admin\AdminCulturalDiversityController::class)->names('admin.cultural-diversity');
+    Route::post('cultural-diversity/toggle-status/{id}', [App\Http\Controllers\Admin\AdminCulturalDiversityController::class, 'toggleStatus'])->name('admin.cultural-diversity.toggle-status');
 
     // ========== SEJARAH WISATA ==========
-    Route::resource('sejarah-wisata', SejarahWisataController::class)->names('admin.sejarah-wisata');
-    Route::post('sejarah-wisata/toggle-status/{id}', [SejarahWisataController::class, 'toggleStatus'])->name('admin.sejarah-wisata.toggle-status');
-    Route::get('sejarah-wisata/filter/{geosite}', [SejarahWisataController::class, 'filter'])->name('admin.sejarah-wisata.filter');
+    Route::resource('sejarah-wisata', AdminSejarahWisataController::class)->names('admin.sejarah-wisata');
+    Route::post('sejarah-wisata/toggle-status/{id}', [AdminSejarahWisataController::class, 'toggleStatus'])->name('admin.sejarah-wisata.toggle-status');
+    Route::get('sejarah-wisata/filter/{geosite}', [AdminSejarahWisataController::class, 'filter'])->name('admin.sejarah-wisata.filter');
 
     // ========== RESOURCE CRUD ==========
-    Route::resource('galeri', GaleriController::class)->names('admin.galeri');
-    Route::resource('berita', BeritaController::class)->names('admin.berita');
+    Route::resource('galeri', AdminGaleriController::class)->names('admin.galeri');
+    Route::resource('berita', AdminBeritaController::class)->names('admin.berita');
 
-    Route::resource('umkm', UmkmController::class)->names('admin.umkm');
-    Route::resource('fasilitas', FasilitasController::class)->names('admin.fasilitas');
-    Route::resource('penginapan', PenginapanController::class)->names('admin.penginapan');
-    Route::resource('pengelola-geosite', PengelolaGeositeController::class)->names('admin.pengelola-geosite');
+    Route::resource('umkm', AdminUmkmController::class)->names('admin.umkm');
+    Route::resource('fasilitas', AdminFasilitasController::class)->names('admin.fasilitas');
+    Route::resource('penginapan', AdminPenginapanController::class)->names('admin.penginapan');
+    Route::resource('pengelola-geosite', AdminPengelolaGeositeController::class)->names('admin.pengelola-geosite');
 
     // ========== TOGGLE STATUS ==========
-    Route::post('galeri/toggle-status/{id}', [GaleriController::class, 'toggleStatus'])->name('admin.galeri.toggle-status');
-    Route::post('berita/toggle-status/{id}', [BeritaController::class, 'toggleStatus'])->name('admin.berita.toggle-status');
+    Route::post('galeri/toggle-status/{id}', [AdminGaleriController::class, 'toggleStatus'])->name('admin.galeri.toggle-status');
+    Route::post('berita/toggle-status/{id}', [AdminBeritaController::class, 'toggleStatus'])->name('admin.berita.toggle-status');
 
 
     // ========== GALERI UNGGULAN ==========
-    Route::post('galeri/toggle-unggulan/{id}', [GaleriController::class, 'toggleUnggulan'])->name('admin.galeri.toggle-unggulan');
+    Route::post('galeri/toggle-unggulan/{id}', [AdminGaleriController::class, 'toggleUnggulan'])->name('admin.galeri.toggle-unggulan');
 
     // ========== KONTAK ==========
-    Route::get('/kontak', [KontakController::class, 'index'])->name('admin.kontak.index');
-    Route::put('/kontak', [KontakController::class, 'update'])->name('admin.kontak.update');
+    Route::get('/kontak', [AdminKontakController::class, 'index'])->name('admin.kontak.index');
+    Route::put('/kontak', [AdminKontakController::class, 'update'])->name('admin.kontak.update');
 
     // ========================================
     // ========== DESTINATION CRUD ==========
@@ -292,3 +292,5 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 Route::get('/debug-lang', function() { return 'Locale: ' . app()->getLocale() . ' Session: ' . session('locale'); });
 
 }); // <-- Close LanguageMiddleware group
+
+
