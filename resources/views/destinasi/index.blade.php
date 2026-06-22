@@ -19,7 +19,7 @@
         justify-content: center;
         text-align: center;
         color: white;
-        margin-top: 76px;
+        margin-top: 0;
         position: relative;
     }
     

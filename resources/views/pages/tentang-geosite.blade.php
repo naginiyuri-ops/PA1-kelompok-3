@@ -30,7 +30,7 @@
     .hero-tentang {
         background: linear-gradient(135deg, #003366 0%, #1a4a7a 100%);
         padding: 140px 0 70px;
-        margin-top: 60px;
+        margin-top: 0;
         text-align: center;
         position: relative;
         overflow: hidden;

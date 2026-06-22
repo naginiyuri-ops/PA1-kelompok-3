@@ -37,12 +37,22 @@
             overflow-x: hidden;
             background: var(--gray-light);
             max-width: 100%;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        main {
+            margin: 0;
+            padding: 0;
         }
 
         /* ========================================
@@ -54,9 +64,12 @@
             height: 64px;
             background: rgba(0, 51, 102, 0.97);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(198, 164, 59, 0.2);
-            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+            border-bottom: none;
+            box-shadow: none;
             z-index: 1050;
+            top: 0;
+            left: 0;
+            right: 0;
         }
 
         .navbar.scrolled-down {
@@ -861,12 +874,12 @@
         ======================================== */
         main {
             flex: 1;
-            padding-top: 64px;
+            padding-top: 0;
             min-height: calc(100vh - 200px);
         }
 
-        @media (max-width: 991px) { main { padding-top: 60px; } }
-        @media (max-width: 576px) { main { padding-top: 54px; } }
+        @media (max-width: 991px) { main { padding-top: 0; } }
+        @media (max-width: 576px) { main { padding-top: 0; } }
 
         /* ========================================
            WIDGET FLOATING BAHASA (Language Switcher)
@@ -942,7 +955,7 @@
     <!-- ========================================
     NAVBAR
     ======================================== -->
-    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+    <nav class="navbar navbar-expand-lg" id="navbar">
         <div class="container">
 
             {{-- LOGO --}}
@@ -1048,7 +1061,7 @@
     <!-- ========================================
     MAIN CONTENT
     ======================================== -->
-    <main>@yield('content')</main>
+    <main style="margin: 0; padding: 0;">@yield('content')</main>
 
     <!-- ========================================
     FOOTER MODERN

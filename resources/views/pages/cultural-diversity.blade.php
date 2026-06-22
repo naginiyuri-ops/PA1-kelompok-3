@@ -8,7 +8,7 @@
     .hero-diversity {
         background: linear-gradient(135deg, #003366 0%, #1a4a7a 100%);
         padding: 120px 0 60px;
-        margin-top: 60px;
+        margin-top: 0;
         text-align: center;
         color: white;
     }
