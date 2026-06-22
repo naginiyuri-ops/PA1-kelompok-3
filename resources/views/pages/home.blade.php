@@ -50,10 +50,15 @@
 
     /* ==================== HERO ==================== */
     .hero-section {
-        height: 100vh;
+        min-height: calc(100vh - 64px);
+        height: auto;
         position: relative;
         overflow: hidden;
-        margin-top: 0;
+        margin: 0 !important;
+        padding: 0 !important;
+        top: 0 !important;
+        display: block;
+        border: 0;
     }
 
     .hero-slideshow {
@@ -194,7 +199,7 @@
 
     /* ==================== SECTION ==================== */
     .section {
-        padding: 80px 0;
+        padding: 60px 0;
         position: relative;
     }
     .section-white { background: var(--bg-light); }
@@ -655,10 +660,11 @@
     /* ==================== CTA ==================== */
     .cta-section {
         background: linear-gradient(135deg, var(--primary), var(--primary-light));
-        padding: 70px 0;
+        padding: 55px 0;
         text-align: center;
         position: relative;
         overflow: hidden;
+        margin: 0;
     }
     .cta-section::before {
         content: '';
