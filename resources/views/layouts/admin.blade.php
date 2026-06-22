@@ -346,7 +346,10 @@
     </div>
     <div class="sidebar-menu">
         <div class="menu-title">Menu</div>
-        <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                  <a href="{{ route('admin.slider.index') }}" class="{{ request()->routeIs('admin.slider.*') ? 'active' : '' }}">
+              <i class="fas fa-images"></i> Manajemen Slider
+          </a>
+          <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
             Dashboard
         </a>
         

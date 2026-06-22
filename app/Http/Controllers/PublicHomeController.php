@@ -10,12 +10,16 @@ use App\Models\Fasilitas;
 use App\Models\Penginapan;
 use App\Models\Kontak;
 use App\Models\Destination;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class PublicHomeController extends Controller
 {
     public function index()
     {
+        // Slider
+        $homeSliders = Slider::latest()->get();
+
         // Ambil data untuk ditampilkan di home
         $galeri = Galeri::where('status', true)->latest()->limit(6)->get();
         $berita = Berita::where('status', true)->latest()->limit(3)->get();
@@ -50,7 +54,8 @@ class PublicHomeController extends Controller
             'totalGaleri',
             'totalBerita',
             'totalUmkm',
-            'totalPenginapan'
+            'totalPenginapan',
+            'homeSliders'
         ));
     }
 
@@ -65,3 +70,4 @@ class PublicHomeController extends Controller
         return view('pages.budaya');
     }
 }
+
