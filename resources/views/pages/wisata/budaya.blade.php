@@ -8,7 +8,7 @@
 <style>
     :root{--primary:#003366;--primary-light:#1a4a7a;--primary-dark:#001f3f;--gold:#c6a43b;--gold-light:#f1d26b;--gold-dark:#967a28;--text-gray:#334155;--text-light:#64748b;--white:#ffffff;--bg-light:#f8fafc;--shadow-xl:0 25px 50px -12px rgba(15,23,42,0.15);}
     body{font-family:'Inter',sans-serif;background:var(--bg-light);}
-    .hero-dest{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary-light) 100%);padding:120px 0 80px;margin-top:60px;text-align:center;position:relative;overflow:hidden;}
+    .hero-dest{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary-light) 100%);padding:120px 0 80px;margin-top:0;text-align:center;position:relative;overflow:hidden;}
     .hero-dest::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,255,255,0.03) 0%,transparent 60%);animation:slowRotate 40s linear infinite;}
     @keyframes slowRotate{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
     .hero-dest .container{position:relative;z-index:2;}
