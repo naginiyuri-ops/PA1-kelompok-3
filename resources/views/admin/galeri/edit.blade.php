@@ -148,7 +148,7 @@
             {{-- Tombol aksi --}}
             <div style="display:flex; gap:12px; margin-top:24px; padding-top:24px; border-top:1px solid #e2e8f0;">
                 <button type="submit" style="background:linear-gradient(135deg, #003366 0%, #1a4a7a 100%); color:white; padding:10px 24px; border-radius:12px; font-weight:600; font-size:0.85rem; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:8px; transition:all 0.2s;">
-                    <i class="fas fa-check"></i> Simpan
+                    <i class="fas fa-check"></i> Simpan Perubahan
                 </button>
                 <a href="{{ route('admin.galeri.index') }}" style="background:#f1f5f9; color:#475569; padding:10px 24px; border-radius:12px; font-weight:600; font-size:0.85rem; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:all 0.2s;">
                     <i class="fas fa-times"></i> Batal

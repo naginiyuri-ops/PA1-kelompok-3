@@ -423,7 +423,7 @@
             </div>
             
             <div class="btn-group">
-                <button type="submit" class="btn-update">Update</button>
+                <button type="submit" class="btn-update">Simpan Perubahan</button>
                 <a href="{{ route('admin.penginapan.index') }}" class="btn-cancel">Batal</a>
             </div>
         </form>

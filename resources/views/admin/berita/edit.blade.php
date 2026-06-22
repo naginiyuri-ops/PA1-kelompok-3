@@ -91,7 +91,7 @@
                 <label for="status"> Publikasikan</label>
             </div>
             
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
             <a href="{{ route('admin.berita.index') }}" class="btn btn-secondary">Batal</a>
         </form>
     </div>
