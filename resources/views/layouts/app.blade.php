@@ -596,7 +596,7 @@
         .footer {
             background: linear-gradient(135deg, #001f3f 0%, #003366 50%, #0a4a7a 100%);
             padding: 60px 0 30px;
-            margin-top: 80px;
+            margin-top: 0;
             position: relative;
             border-top: 3px solid rgba(198, 164, 59, 0.3);
         }
@@ -802,7 +802,7 @@
         }
 
         @media (max-width: 768px) {
-            .footer { padding: 40px 0 25px; margin-top: 60px; }
+            .footer { padding: 40px 0 25px; margin-top: 0; }
             .footer-grid { grid-template-columns: 1fr; gap: 25px; text-align: center; }
             .footer-col h5::after { left: 50%; transform: translateX(-50%); }
             .footer-menu a { justify-content: center; }
