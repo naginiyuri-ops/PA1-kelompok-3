@@ -54,7 +54,7 @@
                    value="{{ $kontak->link_maps ?? '' }}">
         </div>
         <button class="btn btn-primary">
-            Simpan
+            Simpan Perubahan
         </button>
     </form>
 </div>

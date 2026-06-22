@@ -100,7 +100,7 @@
             </div>
 
             <div style="display:flex; gap:12px; margin-top:24px;">
-                <button type="submit" style="background:linear-gradient(135deg, #003366 0%, #1a4a7a 100%); color:white; padding:10px 24px; border-radius:10px; font-weight:600; border:none; cursor:pointer;">Update</button>
+                <button type="submit" style="background:linear-gradient(135deg, #003366 0%, #1a4a7a 100%); color:white; padding:10px 24px; border-radius:10px; font-weight:600; border:none; cursor:pointer;">Simpan Perubahan</button>
                 <a href="{{ route('admin.cultural-diversity.index') }}" style="background:#f1f5f9; color:#475569; padding:10px 24px; border-radius:10px; font-weight:600; border:none; cursor:pointer; text-decoration:none; display:inline-block;">Batal</a>
             </div>
         </form>
