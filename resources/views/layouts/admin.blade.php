@@ -423,7 +423,7 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
         </div>
         <div class="user-menu">
             <span class="user-name"><i class="fas fa-user-circle"></i> {{ Auth::user()->name ?? 'Admin' }}</span>
-            <form action="{{ route('logout') }}" method="POST" class="d-inline" id="logoutForm">
+            <form action="{{ url('/logout') }}" method="POST" class="d-inline" id="logoutForm">
                 @csrf
                 <button type="submit" class="logout-btn">
                     <i class="fas fa-sign-out-alt"></i> Keluar
@@ -481,13 +481,14 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
             cancelButtonText: "Tidak"
         }).then((result) => {
             if (result.isConfirmed) {
-                this.submit();
+                document.getElementById("logoutForm").submit();
             }
         });
     });
 </script>
 </body>
 </html>
+
 
 
 
