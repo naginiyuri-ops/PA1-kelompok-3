@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $destination->title . ' - Geosite Danau Toba')
+@section('title', $destination->title_trans . ' - Geosite Danau Toba')
 
 @section('content')
 
@@ -292,8 +292,8 @@
     <img src="{{ $destination->hero_image_url }}" alt="Hero {{ $destination->title }}" class="hero-bg" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-        <h1 class="hero-title">{{ $destination->title }}</h1>
-        <div class="hero-subtitle">Destinasi {{ ucfirst($category) }} - Geosite Danau Toba</div>
+        <h1 class="hero-title">{{ $destination->title_trans }}</h1>
+        <div class="hero-subtitle">{{ app()->getLocale() == 'en' ? 'Destination' : 'Destinasi' }} {{ ucfirst($category) }} - Geosite Danau Toba</div>
     </div>
 </section>
 
@@ -303,7 +303,7 @@
         <a href="{{ url('/') }}">Beranda</a> <span>></span>
         <a href="#">Destinasi</a> <span>></span>
         <a href="{{ route('destinasi.' . $category) }}">{{ ucfirst($category) }}</a> <span>></span>
-        <span class="breadcrumb-current">{{ $destination->title }}</span>
+        <span class="breadcrumb-current">{{ $destination->title_trans }}</span>
     </div>
 </div>
 
@@ -313,7 +313,7 @@
     {{-- Card Atas: Foto & Info Singkat --}}
     <div class="top-card">
         <div class="top-card-left">
-            <img src="{{ $destination->image_url }}" alt="{{ $destination->title }}" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
+            <img src="{{ $destination->image_url }}" alt="{{ $destination->title_trans }}" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
             <div class="photo-badge">
                 <i class="fas fa-camera"></i> 1 Foto
             </div>
@@ -323,7 +323,7 @@
                 {{ ucfirst($category) }}
             </div>
             
-            <h2>{{ $destination->title }}</h2>
+            <h2>{{ $destination->title_trans }}</h2>
             
             <div class="location-text">
                 <i class="fas fa-map-marker-alt"></i>
@@ -331,19 +331,19 @@
             </div>
             
             <div class="short-desc">
-                {{ $destination->short_description ?? Str::limit(strip_tags($destination->description), 150) }}
+                {{ $destination->short_description_trans ?? Str::limit(strip_tags($destination->description_trans), 150) }}
             </div>
             
             <div class="info-boxes">
                 <div class="info-box">
                     <i class="fas fa-clock"></i>
-                    <span>Jam Operasional</span>
+                    <span>{{ app()->getLocale() == 'en' ? 'Operational Hours' : 'Jam Operasional' }}</span>
                     <strong>{{ $destination->operational_hours ?? '-' }}</strong>
                 </div>
                 <div class="info-box">
                     <i class="fas fa-ticket-alt"></i>
-                    <span>Harga</span>
-                    <strong>{{ $destination->ticket_price ?? 'Gratis' }}</strong>
+                    <span>{{ app()->getLocale() == 'en' ? 'Price' : 'Harga' }}</span>
+                    <strong>{{ $destination->ticket_price ?? (app()->getLocale() == 'en' ? 'Free' : 'Gratis') }}</strong>
                 </div>
             </div>
             
@@ -362,14 +362,14 @@
 
     {{-- Card Bawah: Deskripsi Lengkap --}}
     <div class="desc-card">
-        <h3>Deskripsi Lengkap</h3>
-        <p>{{ $destination->description }}</p>
+        <h3>{{ app()->getLocale() == 'en' ? 'Full Description' : 'Deskripsi Lengkap' }}</h3>
+        <p>{{ $destination->description_trans }}</p>
     </div>
 
     {{-- Tombol Kembali --}}
     <div class="action-container">
         <a href="{{ route('destinasi.' . $category) }}" class="btn-return">
-            <i class="fas fa-arrow-left"></i> Kembali ke Destinasi {{ ucfirst($category) }}
+            <i class="fas fa-arrow-left"></i> {{ app()->getLocale() == 'en' ? 'Back to' : 'Kembali ke Destinasi' }} {{ ucfirst($category) }}
         </a>
     </div>
 

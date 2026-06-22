@@ -133,14 +133,14 @@
             @forelse($destinations as $item)
             <a href="{{ route('destinasi.detail', [$category, $item->id]) }}" class="dest-card">
                 <div class="card-img-wrapper">
-                    <img src="{{ $item->image_url }}" alt="{{ $item->title }}" loading="lazy"
+                    <img src="{{ $item->image_url }}" alt="{{ $item->title_trans }}" loading="lazy"
                          onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                     <div class="card-img-overlay"><i class="fas fa-arrow-right"></i></div>
                     <span class="card-badge">{{ $categoryLabel }}</span>
                 </div>
                 <div class="card-content">
-                    <div class="card-title">{{ $item->title }}</div>
-                    <div class="card-excerpt">{{ strip_tags($item->description) }}</div>
+                    <div class="card-title">{{ $item->title_trans }}</div>
+                    <div class="card-excerpt">{{ strip_tags($item->description_trans) }}</div>
                     <div class="card-footer">
                         <span class="read-more">Lihat Detail <i class="fas fa-arrow-right"></i></span>
                     </div>
@@ -161,4 +161,5 @@
 </section>
 
 @endsection
+
 

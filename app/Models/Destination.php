@@ -57,6 +57,39 @@ class Destination extends Model
     }
 
     /**
+     * Accessor: mendapatkan title dalam bahasa aktif
+     */
+    public function getTitleTransAttribute(): string
+    {
+        if (app()->getLocale() === 'en' && !empty($this->title_en)) {
+            return $this->title_en;
+        }
+        return $this->title;
+    }
+
+    /**
+     * Accessor: mendapatkan description dalam bahasa aktif
+     */
+    public function getDescriptionTransAttribute(): string
+    {
+        if (app()->getLocale() === 'en' && !empty($this->description_en)) {
+            return $this->description_en;
+        }
+        return $this->description;
+    }
+
+    /**
+     * Accessor: mendapatkan short description dalam bahasa aktif
+     */
+    public function getShortDescriptionTransAttribute(): ?string
+    {
+        if (app()->getLocale() === 'en' && !empty($this->short_description_en)) {
+            return $this->short_description_en;
+        }
+        return $this->short_description;
+    }
+
+    /**
      * Accessor: mendapatkan URL gambar lengkap.
      * Mengembalikan URL asset jika image_path ada, atau gambar default jika tidak ada.
      */

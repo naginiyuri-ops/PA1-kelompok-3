@@ -1151,30 +1151,51 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
     <div class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </div>    {{-- ========================================
-         WIDGET FLOATING GANTI BAHASA - pill ID | EN
+         WIDGET FLOATING GANTI BAHASA - pill ID | EN (Google Translate)
     ======================================== --}}
+    @php
+        $currentLang = 'id';
+        if(isset($_COOKIE['googtrans']) && str_contains($_COOKIE['googtrans'], '/en')) {
+            $currentLang = 'en';
+        }
+    @endphp
+    
     <div class="lang-switcher-widget" id="langSwitcherWidget">
         {{-- Tombol Bahasa Indonesia --}}
-        <a href="{{ route('lang.switch', 'id') }}?redirect={{ urlencode(request()->fullUrl()) }}"
-           class="lang-btn {{ app()->getLocale() === 'id' ? 'lang-btn--active' : '' }}"
+        <a href="#"
+           class="lang-btn {{ $currentLang === 'id' ? 'lang-btn--active' : '' }}"
            title="Bahasa Indonesia"
            aria-label="Ganti ke Bahasa Indonesia"
-           onclick="sessionStorage.setItem('langScroll', window.scrollY);">
+           onclick="doGTranslate('id'); return false;">
             <span class="lang-code">ID</span>
         </a>
 
         {{-- Tombol Bahasa Inggris --}}
-        <a href="{{ route('lang.switch', 'en') }}?redirect={{ urlencode(request()->fullUrl()) }}"
-           class="lang-btn {{ app()->getLocale() === 'en' ? 'lang-btn--active' : '' }}"
+        <a href="#"
+           class="lang-btn {{ $currentLang === 'en' ? 'lang-btn--active' : '' }}"
            title="English"
            aria-label="Switch to English"
-           onclick="sessionStorage.setItem('langScroll', window.scrollY);">
+           onclick="doGTranslate('en'); return false;">
             <span class="lang-code">EN</span>
         </a>
     </div>
 
-    <!-- JS for Language Scroll Restoration -->
-    <script>
+    <!-- Google Translate Script & Logic -->
+    <script type="text/javascript">
+        function doGTranslate(lang) {
+            sessionStorage.setItem('langScroll', window.scrollY);
+            var theLang = (lang === 'en') ? '/id/en' : '/id/id';
+            // Set cookie for both domain and path to ensure compatibility
+            document.cookie = "googtrans=" + theLang + "; path=/; domain=" + window.location.hostname;
+            document.cookie = "googtrans=" + theLang + "; path=/";
+            window.location.reload();
+        }
+        
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'id', autoDisplay: false}, 'google_translate_element');
+        }
+
+        // Restore scroll position
         window.addEventListener('load', function() {
             var scrollPos = sessionStorage.getItem('langScroll');
             if (scrollPos) {
@@ -1183,6 +1204,18 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
             }
         });
     </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <div id="google_translate_element" style="display:none;"></div>
+    
+    <style>
+        /* Sembunyikan toolbar/banner atas Google Translate */
+        .goog-te-banner-frame.skiptranslate { display: none !important; }
+        body { top: 0px !important; position: static !important; }
+        /* Sembunyikan popup tooltip saat hover pada teks terjemahan */
+        .goog-tooltip { display: none !important; }
+        .goog-tooltip:hover { display: none !important; }
+        .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
+    </style>
 
     <!-- ========================================
     SCRIPTS
