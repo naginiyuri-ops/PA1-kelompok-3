@@ -234,6 +234,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('cultural-diversity', App\Http\Controllers\Admin\AdminCulturalDiversityController::class)->names('admin.cultural-diversity');
     Route::post('cultural-diversity/toggle-status/{id}', [App\Http\Controllers\Admin\AdminCulturalDiversityController::class, 'toggleStatus'])->name('admin.cultural-diversity.toggle-status');
 
+
+    // ========== SLIDER CRUD ==========
+    Route::resource('slider', App\Http\Controllers\Admin\AdminSliderController::class)->names('admin.slider');
+
     // ========== SEJARAH WISATA ==========
     Route::resource('sejarah-wisata', AdminSejarahWisataController::class)->names('admin.sejarah-wisata');
     Route::post('sejarah-wisata/toggle-status/{id}', [AdminSejarahWisataController::class, 'toggleStatus'])->name('admin.sejarah-wisata.toggle-status');
@@ -292,5 +296,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 Route::get('/debug-lang', function() { return 'Locale: ' . app()->getLocale() . ' Session: ' . session('locale'); });
 
 }); // <-- Close LanguageMiddleware group
+
 
 

@@ -80,7 +80,7 @@
         background-position: center;
         background-repeat: no-repeat;
         opacity: 0;
-        animation: slideFade 20s ease-in-out infinite;
+        
     }
     
     .hero-slide-1 { background-image: url('/image/meat/slide2.jpg'); animation-delay: 0s; }
@@ -842,11 +842,17 @@
 <!-- ==================== HERO ==================== -->
 <section class="hero-section">
     <div class="hero-slideshow">
-        <div class="hero-slide hero-slide-1"></div>
-        <div class="hero-slide hero-slide-2"></div>
-        <div class="hero-slide hero-slide-3"></div>
-        <div class="hero-slide hero-slide-4"></div>
-        <div class="hero-slide hero-slide-5"></div>
+        @if(isset($homeSliders) && count($homeSliders) > 0)
+            @foreach($homeSliders as $index => $slider)
+                <div class="hero-slide hero-slide-{{ $index + 1 }}"></div>
+            @endforeach
+        @else
+            <div class="hero-slide hero-slide-1"></div>
+            <div class="hero-slide hero-slide-2"></div>
+            <div class="hero-slide hero-slide-3"></div>
+            <div class="hero-slide hero-slide-4"></div>
+            <div class="hero-slide hero-slide-5"></div>
+        @endif
     </div>
     <div class="hero-overlay"></div>
     
@@ -1178,3 +1184,5 @@
 </script>
 
 @endsection
+
+
