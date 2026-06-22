@@ -333,9 +333,9 @@
                 <div class="col-third">
                     <div class="mb-3">
                         <label>Kontak</label>
-                        <input type="text" name="kontak" class="form-control" value="{{ old('kontak', $data->kontak) }}" placeholder="Contoh: 081234567890 atau -">
+                        <input type="number" name="kontak" class="form-control" value="{{ old('kontak', $data->kontak) }}" min="0" step="1" inputmode="numeric" pattern="[0-9]*" placeholder="Contoh: 081234567890">
                         <div class="form-text">
-                            <i class="fas fa-info-circle"></i> Isi dengan "-" jika tidak ada, atau 12 digit angka
+                            <i class="fas fa-info-circle"></i> Masukkan nomor kontak 12 digit angka.
                         </div>
                     </div>
                 </div>

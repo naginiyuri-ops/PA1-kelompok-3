@@ -26,7 +26,7 @@
     .hero-section {
         position: relative;
         height: 400px;
-        margin-top: 60px; /* Offset for navbar */
+        margin-top: 0; /* Offset for navbar */
         display: flex;
         align-items: center;
         justify-content: center;

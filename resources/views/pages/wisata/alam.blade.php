@@ -24,7 +24,7 @@
 
     .hero-dest {
         background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
-        padding: 120px 0 80px; margin-top: 60px;
+        padding: 120px 0 80px; margin-top: 0;
         text-align: center; position: relative; overflow: hidden;
     }
     .hero-dest::before {
