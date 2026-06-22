@@ -36,10 +36,6 @@
         color: #c6a43b;
     }
     
-    .card-body {
-        padding: 24px;
-    }
-    
     .mb-3 {
         margin-bottom: 20px;
     }
@@ -250,16 +246,22 @@
         </a>
     </div>
     
-    <div class="card-body">
-        @if($errors->any())
-            <div class="alert-danger">
-                <ul class="mb-0">
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+ @if ($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>⚠ Terdapat kesalahan:</strong>
+
+        <ul class="mb-0 mt-2">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+        </button>
+    </div>
+@endif
         
         <form action="{{ route('admin.penginapan.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -297,9 +299,14 @@
                 <div class="col-third">
                     <div class="mb-3">
                         <label>Kontak</label>
-                        <input type="text" name="kontak" class="form-control" value="{{ old('kontak') }}" placeholder="Contoh: 081234567890 atau -">
+                        <input type="text" name="kontak" class="form-control" value="{{ old('kontak') }}" placeholder="Contoh: 081234567890">
+                        @error('kontak')
+                      <div class="text-danger mt-1">
+                       {{ $message }}
+                     </div>
+                     @enderror
                         <div class="form-text">
-                            <i class="fas fa-info-circle"></i> Isi dengan "-" jika tidak ada, atau 12 digit angka
+                            <i class="fas fa-info-circle"></i> Masukkan nomor kontak 12 digit angka.
                         </div>
                     </div>
                 </div>
@@ -308,10 +315,15 @@
                     <div class="mb-3">
                         <label>Harga</label>
                         <div class="price-wrapper">
-                            <input type="text" name="harga" id="hargaInput" class="form-control" value="{{ old('harga') }}" placeholder="Contoh: Rp250.000/malam, Free, 200000">
+                            <input type="number" name="harga" id="hargaInput" class="form-control" value="{{ old('harga') }}" min="0" placeholder="Contoh: Rp250000 / Free">
+                            @error('harga')
+                            <div class="text-danger mt-1">
+                           {{ $message }}
+                            </div>
+                            @enderror
                             <div class="free-checkbox">
                                 <input type="checkbox" name="free_harga" id="freeHarga" value="1">
-                                <label for="freeHarga">✅ Free</label>
+                                <label for="freeHarga">Free</label>
                             </div>
                         </div>
                         <div class="form-text">

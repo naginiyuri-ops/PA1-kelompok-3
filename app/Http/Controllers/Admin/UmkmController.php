@@ -23,17 +23,20 @@ class UmkmController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string|max:255',
+            'nama_usaha' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'lokasi' => 'nullable|string|max:255',
-            'kontak' => 'nullable|string|max:100',
+            'kontak' => 'nullable|regex:/^[0-9]{12,15}$/',
             'urutan' => 'nullable|integer',
             'status' => 'nullable|boolean',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-        ]);
+        ],[
+            'kontak.regex' => 'Masukkan nomor telepon dengan 12-15 digit angka.',
+        ]
+        );
 
         $data = [
-            'nama_usaha' => $request->nama,
+            'nama_usaha' => $request->nama_usaha,
             'nama_usaha_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
             'pemilik' => $request->pemilik ?? 'Admin',
             'alamat' => $request->lokasi ?? 'Desa Meat',

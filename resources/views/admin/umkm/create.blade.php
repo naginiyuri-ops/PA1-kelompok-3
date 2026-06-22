@@ -36,10 +36,6 @@
         color: #c6a43b;
     }
     
-    .card-body {
-        padding: 24px;
-    }
-    
     .mb-3 {
         margin-bottom: 20px;
     }
@@ -207,16 +203,15 @@
         </a>
     </div>
     
-    <div class="card-body">
-        @if($errors->any())
-            <div class="alert-danger">
-                <ul class="mb-0">
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+    @if($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
         
         <form action="{{ route('admin.umkm.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -256,7 +251,7 @@
                 <div class="col-half">
                     <div class="mb-3">
                         <label>Kontak</label>
-                        <input type="text" name="kontak" class="form-control" value="{{ old('kontak') }}" placeholder="Contoh: 081234567890 atau -">
+                        <input type="text" name="kontak" class="form-control" value="{{ old('kontak') }}" placeholder="Contoh: 081234567890">
                         <div class="form-text">
                             <i class="fas fa-info-circle"></i> Isi dengan "-" jika tidak ada, atau 12 digit angka
                         </div>

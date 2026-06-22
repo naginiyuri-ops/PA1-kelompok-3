@@ -25,14 +25,29 @@ class PenginapanController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'harga' => 'nullable|string|max:100',
+            'harga' => 'required_without:free_harga|nullable|integer|min:0',
             'lokasi' => 'nullable|string|max:255',
-            'kontak' => 'nullable|string|max:100',
+            'kontak' => 'nullable|regex:/^[0-9]{12,15}$/',
             'urutan' => 'nullable|integer',
             'status' => 'nullable|boolean',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
             'gambar_tambahan' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-        ]);
+        ], [
+
+     'harga.required_without' =>
+        'Harga wajib diisi jika tidak memilih Free.',
+
+       'harga.integer' =>
+        'Harga hanya boleh berisi angka. Contoh: 5000',
+
+      'harga.min' =>
+        'Harga tidak boleh kurang dari 0.',
+
+        'kontak.regex' =>
+        'Kontak harus terdiri dari 12 sampai 15 angka tanpa spasi atau huruf.',
+        ]
+        
+        );
 
         $data = [
             'nama' => $request->nama,
