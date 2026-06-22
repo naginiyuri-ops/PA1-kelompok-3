@@ -134,7 +134,7 @@
             <a href="{{ route('destinasi.detail', [$category, $item->id]) }}" class="dest-card">
                 <div class="card-img-wrapper">
                     <img src="{{ $item->image_url }}" alt="{{ $item->title }}" loading="lazy"
-                         onerror="this.src='{{ asset('image/default.jpg') }}'">
+                         onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                     <div class="card-img-overlay"><i class="fas fa-arrow-right"></i></div>
                     <span class="card-badge">{{ $categoryLabel }}</span>
                 </div>
@@ -161,3 +161,4 @@
 </section>
 
 @endsection
+

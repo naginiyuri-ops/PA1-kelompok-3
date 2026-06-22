@@ -618,7 +618,7 @@
                 </ul>
             </div>
             <div class="profile-image" data-aos="fade-left" onclick="openLightbox('{{ asset('image/meat/danau.jpg') }}')">
-                <img src="{{ asset('image/meat/danau.jpg') }}" alt="Danau Toba" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                <img src="{{ asset('image/meat/danau.jpg') }}" alt="Danau Toba" loading="lazy" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
             </div>
         </div>
     </div>

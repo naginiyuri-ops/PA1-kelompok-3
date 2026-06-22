@@ -662,7 +662,7 @@
                 @endphp
                 
                 <div class="card-image-wrapper" onclick="openBerita({{ $item->id }})">
-                    <img src="{{ $imgSrc }}" alt="{{ $item->judul_trans }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                    <img src="{{ $imgSrc }}" alt="{{ $item->judul_trans }}" loading="lazy" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                     <div class="card-image-overlay">
                         <i class="fas fa-book-open"></i>
                     </div>

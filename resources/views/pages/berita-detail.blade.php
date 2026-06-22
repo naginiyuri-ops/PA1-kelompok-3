@@ -139,7 +139,7 @@
                         }
                     }
                 @endphp
-                <img src="{{ $imgSrc }}" alt="{{ $berita->judul_trans }}" class="main-img" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                <img src="{{ $imgSrc }}" alt="{{ $berita->judul_trans }}" class="main-img" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                 
                 <div class="konten">
                     {!! $berita->konten_trans !!}
@@ -169,7 +169,7 @@
                                     }
                                 }
                             @endphp
-                            <img src="{{ $thumbSrc }}" alt="{{ $item->judul_trans }}" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                            <img src="{{ $thumbSrc }}" alt="{{ $item->judul_trans }}" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                             <div class="info">
                                 <h4><a href="{{ route('berita.detail', $item->slug) }}">{{ Str::limit($item->judul_trans, 40) }}</a></h4>
                                 <span><i class="far fa-clock"></i> {{ $item->created_at->diffForHumans() }}</span>
@@ -185,3 +185,4 @@
 </section>
 
 @endsection
+

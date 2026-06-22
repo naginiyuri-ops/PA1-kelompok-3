@@ -344,7 +344,7 @@
                 <div class="slip-card" data-category="{{ $filterCat }}"
                      onclick="openPhoto('{{ $imgSrc }}', '{{ $judul }}', '{{ $deskripsi }}', '{{ $kategoriModal }}', '{{ $lokasi }}')">
                     <div class="slip-image">
-                        <img src="{{ $imgSrc }}" alt="{{ $item->judul_trans }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                        <img src="{{ $imgSrc }}" alt="{{ $item->judul_trans }}" loading="lazy" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                         <div class="slip-overlay">
                             <span class="slip-category">{{ strtoupper($item->kategori ?? (app()->getLocale() == 'en' ? 'GALLERY' : 'GALERI')) }}</span>
                         </div>

@@ -134,7 +134,7 @@
                 <div class="card-img-wrapper">
                     <img src="{{ $item->gambar_url }}"
                          alt="{{ $item->nama_trans }}" loading="lazy"
-                         onerror="this.src='{{ asset('image/default.jpg') }}'">
+                         onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                     <div class="card-img-overlay"><i class="fas fa-arrow-right"></i></div>
                     <span class="card-badge">{{ __('app.facility.accommodation') }}</span>
                 </div>
@@ -161,3 +161,4 @@
 </section>
 
 @endsection
+

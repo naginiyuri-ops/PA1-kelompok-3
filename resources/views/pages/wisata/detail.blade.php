@@ -289,7 +289,7 @@
 
 {{-- ── HERO SECTION ── --}}
 <section class="hero-section">
-    <img src="{{ $destination->hero_image_url }}" alt="Hero {{ $destination->title }}" class="hero-bg" onerror="this.src='{{ asset('image/default.jpg') }}'">
+    <img src="{{ $destination->hero_image_url }}" alt="Hero {{ $destination->title }}" class="hero-bg" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
     <div class="hero-overlay"></div>
     <div class="hero-content">
         <h1 class="hero-title">{{ $destination->title }}</h1>
@@ -313,7 +313,7 @@
     {{-- Card Atas: Foto & Info Singkat --}}
     <div class="top-card">
         <div class="top-card-left">
-            <img src="{{ $destination->image_url }}" alt="{{ $destination->title }}" onerror="this.src='{{ asset('image/default.jpg') }}'">
+            <img src="{{ $destination->image_url }}" alt="{{ $destination->title }}" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
             <div class="photo-badge">
                 <i class="fas fa-camera"></i> 1 Foto
             </div>
@@ -376,3 +376,4 @@
 </main>
 
 @endsection
+

@@ -91,7 +91,7 @@
             @php
                 $imgSrc = $item->gambar ? asset($item->gambar) : asset('image/default.jpg');
             @endphp
-            <img src="{{ $imgSrc }}" alt="{{ $item->nama_trans }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+            <img src="{{ $imgSrc }}" alt="{{ $item->nama_trans }}" loading="lazy" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
             <div class="content">
                 <span class="badge-kategori badge-{{ $item->kategori }}">
                     {{ ucfirst($item->kategori) }}

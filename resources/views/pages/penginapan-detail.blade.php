@@ -141,7 +141,7 @@
 <div class="detail-hero">
     <img src="{{ $item->gambar_url }}"
          alt="{{ $item->nama_trans }}"
-         onerror="this.src='{{ asset('image/default.jpg') }}'">
+         onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
     <div class="detail-hero-overlay">
         <div class="detail-hero-content">
             <div class="detail-hero-badge">🏨 {{ __('app.facility.accommodation') }}</div>
@@ -232,7 +232,7 @@
                 <a href="{{ route('fasilitas.penginapan.detail', $rel->id) }}" class="related-card">
                     <img src="{{ $rel->gambar_url }}"
                          alt="{{ $rel->nama_trans }}" loading="lazy"
-                         onerror="this.src='{{ asset('image/default.jpg') }}'">
+                         onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                     <div class="related-content">
                         <div class="related-title">{{ $rel->nama_trans }}</div>
                         <div class="related-link">{{ __('app.common.read_more') }} <i class="fas fa-arrow-right"></i></div>
@@ -247,3 +247,4 @@
 </section>
 
 @endsection
+

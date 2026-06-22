@@ -73,7 +73,7 @@
                     <td style="padding:14px 16px; vertical-align:middle;">
                         <img src="{{ $item->image_url }}" alt="{{ $item->title }}"
                              style="width:55px; height:55px; object-fit:cover; border-radius:10px; border:1px solid #e2e8f0;"
-                             onerror="this.src='{{ asset('image/default.jpg') }}'">
+                             onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                     </td>
 
                     {{-- Judul --}}
@@ -158,3 +158,4 @@
 
 </div>
 @endsection
+

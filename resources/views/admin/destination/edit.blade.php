@@ -175,7 +175,7 @@
                     <div style="margin-bottom:14px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
                         <img src="{{ $destination->image_url }}" alt="{{ $destination->title }}"
                              style="width:100px; height:80px; object-fit:cover; border-radius:10px; border:2px solid #e2e8f0;"
-                             onerror="this.src='{{ asset('image/default.jpg') }}'">
+                             onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                         <div>
                             <div style="font-size:0.78rem; color:#64748b; margin-bottom:6px;">Gambar saat ini</div>
                             {{-- Opsi hapus gambar tanpa mengunggah yang baru --}}
@@ -213,7 +213,7 @@
                     <div style="margin-bottom:14px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
                         <img src="{{ $destination->hero_image_url }}" alt="{{ $destination->title }}"
                              style="width:100px; height:80px; object-fit:cover; border-radius:10px; border:2px solid #e2e8f0;"
-                             onerror="this.src='{{ asset('image/default.jpg') }}'">
+                             onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                         <div>
                             <div style="font-size:0.78rem; color:#64748b; margin-bottom:6px;">Gambar hero saat ini</div>
                             {{-- Opsi hapus gambar tanpa mengunggah yang baru --}}
@@ -352,3 +352,4 @@
     }
 </script>
 @endsection
+

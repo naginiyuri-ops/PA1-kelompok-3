@@ -202,7 +202,7 @@
                         }
                     }
                 @endphp
-                <img src="{{ $imgSrc }}" alt="{{ $item->nama_trans }}" class="main-img" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                <img src="{{ $imgSrc }}" alt="{{ $item->nama_trans }}" class="main-img" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                 
                 @if($item->video_url)
                 <div class="video-container">
@@ -279,7 +279,7 @@
                             }
                         }
                     @endphp
-                    <img src="{{ $recImg }}" alt="{{ $rec->nama_trans }}" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                    <img src="{{ $recImg }}" alt="{{ $rec->nama_trans }}" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                     <div class="caption">
                         <h4>{{ Str::limit($rec->nama_trans, 30) }}</h4>
                         <p style="font-size:0.65rem; color:#94a3b8; margin:0;">

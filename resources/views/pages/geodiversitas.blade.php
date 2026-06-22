@@ -168,7 +168,7 @@
                         }
                     }
                 @endphp
-                <img src="{{ $imgSrc }}" alt="{{ $item->nama_trans }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                <img src="{{ $imgSrc }}" alt="{{ $item->nama_trans }}" loading="lazy" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                 <div class="content">
                     <span class="badge-tipe badge-{{ $item->tipe_geologi ?? 'other' }}">
                         {{ ucfirst($item->tipe_geologi ?? 'Lainnya') }}

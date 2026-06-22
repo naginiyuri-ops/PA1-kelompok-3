@@ -358,7 +358,7 @@
                     <td data-label="Gambar">
                         @if($item->foto_utama && file_exists(public_path($item->foto_utama)))
                             <img src="{{ asset($item->foto_utama) }}" class="table-img" 
-                                 onerror="this.src='{{ asset('image/umkm/default.jpg') }}'" alt="{{ $item->nama_usaha }}">
+                                 onerror="this.onerror=null; this.src='{{ asset('image/umkm/default.jpg') }}'" alt="{{ $item->nama_usaha }}">
                         @else
                             <img src="{{ asset('image/umkm/default.jpg') }}" class="table-img" alt="Default">
                         @endif

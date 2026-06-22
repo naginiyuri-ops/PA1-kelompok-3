@@ -82,12 +82,25 @@
         opacity: 0;
         
     }
-    
-    .hero-slide-1 { background-image: url('/image/meat/slide2.jpg'); animation-delay: 0s; }
-    .hero-slide-2 { background-image: url('/image/meat/slide5.jpg'); animation-delay: 4s; }
-    .hero-slide-3 { background-image: url('/image/meat/meat-detail.jpg'); animation-delay: 8s; }
-    .hero-slide-4 { background-image: url('/image/meat/liang-sipege-hero.jpg'); animation-delay: 12s; }
-    .hero-slide-5 { background-image: url('/image/meat/Jabubatak.jpg'); animation-delay: 16s; }
+    @if(isset($homeSliders) && count($homeSliders) > 0)
+        @php
+            $total = count($homeSliders);
+            $duration = $total * 4; // 4s per slide
+        @endphp
+        @foreach($homeSliders as $index => $slider)
+        .hero-slide-{{ $index + 1 }} { 
+            background-image: url('{{ asset('storage/' . $slider->image_path) }}'); 
+            animation: slideFade {{ $duration }}s ease-in-out infinite;
+            animation-delay: {{ $index * 4 }}s; 
+        }
+        @endforeach
+    @else
+        .hero-slide-1 { background-image: url('/image/meat/slide2.jpg'); animation: slideFade 20s ease-in-out infinite; animation-delay: 0s; }
+        .hero-slide-2 { background-image: url('/image/meat/slide5.jpg'); animation: slideFade 20s ease-in-out infinite; animation-delay: 4s; }
+        .hero-slide-3 { background-image: url('/image/meat/meat-detail.jpg'); animation: slideFade 20s ease-in-out infinite; animation-delay: 8s; }
+        .hero-slide-4 { background-image: url('/image/meat/liang-sipege-hero.jpg'); animation: slideFade 20s ease-in-out infinite; animation-delay: 12s; }
+        .hero-slide-5 { background-image: url('/image/meat/Jabubatak.jpg'); animation: slideFade 20s ease-in-out infinite; animation-delay: 16s; }
+    @endif
     
     .hero-overlay {
         position: absolute;
@@ -895,7 +908,7 @@
             @endphp
             <div class="destinasi-item" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
                 <div class="destinasi-image" onclick="openLightbox('{{ $imgSrc }}', '{{ addslashes($item->title) }}', '{{ addslashes($item->location ?? 'Lokasi belum diisi') }}')">
-                    <img src="{{ $imgSrc }}" alt="{{ $item->title }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                    <img src="{{ $imgSrc }}" alt="{{ $item->title }}" loading="lazy" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                 </div>
                 <div class="destinasi-content">
                     <div class="destinasi-number">{{ sprintf('%02d', $loop->iteration) }}</div>
@@ -976,7 +989,7 @@
                     }
                 @endphp
                 <div class="galeri-card" onclick="openLightbox('{{ $imgSrc }}', '{{ addslashes($item->judul_trans) }}', '{{ addslashes($item->kategori ?? 'Galeri') }} · {{ $item->lokasi ?? 'Danau Toba' }}')">
-                    <img src="{{ $imgSrc }}" alt="{{ $item->judul_trans }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                    <img src="{{ $imgSrc }}" alt="{{ $item->judul_trans }}" loading="lazy" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                     <div class="caption">
                         <h4>{{ Str::limit($item->judul_trans, 30) }}</h4>
                         <p>{{ $item->kategori ?? 'Galeri' }} · {{ $item->lokasi ?? 'Danau Toba' }}</p>
@@ -1040,7 +1053,7 @@
                 }
             @endphp
             <div class="berita-card" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}" onclick="window.location.href='{{ url('/berita/' . $item->slug) }}'">
-                <img src="{{ $imgSrc }}" alt="{{ $item->judul_trans }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                <img src="{{ $imgSrc }}" alt="{{ $item->judul_trans }}" loading="lazy" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                 <div class="content">
                     <div class="date">
                         <i class="far fa-calendar-alt"></i>
@@ -1184,5 +1197,6 @@
 </script>
 
 @endsection
+
 
 

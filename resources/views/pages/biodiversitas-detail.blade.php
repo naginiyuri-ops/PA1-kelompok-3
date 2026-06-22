@@ -154,7 +154,7 @@
                         $imgSrc = asset('image/biodiversitas/' . $item->gambar);
                     }
                 @endphp
-                <img src="{{ $imgSrc }}" alt="{{ $item->nama_trans }}" class="main-img" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                <img src="{{ $imgSrc }}" alt="{{ $item->nama_trans }}" class="main-img" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                 <div class="deskripsi">{!! $item->deskripsi_trans !!}</div>
             </div>
             <div class="col-lg-4">
@@ -199,7 +199,7 @@
                             $recImg = asset($rec->gambar);
                         }
                     @endphp
-                    <img src="{{ $recImg }}" alt="{{ $rec->nama_trans }}" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                    <img src="{{ $recImg }}" alt="{{ $rec->nama_trans }}" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                     <div class="caption">
                         <h4>{{ Str::limit($rec->nama_trans, 25) }}</h4>
                     </div>

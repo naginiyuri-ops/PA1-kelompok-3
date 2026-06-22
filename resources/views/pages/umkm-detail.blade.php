@@ -264,7 +264,7 @@
 <div class="detail-hero">
     <img src="{{ $item->foto_utama ? asset($item->foto_utama) : asset('image/default.jpg') }}"
          alt="{{ $item->nama_usaha_trans }}"
-         onerror="this.src='{{ asset('image/default.jpg') }}'">
+         onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
     <div class="detail-hero-overlay">
         <div class="detail-hero-content">
             <div class="detail-hero-badge">🏪 {{ __('app.umkm.title') }}</div>
@@ -373,7 +373,7 @@
                     <div class="related-card-img-wrap">
                         <img src="{{ $rel->foto_utama ? asset($rel->foto_utama) : asset('image/default.jpg') }}"
                              alt="{{ $rel->nama_usaha_trans }}" loading="lazy"
-                             onerror="this.src='{{ asset('image/default.jpg') }}'">
+                             onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                     </div>
                     <div class="related-content">
                         <div class="related-title">{{ $rel->nama_usaha_trans }}</div>
@@ -389,3 +389,4 @@
 </section>
 
 @endsection
+

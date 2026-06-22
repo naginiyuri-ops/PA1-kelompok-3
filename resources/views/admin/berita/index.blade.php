@@ -395,7 +395,7 @@
                                 }
                             }
                         @endphp
-                        <img src="{{ $imgUrl }}" class="img-preview" alt="{{ $item->judul }}" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                        <img src="{{ $imgUrl }}" class="img-preview" alt="{{ $item->judul }}" onerror="this.onerror=null; this.src='\{\{ asset\('image/default.jpg'\) \}\}'">
                     </td>
                     <td data-label="Judul">
                         <strong>{{ Str::limit($item->judul, 50) }}</strong>

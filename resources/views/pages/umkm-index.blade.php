@@ -307,7 +307,7 @@
             @forelse($umkm as $item)
             <a href="{{ route('fasilitas.umkm.detail', $item->id) }}" class="berita-card" data-aos="fade-up" data-aos-delay="{{ ($loop->index % 3) * 100 }}">
                 <div class="card-image-wrapper">
-                    <img src="{{ $item->foto_utama ? asset($item->foto_utama) : asset('image/default.jpg') }}" alt="{{ $item->nama_usaha_trans }}" loading="lazy" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                    <img src="{{ $item->foto_utama ? asset($item->foto_utama) : asset('image/default.jpg') }}" alt="{{ $item->nama_usaha_trans }}" loading="lazy" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                     <div class="card-image-overlay">
                         <i class="fas fa-arrow-right"></i>
                     </div>

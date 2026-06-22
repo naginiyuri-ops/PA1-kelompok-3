@@ -385,12 +385,12 @@
                         @php
                             $imgUrl = asset('storage/' . $item->image_path);
                         @endphp
-                        <img src="{{ $imgUrl }}" class="img-preview" alt="{{ $item->Judul Utama }}" onerror="this.src='{{ asset('image/default.jpg') }}'">
+                        <img src="{{ $imgUrl }}" class="img-preview" alt="{{ $item->title }}" onerror="this.onerror=null; this.src='\{\{ asset\('image/default.jpg'\) \}\}'">
                     </td>
                     <td data-label="Judul Utama">
-                        <strong>{{ Str::limit($item->Judul Utama, 50) }}</strong>
+                        <strong>{{ Str::limit($item->title, 50) }}</strong>
                     </td>
-                    <td data-label="Penulis">{{ $item->penulis ?? 'Admin' }}</td>
+                    <td data-label="Sub Judul">{{ $item->subtitle ?? '-' }}</td>
                     <td data-label="Tanggal">{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') }}</td>
                     
                     
@@ -425,4 +425,5 @@
     
 </div>
 @endsection
+
 

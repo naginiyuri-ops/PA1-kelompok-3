@@ -405,7 +405,7 @@
                     <td data-label="Gambar">
                         @if($item->gambar && file_exists(public_path($item->gambar)))
                             <img src="{{ asset($item->gambar) }}" class="table-img" 
-                                 onerror="this.src='{{ asset('image/penginapan/default.jpg') }}'" alt="{{ $item->nama }}">
+                                 onerror="this.onerror=null; this.src='{{ asset('image/penginapan/default.jpg') }}'" alt="{{ $item->nama }}">
                         @else
                             <img src="{{ asset('image/penginapan/default.jpg') }}" class="table-img" alt="Default">
                         @endif
