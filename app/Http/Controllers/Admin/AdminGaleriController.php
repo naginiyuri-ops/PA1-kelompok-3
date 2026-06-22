@@ -7,7 +7,7 @@ use App\Models\Galeri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class GaleriController extends Controller
+class AdminGaleriController extends Controller
 {
     public function index()
     {

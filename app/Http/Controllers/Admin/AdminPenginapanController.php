@@ -7,7 +7,7 @@ use App\Models\Penginapan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class PenginapanController extends Controller
+class AdminPenginapanController extends Controller
 {
     public function index()
     {

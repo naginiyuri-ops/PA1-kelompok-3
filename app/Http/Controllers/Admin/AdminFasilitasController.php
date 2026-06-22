@@ -7,7 +7,7 @@ use App\Models\Fasilitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class FasilitasController extends Controller
+class AdminFasilitasController extends Controller
 {
     public function index()
     {

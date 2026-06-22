@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\SejarahWisata;
 use App\Models\PengelolaGeosite;
 
-class TentangGeositeController extends Controller
+class PublicTentangGeositeController extends Controller
 {
     public function index()
     {

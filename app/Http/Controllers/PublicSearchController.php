@@ -10,7 +10,7 @@ use App\Models\Biodiversitas;
 use App\Models\Geodiversitas;
 use App\Models\CulturalDiversity;
 
-class SearchController extends Controller
+class PublicSearchController extends Controller
 {
     /**
      * Endpoint pencarian global.
@@ -445,4 +445,5 @@ class SearchController extends Controller
         ]);
     }
 }
+
 

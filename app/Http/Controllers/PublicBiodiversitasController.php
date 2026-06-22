@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Biodiversitas;
 use Illuminate\Http\Request;
 
-class BiodiversitasController extends Controller
+class PublicBiodiversitasController extends Controller
 {
     public function index()
     {

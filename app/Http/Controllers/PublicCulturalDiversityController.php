@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CulturalDiversity;
 use Illuminate\Http\Request;
 
-class CulturalDiversityController extends Controller
+class PublicCulturalDiversityController extends Controller
 {
     public function index()
     {

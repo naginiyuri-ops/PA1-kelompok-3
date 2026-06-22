@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Kontak;
 use Illuminate\Http\Request;
 
-class KontakController extends Controller
+class AdminKontakController extends Controller
 {
     public function index()
     {
