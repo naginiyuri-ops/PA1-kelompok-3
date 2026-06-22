@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Penginapan - Geosite Danau Toba')
+@section('title', 'Akomodasi - Geosite Danau Toba')
 
 @section('content')
 
@@ -122,7 +122,7 @@
         <div class="hero-badge">{{ __('app.facility.title') }}</div>
         <h1><i class="fas fa-bed"></i> <span>{{ __('app.facility.accommodation') }}</span></h1>
         <div class="hero-divider"></div>
-        <p>{{ app()->getLocale() == 'en' ? 'List of the best and most comfortable accommodation facilities in Lake Toba Geosite area.' : 'Daftar fasilitas penginapan terbaik dan ternyaman di area Geosite Danau Toba.' }}</p>
+        <p>{{ app()->getLocale() == 'en' ? 'List of the best and most comfortable accommodation facilities in Lake Toba Geosite area.' : 'Daftar fasilitas akomodasi terbaik dan ternyaman di area Geosite Danau Toba.' }}</p>
     </div>
 </div>
 
@@ -161,4 +161,5 @@
 </section>
 
 @endsection
+
 

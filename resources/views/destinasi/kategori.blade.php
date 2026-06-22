@@ -248,8 +248,8 @@
                     'slug' => 'homestay-meat', 
                     'nama' => 'Homestay Meat', 
                     'lokasi' => 'Desa Meat, Kec. Tampahan', 
-                    'deskripsi' => 'Penginapan berbasis budaya yang dikelola warga setempat dengan pemandangan sawah dan Danau Toba.', 
-                    'tags' => ['Homestay', 'Budaya', 'Penginapan'],
+                    'deskripsi' => 'Akomodasi berbasis budaya yang dikelola warga setempat dengan pemandangan sawah dan Danau Toba.', 
+                    'tags' => ['Homestay', 'Budaya', 'Akomodasi'],
                     'foto' => 'image/meat/meat1.jpeg'
                 ]
             ]

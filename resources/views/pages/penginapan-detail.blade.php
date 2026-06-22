@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $item->nama_trans . ' - Penginapan Geosite Danau Toba')
+@section('title', $item->nama_trans . ' - Akomodasi Geosite Danau Toba')
 
 @section('content')
 
@@ -162,7 +162,7 @@
                         <img src="{{ asset($item->gambar_tambahan) }}" alt="Gambar Tambahan {{ $item->nama_trans }}" style="width: 100%; height: auto; display: block; object-fit: cover; max-height: 500px;">
                     </div>
                 @endif
-                <h2><i class="fas fa-bed" style="color:var(--gold);margin-right:10px;"></i>{{ app()->getLocale() == 'en' ? 'About this Accommodation' : 'Tentang Penginapan Ini' }}</h2>
+                <h2><i class="fas fa-bed" style="color:var(--gold);margin-right:10px;"></i>{{ app()->getLocale() == 'en' ? 'About this Accommodation' : 'Tentang Akomodasi Ini' }}</h2>
                 <div class="deskripsi">{{ $item->deskripsi_trans ?? (app()->getLocale() == 'en' ? 'Description not available.' : 'Deskripsi belum tersedia.') }}</div>
             </div>
 
@@ -217,16 +217,16 @@
                     <h4><i class="fas fa-list"></i> {{ app()->getLocale() == 'en' ? 'Navigation' : 'Navigasi' }}</h4>
                     <a href="{{ route('fasilitas.penginapan') }}" class="btn-back">
                         <i class="fas fa-arrow-left"></i>
-                        {{ app()->getLocale() == 'en' ? 'Back to Accommodation List' : 'Kembali ke Daftar Penginapan' }}
+                        {{ app()->getLocale() == 'en' ? 'Back to Accommodation List' : 'Kembali ke Daftar Akomodasi' }}
                     </a>
                 </div>
             </div>
         </div>
 
-        {{-- Penginapan Lainnya --}}
+        {{-- Akomodasi Lainnya --}}
         @if($related->count() > 0)
         <div class="related-section">
-            <h3>{{ app()->getLocale() == 'en' ? 'Other' : 'Penginapan' }} <span>{{ app()->getLocale() == 'en' ? 'Accommodations' : 'Lainnya' }}</span></h3>
+            <h3>{{ app()->getLocale() == 'en' ? 'Other' : 'Akomodasi' }} <span>{{ app()->getLocale() == 'en' ? 'Accommodations' : 'Lainnya' }}</span></h3>
             <div class="related-grid">
                 @foreach($related as $rel)
                 <a href="{{ route('fasilitas.penginapan.detail', $rel->id) }}" class="related-card">
@@ -247,4 +247,5 @@
 </section>
 
 @endsection
+
 

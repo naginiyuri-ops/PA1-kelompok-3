@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Penginapan')
+@section('title', 'Tambah Akomodasi')
 
 @section('content')
 <style>
@@ -239,7 +239,7 @@
     <div class="card-header">
         <h5>
             <i class="fas fa-hotel"></i>
-            Tambah Data Penginapan
+            Tambah Data Akomodasi
         </h5>
         <a href="{{ route('admin.penginapan.index') }}" class="btn-cancel" style="padding: 6px 16px;">
             <i class="fas fa-arrow-left"></i> Kembali
@@ -267,7 +267,7 @@
             @csrf
             
             <div class="mb-3">
-                <label>Nama Penginapan <span class="text-danger">*</span></label>
+                <label>Nama Akomodasi <span class="text-danger">*</span></label>
                 <input type="text" name="nama" id="penginapan_create_nama" class="form-control" value="{{ old('nama') }}" placeholder="Masukkan nama penginapan" required>
             </div>
             
@@ -278,7 +278,7 @@
 
             {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
             @include('admin.partials.translation-fields', [
-                'labelId'        => 'Nama Penginapan',
+                'labelId'        => 'Nama Akomodasi',
                 'nameId'         => 'nama_en',
                 'labelDesc'      => 'Deskripsi',
                 'nameDesc'       => 'deskripsi_en',
@@ -369,7 +369,7 @@
             
             <div class="checkbox-group">
                 <input type="checkbox" name="status" value="1" id="status" {{ old('status', 1) ? 'checked' : '' }}>
-                <label for="status">Aktifkan Penginapan</label>
+                <label for="status">Aktifkan Akomodasi</label>
             </div>
             
             <div class="btn-group">

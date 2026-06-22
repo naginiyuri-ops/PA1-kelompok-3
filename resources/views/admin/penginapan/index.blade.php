@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Manajemen Penginapan Meat')
+@section('title', 'Manajemen Akomodasi Meat')
 
 @section('content')
 <style>
@@ -355,10 +355,10 @@
     <div class="card-header">
         <h5>
             <i class="fas fa-hotel"></i>
-            Penginapan Meat
+            Akomodasi Meat
         </h5>
         <a href="{{ route('admin.penginapan.create') }}" class="btn-primary">
-            <i class="fas fa-plus"></i> Tambah Penginapan
+            <i class="fas fa-plus"></i> Tambah Akomodasi
         </a>
     </div>
     
@@ -443,8 +443,8 @@
                 <tr>
                     <td colspan="9" class="empty-state">
                         <i class="fas fa-hotel" style="font-size: 2rem; opacity: 0.5; display: block; margin-bottom: 10px;"></i>
-                        📭 Belum ada data Penginapan
-                        <p style="margin-top: 10px; font-size: 0.8rem;">Klik tombol "Tambah Penginapan" untuk mulai menambahkan</p>
+                        📭 Belum ada data Akomodasi
+                        <p style="margin-top: 10px; font-size: 0.8rem;">Klik tombol "Tambah Akomodasi" untuk mulai menambahkan</p>
                     </td>
                 </tr>
                 @endforelse
@@ -459,3 +459,4 @@
     @endif
 </div>
 @endsection
+

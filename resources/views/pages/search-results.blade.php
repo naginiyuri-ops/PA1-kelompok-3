@@ -324,7 +324,7 @@
         font-size: 3rem;
     }
 
-    /* Badge tipe konten (Berita, UMKM, Penginapan, dst) */
+    /* Badge tipe konten (Berita, UMKM, Akomodasi, dst) */
     .card-type-badge {
         position: absolute;
         top: 15px; left: 15px;
@@ -583,7 +583,7 @@
                             $iconMap = [
                                 'Berita'        => 'fa-newspaper',
                                 'UMKM'          => 'fa-store',
-                                'Penginapan'    => 'fa-hotel',
+                                'Akomodasi'    => 'fa-hotel',
                                 'Biodiversitas' => 'fa-leaf',
                                 'Geodiversitas' => 'fa-gem',
                                 'Budaya'        => 'fa-people-arrows',
@@ -679,7 +679,7 @@
                             </div>
                         @endif
 
-                        {{-- Harga (khusus Penginapan) --}}
+                        {{-- Harga (khusus Akomodasi) --}}
                         @if(!empty($item['harga']))
                             <div class="card-meta-item">
                                 <i class="fas fa-tag"></i>
@@ -687,7 +687,7 @@
                             </div>
                         @endif
 
-                        {{-- Kontak / no. telepon (khusus UMKM & Penginapan) --}}
+                        {{-- Kontak / no. telepon (khusus UMKM & Akomodasi) --}}
                         @if(!empty($item['kontak']))
                             <div class="card-meta-item">
                                 <i class="fas fa-phone-alt"></i>
@@ -739,7 +739,7 @@
                 <h3>{{ app()->getLocale() == 'en' ? 'Start Your Search' : 'Mulai Pencarian Anda' }}</h3>
                 <p>
                     {{ app()->getLocale() == 'en' ? 'Type a keyword in the search bar above to find' : 'Ketikkan kata kunci di kolom pencarian di atas untuk menemukan' }}
-                    {{ app()->getLocale() == 'en' ? 'destinations, news, MSMEs, accommodations, and other content.' : 'destinasi, berita, UMKM, penginapan, dan konten lainnya.' }}
+                    {{ app()->getLocale() == 'en' ? 'destinations, news, MSMEs, accommodations, and other content.' : 'destinasi, berita, UMKM, akomodasi, dan konten lainnya.' }}
                 </p>
                 <a href="{{ url('/') }}" class="btn-home">
                     <i class="fas fa-home"></i> {{ app()->getLocale() == 'en' ? 'Back to Home' : 'Kembali ke Beranda' }}
@@ -753,3 +753,4 @@
 </section>
 
 @endsection
+

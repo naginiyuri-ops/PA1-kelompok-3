@@ -140,7 +140,7 @@
             color: white !important;
             margin: 0;
             padding: 0;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Quincy CF', serif;
             letter-spacing: 0.3px;
             white-space: nowrap;
         }
@@ -170,7 +170,8 @@
         /* NAV LINKS */
         .nav-link {
             color: rgba(255, 255, 255, 0.88) !important;
-            font-weight: 600;
+            font-family: 'Quincy CF', serif !important;
+            font-weight: bold !important;
             font-size: 0.9rem; /* Ukuran teks diperbesar dari 0.72rem */
             padding: 5px 10px !important; /* Padding sedikit diperbesar agar proporsional */
             border-radius: 7px;
@@ -653,7 +654,7 @@
         .footer-brand h4 {
             font-size: 1.4rem;
             font-weight: 800;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Quincy CF', serif;
             background: linear-gradient(135deg, #fff 0%, var(--gold) 100%);
             -webkit-background-clip: text;
             background-clip: text;
@@ -946,7 +947,12 @@
             .lang-code { font-size: 0.75rem; }
         }
 
-    </style>
+    
+h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
+    font-family: 'Quincy CF', serif !important;
+    font-weight: bold !important;
+}
+</style>
 
     @stack('styles')
 </head>
@@ -1392,3 +1398,4 @@
     @stack('scripts')
 </body>
 </html> 
+
