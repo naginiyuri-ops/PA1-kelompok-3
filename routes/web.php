@@ -138,6 +138,9 @@ Route::get('/sovenir-umkm', [PublicFasilitasUtamaController::class, 'umkmIndex']
 // PENGINAPAN
 Route::get('/fasilitas/penginapan', [PublicFasilitasUtamaController::class, 'penginapan'])->name('fasilitas.penginapan');
 Route::get('/fasilitas/penginapan/{id}', [PublicFasilitasUtamaController::class, 'penginapanDetail'])->name('fasilitas.penginapan.detail');
+// Also expose at top-level paths
+Route::get('/penginapan', [PublicFasilitasUtamaController::class, 'penginapan'])->name('penginapan');
+Route::get('/penginapan/{id}', [PublicFasilitasUtamaController::class, 'penginapanDetail'])->name('penginapan.detail');
 
 // ========================================
 // ========== GALERI ==========
