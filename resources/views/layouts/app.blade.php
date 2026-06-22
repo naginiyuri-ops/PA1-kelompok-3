@@ -1150,28 +1150,39 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
     <!-- BACK TO TOP -->
     <div class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
-    </div>
-
-    {{-- ========================================
-         WIDGET FLOATING GANTI BAHASA — pill ID | EN
+    </div>    {{-- ========================================
+         WIDGET FLOATING GANTI BAHASA - pill ID | EN
     ======================================== --}}
     <div class="lang-switcher-widget" id="langSwitcherWidget">
         {{-- Tombol Bahasa Indonesia --}}
-        <a href="{{ route('lang.switch', 'id') }}"
+        <a href="{{ route('lang.switch', 'id') }}?redirect={{ urlencode(request()->fullUrl()) }}"
            class="lang-btn {{ app()->getLocale() === 'id' ? 'lang-btn--active' : '' }}"
            title="Bahasa Indonesia"
-           aria-label="Ganti ke Bahasa Indonesia">
+           aria-label="Ganti ke Bahasa Indonesia"
+           onclick="sessionStorage.setItem('langScroll', window.scrollY);">
             <span class="lang-code">ID</span>
         </a>
 
         {{-- Tombol Bahasa Inggris --}}
-        <a href="{{ route('lang.switch', 'en') }}"
+        <a href="{{ route('lang.switch', 'en') }}?redirect={{ urlencode(request()->fullUrl()) }}"
            class="lang-btn {{ app()->getLocale() === 'en' ? 'lang-btn--active' : '' }}"
            title="English"
-           aria-label="Switch to English">
+           aria-label="Switch to English"
+           onclick="sessionStorage.setItem('langScroll', window.scrollY);">
             <span class="lang-code">EN</span>
         </a>
     </div>
+
+    <!-- JS for Language Scroll Restoration -->
+    <script>
+        window.addEventListener('load', function() {
+            var scrollPos = sessionStorage.getItem('langScroll');
+            if (scrollPos) {
+                window.scrollTo(0, parseInt(scrollPos));
+                sessionStorage.removeItem('langScroll');
+            }
+        });
+    </script>
 
     <!-- ========================================
     SCRIPTS
