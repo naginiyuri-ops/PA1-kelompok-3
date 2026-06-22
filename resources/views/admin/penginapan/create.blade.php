@@ -299,7 +299,7 @@
                 <div class="col-third">
                     <div class="mb-3">
                         <label>Kontak</label>
-                        <input type="text" name="kontak" class="form-control" value="{{ old('kontak') }}" placeholder="Contoh: 081234567890">
+                        <input type="number" name="kontak" class="form-control" value="{{ old('kontak') }}" min="0" step="1" inputmode="numeric" pattern="[0-9]*" placeholder="Contoh: 081234567890">
                         @error('kontak')
                       <div class="text-danger mt-1">
                        {{ $message }}
