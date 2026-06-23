@@ -18,9 +18,18 @@ class AdminKontakController extends Controller
     {
         $request->validate([
             'alamat' => 'nullable|string',
-            'telepon' => 'nullable|string|max:20',
+            'telepon' => 'nullable|string|max:100',
             'email' => 'nullable|email|max:100',
-            'link_maps' => 'nullable|string|max:500',
+            'link_maps' => 'nullable|string',
+            'jam_operasional' => 'nullable|string',
+            'map_iframe' => 'nullable|string',
+            'map_lokasi' => 'nullable|string',
+            'lokasi_bawah' => 'nullable|string',
+            'social_fb' => 'nullable|string',
+            'social_ig' => 'nullable|string',
+            'social_twitter' => 'nullable|string',
+            'social_youtube' => 'nullable|string',
+            'social_tiktok' => 'nullable|string',
         ]);
 
         $kontak = Kontak::first();

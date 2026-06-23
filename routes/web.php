@@ -30,6 +30,10 @@ use Illuminate\Support\Facades\DB;
 // ========================================
 // ========== FRONTEND ROUTES (PUBLIC) ==========
 // ========================================
+use App\Http\Controllers\PublicKontakController;
+
+Route::get('/kontak', [PublicKontakController::class, 'index'])->name('kontak');
+Route::post('/kontak/kirim', [PublicKontakController::class, 'kirim'])->name('kontak.kirim');
 
 Route::get('/', [PublicHomeController::class, 'index'])->name('home');
 
@@ -118,9 +122,7 @@ Route::get('/galeri/{slug}', function ($slug) {
 
 
 // ========================================
-// ========== KONTAK ==========
-// ========================================
-Route::get('/kontak', [PublicHomeController::class, 'kontak'])->name('kontak');
+
 
 // ========================================
 // ========== GEOSITE ==========
@@ -260,5 +262,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 });
 
 Route::get('/debug-lang', function() { return 'Locale: ' . app()->getLocale() . ' Session: ' . session('locale'); });
+
+
 
 

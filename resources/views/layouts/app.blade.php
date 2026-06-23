@@ -1029,6 +1029,10 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
                         <a class="nav-link {{ request()->routeIs('berita*') ? 'active' : '' }}"
                            href="{{ url('/berita') }}">{{ __('app.nav.news') }}</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('kontak') ? 'active' : '' }}"
+                           href="{{ url('/kontak') }}">Kontak</a>
+                    </li>
 
                 </ul>
 
@@ -1069,9 +1073,12 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
     ======================================== -->
     <main style="margin: 0; padding: 0;">@yield('content')</main>
 
-    <!-- ========================================
+          <!-- ========================================
     FOOTER MODERN
-    ======================================== -->
+      ======================================== -->
+      @php
+          $kontakInfo = \App\Models\Kontak::first();
+      @endphp
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-grid">
@@ -1084,12 +1091,13 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
                     </div>
                     <h4>Geo<span>Toba</span></h4>
                     <p>{{ __('app.footer.tagline') }}</p>
-                    <div class="footer-social">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    </div>
+                                        <div class="footer-social">
+                          @if(isset($kontakInfo) && $kontakInfo->social_fb)<a href="{{ $kontakInfo->social_fb }}" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>@endif
+                          @if(isset($kontakInfo) && $kontakInfo->social_ig)<a href="{{ $kontakInfo->social_ig }}" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>@endif
+                          @if(isset($kontakInfo) && $kontakInfo->social_youtube)<a href="{{ $kontakInfo->social_youtube }}" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>@endif
+                          @if(isset($kontakInfo) && $kontakInfo->social_twitter)<a href="{{ $kontakInfo->social_twitter }}" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>@endif
+                          @if(isset($kontakInfo) && $kontakInfo->social_tiktok)<a href="{{ $kontakInfo->social_tiktok }}" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>@endif
+                      </div>
                 </div>
 
                 <!-- Quick Links -->
@@ -1115,22 +1123,29 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
                 </div>
 
                 <!-- Contact -->
-                <div class="footer-col">
+                                <div class="footer-col">
                     <h5>{{ __('app.footer.contact') }}</h5>
                     <div class="footer-contact">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Kabupaten Toba Samosir, Sumatera Utara</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+62 822 1234 5678</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>info@geotoba.com</span>
-                        </div>
-                    </div>
+                          @if(isset($kontakInfo) && $kontakInfo->alamat)
+                          <div class="contact-item">
+                              <i class="fas fa-map-marker-alt"></i>
+                              <span>{{ $kontakInfo->alamat }}</span>
+                          </div>
+                          @endif
+                          @if(isset($kontakInfo) && $kontakInfo->telepon)
+                          <div class="contact-item">
+                              <i class="fas fa-phone"></i>
+                              <span>{{ $kontakInfo->telepon }}</span>
+                          </div>
+                          @endif
+                          @if(isset($kontakInfo) && $kontakInfo->email)
+                          <div class="contact-item">
+                              <i class="fas fa-envelope"></i>
+                              <span>{{ $kontakInfo->email }}</span>
+                          </div>
+                          @endif
+                      </div>
+                  </div>
                 </div>
 
             </div>
@@ -1442,4 +1457,5 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
     @stack('scripts')
 </body>
 </html> 
+
 
