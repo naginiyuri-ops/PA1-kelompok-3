@@ -75,7 +75,7 @@
             <div class="empty-state">
                 <i class="fas fa-landmark"></i>
                 <p>Belum ada data {{ $categoryLabel }} yang tersedia.</p>
-                <p style="font-size:0.8rem;margin-top:8px;">Silakan tambahkan melalui panel admin.</p>
+                <p style="font-size:0.8rem;margin-top:8px;">Silahkan tambahkan melalui panel admin.</p>
             </div>
             @endforelse
         </div>

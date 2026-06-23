@@ -5,20 +5,62 @@
 @section('content')
 <style>
     .hero-biodiversitas {
-        background: linear-gradient(135deg, #003366 0%, #1a4a7a 100%);
-        padding: 120px 0 60px;
+        background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-medium) 100%);
+        padding: 140px 0 70px;
         margin-top: 0;
         text-align: center;
+        position: relative;
+        overflow: hidden;
         color: white;
     }
-    .hero-biodiversitas h1 {
-        font-size: 2.8rem;
-        font-weight: 700;
-        font-family: 'Playfair Display', serif;
+    .hero-biodiversitas::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+        animation: rotateSlow 25s linear infinite;
     }
+    @keyframes rotateSlow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    .hero-biodiversitas .container { position: relative; z-index: 2; }
+    .hero-biodiversitas .badge {
+        display: inline-block;
+        background: rgba(198, 164, 59, 0.15);
+        border: 1px solid rgba(198, 164, 59, 0.3);
+        color: var(--gold-light);
+        padding: 6px 20px;
+        border-radius: 50px;
+        font-size: 0.6rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+    .hero-biodiversitas h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 12px;
+    }
+    .hero-biodiversitas h1 span { color: var(--gold); }
     .hero-biodiversitas p {
         color: rgba(255,255,255,0.8);
         font-size: 0.9rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .hero-divider {
+        width: 60px;
+        height: 2px;
+        background: var(--gold);
+        margin: 15px auto 20px;
+        border-radius: 2px;
     }
     .grid-biodiversitas {
         display: grid;
@@ -75,13 +117,21 @@
     .badge-ekosistem { background: #dbeafe; color: #1e40af; }
     @media (max-width: 768px) {
         .grid-biodiversitas { grid-template-columns: 1fr; }
-        .hero-biodiversitas h1 { font-size: 2rem; }
+        .hero-biodiversitas { padding: 100px 0 40px; }
+        .hero-biodiversitas h1 { font-size: 1.8rem; }
+    }
+    @media (max-width: 480px) {
+        .hero-biodiversitas h1 { font-size: 1.4rem; }
     }
 </style>
 
 <div class="hero-biodiversitas">
-    <h1>{{ __('app.biodiversity.title') }}</h1>
-    <p>{{ __('app.biodiversity.subtitle') }}</p>
+    <div class="container">
+        <div class="badge">UNESCO Global Geopark</div>
+        <h1>{{ __('app.biodiversity.title') }}</h1>
+        <div class="hero-divider"></div>
+        <p>{{ __('app.biodiversity.subtitle') }}</p>
+    </div>
 </div>
 
 <div class="container">

@@ -83,7 +83,7 @@ class AuthController extends Controller
         try {
             Mail::to($request->email)->send(new ResetPasswordMail($token, $request->email));
             
-            return back()->with('success', 'Link reset password telah dikirim ke ' . $request->email . '. Silakan cek inbox atau folder spam Anda.');
+            return back()->with('success', 'Link reset password telah dikirim ke ' . $request->email . '. Silahkan cek inbox atau folder spam Anda.');
         } catch (\Exception $e) {
             return back()->withErrors(['email' => 'Gagal mengirim email. Error: ' . $e->getMessage()]);
         }
@@ -98,14 +98,14 @@ class AuthController extends Controller
         
         if (!$resetData) {
             return redirect()->route('password.request')
-                ->withErrors(['email' => 'Token reset password tidak valid. Silakan request ulang.']);
+                ->withErrors(['email' => 'Token reset password tidak valid. Silahkan request ulang.']);
         }
         
         $createdAt = Carbon::parse($resetData->created_at);
         if (Carbon::now()->diffInMinutes($createdAt) > 60) {
             DB::table('password_resets')->where('token', $token)->delete();
             return redirect()->route('password.request')
-                ->withErrors(['email' => 'Link reset password sudah kadaluarsa. Silakan request ulang.']);
+                ->withErrors(['email' => 'Link reset password sudah kadaluarsa. Silahkan request ulang.']);
         }
         
         return view('auth.reset-password', [
@@ -135,7 +135,7 @@ class AuthController extends Controller
         $createdAt = Carbon::parse($resetData->created_at);
         if (Carbon::now()->diffInMinutes($createdAt) > 60) {
             DB::table('password_resets')->where('email', $request->email)->delete();
-            return back()->withErrors(['email' => 'Link reset password sudah kadaluarsa. Silakan request ulang.']);
+            return back()->withErrors(['email' => 'Link reset password sudah kadaluarsa. Silahkan request ulang.']);
         }
         
         Admin::where('email', $request->email)->update([  // Ganti User dengan Admin
@@ -145,6 +145,6 @@ class AuthController extends Controller
         DB::table('password_resets')->where('email', $request->email)->delete();
         
         return redirect()->route('login')
-            ->with('success', 'Password berhasil direset! Silakan login dengan password baru Anda.');
+            ->with('success', 'Password berhasil direset! Silahkan login dengan password baru Anda.');
     }
 }

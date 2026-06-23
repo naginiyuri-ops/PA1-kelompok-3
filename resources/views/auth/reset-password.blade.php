@@ -30,7 +30,7 @@
                         @if($errors->any())
                             <div class="alert alert-danger">{{ $errors->first() }}</div>
                         @endif
-                        <p class="text-muted mb-3">Silakan buat password baru untuk akun Anda.</p>
+                        <p class="text-muted mb-3">Silahkan buat password baru untuk akun Anda.</p>
                         <form method="POST" action="{{ route('password.update') }}">
                             @csrf
                             <input type="hidden" name="token" value="{{ $token }}">
