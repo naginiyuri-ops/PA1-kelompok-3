@@ -21,32 +21,64 @@
     }
     body { font-family: 'Inter', sans-serif; background: var(--bg-light); }
 
-    .hero-dest {
-        background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
-        padding: 120px 0 80px; margin-top: 60px;
-        text-align: center; position: relative; overflow: hidden;
+    .hero-umkm {
+        background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-medium) 100%);
+        padding: 140px 0 70px;
+        margin-top: 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        color: white;
     }
-    .hero-dest::before {
-        content: ''; position: absolute; top: -50%; left: -50%;
-        width: 200%; height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
-        animation: slowRotate 40s linear infinite;
+    .hero-umkm::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+        animation: rotateSlow 25s linear infinite;
     }
-    @keyframes slowRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    .hero-dest .container { position: relative; z-index: 2; }
-    .hero-badge {
-        display: inline-block; background: rgba(198,164,59,0.12);
-        border: 1px solid rgba(198,164,59,0.3); color: var(--gold-light);
-        padding: 6px 20px; border-radius: 50px; font-size: 0.72rem;
-        font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px;
+    @keyframes rotateSlow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
     }
-    .hero-dest h1 {
-        font-size: 2.8rem; font-weight: 700;
-        font-family: 'Playfair Display', serif; color: white; margin-bottom: 12px;
+    .hero-umkm .container { position: relative; z-index: 2; }
+    .hero-umkm .badge {
+        display: inline-block;
+        background: rgba(198, 164, 59, 0.15);
+        border: 1px solid rgba(198, 164, 59, 0.3);
+        color: var(--gold-light);
+        padding: 6px 20px;
+        border-radius: 50px;
+        font-size: 0.6rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 15px;
     }
-    .hero-dest h1 span { color: var(--gold-light); }
-    .hero-dest p { color: rgba(255,255,255,0.75); font-size: 0.9rem; }
-    .hero-divider { width: 50px; height: 3px; background: var(--gold); margin: 18px auto; border-radius: 4px; }
+    .hero-umkm h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 12px;
+    }
+    .hero-umkm h1 span { color: var(--gold); }
+    .hero-umkm p {
+        color: rgba(255,255,255,0.8);
+        font-size: 0.9rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .hero-divider {
+        width: 60px;
+        height: 2px;
+        background: var(--gold);
+        margin: 15px auto 20px;
+        border-radius: 2px;
+    }
 
     .dest-section { padding: 70px 0 90px; }
     .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
@@ -112,14 +144,14 @@
     .empty-state p { color: var(--text-light); }
     .pagination-wrapper { display: flex; justify-content: center; margin-top: 50px; }
 
-    @media (max-width: 992px) { .hero-dest h1 { font-size: 2.2rem; } }
-    @media (max-width: 768px) { .hero-dest { padding: 110px 0 60px; } .hero-dest h1 { font-size: 1.8rem; } .dest-section { padding: 50px 0 70px; } }
-    @media (max-width: 576px) { .hero-dest h1 { font-size: 1.5rem; } .card-content { padding: 18px; } }
+    @media (max-width: 992px) { .hero-umkm h1 { font-size: 2.2rem; } }
+    @media (max-width: 768px) { .hero-umkm { padding: 100px 0 40px; } .hero-umkm h1 { font-size: 1.8rem; } .dest-section { padding: 50px 0 70px; } }
+    @media (max-width: 576px) { .hero-umkm h1 { font-size: 1.4rem; } .card-content { padding: 18px; } }
 </style>
 
-<div class="hero-dest">
+<div class="hero-umkm">
     <div class="container">
-        <div class="hero-badge">Fasilitas Geosite</div>
+        <div class="badge">UNESCO Global Geopark</div>
         <h1><i class="fas fa-store"></i> <span>UMKM</span></h1>
         <div class="hero-divider"></div>
         <p>Daftar Produk dan Usaha Mikro Kecil Menengah Lokal di Sekitar Geosite Danau Toba.</p>

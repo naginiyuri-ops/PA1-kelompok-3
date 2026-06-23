@@ -6,20 +6,63 @@
 
 <style>
     .hero-diversity {
-        background: linear-gradient(135deg, #003366 0%, #1a4a7a 100%);
-        padding: 120px 0 60px;
+        background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-medium) 100%);
+        padding: 140px 0 70px;
         margin-top: 0;
         text-align: center;
+        position: relative;
+        overflow: hidden;
         color: white;
+    }
+    .hero-diversity::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+        animation: rotateSlow 25s linear infinite;
+    }
+    @keyframes rotateSlow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    .hero-diversity .container { position: relative; z-index: 2; }
+    .hero-diversity .badge {
+        display: inline-block;
+        background: rgba(198, 164, 59, 0.15);
+        border: 1px solid rgba(198, 164, 59, 0.3);
+        color: var(--gold-light);
+        padding: 6px 20px;
+        border-radius: 50px;
+        font-size: 0.6rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 15px;
     }
     .hero-diversity h1 {
         font-family: 'Playfair Display', serif;
-        font-size: 2.8rem;
-        font-weight: 700;
+        font-size: 3rem;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 12px;
     }
-
-    .hero-diversity p { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
-    .hero-divider { width: 50px; height: 2px; background: #c6a43b; margin: 15px auto; }
+    .hero-diversity h1 span { color: var(--gold); }
+    .hero-diversity p {
+        color: rgba(255,255,255,0.8);
+        font-size: 0.9rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .hero-divider {
+        width: 60px;
+        height: 2px;
+        background: var(--gold);
+        margin: 15px auto 20px;
+        border-radius: 2px;
+    }
 
     .grid-diversity {
         display: grid;
@@ -32,7 +75,7 @@
         background: white;
         border-radius: 16px;
         overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        box-shadow: 0 4px 15 rgba(0,0,0,0.06);
         transition: all 0.4s ease;
         cursor: pointer;
     }
@@ -107,15 +150,19 @@
         .grid-diversity { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
-        .hero-diversity { padding: 100px 0 30px; }
-        .hero-diversity h1 { font-size: 2rem; }
+        .hero-diversity { padding: 100px 0 40px; }
+        .hero-diversity h1 { font-size: 1.8rem; }
         .grid-diversity { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+        .hero-diversity h1 { font-size: 1.4rem; }
     }
 </style>
 
 <!-- HERO -->
 <section class="hero-diversity">
     <div class="container">
+        <div class="badge">UNESCO Global Geopark</div>
         <h1>{{ __('app.cultural.title') }}</h1>
         <div class="hero-divider"></div>
         <p>{{ __('app.cultural.subtitle') }}</p>
