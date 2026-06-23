@@ -8,31 +8,68 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
     
     .kategori-hero {
-        height: 40vh;
-        min-height: 350px;
-        background: linear-gradient(135deg, rgba(0,51,102,0.8), rgba(0,51,102,0.6));
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-medium) 100%);
+        padding: 140px 0 70px;
+        margin-top: 0;
         text-align: center;
+        position: relative;
+        overflow: hidden;
         color: white;
-        margin-top: 76px;
+    }
+    
+    .kategori-hero::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+        animation: rotateSlow 25s linear infinite;
+    }
+    
+    @keyframes rotateSlow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    .kategori-hero .container { position: relative; z-index: 2; }
+    
+    .kategori-hero .badge {
+        display: inline-block;
+        background: rgba(198, 164, 59, 0.15);
+        border: 1px solid rgba(198, 164, 59, 0.3);
+        color: var(--gold-light);
+        padding: 6px 20px;
+        border-radius: 50px;
+        font-size: 0.6rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 15px;
     }
     
     .kategori-hero h1 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-        font-family: 'Cormorant Garamond', serif;
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 12px;
     }
     
     .kategori-hero p {
+        color: rgba(255,255,255,0.8);
         font-size: 0.9rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .hero-divider {
+        width: 60px;
+        height: 2px;
+        background: var(--gold);
+        margin: 15px auto 20px;
+        border-radius: 2px;
     }
     
     .destinasi-section {
@@ -166,11 +203,14 @@
     }
     
     @media (max-width: 768px) {
-        .kategori-hero { min-height: 280px; }
+        .kategori-hero { padding: 100px 0 40px; }
         .kategori-hero h1 { font-size: 1.8rem; }
         .destinasi-section { padding: 40px 0; }
         .destinasi-grid { grid-template-columns: 1fr; }
         .card-image { height: 200px; }
+    }
+    @media (max-width: 480px) {
+        .kategori-hero h1 { font-size: 1.4rem; }
     }
 </style>
 
@@ -276,9 +316,11 @@
     }
 @endphp
 
-<section class="kategori-hero" style="background-image: linear-gradient(135deg, rgba(0,51,102,0.8), rgba(0,51,102,0.6)), url('{{ $bgImage }}');">
-    <div data-aos="fade-up">
+<section class="kategori-hero">
+    <div class="container" data-aos="fade-up">
+        <div class="badge">UNESCO Global Geopark</div>
         <h1>{{ $data['judul'] }}</h1>
+        <div class="hero-divider"></div>
         <p>{{ $data['deskripsi'] }}</p>
     </div>
 </section>

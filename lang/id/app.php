@@ -221,7 +221,7 @@ return [
         'views'             => 'tayangan',
         'share'             => 'Bagikan',
         'no_data'           => 'Belum ada berita tersedia.',
-        'no_data_desc'      => 'Silakan tambahkan berita terbaru melalui panel admin.',
+        'no_data_desc'      => 'Silahkan tambahkan berita terbaru melalui panel admin.',
         'latest'            => 'Berita Terbaru',
         'badge'             => 'UPDATE TERBARU',
         'hero_desc'         => 'Informasi & Perkembangan Terbaru Balige, Meat, Liang Sipege, Batu Basiha',

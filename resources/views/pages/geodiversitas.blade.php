@@ -207,7 +207,7 @@
             <div class="empty-state">
                 <i class="fas fa-gem"></i>
                 <p>{{ __('app.common.no_data') }}</p>
-                <p style="font-size:0.8rem; margin-top:8px;">{{ app()->getLocale() == 'en' ? 'Please add data via admin panel.' : 'Silakan tambahkan melalui panel admin.' }}</p>
+                <p style="font-size:0.8rem; margin-top:8px;">{{ app()->getLocale() == 'en' ? 'Please add data via admin panel.' : 'Silahkan tambahkan melalui panel admin.' }}</p>
             </div>
             @endforelse
         </div>
