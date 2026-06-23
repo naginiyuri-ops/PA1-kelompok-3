@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace App\Http\Controllers\Admin;
 
@@ -51,7 +51,7 @@ class AdminGaleriController extends Controller
             
             $destinationPath = public_path('image/galeri');
             if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0777, true);
+                mkdir($destinationPath, 0755, true);
             }
             
             $file->move($destinationPath, $filename);
@@ -148,3 +148,4 @@ class AdminGaleriController extends Controller
         return response()->json(['success' => true, 'is_unggulan' => $galeri->is_unggulan]);
     }
 }
+

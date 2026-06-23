@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace App\Http\Controllers\Admin;
 
@@ -49,7 +49,7 @@ class AdminBeritaController extends Controller
             // Buat folder jika belum ada
             $destinationPath = public_path('image/berita');
             if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0777, true);
+                mkdir($destinationPath, 0755, true);
             }
             
             $file->move($destinationPath, $filename);
@@ -99,7 +99,7 @@ class AdminBeritaController extends Controller
             $destinationPath = public_path('image/berita');
             
             if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0777, true);
+                mkdir($destinationPath, 0755, true);
             }
             
             $file->move($destinationPath, $filename);
@@ -132,3 +132,4 @@ class AdminBeritaController extends Controller
         return response()->json(['success' => true, 'status' => $berita->status]);
     }
 }
+

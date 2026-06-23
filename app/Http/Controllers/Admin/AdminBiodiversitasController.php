@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace App\Http\Controllers\Admin;
 
@@ -75,7 +75,7 @@ class AdminBiodiversitasController extends Controller
             $filename = time() . '_biodiversitas_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
             $destinationPath = public_path('image/biodiversitas');
             if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0777, true);
+                mkdir($destinationPath, 0755, true);
             }
             $file->move($destinationPath, $filename);
             $data['gambar'] = 'image/biodiversitas/' . $filename;
@@ -133,7 +133,7 @@ class AdminBiodiversitasController extends Controller
             $filename = time() . '_biodiversitas_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
             $destinationPath = public_path('image/biodiversitas');
             if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0777, true);
+                mkdir($destinationPath, 0755, true);
             }
             $file->move($destinationPath, $filename);
             $data['gambar'] = 'image/biodiversitas/' . $filename;
@@ -163,3 +163,4 @@ class AdminBiodiversitasController extends Controller
         return response()->json(['success' => true, 'status' => $biodiversitas->status]);
     }
 }
+

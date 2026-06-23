@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace App\Http\Controllers\Admin;
 
@@ -75,7 +75,7 @@ class AdminGeodiversitasController extends Controller
             $filename = time() . '_geodiversitas_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
             $destinationPath = public_path('image/geodiversitas');
             if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0777, true);
+                mkdir($destinationPath, 0755, true);
             }
             $file->move($destinationPath, $filename);
             $data['gambar'] = 'image/geodiversitas/' . $filename;
@@ -133,7 +133,7 @@ class AdminGeodiversitasController extends Controller
             $filename = time() . '_geodiversitas_' . Str::slug($request->nama) . '.' . $file->getClientOriginalExtension();
             $destinationPath = public_path('image/geodiversitas');
             if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0777, true);
+                mkdir($destinationPath, 0755, true);
             }
             $file->move($destinationPath, $filename);
             $data['gambar'] = 'image/geodiversitas/' . $filename;
@@ -163,3 +163,4 @@ class AdminGeodiversitasController extends Controller
         return response()->json(['success' => true, 'status' => $geodiversitas->status]);
     }
 }
+
