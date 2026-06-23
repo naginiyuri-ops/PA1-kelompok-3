@@ -73,7 +73,7 @@ return [
         'read_more'         => 'Baca Selengkapnya',
         'by'                => 'oleh',
         'hero_badge'        => 'UNESCO Global Geopark',
-        'hero_locations'    => 'Balige · Meat <br><span>Batu Basiha · Liang Sipege</span>',
+        'hero_locations'    => 'Bakkra &middot; Tipang <br><span>Batkiraja</span>',
         'no_featured_dest'  => 'Belum ada destinasi unggulan. Tandai destinasi di panel admin agar muncul di sini.',
         'history_years'     => 'Tahun Sejarah',
         'cultural_heritage' => 'Warisan Budaya',
@@ -285,3 +285,4 @@ return [
     ],
 
 ];
+
