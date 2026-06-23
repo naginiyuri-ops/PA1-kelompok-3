@@ -37,20 +37,7 @@
             </div>
 
             {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
-            @include('admin.partials.translation-fields', [
-                'labelId'        => 'Judul Berita',
-                'nameId'         => 'judul_en',
-                'valueId'        => $berita->judul_en,
-                'labelDesc'      => 'Konten',
-                'nameDesc'       => 'konten_en',
-                'valueDesc'      => $berita->konten_en,
-                'rowsDesc'       => 8,
-                'sourceJudulId'  => 'berita_judul_id',
-                'sourceKontenId' => 'berita_konten_id',
-            ])
-
-
-            <div class="row">
+<div class="row">
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label>Gambar Saat Ini</label><br>
@@ -187,3 +174,4 @@
     }
 </style>
 @endsection
+

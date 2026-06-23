@@ -96,19 +96,7 @@
             </div>
 
             {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
-            @include('admin.partials.translation-fields', [
-                'labelId'        => 'Judul',
-                'nameId'         => 'judul_en',
-                'valueId'        => $data->judul_en,
-                'labelDesc'      => 'Konten',
-                'nameDesc'       => 'konten_en',
-                'valueDesc'      => $data->konten_en,
-                'rowsDesc'       => 8,
-                'sourceJudulId'  => 'sejarah_edit_judul',
-                'sourceKontenId' => 'sejarah_edit_konten',
-            ])
-
-            <div class="row">
+<div class="row">
                 <div class="col-half">
                     <div class="mb-3">
                         <label>Lokasi</label>
@@ -172,3 +160,4 @@
     });
 </script>
 @endsection
+

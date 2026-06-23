@@ -277,18 +277,7 @@
             </div>
 
             {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
-            @include('admin.partials.translation-fields', [
-                'labelId'        => 'Nama Akomodasi',
-                'nameId'         => 'nama_en',
-                'labelDesc'      => 'Deskripsi',
-                'nameDesc'       => 'deskripsi_en',
-                'rowsDesc'       => 5,
-                'sourceJudulId'  => 'penginapan_create_nama',
-                'sourceKontenId' => 'penginapan_create_deskripsi',
-            ])
-
-
-            <div class="row">
+<div class="row">
                 <div class="col-third">
                     <div class="mb-3">
                         <label>Lokasi</label>
@@ -434,3 +423,4 @@
     }
 </script>
 @endsection
+

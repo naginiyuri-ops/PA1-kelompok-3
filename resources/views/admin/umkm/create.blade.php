@@ -229,18 +229,7 @@
             {{-- ====================================
                  BLOK TERJEMAHAN BAHASA INGGRIS
             ===================================== --}}
-            @include('admin.partials.translation-fields', [
-                'labelId'        => 'Nama UMKM',
-                'nameId'         => 'nama_usaha_en',
-                'labelDesc'      => 'Deskripsi',
-                'nameDesc'       => 'deskripsi_en',
-                'rowsDesc'       => 5,
-                'sourceJudulId'  => 'umkm_create_nama',
-                'sourceKontenId' => 'umkm_create_deskripsi',
-            ])
-
-            
-            <div class="row">
+<div class="row">
                 <div class="col-half">
                     <div class="mb-3">
                         <label>Lokasi</label>
