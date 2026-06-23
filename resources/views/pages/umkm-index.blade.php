@@ -39,72 +39,63 @@
     }
     
     /* ==================== HERO SECTION ==================== */
-    .hero-berita {
-        background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
-        padding: 120px 0 80px;
+    .hero-umkm {
+        background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-medium) 100%);
+        padding: 140px 0 70px;
         margin-top: 0;
         text-align: center;
         position: relative;
         overflow: hidden;
+        color: white;
     }
-    
-    .hero-berita::before {
+    .hero-umkm::before {
         content: '';
         position: absolute;
         top: -50%;
         left: -50%;
         width: 200%;
         height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
-        animation: slowRotate 40s linear infinite;
+        background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+        animation: rotateSlow 25s linear infinite;
     }
-    
-    @keyframes slowRotate {
+    @keyframes rotateSlow {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
     }
-    
-    .hero-berita .container {
-        position: relative;
-        z-index: 2;
-    }
-    
-    .hero-badge {
+    .hero-umkm .container { position: relative; z-index: 2; }
+    .hero-umkm .badge {
         display: inline-block;
-        background: rgba(198, 164, 59, 0.12);
+        background: rgba(198, 164, 59, 0.15);
         border: 1px solid rgba(198, 164, 59, 0.3);
         color: var(--gold-light);
         padding: 6px 20px;
         border-radius: 50px;
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 2px;
+        font-size: 0.6rem;
+        letter-spacing: 3px;
         text-transform: uppercase;
-        margin-bottom: 20px;
+        font-weight: 600;
+        margin-bottom: 15px;
     }
-    
-    .hero-berita h1 {
-        font-size: 3rem;
-        font-weight: 700;
+    .hero-umkm h1 {
         font-family: 'Playfair Display', serif;
-        color: var(--white);
-        margin-bottom: 14px;
-        letter-spacing: -0.5px;
+        font-size: 3rem;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 12px;
     }
-    
-    .hero-berita p {
-        font-size: 0.92rem;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        color: rgba(255,255,255,0.75);
+    .hero-umkm h1 span { color: var(--gold); }
+    .hero-umkm p {
+        color: rgba(255,255,255,0.8);
+        font-size: 0.9rem;
+        max-width: 600px;
+        margin: 0 auto;
     }
-    
     .hero-divider {
-        width: 50px;
-        height: 3px;
+        width: 60px;
+        height: 2px;
         background: var(--gold);
-        margin: 24px auto 0;
-        border-radius: 4px;
+        margin: 15px auto 20px;
+        border-radius: 2px;
     }
     
     /* ==================== SECTION ==================== */
@@ -159,7 +150,7 @@
     }
     
     .berita-card:hover .card-image-wrapper img {
-        transform: scale(1.06);
+        transform: scale(1.05);
     }
     
     .card-image-overlay {
@@ -168,53 +159,50 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 31, 63, 0.35);
+        background: rgba(15, 23, 42, 0.3);
         opacity: 0;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease;
-        z-index: 1;
         backdrop-filter: blur(2px);
     }
     
     .card-image-overlay i {
         color: var(--white);
-        font-size: 1.3rem;
+        font-size: 1.25rem;
         background: var(--gold);
-        padding: 14px;
+        padding: 12px;
         border-radius: 50%;
-        box-shadow: 0 6px 15px rgba(198, 164, 59, 0.3);
         transform: scale(0.8);
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition: transform 0.3s ease;
     }
     
-    .card-image-wrapper:hover .card-image-overlay {
+    .berita-card:hover .card-image-overlay {
         opacity: 1;
     }
     
-    .card-image-wrapper:hover .card-image-overlay i {
+    .berita-card:hover .card-image-overlay i {
         transform: scale(1);
     }
     
     .card-category {
         position: absolute;
-        top: 15px;
-        left: 15px;
+        top: 16px;
+        left: 16px;
         background: var(--white);
         color: var(--primary-dark);
-        padding: 5px 14px;
+        padding: 4px 12px;
         border-radius: 30px;
         font-size: 0.68rem;
         font-weight: 700;
-        letter-spacing: 0.5px;
         z-index: 2;
-        box-shadow: var(--shadow-sm);
+        box-shadow: 0 2px 6px rgba(15,23,42,0.06);
     }
     
     .card-content {
-        padding: 26px;
-        flex: 1;
+        padding: 24px;
+        flex-grow: 1;
         display: flex;
         flex-direction: column;
     }
@@ -280,24 +268,24 @@
     .empty-state p { color: var(--text-light); }
     .pagination-wrapper { display: flex; justify-content: center; margin-top: 50px; }
 
-    @media (max-width: 992px) { .hero-berita h1 { font-size: 2.4rem; } }
+    @media (max-width: 992px) { .hero-umkm h1 { font-size: 2.4rem; } }
     @media (max-width: 768px) { 
-        .hero-berita { padding: 100px 0 60px; } 
-        .hero-berita h1 { font-size: 2rem; } 
+        .hero-umkm { padding: 100px 0 40px; } 
+        .hero-umkm h1 { font-size: 1.8rem; } 
         .berita-section { padding: 60px 0; } 
     }
     @media (max-width: 576px) { 
-        .hero-berita h1 { font-size: 1.7rem; } 
+        .hero-umkm h1 { font-size: 1.4rem; } 
         .card-content { padding: 20px; } 
     }
 </style>
 
-<div class="hero-berita">
+<div class="hero-umkm">
     <div class="container">
-        <div class="hero-badge">{{ __('app.umkm.title') }}</div>
+        <div class="badge">UNESCO Global Geopark</div>
         <h1>{{ app()->getLocale() == 'en' ? 'Explore Souvenirs & MSMEs' : 'Jelajahi Sovenir & UMKM' }}</h1>
-        <p>{{ __('app.umkm.subtitle') }}</p>
         <div class="hero-divider"></div>
+        <p>{{ __('app.umkm.subtitle') }}</p>
     </div>
 </div>
 

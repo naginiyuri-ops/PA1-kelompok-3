@@ -8,41 +8,68 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
     
     .destinasi-hero {
-        height: 50vh;
-        min-height: 400px;
-        background: linear-gradient(135deg, rgba(0,51,102,0.8), rgba(0,51,102,0.6)), url('{{ asset("image/meat/meat-hero.jpg") }}');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: white;
+        background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-medium) 100%);
+        padding: 140px 0 70px;
         margin-top: 0;
+        text-align: center;
         position: relative;
+        overflow: hidden;
+        color: white;
+    }
+    
+    .destinasi-hero::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+        animation: rotateSlow 25s linear infinite;
+    }
+    
+    @keyframes rotateSlow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    .destinasi-hero .container { position: relative; z-index: 2; }
+    
+    .destinasi-hero .badge {
+        display: inline-block;
+        background: rgba(198, 164, 59, 0.15);
+        border: 1px solid rgba(198, 164, 59, 0.3);
+        color: var(--gold-light);
+        padding: 6px 20px;
+        border-radius: 50px;
+        font-size: 0.6rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 15px;
     }
     
     .destinasi-hero h1 {
-        font-size: 3.5rem;
-        font-weight: 700;
-        margin-bottom: 15px;
-        font-family: 'Cormorant Garamond', serif;
-        text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-        animation: fadeInUp 0.8s ease;
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 12px;
     }
     
     .destinasi-hero p {
-        font-size: 1rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        opacity: 0.9;
-        animation: fadeInUp 0.8s ease 0.1s both;
+        color: rgba(255,255,255,0.8);
+        font-size: 0.9rem;
+        max-width: 600px;
+        margin: 0 auto;
     }
     
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
+    .hero-divider {
+        width: 60px;
+        height: 2px;
+        background: var(--gold);
+        margin: 15px auto 20px;
+        border-radius: 2px;
     }
     
     .category-section {
@@ -275,18 +302,23 @@
     }
     
     @media (max-width: 768px) {
-        .destinasi-hero { min-height: 300px; }
-        .destinasi-hero h1 { font-size: 2rem; }
+        .destinasi-hero { padding: 100px 0 40px; }
+        .destinasi-hero h1 { font-size: 1.8rem; }
         .category-section { padding: 50px 0; }
         .section-header h2 { font-size: 1.6rem; }
         .category-grid { grid-template-columns: 1fr; }
         .stats-grid { grid-template-columns: 1fr; gap: 15px; }
     }
+    @media (max-width: 480px) {
+        .destinasi-hero h1 { font-size: 1.4rem; }
+    }
 </style>
 
 <section class="destinasi-hero">
-    <div data-aos="fade-up">
+    <div class="container" data-aos="fade-up">
+        <div class="badge">UNESCO Global Geopark</div>
         <h1>Destinasi Geosite</h1>
+        <div class="hero-divider"></div>
         <p>Jelajahi Pesona Caldera Danau Toba</p>
     </div>
 </section>
