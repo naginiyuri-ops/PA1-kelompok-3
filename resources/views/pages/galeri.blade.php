@@ -288,7 +288,7 @@
         <div class="filter-buttons">
             <button class="filter-btn active" data-filter="all">{{ __('app.gallery.all') }}</button>
             <button class="filter-btn" data-filter="meat">MEAT</button>
-            <button class="filter-btn" data-filter="batu-bahisan">BATU BAHISAN</button>
+            <button class="filter-btn" data-filter="batu-bahisan">BATU BASIHA</button>
             <button class="filter-btn" data-filter="liang-sipege">LIANG SIPEGE</button>
             <button class="filter-btn" data-filter="balige">BALIGE</button>
         </div>

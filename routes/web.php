@@ -18,7 +18,6 @@ use App\Http\Controllers\Admin\AdminKontakController;
 use App\Http\Controllers\PublicGaleriController;
 use App\Http\Controllers\PublicGeositeController;
 
-use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Admin\AdminSejarahWisataController;
 use App\Http\Controllers\PublicSearchController;
 use App\Http\Controllers\PublicTentangGeositeController;
@@ -29,41 +28,12 @@ use App\Http\Controllers\PublicFasilitasUtamaController;
 use Illuminate\Support\Facades\DB;
 
 // ========================================
-// ========== TRANSLATE PROXY (Admin) ==========
-// ========================================
-Route::post('/admin/translate', function (\Illuminate\Http\Request $request) {
-    $text = $request->input('text', '');
-    if (strlen(trim($text)) < 2) {
-        return response()->json(['result' => '']);
-    }
-    // Strip HTML tags before translating
-    $plain = strip_tags($text);
-    $plain = preg_replace('/\s+/', ' ', trim($plain));
-
-    try {
-        $response = \Illuminate\Support\Facades\Http::timeout(10)
-            ->get('https://api.mymemory.translated.net/get', [
-                'q'        => $plain,
-                'langpair' => 'id|en',
-            ]);
-
-        if ($response->successful()) {
-            $data = $response->json();
-            if (isset($data['responseStatus']) && $data['responseStatus'] === 200) {
-                return response()->json(['result' => $data['responseData']['translatedText']]);
-            }
-        }
-    } catch (\Exception $e) {}
-
-    return response()->json(['result' => '', 'error' => 'Translation failed'], 200);
-})->middleware(['web', 'auth'])->name('admin.translate');
-
-Route::middleware([\App\Http\Middleware\LanguageMiddleware::class])->group(function () {
-
-
-// ========================================
 // ========== FRONTEND ROUTES (PUBLIC) ==========
 // ========================================
+use App\Http\Controllers\PublicKontakController;
+
+Route::get('/kontak', [PublicKontakController::class, 'index'])->name('kontak');
+Route::post('/kontak/kirim', [PublicKontakController::class, 'kirim'])->name('kontak.kirim');
 
 Route::get('/', [PublicHomeController::class, 'index'])->name('home');
 
@@ -72,9 +42,6 @@ Route::get('/', [PublicHomeController::class, 'index'])->name('home');
 // ========================================
 Route::get('/search', [PublicSearchController::class, 'search'])->name('search');
 Route::get('/search-results', [PublicSearchController::class, 'searchResults'])->name('search.results');
-
-// Language Route
-Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
 
 // ========================================
 // ========== TENTANG GEOSITE ==========
@@ -155,9 +122,7 @@ Route::get('/galeri/{slug}', function ($slug) {
 
 
 // ========================================
-// ========== KONTAK ==========
-// ========================================
-Route::get('/kontak', [PublicHomeController::class, 'kontak'])->name('kontak');
+
 
 // ========================================
 // ========== GEOSITE ==========
@@ -298,7 +263,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 Route::get('/debug-lang', function() { return 'Locale: ' . app()->getLocale() . ' Session: ' . session('locale'); });
 
-}); // <-- Close LanguageMiddleware group
 
 
 

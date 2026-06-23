@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -1029,6 +1029,10 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
                         <a class="nav-link {{ request()->routeIs('berita*') ? 'active' : '' }}"
                            href="{{ url('/berita') }}">{{ __('app.nav.news') }}</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('kontak') ? 'active' : '' }}"
+                           href="{{ url('/kontak') }}">Kontak</a>
+                    </li>
 
                 </ul>
 
@@ -1064,14 +1068,19 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
         </div>
     </nav>
 
+
+
     <!-- ========================================
     MAIN CONTENT
     ======================================== -->
     <main style="margin: 0; padding: 0;">@yield('content')</main>
 
-    <!-- ========================================
+          <!-- ========================================
     FOOTER MODERN
-    ======================================== -->
+      ======================================== -->
+      @php
+          $kontakInfo = \App\Models\Kontak::first();
+      @endphp
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-grid">
@@ -1084,12 +1093,13 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
                     </div>
                     <h4>Geo<span>Toba</span></h4>
                     <p>{{ __('app.footer.tagline') }}</p>
-                    <div class="footer-social">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    </div>
+                                        <div class="footer-social">
+                          @if(isset($kontakInfo) && $kontakInfo->social_fb)<a href="{{ $kontakInfo->social_fb }}" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>@endif
+                          @if(isset($kontakInfo) && $kontakInfo->social_ig)<a href="{{ $kontakInfo->social_ig }}" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>@endif
+                          @if(isset($kontakInfo) && $kontakInfo->social_youtube)<a href="{{ $kontakInfo->social_youtube }}" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>@endif
+                          @if(isset($kontakInfo) && $kontakInfo->social_twitter)<a href="{{ $kontakInfo->social_twitter }}" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>@endif
+                          @if(isset($kontakInfo) && $kontakInfo->social_tiktok)<a href="{{ $kontakInfo->social_tiktok }}" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>@endif
+                      </div>
                 </div>
 
                 <!-- Quick Links -->
@@ -1115,22 +1125,29 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
                 </div>
 
                 <!-- Contact -->
-                <div class="footer-col">
+                                <div class="footer-col">
                     <h5>{{ __('app.footer.contact') }}</h5>
                     <div class="footer-contact">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Kabupaten Toba Samosir, Sumatera Utara</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+62 822 1234 5678</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>info@geotoba.com</span>
-                        </div>
-                    </div>
+                          @if(isset($kontakInfo) && $kontakInfo->alamat)
+                          <div class="contact-item">
+                              <i class="fas fa-map-marker-alt"></i>
+                              <span>{{ $kontakInfo->alamat }}</span>
+                          </div>
+                          @endif
+                          @if(isset($kontakInfo) && $kontakInfo->telepon)
+                          <div class="contact-item">
+                              <i class="fas fa-phone"></i>
+                              <span>{{ $kontakInfo->telepon }}</span>
+                          </div>
+                          @endif
+                          @if(isset($kontakInfo) && $kontakInfo->email)
+                          <div class="contact-item">
+                              <i class="fas fa-envelope"></i>
+                              <span>{{ $kontakInfo->email }}</span>
+                          </div>
+                          @endif
+                      </div>
+                  </div>
                 </div>
 
             </div>
@@ -1210,11 +1227,15 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
     <style>
         /* Sembunyikan toolbar/banner atas Google Translate */
         .goog-te-banner-frame.skiptranslate { display: none !important; }
+        .VIpgJd-ZVi9od-ORHb-OEVmcd { display: none !important; }
+        .VIpgJd-ZVi9od-aZ2wEe-wOHMyf { display: none !important; }
+        iframe.skiptranslate { display: none !important; }
         body { top: 0px !important; position: static !important; }
         /* Sembunyikan popup tooltip saat hover pada teks terjemahan */
         .goog-tooltip { display: none !important; }
         .goog-tooltip:hover { display: none !important; }
         .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
+        font { background: transparent !important; }
     </style>
 
     <!-- ========================================
@@ -1261,18 +1282,38 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
         });
 
         // ========================================
-        // CLOSE MENU ON LINK CLICK (MOBILE)
+        // CLOSE MENU ON LINK CLICK, SCROLL, OR OUTSIDE CLICK (MOBILE)
         // ========================================
-        document.querySelectorAll('.navbar-nav .nav-link').forEach(function (link) {
-            link.addEventListener('click', function () {
-                if (window.innerWidth <= 991) {
-                    var navbarCollapse = document.getElementById('navbarNav');
+        function closeMobileMenu() {
+            if (window.innerWidth <= 991) {
+                var navbarCollapse = document.getElementById('navbarNav');
+                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
                     var bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-                    if (bsCollapse && navbarCollapse.classList.contains('show')) {
+                    if (bsCollapse) {
                         bsCollapse.hide();
                     }
                 }
+            }
+        }
+
+        // Close when a nav link is clicked
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(function (link) {
+            link.addEventListener('click', function () {
+                closeMobileMenu();
             });
+        });
+
+        // Close when user scrolls the page
+        window.addEventListener('scroll', function () {
+            closeMobileMenu();
+        }, { passive: true });
+
+        // Close when user clicks anywhere outside the navbar
+        document.addEventListener('click', function (event) {
+            var navbarElement = document.getElementById('navbar');
+            if (navbarElement && !navbarElement.contains(event.target)) {
+                closeMobileMenu();
+            }
         });
 
         // ========================================
@@ -1442,4 +1483,5 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
     @stack('scripts')
 </body>
 </html> 
+
 

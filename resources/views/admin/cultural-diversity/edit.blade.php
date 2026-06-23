@@ -47,19 +47,7 @@
             </div>
 
             {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
-            @include('admin.partials.translation-fields', [
-                'labelId'        => 'Nama',
-                'nameId'         => 'nama_en',
-                'valueId'        => $data->nama_en,
-                'labelDesc'      => 'Deskripsi',
-                'nameDesc'       => 'deskripsi_en',
-                'valueDesc'      => $data->deskripsi_en,
-                'rowsDesc'       => 6,
-                'sourceJudulId'  => 'cult_edit_nama',
-                'sourceKontenId' => 'cult_edit_deskripsi',
-            ])
-
-            <div style="display:flex; flex-wrap:wrap; gap:20px;">
+<div style="display:flex; flex-wrap:wrap; gap:20px;">
                 <div style="flex:1; min-width:200px;">
                     <div style="margin-bottom:20px;">
                         <label style="display:block; margin-bottom:8px; font-weight:600; font-size:0.85rem; color:#1e293b;">Lokasi</label>
@@ -124,3 +112,4 @@
     });
 </script>
 @endsection
+

@@ -73,7 +73,7 @@ return [
         'read_more'         => 'Read More',
         'by'                => 'by',
         'hero_badge'        => 'UNESCO Global Geopark',
-        'hero_locations'    => 'Balige · Meat <br><span>Batu Basiha · Liang Sipege</span>',
+        'hero_locations'    => 'Bakkra &middot; Tipang <br><span>Batkiraja</span>',
         'no_featured_dest'  => 'No featured destinations yet. Mark destinations in the admin panel to show them here.',
         'history_years'     => 'Years of History',
         'cultural_heritage' => 'Cultural Heritage',
@@ -285,3 +285,4 @@ return [
     ],
 
 ];
+
