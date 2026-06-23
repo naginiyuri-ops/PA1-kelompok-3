@@ -1225,11 +1225,15 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
     <style>
         /* Sembunyikan toolbar/banner atas Google Translate */
         .goog-te-banner-frame.skiptranslate { display: none !important; }
+        .VIpgJd-ZVi9od-ORHb-OEVmcd { display: none !important; }
+        .VIpgJd-ZVi9od-aZ2wEe-wOHMyf { display: none !important; }
+        iframe.skiptranslate { display: none !important; }
         body { top: 0px !important; position: static !important; }
         /* Sembunyikan popup tooltip saat hover pada teks terjemahan */
         .goog-tooltip { display: none !important; }
         .goog-tooltip:hover { display: none !important; }
         .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
+        font { background: transparent !important; }
     </style>
 
     <!-- ========================================
@@ -1276,18 +1280,38 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
         });
 
         // ========================================
-        // CLOSE MENU ON LINK CLICK (MOBILE)
+        // CLOSE MENU ON LINK CLICK, SCROLL, OR OUTSIDE CLICK (MOBILE)
         // ========================================
-        document.querySelectorAll('.navbar-nav .nav-link').forEach(function (link) {
-            link.addEventListener('click', function () {
-                if (window.innerWidth <= 991) {
-                    var navbarCollapse = document.getElementById('navbarNav');
+        function closeMobileMenu() {
+            if (window.innerWidth <= 991) {
+                var navbarCollapse = document.getElementById('navbarNav');
+                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
                     var bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-                    if (bsCollapse && navbarCollapse.classList.contains('show')) {
+                    if (bsCollapse) {
                         bsCollapse.hide();
                     }
                 }
+            }
+        }
+
+        // Close when a nav link is clicked
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(function (link) {
+            link.addEventListener('click', function () {
+                closeMobileMenu();
             });
+        });
+
+        // Close when user scrolls the page
+        window.addEventListener('scroll', function () {
+            closeMobileMenu();
+        }, { passive: true });
+
+        // Close when user clicks anywhere outside the navbar
+        document.addEventListener('click', function (event) {
+            var navbarElement = document.getElementById('navbar');
+            if (navbarElement && !navbarElement.contains(event.target)) {
+                closeMobileMenu();
+            }
         });
 
         // ========================================
