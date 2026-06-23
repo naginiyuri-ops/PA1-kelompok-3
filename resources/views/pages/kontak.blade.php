@@ -46,7 +46,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 40px;
-        align-items: start;
+        align-items: stretch;
     }
     
     @media (max-width: 991px) {
@@ -59,6 +59,7 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        height: 100%;
     }
 
     .info-boxes-grid {
@@ -121,6 +122,7 @@
         border: 1px solid rgba(0,0,0,0.02);
         display: flex;
         flex-direction: column;
+        flex: 1;
     }
 
     .follow-us-title {
@@ -174,6 +176,10 @@
         padding: 30px;
         color: white;
         text-align: center;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .dark-blue-box .db-title {
@@ -206,6 +212,8 @@
         padding: 40px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         border: 1px solid rgba(0,0,0,0.02);
+        display: flex;
+        flex-direction: column;
     }
     
     .form-title {
@@ -244,6 +252,12 @@
         border-color: #003366;
         box-shadow: 0 0 0 3px rgba(0,51,102,0.1);
     }
+
+    textarea.form-control {
+        flex: 1;
+        min-height: 120px;
+        resize: none;
+    }
     
     .btn-submit {
         background: #c6a43b;
@@ -260,6 +274,7 @@
         align-items: center;
         justify-content: center;
         gap: 10px;
+        margin-top: auto;
     }
     
     .btn-submit:hover {
@@ -300,7 +315,6 @@
 <div class="kontak-section">
     <div class="kontak-container">
 
-        <!-- 3 Box Info di atas full width -->
         <div class="info-boxes-grid" style="margin-bottom: 30px;">
             <div class="info-box">
                 <div class="info-box-icon"><i class="fas fa-map-marker-alt"></i></div>
@@ -358,7 +372,7 @@
                     <div class="alert alert-danger"><i class="fas fa-exclamation-triangle me-2"></i> {{ session('error') }}</div>
                 @endif
 
-                <form action="{{ route('kontak.kirim') }}" method="POST">
+                <form action="{{ route('kontak.kirim') }}" method="POST" style="display:flex; flex-direction:column; flex:1;">
                     @csrf
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                         <div class="form-group">
@@ -381,9 +395,9 @@
                         <input type="text" name="subjek" class="form-control" required placeholder="Apa yang ingin Anda tanyakan?">
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group" style="flex:1; display:flex; flex-direction:column;">
                         <label class="form-label">Pesan *</label>
-                        <textarea name="pesan" class="form-control" rows="5" required placeholder="Tuliskan detail pesan Anda di sini..."></textarea>
+                        <textarea name="pesan" class="form-control" required placeholder="Tuliskan detail pesan Anda di sini..."></textarea>
                     </div>
                     
                     <button type="submit" class="btn-submit">
