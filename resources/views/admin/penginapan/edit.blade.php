@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Penginapan')
+@section('title', 'Edit Akomodasi')
 
 @section('content')
 <style>
@@ -276,7 +276,7 @@
     <div class="card-header">
         <h5>
             <i class="fas fa-edit"></i>
-            Edit Data Penginapan
+            Edit Data Akomodasi
         </h5>
         <a href="{{ route('admin.penginapan.index') }}" class="btn-cancel" style="padding: 6px 16px;">
             <i class="fas fa-arrow-left"></i> Kembali
@@ -299,7 +299,7 @@
             @method('PUT')
             
             <div class="mb-3">
-                <label>Nama Penginapan <span class="text-danger">*</span></label>
+                <label>Nama Akomodasi <span class="text-danger">*</span></label>
                 <input type="text" name="nama" id="penginapan_edit_nama" class="form-control" value="{{ old('nama', $data->nama) }}" required>
             </div>
             
@@ -310,7 +310,7 @@
 
             {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
             @include('admin.partials.translation-fields', [
-                'labelId'        => 'Nama Penginapan',
+                'labelId'        => 'Nama Akomodasi',
                 'nameId'         => 'nama_en',
                 'valueId'        => $data->nama_en,
                 'labelDesc'      => 'Deskripsi',
@@ -419,7 +419,7 @@
             
             <div class="checkbox-group">
                 <input type="checkbox" name="status" value="1" id="status" {{ old('status', $data->status) ? 'checked' : '' }}>
-                <label for="status">Aktifkan Penginapan</label>
+                <label for="status">Aktifkan Akomodasi</label>
             </div>
             
             <div class="btn-group">
@@ -486,3 +486,4 @@
     }
 </script>
 @endsection
+

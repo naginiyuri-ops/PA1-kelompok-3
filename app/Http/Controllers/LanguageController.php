@@ -20,7 +20,7 @@ class LanguageController extends Controller
      * @param  string  $locale  Kode bahasa yang ingin diaktifkan (misal: 'id' atau 'en')
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function switch(string $locale)
+    public function switch(Request $request, string $locale)
     {
         // Pastikan locale yang diminta memang didukung
         if (! in_array($locale, $this->supportedLocales)) {
@@ -32,6 +32,11 @@ class LanguageController extends Controller
 
         // Terapkan locale untuk request ini
         App::setLocale($locale);
+
+        // Jika ada parameter redirect, arahkan ke sana
+        if ($request->has('redirect')) {
+            return redirect($request->query('redirect'));
+        }
 
         // Kembalikan pengguna ke halaman sebelumnya (atau halaman utama jika tidak ada)
         return redirect()->back();

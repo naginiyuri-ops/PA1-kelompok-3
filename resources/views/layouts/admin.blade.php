@@ -333,7 +333,12 @@
                 padding: 12px;
             }
         }
-    </style>
+    
+h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
+    font-family: 'Quincy CF', serif !important;
+    font-weight: bold !important;
+}
+</style>
     @stack('styles')
 </head>
 <body>
@@ -397,7 +402,7 @@
 </a>
 
         <a href="{{ route('admin.penginapan.index') }}" class="{{ request()->routeIs('admin.penginapan.*') ? 'active' : '' }}">
-            Penginapan
+            Akomodasi
         </a>
         
         <div class="menu-title">Pengaturan</div>
@@ -418,7 +423,7 @@
         </div>
         <div class="user-menu">
             <span class="user-name"><i class="fas fa-user-circle"></i> {{ Auth::user()->name ?? 'Admin' }}</span>
-            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+            <form action="{{ url('/logout') }}" method="POST" class="d-inline" id="logoutForm">
                 @csrf
                 <button type="submit" class="logout-btn">
                     <i class="fas fa-sign-out-alt"></i> Keluar
@@ -460,5 +465,30 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @stack('scripts')
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.getElementById("logoutForm")?.addEventListener("submit", function(e) {
+        e.preventDefault();
+        Swal.fire({
+            title: "Konfirmasi Logout",
+            text: "Apakah Anda yakin ingin keluar dari halaman Admin?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#003366",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yakin",
+            cancelButtonText: "Tidak"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("logoutForm").submit();
+            }
+        });
+    });
+</script>
 </body>
 </html>
+
+
+
+

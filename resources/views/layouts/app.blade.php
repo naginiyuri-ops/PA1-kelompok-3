@@ -140,7 +140,7 @@
             color: white !important;
             margin: 0;
             padding: 0;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Quincy CF', serif;
             letter-spacing: 0.3px;
             white-space: nowrap;
         }
@@ -170,7 +170,8 @@
         /* NAV LINKS */
         .nav-link {
             color: rgba(255, 255, 255, 0.88) !important;
-            font-weight: 600;
+            font-family: 'Quincy CF', serif !important;
+            font-weight: bold !important;
             font-size: 0.9rem; /* Ukuran teks diperbesar dari 0.72rem */
             padding: 5px 10px !important; /* Padding sedikit diperbesar agar proporsional */
             border-radius: 7px;
@@ -653,7 +654,7 @@
         .footer-brand h4 {
             font-size: 1.4rem;
             font-weight: 800;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Quincy CF', serif;
             background: linear-gradient(135deg, #fff 0%, var(--gold) 100%);
             -webkit-background-clip: text;
             background-clip: text;
@@ -946,7 +947,12 @@
             .lang-code { font-size: 0.75rem; }
         }
 
-    </style>
+    
+h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
+    font-family: 'Quincy CF', serif !important;
+    font-weight: bold !important;
+}
+</style>
 
     @stack('styles')
 </head>
@@ -1144,28 +1150,72 @@
     <!-- BACK TO TOP -->
     <div class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
-    </div>
-
-    {{-- ========================================
-         WIDGET FLOATING GANTI BAHASA — pill ID | EN
+    </div>    {{-- ========================================
+         WIDGET FLOATING GANTI BAHASA - pill ID | EN (Google Translate)
     ======================================== --}}
+    @php
+        $currentLang = 'id';
+        if(isset($_COOKIE['googtrans']) && str_contains($_COOKIE['googtrans'], '/en')) {
+            $currentLang = 'en';
+        }
+    @endphp
+    
     <div class="lang-switcher-widget" id="langSwitcherWidget">
         {{-- Tombol Bahasa Indonesia --}}
-        <a href="{{ route('lang.switch', 'id') }}"
-           class="lang-btn {{ app()->getLocale() === 'id' ? 'lang-btn--active' : '' }}"
+        <a href="#"
+           class="lang-btn {{ $currentLang === 'id' ? 'lang-btn--active' : '' }}"
            title="Bahasa Indonesia"
-           aria-label="Ganti ke Bahasa Indonesia">
+           aria-label="Ganti ke Bahasa Indonesia"
+           onclick="doGTranslate('id'); return false;">
             <span class="lang-code">ID</span>
         </a>
 
         {{-- Tombol Bahasa Inggris --}}
-        <a href="{{ route('lang.switch', 'en') }}"
-           class="lang-btn {{ app()->getLocale() === 'en' ? 'lang-btn--active' : '' }}"
+        <a href="#"
+           class="lang-btn {{ $currentLang === 'en' ? 'lang-btn--active' : '' }}"
            title="English"
-           aria-label="Switch to English">
+           aria-label="Switch to English"
+           onclick="doGTranslate('en'); return false;">
             <span class="lang-code">EN</span>
         </a>
     </div>
+
+    <!-- Google Translate Script & Logic -->
+    <script type="text/javascript">
+        function doGTranslate(lang) {
+            sessionStorage.setItem('langScroll', window.scrollY);
+            var theLang = (lang === 'en') ? '/id/en' : '/id/id';
+            // Set cookie for both domain and path to ensure compatibility
+            document.cookie = "googtrans=" + theLang + "; path=/; domain=" + window.location.hostname;
+            document.cookie = "googtrans=" + theLang + "; path=/";
+            window.location.reload();
+        }
+        
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'id', autoDisplay: false}, 'google_translate_element');
+        }
+
+        // Restore scroll position
+        window.addEventListener('load', function() {
+            var scrollPos = sessionStorage.getItem('langScroll');
+            if (scrollPos) {
+                window.scrollTo(0, parseInt(scrollPos));
+                sessionStorage.removeItem('langScroll');
+            }
+        });
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <div id="google_translate_element" style="display:none;"></div>
+    
+    <style>
+        /* Sembunyikan toolbar/banner atas Google Translate */
+        .goog-te-banner-frame.skiptranslate { display: none !important; }
+        body { top: 0px !important; position: static !important; }
+        /* Sembunyikan popup tooltip saat hover pada teks terjemahan */
+        .goog-tooltip { display: none !important; }
+        .goog-tooltip:hover { display: none !important; }
+        .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
+    </style>
 
     <!-- ========================================
     SCRIPTS
@@ -1392,3 +1442,4 @@
     @stack('scripts')
 </body>
 </html> 
+

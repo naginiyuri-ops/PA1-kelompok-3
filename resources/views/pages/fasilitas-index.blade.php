@@ -184,10 +184,10 @@
         <div class="category-grid">
             
             
-            <!-- // Routing langsung menuju halaman index Penginapan yang ada di web.php -->
+            <!-- // Routing langsung menuju halaman index Akomodasi yang ada di web.php -->
             <a href="{{ url('/penginapan') }}" class="category-card">
                 <div class="card-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop" alt="Penginapan">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop" alt="Akomodasi">
                 </div>
                 <div class="card-content">
                     <h3>{{ __('app.facility.accommodation') }}</h3>
@@ -198,3 +198,4 @@
     </div>
 </div>
 @endsection
+
