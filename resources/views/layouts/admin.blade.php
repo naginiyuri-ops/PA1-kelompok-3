@@ -387,10 +387,10 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
 
         <div class="menu-title">Keanekaragaman</div>
         <a href="{{ route('admin.biodiversitas.index') }}" class="{{ request()->routeIs('admin.biodiversitas.*') ? 'active' : '' }}">
-            Biodiversitas
+            Biodiversity
         </a>
         <a href="{{ route('admin.geodiversitas.index') }}" class="{{ request()->routeIs('admin.geodiversitas.*') ? 'active' : '' }}">
-            Geodiversitas
+            Geodiversity
         </a>
         <a href="{{ route('admin.cultural-diversity.index') }}" class="{{ request()->routeIs('admin.cultural-diversity.*') ? 'active' : '' }}">
             Cultural Diversity
