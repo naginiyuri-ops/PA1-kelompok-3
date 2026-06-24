@@ -383,7 +383,7 @@
                     <td data-label="No">{{ $key + 1 }}</td>
                     <td data-label="Gambar">
                         @php
-                            $imgUrl = asset('storage/' . $item->image_path);
+                            $imgUrl = asset($item->image_path);
                         @endphp
                         <img src="{{ $imgUrl }}" class="img-preview" alt="{{ $item->title }}" onerror="this.onerror=null; this.src='\{\{ asset\('image/default.jpg'\) \}\}'">
                     </td>

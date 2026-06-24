@@ -276,7 +276,7 @@
                 @endphp
                 <div class="current-photo-wrap">
                     @if($pengelolaGeosite->image)
-                        <img src="{{ asset('storage/' . $pengelolaGeosite->image) }}" alt="Foto Saat Ini">
+                        <img src="{{ asset($pengelolaGeosite->image) }}" alt="Foto Saat Ini">
                     @else
                         <div class="avatar-placeholder">{{ $initials }}</div>
                     @endif

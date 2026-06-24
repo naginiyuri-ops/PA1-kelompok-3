@@ -704,8 +704,8 @@
             @foreach($pengelolas as $index => $pengelola)
                 <div class="pengelola-card" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
                     @if($pengelola->image)
-                        <div class="avatar" style="overflow:hidden; padding:0; background:none; border: 2px solid var(--primary); cursor:pointer;" onclick="openLightbox('{{ asset('storage/' . $pengelola->image) }}')">
-                            <img src="{{ asset('storage/' . $pengelola->image) }}" alt="{{ $pengelola->nama }}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                        <div class="avatar" style="overflow:hidden; padding:0; background:none; border: 2px solid var(--primary); cursor:pointer;" onclick="openLightbox('{{ asset($pengelola->image) }}')">
+                            <img src="{{ asset($pengelola->image) }}" alt="{{ $pengelola->nama }}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
                         </div>
                     @else
                         @php

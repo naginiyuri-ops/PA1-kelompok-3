@@ -198,7 +198,7 @@
                         } elseif (file_exists(public_path('image/cultural-diversity/' . $item->gambar))) {
                             $imgSrc = asset('image/cultural-diversity/' . $item->gambar);
                         } else {
-                            $imgSrc = asset('storage/' . $item->gambar);
+                            $imgSrc = asset($item->gambar);
                         }
                     }
                 @endphp

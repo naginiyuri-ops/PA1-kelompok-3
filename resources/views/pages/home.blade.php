@@ -89,7 +89,7 @@
         @endphp
         @foreach($homeSliders as $index => $slider)
         .hero-slide-{{ $index + 1 }} { 
-            background-image: url('{{ asset('storage/' . $slider->image_path) }}'); 
+            background-image: url('{{ asset($slider->image_path) }}'); 
             animation: slideFade {{ $duration }}s ease-in-out infinite;
             animation-delay: {{ $index * 4 }}s; 
         }
@@ -902,7 +902,7 @@
                     } elseif (file_exists(public_path('image/destinasi/' . $item->image_url))) {
                         $imgSrc = asset('image/destinasi/' . $item->image_url);
                     } else {
-                        $imgSrc = asset('storage/' . $item->image_url);
+                        $imgSrc = asset($item->image_url);
                     }
                 }
             @endphp
@@ -984,7 +984,7 @@
                         } elseif (file_exists(public_path('image/galeri/' . $item->gambar))) {
                             $imgSrc = asset('image/galeri/' . $item->gambar);
                         } else {
-                            $imgSrc = asset('storage/' . $item->gambar);
+                            $imgSrc = asset($item->gambar);
                         }
                     }
                 @endphp
@@ -1048,7 +1048,7 @@
                     } elseif (file_exists(public_path('image/berita/' . $item->gambar))) {
                         $imgSrc = asset('image/berita/' . $item->gambar);
                     } else {
-                        $imgSrc = asset('storage/' . $item->gambar);
+                        $imgSrc = asset($item->gambar);
                     }
                 }
             @endphp

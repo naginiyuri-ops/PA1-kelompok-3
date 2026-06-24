@@ -190,7 +190,7 @@
                         } elseif (file_exists(public_path('image/geodiversitas/' . $item->gambar))) {
                             $imgSrc = asset('image/geodiversitas/' . $item->gambar);
                         } else {
-                            $imgSrc = asset('storage/' . $item->gambar);
+                            $imgSrc = asset($item->gambar);
                         }
                     }
                 @endphp

@@ -308,7 +308,7 @@
                         } elseif (str_starts_with($item->gambar, 'image/')) {
                             $imgSrc = asset($item->gambar);
                         } else {
-                            $imgSrc = asset('storage/' . $item->gambar);
+                            $imgSrc = asset($item->gambar);
                         }
                     } else {
                         // GAMBAR DEFAULT BERDASARKAN KATEGORI

@@ -34,8 +34,14 @@ class AdminPengelolaGeositeController extends Controller
         $data['urutan'] = $request->urutan ?? 0;
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('image/pengelola', 'public');
-            $data['image'] = $imagePath;
+            $file = $request->file('image');
+            $filename = time() . '_pengelola_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('image/pengelola');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+            $file->move($destinationPath, $filename);
+            $data['image'] = 'image/pengelola/' . $filename;
         }
 
         PengelolaGeosite::create($data);
@@ -63,11 +69,17 @@ class AdminPengelolaGeositeController extends Controller
         $data['urutan'] = $request->urutan ?? 0;
 
         if ($request->hasFile('image')) {
-            if ($pengelolaGeosite->image) {
-                Storage::disk('public')->delete($pengelolaGeosite->image);
+            if ($pengelolaGeosite->image && file_exists(public_path($pengelolaGeosite->image))) {
+                unlink(public_path($pengelolaGeosite->image));
             }
-            $imagePath = $request->file('image')->store('image/pengelola', 'public');
-            $data['image'] = $imagePath;
+            $file = $request->file('image');
+            $filename = time() . '_pengelola_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('image/pengelola');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+            $file->move($destinationPath, $filename);
+            $data['image'] = 'image/pengelola/' . $filename;
         }
 
         $pengelolaGeosite->update($data);
@@ -78,8 +90,8 @@ class AdminPengelolaGeositeController extends Controller
 
     public function destroy(PengelolaGeosite $pengelolaGeosite)
     {
-        if ($pengelolaGeosite->image) {
-            Storage::disk('public')->delete($pengelolaGeosite->image);
+        if ($pengelolaGeosite->image && file_exists(public_path($pengelolaGeosite->image))) {
+            unlink(public_path($pengelolaGeosite->image));
         }
         
         $pengelolaGeosite->delete();

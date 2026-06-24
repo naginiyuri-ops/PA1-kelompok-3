@@ -44,7 +44,7 @@
                 
                 <div style="margin-top: 15px;">
                     <p style="margin-bottom: 5px; font-size: 0.85rem; color: #64748b; font-weight: 600;">Gambar Saat Ini:</p>
-                    <img id="previewImage" src="{{ asset('storage/' . $slider->image_path) }}" style="max-width: 300px; display: block; border-radius: 10px; border: 2px solid #e2e8f0;">
+                    <img id="previewImage" src="{{ asset($slider->image_path) }}" style="max-width: 300px; display: block; border-radius: 10px; border: 2px solid #e2e8f0;">
                 </div>
             </div>
             

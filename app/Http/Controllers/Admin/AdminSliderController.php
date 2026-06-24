@@ -40,7 +40,14 @@ class AdminSliderController extends Controller
         $data = $request->only(['title', 'subtitle']);
 
         if ($request->hasFile('image')) {
-            $data['image_path'] = $request->file('image')->store('slider', 'public');
+            $file = $request->file('image');
+            $filename = time() . '_slider_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('image/slider');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+            $file->move($destinationPath, $filename);
+            $data['image_path'] = 'image/slider/' . $filename;
         }
 
         Slider::create($data);
@@ -68,10 +75,17 @@ class AdminSliderController extends Controller
 
         if ($request->hasFile('image')) {
             // Delete old image
-            if ($slider->image_path && Storage::disk('public')->exists($slider->image_path)) {
-                Storage::disk('public')->delete($slider->image_path);
+            if ($slider->image_path && file_exists(public_path($slider->image_path))) {
+                unlink(public_path($slider->image_path));
             }
-            $data['image_path'] = $request->file('image')->store('slider', 'public');
+            $file = $request->file('image');
+            $filename = time() . '_slider_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('image/slider');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+            $file->move($destinationPath, $filename);
+            $data['image_path'] = 'image/slider/' . $filename;
         }
 
         $slider->update($data);
@@ -83,8 +97,8 @@ class AdminSliderController extends Controller
     {
         $slider = Slider::findOrFail($id);
 
-        if ($slider->image_path && Storage::disk('public')->exists($slider->image_path)) {
-            Storage::disk('public')->delete($slider->image_path);
+        if ($slider->image_path && file_exists(public_path($slider->image_path))) {
+            unlink(public_path($slider->image_path));
         }
 
         $slider->delete();

@@ -656,7 +656,7 @@
                         } elseif (file_exists(public_path('image/berita/' . $item->gambar))) {
                             $imgSrc = asset('image/berita/' . $item->gambar);
                         } else {
-                            $imgSrc = asset('storage/' . $item->gambar);
+                            $imgSrc = asset($item->gambar);
                         }
                     }
                 @endphp

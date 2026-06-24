@@ -314,10 +314,10 @@
                     <td data-label="Profil">
                         <div class="avatar-cell">
                             @if($item->image)
-                                <img src="{{ asset('storage/' . $item->image) }}"
+                                <img src="{{ asset($item->image) }}"
                                      alt="{{ $item->nama }}"
                                      style="cursor: pointer;"
-                                     onclick="openLightbox('{{ asset('storage/' . $item->image) }}')"
+                                     onclick="openLightbox('{{ asset($item->image) }}')"
                                      onerror="this.style.display='none'; this.parentElement.innerHTML='{{ $initials }}'">
                             @else
                                 {{ $initials }}

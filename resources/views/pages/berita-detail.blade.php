@@ -135,7 +135,7 @@
                         } elseif (str_starts_with($berita->gambar, 'image/')) {
                             $imgSrc = asset($berita->gambar);
                         } else {
-                            $imgSrc = asset('storage/' . $berita->gambar);
+                            $imgSrc = asset($berita->gambar);
                         }
                     }
                 @endphp
@@ -165,7 +165,7 @@
                                     } elseif (str_starts_with($item->gambar, 'image/')) {
                                         $thumbSrc = asset($item->gambar);
                                     } else {
-                                        $thumbSrc = asset('storage/' . $item->gambar);
+                                        $thumbSrc = asset($item->gambar);
                                     }
                                 }
                             @endphp
