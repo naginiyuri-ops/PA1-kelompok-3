@@ -64,8 +64,8 @@
             height: 64px;
             background: rgba(0, 51, 102, 0.97);
             backdrop-filter: blur(12px);
-            border-bottom: none;
-            box-shadow: none;
+            border-bottom: 1px solid rgba(198, 164, 59, 0.2);
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
             z-index: 1050;
             top: 0;
             left: 0;
@@ -98,8 +98,8 @@
 
         /* CONTAINER */
         .navbar .container {
-            max-width: 1800px; /* Diperbesar agar jarak kosong berkurang */
-            padding: 0 12px; /* Padding dikurangi setengahnya dari 24px menjadi 12px */
+            max-width: 1400px;
+            padding: 0 24px;
             height: 100%;
             display: flex;
             align-items: center;
@@ -135,7 +135,7 @@
         }
 
         .navbar-brand {
-            font-size: 1.45rem; /* Ukuran teks logo diperbesar */
+            font-size: 1.25rem;
             font-weight: 800;
             color: white !important;
             margin: 0;
@@ -172,8 +172,8 @@
             color: rgba(255, 255, 255, 0.88) !important;
             font-family: 'Quincy CF', serif !important;
             font-weight: bold !important;
-            font-size: 0.9rem; /* Ukuran teks diperbesar dari 0.72rem */
-            padding: 5px 10px !important; /* Padding sedikit diperbesar agar proporsional */
+            font-size: 0.72rem;
+            padding: 5px 8px !important;
             border-radius: 7px;
             transition: all 0.25s ease;
             white-space: nowrap;
@@ -279,7 +279,7 @@
             border: none;
             outline: none;
             color: white;
-            font-size: 0.9rem; /* Ukuran teks search diperbesar */
+            font-size: 0.75rem;
             font-weight: 500;
             width: 100%;
             font-family: 'Inter', sans-serif;
@@ -290,7 +290,7 @@
 
         #globalSearchInput::placeholder {
             color: rgba(255, 255, 255, 0.42);
-            font-size: 0.85rem; /* Ukuran teks placeholder diperbesar */
+            font-size: 0.7rem;
         }
 
         .navbar.scrolled-down #globalSearchInput::placeholder {
@@ -358,7 +358,7 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.04);
         }
 
-        .search-result-item:last-child { border-bottom: none; }
+        .search-result-item:last-child { border-bottom: 1px solid rgba(198, 164, 59, 0.2); }
         .search-result-item:hover { background: rgba(0, 51, 102, 0.04); }
 
         .search-result-thumb {
@@ -610,7 +610,7 @@
         .footer {
             background: linear-gradient(135deg, #001f3f 0%, #003366 50%, #0a4a7a 100%);
             padding: 60px 0 30px;
-            margin-top: 0;
+            margin-top: 80px;
             position: relative;
             border-top: 3px solid rgba(198, 164, 59, 0.3);
         }
@@ -875,12 +875,12 @@
         ======================================== */
         main {
             flex: 1;
-            padding-top: 0;
+            padding-top: 64px;
             min-height: calc(100vh - 200px);
         }
 
-        @media (max-width: 991px) { main { padding-top: 0; } }
-        @media (max-width: 576px) { main { padding-top: 0; } }
+        @media (max-width: 991px) { main { padding-top: 60px; } }
+        @media (max-width: 576px) { main { padding-top: 54px; } }
 
         /* ========================================
            WIDGET FLOATING BAHASA (Language Switcher)
@@ -1483,5 +1483,6 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
     @stack('scripts')
 </body>
 </html> 
+
 
 

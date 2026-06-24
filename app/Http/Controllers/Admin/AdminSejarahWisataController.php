@@ -52,7 +52,7 @@ class AdminSejarahWisataController extends Controller
             $filename = time() . '_sejarah_' . Str::slug($request->judul) . '.' . $file->getClientOriginalExtension();
             $destinationPath = public_path('image/sejarah');
             if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0777, true);
+                mkdir($destinationPath, 0755, true);
             }
             $file->move($destinationPath, $filename);
             $data['gambar'] = 'image/sejarah/' . $filename;
@@ -118,7 +118,7 @@ class AdminSejarahWisataController extends Controller
             $filename = time() . '_sejarah_' . Str::slug($request->judul) . '.' . $file->getClientOriginalExtension();
             $destinationPath = public_path('image/sejarah');
             if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0777, true);
+                mkdir($destinationPath, 0755, true);
             }
             $file->move($destinationPath, $filename);
             $data['gambar'] = 'image/sejarah/' . $filename;
@@ -155,3 +155,4 @@ class AdminSejarahWisataController extends Controller
         return view('admin.sejarah-wisata.index', compact('data'));
     }
 }
+

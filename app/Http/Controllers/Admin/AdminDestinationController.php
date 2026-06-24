@@ -161,7 +161,7 @@ class AdminDestinationController extends Controller
             // Buat direktori tujuan jika belum ada
             $destinationPath = public_path('image/destinations/' . $category);
             if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0777, true);
+                mkdir($destinationPath, 0755, true);
             }
 
             // Pindahkan file ke direktori tujuan
@@ -178,7 +178,7 @@ class AdminDestinationController extends Controller
 
             $destinationPath = public_path('image/destinations/' . $category);
             if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0777, true);
+                mkdir($destinationPath, 0755, true);
             }
 
             $heroFile->move($destinationPath, $heroFilename);
@@ -272,7 +272,7 @@ class AdminDestinationController extends Controller
         // Proses upload gambar baru jika ada
         $destinationPath = public_path('image/destinations/' . $category);
         if (!file_exists($destinationPath)) {
-            mkdir($destinationPath, 0777, true);
+            mkdir($destinationPath, 0755, true);
         }
 
         if ($request->hasFile('image')) {
@@ -333,3 +333,4 @@ class AdminDestinationController extends Controller
             ->with('success', 'Data Destinasi ' . ucfirst($category) . ' berhasil dihapus!');
     }
 }
+
