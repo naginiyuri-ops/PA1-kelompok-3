@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminBeritaController;
 
 use App\Http\Controllers\Admin\AdminUmkmController;
 use App\Http\Controllers\Admin\AdminFasilitasController;
+use App\Http\Controllers\Admin\AdminPenginapanController;
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminDestinationController;
@@ -102,7 +103,9 @@ Route::get('/fasilitas/umkm/{id}', [PublicFasilitasUtamaController::class, 'umkm
 // SOVENIR & UMKM (BARU)
 Route::get('/sovenir-umkm', [PublicFasilitasUtamaController::class, 'umkmIndex'])->name('umkm.index');
 
-// PENGINAPAN - routes dihapus (digantikan oleh sistem Fasilitas)
+// PENGINAPAN - Public Routes
+Route::get('/penginapan', [PublicFasilitasUtamaController::class, 'penginapan'])->name('penginapan.index');
+Route::get('/penginapan/{id}', [PublicFasilitasUtamaController::class, 'penginapanDetail'])->name('penginapan.detail');
 
 // ========================================
 // ========== GALERI ==========
@@ -166,21 +169,25 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     // ========== DASHBOARD ==========
     Route::get('/', function () {
-        $totalGaleri = DB::table('galeri')->count();
-        $totalBerita = DB::table('beritas')->count();
-        $totalUmkm = DB::table('umkm')->count();
-        $totalFasilitas = DB::table('fasilitas')->count();
-        $totalBiodiversitas = DB::table('biodiversitas')->count();
-        $totalViews = 0;
-        $beritaTerbaru = App\Models\Berita::latest()->limit(5)->get();
-        
+        $totalGaleri       = DB::table('galeri')->count();
+        $totalBerita       = DB::table('beritas')->count();
+        $totalUmkm         = DB::table('umkm')->count();
+        $totalFasilitas    = DB::table('fasilitas')->count();
+        $totalPenginapan   = DB::table('penginapan')->count();
+        $totalBiodiversitas= DB::table('biodiversitas')->count();
+        $totalSejarah      = DB::table('sejarah_wisata')->count();
+        $totalViews        = 0;
+        $beritaTerbaru     = App\Models\Berita::latest()->limit(5)->get();
+
         return view('admin.dashboard', compact(
-            'totalGaleri', 
-            'totalBerita', 
-            'totalUmkm', 
-            'totalFasilitas', 
+            'totalGaleri',
+            'totalBerita',
+            'totalUmkm',
+            'totalFasilitas',
+            'totalPenginapan',
             'totalBiodiversitas',
-            'totalViews', 
+            'totalSejarah',
+            'totalViews',
             'beritaTerbaru'
         ));
     })->name('admin.dashboard');
@@ -210,6 +217,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::resource('umkm', AdminUmkmController::class)->names('admin.umkm');
     Route::resource('fasilitas', AdminFasilitasController::class)->names('admin.fasilitas');
+    Route::resource('penginapan', AdminPenginapanController::class)->names('admin.penginapan');
+    Route::post('penginapan/toggle-status/{id}', [AdminPenginapanController::class, 'toggleStatus'])->name('admin.penginapan.toggle-status');
     Route::resource('pengelola-geosite', AdminPengelolaGeositeController::class)->names('admin.pengelola-geosite');
 
     // ========== TOGGLE STATUS ==========

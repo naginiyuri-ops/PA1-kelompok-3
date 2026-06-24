@@ -21,6 +21,7 @@ return [
         'destination'       => 'Destinasi Wisata',
         'souvenir_umkm'     => 'Sovenir & UMKM',
         'facilities'        => 'Fasilitas',
+        'accommodation'     => 'Penginapan',
         'news'              => 'Berita & Informasi',
         'gallery'           => 'Galeri',
         'search_placeholder'=> 'Cari...',
@@ -282,6 +283,19 @@ return [
         'switch_to_en'      => 'Ganti ke Bahasa Inggris',
         'switch_to_id'      => 'Ganti ke Bahasa Indonesia',
         'current'           => 'Bahasa',
+    ],
+
+    // =========================================================================
+    // PENGINAPAN
+    // =========================================================================
+    'penginapan' => [
+        'page_title'        => 'Penginapan - Geosite Danau Toba',
+        'meta_description'  => 'Temukan berbagai pilihan penginapan, homestay, dan akomodasi nyaman di sekitar Geosite Danau Toba, Desa Meat.',
+        'title'             => 'Penginapan',
+        'subtitle'          => 'Temukan berbagai pilihan penginapan dan akomodasi nyaman di sekitar Geosite Danau Toba.',
+        'back'              => 'Kembali ke Daftar Penginapan',
+        'contact_wa'        => 'Hubungi via WhatsApp',
+        'about_title'       => 'Tentang Penginapan Ini',
     ],
 
 ];

@@ -404,6 +404,10 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
         <a href="{{ route('admin.fasilitas.index') }}" class="{{ request()->routeIs('admin.fasilitas.*') ? 'active' : '' }}">
             Fasilitas
         </a>
+
+        <a href="{{ route('admin.penginapan.index') }}" class="{{ request()->routeIs('admin.penginapan.*') ? 'active' : '' }}">
+            Penginapan
+        </a>
         
         <div class="menu-title">Pengaturan</div>
         <a href="{{ route('admin.kontak.index') }}" class="{{ request()->routeIs('admin.kontak.*') ? 'active' : '' }}">

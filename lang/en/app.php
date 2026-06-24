@@ -21,6 +21,7 @@ return [
         'destination'       => 'Tourist Destinations',
         'souvenir_umkm'     => 'Souvenirs & UMKM',
         'facilities'        => 'Facilities',
+        'accommodation'     => 'Accommodation',
         'news'              => 'News & Information',
         'gallery'           => 'Gallery',
         'search_placeholder'=> 'Search...',
@@ -282,6 +283,19 @@ return [
         'switch_to_en'      => 'Switch to English',
         'switch_to_id'      => 'Switch to Indonesian',
         'current'           => 'Language',
+    ],
+
+    // =========================================================================
+    // ACCOMMODATION (PENGINAPAN)
+    // =========================================================================
+    'penginapan' => [
+        'page_title'        => 'Accommodation - Geosite Lake Toba',
+        'meta_description'  => 'Find various accommodation options, homestays, and comfortable lodging around Geosite Lake Toba, Meat Village.',
+        'title'             => 'Accommodation',
+        'subtitle'          => 'Find various accommodation options and comfortable lodging around Geosite Lake Toba.',
+        'back'              => 'Back to Accommodation List',
+        'contact_wa'        => 'Contact via WhatsApp',
+        'about_title'       => 'About This Accommodation',
     ],
 
 ];
