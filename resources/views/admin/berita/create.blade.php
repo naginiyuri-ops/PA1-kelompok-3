@@ -32,7 +32,7 @@
             <div class="mb-3">
                 <label>Konten <span class="text-danger">*</span></label>
                 <textarea id="berita_konten_id" name="konten" class="form-control" rows="10" required>{{ old('konten') }}</textarea>
-                <small class="text-muted">Gunakan HTML untuk formatting teks</small>
+
             </div>
 
             {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}

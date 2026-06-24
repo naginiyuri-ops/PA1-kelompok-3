@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Akomodasi')
+@section('title', 'Tambah Fasilitas')
 
 @section('content')
 <style>
@@ -74,9 +74,9 @@
         gap: 20px;
     }
     
-    .col-third {
+    .col-half {
         flex: 1;
-        min-width: 180px;
+        min-width: 200px;
     }
     
     .preview-image {
@@ -171,43 +171,9 @@
         margin-right: 4px;
     }
     
-    .price-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        flex-wrap: wrap;
-    }
-    
-    .price-wrapper .form-control {
-        flex: 1;
-    }
-    
-    .free-checkbox {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        white-space: nowrap;
-    }
-    
-    .free-checkbox input {
-        width: 18px;
-        height: 18px;
-        cursor: pointer;
-        margin: 0;
-    }
-    
-    .free-checkbox label {
-        margin: 0;
-        cursor: pointer;
-        font-weight: 500;
-        color: #c6a43b;
-    }
-    
     @media (max-width: 768px) {
         .card-header {
             padding: 12px 18px;
-            flex-direction: column;
-            align-items: flex-start;
         }
         
         .card-body {
@@ -223,154 +189,134 @@
             padding: 8px 18px;
             font-size: 0.8rem;
         }
-        
-        .price-wrapper {
-            flex-direction: column;
-            align-items: stretch;
-        }
-        
-        .free-checkbox {
-            justify-content: flex-start;
-        }
     }
 </style>
 
 <div class="card">
     <div class="card-header">
         <h5>
-            <i class="fas fa-hotel"></i>
-            Tambah Data Akomodasi
+            <i class="fas fa-store"></i>
+            Tambah Data Fasilitas
         </h5>
-        <a href="{{ route('admin.penginapan.index') }}" class="btn-cancel" style="padding: 6px 16px;">
+        <a href="{{ route('admin.fasilitas.index') }}" class="btn-cancel" style="padding: 6px 16px;">
             <i class="fas fa-arrow-left"></i> Kembali
         </a>
     </div>
     
- @if ($errors->any())
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>⚠ Terdapat kesalahan:</strong>
-
-        <ul class="mb-0 mt-2">
-            @foreach ($errors->all() as $error)
+    @if($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
-
-        <button type="button"
-                class="btn-close"
-                data-bs-dismiss="alert">
-        </button>
     </div>
-@endif
+    @endif
         
-        <form action="{{ route('admin.penginapan.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.fasilitas.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             
             <div class="mb-3">
-                <label>Nama Akomodasi <span class="text-danger">*</span></label>
-                <input type="text" name="nama" id="penginapan_create_nama" class="form-control" value="{{ old('nama') }}" placeholder="Masukkan nama penginapan" required>
+                <label>Nama Fasilitas <span class="text-danger">*</span></label>
+                <input type="text" name="nama" id="Fasilitas_create_nama" class="form-control" value="{{ old('nama') }}" placeholder="Masukkan nama Fasilitas" required>
+            </div>
+            
+            <div class="mb-3">
+                <label>Jenis Fasilitas <span class="text-danger">*</span></label>
+                <select name="jenis" class="form-control" required>
+                    <option value="" disabled selected>-- Pilih Jenis Fasilitas --</option>
+                    @foreach($jenisList as $j)
+                        <option value="{{ $j }}" {{ old('jenis') == $j ? 'selected' : '' }}>{{ ucwords($j) }}</option>
+                    @endforeach
+                </select>
             </div>
             
             <div class="mb-3">
                 <label>Deskripsi <span class="text-danger">*</span></label>
-                <textarea name="deskripsi" id="penginapan_create_deskripsi" class="form-control" rows="5" placeholder="Masukkan deskripsi penginapan" required>{{ old('deskripsi') }}</textarea>
+                <textarea name="deskripsi" id="Fasilitas_create_deskripsi" class="form-control" rows="5" placeholder="Masukkan deskripsi Fasilitas" required>{{ old('deskripsi') }}</textarea>
             </div>
 
-            {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
+            {{-- ====================================
+                 BLOK TERJEMAHAN BAHASA INGGRIS
+            ===================================== --}}
 <div class="row">
-                <div class="col-third">
+                <div class="col-half">
                     <div class="mb-3">
                         <label>Lokasi</label>
                         <input type="text" name="lokasi" class="form-control" value="{{ old('lokasi', 'Desa Meat') }}" placeholder="Contoh: Desa Meat, Balige">
                     </div>
                 </div>
                 
-                <div class="col-third">
+                <div class="col-half">
                     <div class="mb-3">
-                        <label>Kontak</label>
-                        <input type="number" name="kontak" class="form-control" value="{{ old('kontak') }}" min="0" step="1" inputmode="numeric" pattern="[0-9]*" placeholder="Contoh: 081234567890">
-                        @error('kontak')
-                      <div class="text-danger mt-1">
-                       {{ $message }}
-                     </div>
-                     @enderror
-                        <div class="form-text">
-                            <i class="fas fa-info-circle"></i> Masukkan nomor kontak 12 digit angka.
-                        </div>
+                        <label>Harga / Keterangan</label>
+                        <input type="text" name="harga" class="form-control" value="{{ old('harga') }}" placeholder="Contoh: Rp 50.000 / Hubungi Admin">
                     </div>
                 </div>
                 
-                <div class="col-third">
+                <div class="col-half">
                     <div class="mb-3">
-                        <label>Harga</label>
-                        <div class="price-wrapper">
-                            <input type="number" name="harga" id="hargaInput" class="form-control" value="{{ old('harga') }}" min="0" placeholder="Contoh: Rp250000 / Free">
-                            @error('harga')
-                            <div class="text-danger mt-1">
-                           {{ $message }}
-                            </div>
-                            @enderror
-                            <div class="free-checkbox">
-                                <input type="checkbox" name="free_harga" id="freeHarga" value="1">
-                                <label for="freeHarga">Free</label>
-                            </div>
-                        </div>
+                        <label>Kontak</label>
+                        <input type="text" name="kontak" class="form-control" value="{{ old('kontak') }}" placeholder="Contoh: 081234567890">
                         <div class="form-text">
-                            <i class="fas fa-info-circle"></i> Centang Free untuk mengisi otomatis "Free", atau isi manual dengan harga sesuai keinginan
+                            <i class="fas fa-info-circle"></i> Masukkan nomor kontak jika ada.
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="row">
-                <div class="col-third">
+                <div class="col-half">
                     <div class="mb-3">
                         <label>Urutan <span class="text-danger">*</span></label>
                         <input type="number" name="urutan" class="form-control" value="{{ old('urutan', $nextUrutan ?? 1) }}" required>
                         <div class="form-text">
-                            <i class="fas fa-info-circle"></i> Semakin kecil angka, semakin atas tampilannya
-                        </div>
-                    </div>
+            <div class="mb-3">
+                <label>Urutan <span class="text-danger">*</span></label>
+                <input type="number" name="urutan" class="form-control" value="{{ old('urutan', $nextUrutan ?? 1) }}" required>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i> Semakin kecil angka, semakin atas tampilannya
                 </div>
-                
-                <div class="col-third">
+            </div>
+            
+            <div class="row">
+                <div class="col-half">
                     <div class="mb-3">
                         <label>Gambar Utama</label>
                         <input type="file" name="gambar" class="form-control" accept="image/*" id="inputGambar">
                         <div class="form-text">
                             <i class="fas fa-info-circle"></i> Format: JPG, PNG, WEBP. Max: 5MB
                         </div>
-                        <img id="previewImage" class="preview-image">
+                        <img src="" class="preview-image" id="previewImage">
                     </div>
                 </div>
                 
-                <div class="col-third">
+                <div class="col-half">
                     <div class="mb-3">
-                        <label>Gambar Tambahan (Opsional)</label>
-                        <input type="file" name="gambar_tambahan" class="form-control" accept="image/*" id="inputGambarTambahan">
+                        <label>Foto Tambahan (Opsional)</label>
+                        <input type="file" name="gambar_tambahan" class="form-control" accept="image/*" id="inputFotoTambahan">
                         <div class="form-text">
                             <i class="fas fa-info-circle"></i> Format: JPG, PNG, WEBP. Max: 5MB
                         </div>
-                        <img id="previewGambarTambahan" class="preview-image">
+                        <img src="" class="preview-image" id="previewFotoTambahan">
                     </div>
                 </div>
             </div>
             
             <div class="checkbox-group">
                 <input type="checkbox" name="status" value="1" id="status" {{ old('status', 1) ? 'checked' : '' }}>
-                <label for="status">Aktifkan Akomodasi</label>
+                <label for="status">Aktifkan Fasilitas</label>
             </div>
             
             <div class="btn-group">
                 <button type="submit" class="btn-save">Simpan</button>
-                <a href="{{ route('admin.penginapan.index') }}" class="btn-cancel">Batal</a>
+                <a href="{{ route('admin.fasilitas.index') }}" class="btn-cancel">Batal</a>
             </div>
         </form>
     </div>
 </div>
 
 <script>
-    // Preview gambar utama
     document.getElementById('inputGambar').addEventListener('change', function(e) {
         const file = e.target.files[0];
         const previewImage = document.getElementById('previewImage');
@@ -387,10 +333,9 @@
         }
     });
 
-    // Preview gambar tambahan
-    document.getElementById('inputGambarTambahan').addEventListener('change', function(e) {
+    document.getElementById('inputFotoTambahan').addEventListener('change', function(e) {
         const file = e.target.files[0];
-        const previewImage = document.getElementById('previewGambarTambahan');
+        const previewImage = document.getElementById('previewFotoTambahan');
         
         if (file) {
             const reader = new FileReader();
@@ -403,24 +348,8 @@
             previewImage.style.display = 'none';
         }
     });
-    
-    // Free checkbox handler
-    const freeCheckbox = document.getElementById('freeHarga');
-    const hargaInput = document.getElementById('hargaInput');
-    
-    if (freeCheckbox) {
-        freeCheckbox.addEventListener('change', function() {
-            if (this.checked) {
-                hargaInput.disabled = true;
-                hargaInput.value = 'Free';
-                hargaInput.placeholder = 'Free';
-            } else {
-                hargaInput.disabled = false;
-                hargaInput.value = '';
-                hargaInput.placeholder = 'Contoh: Rp250.000/malam, Free, 200000';
-            }
-        });
-    }
 </script>
 @endsection
+
+
 

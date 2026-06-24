@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Manajemen Akomodasi Meat')
+@section('title', 'Manajemen Fasilitas Meat')
 
 @section('content')
 <style>
@@ -65,19 +65,6 @@
         margin: 16px 20px;
         border-radius: 10px;
         border-left: 4px solid #2e7d32;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 0.85rem;
-    }
-    
-    .alert-error {
-        background: #ffebee;
-        color: #c62828;
-        padding: 12px 20px;
-        margin: 16px 20px;
-        border-radius: 10px;
-        border-left: 4px solid #c62828;
         display: flex;
         align-items: center;
         gap: 10px;
@@ -221,33 +208,6 @@
         justify-content: center;
     }
     
-    .pagination .pagination {
-        margin: 0;
-        gap: 5px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .pagination .page-item .page-link {
-        border-radius: 10px;
-        border: none;
-        padding: 6px 12px;
-        color: #003366;
-        font-weight: 500;
-        background: white;
-        transition: all 0.2s ease;
-        font-size: 0.8rem;
-    }
-    
-    .pagination .page-item.active .page-link {
-        background: #003366;
-        color: white;
-    }
-    
-    .pagination .page-item .page-link:hover {
-        background: #e2e8f0;
-    }
-    
     .stats-bar {
         display: flex;
         align-items: center;
@@ -354,23 +314,17 @@
 <div class="card-table">
     <div class="card-header">
         <h5>
-            <i class="fas fa-hotel"></i>
-            Akomodasi Meat
+            <i class="fas fa-building"></i>
+            Manajemen Fasilitas
         </h5>
-        <a href="{{ route('admin.penginapan.create') }}" class="btn-primary">
-            <i class="fas fa-plus"></i> Tambah Akomodasi
+        <a href="{{ route('admin.fasilitas.create') }}" class="btn-primary">
+            <i class="fas fa-plus"></i> Tambah Fasilitas
         </a>
     </div>
     
     @if(session('success'))
         <div class="alert-success">
             <i class="fas fa-check-circle"></i> {{ session('success') }}
-        </div>
-    @endif
-
-    @if(session('error'))
-        <div class="alert-error">
-            <i class="fas fa-exclamation-triangle"></i> {{ session('error') }}
         </div>
     @endif
     
@@ -384,16 +338,15 @@
     </div>
 
     <div class="table-wrapper">
-        <table>
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>No</th>
                     <th>Gambar</th>
                     <th>Nama</th>
+                    <th>Jenis</th>
                     <th>Lokasi</th>
                     <th>Kontak</th>
-                    <th>Harga</th>
-                    <th>Urutan</th>
                     <th>Status</th>
                     <th>Aksi</th>
                 </tr>
@@ -404,32 +357,32 @@
                     <td data-label="No">{{ $loop->iteration }}</td>
                     <td data-label="Gambar">
                         @if($item->gambar && file_exists(public_path($item->gambar)))
-                            <img src="{{ asset($item->gambar) }}" class="table-img" 
-                                 onerror="this.onerror=null; this.src='{{ asset('image/penginapan/default.jpg') }}'" alt="{{ $item->nama }}">
+                            <img src="{{ asset($item->gambar) }}" class="table-img" alt="{{ $item->nama }}">
                         @else
-                            <img src="{{ asset('image/penginapan/default.jpg') }}" class="table-img" alt="Default">
+                            <div style="width:50px;height:50px;background:#e2e8f0;border-radius:10px;display:flex;align-items:center;justify-content:center;">
+                                <i class="fas fa-building" style="color:#94a3b8;"></i>
+                            </div>
                         @endif
                     </td>
                     <td data-label="Nama">
                         <strong>{{ Str::limit($item->nama, 30) }}</strong>
                     </td>
-                    <td data-label="Lokasi">{{ $item->lokasi ?? 'Desa Meat' }}</td>
-                    <td data-label="Kontak">{{ $item->kontak ?? '-' }}</td>
-                    <td data-label="Harga">
-                        <span class="badge badge-warning">{{ $item->harga ?? 'Hubungi' }}</span>
+                    <td data-label="Jenis">
+                        <span class="badge badge-warning">{{ ucwords($item->jenis ?? '-') }}</span>
                     </td>
-                    <td data-label="Urutan" style="text-align: center;">{{ $item->urutan }}</td>
+                    <td data-label="Lokasi">{{ $item->lokasi ?? '-' }}</td>
+                    <td data-label="Kontak">{{ $item->kontak ?? '-' }}</td>
                     <td data-label="Status">
-                        <span class="badge {{ $item->status ? 'badge-success' : 'badge-danger' }}">
-                            {{ $item->status ? 'Aktif' : 'Tidak' }}
+                        <span class="badge {{ $item->status == 1 ? 'badge-success' : 'badge-danger' }}">
+                            {{ $item->status == 1 ? 'Aktif' : 'Nonaktif' }}
                         </span>
                     </td>
                     <td data-label="Aksi">
                         <div class="btn-group">
-                            <a href="{{ route('admin.penginapan.edit', $item->id) }}" class="btn-edit">
+                            <a href="{{ route('admin.fasilitas.edit', $item->id) }}" class="btn-edit">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
-                            <form action="{{ route('admin.penginapan.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus data ini?')" style="display: inline;">
+                            <form action="{{ route('admin.fasilitas.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus data ini?')" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn-delete">
@@ -441,10 +394,10 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="9" class="empty-state">
-                        <i class="fas fa-hotel" style="font-size: 2rem; opacity: 0.5; display: block; margin-bottom: 10px;"></i>
-                        📭 Belum ada data Akomodasi
-                        <p style="margin-top: 10px; font-size: 0.8rem;">Klik tombol "Tambah Akomodasi" untuk mulai menambahkan</p>
+                    <td colspan="8" class="empty-state">
+                        <i class="fas fa-building" style="font-size: 2rem; opacity: 0.5; display: block; margin-bottom: 10px;"></i>
+                        📭 Belum ada data Fasilitas
+                        <p style="margin-top: 10px; font-size: 0.8rem;">Klik tombol "Tambah Fasilitas" untuk mulai menambahkan</p>
                     </td>
                 </tr>
                 @endforelse
@@ -459,4 +412,6 @@
     @endif
 </div>
 @endsection
+
+
 
