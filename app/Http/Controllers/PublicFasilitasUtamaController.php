@@ -13,7 +13,10 @@ class PublicFasilitasUtamaController extends Controller
      */
     public function index()
     {
-        return view('pages.fasilitas-index');
+        $fasilitas = \App\Models\Fasilitas::where('status', 1)
+                        ->orderBy('urutan', 'asc')
+                        ->get();
+        return view('pages.fasilitas-index', compact('fasilitas'));
     }
 
     public function umkm()

@@ -86,7 +86,7 @@
             <div class="mb-3">
                 <label>Konten <span class="text-danger">*</span></label>
                 <textarea name="konten" id="sejarah_create_konten" class="form-control" rows="8" required>{{ old('konten') }}</textarea>
-                <div class="form-text"><i class="fas fa-info-circle"></i> Gunakan HTML untuk formatting teks</div>
+
             </div>
 
             {{-- BLOK TERJEMAHAN BAHASA INGGRIS --}}
