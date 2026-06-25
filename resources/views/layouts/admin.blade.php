@@ -350,12 +350,13 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
         <p>Administrator</p>
     </div>
     <div class="sidebar-menu">
-        <div class="menu-title">Menu</div>
-                  <a href="{{ route('admin.slider.index') }}" class="{{ request()->routeIs('admin.slider.*') ? 'active' : '' }}">
-              <i class="fas fa-images"></i> Manajemen Slider
-          </a>
-          <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-            Dashboard
+        <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+            <i class="fas fa-home"></i> Dashboard
+        </a>
+
+        <div class="menu-title">HOMEPAGE</div>
+        <a href="{{ route('admin.slider.index') }}" class="{{ request()->routeIs('admin.slider.*') ? 'active' : '' }}">
+            <i class="fas fa-images"></i> Manajemen Slider
         </a>
         
         <div class="menu-title">Konten</div>
