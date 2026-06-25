@@ -48,16 +48,16 @@ class PublicFasilitasUtamaController extends Controller
 
     public function penginapan()
     {
-        $penginapan = \App\Models\Penginapan::where('status', 'aktif')
+        $penginapan = \App\Models\Penginapan::where('status', 1)
                         ->orderBy('urutan', 'asc')
-                        ->paginate(6);
+                        ->paginate(9);
         return view('pages.penginapan', compact('penginapan'));
     }
 
     public function penginapanDetail($id)
     {
-        $item = \App\Models\Penginapan::findOrFail($id);
-        $related = \App\Models\Penginapan::where('status', 'aktif')
+        $item = \App\Models\Penginapan::where('status', 1)->findOrFail($id);
+        $related = \App\Models\Penginapan::where('status', 1)
                         ->where('id', '!=', $id)
                         ->inRandomOrder()
                         ->take(3)
