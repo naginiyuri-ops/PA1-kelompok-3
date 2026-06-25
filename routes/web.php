@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\AdminKulinerController;
 use App\Http\Controllers\Admin\AdminAgendaController;
 use App\Http\Controllers\Admin\AdminPengumumanController;
 
-use App\Http\Controllers\Admin\AdminController;
+
 use App\Http\Controllers\Admin\AdminDestinationController;
 use App\Http\Controllers\Admin\AdminPengelolaGeositeController;
 use App\Http\Controllers\PublicDestinasiController;
@@ -193,10 +193,6 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 // ========== ADMIN ROUTES (PROTECTED) ==========
 // ========================================
 Route::prefix('admin')->middleware(['auth'])->group(function () {
-
-    // ========== MANAJEMEN ADMIN ==========
-    Route::get('/create-admin', [AdminController::class, 'create'])->name('admin.create');
-    Route::post('/store-admin', [AdminController::class, 'store'])->name('admin.store');
 
     // ========== DASHBOARD ==========
     Route::get('/', function () {

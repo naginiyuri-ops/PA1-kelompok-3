@@ -190,24 +190,6 @@
         padding: 20px !important;
     }
 
-    /* ==================== QUICK ACTIONS DOCK ==================== */
-    .quick-actions-bar {
-        background: #f8fafc;
-        border: 1px dashed #cbd5e1;
-        padding: 12px;
-        border-radius: 10px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 24px;
-        align-items: center;
-    }
-    .quick-actions-bar span {
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: #475569;
-        margin-right: 4px;
-    }
 </style>
 
 <div class="dash-welcome">
@@ -260,14 +242,6 @@
         <div class="stat-number">{{ $totalBiodiversitas ?? 0 }}</div>
         <div class="stat-label">Biodiversitas</div>
     </div>
-</div>
-
-
-
-<div class="quick-actions-bar">
-    <span><i class="fas fa-bolt"></i> Pintasan:</span>
-
-    <a href="{{ route('admin.create') }}" class="btn-primary-sm" style="background-color: #475569;"><i class="fas fa-user-plus"></i> Tambah Admin Baru</a>
 </div>
 
 @endsection

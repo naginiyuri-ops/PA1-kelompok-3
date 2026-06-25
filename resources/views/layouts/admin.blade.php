@@ -425,9 +425,6 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
         <a href="{{ route('admin.kontak.index') }}" class="{{ request()->routeIs('admin.kontak.*') ? 'active' : '' }}">
             Pengaturan Kontak
         </a>
-        <a href="{{ route('admin.create') }}" class="{{ request()->routeIs('admin.create') ? 'active' : '' }}">
-            Tambah Admin
-        </a>
     </div>
 </div>
 
