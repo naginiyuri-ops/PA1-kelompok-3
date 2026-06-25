@@ -416,7 +416,38 @@
         </div>
         
         <div class="category-grid">
+
+            {{-- Kartu Khusus Penginapan --}}
+            <a href="{{ route('penginapan.index') }}" class="category-card" data-aos="fade-up" style="text-decoration: none;">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop" alt="Penginapan">
+                </div>
+                <div class="card-content">
+                    <h3>{{ __('app.penginapan.title') }}</h3>
+                    <p style="margin-bottom: 15px;">{{ __('app.penginapan.subtitle') }}</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: #64748b; text-align: left; margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
+                        <div><i class="fas fa-arrow-right" style="color: var(--blue-dark); width: 20px;"></i> {{ app()->getLocale() == 'en' ? 'Click to view all accommodations' : 'Klik untuk melihat semua penginapan' }}</div>
+                    </div>
+                </div>
+            </a>
+
+            {{-- Kartu Khusus Kuliner --}}
+            <a href="{{ route('kuliner.index') }}" class="category-card" data-aos="fade-up" data-aos-delay="50" style="text-decoration: none;">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=2074&auto=format&fit=crop" alt="Kuliner">
+                </div>
+                <div class="card-content">
+                    <h3>{{ __('app.kuliner.title') ?? 'Kuliner / Restoran' }}</h3>
+                    <p style="margin-bottom: 15px;">{{ __('app.kuliner.subtitle') ?? 'Nikmati berbagai hidangan lezat dan kuliner khas di sekitar Geosite Danau Toba.' }}</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: #64748b; text-align: left; margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
+                        <div><i class="fas fa-arrow-right" style="color: var(--blue-dark); width: 20px;"></i> {{ app()->getLocale() == 'en' ? 'Click to view all culinary & restaurants' : 'Klik untuk melihat semua kuliner' }}</div>
+                    </div>
+                </div>
+            </a>
             
+            {{-- Hasil CRUD Fasilitas Lainnya --}}
             @forelse($fasilitas as $item)
             <div class="category-card" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}" style="cursor: pointer;" onclick="openFasilitas({{ $item->id }})">
                 <div class="card-img-wrapper">

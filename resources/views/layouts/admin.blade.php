@@ -350,12 +350,13 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
         <p>Administrator</p>
     </div>
     <div class="sidebar-menu">
-        <div class="menu-title">Menu</div>
-                  <a href="{{ route('admin.slider.index') }}" class="{{ request()->routeIs('admin.slider.*') ? 'active' : '' }}">
-              <i class="fas fa-images"></i> Manajemen Slider
-          </a>
-          <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-            Dashboard
+        <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+            <i class="fas fa-home"></i> Dashboard
+        </a>
+
+        <div class="menu-title">HOMEPAGE</div>
+        <a href="{{ route('admin.slider.index') }}" class="{{ request()->routeIs('admin.slider.*') ? 'active' : '' }}">
+            Manajemen Slider
         </a>
         
         <div class="menu-title">Konten</div>
@@ -363,11 +364,19 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
         <a href="{{ route('admin.galeri.index') }}" class="{{ request()->routeIs('admin.galeri.*') ? 'active' : '' }}">
             Galeri
         </a>
-        <a href="{{ route('admin.berita.index') }}" class="{{ request()->routeIs('admin.berita.*') ? 'active' : '' }}">
-            Berita
-        </a>
         <a href="{{ route('admin.pengelola-geosite.index') }}" class="{{ request()->routeIs('admin.pengelola-geosite.*') ? 'active' : '' }}">
             Pengelola Geosite
+        </a>
+
+        <div class="menu-title">Berita & Informasi</div>
+        <a href="{{ route('admin.berita.index') }}" class="{{ request()->routeIs('admin.berita.*') ? 'active' : '' }}">
+            Berita Terkini
+        </a>
+        <a href="{{ route('admin.agenda.index') }}" class="{{ request()->routeIs('admin.agenda.*') ? 'active' : '' }}">
+            Agenda / Event
+        </a>
+        <a href="{{ route('admin.pengumuman.index') }}" class="{{ request()->routeIs('admin.pengumuman.*') ? 'active' : '' }}">
+            Pengumuman
         </a>
 
         {{-- ========== GROUP DESTINASI ========== --}}
@@ -407,6 +416,9 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
 
         <a href="{{ route('admin.penginapan.index') }}" class="{{ request()->routeIs('admin.penginapan.*') ? 'active' : '' }}">
             Penginapan
+        </a>
+        <a href="{{ route('admin.kuliner.index') }}" class="{{ request()->routeIs('admin.kuliner.*') ? 'active' : '' }}">
+            Kuliner / Restoran
         </a>
         
         <div class="menu-title">Pengaturan</div>

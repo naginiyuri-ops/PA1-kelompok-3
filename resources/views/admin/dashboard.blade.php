@@ -206,6 +206,14 @@
         <div class="stat-number">{{ $totalBerita ?? 0 }}</div>
         <div class="stat-label">Total Berita</div>
     </div>
+    <div class="stat-card">
+        <div class="stat-number">{{ $totalAgenda ?? 0 }}</div>
+        <div class="stat-label">Total Agenda</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number">{{ $totalPengumuman ?? 0 }}</div>
+        <div class="stat-label">Total Pengumuman</div>
+    </div>
 
     <div class="stat-card">
         <div class="stat-number">{{ $totalSejarah ?? 0 }}</div>
@@ -223,6 +231,11 @@
     <div class="stat-card">
         <div class="stat-number">{{ $totalPenginapan ?? 0 }}</div>
         <div class="stat-label">Penginapan</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-number">{{ $totalKuliner ?? 0 }}</div>
+        <div class="stat-label">Kuliner</div>
     </div>
 
     <div class="stat-card">

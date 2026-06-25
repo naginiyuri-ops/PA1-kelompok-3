@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -1028,11 +1028,6 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('penginapan*') ? 'active' : '' }}"
-                           href="{{ route('penginapan.index') }}">{{ __('app.nav.accommodation') }}</a>
-                    </li>
-
-                    <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('berita*') ? 'active' : '' }}"
                            href="{{ url('/berita') }}">{{ __('app.nav.news') }}</a>
                     </li>
@@ -1163,7 +1158,7 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
                     <p>&copy; {{ date('Y') }} GeoToba - Geopark Danau Toba. {{ __('app.footer.copyright') }}</p>
                 </div>
                 <div class="footer-credit">
-                    <span>{{ __('app.footer.designed_by') }} <a href="#">Kelompok 7</a></span>
+                    <span>{{ __('app.footer.designed_by') }} <a href="#">Kelompok 10</a></span>
                 </div>
             </div>
         </div>

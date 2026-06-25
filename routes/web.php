@@ -8,6 +8,9 @@ use App\Http\Controllers\Admin\AdminBeritaController;
 use App\Http\Controllers\Admin\AdminUmkmController;
 use App\Http\Controllers\Admin\AdminFasilitasController;
 use App\Http\Controllers\Admin\AdminPenginapanController;
+use App\Http\Controllers\Admin\AdminKulinerController;
+use App\Http\Controllers\Admin\AdminAgendaController;
+use App\Http\Controllers\Admin\AdminPengumumanController;
 
 
 use App\Http\Controllers\Admin\AdminDestinationController;
@@ -26,6 +29,7 @@ use App\Http\Controllers\PublicBiodiversitasController;
 use App\Http\Controllers\PublicGeodiversitasController;
 use App\Http\Controllers\PublicCulturalDiversityController;
 use App\Http\Controllers\PublicFasilitasUtamaController;
+use App\Http\Controllers\PublicBeritaController;
 use Illuminate\Support\Facades\DB;
 
 // ========================================
@@ -76,18 +80,23 @@ Route::get('/cultural-diversity', [PublicCulturalDiversityController::class, 'in
 Route::get('/cultural-diversity/{slug}', [PublicCulturalDiversityController::class, 'show'])->name('cultural-diversity.detail');
 
 // ========================================
-// ========== BERITA ==========
+// ========== BERITA & INFORMASI ==========
 // ========================================
-Route::get('/berita', function () {
-    $berita = App\Models\Berita::where('status', true)->latest()->paginate(9);
-    return view('pages.berita', compact('berita'));
-})->name('berita');
 
-Route::get('/berita/{slug}', function ($slug) {
-    $berita = App\Models\Berita::where('slug', $slug)->where('status', true)->firstOrFail();
-    $berita->increment('views');
-    return view('pages.berita-detail', compact('berita'));
-})->name('berita.detail');
+// Portal Utama Berita & Informasi
+Route::get('/berita', [PublicBeritaController::class, 'index'])->name('berita');
+
+// Sub-menu: Berita Terkini
+Route::get('/berita/terkini', [PublicBeritaController::class, 'terkini'])->name('berita.terkini');
+Route::get('/berita/{slug}', [PublicBeritaController::class, 'detail'])->name('berita.detail');
+
+// Sub-menu: Agenda & Event
+Route::get('/agenda', [PublicBeritaController::class, 'agenda'])->name('agenda.index');
+Route::get('/agenda/{id}', [PublicBeritaController::class, 'agendaDetail'])->name('agenda.detail');
+
+// Sub-menu: Pengumuman
+Route::get('/pengumuman', [PublicBeritaController::class, 'pengumuman'])->name('pengumuman.index');
+Route::get('/pengumuman/{id}', [PublicBeritaController::class, 'pengumumanDetail'])->name('pengumuman.detail');
 
 // ========================================
 // ========== FASILITAS ==========
@@ -106,6 +115,10 @@ Route::get('/sovenir-umkm', [PublicFasilitasUtamaController::class, 'umkmIndex']
 // PENGINAPAN - Public Routes
 Route::get('/penginapan', [PublicFasilitasUtamaController::class, 'penginapan'])->name('penginapan.index');
 Route::get('/penginapan/{id}', [PublicFasilitasUtamaController::class, 'penginapanDetail'])->name('penginapan.detail');
+
+// KULINER - Public Routes
+Route::get('/kuliner', [PublicFasilitasUtamaController::class, 'kuliner'])->name('kuliner.index');
+Route::get('/kuliner/{id}', [PublicFasilitasUtamaController::class, 'kulinerDetail'])->name('kuliner.detail');
 
 // ========================================
 // ========== GALERI ==========
@@ -146,6 +159,24 @@ Route::post('/api/berita/{id}/view', function ($id) {
     return response()->json(['success' => false], 404);
 });
 
+Route::post('/api/agenda/{id}/view', function ($id) {
+    $agenda = App\Models\Agenda::find($id);
+    if ($agenda) {
+        $agenda->increment('views');
+        return response()->json(['success' => true, 'views' => $agenda->views]);
+    }
+    return response()->json(['success' => false], 404);
+});
+
+Route::post('/api/pengumuman/{id}/view', function ($id) {
+    $pengumuman = App\Models\Pengumuman::find($id);
+    if ($pengumuman) {
+        $pengumuman->increment('views');
+        return response()->json(['success' => true, 'views' => $pengumuman->views]);
+    }
+    return response()->json(['success' => false], 404);
+});
+
 // ========================================
 // ========== AUTH ROUTES ==========
 // ========================================
@@ -167,6 +198,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', function () {
         $totalGaleri       = DB::table('galeri')->count();
         $totalBerita       = DB::table('beritas')->count();
+        $totalAgenda       = DB::table('agendas')->count();
+        $totalPengumuman   = DB::table('pengumuman')->count();
         $totalUmkm         = DB::table('umkm')->count();
         $totalFasilitas    = DB::table('fasilitas')->count();
         $totalPenginapan   = DB::table('penginapan')->count();
@@ -178,6 +211,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         return view('admin.dashboard', compact(
             'totalGaleri',
             'totalBerita',
+            'totalAgenda',
+            'totalPengumuman',
             'totalUmkm',
             'totalFasilitas',
             'totalPenginapan',
@@ -210,16 +245,22 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     // ========== RESOURCE CRUD ==========
     Route::resource('galeri', AdminGaleriController::class)->names('admin.galeri');
     Route::resource('berita', AdminBeritaController::class)->names('admin.berita');
+    Route::resource('agenda', AdminAgendaController::class)->names('admin.agenda');
+    Route::resource('pengumuman', AdminPengumumanController::class)->names('admin.pengumuman');
 
     Route::resource('umkm', AdminUmkmController::class)->names('admin.umkm');
     Route::resource('fasilitas', AdminFasilitasController::class)->names('admin.fasilitas');
     Route::resource('penginapan', AdminPenginapanController::class)->names('admin.penginapan');
     Route::post('penginapan/toggle-status/{id}', [AdminPenginapanController::class, 'toggleStatus'])->name('admin.penginapan.toggle-status');
+    Route::resource('kuliner', AdminKulinerController::class)->names('admin.kuliner');
+    Route::post('kuliner/toggle-status/{id}', [AdminKulinerController::class, 'toggleStatus'])->name('admin.kuliner.toggle-status');
     Route::resource('pengelola-geosite', AdminPengelolaGeositeController::class)->names('admin.pengelola-geosite');
 
     // ========== TOGGLE STATUS ==========
     Route::post('galeri/toggle-status/{id}', [AdminGaleriController::class, 'toggleStatus'])->name('admin.galeri.toggle-status');
     Route::post('berita/toggle-status/{id}', [AdminBeritaController::class, 'toggleStatus'])->name('admin.berita.toggle-status');
+    Route::post('agenda/toggle-status/{id}', [AdminAgendaController::class, 'toggleStatus'])->name('admin.agenda.toggle-status');
+    Route::post('pengumuman/toggle-status/{id}', [AdminPengumumanController::class, 'toggleStatus'])->name('admin.pengumuman.toggle-status');
 
 
     // ========== GALERI UNGGULAN ==========

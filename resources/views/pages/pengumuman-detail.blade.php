@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $berita->judul_trans . ' - Berita Geosite')
+@section('title', $pengumuman->judul_trans . ' - Pengumuman Geosite')
 
 @section('content')
 
@@ -110,14 +110,14 @@
 <!-- HERO -->
 <section class="detail-hero">
     <div class="container">
-        <a href="{{ route('berita.terkini') }}" class="back-link">
-            <i class="fas fa-arrow-left"></i> {{ __('app.news.back') ?? 'Kembali ke Berita' }}
+        <a href="{{ route('pengumuman.index') }}" class="back-link">
+            <i class="fas fa-arrow-left"></i> {{ __('app.news.back') ?? 'Kembali ke Pengumuman' }}
         </a>
-        <h1>{{ $berita->judul_trans }}</h1>
+        <h1>{{ $pengumuman->judul_trans }}</h1>
         <div class="meta">
-            <span><i class="fas fa-user"></i> {{ $berita->penulis ?? 'Admin' }}</span>
-            <span><i class="fas fa-calendar-alt"></i> {{ $berita->created_at->format('d M Y') }}</span>
-            <span><i class="fas fa-eye"></i> {{ number_format($berita->views) }} Kali Dilihat</span>
+            <span><i class="fas fa-user"></i> {{ $pengumuman->penulis ?? 'Admin' }}</span>
+            <span><i class="fas fa-calendar-alt"></i> {{ $pengumuman->created_at->format('d M Y') }}</span>
+            <span><i class="fas fa-eye"></i> {{ number_format($pengumuman->views) }} Kali Dilihat</span>
         </div>
     </div>
 </section>
@@ -129,20 +129,20 @@
             <div class="col-lg-8">
                 @php
                     $imgSrc = asset('image/default.jpg');
-                    if (!empty($berita->gambar)) {
-                        if (str_starts_with($berita->gambar, 'http')) {
-                            $imgSrc = $berita->gambar;
-                        } elseif (str_starts_with($berita->gambar, 'image/')) {
-                            $imgSrc = asset($berita->gambar);
+                    if (!empty($pengumuman->gambar)) {
+                        if (str_starts_with($pengumuman->gambar, 'http')) {
+                            $imgSrc = $pengumuman->gambar;
+                        } elseif (str_starts_with($pengumuman->gambar, 'image/')) {
+                            $imgSrc = asset($pengumuman->gambar);
                         } else {
-                            $imgSrc = asset($berita->gambar);
+                            $imgSrc = asset($pengumuman->gambar);
                         }
                     }
                 @endphp
-                <img src="{{ $imgSrc }}" alt="{{ $berita->judul_trans }}" class="main-img" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
+                <img src="{{ $imgSrc }}" alt="{{ $pengumuman->judul_trans }}" class="main-img" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                 
                 <div class="konten">
-                    {!! $berita->konten_trans !!}
+                    {!! $pengumuman->konten_trans !!}
                 </div>
                 
                 <div class="mt-5">
@@ -151,11 +151,11 @@
             </div>
             <div class="col-lg-4 mt-5 mt-lg-0 sidebar">
                 <div class="recent-news">
-                    <h3>Berita Lainnya</h3>
+                    <h3>Pengumuman Lainnya</h3>
                     @php
-                        $recentBerita = \App\Models\Berita::where('status', true)->where('id', '!=', $berita->id)->latest()->take(5)->get();
+                        $recentPengumuman = \App\Models\Pengumuman::where('status', true)->where('id', '!=', $pengumuman->id)->latest()->take(5)->get();
                     @endphp
-                    @forelse($recentBerita as $item)
+                    @forelse($recentPengumuman as $item)
                         <div class="news-item">
                             @php
                                 $thumbSrc = asset('image/default.jpg');
@@ -171,7 +171,7 @@
                             @endphp
                             <img src="{{ $thumbSrc }}" alt="{{ $item->judul_trans }}" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                             <div class="info">
-                                <h4><a href="{{ route('berita.detail', $item->slug) }}">{{ Str::limit($item->judul_trans, 40) }}</a></h4>
+                                <h4><a href="{{ route('pengumuman.detail', $item->id) }}">{{ Str::limit($item->judul_trans, 40) }}</a></h4>
                                 <span><i class="far fa-clock"></i> {{ $item->created_at->diffForHumans() }}</span>
                             </div>
                         </div>

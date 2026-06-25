@@ -21,7 +21,7 @@ return [
         'destination'       => 'Destinasi Wisata',
         'souvenir_umkm'     => 'Sovenir & UMKM',
         'facilities'        => 'Fasilitas',
-        'accommodation'     => 'Penginapan',
+        'accommodation'     => 'Akomodasi',
         'news'              => 'Berita & Informasi',
         'gallery'           => 'Galeri',
         'search_placeholder'=> 'Cari...',
@@ -196,7 +196,7 @@ return [
     'facility' => [
         'title'             => 'Fasilitas',
         'subtitle'          => 'Fasilitas Pendukung Wisata Geopark Danau Toba',
-        'accommodation'     => 'Penginapan',
+        'accommodation'     => 'Akomodasi',
         'restaurant'        => 'Restoran & Kuliner',
         'other'             => 'Fasilitas Lainnya',
         'price'             => 'Harga / Tarif',
@@ -213,17 +213,25 @@ return [
     // BERITA & INFORMASI
     // =========================================================================
     'news' => [
+        'portal_badge'      => 'Pusat Informasi',
+        'portal_title'      => 'Berita & Informasi',
+        'portal_subtitle'   => 'Dapatkan kabar terbaru, jadwal kegiatan, dan pengumuman resmi seputar Geosite Danau Toba.',
+        'latest'            => 'Berita Terkini',
+        'latest_desc'       => 'Kumpulan berita terbaru dan liputan kegiatan di lingkungan Geosite.',
+        'agenda'            => 'Agenda & Event',
+        'agenda_desc'       => 'Jadwal kegiatan yang akan datang, festival, dan acara spesial.',
+        'announcement'      => 'Pengumuman',
+        'announcement_desc' => 'Informasi resmi, pemberitahuan penting, dan kebijakan dari pengelola.',
         'title'             => 'Berita & Informasi',
         'subtitle'          => 'Update Terbaru Seputar Geopark Danau Toba',
         'by'                => 'oleh',
         'read_more'         => 'Baca Selengkapnya',
-        'back'              => 'Kembali ke Daftar Berita',
+        'back'              => 'Kembali ke Daftar',
         'published_at'      => 'Dipublikasikan',
         'views'             => 'tayangan',
         'share'             => 'Bagikan',
-        'no_data'           => 'Belum ada berita tersedia.',
-        'no_data_desc'      => 'Silahkan tambahkan berita terbaru melalui panel admin.',
-        'latest'            => 'Berita Terbaru',
+        'no_data'           => 'Belum ada data tersedia.',
+        'no_data_desc'      => 'Silahkan tambahkan data terbaru melalui panel admin.',
         'badge'             => 'UPDATE TERBARU',
         'hero_desc'         => 'Informasi & Perkembangan Terbaru Balige, Meat, Liang Sipege, Batu Basiha',
         'category'          => 'BERITA',
@@ -291,11 +299,24 @@ return [
     'penginapan' => [
         'page_title'        => 'Penginapan - Geosite Danau Toba',
         'meta_description'  => 'Temukan berbagai pilihan penginapan, homestay, dan akomodasi nyaman di sekitar Geosite Danau Toba, Desa Meat.',
-        'title'             => 'Penginapan',
+        'title'             => 'Akomodasi',
         'subtitle'          => 'Temukan berbagai pilihan penginapan dan akomodasi nyaman di sekitar Geosite Danau Toba.',
         'back'              => 'Kembali ke Daftar Penginapan',
         'contact_wa'        => 'Hubungi via WhatsApp',
         'about_title'       => 'Tentang Penginapan Ini',
+    ],
+
+    // =========================================================================
+    // KULINER
+    // =========================================================================
+    'kuliner' => [
+        'page_title'        => 'Kuliner / Restoran - Geosite Danau Toba',
+        'meta_description'  => 'Temukan berbagai pilihan kuliner, hidangan lokal, dan restoran lezat di sekitar Geosite Danau Toba, Desa Meat.',
+        'title'             => 'Kuliner / Restoran',
+        'subtitle'          => 'Nikmati hidangan khas dan temukan tempat makan terbaik di sekitar Geosite Danau Toba.',
+        'back'              => 'Kembali ke Daftar Kuliner',
+        'contact_wa'        => 'Pesan via WhatsApp',
+        'about_title'       => 'Tentang Kuliner Ini',
     ],
 
 ];

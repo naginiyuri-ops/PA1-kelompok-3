@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', __('app.penginapan.page_title'))
-@section('meta_description', __('app.penginapan.meta_description'))
+@section('title', __('app.kuliner.page_title'))
+@section('meta_description', __('app.kuliner.meta_description'))
 
 @section('content')
 <style>
@@ -22,7 +22,7 @@
     body { font-family: 'Inter', sans-serif; background: var(--bg-light); }
 
     /* ======= HERO ======= */
-    .hero-penginapan {
+    .hero-kuliner {
         background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, #1a4a7a 100%);
         padding: 140px 0 70px;
         margin-top: 0;
@@ -31,7 +31,7 @@
         overflow: hidden;
         color: white;
     }
-    .hero-penginapan::before {
+    .hero-kuliner::before {
         content: '';
         position: absolute; top: -50%; left: -50%;
         width: 200%; height: 200%;
@@ -42,8 +42,8 @@
         from { transform: rotate(0deg); }
         to   { transform: rotate(360deg); }
     }
-    .hero-penginapan .container { position: relative; z-index: 2; }
-    .hero-penginapan .badge {
+    .hero-kuliner .container { position: relative; z-index: 2; }
+    .hero-kuliner .badge {
         display: inline-block;
         background: rgba(198,164,59,0.15);
         border: 1px solid rgba(198,164,59,0.3);
@@ -52,13 +52,13 @@
         font-size: 0.6rem; letter-spacing: 3px;
         text-transform: uppercase; font-weight: 600; margin-bottom: 15px;
     }
-    .hero-penginapan h1 {
+    .hero-kuliner h1 {
         font-family: 'Playfair Display', serif;
         font-size: 3rem; font-weight: 800;
         color: white; margin-bottom: 12px;
     }
-    .hero-penginapan h1 span { color: var(--gold); }
-    .hero-penginapan p {
+    .hero-kuliner h1 span { color: var(--gold); }
+    .hero-kuliner p {
         color: rgba(255,255,255,0.8);
         font-size: 0.9rem; max-width: 600px; margin: 0 auto;
     }
@@ -69,7 +69,7 @@
     }
 
     /* ======= CARD GRID ======= */
-    .penginapan-section { padding: 70px 0 90px; }
+    .kuliner-section { padding: 70px 0 90px; }
     .dest-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -151,33 +151,33 @@
     .pagination-wrapper { display: flex; justify-content: center; margin-top: 50px; }
 
     @media (max-width: 768px) {
-        .hero-penginapan { padding: 100px 0 40px; }
-        .hero-penginapan h1 { font-size: 1.9rem; }
-        .penginapan-section { padding: 50px 0 70px; }
+        .hero-kuliner { padding: 100px 0 40px; }
+        .hero-kuliner h1 { font-size: 1.9rem; }
+        .kuliner-section { padding: 50px 0 70px; }
         .dest-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 576px) {
-        .hero-penginapan h1 { font-size: 1.5rem; }
+        .hero-kuliner h1 { font-size: 1.5rem; }
         .card-content { padding: 18px; }
     }
 </style>
 
 {{-- HERO --}}
-<div class="hero-penginapan">
+<div class="hero-kuliner">
     <div class="container">
         <div class="badge">UNESCO Global Geopark</div>
-        <h1><span>{{ __('app.penginapan.title') }}</span></h1>
+        <h1><span>{{ __('app.kuliner.title') }}</span></h1>
         <div class="hero-divider"></div>
-        <p>{{ __('app.penginapan.subtitle') }}</p>
+        <p>{{ __('app.kuliner.subtitle') }}</p>
     </div>
 </div>
 
-{{-- DAFTAR PENGINAPAN --}}
-<section class="penginapan-section">
+{{-- DAFTAR kuliner --}}
+<section class="kuliner-section">
     <div class="container">
         <div class="dest-grid">
-            @forelse($penginapan as $item)
-            <a href="{{ route('penginapan.detail', $item->id) }}" class="dest-card" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 80 }}">
+            @forelse($kuliner as $item)
+            <a href="{{ route('kuliner.detail', $item->id) }}" class="dest-card" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 80 }}">
                 <div class="card-img-wrapper">
                     @php
                         $imgSrc = $item->gambar && file_exists(public_path($item->gambar))
@@ -187,7 +187,7 @@
                     <img src="{{ $imgSrc }}" alt="{{ $item->nama_trans }}" loading="lazy"
                          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop'">
                     <div class="card-img-overlay"><i class="fas fa-arrow-right"></i></div>
-                    <span class="card-badge">Penginapan</span>
+                    <span class="card-badge">kuliner</span>
                 </div>
                 <div class="card-content">
                     <div class="card-title">{{ $item->nama_trans }}</div>
@@ -213,14 +213,14 @@
             @empty
             <div class="empty-state">
                 <i class="fas fa-bed"></i>
-                <p>Belum ada data penginapan yang tersedia.</p>
+                <p>Belum ada data kuliner yang tersedia.</p>
                 <p style="font-size:0.8rem;margin-top:8px;">Silahkan cek kembali nanti.</p>
             </div>
             @endforelse
         </div>
 
-        @if($penginapan->hasPages())
-        <div class="pagination-wrapper">{{ $penginapan->links() }}</div>
+        @if($kuliner->hasPages())
+        <div class="pagination-wrapper">{{ $kuliner->links() }}</div>
         @endif
     </div>
 </section>

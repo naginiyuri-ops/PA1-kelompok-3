@@ -213,17 +213,25 @@ return [
     // NEWS & INFORMATION
     // =========================================================================
     'news' => [
+        'portal_badge'      => 'Information Center',
+        'portal_title'      => 'News & Information',
+        'portal_subtitle'   => 'Get the latest news, event schedules, and official announcements about Lake Toba Geosite.',
+        'latest'            => 'Latest News',
+        'latest_desc'       => 'A collection of the latest news and coverage of activities around the Geosite.',
+        'agenda'            => 'Agenda & Event',
+        'agenda_desc'       => 'Upcoming activity schedules, festivals, and special events.',
+        'announcement'      => 'Announcement',
+        'announcement_desc' => 'Official information, important notices, and policies from the management.',
         'title'             => 'News & Information',
         'subtitle'          => 'Latest Updates on Lake Toba Geopark',
         'by'                => 'by',
         'read_more'         => 'Read More',
-        'back'              => 'Back to News List',
+        'back'              => 'Back to List',
         'published_at'      => 'Published',
         'views'             => 'views',
         'share'             => 'Share',
-        'no_data'           => 'No news available.',
-        'no_data_desc'      => 'Please add latest news via admin panel.',
-        'latest'            => 'Latest News',
+        'no_data'           => 'No data available.',
+        'no_data_desc'      => 'Please add data via admin panel.',
         'badge'             => 'LATEST UPDATES',
         'hero_desc'         => 'Latest Information & Developments from Balige, Meat, Liang Sipege, Batu Basiha',
         'category'          => 'NEWS',
@@ -296,6 +304,19 @@ return [
         'back'              => 'Back to Accommodation List',
         'contact_wa'        => 'Contact via WhatsApp',
         'about_title'       => 'About This Accommodation',
+    ],
+
+    // =========================================================================
+    // CULINARY (KULINER)
+    // =========================================================================
+    'kuliner' => [
+        'page_title'        => 'Culinary & Restaurants - Geosite Lake Toba',
+        'meta_description'  => 'Discover various culinary options, local dishes, and delicious restaurants around Geosite Lake Toba, Meat Village.',
+        'title'             => 'Culinary & Restaurants',
+        'subtitle'          => 'Enjoy local dishes and find the best places to eat around Geosite Lake Toba.',
+        'back'              => 'Back to Culinary List',
+        'contact_wa'        => 'Order via WhatsApp',
+        'about_title'       => 'About This Culinary',
     ],
 
 ];
