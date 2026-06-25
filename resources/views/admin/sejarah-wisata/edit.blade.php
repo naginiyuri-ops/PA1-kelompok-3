@@ -67,10 +67,7 @@
                         <label>Geosite <span class="text-danger">*</span></label>
                         <select name="geosite" class="form-control" required>
                             <option value="">-- Pilih Geosite --</option>
-                            <option value="balige" {{ old('geosite', $data->geosite) == 'balige' ? 'selected' : '' }}>Balige</option>
-                            <option value="meat" {{ old('geosite', $data->geosite) == 'meat' ? 'selected' : '' }}>Meat</option>
-                            <option value="batu-basiha" {{ old('geosite', $data->geosite) == 'batu-basiha' ? 'selected' : '' }}>Batu Basiha</option>
-                            <option value="liang-sipege" {{ old('geosite', $data->geosite) == 'liang-sipege' ? 'selected' : '' }}>Liang Sipege</option>
+                            <option value="taman-eden" {{ old('geosite', $data->geosite) == 'taman-eden' ? 'selected' : '' }}>TAMAN EDEN 100</option>
                         </select>
                     </div>
                 </div>

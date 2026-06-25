@@ -76,7 +76,7 @@ class PublicSearchController extends Controller
                     'type'        => 'UMKM',
                     'icon'        => 'fa-store',
                     'nama' => $item->nama_usaha_trans ?? $item->nama_usaha,
-                    'sub'         => $item->alamat ?? 'Desa Meat',
+                    'sub'         => $item->alamat ?? 'Desa',
                     'url'         => url('/umkm/' . $item->id),
                     'gambar_url'  => $gambarUrl,
                 ];
@@ -270,7 +270,7 @@ class PublicSearchController extends Controller
                     'type'        => 'UMKM',
                     'icon'        => 'fa-store',
                     'nama' => $item->nama_usaha_trans ?? $item->nama_usaha,
-                    'sub'         => $item->alamat ?? 'Desa Meat',
+                    'sub'         => $item->alamat ?? 'Desa',
                     'deskripsi' => $item->deskripsi_trans ?? $item->deskripsi,
                     'kontak'      => $item->no_telepon,
                     'url'         => url('/fasilitas/umkm/' . $item->id),

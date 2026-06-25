@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Manajemen Fasilitas Meat')
+@section('title', 'Manajemen Fasilitas Taman Eden')
 
 @section('content')
 <style>

@@ -95,11 +95,11 @@
         }
         @endforeach
     @else
-        .hero-slide-1 { background-image: url('/image/meat/slide2.jpg'); animation: slideFade 20s ease-in-out infinite; animation-delay: 0s; }
-        .hero-slide-2 { background-image: url('/image/meat/slide5.jpg'); animation: slideFade 20s ease-in-out infinite; animation-delay: 4s; }
-        .hero-slide-3 { background-image: url('/image/meat/meat-detail.jpg'); animation: slideFade 20s ease-in-out infinite; animation-delay: 8s; }
-        .hero-slide-4 { background-image: url('/image/meat/liang-sipege-hero.jpg'); animation: slideFade 20s ease-in-out infinite; animation-delay: 12s; }
-        .hero-slide-5 { background-image: url('/image/meat/Jabubatak.jpg'); animation: slideFade 20s ease-in-out infinite; animation-delay: 16s; }
+        .hero-slide-1 { background-image: url('/image/taman-eden/slide2.jpg'); animation: slideFade 20s ease-in-out infinite; animation-delay: 0s; }
+        .hero-slide-2 { background-image: url('/image/taman-eden/slide5.jpg'); animation: slideFade 20s ease-in-out infinite; animation-delay: 4s; }
+        .hero-slide-3 { background-image: url('/image/taman-eden/meat-detail.jpg'); animation: slideFade 20s ease-in-out infinite; animation-delay: 8s; }
+        .hero-slide-4 { background-image: url('/image/taman-eden/liang-sipege-hero.jpg'); animation: slideFade 20s ease-in-out infinite; animation-delay: 12s; }
+        .hero-slide-5 { background-image: url('/image/taman-eden/Jabubatak.jpg'); animation: slideFade 20s ease-in-out infinite; animation-delay: 16s; }
     @endif
     
     .hero-overlay {

@@ -16,7 +16,7 @@
     .badge-success { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
     .badge-danger { background: #ffebee; color: #c62828; border: 1px solid #ef9a9a; }
     .badge-balige { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
-    .badge-meat { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+    .badge-tamaneden { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
     .badge-batu { background: #fff3e0; color: #e65100; border: 1px solid #ffe0b2; }
     .badge-liang { background: #f3e5f5; color: #7b1fa2; border: 1px solid #e1bee7; }
     .content-box { background: #f8fafc; padding: 20px; border-radius: 12px; margin-top: 15px; }

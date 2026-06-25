@@ -8,7 +8,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@600;700&display=swap');
     
     .kontak-hero {
-        background: linear-gradient(135deg, rgba(0,51,102,0.85), rgba(0,51,102,0.7)), url('{{ asset("image/meat/meat-hero.jpg") }}');
+    background: linear-gradient(135deg, rgba(0,51,102,0.85), rgba(0,51,102,0.7)), url('{{ asset("image/taman-eden/taman-eden-hero.jpg") }}');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;

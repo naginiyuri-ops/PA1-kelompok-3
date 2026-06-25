@@ -138,11 +138,7 @@ Route::get('/galeri/{slug}', function ($slug) {
 // ========================================
 // ========== GEOSITE ==========
 // ========================================
-Route::get('/geosite/balige', [PublicGeositeController::class, 'balige'])->name('geosite.balige');
-Route::get('/geosite/meat', [PublicGeositeController::class, 'meat'])->name('geosite.meat');
-Route::get('/geosite/batu-basiha', [PublicGeositeController::class, 'batuBasiha'])->name('geosite.batu-basiha');
-Route::get('/geosite/batu-bahisan', [PublicGeositeController::class, 'batuBahisan'])->name('geosite.batu-bahisan');
-Route::get('/geosite/liang-sipege', [PublicGeositeController::class, 'liangSipege'])->name('geosite.liang-sipege');
+// Legacy geosite routes removed (Balige/Meat/Batu Basiha/Liang Sipege)
 
 // Detail artikel sejarah
 Route::get('/sejarah/{slug}', [PublicGeositeController::class, 'detail'])->name('sejarah.detail');

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('views')->default(0);
             $table->boolean('status')->default(true);
             $table->integer('urutan')->default(0);
-            $table->enum('geosite', ['meat', 'batu_bahisan', 'liang_sipege'])->nullable();
+            $table->enum('geosite', ['taman-eden'])->nullable();
             $table->timestamps();
         });
     }

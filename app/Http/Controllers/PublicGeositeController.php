@@ -9,16 +9,13 @@ use App\Models\Penginapan;
 
 class PublicGeositeController extends Controller
 {
-    /**
-     * Display Meat geosite page
-     */
-    public function meat()
+    public function tamanEden()
     {
         $umkm = Umkm::where('status', true)->latest()->limit(6)->get();
         $fasilitas = Fasilitas::where('status', true)->latest()->limit(6)->get();
         $penginapan = Penginapan::where('status', true)->latest()->limit(6)->get();
         
-        return view('geosite.meat', compact('umkm', 'fasilitas', 'penginapan'));
+        return view('geosite.taman-eden', compact('umkm', 'fasilitas', 'penginapan'));
     }
     
 
@@ -27,7 +24,7 @@ class PublicGeositeController extends Controller
      */
     public function batuBahisan()
     {
-        return view('geosite.batu-bahisan');
+        return view('geosite.taman-eden');
     }
     
     /**
@@ -35,6 +32,6 @@ class PublicGeositeController extends Controller
      */
     public function liangSipege()
     {
-        return view('geosite.liang-sipege');
+        return view('geosite.taman-eden');
     }
 }

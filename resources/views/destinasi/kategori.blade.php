@@ -223,28 +223,28 @@
             'bg_hero' => 'image/destinasi/alam1.jpg',
             'items' => [
                 1 => [
-                    'slug' => 'desa-wisata-meat', 
-                    'nama' => 'Desa Wisata Meat', 
+                    'slug' => 'desa-wisata-taman-eden', 
+                    'nama' => 'Desa Wisata Taman Eden', 
                     'lokasi' => 'Kec. Tampahan, Kab. Toba Samosir', 
                     'deskripsi' => 'Dikenal sebagai "New Zealand-nya Toba" dengan hamparan sawah hijau terasering yang membentang hingga ke pinggir Danau Toba.', 
                     'tags' => ['Sawah Terasering', 'Panorama', 'Spot Foto'],
-                    'foto' => 'image/meat/meat-detail.jpg'
+                    'foto' => 'image/taman-eden/meat-detail.jpg'
                 ],
                 2 => [
                     'slug' => 'geosite-batu-basiha', 
                     'nama' => 'Geosite Batu Basiha', 
-                    'lokasi' => 'Desa Aek Bolon, Balige', 
+                    'lokasi' => 'Desa Aek Bolon', 
                     'deskripsi' => 'Tumpukan batu-batu balok raksasa sisa letusan dahsyat Gunung Toba 74.000 tahun lalu.', 
                     'tags' => ['Batu Raksasa', 'Geologi', 'Sunrise'],
-                    'foto' => 'image/meat/batubasiha1.png'
+                    'foto' => 'image/taman-eden/batubasiha1.png'
                 ],
                 3 => [
                     'slug' => 'liang-sipege', 
                     'nama' => 'Liang Sipege', 
-                    'lokasi' => 'Kawasan Balige', 
+                    'lokasi' => 'Kawasan Toba', 
                     'deskripsi' => 'Goa alami dengan stalaktit dan stalakmit yang terbentuk secara alami, menyimpan nilai sejarah dan geologi.', 
                     'tags' => ['Goa Alami', 'Sejarah', 'Geowisata'],
-                    'foto' => 'image/meat/liang-sipege-hero.jpg'
+                    'foto' => 'image/taman-eden/liang-sipege-hero.jpg'
                 ]
             ]
         ],
@@ -256,18 +256,18 @@
                 1 => [
                     'slug' => 'sentra-tenun-ulos', 
                     'nama' => 'Sentra Tenun Ulos', 
-                    'lokasi' => 'Desa Meat, Kec. Tampahan', 
+                    'lokasi' => 'Desa Taman Eden, Kec. Tampahan', 
                     'deskripsi' => 'Wisatawan dapat melihat langsung proses martonun (menenun) ulos yang dikerjakan oleh kaum wanita setempat.', 
                     'tags' => ['Tenun Ulos', 'Kerajinan Tangan', 'Budaya Batak'],
-                    'foto' => 'image/meat/ulos.jpg'
+                    'foto' => 'image/taman-eden/ulos.jpg'
                 ],
                 2 => [
                     'slug' => 'rumah-adat-batak', 
                     'nama' => 'Rumah Adat Batak', 
-                    'lokasi' => 'Desa Meat, Kec. Tampahan', 
+                    'lokasi' => 'Desa Taman Eden, Kec. Tampahan', 
                     'deskripsi' => 'Rumah tradisional Batak Toba yang khas dengan arsitektur dan ornamen penuh makna filosofis.', 
                     'tags' => ['Rumah Adat', 'Arsitektur', 'Budaya Batak'],
-                    'foto' => 'image/meat/jabubatak.jpg'
+                    'foto' => 'image/taman-eden/jabubatak.jpg'
                 ]
             ]
         ],
@@ -277,20 +277,20 @@
             'bg_hero' => 'image/destinasi/buatan1.jpg',
             'items' => [
                 1 => [
-                    'slug' => 'spot-pantai-meat', 
-                    'nama' => 'Spot Pantai Meat', 
-                    'lokasi' => 'Desa Meat, Kec. Tampahan', 
+                    'slug' => 'spot-pantai-taman-eden', 
+                    'nama' => 'Spot Pantai Taman Eden', 
+                    'lokasi' => 'Desa Taman Eden, Kec. Tampahan', 
                     'deskripsi' => 'Area pinggir Danau Toba yang ditata untuk bersantai menikmati pemandangan danau dan perbukitan.', 
                     'tags' => ['Pantai', 'Santai', 'Keluarga'],
-                    'foto' => 'image/meat/meat.jpeg'
+                    'foto' => 'image/taman-eden/meat.jpeg'
                 ],
                 2 => [
-                    'slug' => 'homestay-meat', 
-                    'nama' => 'Homestay Meat', 
-                    'lokasi' => 'Desa Meat, Kec. Tampahan', 
+                    'slug' => 'homestay-taman-eden', 
+                    'nama' => 'Homestay Taman Eden', 
+                    'lokasi' => 'Desa Taman Eden, Kec. Tampahan', 
                     'deskripsi' => 'Akomodasi berbasis budaya yang dikelola warga setempat dengan pemandangan sawah dan Danau Toba.', 
                     'tags' => ['Homestay', 'Budaya', 'Akomodasi'],
-                    'foto' => 'image/meat/meat1.jpeg'
+                    'foto' => 'image/taman-eden/meat1.jpeg'
                 ]
             ]
         ]

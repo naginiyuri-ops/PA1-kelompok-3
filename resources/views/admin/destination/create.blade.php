@@ -46,7 +46,7 @@
                 </label>
                 <input type="text" name="title"
                        value="{{ old('title') }}"
-                       placeholder="Contoh: Pantai Meat, Air Terjun Situmurun..."
+                       placeholder="Contoh: Pantai Taman Eden, Air Terjun Situmurun..."
                        style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s;"
                        onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'"
                        required>

@@ -23,42 +23,42 @@ class GaleriTableSeeder extends Seeder
         
         // Mapping file ke kategori
         $fileMapping = [
-            // Meat (Desa Meat)
-            ['file' => 'meat/1.jpg', 'judul' => 'Suasana Desa Meat', 'kategori' => 'meat', 'deskripsi' => 'Keindahan alam Desa Meat'],
-            ['file' => 'meat/2.jpg', 'judul' => 'Kegiatan Warga Meat', 'kategori' => 'meat', 'deskripsi' => 'Aktivitas sehari-hari masyarakat'],
-            ['file' => 'meat/3.jpg', 'judul' => 'Pemandangan Meat', 'kategori' => 'meat', 'deskripsi' => 'Panorama indah Desa Meat'],
-            ['file' => 'meat/4.jpg', 'judul' => 'Budaya Meat', 'kategori' => 'meat', 'deskripsi' => 'Kearifan lokal Desa Meat'],
-            ['file' => 'meat/5.jpg', 'judul' => 'Wisata Meat', 'kategori' => 'meat', 'deskripsi' => 'Objek wisata unggulan'],
-            ['file' => 'meat/6.jpg', 'judul' => 'Keunikan Meat', 'kategori' => 'meat', 'deskripsi' => 'Spot foto menarik'],
-            ['file' => 'meat/7.jpg', 'judul' => 'Persawahan Meat', 'kategori' => 'meat', 'deskripsi' => 'Hamparan sawah hijau'],
-            ['file' => 'meat/8.jpg', 'judul' => 'Rumah Adat Meat', 'kategori' => 'meat', 'deskripsi' => 'Arsitektur tradisional Batak'],
+            // Taman Eden (Desa Taman Eden)
+            ['file' => 'taman-eden/1.jpg', 'judul' => 'Suasana Desa Taman Eden', 'kategori' => 'taman-eden', 'deskripsi' => 'Keindahan alam Desa Taman Eden'],
+            ['file' => 'taman-eden/2.jpg', 'judul' => 'Kegiatan Warga Taman Eden', 'kategori' => 'taman-eden', 'deskripsi' => 'Aktivitas sehari-hari masyarakat'],
+            ['file' => 'taman-eden/3.jpg', 'judul' => 'Pemandangan Taman Eden', 'kategori' => 'taman-eden', 'deskripsi' => 'Panorama indah Desa Taman Eden'],
+            ['file' => 'taman-eden/4.jpg', 'judul' => 'Budaya Taman Eden', 'kategori' => 'taman-eden', 'deskripsi' => 'Kearifan lokal Desa Taman Eden'],
+            ['file' => 'taman-eden/5.jpg', 'judul' => 'Wisata Taman Eden', 'kategori' => 'taman-eden', 'deskripsi' => 'Objek wisata unggulan'],
+            ['file' => 'taman-eden/6.jpg', 'judul' => 'Keunikan Taman Eden', 'kategori' => 'taman-eden', 'deskripsi' => 'Spot foto menarik'],
+            ['file' => 'taman-eden/7.jpg', 'judul' => 'Persawahan Taman Eden', 'kategori' => 'taman-eden', 'deskripsi' => 'Hamparan sawah hijau'],
+            ['file' => 'taman-eden/8.jpg', 'judul' => 'Rumah Adat Taman Eden', 'kategori' => 'taman-eden', 'deskripsi' => 'Arsitektur tradisional Batak'],
             
             // Batu Bahisan
             ['file' => 'batu-bahisan/1.jpg', 'judul' => 'Batu Bahisan Utama', 'kategori' => 'batu-bahisan', 'deskripsi' => 'Formasi batu unik'],
             ['file' => 'batu-bahisan/2.jpg', 'judul' => 'Spot Foto Batu Bahisan', 'kategori' => 'batu-bahisan', 'deskripsi' => 'Lokasi favorit berfoto'],
             ['file' => 'batu-bahisan/3.jpg', 'judul' => 'Panorama Batu Bahisan', 'kategori' => 'batu-bahisan', 'deskripsi' => 'Pemandangan sekitar'],
             
-            // Liang Sipege
-            ['file' => 'liang-sipege/1.jpg', 'judul' => 'Mulut Gua Liang Sipege', 'kategori' => 'liang-sipege', 'deskripsi' => 'Pintu masuk gua'],
-            ['file' => 'liang-sipege/2.jpg', 'judul' => 'Di Dalam Gua', 'kategori' => 'liang-sipege', 'deskripsi' => 'Keindahan stalaktit'],
-            ['file' => 'liang-sipege/3.jpg', 'judul' => 'Ekspedisi Liang Sipege', 'kategori' => 'liang-sipege', 'deskripsi' => 'Penjelajahan gua'],
+            // Liang Sipege (mapped to Taman Eden)
+            ['file' => 'liang-sipege/1.jpg', 'judul' => 'Mulut Gua Liang Sipege', 'kategori' => 'taman-eden', 'deskripsi' => 'Pintu masuk gua'],
+            ['file' => 'liang-sipege/2.jpg', 'judul' => 'Di Dalam Gua', 'kategori' => 'taman-eden', 'deskripsi' => 'Keindahan stalaktit'],
+            ['file' => 'liang-sipege/3.jpg', 'judul' => 'Ekspedisi Liang Sipege', 'kategori' => 'taman-eden', 'deskripsi' => 'Penjelajahan gua'],
             
             // Slide/Hero (opsional untuk galeri)
-            ['file' => 'slide1.jpg', 'judul' => 'Danau Toba 1', 'kategori' => 'meat', 'deskripsi' => 'Keindahan Danau Toba'],
-            ['file' => 'slide2.jpg', 'judul' => 'Danau Toba 2', 'kategori' => 'meat', 'deskripsi' => 'Panorama Danau Toba'],
-            ['file' => 'slide3.jpg', 'judul' => 'Danau Toba 3', 'kategori' => 'meat', 'deskripsi' => 'Pesona Danau Toba'],
-            ['file' => 'slide4.jpg', 'judul' => 'Danau Toba 4', 'kategori' => 'meat', 'deskripsi' => 'Keindahan Alam'],
-            ['file' => 'slide5.jpg', 'judul' => 'Danau Toba 5', 'kategori' => 'meat', 'deskripsi' => 'Spot Favorit'],
+            ['file' => 'slide1.jpg', 'judul' => 'Danau Toba 1', 'kategori' => 'taman-eden', 'deskripsi' => 'Keindahan Danau Toba'],
+            ['file' => 'slide2.jpg', 'judul' => 'Danau Toba 2', 'kategori' => 'taman-eden', 'deskripsi' => 'Panorama Danau Toba'],
+            ['file' => 'slide3.jpg', 'judul' => 'Danau Toba 3', 'kategori' => 'taman-eden', 'deskripsi' => 'Pesona Danau Toba'],
+            ['file' => 'slide4.jpg', 'judul' => 'Danau Toba 4', 'kategori' => 'taman-eden', 'deskripsi' => 'Keindahan Alam'],
+            ['file' => 'slide5.jpg', 'judul' => 'Danau Toba 5', 'kategori' => 'taman-eden', 'deskripsi' => 'Spot Favorit'],
             
             // Detail destinasi
-            ['file' => 'meat-detail.jpg', 'judul' => 'Detail Desa Meat', 'kategori' => 'meat', 'deskripsi' => 'Keunikan Desa Meat'],
+            ['file' => 'taman-eden/meat-detail.jpg', 'judul' => 'Detail Desa Taman Eden', 'kategori' => 'taman-eden', 'deskripsi' => 'Keunikan Desa Taman Eden'],
             ['file' => 'batu-detail.jpg', 'judul' => 'Detail Batu Bahisan', 'kategori' => 'batu-bahisan', 'deskripsi' => 'Formasi batu eksotis'],
             ['file' => 'liang-detail.jpg', 'judul' => 'Detail Liang Sipege', 'kategori' => 'liang-sipege', 'deskripsi' => 'Keindahan dalam gua'],
             
             // Penginapan
-            ['file' => 'penginapan1.jpg', 'judul' => 'Penginapan Mewah', 'kategori' => 'meat', 'deskripsi' => 'Akomodasi nyaman'],
-            ['file' => 'penginapan2.jpg', 'judul' => 'Resort Danau Toba', 'kategori' => 'meat', 'deskripsi' => 'Resort bintang 5'],
-            ['file' => 'penginapan3.jpg', 'judul' => 'Villa Keluarga', 'kategori' => 'meat', 'deskripsi' => 'Villa untuk keluarga'],
+            ['file' => 'taman-eden/penginapan1.jpg', 'judul' => 'Penginapan Mewah', 'kategori' => 'taman-eden', 'deskripsi' => 'Akomodasi nyaman'],
+            ['file' => 'taman-eden/penginapan2.jpg', 'judul' => 'Resort Danau Toba', 'kategori' => 'taman-eden', 'deskripsi' => 'Resort bintang 5'],
+            ['file' => 'taman-eden/penginapan3.jpg', 'judul' => 'Villa Keluarga', 'kategori' => 'taman-eden', 'deskripsi' => 'Villa untuk keluarga'],
         ];
         
         $count = 0;

@@ -117,13 +117,11 @@ class SejarahWisata extends Model
     /** Label geosite yang mendukung dua bahasa */
     public function getGeositeLabelAttribute(): string
     {
-        $labels = [
-            'balige'        => 'Balige',
-            'meat'          => 'Meat',
-            'batu-basiha'   => 'Batu Basiha',
-            'liang-sipege'  => 'Liang Sipege',
-        ];
-        return $labels[$this->geosite] ?? $this->geosite;
+        // Generate a human-friendly label from the `geosite` slug
+        // (removes hardcoded legacy entries and formats the slug)
+        $slug = $this->geosite ?? '';
+        $label = str_replace('-', ' ', $slug);
+        return trim(ucwords($label)) ?: $slug;
     }
 
     /** Label kategori yang mendukung dua bahasa */

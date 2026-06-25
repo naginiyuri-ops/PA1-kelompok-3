@@ -24,7 +24,7 @@ class AdminSejarahWisataController extends Controller
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'geosite' => 'required|in:balige,meat,batu-basiha,liang-sipege',
+            'geosite' => 'required|in:taman-eden',
             'kategori' => 'required|in:sejarah,legenda,budaya,informasi,tokoh',
             'konten' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',

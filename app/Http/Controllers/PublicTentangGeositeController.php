@@ -11,11 +11,9 @@ class PublicTentangGeositeController extends Controller
     public function index()
     {
         // Ambil data geosite untuk ditampilkan
+        // Map legacy geosite entries into a single 'taman-eden' collection
         $geositeList = [
-            'balige' => SejarahWisata::where('geosite', 'balige')->where('status', true)->limit(3)->get(),
-            'meat' => SejarahWisata::where('geosite', 'meat')->where('status', true)->limit(3)->get(),
-            'batu-basiha' => SejarahWisata::where('geosite', 'batu-basiha')->where('status', true)->limit(3)->get(),
-            'liang-sipege' => SejarahWisata::where('geosite', 'liang-sipege')->where('status', true)->limit(3)->get(),
+            'taman-eden' => SejarahWisata::where('geosite', 'taman-eden')->where('status', true)->limit(6)->get(),
         ];
 
         // Ambil data pengelola

@@ -58,10 +58,10 @@
                             style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:10px; font-size:0.9rem; outline:none; transition:border-color 0.2s; background:white;"
                             onfocus="this.style.borderColor='#003366'" onblur="this.style.borderColor='#e2e8f0'" required>
                         <option value="">-- Pilih Kategori --</option>
-                        <option value="Meat" {{ $galeri->kategori == 'Meat' ? 'selected' : '' }}>Meat</option>
+                        <option value="taman-eden" {{ $galeri->kategori == 'taman-eden' ? 'selected' : '' }}>Taman Eden</option>
                         <option value="Batu Bahisan" {{ $galeri->kategori == 'Batu Bahisan' ? 'selected' : '' }}>Batu Bahisan</option>
                         <option value="Liang Sipege" {{ $galeri->kategori == 'Liang Sipege' ? 'selected' : '' }}>Liang Sipege</option>
-                        <option value="Balige" {{ $galeri->kategori == 'Balige' ? 'selected' : '' }}>Balige</option>
+                        <option value="taman-eden" {{ $galeri->kategori == 'taman-eden' ? 'selected' : '' }}>Taman Eden</option>
                     </select>
                 </div>
 

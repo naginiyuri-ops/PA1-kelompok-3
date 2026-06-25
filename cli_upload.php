@@ -15,7 +15,7 @@ echo "     UPLOAD FOTO KE DATABASE (CLI)\n";
 echo "========================================\n\n";
 
 // Folder tempat foto
-$folder = __DIR__ . '/public/image/meat/';
+$folder = __DIR__ . '/public/image/taman-eden/';
 
 // Buat folder jika belum ada
 if (!File::exists($folder)) {

@@ -23,7 +23,7 @@
     .badge-success { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
     .badge-danger { background: #ffebee; color: #c62828; border: 1px solid #ef9a9a; }
     .badge-balige { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
-    .badge-meat { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+    .badge-tamaneden { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
     .badge-batu { background: #fff3e0; color: #e65100; border: 1px solid #ffe0b2; }
     .badge-liang { background: #f3e5f5; color: #7b1fa2; border: 1px solid #e1bee7; }
     .badge-sejarah { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
@@ -65,10 +65,7 @@
     <div class="filter-bar">
         <label><i class="fas fa-filter"></i> Filter Geosite:</label>
         <a href="{{ route('admin.sejarah-wisata.index') }}" class="btn-filter {{ !request()->route('geosite') ? 'active' : '' }}">Semua</a>
-        <a href="{{ route('admin.sejarah-wisata.filter', 'balige') }}" class="btn-filter {{ request()->route('geosite') == 'balige' ? 'active' : '' }}">Balige</a>
-        <a href="{{ route('admin.sejarah-wisata.filter', 'meat') }}" class="btn-filter {{ request()->route('geosite') == 'meat' ? 'active' : '' }}">Meat</a>
-        <a href="{{ route('admin.sejarah-wisata.filter', 'batu-basiha') }}" class="btn-filter {{ request()->route('geosite') == 'batu-basiha' ? 'active' : '' }}">Batu Basiha</a>
-        <a href="{{ route('admin.sejarah-wisata.filter', 'liang-sipege') }}" class="btn-filter {{ request()->route('geosite') == 'liang-sipege' ? 'active' : '' }}">Liang Sipege</a>
+        <a href="{{ route('admin.sejarah-wisata.filter', 'taman-eden') }}" class="btn-filter {{ request()->route('geosite') == 'taman-eden' ? 'active' : '' }}">TAMAN EDEN 100</a>
     </div>
 
     <div class="stats-bar">

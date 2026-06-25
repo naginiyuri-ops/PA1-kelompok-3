@@ -313,9 +313,9 @@
 
 <div class="card-table">
     <div class="card-header">
-        <h5>
+            <h5>
             <i class="fas fa-store"></i>
-            UMKM Meat
+            UMKM Taman Eden
         </h5>
         <a href="{{ route('admin.umkm.create') }}" class="btn-primary">
             <i class="fas fa-plus"></i> Tambah UMKM
@@ -366,7 +366,7 @@
                     <td data-label="Nama">
                         <strong>{{ Str::limit($item->nama_usaha, 30) }}</strong>
                     </td>
-                    <td data-label="Lokasi">{{ $item->alamat ?? 'Desa Meat' }}</td>
+                    <td data-label="Lokasi">{{ $item->alamat ?? 'Desa' }}</td>
                     <td data-label="Kontak">{{ $item->no_telepon ?? '-' }}</td>
                     <td data-label="Urutan" style="text-align: center;">{{ $item->urutan }}</td>
                     <td data-label="Status">

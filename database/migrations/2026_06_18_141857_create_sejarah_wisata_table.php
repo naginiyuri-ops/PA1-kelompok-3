@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->string('slug')->unique();
-            $table->enum('geosite', ['balige', 'meat', 'batu-basiha', 'liang-sipege']);
+            $table->enum('geosite', ['taman-eden']);
             $table->enum('kategori', ['sejarah', 'legenda', 'budaya', 'informasi', 'tokoh']);
             $table->longText('konten');
             $table->string('gambar')->nullable();

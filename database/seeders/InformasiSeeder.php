@@ -17,7 +17,7 @@ class InformasiSeeder extends Seeder
                 'status' => 1,
                 'urutan' => 1,
                 'views' => 0,
-                'geosite' => 'meat',
+                'geosite' => 'taman-eden',
             ],
             [
                 'judul' => 'Geosite Batu Bahisan',
@@ -29,13 +29,13 @@ class InformasiSeeder extends Seeder
                 'geosite' => 'batu_bahisan',
             ],
             [
-                'judul' => 'Geosite Liang Sipege',
-                'konten' => 'Liang Sipege adalah situs geologi yang menampilkan struktur batuan unik dengan nilai edukasi tinggi.',
                 'gambar' => null,
                 'status' => 1,
                 'urutan' => 3,
                 'views' => 0,
-                'geosite' => 'liang_sipege',
+                'judul' => 'Geosite Liang Sipege',
+                'konten' => 'Liang Sipege adalah situs geologi yang menampilkan struktur batuan unik dengan nilai edukasi tinggi.',
+                'geosite' => 'taman-eden',
             ],
         ];
 
