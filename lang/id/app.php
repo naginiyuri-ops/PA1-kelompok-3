@@ -73,7 +73,7 @@ return [
         'read_more'         => 'Baca Selengkapnya',
         'by'                => 'oleh',
         'hero_badge'        => 'UNESCO Global Geopark',
-        'hero_locations'    => 'Bakkra &middot; Tipang <br><span>Batkiraja</span>',
+        'hero_locations'    => 'Balige &middot; Meat <br><span>Liang Sipege &middot; Batu Basiha</span>',
         'no_featured_dest'  => 'Belum ada destinasi unggulan. Tandai destinasi di panel admin agar muncul di sini.',
         'history_years'     => 'Tahun Sejarah',
         'cultural_heritage' => 'Warisan Budaya',
@@ -93,7 +93,7 @@ return [
     'about' => [
         'title'             => 'Tentang Geosite',
         'subtitle'          => 'Mengenal Lebih Dekat Geopark Danau Toba',
-        'geosite_title'     => 'Geosite Baktiraja',
+        'geosite_title'     => 'Geosite Balige-Meat-Liang Sipege-Batu Basiha',
         'read_more'         => 'Baca Selengkapnya',
         'history'           => 'Sejarah',
         'legend'            => 'Legenda',

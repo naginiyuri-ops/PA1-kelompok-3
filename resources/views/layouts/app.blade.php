@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -1363,16 +1363,21 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
             `;
         }
 
+
+
         function hideDropdown() {
             searchDropdown.style.display = 'none';
             searchDropdown.innerHTML = '';
         }
+
+
 
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.appendChild(document.createTextNode(text));
             return div.innerHTML;
         }
+
 
         function renderResults(results) {
             if (!results || results.length === 0) {

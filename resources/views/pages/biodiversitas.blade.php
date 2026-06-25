@@ -123,7 +123,9 @@
     @media (max-width: 480px) {
         .hero-biodiversitas h1 { font-size: 1.4rem; }
     }
+
 </style>
+
 
 <div class="hero-biodiversitas">
     <div class="container">
