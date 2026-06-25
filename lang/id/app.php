@@ -298,5 +298,18 @@ return [
         'about_title'       => 'Tentang Penginapan Ini',
     ],
 
+    // =========================================================================
+    // KULINER
+    // =========================================================================
+    'kuliner' => [
+        'page_title'        => 'Kuliner / Restoran - Geosite Danau Toba',
+        'meta_description'  => 'Temukan berbagai pilihan kuliner, hidangan lokal, dan restoran lezat di sekitar Geosite Danau Toba, Desa Meat.',
+        'title'             => 'Kuliner / Restoran',
+        'subtitle'          => 'Nikmati hidangan khas dan temukan tempat makan terbaik di sekitar Geosite Danau Toba.',
+        'back'              => 'Kembali ke Daftar Kuliner',
+        'contact_wa'        => 'Pesan via WhatsApp',
+        'about_title'       => 'Tentang Kuliner Ini',
+    ],
+
 ];
 

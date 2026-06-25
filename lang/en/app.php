@@ -298,5 +298,18 @@ return [
         'about_title'       => 'About This Accommodation',
     ],
 
+    // =========================================================================
+    // CULINARY (KULINER)
+    // =========================================================================
+    'kuliner' => [
+        'page_title'        => 'Culinary & Restaurants - Geosite Lake Toba',
+        'meta_description'  => 'Discover various culinary options, local dishes, and delicious restaurants around Geosite Lake Toba, Meat Village.',
+        'title'             => 'Culinary & Restaurants',
+        'subtitle'          => 'Enjoy local dishes and find the best places to eat around Geosite Lake Toba.',
+        'back'              => 'Back to Culinary List',
+        'contact_wa'        => 'Order via WhatsApp',
+        'about_title'       => 'About This Culinary',
+    ],
+
 ];
 

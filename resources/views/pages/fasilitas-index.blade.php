@@ -431,6 +431,21 @@
                     </div>
                 </div>
             </a>
+
+            {{-- Kartu Khusus Kuliner --}}
+            <a href="{{ route('kuliner.index') }}" class="category-card" data-aos="fade-up" data-aos-delay="50" style="text-decoration: none;">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=2074&auto=format&fit=crop" alt="Kuliner">
+                </div>
+                <div class="card-content">
+                    <h3>{{ __('app.kuliner.title') ?? 'Kuliner / Restoran' }}</h3>
+                    <p style="margin-bottom: 15px;">{{ __('app.kuliner.subtitle') ?? 'Nikmati berbagai hidangan lezat dan kuliner khas di sekitar Geosite Danau Toba.' }}</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: #64748b; text-align: left; margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
+                        <div><i class="fas fa-arrow-right" style="color: var(--blue-dark); width: 20px;"></i> {{ app()->getLocale() == 'en' ? 'Click to view all culinary & restaurants' : 'Klik untuk melihat semua kuliner' }}</div>
+                    </div>
+                </div>
+            </a>
             
             {{-- Hasil CRUD Fasilitas Lainnya --}}
             @forelse($fasilitas as $item)

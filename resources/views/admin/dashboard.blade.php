@@ -244,6 +244,11 @@
     </div>
 
     <div class="stat-card">
+        <div class="stat-number">{{ $totalKuliner ?? 0 }}</div>
+        <div class="stat-label">Kuliner</div>
+    </div>
+
+    <div class="stat-card">
         <div class="stat-number">{{ $totalBiodiversitas ?? 0 }}</div>
         <div class="stat-label">Biodiversitas</div>
     </div>

@@ -9,6 +9,7 @@ use App\Models\Informasi;
 use App\Models\Umkm;
 use App\Models\Fasilitas;
 use App\Models\Penginapan;
+use App\Models\Kuliner;
 
 class AdminDashboardController extends Controller
 {
@@ -21,6 +22,7 @@ class AdminDashboardController extends Controller
             'totalUmkm' => Umkm::count(),
             'totalFasilitas' => Fasilitas::count(),
             'totalPenginapan' => Penginapan::count(),
+            'totalKuliner' => Kuliner::count(),
         ]);
     }
 }

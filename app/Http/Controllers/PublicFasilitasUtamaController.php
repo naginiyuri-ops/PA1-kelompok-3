@@ -64,5 +64,24 @@ class PublicFasilitasUtamaController extends Controller
                         ->get();
         return view('pages.penginapan-detail', compact('item', 'related'));
     }
+
+    public function kuliner()
+    {
+        $kuliner = \App\Models\Kuliner::where('status', 1)
+                        ->orderBy('urutan', 'asc')
+                        ->paginate(9);
+        return view('pages.kuliner', compact('kuliner'));
+    }
+
+    public function kulinerDetail($id)
+    {
+        $item = \App\Models\Kuliner::where('status', 1)->findOrFail($id);
+        $related = \App\Models\Kuliner::where('status', 1)
+                        ->where('id', '!=', $id)
+                        ->inRandomOrder()
+                        ->take(3)
+                        ->get();
+        return view('pages.kuliner-detail', compact('item', 'related'));
+    }
 }
 

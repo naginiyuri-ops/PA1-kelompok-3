@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminBeritaController;
 use App\Http\Controllers\Admin\AdminUmkmController;
 use App\Http\Controllers\Admin\AdminFasilitasController;
 use App\Http\Controllers\Admin\AdminPenginapanController;
+use App\Http\Controllers\Admin\AdminKulinerController;
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminDestinationController;
@@ -106,6 +107,10 @@ Route::get('/sovenir-umkm', [PublicFasilitasUtamaController::class, 'umkmIndex']
 // PENGINAPAN - Public Routes
 Route::get('/penginapan', [PublicFasilitasUtamaController::class, 'penginapan'])->name('penginapan.index');
 Route::get('/penginapan/{id}', [PublicFasilitasUtamaController::class, 'penginapanDetail'])->name('penginapan.detail');
+
+// KULINER - Public Routes
+Route::get('/kuliner', [PublicFasilitasUtamaController::class, 'kuliner'])->name('kuliner.index');
+Route::get('/kuliner/{id}', [PublicFasilitasUtamaController::class, 'kulinerDetail'])->name('kuliner.detail');
 
 // ========================================
 // ========== GALERI ==========
@@ -219,6 +224,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('fasilitas', AdminFasilitasController::class)->names('admin.fasilitas');
     Route::resource('penginapan', AdminPenginapanController::class)->names('admin.penginapan');
     Route::post('penginapan/toggle-status/{id}', [AdminPenginapanController::class, 'toggleStatus'])->name('admin.penginapan.toggle-status');
+    Route::resource('kuliner', AdminKulinerController::class)->names('admin.kuliner');
+    Route::post('kuliner/toggle-status/{id}', [AdminKulinerController::class, 'toggleStatus'])->name('admin.kuliner.toggle-status');
     Route::resource('pengelola-geosite', AdminPengelolaGeositeController::class)->names('admin.pengelola-geosite');
 
     // ========== TOGGLE STATUS ==========
