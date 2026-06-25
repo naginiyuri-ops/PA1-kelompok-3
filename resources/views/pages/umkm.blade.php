@@ -152,7 +152,7 @@
 <div class="hero-umkm">
     <div class="container">
         <div class="badge">UNESCO Global Geopark</div>
-        <h1><i class="fas fa-store"></i> <span>UMKM</span></h1>
+        <h1><span>UMKM</span></h1>
         <div class="hero-divider"></div>
         <p>Daftar Produk dan Usaha Mikro Kecil Menengah Lokal di Sekitar Geosite Danau Toba.</p>
     </div>

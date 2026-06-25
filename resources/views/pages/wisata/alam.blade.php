@@ -121,7 +121,7 @@
 <div class="hero-dest">
     <div class="container">
         <div class="hero-badge">Wisata Geosite</div>
-        <h1>{{ $icon }} <span>{{ $categoryLabel }}</span></h1>
+        <h1><span>{{ $categoryLabel }}</span></h1>
         <div class="hero-divider"></div>
         <p>{{ $subtitle }}</p>
     </div>

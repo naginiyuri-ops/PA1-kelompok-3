@@ -166,7 +166,7 @@
 <div class="hero-penginapan">
     <div class="container">
         <div class="badge">UNESCO Global Geopark</div>
-        <h1><i class="fas fa-bed"></i> <span>{{ __('app.penginapan.title') }}</span></h1>
+        <h1><span>{{ __('app.penginapan.title') }}</span></h1>
         <div class="hero-divider"></div>
         <p>{{ __('app.penginapan.subtitle') }}</p>
     </div>

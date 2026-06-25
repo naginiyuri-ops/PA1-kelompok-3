@@ -356,7 +356,7 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
 
         <div class="menu-title">HOMEPAGE</div>
         <a href="{{ route('admin.slider.index') }}" class="{{ request()->routeIs('admin.slider.*') ? 'active' : '' }}">
-            <i class="fas fa-images"></i> Manajemen Slider
+            Manajemen Slider
         </a>
         
         <div class="menu-title">Konten</div>

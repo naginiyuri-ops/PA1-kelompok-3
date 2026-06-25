@@ -166,7 +166,7 @@
 <div class="hero-kuliner">
     <div class="container">
         <div class="badge">UNESCO Global Geopark</div>
-        <h1><i class="fas fa-bed"></i> <span>{{ __('app.kuliner.title') }}</span></h1>
+        <h1><span>{{ __('app.kuliner.title') }}</span></h1>
         <div class="hero-divider"></div>
         <p>{{ __('app.kuliner.subtitle') }}</p>
     </div>
