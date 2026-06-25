@@ -366,6 +366,12 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
         <a href="{{ route('admin.berita.index') }}" class="{{ request()->routeIs('admin.berita.*') ? 'active' : '' }}">
             Berita
         </a>
+        <a href="{{ route('admin.agenda.index') }}" class="{{ request()->routeIs('admin.agenda.*') ? 'active' : '' }}">
+            Agenda / Event
+        </a>
+        <a href="{{ route('admin.pengumuman.index') }}" class="{{ request()->routeIs('admin.pengumuman.*') ? 'active' : '' }}">
+            Pengumuman
+        </a>
         <a href="{{ route('admin.pengelola-geosite.index') }}" class="{{ request()->routeIs('admin.pengelola-geosite.*') ? 'active' : '' }}">
             Pengelola Geosite
         </a>

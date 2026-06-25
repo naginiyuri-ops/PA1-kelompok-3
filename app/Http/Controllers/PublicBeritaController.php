@@ -2,100 +2,70 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Berita;
+use App\Models\Agenda;
+use App\Models\Pengumuman;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class PublicBeritaController extends Controller
 {
+    // ========================================
+    // PORTAL BERITA & INFORMASI
+    // ========================================
     public function index()
     {
-        $berita = Berita::latest()->paginate(10);
-        return view('admin.berita.index', compact('berita'));
+        return view('pages.berita-index');
     }
 
-    public function create()
+    // ========================================
+    // BERITA TERKINI
+    // ========================================
+    public function terkini()
     {
-        return view('admin.berita.create');
+        $berita = Berita::where('status', true)->latest()->paginate(9);
+        return view('pages.berita', compact('berita'));
     }
 
-    public function store(Request $request)
+    public function detail($slug)
     {
-        $request->validate([
-            'judul' => 'required|string|max:255',
-            'konten' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-            'penulis' => 'nullable|string|max:100',
-            'status' => 'nullable|boolean'
-        ]);
-
-        $data = [
-            'judul' => $request->judul,
-            'konten' => $request->konten,
-            'penulis' => $request->penulis ?? 'Admin',
-            'status' => $request->has('status') ? 1 : 0
-        ];
-
-        if ($request->hasFile('gambar')) {
-            $image = $request->file('gambar');
-            $imageData = file_get_contents($image->getRealPath());
-            $base64 = base64_encode($imageData);
-            $mimeType = $image->getMimeType();
-            $data['gambar'] = 'data:' . $mimeType . ';base64,' . $base64;
-        }
-
-        Berita::create($data);
-
-        return redirect()->route('admin.berita.index')
-            ->with('success', 'Berita berhasil ditambahkan!');
+        $berita = Berita::where('slug', $slug)->where('status', true)->firstOrFail();
+        $berita->increment('views');
+        return view('pages.berita-detail', compact('berita'));
     }
 
-    public function edit($id)
+    // ========================================
+    // AGENDA / EVENT
+    // ========================================
+    public function agenda()
     {
-        $berita = Berita::findOrFail($id);
-        return view('admin.berita.edit', compact('berita'));
+        $agenda = Agenda::where('status', true)
+                        ->orderBy('tanggal_mulai', 'desc')
+                        ->paginate(9);
+        return view('pages.agenda', compact('agenda'));
     }
 
-    public function update(Request $request, $id)
+    public function agendaDetail($id)
     {
-        $berita = Berita::findOrFail($id);
-
-        $request->validate([
-            'judul' => 'required|string|max:255',
-            'konten' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-            'penulis' => 'nullable|string|max:100',
-            'status' => 'nullable|boolean'
-        ]);
-
-        $data = [
-            'judul' => $request->judul,
-            'konten' => $request->konten,
-            'penulis' => $request->penulis ?? 'Admin',
-            'status' => $request->has('status') ? 1 : 0
-        ];
-
-        if ($request->hasFile('gambar')) {
-            $image = $request->file('gambar');
-            $imageData = file_get_contents($image->getRealPath());
-            $base64 = base64_encode($imageData);
-            $mimeType = $image->getMimeType();
-            $data['gambar'] = 'data:' . $mimeType . ';base64,' . $base64;
-        }
-
-        $berita->update($data);
-
-        return redirect()->route('admin.berita.index')
-            ->with('success', 'Berita berhasil diupdate!');
+        $agenda = Agenda::where('status', true)->findOrFail($id);
+        $agenda->increment('views');
+        return view('pages.agenda-detail', compact('agenda'));
     }
 
-    public function destroy($id)
+    // ========================================
+    // PENGUMUMAN
+    // ========================================
+    public function pengumuman()
     {
-        $berita = Berita::findOrFail($id);
-        $berita->delete();
+        $pengumuman = Pengumuman::where('status', true)
+                                ->orderBy('tanggal_terbit', 'desc')
+                                ->paginate(9);
+        return view('pages.pengumuman', compact('pengumuman'));
+    }
 
-        return redirect()->route('admin.berita.index')
-            ->with('success', 'Berita berhasil dihapus!');
+    public function pengumumanDetail($id)
+    {
+        $pengumuman = Pengumuman::where('status', true)->findOrFail($id);
+        $pengumuman->increment('views');
+        return view('pages.pengumuman-detail', compact('pengumuman'));
     }
 }
