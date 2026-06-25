@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Tentang Geosite - Geopark Danau Toba')
+@section('title', 'Tentang Taman Eden 100')
 
 @section('content')
 
@@ -129,66 +129,6 @@
         font-size: 0.9rem;
         line-height: 1.7;
     }
-
-    /* ==================== GEOSITE LIST ==================== */
-    .geosite-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 25px;
-    }
-    .geosite-card {
-        background: white;
-        border-radius: var(--radius);
-        overflow: hidden;
-        box-shadow: var(--shadow);
-        transition: all 0.4s ease;
-        cursor: pointer;
-    }
-    .geosite-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-xl);
-    }
-    .geosite-card img {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-    }
-    .geosite-card:hover img { transform: scale(1.03); }
-    .geosite-card .content { padding: 18px 20px; }
-    .geosite-card .content h3 {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: var(--primary);
-        margin-bottom: 6px;
-    }
-    .geosite-card .content .lokasi {
-        font-size: 0.7rem;
-        color: var(--text-light);
-        margin-bottom: 8px;
-    }
-    .geosite-card .content .lokasi i { color: var(--gold); margin-right: 4px; }
-    .geosite-card .content p {
-        font-size: 0.8rem;
-        color: var(--text-gray);
-        line-height: 1.6;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-align: justify;
-    }
-    .geosite-card .content .btn-detail {
-        display: inline-block;
-        margin-top: 10px;
-        font-size: 0.7rem;
-        font-weight: 600;
-        color: var(--gold-dark);
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-    .geosite-card .content .btn-detail:hover { color: var(--primary); letter-spacing: 0.5px; }
 
     /* ==================== PROFILE WILAYAH ==================== */
     .profile-content-wrapper {
@@ -328,7 +268,7 @@
         font-size: 0.8rem;
     }
 
-    /* ==================== NILAI GEOSITE - 3 CARD CENTER ==================== */
+    /* ==================== NILAI UTAMA TAMAN EDEN 100 - 3 CARD CENTER ==================== */
     .nilai-grid-three {
         display: flex;
         flex-wrap: wrap;
@@ -378,7 +318,7 @@
         flex-grow: 1;
     }
 
-    /* ==================== PENGELOLA GEOSITE - 3 CARD CENTER ==================== */
+    /* ==================== PENGELOLA TAMAN EDEN 100 - 3 CARD CENTER ==================== */
     .pengelola-grid-three {
         display: flex;
         flex-wrap: wrap;
@@ -580,7 +520,6 @@
 
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 992px) {
-        .geosite-grid { grid-template-columns: repeat(2, 1fr); }
         .visi-misi-grid { grid-template-columns: 1fr; max-width: 600px; }
         .nilai-card { flex: 0 1 calc(50% - 25px); max-width: 380px; }
         .pengelola-card { flex: 0 1 calc(50% - 30px); max-width: 360px; }
@@ -592,7 +531,6 @@
         .hero-tentang h1 { font-size: 1.8rem; }
         .section { padding: 50px 0; }
         .section-header h2 { font-size: 1.6rem; }
-        .geosite-grid { grid-template-columns: 1fr; }
         .nilai-card { flex: 0 1 100%; max-width: 450px; }
         .pengelola-card { flex: 0 1 100%; max-width: 400px; }
         .maps-container iframe { height: 280px; }
@@ -611,10 +549,10 @@
 <!-- ==================== HERO ==================== -->
 <section class="hero-tentang">
     <div class="container">
-        <div class="badge">UNESCO Global Geopark</div>
-        <h1>{{ app()->getLocale() == 'en' ? 'About' : 'Tentang' }} <span>Geosite</span></h1>
+        <div class="badge">TAMAN EDEN 100</div>
+        <h1>{{ app()->getLocale() == 'en' ? 'About' : 'Tentang' }} <span>Taman Eden 100</span></h1>
         <div class="hero-divider"></div>
-        <p>{{ app()->getLocale() == 'en' ? 'Learn more about Geopark Danau Toba, the world geological heritage recognized by UNESCO' : 'Mengenal lebih dalam tentang Geopark Danau Toba, warisan geologi dunia yang diakui UNESCO' }}</p>
+        <p>{{ app()->getLocale() == 'en' ? 'Discover Taman Eden 100, an exceptional site within the UNESCO Global Geopark Kaldera Toba.' : 'Temukan Taman Eden 100, kawasan istimewa di dalam UNESCO Global Geopark Kaldera Toba.' }}</p>
     </div>
 </section>
 
@@ -625,12 +563,12 @@
             <span class="badge">{{ app()->getLocale() == 'en' ? 'Profile' : 'Profil' }}</span>
             <h2>{{ app()->getLocale() == 'en' ? 'Regional Profile' : 'Profil Wilayah' }}</h2>
             <div class="divider"></div>
-            <p>{{ app()->getLocale() == 'en' ? 'Getting to know the Geopark Danau Toba area more closely' : 'Mengenal lebih dekat kawasan Geopark Danau Toba' }}</p>
+            <p>{{ app()->getLocale() == 'en' ? 'Discover the unique natural and cultural landscape of Taman Eden 100.' : 'Temukan keunikan lanskap alam dan budaya Taman Eden 100.' }}</p>
         </div>
         
         <div class="profile-content-wrapper" data-aos="fade-up">
             <div class="profile-image-wrapper" onclick="openLightbox('{{ asset('image/DestinasiAlam1.jpg') }}')">
-                <img src="{{ asset('image/DestinasiAlam1.jpg') }}" alt="Danau Toba Geosite" loading="lazy" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
+                <img src="{{ asset('image/DestinasiAlam1.jpg') }}" alt="Taman Eden 100" loading="lazy" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
             </div>
             
             <div class="profile-text">
@@ -659,7 +597,7 @@
                 <ul>
                     <li>
                         <i class="fas fa-check-circle"></i>
-                        <strong>{{ app()->getLocale() == 'en' ? 'Geosite Status:' : 'Status Geosite:' }}</strong>
+                        <strong>{{ app()->getLocale() == 'en' ? 'Site Status:' : 'Status Kawasan:' }}</strong>
                         {{ app()->getLocale() == 'en'
                         ? 'Part of UNESCO Global Geopark Kaldera Toba'
                         : 'Bagian dari UNESCO Global Geopark Kaldera Toba'
@@ -740,16 +678,16 @@
     </div>
 </section>
 
-<!-- ==================== NILAI GEOSITE ==================== -->
+<!-- ==================== NILAI UTAMA TAMAN EDEN 100 ==================== -->
 <section class="section section-light">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <span class="badge">{{ app()->getLocale() == 'en' ? 'Geosite Values' : 'Nilai Geosite' }}</span>
+            <span class="badge">{{ app()->getLocale() == 'en' ? 'Core Values' : 'Nilai Utama' }}</span>
             <h2>{{ app()->getLocale() == 'en' ? 'Core Values of Taman Eden 100' : 'Nilai Utama Taman Eden 100' }}</h2>
             <div class="divider"></div>
             <p>{{ app()->getLocale() == 'en'
-                ? 'The three fundamental values that make Taman Eden 100 an important geosite within the Toba Caldera UNESCO Global Geopark.'
-                : 'Tiga nilai utama yang menjadikan Taman Eden 100 sebagai salah satu geosite penting di kawasan UNESCO Global Geopark Kaldera Toba.'
+                ? 'The three fundamental values that make Taman Eden 100 a key site within the Toba Caldera UNESCO Global Geopark.'
+                : 'Tiga nilai utama yang menjadikan Taman Eden 100 sebagai salah satu kawasan penting di UNESCO Global Geopark Kaldera Toba.'
             }}</p>
         </div>
 
@@ -790,14 +728,14 @@
     </div>
 </section>
 
-<!-- ==================== PENGELOLA GEOSITE ==================== -->
+<!-- ==================== PENGELOLA TAMAN EDEN 100 ==================== -->
 <section class="section section-white">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
             <span class="badge">{{ app()->getLocale() == 'en' ? 'Management' : 'Pengelola' }}</span>
-            <h2>{{ app()->getLocale() == 'en' ? 'Geosite Managers' : 'Pengelola Geosite' }}</h2>
+            <h2>{{ app()->getLocale() == 'en' ? 'Taman Eden 100 Management' : 'Pengelola Taman Eden 100' }}</h2>
             <div class="divider"></div>
-            <p>{{ app()->getLocale() == 'en' ? 'A dedicated management team for Geopark Danau Toba' : 'Tim pengelola yang berdedikasi untuk Geopark Danau Toba' }}</p>
+            <p>{{ app()->getLocale() == 'en' ? 'A dedicated management team for Taman Eden 100' : 'Tim pengelola yang berdedikasi untuk Taman Eden 100' }}</p>
         </div>
         
         <div class="pengelola-grid-three">
@@ -831,7 +769,7 @@
     <div class="container">
         <div class="section-header" data-aos="fade-up">
             <span class="badge">{{ app()->getLocale() == 'en' ? 'Location' : 'Lokasi' }}</span>
-            <h2>{{ app()->getLocale() == 'en' ? 'Geosite Location Map' : 'Peta Lokasi Geosite' }}</h2>
+            <h2>{{ app()->getLocale() == 'en' ? 'Taman Eden 100 Location Map' : 'Peta Lokasi Taman Eden 100' }}</h2>
             <div class="divider"></div>
         </div>
         <div class="maps-container" data-aos="zoom-in">
@@ -844,9 +782,9 @@
 <section class="cta-section">
     <div class="container">
         <div class="cta-content" data-aos="fade-up">
-            <h3>Jelajahi Geopark Danau Toba</h3>
+            <h3>Jelajahi Taman Eden 100</h3>
             <div class="divider"></div>
-            <p>Temukan keajaiban geologi, kekayaan budaya, dan keindahan alam di Geopark Danau Toba, warisan dunia yang diakui UNESCO.</p>
+            <p>Temukan keajaiban alam, nilai geologi, dan budaya lokal di Taman Eden 100, bagian dari kawasan UNESCO Global Geopark Kaldera Toba.</p>
             <a href="{{ url('/destinasi') }}" class="cta-btn">Mulai Jelajahi</a>
         </div>
     </div>

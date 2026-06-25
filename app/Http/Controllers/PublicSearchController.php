@@ -175,32 +175,10 @@ class PublicSearchController extends Controller
             });
 
         // ============================================================
-        // 7. CARI DI DATA DESTINASI (HARDCODED)
-        // Data Destinasi berada secara hardcoded di DestinasiController
+        // 7. CARI DI DATA DESTINASI (DINONAKTIFKAN)
+        // Hardcoded destinasi lama dihapus karena menghasilkan hasil pencarian yang tidak diinginkan.
         // ============================================================
-        $hardcodedDestinasi = [
-            ['nama' => 'Pantai Meat', 'kategori' => 'alam', 'slug' => 'desa-wisata-meat', 'lokasi' => 'Kec. Tampahan, Kab. Toba Samosir', 'foto' => 'image/meat/meat-detail.jpg'],
-            ['nama' => 'Batu Basiha', 'kategori' => 'alam', 'slug' => 'geosite-batu-basiha', 'lokasi' => 'Desa Aek Bolon, Balige', 'foto' => 'image/meat/batubasiha1.png'],
-            ['nama' => 'Gua Liang Sipege', 'kategori' => 'alam', 'slug' => 'liang-sipege', 'lokasi' => 'Desa Simarmar Pea Talun Hutagaol', 'foto' => 'image/meat/liang-sipege-hero.jpg'],
-            ['nama' => 'Sentra Tenun Ulos', 'kategori' => 'budaya', 'slug' => 'sentra-tenun-ulos', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'foto' => 'image/meat/ulos.jpg'],
-            ['nama' => 'Rumah Adat Batak', 'kategori' => 'budaya', 'slug' => 'rumah-adat-batak', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'foto' => 'image/meat/jabubatak.jpg'],
-            ['nama' => 'Spot Pantai Meat', 'kategori' => 'buatan', 'slug' => 'spot-pantai-meat', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'foto' => 'image/meat/meat.jpeg'],
-            ['nama' => 'Homestay Meat', 'kategori' => 'buatan', 'slug' => 'homestay-meat', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'foto' => 'image/meat/meat1.jpeg'],
-            ['nama' => 'Jalur Trekking Sawah', 'kategori' => 'buatan', 'slug' => 'jalur-trekking-sawah', 'lokasi' => 'Desa Meat, Kec. Tampahan', 'foto' => 'image/destinasi/buatan3.jpg'],
-        ];
-
-        $destinasiResults = collect($hardcodedDestinasi)->filter(function ($item) use ($query) {
-            return stripos($item['nama'], $query) !== false || stripos($item['lokasi'], $query) !== false;
-        })->take(4)->map(function ($item) {
-            return [
-                'type'        => 'Destinasi',
-                'icon'        => 'fa-map-marked-alt',
-                'nama'        => $item['nama'],
-                'sub'         => $item['lokasi'],
-                'url'         => url('/destinasi/' . $item['kategori'] . '/' . $item['slug']),
-                'gambar_url'  => asset($item['foto']),
-            ];
-        });
+        $destinasiResults = collect();
 
         // ============================================================
         // GABUNGKAN SEMUA HASIL DARI SEMUA TABEL
@@ -395,36 +373,10 @@ class PublicSearchController extends Controller
             });
 
         // ============================================================
-        // 7. CARI DI DATA DESTINASI (HARDCODED)
+        // 7. CARI DI DATA DESTINASI (DINONAKTIFKAN)
+        // Hardcoded destinasi lama dihapus agar hasil pencarian tidak mengandung konten legacy.
         // ============================================================
-        $hardcodedDestinasi = [
-            ['nama' => 'Pantai Meat',          'kategori' => 'alam',    'slug' => 'desa-wisata-meat',    'lokasi' => 'Kec. Tampahan, Kab. Toba Samosir', 'foto' => 'image/meat/meat-detail.jpg',         'deskripsi' => 'Pantai Meat adalah destinasi wisata alam yang indah di tepi Danau Toba.'],
-            ['nama' => 'Batu Basiha',          'kategori' => 'alam',    'slug' => 'geosite-batu-basiha', 'lokasi' => 'Desa Aek Bolon, Balige',           'foto' => 'image/meat/batubasiha1.png',         'deskripsi' => 'Formasi batuan unik dengan nilai geologi dan budaya yang tinggi.'],
-            ['nama' => 'Gua Liang Sipege',     'kategori' => 'alam',    'slug' => 'liang-sipege',         'lokasi' => 'Desa Simarmar Pea Talun Hutagaol','foto' => 'image/meat/liang-sipege-hero.jpg',   'deskripsi' => 'Gua alam eksotis dengan stalaktit dan stalakmit yang memukau.'],
-            ['nama' => 'Sentra Tenun Ulos',    'kategori' => 'budaya',  'slug' => 'sentra-tenun-ulos',    'lokasi' => 'Desa Meat, Kec. Tampahan',          'foto' => 'image/meat/ulos.jpg',                'deskripsi' => 'Pusat kerajinan tenun ulos khas Batak yang terkenal.'],
-            ['nama' => 'Rumah Adat Batak',     'kategori' => 'budaya',  'slug' => 'rumah-adat-batak',     'lokasi' => 'Desa Meat, Kec. Tampahan',          'foto' => 'image/meat/jabubatak.jpg',           'deskripsi' => 'Rumah adat Batak tradisional yang masih terjaga keasliannya.'],
-            ['nama' => 'Spot Pantai Meat',     'kategori' => 'buatan',  'slug' => 'spot-pantai-meat',     'lokasi' => 'Desa Meat, Kec. Tampahan',          'foto' => 'image/meat/meat.jpeg',               'deskripsi' => 'Spot foto terbaik dengan pemandangan Danau Toba yang memukau.'],
-            ['nama' => 'Homestay Meat',        'kategori' => 'buatan',  'slug' => 'homestay-meat',         'lokasi' => 'Desa Meat, Kec. Tampahan',          'foto' => 'image/meat/meat1.jpeg',              'deskripsi' => 'Penginapan homestay dengan nuansa lokal yang hangat dan nyaman.'],
-            ['nama' => 'Jalur Trekking Sawah', 'kategori' => 'buatan',  'slug' => 'jalur-trekking-sawah', 'lokasi' => 'Desa Meat, Kec. Tampahan',          'foto' => 'image/destinasi/buatan3.jpg',        'deskripsi' => 'Jalur trekking melewati hamparan sawah hijau yang menakjubkan.'],
-        ];
-
-        $destinasiResults = collect($hardcodedDestinasi)
-            ->filter(function ($item) use ($query) {
-                return stripos($item['nama'], $query) !== false
-                    || stripos($item['lokasi'], $query) !== false
-                    || stripos($item['deskripsi'], $query) !== false;
-            })
-            ->map(function ($item) {
-                return [
-                    'type'       => 'Destinasi',
-                    'icon'       => 'fa-map-marked-alt',
-                    'nama'       => $item['nama'],
-                    'sub'        => $item['lokasi'],
-                    'deskripsi'  => $item['deskripsi'],
-                    'url'        => url('/destinasi/' . $item['kategori'] . '/' . $item['slug']),
-                    'gambar_url' => asset($item['foto']),
-                ];
-            });
+        $destinasiResults = collect();
 
         // ============================================================
         // GABUNGKAN SEMUA HASIL

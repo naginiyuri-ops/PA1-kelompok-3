@@ -210,7 +210,7 @@
     <div class="container">
         <div class="section-header" data-aos="fade-up">
             <span class="subtitle">Kategori</span>
-            <h2>Jelajahi Informasi</h2>
+            <h2>Jelajahi Berita & Informasi</h2>
             <div class="divider"></div>
         </div>
         

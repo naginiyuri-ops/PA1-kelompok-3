@@ -1075,94 +1075,89 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
     ======================================== -->
     <main style="margin: 0; padding: 0;">@yield('content')</main>
 
-          <!-- ========================================
-    FOOTER MODERN
-      ======================================== -->
-      @php
-          $kontakInfo = \App\Models\Kontak::first();
-      @endphp
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-grid">
+<!-- ========================================
+FOOTER MODERN
+======================================== -->
+@php
+    $kontakInfo = \App\Models\Kontak::first();
+@endphp
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-grid">
 
-                <!-- Brand Column -->
-                <div class="footer-brand">
-                    <div class="logo-footer">
-                        <img src="{{ asset('image/logo/logobankindonesia.jpg') }}" alt="Bank Indonesia" class="logo-footer-img" loading="lazy">
-                        <img src="{{ asset('image/logo/del.jpg') }}" alt="Logo Del" class="logo-footer-img" loading="lazy">
-                    </div>
-                    <h4>Geo<span>Toba</span></h4>
-                    <p>{{ __('app.footer.tagline') }}</p>
-                                        <div class="footer-social">
-                          @if(isset($kontakInfo) && $kontakInfo->social_fb)<a href="{{ $kontakInfo->social_fb }}" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>@endif
-                          @if(isset($kontakInfo) && $kontakInfo->social_ig)<a href="{{ $kontakInfo->social_ig }}" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>@endif
-                          @if(isset($kontakInfo) && $kontakInfo->social_youtube)<a href="{{ $kontakInfo->social_youtube }}" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>@endif
-                          @if(isset($kontakInfo) && $kontakInfo->social_twitter)<a href="{{ $kontakInfo->social_twitter }}" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>@endif
-                          @if(isset($kontakInfo) && $kontakInfo->social_tiktok)<a href="{{ $kontakInfo->social_tiktok }}" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>@endif
-                      </div>
+            <!-- Brand Column -->
+            <div class="footer-brand">
+                <div class="logo-footer">
+                    <img src="{{ asset('image/logo/logobankindonesia.jpg') }}" alt="Bank Indonesia" class="logo-footer-img" loading="lazy">
+                    <img src="{{ asset('image/logo/del.jpg') }}" alt="Logo Del" class="logo-footer-img" loading="lazy">
                 </div>
-
-                <!-- Quick Links -->
-                <div class="footer-col">
-                    <h5>{{ __('app.footer.quick_links') }}</h5>
-                    <div class="footer-menu">
-                        <a href="{{ url('/') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.home') }}</a>
-                        <a href="{{ route('tentang-geosite') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.about_geosite') }}</a>
-                        <a href="{{ url('/destinasi') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.destination') }}</a>
-                        <a href="{{ url('/berita') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.news') }}</a>
-                        <a href="{{ url('/galeri') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.gallery') }}</a>
-                    </div>
+                <h4>Geo<span>Toba</span></h4>
+                <p>{{ __('app.footer.tagline') }}</p>
+                <div class="footer-social">
+                    @if(isset($kontakInfo) && $kontakInfo->social_fb)<a href="{{ $kontakInfo->social_fb }}" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>@endif
+                    @if(isset($kontakInfo) && $kontakInfo->social_ig)<a href="{{ $kontakInfo->social_ig }}" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>@endif
+                    @if(isset($kontakInfo) && $kontakInfo->social_youtube)<a href="{{ $kontakInfo->social_youtube }}" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>@endif
+                    @if(isset($kontakInfo) && $kontakInfo->social_twitter)<a href="{{ $kontakInfo->social_twitter }}" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>@endif
+                    @if(isset($kontakInfo) && $kontakInfo->social_tiktok)<a href="{{ $kontakInfo->social_tiktok }}" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>@endif
                 </div>
-
-                <!-- Diversity -->
-                <div class="footer-col">
-                    <h5>{{ __('app.footer.diversity') }}</h5>
-                    <div class="footer-menu">
-                        <a href="{{ route('geodiversitas') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.geodiversity') }}</a>
-                        <a href="{{ route('biodiversitas') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.biodiversity') }}</a>
-                        <a href="{{ route('cultural-diversity') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.cultural') }}</a>
-                    </div>
-                </div>
-
-                <!-- Contact -->
-                                <div class="footer-col">
-                    <h5>{{ __('app.footer.contact') }}</h5>
-                    <div class="footer-contact">
-                          @if(isset($kontakInfo) && $kontakInfo->alamat)
-                          <div class="contact-item">
-                              <i class="fas fa-map-marker-alt"></i>
-                              <span>{{ $kontakInfo->alamat }}</span>
-                          </div>
-                          @endif
-                          @if(isset($kontakInfo) && $kontakInfo->telepon)
-                          <div class="contact-item">
-                              <i class="fas fa-phone"></i>
-                              <span>{{ $kontakInfo->telepon }}</span>
-                          </div>
-                          @endif
-                          @if(isset($kontakInfo) && $kontakInfo->email)
-                          <div class="contact-item">
-                              <i class="fas fa-envelope"></i>
-                              <span>{{ $kontakInfo->email }}</span>
-                          </div>
-                          @endif
-                      </div>
-                  </div>
-                </div>
-
             </div>
 
-            <!-- Bottom -->
-            <div class="footer-bottom">
-                <div class="footer-copyright">
-                    <p>&copy; {{ date('Y') }} GeoToba - Geopark Danau Toba. {{ __('app.footer.copyright') }}</p>
+            <!-- Quick Links -->
+            <div class="footer-col">
+                <h5>{{ __('app.footer.quick_links') }}</h5>
+                <div class="footer-menu">
+                    <a href="{{ url('/') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.home') }}</a>
+                    <a href="{{ route('tentang-geosite') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.about_geosite') }}</a>
+                    <a href="{{ url('/destinasi') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.destination') }}</a>
+                    <a href="{{ url('/berita') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.news') }}</a>
+                    <a href="{{ url('/galeri') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.gallery') }}</a>
                 </div>
-                <div class="footer-credit">
-                    <span>{{ __('app.footer.designed_by') }} <a href="#">Kelompok 3</a></span>
+            </div>
+
+            <!-- Diversity -->
+            <div class="footer-col">
+                <h5>{{ __('app.footer.diversity') }}</h5>
+                <div class="footer-menu">
+                    <a href="{{ route('geodiversitas') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.geodiversity') }}</a>
+                    <a href="{{ route('biodiversitas') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.biodiversity') }}</a>
+                    <a href="{{ route('cultural-diversity') }}"><i class="fas fa-chevron-right"></i> {{ __('app.nav.cultural') }}</a>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="footer-col">
+                <h5>{{ __('app.footer.contact') }}</h5>
+                <div class="footer-contact">
+                    @if(isset($kontakInfo) && $kontakInfo->alamat)
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>{{ $kontakInfo->alamat }}</span>
+                    </div>
+                    @endif
+                    @if(isset($kontakInfo) && $kontakInfo->telepon)
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>{{ $kontakInfo->telepon }}</span>
+                    </div>
+                    @endif
+                    @if(isset($kontakInfo) && $kontakInfo->email)
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>{{ $kontakInfo->email }}</span>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
-    </footer>
+
+        <!-- Bottom - Rata Tengah -->
+        <div class="footer-bottom">
+            <div class="footer-copyright text-center" style="width: 100%;">
+                <p>&copy; {{ date('Y') }} GeoToba - Geopark Danau Toba. {{ __('app.footer.copyright') }}</p>
+            </div>
+        </div>
+    </div>
+</footer>
 
     <!-- BACK TO TOP -->
     <div class="back-to-top" id="backToTop" aria-label="Back to top">
