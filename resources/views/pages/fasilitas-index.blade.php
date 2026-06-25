@@ -421,9 +421,6 @@
             <a href="{{ route('penginapan.index') }}" class="category-card" data-aos="fade-up" style="text-decoration: none;">
                 <div class="card-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop" alt="Penginapan">
-                    <div style="position: absolute; top: 15px; right: 15px; background: var(--gold); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; z-index: 3;">
-                        Akomodasi
-                    </div>
                 </div>
                 <div class="card-content">
                     <h3>{{ __('app.penginapan.title') }}</h3>
