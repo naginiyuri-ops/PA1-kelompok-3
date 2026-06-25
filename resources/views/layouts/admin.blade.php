@@ -363,17 +363,19 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
         <a href="{{ route('admin.galeri.index') }}" class="{{ request()->routeIs('admin.galeri.*') ? 'active' : '' }}">
             Galeri
         </a>
+        <a href="{{ route('admin.pengelola-geosite.index') }}" class="{{ request()->routeIs('admin.pengelola-geosite.*') ? 'active' : '' }}">
+            Pengelola Geosite
+        </a>
+
+        <div class="menu-title">Berita & Informasi</div>
         <a href="{{ route('admin.berita.index') }}" class="{{ request()->routeIs('admin.berita.*') ? 'active' : '' }}">
-            Berita
+            Berita Terkini
         </a>
         <a href="{{ route('admin.agenda.index') }}" class="{{ request()->routeIs('admin.agenda.*') ? 'active' : '' }}">
             Agenda / Event
         </a>
         <a href="{{ route('admin.pengumuman.index') }}" class="{{ request()->routeIs('admin.pengumuman.*') ? 'active' : '' }}">
             Pengumuman
-        </a>
-        <a href="{{ route('admin.pengelola-geosite.index') }}" class="{{ request()->routeIs('admin.pengelola-geosite.*') ? 'active' : '' }}">
-            Pengelola Geosite
         </a>
 
         {{-- ========== GROUP DESTINASI ========== --}}
