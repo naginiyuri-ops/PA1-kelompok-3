@@ -1028,11 +1028,6 @@ h1, h2, h3, h4, h5, h6, .page-title, .section-title, .navbar-brand {
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('penginapan*') ? 'active' : '' }}"
-                           href="{{ route('penginapan.index') }}">{{ __('app.nav.accommodation') }}</a>
-                    </li>
-
-                    <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('berita*') ? 'active' : '' }}"
                            href="{{ url('/berita') }}">{{ __('app.nav.news') }}</a>
                     </li>

@@ -416,7 +416,26 @@
         </div>
         
         <div class="category-grid">
+
+            {{-- Kartu Khusus Penginapan --}}
+            <a href="{{ route('penginapan.index') }}" class="category-card" data-aos="fade-up" style="text-decoration: none;">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop" alt="Penginapan">
+                    <div style="position: absolute; top: 15px; right: 15px; background: var(--gold); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; z-index: 3;">
+                        Akomodasi
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>{{ __('app.penginapan.title') }}</h3>
+                    <p style="margin-bottom: 15px;">{{ __('app.penginapan.subtitle') }}</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: #64748b; text-align: left; margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
+                        <div><i class="fas fa-arrow-right" style="color: var(--blue-dark); width: 20px;"></i> {{ app()->getLocale() == 'en' ? 'Click to view all accommodations' : 'Klik untuk melihat semua penginapan' }}</div>
+                    </div>
+                </div>
+            </a>
             
+            {{-- Hasil CRUD Fasilitas Lainnya --}}
             @forelse($fasilitas as $item)
             <div class="category-card" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}" style="cursor: pointer;" onclick="openFasilitas({{ $item->id }})">
                 <div class="card-img-wrapper">
