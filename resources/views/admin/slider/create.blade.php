@@ -26,13 +26,13 @@
             
             <div class="mb-3">
                 <label>Judul Utama (Opsional)</label>
-                <input type="text" name="title" class="form-control" value="{{ old('title') }}" placeholder="Contoh: Balige • Meat">
+                <input type="text" name="title" class="form-control" value="{{ old('title') }}" placeholder="Contoh: TAMAN EDEN 100">
                 <small class="text-muted">Ditampilkan besar di atas gambar (Opsional)</small>
             </div>
             
             <div class="mb-3">
                 <label>Sub Judul (Opsional)</label>
-                <input type="text" name="subtitle" class="form-control" value="{{ old('subtitle') }}" placeholder="Contoh: Batu Basiha • Liang Sipege">
+                <input type="text" name="subtitle" class="form-control" value="{{ old('subtitle') }}" placeholder="Contoh: TAMAN EDEN 100">
                 <small class="text-muted">Ditampilkan sedikit lebih kecil di bawah judul (Opsional)</small>
             </div>
 

@@ -195,8 +195,60 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 40px;
+        align-items: stretch;
+    }
+    
+    /* MODIFIKASI: Profile text 40% dan gambar 60% */
+    .profile-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(320px, 40%) 1.4fr;
+        gap: 40px;
         align-items: center;
     }
+    
+    .profile-text {
+        order: 1;
+    }
+    
+    .profile-image-wrapper {
+        order: 2;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        cursor: pointer;
+        transition: all 0.4s ease;
+        height: 100%;
+        min-height: 460px;
+        position: relative;
+    }
+    
+    .profile-image-wrapper:hover {
+        transform: scale(1.02);
+        box-shadow: var(--shadow-xl);
+    }
+    
+    .profile-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    
+    /* Untuk layout mobile, gambar di atas */
+    @media (max-width: 992px) {
+        .profile-content-wrapper {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        .profile-image-wrapper {
+            order: 1;
+            min-height: 320px;
+        }
+        .profile-text {
+            order: 2;
+        }
+    }
+    
     .profile-text p {
         color: var(--text-gray);
         line-height: 1.8;
@@ -222,22 +274,6 @@
         color: var(--gold);
         width: 20px;
         text-align: center;
-    }
-    .profile-image {
-        border-radius: var(--radius);
-        overflow: hidden;
-        box-shadow: var(--shadow-lg);
-        cursor: pointer;
-        transition: all 0.4s ease;
-    }
-    .profile-image:hover {
-        transform: scale(1.02);
-        box-shadow: var(--shadow-xl);
-    }
-    .profile-image img {
-        width: 100%;
-        height: 350px;
-        object-fit: cover;
     }
 
     /* ==================== VISI MISI ==================== */
@@ -513,7 +549,6 @@
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 992px) {
         .geosite-grid { grid-template-columns: repeat(2, 1fr); }
-        .profile-grid { grid-template-columns: 1fr; gap: 30px; }
         .visi-misi-grid { grid-template-columns: 1fr; }
         .nilai-grid { grid-template-columns: repeat(2, 1fr); }
         .pengelola-grid { grid-template-columns: repeat(2, 1fr); }
@@ -531,7 +566,6 @@
         .maps-container iframe { height: 280px; }
         .maps-info { flex-direction: column; text-align: center; }
         .maps-info .location-list { justify-content: center; }
-        .profile-image img { height: 250px; }
         .cta-content h3 { font-size: 1.5rem; }
     }
 
@@ -596,7 +630,6 @@
     </div>
 </section>
 
-
 <!-- ==================== PROFIL WILAYAH ==================== -->
 <section class="section section-light" id="profil">
     <div class="container">
@@ -606,19 +639,77 @@
             <div class="divider"></div>
             <p>{{ app()->getLocale() == 'en' ? 'Getting to know the Geopark Danau Toba area more closely' : 'Mengenal lebih dekat kawasan Geopark Danau Toba' }}</p>
         </div>
-        <div class="profile-grid">
-            <div class="profile-text" data-aos="fade-right">
-                <p><strong>Geopark Danau Toba</strong> {{ app()->getLocale() == 'en' ? 'is located in North Sumatra Province, covering 7 regencies/cities around Lake Toba. This area was recognized as a' : 'terletak di Provinsi Sumatera Utara, mencakup 7 kabupaten/kota di sekitar Danau Toba. Kawasan ini diakui sebagai' }} <strong>UNESCO Global Geopark</strong> {{ app()->getLocale() == 'en' ? 'on July 7, 2020.' : 'pada tanggal 7 Juli 2020.' }}</p>
-                <p>{{ app()->getLocale() == 'en' ? 'With an area of approximately 1,930 km2, Geopark Danau Toba has a unique geological feature in the form of the world largest volcanic lake caldera, formed from a supervolcano eruption 74,000 years ago.' : 'Dengan luas area sekitar 1.930 km2, Geopark Danau Toba memiliki keunikan geologi berupa kaldera danau vulkanik terbesar di dunia yang terbentuk dari letusan supervolcano 74.000 tahun lalu.' }}</p>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> <strong>{{ app()->getLocale() == 'en' ? 'Area:' : 'Luas Wilayah:' }}</strong> ± 1.930 km²</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Geosite:</strong> {{ app()->getLocale() == 'en' ? '16 geosite points' : '16 titik geosite' }}</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Status:</strong> UNESCO Global Geopark (2020)</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>{{ app()->getLocale() == 'en' ? 'Regencies:' : 'Kabupaten:' }}</strong> Toba, Samosir, Tapanuli Utara, Humbang Hasundutan, Dairi, Karo, Simalungun</li>
-                </ul>
+        
+        <!-- MODIFIKASI: Konten dengan gambar di samping -->
+        <div class="profile-content-wrapper" data-aos="fade-up">
+            <!-- Gambar di samping kiri -->
+            <div class="profile-image-wrapper" onclick="openLightbox('{{ asset('image/DestinasiAlam1.jpg') }}')">
+                <img src="{{ asset('image/DestinasiAlam1.jpg') }}" alt="Danau Toba Geosite" loading="lazy" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
             </div>
-            <div class="profile-image" data-aos="fade-left" onclick="openLightbox('{{ asset('image/meat/danau.jpg') }}')">
-                <img src="{{ asset('image/meat/danau.jpg') }}" alt="Danau Toba" loading="lazy" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
+            
+            <!-- Teks di samping kanan -->
+            <div class="profile-text">
+                <p>
+                    <strong>Taman Eden 100</strong>
+                    {{ app()->getLocale() == 'en'
+                    ? 'is one of the important geosites within the UNESCO Global Geopark Kaldera Toba. Located in Lumban Julu District, Toba Regency, this conservation area preserves the geological, ecological, and cultural heritage of the Toba Caldera while promoting environmental education and sustainable tourism.'
+                    : 'merupakan salah satu geosite penting yang berada dalam kawasan UNESCO Global Geopark Kaldera Toba. Berlokasi di Kecamatan Lumban Julu, Kabupaten Toba, kawasan konservasi ini melestarikan warisan geologi, ekologi, dan budaya Kaldera Toba sekaligus menjadi pusat edukasi lingkungan dan pariwisata berkelanjutan.'
+                    }}
+                </p>
+
+                <p>
+                    {{ app()->getLocale() == 'en'
+                    ? 'The landscape of Taman Eden 100 reflects the geological history of the supervolcanic eruption that formed Lake Toba approximately 74,000 years ago. The area features volcanic rocks, fertile highland soils, mountain forests, natural springs, waterfalls, and diverse endemic flora that together illustrate the interaction between geological processes and biodiversity.'
+                    : 'Bentang alam Taman Eden 100 merupakan bagian dari sejarah geologi letusan supervulkan yang membentuk Kaldera Danau Toba sekitar 74.000 tahun yang lalu. Kawasan ini menampilkan singkapan batuan vulkanik, tanah vulkanik yang subur, hutan pegunungan, mata air alami, air terjun, serta keanekaragaman flora endemik yang menjadi bukti hubungan erat antara proses geologi dan keanekaragaman hayati.'
+                    }}
+                </p>
+
+                <p>
+                    {{ app()->getLocale() == 'en'
+                    ? 'Besides its geological significance, Taman Eden 100 serves as a living laboratory for conservation, scientific research, environmental education, and ecotourism. Visitors can explore trekking trails, observe native plant species, enjoy pristine forest ecosystems, and learn about the geological evolution of the Toba Caldera through direct interaction with nature.'
+                    : 'Selain memiliki nilai geologi yang tinggi, Taman Eden 100 juga berfungsi sebagai laboratorium alam untuk konservasi, penelitian ilmiah, pendidikan lingkungan, serta pengembangan ekowisata. Pengunjung dapat menikmati jalur trekking, mengamati berbagai jenis tumbuhan asli, menyaksikan ekosistem hutan yang masih alami, serta mempelajari proses pembentukan Kaldera Toba secara langsung melalui pengalaman di alam terbuka.'
+                    }}
+                </p>
+
+                <ul>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <strong>{{ app()->getLocale() == 'en' ? 'Geosite Status:' : 'Status Geosite:' }}</strong>
+                        {{ app()->getLocale() == 'en'
+                        ? 'Part of UNESCO Global Geopark Kaldera Toba'
+                        : 'Bagian dari UNESCO Global Geopark Kaldera Toba'
+                        }}
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <strong>{{ app()->getLocale() == 'en' ? 'Location:' : 'Lokasi:' }}</strong>
+                        Lumban Julu, Toba Regency, North Sumatra
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <strong>{{ app()->getLocale() == 'en' ? 'Geological Value:' : 'Nilai Geologi:' }}</strong>
+                        {{ app()->getLocale() == 'en'
+                        ? 'Volcanic landscape of the Toba Caldera formed by the supervolcanic eruption.'
+                        : 'Bentang alam vulkanik Kaldera Toba hasil letusan supervulkan.'
+                        }}
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <strong>{{ app()->getLocale() == 'en' ? 'Main Potential:' : 'Potensi Utama:' }}</strong>
+                        {{ app()->getLocale() == 'en'
+                        ? 'Geotourism, biodiversity conservation, environmental education, and scientific research.'
+                        : 'Geowisata, konservasi keanekaragaman hayati, pendidikan lingkungan, dan penelitian ilmiah.'
+                        }}
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <strong>{{ app()->getLocale() == 'en' ? 'Main Attractions:' : 'Daya Tarik:' }}</strong>
+                        {{ app()->getLocale() == 'en'
+                        ? 'Waterfalls, natural forests, trekking trails, endemic flora, and volcanic geological formations.'
+                        : 'Air terjun, hutan alami, jalur trekking, flora endemik, dan bentang geologi vulkanik.'
+                        }}
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -733,37 +824,9 @@
             <span class="badge">{{ app()->getLocale() == 'en' ? 'Location' : 'Lokasi' }}</span>
             <h2>{{ app()->getLocale() == 'en' ? 'Geosite Location Map' : 'Peta Lokasi Geosite' }}</h2>
             <div class="divider"></div>
-            <p>{{ app()->getLocale() == 'en' ? 'Strategic location in the Balige area, easily accessible from various points' : 'Lokasi strategis di kawasan Balige, mudah diakses dari berbagai titik' }}</p>
         </div>
         <div class="maps-container" data-aos="zoom-in">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31892.45522108672!2d98.96240686371921!3d2.316828414712955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302e1b2618ee6569%3A0x36e2c26fb20124ca!2sMeat%2C%20Kec.%20Tampahan%2C%20Toba%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1779549114075!5m2!1sid!2sid"
-                width="600"
-                height="450"
-                style="border:0;"
-                allowfullscreen=""
-                loading="lazy">
-            </iframe>
-            <div class="maps-info">
-                <div class="location-list">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Balige+Toba" target="_blank">
-                        <i class="fas fa-location-dot"></i> Balige
-                    </a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Meat+Village+Toba" target="_blank">
-                        <i class="fas fa-location-dot"></i> Meat
-                    </a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Batu+Bahisan+Balige" target="_blank">
-                        <i class="fas fa-location-dot"></i> Batu Basiha
-                    </a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Liang+Sipege+Balige" target="_blank">
-                        <i class="fas fa-location-dot"></i> Liang Sipege
-                    </a>
-                </div>
-                <div class="maps-note">
-                    <i class="fas fa-info-circle"></i>
-                    <span>Klik lokasi untuk melihat detail di Google Maps</span>
-                </div>
-            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3985.739151447911!2d99.03631287501655!3d2.59109849738697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3031f07396d119b9%3A0x5a46f0ab2efec853!2sTaman%20Eden%20100%20Tobasa!5e0!3m2!1sen!2sid!4v1782392505078!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
     </div>
 </section>

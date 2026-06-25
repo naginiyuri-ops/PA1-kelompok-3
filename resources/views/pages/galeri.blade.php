@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Galeri - GeoToba')
+@section('title', 'Galeri - TAMAN EDEN 100')
 
 @section('content')
 
@@ -41,29 +41,6 @@
         letter-spacing: 3px;
         text-transform: uppercase;
         color: rgba(255,255,255,0.8);
-    }
-    
-    .filter-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin-bottom: 40px;
-        flex-wrap: wrap;
-    }
-    .filter-btn {
-        background: transparent;
-        border: 2px solid #c6a43b;
-        padding: 8px 24px;
-        border-radius: 50px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        color: #003366;
-    }
-    .filter-btn.active, .filter-btn:hover {
-        background: #c6a43b;
-        color: #003366;
     }
     
     .gallery-section {
@@ -285,20 +262,11 @@
 <section class="gallery-section">
     <div class="container">
         
-        <div class="filter-buttons">
-            <button class="filter-btn active" data-filter="all">{{ __('app.gallery.all') }}</button>
-            <button class="filter-btn" data-filter="meat">MEAT</button>
-            <button class="filter-btn" data-filter="batu-bahisan">BATU BASIHA</button>
-            <button class="filter-btn" data-filter="liang-sipege">LIANG SIPEGE</button>
-            <button class="filter-btn" data-filter="balige">BALIGE</button>
-        </div>
-        
         <div class="stack-container" id="galleryContainer">
             @forelse($galeri ?? [] as $index => $item)
                 @php
                     // TENTUKAN GAMBAR BERDASARKAN KATEGORI JIKA KOSONG
                     $imgSrc = asset('image/default.jpg');
-                    $kategoriLower = strtolower($item->kategori ?? '');
                     
                     if (!empty($item->gambar)) {
                         if (str_starts_with($item->gambar, 'http')) {
@@ -310,43 +278,21 @@
                         } else {
                             $imgSrc = asset($item->gambar);
                         }
-                    } else {
-                        // GAMBAR DEFAULT BERDASARKAN KATEGORI
-                        if (str_contains($kategoriLower, 'meat')) {
-                            $imgSrc = asset('image/meat/slide1.jpg');
-                        } else if (str_contains($kategoriLower, 'batu') || str_contains($kategoriLower, 'bahisan')) {
-                            $imgSrc = asset('image/meat/batu-detail.jpg');
-                        } else if (str_contains($kategoriLower, 'liang') || str_contains($kategoriLower, 'sipege')) {
-                            $imgSrc = asset('image/meat/liang-detail.jpg');
-                        } else if (str_contains($kategoriLower, 'balige')) {
-                            $imgSrc = asset('image/default.jpg');
-                        }
                     }
                     
-                    // TENTUKAN FILTER CATEGORY
-                    $filterCat = 'other';
-                    if (str_contains($kategoriLower, 'meat')) {
-                        $filterCat = 'meat';
-                    } else if (str_contains($kategoriLower, 'batu') || str_contains($kategoriLower, 'bahisan')) {
-                        $filterCat = 'batu-bahisan';
-                    } else if (str_contains($kategoriLower, 'liang') || str_contains($kategoriLower, 'sipege')) {
-                        $filterCat = 'liang-sipege';
-                    } else if (str_contains($kategoriLower, 'balige')) {
-                        $filterCat = 'balige';
-                    }
-                    
+                    $filterCat = 'gallery';
                     $judul = addslashes($item->judul_trans ?? (app()->getLocale() == 'en' ? 'Gallery' : 'Galeri'));
                     $deskripsi = addslashes($item->deskripsi_trans ?? (app()->getLocale() == 'en' ? 'No description' : 'Tidak ada deskripsi'));
                     $kategoriModal = addslashes(strtoupper($item->kategori ?? (app()->getLocale() == 'en' ? 'GALLERY' : 'GALERI')));
                     $lokasi = addslashes($item->lokasi ?? 'Danau Toba');
                 @endphp
                 
-                <div class="slip-card" data-category="{{ $filterCat }}"
+                <div class="slip-card"
                      onclick="openPhoto('{{ $imgSrc }}', '{{ $judul }}', '{{ $deskripsi }}', '{{ $kategoriModal }}', '{{ $lokasi }}')">
                     <div class="slip-image">
                         <img src="{{ $imgSrc }}" alt="{{ $item->judul_trans }}" loading="lazy" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
                         <div class="slip-overlay">
-                            <span class="slip-category">{{ strtoupper($item->kategori ?? (app()->getLocale() == 'en' ? 'GALLERY' : 'GALERI')) }}</span>
+                            <span class="slip-category">{{ app()->getLocale() == 'en' ? 'GALLERY' : 'GALERI' }}</span>
                         </div>
                     </div>
                     <div class="slip-info">
@@ -450,27 +396,6 @@
         document.body.style.overflow = 'auto';
         stopModalMusic();
     }
-    
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            const filterValue = this.getAttribute('data-filter');
-            const cards = document.querySelectorAll('.slip-card');
-            cards.forEach(card => {
-                if (filterValue === 'all') {
-                    card.style.display = 'block';
-                } else {
-                    const cardCategory = card.getAttribute('data-category');
-                    if (cardCategory === filterValue) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                }
-            });
-        });
-    });
     
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closePhoto();

@@ -74,7 +74,7 @@ return [
         'read_more'         => 'Read More',
         'by'                => 'by',
         'hero_badge'        => 'UNESCO Global Geopark',
-        'hero_locations'    => 'Balige &middot; Meat <br><span>Liang Sipege &middot; Batu Basiha</span>',
+        'hero_locations'    => 'TAMAN EDEN 100',
         'no_featured_dest'  => 'No featured destinations yet. Mark destinations in the admin panel to show them here.',
         'history_years'     => 'Years of History',
         'cultural_heritage' => 'Cultural Heritage',
@@ -94,7 +94,7 @@ return [
     'about' => [
         'title'             => 'About Geosite',
         'subtitle'          => 'Get to Know Lake Toba Geopark Better',
-        'geosite_title'     => 'Balige-Meat-Liang Sipege-Batu Basiha Geosite',
+        'geosite_title'     => 'TAMAN EDEN 100 Geosite',
         'read_more'         => 'Read More',
         'history'           => 'History',
         'legend'            => 'Legend',
@@ -233,7 +233,7 @@ return [
         'no_data'           => 'No data available.',
         'no_data_desc'      => 'Please add data via admin panel.',
         'badge'             => 'LATEST UPDATES',
-        'hero_desc'         => 'Latest Information & Developments from Balige, Meat, Liang Sipege, Batu Basiha',
+        'hero_desc'         => 'Latest information and developments from TAMAN EDEN 100',
         'category'          => 'NEWS',
     ],
 
@@ -298,7 +298,7 @@ return [
     // =========================================================================
     'penginapan' => [
         'page_title'        => 'Accommodation - Geosite Lake Toba',
-        'meta_description'  => 'Find various accommodation options, homestays, and comfortable lodging around Geosite Lake Toba, Meat Village.',
+        'meta_description'  => 'Find various accommodation options, homestays, and comfortable lodging around TAMAN EDEN 100.',
         'title'             => 'Accommodation',
         'subtitle'          => 'Find various accommodation options and comfortable lodging around Geosite Lake Toba.',
         'back'              => 'Back to Accommodation List',
@@ -311,7 +311,7 @@ return [
     // =========================================================================
     'kuliner' => [
         'page_title'        => 'Culinary & Restaurants - Geosite Lake Toba',
-        'meta_description'  => 'Discover various culinary options, local dishes, and delicious restaurants around Geosite Lake Toba, Meat Village.',
+        'meta_description'  => 'Discover various culinary options, local dishes, and delicious restaurants around TAMAN EDEN 100.',
         'title'             => 'Culinary & Restaurants',
         'subtitle'          => 'Enjoy local dishes and find the best places to eat around Geosite Lake Toba.',
         'back'              => 'Back to Culinary List',

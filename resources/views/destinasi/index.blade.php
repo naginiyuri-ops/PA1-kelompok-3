@@ -335,7 +335,7 @@
         <div class="category-grid">
             <a href="{{ url('/destinasi/alam') }}" class="category-card" data-aos="fade-up" data-aos-delay="0">
                 <div class="card-image">
-                    <img src="{{ asset('image/meat/batubasiha1.png') }}" alt="Destinasi Alam">
+                    <img src="{{ asset('image/DestinasiAlam1.jpg') }}" alt="Destinasi Alam">
                     <div class="card-overlay"></div>
                 </div>
                 <div class="card-content">
@@ -348,7 +348,7 @@
             
             <a href="{{ url('/destinasi/buatan') }}" class="category-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="card-image">
-                    <img src="{{ asset('image/meat/slide2.jpg') }}" alt="Destinasi Buatan">
+                    <img src="{{ asset('image/DestinasiBuatan1.jpg') }}" alt="Destinasi Buatan">
                     <div class="card-overlay"></div>
                 </div>
                 <div class="card-content">
@@ -361,7 +361,7 @@
             
             <a href="{{ url('/destinasi/budaya') }}" class="category-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="card-image">
-                    <img src="{{ asset('image/meat/ulos.jpg') }}" alt="Destinasi Budaya">
+                    <img src="{{ asset('image/DestinasiBudaya1.jpg') }}" alt="Destinasi Budaya">
                     <div class="card-overlay"></div>
                 </div>
                 <div class="card-content">

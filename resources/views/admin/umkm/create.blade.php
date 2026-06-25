@@ -233,7 +233,7 @@
                 <div class="col-half">
                     <div class="mb-3">
                         <label>Lokasi</label>
-                        <input type="text" name="lokasi" class="form-control" value="{{ old('lokasi', 'Desa Meat') }}" placeholder="Contoh: Desa Meat, Balige">
+                        <input type="text" name="lokasi" class="form-control" value="{{ old('lokasi', 'TAMAN EDEN 100') }}" placeholder="Contoh: TAMAN EDEN 100">
                     </div>
                 </div>
                 

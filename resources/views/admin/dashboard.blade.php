@@ -212,7 +212,7 @@
 
 <div class="dash-welcome">
     <h4>Dashboard Admin</h4>
-    <p>Ringkasan data operasional website GeoToba Desa Meat.</p>
+    <p>Ringkasan data operasional website TAMAN EDEN 100.</p>
 </div>
 
 <div class="stats-grid">

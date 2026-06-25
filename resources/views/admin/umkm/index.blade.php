@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Manajemen UMKM Meat')
+@section('title', 'Manajemen UMKM TAMAN EDEN 100')
 
 @section('content')
 <style>

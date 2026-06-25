@@ -74,7 +74,7 @@ return [
         'read_more'         => 'Baca Selengkapnya',
         'by'                => 'oleh',
         'hero_badge'        => 'UNESCO Global Geopark',
-        'hero_locations'    => 'Balige &middot; Meat <br><span>Liang Sipege &middot; Batu Basiha</span>',
+        'hero_locations'    => 'TAMAN EDEN 100',
         'no_featured_dest'  => 'Belum ada destinasi unggulan. Tandai destinasi di panel admin agar muncul di sini.',
         'history_years'     => 'Tahun Sejarah',
         'cultural_heritage' => 'Warisan Budaya',
@@ -94,7 +94,7 @@ return [
     'about' => [
         'title'             => 'Tentang Geosite',
         'subtitle'          => 'Mengenal Lebih Dekat Geopark Danau Toba',
-        'geosite_title'     => 'Geosite Balige-Meat-Liang Sipege-Batu Basiha',
+        'geosite_title'     => 'TAMAN EDEN 100',
         'read_more'         => 'Baca Selengkapnya',
         'history'           => 'Sejarah',
         'legend'            => 'Legenda',
@@ -233,7 +233,7 @@ return [
         'no_data'           => 'Belum ada data tersedia.',
         'no_data_desc'      => 'Silahkan tambahkan data terbaru melalui panel admin.',
         'badge'             => 'UPDATE TERBARU',
-        'hero_desc'         => 'Informasi & Perkembangan Terbaru Balige, Meat, Liang Sipege, Batu Basiha',
+        'hero_desc'         => 'Informasi & Perkembangan Terbaru TAMAN EDEN 100',
         'category'          => 'BERITA',
     ],
 
@@ -298,7 +298,7 @@ return [
     // =========================================================================
     'penginapan' => [
         'page_title'        => 'Penginapan - Geosite Danau Toba',
-        'meta_description'  => 'Temukan berbagai pilihan penginapan, homestay, dan akomodasi nyaman di sekitar Geosite Danau Toba, Desa Meat.',
+        'meta_description'  => 'Temukan berbagai pilihan penginapan, homestay, dan akomodasi nyaman di sekitar TAMAN EDEN 100.',
         'title'             => 'Akomodasi',
         'subtitle'          => 'Temukan berbagai pilihan penginapan dan akomodasi nyaman di sekitar Geosite Danau Toba.',
         'back'              => 'Kembali ke Daftar Penginapan',
@@ -311,7 +311,7 @@ return [
     // =========================================================================
     'kuliner' => [
         'page_title'        => 'Kuliner / Restoran - Geosite Danau Toba',
-        'meta_description'  => 'Temukan berbagai pilihan kuliner, hidangan lokal, dan restoran lezat di sekitar Geosite Danau Toba, Desa Meat.',
+        'meta_description'  => 'Temukan berbagai pilihan kuliner, hidangan lokal, dan restoran lezat di sekitar TAMAN EDEN 100.',
         'title'             => 'Kuliner / Restoran',
         'subtitle'          => 'Nikmati hidangan khas dan temukan tempat makan terbaik di sekitar Geosite Danau Toba.',
         'back'              => 'Kembali ke Daftar Kuliner',
