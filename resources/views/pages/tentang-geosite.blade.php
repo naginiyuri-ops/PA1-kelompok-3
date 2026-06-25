@@ -191,17 +191,9 @@
     .geosite-card .content .btn-detail:hover { color: var(--primary); letter-spacing: 0.5px; }
 
     /* ==================== PROFILE WILAYAH ==================== */
-    .profile-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-        align-items: stretch;
-    }
-    
-    /* MODIFIKASI: Profile text 40% dan gambar 60% */
     .profile-content-wrapper {
         display: grid;
-        grid-template-columns: minmax(320px, 40%) 1.4fr;
+        grid-template-columns: 1.5fr 1fr;
         gap: 40px;
         align-items: center;
     }
@@ -234,7 +226,6 @@
         display: block;
     }
     
-    /* Untuk layout mobile, gambar di atas */
     @media (max-width: 992px) {
         .profile-content-wrapper {
             grid-template-columns: 1fr;
@@ -281,6 +272,8 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 35px;
+        max-width: 1000px;
+        margin: 0 auto;
     }
     .visi-misi-card {
         background: white;
@@ -335,90 +328,131 @@
         font-size: 0.8rem;
     }
 
-    /* ==================== NILAI GEOSITE ==================== */
-    .nilai-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+    /* ==================== NILAI GEOSITE - 3 CARD CENTER ==================== */
+    .nilai-grid-three {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 25px;
+        max-width: 1100px;
+        margin: 0 auto;
     }
+
     .nilai-card {
         background: white;
         border-radius: var(--radius);
-        padding: 25px 20px;
+        padding: 30px 25px;
         text-align: center;
         box-shadow: var(--shadow);
         transition: all 0.4s ease;
+        flex: 0 1 calc(33.333% - 25px);
+        min-width: 280px;
+        max-width: 350px;
+        display: flex;
+        flex-direction: column;
     }
+
     .nilai-card:hover {
         transform: translateY(-5px);
         box-shadow: var(--shadow-lg);
     }
+
     .nilai-card .icon {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
         color: var(--gold);
-        margin-bottom: 12px;
+        margin-bottom: 15px;
         display: block;
     }
+
     .nilai-card h4 {
-        font-size: 0.95rem;
+        font-size: 1rem;
         font-weight: 700;
         color: var(--primary);
-        margin-bottom: 6px;
-    }
-    .nilai-card p {
-        font-size: 0.8rem;
-        color: var(--text-gray);
-        line-height: 1.6;
+        margin-bottom: 10px;
     }
 
-    /* ==================== PENGELOLA ==================== */
-    .pengelola-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
+    .nilai-card p {
+        font-size: 0.85rem;
+        color: var(--text-gray);
+        line-height: 1.7;
+        flex-grow: 1;
     }
+
+    /* ==================== PENGELOLA GEOSITE - 3 CARD CENTER ==================== */
+    .pengelola-grid-three {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
     .pengelola-card {
         background: white;
         border-radius: var(--radius);
-        padding: 25px;
+        padding: 30px 25px;
         text-align: center;
         box-shadow: var(--shadow);
         transition: all 0.4s ease;
+        flex: 0 1 calc(33.333% - 30px);
+        min-width: 260px;
+        max-width: 340px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
+
     .pengelola-card:hover {
         transform: translateY(-5px);
         box-shadow: var(--shadow-lg);
     }
+
     .pengelola-card .avatar {
-        width: 80px;
-        height: 80px;
+        width: 90px;
+        height: 90px;
         border-radius: 50%;
         background: linear-gradient(135deg, var(--primary), var(--primary-light));
-        margin: 0 auto 12px;
+        margin: 0 auto 15px;
         display: flex;
         align-items: center;
         justify-content: center;
         color: white;
-        font-size: 2rem;
+        font-size: 2.2rem;
         font-weight: 700;
         font-family: 'Playfair Display', serif;
+        flex-shrink: 0;
+        overflow: hidden;
+        border: 3px solid var(--gold);
     }
+
+    .pengelola-card .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
     .pengelola-card h4 {
-        font-size: 1rem;
+        font-size: 1.05rem;
         font-weight: 700;
         color: var(--primary);
         margin-bottom: 4px;
     }
+
     .pengelola-card .jabatan {
-        font-size: 0.75rem;
+        font-size: 0.8rem;
         color: var(--gold-dark);
         font-weight: 600;
+        margin-bottom: 10px;
     }
+
     .pengelola-card p {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
         color: var(--text-gray);
-        margin-top: 8px;
-        line-height: 1.6;
+        margin-top: 5px;
+        line-height: 1.7;
+        flex-grow: 1;
     }
 
     /* ==================== MAPS ==================== */
@@ -438,50 +472,6 @@
         height: 400px;
         border: 0;
     }
-    .maps-info {
-        padding: 20px 25px;
-        background: white;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 15px;
-        align-items: center;
-    }
-    .maps-info .location-list {
-        display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
-    }
-    .maps-info .location-list a {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px 16px;
-        background: var(--bg-light);
-        border-radius: 30px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: var(--primary);
-        text-decoration: none;
-        transition: all 0.3s ease;
-        border: 1px solid transparent;
-    }
-    .maps-info .location-list a:hover {
-        background: var(--gold);
-        color: var(--primary);
-        border-color: var(--gold);
-        transform: translateY(-2px);
-    }
-    .maps-info .location-list a i { color: var(--gold); }
-    .maps-info .location-list a:hover i { color: var(--primary); }
-    .maps-note {
-        font-size: 0.75rem;
-        color: var(--text-light);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    .maps-note i { color: var(--gold); }
 
     /* ==================== CTA ==================== */
     .cta-section {
@@ -546,37 +536,6 @@
         letter-spacing: 2px;
     }
 
-    /* ==================== RESPONSIVE ==================== */
-    @media (max-width: 992px) {
-        .geosite-grid { grid-template-columns: repeat(2, 1fr); }
-        .visi-misi-grid { grid-template-columns: 1fr; }
-        .nilai-grid { grid-template-columns: repeat(2, 1fr); }
-        .pengelola-grid { grid-template-columns: repeat(2, 1fr); }
-        .hero-tentang h1 { font-size: 2.2rem; }
-    }
-
-    @media (max-width: 768px) {
-        .hero-tentang { padding: 100px 0 40px; }
-        .hero-tentang h1 { font-size: 1.8rem; }
-        .section { padding: 50px 0; }
-        .section-header h2 { font-size: 1.6rem; }
-        .geosite-grid { grid-template-columns: 1fr; }
-        .nilai-grid { grid-template-columns: 1fr; }
-        .pengelola-grid { grid-template-columns: 1fr; }
-        .maps-container iframe { height: 280px; }
-        .maps-info { flex-direction: column; text-align: center; }
-        .maps-info .location-list { justify-content: center; }
-        .cta-content h3 { font-size: 1.5rem; }
-    }
-
-    @media (max-width: 480px) {
-        .hero-tentang h1 { font-size: 1.4rem; }
-        .container { padding: 0 16px; }
-        .section-header h2 { font-size: 1.3rem; }
-        .maps-container iframe { height: 220px; }
-        .maps-info .location-list a { font-size: 0.65rem; padding: 4px 12px; }
-    }
-
     /* ==================== LIGHTBOX ==================== */
     .lightbox-modal {
         display: none;
@@ -618,6 +577,35 @@
         from {transform:scale(0.8); opacity: 0;} 
         to {transform:scale(1); opacity: 1;}
     }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 992px) {
+        .geosite-grid { grid-template-columns: repeat(2, 1fr); }
+        .visi-misi-grid { grid-template-columns: 1fr; max-width: 600px; }
+        .nilai-card { flex: 0 1 calc(50% - 25px); max-width: 380px; }
+        .pengelola-card { flex: 0 1 calc(50% - 30px); max-width: 360px; }
+        .hero-tentang h1 { font-size: 2.2rem; }
+    }
+
+    @media (max-width: 768px) {
+        .hero-tentang { padding: 100px 0 40px; }
+        .hero-tentang h1 { font-size: 1.8rem; }
+        .section { padding: 50px 0; }
+        .section-header h2 { font-size: 1.6rem; }
+        .geosite-grid { grid-template-columns: 1fr; }
+        .nilai-card { flex: 0 1 100%; max-width: 450px; }
+        .pengelola-card { flex: 0 1 100%; max-width: 400px; }
+        .maps-container iframe { height: 280px; }
+        .cta-content h3 { font-size: 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+        .hero-tentang h1 { font-size: 1.4rem; }
+        .container { padding: 0 16px; }
+        .section-header h2 { font-size: 1.3rem; }
+        .maps-container iframe { height: 220px; }
+        .profile-image-wrapper { min-height: 220px; }
+    }
 </style>
 
 <!-- ==================== HERO ==================== -->
@@ -640,14 +628,11 @@
             <p>{{ app()->getLocale() == 'en' ? 'Getting to know the Geopark Danau Toba area more closely' : 'Mengenal lebih dekat kawasan Geopark Danau Toba' }}</p>
         </div>
         
-        <!-- MODIFIKASI: Konten dengan gambar di samping -->
         <div class="profile-content-wrapper" data-aos="fade-up">
-            <!-- Gambar di samping kiri -->
             <div class="profile-image-wrapper" onclick="openLightbox('{{ asset('image/DestinasiAlam1.jpg') }}')">
                 <img src="{{ asset('image/DestinasiAlam1.jpg') }}" alt="Danau Toba Geosite" loading="lazy" onerror="this.onerror=null; this.src='{{ asset('image/default.jpg') }}'">
             </div>
             
-            <!-- Teks di samping kanan -->
             <div class="profile-text">
                 <p>
                     <strong>Taman Eden 100</strong>
@@ -715,33 +700,40 @@
     </div>
 </section>
 
-<!-- ==================== VISI MISI ==================== -->
+<!-- ==================== TUJUAN PENGELOLAAN ==================== -->
 <section class="section section-white">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <span class="badge">{{ app()->getLocale() == 'en' ? 'Vision & Mission' : 'Visi & Misi' }}</span>
-            <h2>{{ app()->getLocale() == 'en' ? 'Vision & Mission of Geopark' : 'Visi & Misi Geopark' }}</h2>
+            <span class="badge">{{ app()->getLocale() == 'en' ? 'Management Goals' : 'Tujuan Pengelolaan' }}</span>
+            <h2>{{ app()->getLocale() == 'en' ? 'Management Goals of Taman Eden 100' : 'Tujuan Pengelolaan Taman Eden 100' }}</h2>
             <div class="divider"></div>
-            <p>{{ app()->getLocale() == 'en' ? 'Commitment to managing Geopark Danau Toba for the future' : 'Komitmen pengelolaan Geopark Danau Toba untuk masa depan' }}</p>
+            <p>{{ app()->getLocale() == 'en'
+                ? 'Commitment to preserving nature through conservation, education, research, and sustainable ecotourism.'
+                : 'Komitmen dalam melestarikan alam melalui konservasi, pendidikan, penelitian, dan pengembangan ekowisata berkelanjutan.'
+            }}</p>
         </div>
+
         <div class="visi-misi-grid">
-            <!-- VISI -->
             <div class="visi-misi-card" data-aos="fade-up">
-                <span class="icon"><i class="fas fa-eye"></i></span>
-                <h3>{{ app()->getLocale() == 'en' ? 'Vision' : 'Visi' }}</h3>
-                <p>{{ app()->getLocale() == 'en' ? 'Making Geopark Danau Toba a sustainable world-class geotourism destination, preserving geological, cultural, and biodiversity heritage for community welfare.' : 'Menjadikan Geopark Danau Toba sebagai destinasi geowisata kelas dunia yang berkelanjutan, melestarikan warisan geologi, budaya, dan keanekaragaman hayati untuk kesejahteraan masyarakat.' }}</p>
+                <span class="icon"><i class="fas fa-leaf"></i></span>
+                <h3>{{ app()->getLocale() == 'en' ? 'Main Goal' : 'Tujuan Utama' }}</h3>
+                <p>
+                    {{ app()->getLocale() == 'en'
+                    ? 'To preserve the natural ecosystem of the Toba Caldera while providing educational, research, and ecotourism opportunities that contribute to environmental sustainability and community welfare.'
+                    : 'Melestarikan ekosistem alami Kaldera Toba sekaligus menyediakan sarana pendidikan, penelitian, dan ekowisata yang berkontribusi terhadap keberlanjutan lingkungan serta kesejahteraan masyarakat.'
+                    }}
+                </p>
             </div>
 
-            <!-- MISI -->
             <div class="visi-misi-card" data-aos="fade-up" data-aos-delay="100">
-                <span class="icon"><i class="fas fa-bullseye"></i></span>
-                <h3>{{ app()->getLocale() == 'en' ? 'Mission' : 'Misi' }}</h3>
+                <span class="icon"><i class="fas fa-seedling"></i></span>
+                <h3>{{ app()->getLocale() == 'en' ? 'Management Priorities' : 'Fokus Pengelolaan' }}</h3>
                 <ul>
-                    <li><i class="fas fa-chevron-right"></i> {{ app()->getLocale() == 'en' ? 'Preserve and sustainably manage geological heritage' : 'Melestarikan dan mengelola warisan geologi secara berkelanjutan' }}</li>
-                    <li><i class="fas fa-chevron-right"></i> {{ app()->getLocale() == 'en' ? 'Develop tourism potential based on education and conservation' : 'Mengembangkan potensi wisata berbasis edukasi dan konservasi' }}</li>
-                    <li><i class="fas fa-chevron-right"></i> {{ app()->getLocale() == 'en' ? 'Empower local communities through the creative economy' : 'Memberdayakan masyarakat lokal melalui ekonomi kreatif' }}</li>
-                    <li><i class="fas fa-chevron-right"></i> {{ app()->getLocale() == 'en' ? 'Increase awareness of the importance of geoparks' : 'Meningkatkan kesadaran akan pentingnya geopark' }}</li>
-                    <li><i class="fas fa-chevron-right"></i> {{ app()->getLocale() == 'en' ? 'Build global partnerships for geopark development' : 'Membangun kemitraan global untuk pengembangan geopark' }}</li>
+                    <li><i class="fas fa-chevron-right"></i> {{ app()->getLocale() == 'en' ? 'Forest and biodiversity conservation.' : 'Konservasi hutan dan keanekaragaman hayati.' }}</li>
+                    <li><i class="fas fa-chevron-right"></i> {{ app()->getLocale() == 'en' ? 'Protection of water resources and natural ecosystems.' : 'Perlindungan sumber mata air dan ekosistem alami.' }}</li>
+                    <li><i class="fas fa-chevron-right"></i> {{ app()->getLocale() == 'en' ? 'Environmental education and scientific research.' : 'Pendidikan lingkungan dan penelitian ilmiah.' }}</li>
+                    <li><i class="fas fa-chevron-right"></i> {{ app()->getLocale() == 'en' ? 'Development of sustainable ecotourism.' : 'Pengembangan ekowisata yang berkelanjutan.' }}</li>
+                    <li><i class="fas fa-chevron-right"></i> {{ app()->getLocale() == 'en' ? 'Community participation in environmental conservation.' : 'Pemberdayaan masyarakat dalam pelestarian lingkungan.' }}</li>
                 </ul>
             </div>
         </div>
@@ -752,31 +744,47 @@
 <section class="section section-light">
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <span class="badge">{{ app()->getLocale() == 'en' ? 'Values' : 'Nilai' }}</span>
-            <h2>{{ app()->getLocale() == 'en' ? 'Geosite Values' : 'Nilai Geosite' }}</h2>
+            <span class="badge">{{ app()->getLocale() == 'en' ? 'Geosite Values' : 'Nilai Geosite' }}</span>
+            <h2>{{ app()->getLocale() == 'en' ? 'Core Values of Taman Eden 100' : 'Nilai Utama Taman Eden 100' }}</h2>
             <div class="divider"></div>
-            <p>{{ app()->getLocale() == 'en' ? 'Four main value pillars of Geopark Danau Toba' : 'Empat pilar nilai utama Geopark Danau Toba' }}</p>
+            <p>{{ app()->getLocale() == 'en'
+                ? 'The three fundamental values that make Taman Eden 100 an important geosite within the Toba Caldera UNESCO Global Geopark.'
+                : 'Tiga nilai utama yang menjadikan Taman Eden 100 sebagai salah satu geosite penting di kawasan UNESCO Global Geopark Kaldera Toba.'
+            }}</p>
         </div>
-        <div class="nilai-grid">
+
+        <div class="nilai-grid-three">
             <div class="nilai-card" data-aos="zoom-in">
                 <span class="icon"><i class="fas fa-mountain"></i></span>
-                <h4>{{ app()->getLocale() == 'en' ? 'Geological Value' : 'Nilai Geologi' }}</h4>
-                <p>{{ app()->getLocale() == 'en' ? 'Unique rock formations, geological structures, and volcanic processes that formed Lake Toba' : 'Keunikan formasi batuan, struktur geologi, dan proses vulkanik yang membentuk Danau Toba' }}</p>
+                <h4>{{ app()->getLocale() == 'en' ? 'Geo Diversity' : 'Keanekaragaman Geologi' }}</h4>
+                <p>
+                    {{ app()->getLocale() == 'en'
+                    ? 'Taman Eden 100 preserves volcanic geological features formed by the super-eruption of the Toba Caldera approximately 74,000 years ago. The area contains volcanic rocks, fertile volcanic soils, natural springs, waterfalls, and mountainous landscapes that provide evidence of the geological evolution of one of the world\'s largest volcanic calderas.'
+                    : 'Taman Eden 100 memiliki keragaman geologi yang terbentuk akibat letusan supervulkan Kaldera Toba sekitar 74.000 tahun yang lalu. Kawasan ini menyimpan batuan vulkanik, tanah vulkanik yang subur, mata air alami, air terjun, serta bentang alam pegunungan yang menjadi bukti proses evolusi geologi salah satu kaldera vulkanik terbesar di dunia.'
+                    }}
+                </p>
             </div>
+
             <div class="nilai-card" data-aos="zoom-in" data-aos-delay="100">
                 <span class="icon"><i class="fas fa-leaf"></i></span>
-                <h4>{{ app()->getLocale() == 'en' ? 'Ecological Value' : 'Nilai Ekologi' }}</h4>
-                <p>{{ app()->getLocale() == 'en' ? 'High biodiversity, lake ecosystems, forests, and endemic wildlife' : 'Keanekaragaman hayati yang tinggi, ekosistem danau, hutan, dan satwa endemik' }}</p>
+                <h4>{{ app()->getLocale() == 'en' ? 'Bio Diversity' : 'Keanekaragaman Hayati' }}</h4>
+                <p>
+                    {{ app()->getLocale() == 'en'
+                    ? 'The conservation forest protects rich biodiversity, including endemic and native plant species such as andaliman, orchids, and various medicinal plants. The natural ecosystem also provides habitat for birds, insects, and other wildlife characteristic of the Toba highlands.'
+                    : 'Hutan konservasi Taman Eden 100 melindungi keanekaragaman hayati yang tinggi, termasuk berbagai tumbuhan endemik dan asli seperti andaliman, anggrek hutan, serta tanaman obat. Ekosistem alaminya juga menjadi habitat bagi berbagai jenis burung, serangga, dan satwa khas dataran tinggi Danau Toba.'
+                    }}
+                </p>
             </div>
+
             <div class="nilai-card" data-aos="zoom-in" data-aos-delay="200">
-                <span class="icon"><i class="fas fa-people-arrows"></i></span>
-                <h4>{{ app()->getLocale() == 'en' ? 'Cultural Value' : 'Nilai Budaya' }}</h4>
-                <p>{{ app()->getLocale() == 'en' ? 'Rich Batak cultural heritage, traditions, arts, and living local wisdom' : 'Warisan budaya Batak yang kaya, tradisi, seni, dan kearifan lokal yang masih hidup' }}</p>
-            </div>
-            <div class="nilai-card" data-aos="zoom-in" data-aos-delay="300">
-                <span class="icon"><i class="fas fa-gem"></i></span>
-                <h4>{{ app()->getLocale() == 'en' ? 'Scientific Value' : 'Nilai Ilmiah' }}</h4>
-                <p>{{ app()->getLocale() == 'en' ? 'A natural laboratory for geological, archaeological, and earth science research' : 'Laboratorium alam untuk penelitian geologi, arkeologi, dan ilmu kebumian' }}</p>
+                <span class="icon"><i class="fas fa-users"></i></span>
+                <h4>{{ app()->getLocale() == 'en' ? 'Cultural Diversity' : 'Keanekaragaman Budaya' }}</h4>
+                <p>
+                    {{ app()->getLocale() == 'en'
+                    ? 'Taman Eden 100 reflects the close relationship between the Batak community and nature. Local wisdom in forest conservation, sustainable use of natural resources, traditional agriculture, and the preservation of endemic plants demonstrates how culture contributes to environmental sustainability.'
+                    : 'Taman Eden 100 mencerminkan hubungan erat antara masyarakat Batak dengan alam. Kearifan lokal dalam menjaga hutan, memanfaatkan sumber daya alam secara berkelanjutan, praktik pertanian tradisional, serta pelestarian tanaman khas menunjukkan peran budaya dalam menjaga kelestarian lingkungan.'
+                    }}
+                </p>
             </div>
         </div>
     </div>
@@ -791,12 +799,13 @@
             <div class="divider"></div>
             <p>{{ app()->getLocale() == 'en' ? 'A dedicated management team for Geopark Danau Toba' : 'Tim pengelola yang berdedikasi untuk Geopark Danau Toba' }}</p>
         </div>
-        <div class="pengelola-grid">
+        
+        <div class="pengelola-grid-three">
             @foreach($pengelolas as $index => $pengelola)
                 <div class="pengelola-card" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
                     @if($pengelola->image)
-                        <div class="avatar" style="overflow:hidden; padding:0; background:none; border: 2px solid var(--primary); cursor:pointer;" onclick="openLightbox('{{ asset($pengelola->image) }}')">
-                            <img src="{{ asset($pengelola->image) }}" alt="{{ $pengelola->nama }}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                        <div class="avatar" onclick="openLightbox('{{ asset($pengelola->image) }}')">
+                            <img src="{{ asset($pengelola->image) }}" alt="{{ $pengelola->nama }}">
                         </div>
                     @else
                         @php
@@ -853,7 +862,6 @@
 <script>
     AOS.init({ duration: 600, once: true, offset: 40, easing: 'ease-out-quad' });
 
-    // Fungsi Lightbox
     function openLightbox(imgSrc) {
         document.getElementById('imageLightbox').style.display = "block";
         document.getElementById('lightboxImage').src = imgSrc;
