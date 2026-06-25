@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $item->nama_trans . ' - Kuliner Geosite Danau Toba')
+@section('title', $item->nama_trans . ' - kuliner Geosite Danau Toba')
 @section('meta_description', Str::limit(strip_tags($item->deskripsi_trans), 160))
 
 @section('content')
@@ -164,7 +164,7 @@
          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop'">
     <div class="detail-hero-overlay">
         <div class="detail-hero-content" data-aos="fade-up">
-            <div class="detail-hero-badge"><i class="fas fa-bed"></i> Kuliner</div>
+            <div class="detail-hero-badge"><i class="fas fa-bed"></i> kuliner</div>
             <h1>{{ $item->nama_trans }}</h1>
             <div class="detail-hero-meta">
                 @if($item->lokasi)
@@ -197,7 +197,7 @@
                 <div class="detail-main-body">
                     <h2>
                         <div class="icon-wrap"><i class="fas fa-bed"></i></div>
-                        {{ app()->getLocale() == 'en' ? 'About This Culinary' : 'Tentang Kuliner Ini' }}
+                        {{ app()->getLocale() == 'en' ? 'About This Culinary' : 'Tentang kuliner Ini' }}
                     </h2>
                     <div class="deskripsi">{{ $item->deskripsi_trans ?? (app()->getLocale() == 'en' ? 'Description not available.' : 'Deskripsi belum tersedia.') }}</div>
                 </div>
@@ -208,7 +208,7 @@
                 <div class="sidebar-card">
                     <div class="sidebar-card-header">
                         <i class="fas fa-info-circle"></i>
-                        <h4>{{ app()->getLocale() == 'en' ? 'Culinary Info' : 'Informasi Kuliner' }}</h4>
+                        <h4>{{ app()->getLocale() == 'en' ? 'Culinary Info' : 'Informasi kuliner' }}</h4>
                     </div>
                     <div class="sidebar-card-body">
                         @if($item->lokasi)
@@ -254,9 +254,9 @@
                         <h4>{{ app()->getLocale() == 'en' ? 'Navigation' : 'Navigasi' }}</h4>
                     </div>
                     <div class="sidebar-card-body">
-                        <a href="{{ route('Kuliner.index') }}" class="btn-back">
+                        <a href="{{ route('kuliner.index') }}" class="btn-back">
                             <i class="fas fa-arrow-left"></i>
-                            {{ app()->getLocale() == 'en' ? 'Back to Culinary List' : 'Kembali ke Daftar Kuliner' }}
+                            {{ app()->getLocale() == 'en' ? 'Back to Culinary List' : 'Kembali ke Daftar kuliner' }}
                         </a>
                         @if($item->kontak)
                         <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $item->kontak) }}" target="_blank" class="btn-whatsapp">
@@ -269,16 +269,16 @@
             </div>
         </div>
 
-        {{-- Kuliner Lainnya --}}
+        {{-- kuliner Lainnya --}}
         @if($related->count() > 0)
         <div class="related-section">
             <div class="related-section-header">
-                <h3>{{ app()->getLocale() == 'en' ? 'Other' : 'Kuliner' }} <span>{{ app()->getLocale() == 'en' ? 'Culinarys' : 'Lainnya' }}</span></h3>
+                <h3>{{ app()->getLocale() == 'en' ? 'Other' : 'kuliner' }} <span>{{ app()->getLocale() == 'en' ? 'Culinarys' : 'Lainnya' }}</span></h3>
                 <div class="divider-line"></div>
             </div>
             <div class="related-grid">
                 @foreach($related as $rel)
-                <a href="{{ route('Kuliner.detail', $rel->id) }}" class="related-card">
+                <a href="{{ route('kuliner.detail', $rel->id) }}" class="related-card">
                     <div class="related-card-img-wrap">
                         @php $relImg = $rel->gambar && file_exists(public_path($rel->gambar)) ? asset($rel->gambar) : 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=600&auto=format&fit=crop'; @endphp
                         <img src="{{ $relImg }}" alt="{{ $rel->nama_trans }}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=600&auto=format&fit=crop'">
