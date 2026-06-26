@@ -16,7 +16,16 @@ class PublicFasilitasUtamaController extends Controller
         $fasilitas = \App\Models\Fasilitas::where('status', 1)
                         ->orderBy('urutan', 'asc')
                         ->get();
-        return view('pages.fasilitas-index', compact('fasilitas'));
+        
+        $activeValues = [1, '1', 'aktif', 'on', 'true', true];
+        $featuredAkomodasi = \App\Models\Penginapan::whereIn('status', $activeValues)
+                                ->orderBy('urutan', 'asc')
+                                ->first();
+        $featuredKuliner = \App\Models\Kuliner::where('status', 1)
+                                ->orderBy('urutan', 'asc')
+                                ->first();
+
+        return view('pages.fasilitas-index', compact('fasilitas', 'featuredAkomodasi', 'featuredKuliner'));
     }
 
     public function umkm()

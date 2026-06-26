@@ -89,7 +89,7 @@
             <i class="fas fa-plus-circle"></i>
             Tambah Kuliner
         </h5>
-        <a href="{{ route('admin.Kuliner.index') }}" class="btn-cancel">
+        <a href="{{ route('admin.kuliner.index') }}" class="btn-cancel">
             <i class="fas fa-arrow-left"></i> Kembali
         </a>
     </div>
@@ -107,7 +107,7 @@
             </div>
         @endif
 
-        <form action="{{ route('admin.Kuliner.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.kuliner.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             {{-- Informasi Utama --}}
@@ -193,7 +193,7 @@
                 <button type="submit" class="btn-save">
                     <i class="fas fa-save"></i> Simpan Data
                 </button>
-                <a href="{{ route('admin.Kuliner.index') }}" class="btn-cancel">
+                <a href="{{ route('admin.kuliner.index') }}" class="btn-cancel">
                     <i class="fas fa-times"></i> Batal
                 </a>
             </div>

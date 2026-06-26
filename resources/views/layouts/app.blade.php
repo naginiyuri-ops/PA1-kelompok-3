@@ -1097,7 +1097,6 @@ FOOTER MODERN
                     @if(isset($kontakInfo) && $kontakInfo->social_fb)<a href="{{ $kontakInfo->social_fb }}" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>@endif
                     @if(isset($kontakInfo) && $kontakInfo->social_ig)<a href="{{ $kontakInfo->social_ig }}" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>@endif
                     @if(isset($kontakInfo) && $kontakInfo->social_youtube)<a href="{{ $kontakInfo->social_youtube }}" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>@endif
-                    @if(isset($kontakInfo) && $kontakInfo->social_twitter)<a href="{{ $kontakInfo->social_twitter }}" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>@endif
                     @if(isset($kontakInfo) && $kontakInfo->social_tiktok)<a href="{{ $kontakInfo->social_tiktok }}" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>@endif
                 </div>
             </div>

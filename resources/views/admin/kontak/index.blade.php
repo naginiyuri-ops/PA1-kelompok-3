@@ -76,17 +76,13 @@
             <h6 class="section-title"><i class="fas fa-share-alt"></i> Sosial Media</h6>
             
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label>Facebook URL</label>
                     <input type="text" class="form-control" name="social_fb" value="{{ old('social_fb', $kontak->social_fb ?? '') }}">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label>Instagram URL</label>
                     <input type="text" class="form-control" name="social_ig" value="{{ old('social_ig', $kontak->social_ig ?? '') }}">
-                </div>
-                <div class="form-group col-md-4">
-                    <label>Twitter / X URL</label>
-                    <input type="text" class="form-control" name="social_twitter" value="{{ old('social_twitter', $kontak->social_twitter ?? '') }}">
                 </div>
             </div>
             <div class="form-row">

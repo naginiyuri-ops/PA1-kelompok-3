@@ -28,7 +28,7 @@ class PublicKontakController extends Controller
         ]);
 
         try {
-            Mail::to('ambaritatuktuktomokadmingeosit@gmail.com')->send(
+            Mail::to('admintamaneden@gmail.com')->send(
                 new KontakMail(
                     $request->nama,
                     $request->email,

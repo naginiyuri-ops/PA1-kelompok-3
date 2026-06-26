@@ -341,7 +341,6 @@
                     <div class="social-links-row">
                         @if($kontak->social_fb) <a href="{{ $kontak->social_fb }}" target="_blank"><i class="fab fa-facebook-f"></i></a> @endif
                         @if($kontak->social_ig) <a href="{{ $kontak->social_ig }}" target="_blank"><i class="fab fa-instagram"></i></a> @endif
-                        @if($kontak->social_twitter) <a href="{{ $kontak->social_twitter }}" target="_blank"><i class="fab fa-twitter"></i></a> @endif
                         @if($kontak->social_youtube) <a href="{{ $kontak->social_youtube }}" target="_blank"><i class="fab fa-youtube"></i></a> @endif
                         @if($kontak->social_tiktok) <a href="{{ $kontak->social_tiktok }}" target="_blank"><i class="fab fa-tiktok"></i></a> @endif
                     </div>

@@ -12,12 +12,12 @@ class AdminKulinerController extends Controller
     public function index()
     {
         $data = Kuliner::latest()->paginate(10);
-        return view('admin.Kuliner.index', compact('data'));
+        return view('admin.kuliner.index', compact('data'));
     }
 
     public function create()
     {
-        return view('admin.Kuliner.create');
+        return view('admin.kuliner.create');
     }
 
     public function store(Request $request)
@@ -72,14 +72,14 @@ class AdminKulinerController extends Controller
 
         Kuliner::create($data);
 
-        return redirect()->route('admin.Kuliner.index')
+        return redirect()->route('admin.kuliner.index')
             ->with('success', 'Data Kuliner berhasil ditambahkan!');
     }
 
     public function edit($id)
     {
         $data = Kuliner::findOrFail($id);
-        return view('admin.Kuliner.edit', compact('data'));
+        return view('admin.kuliner.edit', compact('data'));
     }
 
     public function update(Request $request, $id)
@@ -146,7 +146,7 @@ class AdminKulinerController extends Controller
 
         $Kuliner->update($updateData);
 
-        return redirect()->route('admin.Kuliner.index')
+        return redirect()->route('admin.kuliner.index')
             ->with('success', 'Data Kuliner berhasil diperbarui!');
     }
 
@@ -155,7 +155,7 @@ class AdminKulinerController extends Controller
         $Kuliner = Kuliner::findOrFail($id);
         $Kuliner->delete();
 
-        return redirect()->route('admin.Kuliner.index')
+        return redirect()->route('admin.kuliner.index')
             ->with('success', 'Data Kuliner berhasil dihapus!');
     }
 

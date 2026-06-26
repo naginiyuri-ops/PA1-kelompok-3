@@ -137,7 +137,7 @@
             <i class="fas fa-bed"></i>
             Manajemen Kuliner
         </h5>
-        <a href="{{ route('admin.Kuliner.create') }}" class="btn-primary">
+        <a href="{{ route('admin.kuliner.create') }}" class="btn-primary">
             <i class="fas fa-plus"></i> Tambah Kuliner
         </a>
     </div>
@@ -203,10 +203,10 @@
                     </td>
                     <td data-label="Aksi">
                         <div class="btn-group">
-                            <a href="{{ route('admin.Kuliner.edit', $item->id) }}" class="btn-edit">
+                            <a href="{{ route('admin.kuliner.edit', $item->id) }}" class="btn-edit">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
-                            <form action="{{ route('admin.Kuliner.destroy', $item->id) }}" method="POST"
+                            <form action="{{ route('admin.kuliner.destroy', $item->id) }}" method="POST"
                                   onsubmit="return confirm('Yakin ingin menghapus data ini?')" style="display:inline;">
                                 @csrf
                                 @method('DELETE')

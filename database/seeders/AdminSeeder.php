@@ -12,7 +12,7 @@ class AdminSeeder extends Seeder
     {
         // Cek apakah sudah ada, jika belum buat
         Admin::firstOrCreate(
-            ['email' => 'admina246@gmail.com'],
+            ['email' => 'admintamaneden@gmail.com'],
             [
                 'name' => 'Admin GeoToba',
                 'password' => Hash::make('admin123'),
@@ -20,7 +20,7 @@ class AdminSeeder extends Seeder
         );
         
         $this->command->info('Admin berhasil dibuat!');
-        $this->command->info('Email: admina246@gmail.com');
+        $this->command->info('Email: admintamaneden@gmail.com');
         $this->command->info('Password: admin123');
     }
 }

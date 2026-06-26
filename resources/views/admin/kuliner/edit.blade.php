@@ -92,7 +92,7 @@
             <i class="fas fa-edit"></i>
             Edit Kuliner: {{ $data->nama }}
         </h5>
-        <a href="{{ route('admin.Kuliner.index') }}" class="btn-cancel">
+        <a href="{{ route('admin.kuliner.index') }}" class="btn-cancel">
             <i class="fas fa-arrow-left"></i> Kembali
         </a>
     </div>
@@ -110,7 +110,7 @@
             </div>
         @endif
 
-        <form action="{{ route('admin.Kuliner.update', $data->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.kuliner.update', $data->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -224,7 +224,7 @@
                 <button type="submit" class="btn-update">
                     <i class="fas fa-save"></i> Simpan Perubahan
                 </button>
-                <a href="{{ route('admin.Kuliner.index') }}" class="btn-cancel">
+                <a href="{{ route('admin.kuliner.index') }}" class="btn-cancel">
                     <i class="fas fa-times"></i> Batal
                 </a>
             </div>

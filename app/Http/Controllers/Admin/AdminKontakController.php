@@ -32,12 +32,17 @@ class AdminKontakController extends Controller
             'social_tiktok' => 'nullable|string',
         ]);
 
+        $data = $request->all();
+        $data['alamat'] = $data['alamat'] ?? '';
+        $data['telepon'] = $data['telepon'] ?? '';
+        $data['email'] = $data['email'] ?? '';
+
         $kontak = Kontak::first();
         
         if ($kontak) {
-            $kontak->update($request->all());
+            $kontak->update($data);
         } else {
-            Kontak::create($request->all());
+            Kontak::create($data);
         }
 
         return redirect()->route('admin.kontak.index')->with('success', 'Data kontak berhasil diperbarui!');
