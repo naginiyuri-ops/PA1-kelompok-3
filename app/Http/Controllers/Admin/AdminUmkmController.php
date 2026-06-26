@@ -24,21 +24,24 @@ class AdminUmkmController extends Controller
     {
         $request->validate([
             'nama_usaha' => 'required|string|max:255',
+            'pemilik' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'lokasi' => 'nullable|string|max:255',
-            'kontak' => 'nullable|regex:/^[0-9]{12,15}$/',
+            'kontak' => 'nullable|regex:/^[0-9]{11,15}$/',
             'urutan' => 'nullable|integer',
             'status' => 'nullable|boolean',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
         ],[
-            'kontak.regex' => 'Masukkan nomor telepon dengan 12-15 digit angka.',
+            'kontak.regex' => 'Masukkan nomor telepon dengan 11-15 digit angka.',
         ]
         );
 
+        $namaUsaha = $request->input('nama_usaha', $request->input('nama'));
+
         $data = [
-            'nama_usaha' => $request->nama_usaha,
-            'nama_usaha_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
-            'pemilik' => $request->pemilik ?? 'Admin',
+            'nama_usaha' => $namaUsaha,
+            'nama_usaha_en' => \App\Helpers\TranslateHelper::translateToEnglish($namaUsaha),
+            'pemilik' => $request->pemilik,
             'alamat' => $request->lokasi ?? 'Desa',
             'no_telepon' => $request->kontak ?? '-',
             'deskripsi' => $request->deskripsi,
@@ -49,7 +52,7 @@ class AdminUmkmController extends Controller
 
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
-            $filename = time() . '_' . Str::slug($request->nama) . '.' . $image->getClientOriginalExtension();
+            $filename = time() . '_' . Str::slug($request->nama_usaha) . '.' . $image->getClientOriginalExtension();
             
             $destinationPath = public_path('image/umkm');
             if (!file_exists($destinationPath)) {
@@ -61,7 +64,7 @@ class AdminUmkmController extends Controller
 
         if ($request->hasFile('foto_tambahan')) {
             $image2 = $request->file('foto_tambahan');
-            $filename2 = time() . '_2_' . Str::slug($request->nama) . '.' . $image2->getClientOriginalExtension();
+            $filename2 = time() . '_2_' . Str::slug($request->nama_usaha) . '.' . $image2->getClientOriginalExtension();
             
             $destinationPath = public_path('image/umkm');
             if (!file_exists($destinationPath)) {
@@ -94,20 +97,25 @@ class AdminUmkmController extends Controller
         $umkm = Umkm::findOrFail($id);
 
         $request->validate([
-            'nama' => 'required|string|max:255',
+            'nama_usaha' => 'required|string|max:255',
+            'pemilik' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'lokasi' => 'nullable|string|max:255',
-            'kontak' => 'nullable|string|max:100',
+            'kontak' => 'nullable|regex:/^[0-9]{11,15}$/',
             'urutan' => 'nullable|integer',
             'status' => 'nullable|boolean',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
             'foto_tambahan' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+        ],[
+            'kontak.regex' => 'Masukkan nomor telepon dengan 11-15 digit angka.',
         ]);
 
+        $namaUsaha = $request->input('nama_usaha', $request->input('nama'));
+
         $updateData = [
-            'nama_usaha' => $request->nama,
-            'nama_usaha_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
-            'pemilik' => $request->pemilik ?? 'Admin',
+            'nama_usaha' => $namaUsaha,
+            'nama_usaha_en' => \App\Helpers\TranslateHelper::translateToEnglish($namaUsaha),
+            'pemilik' => $request->pemilik,
             'alamat' => $request->lokasi ?? 'Desa',
             'no_telepon' => $request->kontak ?? '-',
             'deskripsi' => $request->deskripsi,
@@ -129,7 +137,7 @@ class AdminUmkmController extends Controller
         // Handle upload gambar baru
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
-            $filename = time() . '_' . Str::slug($request->nama) . '.' . $image->getClientOriginalExtension();
+            $filename = time() . '_' . Str::slug($request->nama_usaha) . '.' . $image->getClientOriginalExtension();
             
             $destinationPath = public_path('image/umkm');
             if (!file_exists($destinationPath)) {
@@ -142,7 +150,7 @@ class AdminUmkmController extends Controller
         // Handle upload foto tambahan baru
         if ($request->hasFile('foto_tambahan')) {
             $image2 = $request->file('foto_tambahan');
-            $filename2 = time() . '_2_' . Str::slug($request->nama) . '.' . $image2->getClientOriginalExtension();
+            $filename2 = time() . '_2_' . Str::slug($request->nama_usaha) . '.' . $image2->getClientOriginalExtension();
             
             $destinationPath = public_path('image/umkm');
             if (!file_exists($destinationPath)) {

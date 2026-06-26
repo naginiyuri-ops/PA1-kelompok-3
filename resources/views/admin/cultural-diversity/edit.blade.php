@@ -38,6 +38,7 @@
                     <option value="upacara" {{ old('kategori', $data->kategori) == 'upacara' ? 'selected' : '' }}>Upacara Adat</option>
                     <option value="kerajinan" {{ old('kategori', $data->kategori) == 'kerajinan' ? 'selected' : '' }}>Kerajinan</option>
                     <option value="kuliner" {{ old('kategori', $data->kategori) == 'kuliner' ? 'selected' : '' }}>Kuliner</option>
+                    <option value="budaya" {{ old('kategori', $data->kategori) == 'budaya' ? 'selected' : '' }}>Budaya</option>
                 </select>
             </div>
 

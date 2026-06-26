@@ -48,15 +48,21 @@ class PublicFasilitasUtamaController extends Controller
 
     public function penginapan()
     {
-        $penginapan = \App\Models\Penginapan::where('status', 1)
-                        ->orderBy('urutan', 'asc')
-                        ->paginate(9);
-        return view('pages.penginapan', compact('penginapan'));
+                $activeValues = [1, '1', 'aktif', 'on', 'true', true];
+                $penginapan = \App\Models\Penginapan::whereIn('status', $activeValues)
+                                                ->orderBy('urutan', 'asc')
+                                                ->paginate(9);
+        $fasilitasAkomodasi = \App\Models\Fasilitas::where('status', 1)
+                                ->where('jenis', 'akomodasi')
+                                ->orderBy('urutan', 'asc')
+                                ->get();
+        return view('pages.penginapan', compact('penginapan', 'fasilitasAkomodasi'));
     }
 
     public function penginapanDetail($id)
     {
-        $item = \App\Models\Penginapan::where('status', 1)->findOrFail($id);
+        $activeValues = [1, '1', 'aktif', 'on', 'true', true];
+        $item = \App\Models\Penginapan::whereIn('status', $activeValues)->findOrFail($id);
         $related = \App\Models\Penginapan::where('status', 1)
                         ->where('id', '!=', $id)
                         ->inRandomOrder()
@@ -70,7 +76,11 @@ class PublicFasilitasUtamaController extends Controller
         $kuliner = \App\Models\Kuliner::where('status', 1)
                         ->orderBy('urutan', 'asc')
                         ->paginate(9);
-        return view('pages.kuliner', compact('kuliner'));
+        $fasilitasKuliner = \App\Models\Fasilitas::where('status', 1)
+                                ->where('jenis', 'kuliner')
+                                ->orderBy('urutan', 'asc')
+                                ->get();
+        return view('pages.kuliner', compact('kuliner', 'fasilitasKuliner'));
     }
 
     public function kulinerDetail($id)

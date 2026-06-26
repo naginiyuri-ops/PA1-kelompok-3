@@ -415,17 +415,36 @@
             <div class="divider"></div>
         </div>
         
+        @php
+            $akomodasiList = $fasilitas->where('jenis', 'akomodasi');
+            $kulinerList = $fasilitas->where('jenis', 'kuliner');
+            $otherFasilitas = $fasilitas->reject(function($it) {
+                return in_array(strtolower($it->jenis), ['akomodasi', 'kuliner']);
+            });
+        @endphp
+
         <div class="category-grid">
 
             {{-- Kartu Khusus Penginapan --}}
             <a href="{{ route('penginapan.index') }}" class="category-card" data-aos="fade-up" style="text-decoration: none;">
                 <div class="card-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop" alt="Penginapan">
+                    @if($featuredAkomodasi && $featuredAkomodasi->gambar && file_exists(public_path($featuredAkomodasi->gambar)))
+                        <img src="{{ asset($featuredAkomodasi->gambar) }}" alt="{{ $featuredAkomodasi->nama }}">
+                    @else
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop" alt="Penginapan">
+                    @endif
                 </div>
                 <div class="card-content">
                     <h3>{{ __('app.penginapan.title') }}</h3>
                     <p style="margin-bottom: 15px;">{{ __('app.penginapan.subtitle') }}</p>
-                    
+
+                    @if($featuredAkomodasi)
+                        <div style="margin-top:12px; text-align:left;">
+                            <strong style="display:block; color:#003366;">{{ app()->getLocale() == 'en' ? ($featuredAkomodasi->nama_en ?? $featuredAkomodasi->nama) : $featuredAkomodasi->nama }}</strong>
+                            <div style="color:#64748b; font-size:0.9rem; margin-top:6px;">{{ Str::limit(app()->getLocale() == 'en' ? ($featuredAkomodasi->deskripsi_en ?? $featuredAkomodasi->deskripsi) : $featuredAkomodasi->deskripsi, 80) }}</div>
+                        </div>
+                    @endif
+
                     <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: #64748b; text-align: left; margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
                         <div><i class="fas fa-arrow-right" style="color: var(--blue-dark); width: 20px;"></i> {{ app()->getLocale() == 'en' ? 'Click to view all accommodations' : 'Klik untuk melihat semua penginapan' }}</div>
                     </div>
@@ -435,12 +454,23 @@
             {{-- Kartu Khusus Kuliner --}}
             <a href="{{ route('kuliner.index') }}" class="category-card" data-aos="fade-up" data-aos-delay="50" style="text-decoration: none;">
                 <div class="card-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=2074&auto=format&fit=crop" alt="Kuliner">
+                    @if($featuredKuliner && $featuredKuliner->gambar && file_exists(public_path($featuredKuliner->gambar)))
+                        <img src="{{ asset($featuredKuliner->gambar) }}" alt="{{ $featuredKuliner->nama }}">
+                    @else
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=2074&auto=format&fit=crop" alt="Kuliner">
+                    @endif
                 </div>
                 <div class="card-content">
                     <h3>{{ __('app.kuliner.title') ?? 'Kuliner / Restoran' }}</h3>
                     <p style="margin-bottom: 15px;">{{ __('app.kuliner.subtitle') ?? 'Nikmati berbagai hidangan lezat dan kuliner khas di sekitar Geosite Danau Toba.' }}</p>
-                    
+
+                    @if($featuredKuliner)
+                        <div style="margin-top:12px; text-align:left;">
+                            <strong style="display:block; color:#003366;">{{ app()->getLocale() == 'en' ? ($featuredKuliner->nama_en ?? $featuredKuliner->nama) : $featuredKuliner->nama }}</strong>
+                            <div style="color:#64748b; font-size:0.9rem; margin-top:6px;">{{ Str::limit(app()->getLocale() == 'en' ? ($featuredKuliner->deskripsi_en ?? $featuredKuliner->deskripsi) : $featuredKuliner->deskripsi, 80) }}</div>
+                        </div>
+                    @endif
+
                     <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: #64748b; text-align: left; margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
                         <div><i class="fas fa-arrow-right" style="color: var(--blue-dark); width: 20px;"></i> {{ app()->getLocale() == 'en' ? 'Click to view all culinary & restaurants' : 'Klik untuk melihat semua kuliner' }}</div>
                     </div>
@@ -448,7 +478,7 @@
             </a>
             
             {{-- Hasil CRUD Fasilitas Lainnya --}}
-            @forelse($fasilitas as $item)
+            @forelse($otherFasilitas as $item)
             <div class="category-card" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}" style="cursor: pointer;" onclick="openFasilitas({{ $item->id }})">
                 <div class="card-img-wrapper">
                     @if($item->gambar && file_exists(public_path($item->gambar)))

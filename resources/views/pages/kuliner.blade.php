@@ -225,4 +225,46 @@
     </div>
 </section>
 
+{{-- FASILITAS KULINER (DARI TABLE FASILITAS) --}}
+@if(isset($fasilitasKuliner) && $fasilitasKuliner->count())
+<section class="kuliner-section" style="padding-top:30px;">
+    <div class="container">
+        <h3 style="margin-bottom:20px;">Fasilitas Kuliner</h3>
+        <div class="dest-grid">
+            @foreach($fasilitasKuliner as $item)
+            <div class="dest-card" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 60 }}">
+                <div class="card-img-wrapper">
+                    @php
+                        $imgSrc = $item->gambar && file_exists(public_path($item->gambar))
+                            ? asset($item->gambar)
+                            : 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop';
+                    @endphp
+                    <img src="{{ $imgSrc }}" alt="{{ $item->nama }}" loading="lazy"
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop'">
+                    <div class="card-img-overlay"><i class="fas fa-arrow-right"></i></div>
+                    <span class="card-badge">Fasilitas</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">{{ $item->nama }}</div>
+                    <div class="card-excerpt">{{ Str::limit(strip_tags($item->deskripsi), 140) }}</div>
+                    <div class="card-meta">
+                        @if($item->lokasi)
+                        <span><i class="fas fa-map-marker-alt"></i> {{ $item->lokasi }}</span>
+                        @endif
+                        @if($item->kontak)
+                        <span><i class="fas fa-phone"></i> {{ $item->kontak }}</span>
+                        @endif
+                    </div>
+                    <div class="card-footer">
+                        <span></span>
+                        <span class="read-more">Lihat Detail <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
 @endsection

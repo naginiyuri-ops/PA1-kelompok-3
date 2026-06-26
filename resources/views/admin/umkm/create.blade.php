@@ -220,6 +220,11 @@
                 <label>Nama UMKM <span class="text-danger">*</span></label>
                 <input type="text" name="nama_usaha" id="umkm_create_nama" class="form-control" value="{{ old('nama_usaha') }}" placeholder="Masukkan nama UMKM" required>
             </div>
+
+            <div class="mb-3">
+                <label>Pemilik <span class="text-danger">*</span></label>
+                <input type="text" name="pemilik" class="form-control" value="{{ old('pemilik') }}" placeholder="Masukkan nama pemilik UMKM" required>
+            </div>
             
             <div class="mb-3">
                 <label>Deskripsi <span class="text-danger">*</span></label>
@@ -254,11 +259,9 @@
                         <label>Urutan <span class="text-danger">*</span></label>
                         <input type="number" name="urutan" class="form-control" value="{{ old('urutan', $nextUrutan ?? 1) }}" required>
                         <div class="form-text">
-            <div class="mb-3">
-                <label>Urutan <span class="text-danger">*</span></label>
-                <input type="number" name="urutan" class="form-control" value="{{ old('urutan', $nextUrutan ?? 1) }}" required>
-                <div class="form-text">
-                    <i class="fas fa-info-circle"></i> Semakin kecil angka, semakin atas tampilannya
+                            <i class="fas fa-info-circle"></i> Semakin kecil angka, semakin atas tampilannya
+                        </div>
+                    </div>
                 </div>
             </div>
             

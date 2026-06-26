@@ -333,8 +333,19 @@
             <i class="fas fa-database"></i> Total: {{ $data->total() }}
         </span>
         <span class="stats-badge">
+            <i class="fas fa-bed"></i> Akomodasi: {{ $countAkomodasi ?? 0 }}
+        </span>
+        <span class="stats-badge">
+            <i class="fas fa-utensils"></i> Kuliner: {{ $countKuliner ?? 0 }}
+        </span>
+        <span class="stats-badge">
             <i class="fas fa-eye"></i> Halaman {{ $data->currentPage() }} / {{ $data->lastPage() }}
         </span>
+        <div style="margin-left:auto; display:flex; gap:8px;">
+            <a href="{{ route('admin.fasilitas.index') }}" class="btn-primary" style="background:#eef2ff; color:#003366; padding:6px 12px; font-size:0.8rem;">Semua</a>
+            <a href="{{ route('admin.fasilitas.index', ['group' => 'akomodasi']) }}" class="btn-primary" style="background:#ffffff; color:#003366; padding:6px 12px; font-size:0.8rem;">Akomodasi</a>
+            <a href="{{ route('admin.fasilitas.index', ['group' => 'kuliner']) }}" class="btn-primary" style="background:#ffffff; color:#003366; padding:6px 12px; font-size:0.8rem;">Kuliner</a>
+        </div>
     </div>
 
     <div class="table-wrapper">
@@ -345,6 +356,7 @@
                     <th>Gambar</th>
                     <th>Nama</th>
                     <th>Jenis</th>
+                    <th>Kelompok</th>
                     <th>Lokasi</th>
                     <th>Kontak</th>
                     <th>Status</th>
@@ -369,6 +381,12 @@
                     </td>
                     <td data-label="Jenis">
                         <span class="badge badge-warning">{{ ucwords($item->jenis ?? '-') }}</span>
+                    </td>
+                    <td data-label="Kelompok">
+                        @php
+                            $groupLabel = (strtolower($item->jenis) === 'kuliner') ? 'Kuliner / Restoran' : 'Akomodasi';
+                        @endphp
+                        <span class="badge badge-success">{{ $groupLabel }}</span>
                     </td>
                     <td data-label="Lokasi">{{ $item->lokasi ?? '-' }}</td>
                     <td data-label="Kontak">{{ $item->kontak ?? '-' }}</td>

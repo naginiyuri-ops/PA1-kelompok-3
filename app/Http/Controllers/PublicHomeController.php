@@ -30,7 +30,7 @@ class PublicHomeController extends Controller
         // Destinasi Unggulan
         $featuredDestinations = Destination::where('status', true)
             ->where('is_featured', true)
-            ->orderBy('created_at', 'desc')
+            ->oldest()
             ->limit(6)
             ->get();
         

@@ -21,7 +21,7 @@ class PublicDestinationController extends Controller
         // Ambil hanya data aktif, kategori alam, 6 per halaman
         $destinations = Destination::active()
             ->ofCategory('alam')
-            ->latest()
+            ->oldest()
             ->paginate(6);
 
         return view('pages.wisata.alam', [
@@ -41,7 +41,7 @@ class PublicDestinationController extends Controller
     {
         $destinations = Destination::active()
             ->ofCategory('buatan')
-            ->latest()
+            ->oldest()
             ->paginate(6);
 
         return view('pages.wisata.buatan', [
@@ -61,7 +61,7 @@ class PublicDestinationController extends Controller
     {
         $destinations = Destination::active()
             ->ofCategory('budaya')
-            ->latest()
+            ->oldest()
             ->paginate(6);
 
         return view('pages.wisata.budaya', [

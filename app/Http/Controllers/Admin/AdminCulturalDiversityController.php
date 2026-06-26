@@ -35,7 +35,7 @@ class AdminCulturalDiversityController extends Controller
 
         $data = $query->latest()->paginate(10)->withQueryString();
 
-        $kategoriOptions = ['tarian', 'musik', 'upacara', 'kerajinan', 'kuliner'];
+        $kategoriOptions = ['tarian', 'musik', 'upacara', 'kerajinan', 'kuliner', 'budaya'];
 
         return view('admin.cultural-diversity.index', compact('data', 'kategoriOptions'));
     }
@@ -49,7 +49,7 @@ class AdminCulturalDiversityController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:255',
-            'kategori' => 'required|in:tarian,musik,upacara,kerajinan,kuliner',
+            'kategori' => 'required|in:tarian,musik,upacara,kerajinan,kuliner,budaya',
             'deskripsi' => 'required|string',
             'lokasi' => 'nullable|string|max:255',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
@@ -98,7 +98,7 @@ class AdminCulturalDiversityController extends Controller
 
         $request->validate([
             'nama' => 'required|string|max:255',
-            'kategori' => 'required|in:tarian,musik,upacara,kerajinan,kuliner',
+            'kategori' => 'required|in:tarian,musik,upacara,kerajinan,kuliner,budaya',
             'deskripsi' => 'required|string',
             'lokasi' => 'nullable|string|max:255',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',

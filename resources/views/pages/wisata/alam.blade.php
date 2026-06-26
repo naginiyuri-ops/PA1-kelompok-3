@@ -53,8 +53,8 @@
     .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
     .dest-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 380px));
-        gap: 35px; justify-content: center;
+        grid-template-columns: repeat(3, minmax(260px, 1fr));
+        gap: 35px;
     }
     .dest-card {
         background: var(--white); border-radius: 20px; overflow: hidden;
@@ -113,8 +113,8 @@
     .empty-state p { color: var(--text-light); }
     .pagination-wrapper { display: flex; justify-content: center; margin-top: 50px; }
 
-    @media (max-width: 992px) { .hero-dest h1 { font-size: 2.2rem; } }
-    @media (max-width: 768px) { .hero-dest { padding: 110px 0 60px; } .hero-dest h1 { font-size: 1.8rem; } .dest-section { padding: 50px 0 70px; } }
+    @media (max-width: 992px) { .hero-dest h1 { font-size: 2.2rem; } .dest-grid { grid-template-columns: repeat(2, minmax(260px, 1fr)); } }
+    @media (max-width: 768px) { .hero-dest { padding: 110px 0 60px; } .hero-dest h1 { font-size: 1.8rem; } .dest-section { padding: 50px 0 70px; } .dest-grid { grid-template-columns: 1fr; } }
     @media (max-width: 576px) { .hero-dest h1 { font-size: 1.5rem; } .card-content { padding: 18px; } }
 </style>
 

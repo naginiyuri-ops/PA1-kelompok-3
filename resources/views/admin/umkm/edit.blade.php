@@ -259,6 +259,11 @@
                 <label>Nama UMKM <span class="text-danger">*</span></label>
                 <input type="text" name="nama_usaha" id="umkm_edit_nama" class="form-control" value="{{ old('nama_usaha', $data->nama_usaha) }}" required>
             </div>
+
+            <div class="mb-3">
+                <label>Pemilik <span class="text-danger">*</span></label>
+                <input type="text" name="pemilik" class="form-control" value="{{ old('pemilik', $data->pemilik) }}" placeholder="Masukkan nama pemilik UMKM" required>
+            </div>
             
             <div class="mb-3">
                 <label>Deskripsi <span class="text-danger">*</span></label>

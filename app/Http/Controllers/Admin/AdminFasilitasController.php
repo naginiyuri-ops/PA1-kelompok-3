@@ -9,10 +9,27 @@ use Illuminate\Support\Str;
 
 class AdminFasilitasController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data = Fasilitas::latest()->paginate(10);
-        return view('admin.fasilitas.index', compact('data'));
+        $group = $request->query('group'); // 'akomodasi' | 'kuliner' | null
+
+        $query = Fasilitas::query();
+
+        if ($group === 'kuliner') {
+            $query->where('jenis', 'kuliner');
+        } elseif ($group === 'akomodasi') {
+            $query->where(function($q) {
+                $q->where('jenis', '!=', 'kuliner')->orWhereNull('jenis');
+            });
+        }
+
+        $data = $query->latest()->paginate(10)->withQueryString();
+
+        // counts for badges
+        $countKuliner = Fasilitas::where('jenis', 'kuliner')->count();
+        $countAkomodasi = Fasilitas::where('jenis', '!=', 'kuliner')->orWhereNull('jenis')->count();
+
+        return view('admin.fasilitas.index', compact('data', 'countKuliner', 'countAkomodasi', 'group'));
     }
 
    public function create()
@@ -41,13 +58,22 @@ class AdminFasilitasController extends Controller
             'kontak' => 'nullable|string|max:100',
             'urutan' => 'nullable|integer',
             'status' => 'nullable|boolean',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
+
+        // Determine display group: if admin explicitly selected 'tampil_as', prefer it.
+        $displayPref = $request->input('tampil_as');
+        if ($displayPref) {
+            $jenisNormalized = strtolower(trim($displayPref)) === 'kuliner' ? 'kuliner' : 'akomodasi';
+        } else {
+            $jenisValue = strtolower(trim($request->jenis));
+            $jenisNormalized = $jenisValue === 'kuliner' ? 'kuliner' : 'akomodasi';
+        }
 
         $data = [
             'nama' => $request->nama,
             'nama_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
-            'jenis' => $request->jenis,
+            'jenis' => $jenisNormalized,
             'deskripsi' => $request->deskripsi,
             'deskripsi_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->deskripsi),
             'harga' => $request->harga,
@@ -72,8 +98,9 @@ class AdminFasilitasController extends Controller
 
         Fasilitas::create($data);
 
+        $groupLabel = $jenisNormalized === 'kuliner' ? 'Kuliner / Restoran' : 'Akomodasi';
         return redirect()->route('admin.fasilitas.index')
-            ->with('success', 'Fasilitas berhasil ditambahkan!');
+            ->with('success', "Fasilitas berhasil ditambahkan! Ditampilkan pada: {$groupLabel}");
     }
 
     public function edit($id)
@@ -106,13 +133,21 @@ class AdminFasilitasController extends Controller
             'kontak' => 'nullable|string|max:100',
             'urutan' => 'nullable|integer',
             'status' => 'nullable|boolean',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
+
+        $displayPref = $request->input('tampil_as');
+        if ($displayPref) {
+            $jenisNormalized = strtolower(trim($displayPref)) === 'kuliner' ? 'kuliner' : 'akomodasi';
+        } else {
+            $jenisValue = strtolower(trim($request->jenis));
+            $jenisNormalized = $jenisValue === 'kuliner' ? 'kuliner' : 'akomodasi';
+        }
 
         $updateData = [
             'nama' => $request->nama,
             'nama_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->nama),
-            'jenis' => $request->jenis,
+            'jenis' => $jenisNormalized,
             'deskripsi' => $request->deskripsi,
             'deskripsi_en' => \App\Helpers\TranslateHelper::translateToEnglish($request->deskripsi),
             'harga' => $request->harga,
@@ -143,8 +178,9 @@ class AdminFasilitasController extends Controller
 
         $fasilitas->update($updateData);
 
+        $groupLabel = $jenisNormalized === 'kuliner' ? 'Kuliner / Restoran' : 'Akomodasi';
         return redirect()->route('admin.fasilitas.index')
-            ->with('success', 'Fasilitas berhasil diupdate!');
+            ->with('success', "Fasilitas berhasil diupdate! Ditampilkan pada: {$groupLabel}");
     }
 
     public function destroy($id)

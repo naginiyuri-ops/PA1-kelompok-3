@@ -37,6 +37,7 @@
                     <option value="upacara" {{ old('kategori') == 'upacara' ? 'selected' : '' }}>Upacara Adat</option>
                     <option value="kerajinan" {{ old('kategori') == 'kerajinan' ? 'selected' : '' }}>Kerajinan</option>
                     <option value="kuliner" {{ old('kategori') == 'kuliner' ? 'selected' : '' }}>Kuliner</option>
+                    <option value="budaya" {{ old('kategori') == 'budaya' ? 'selected' : '' }}>Budaya</option>
                 </select>
             </div>
 

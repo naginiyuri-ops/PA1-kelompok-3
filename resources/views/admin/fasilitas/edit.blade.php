@@ -261,8 +261,16 @@
             </div>
             
             <div class="mb-3">
+                <label>Tampilkan Sebagai <span class="text-danger">*</span></label>
+                <select name="tampil_as" id="tampil_as" class="form-control" required>
+                    <option value="akomodasi" {{ old('tampil_as', $data->jenis) == 'akomodasi' ? 'selected' : ($data->jenis != 'kuliner' ? 'selected' : '') }}>Akomodasi</option>
+                    <option value="kuliner" {{ old('tampil_as', $data->jenis) == 'kuliner' ? 'selected' : ($data->jenis == 'kuliner' ? 'selected' : '') }}>Kuliner / Restoran</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
                 <label>Jenis Fasilitas <span class="text-danger">*</span></label>
-                <select name="jenis" class="form-control" required>
+                <select name="jenis" id="jenis_select" class="form-control" required>
                     <option value="" disabled>-- Pilih Jenis Fasilitas --</option>
                     @foreach($jenisList as $j)
                         <option value="{{ $j }}" {{ old('jenis', $data->jenis) == $j ? 'selected' : '' }}>{{ ucwords($j) }}</option>
@@ -411,6 +419,19 @@
             previewImage.style.display = 'none';
         }
     });
+    // Sync tampil_as with jenis default: if jenis is 'kuliner' choose kuliner, otherwise akomodasi
+    const jenisSelect = document.getElementById('jenis_select');
+    const tampilAs = document.getElementById('tampil_as');
+    if (jenisSelect && tampilAs) {
+        jenisSelect.addEventListener('change', function() {
+            const v = (this.value || '').toLowerCase();
+            if (v === 'kuliner') {
+                tampilAs.value = 'kuliner';
+            } else {
+                tampilAs.value = 'akomodasi';
+            }
+        });
+    }
 </script>
 @endsection
 
